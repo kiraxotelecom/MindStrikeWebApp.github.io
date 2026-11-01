@@ -187,6 +187,36 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 .sub2{display:flex;gap:10px;width:min(92%,370px)}
 #app .sub2 button{min-width:0;flex:1;padding:9px 4px;font-size:.72rem;letter-spacing:.06em;background:#000a;border-width:1px}
 #prof{font-size:.78rem;line-height:1.4;padding:7px 10px}#prof .st{opacity:.9}#prof .mt{font-size:.7rem;opacity:.8;margin-top:3px}
+
+/* v20 shared skin */
+#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:#8d6738;--ln:rgba(221,177,103,.38)}
+.bm-note{display:block;text-align:center;color:#b6a58c;font-size:11px;line-height:1.5}.bm-note b{color:#f0c879}
+.bm-panel{width:min(92%,380px);display:flex;flex-direction:column;gap:9px;align-items:stretch;text-align:center;padding:20px 16px 16px;border:1px solid #8b6337;border-radius:6px;background:linear-gradient(160deg,rgba(49,33,23,.98),rgba(16,11,8,.99) 75%);box-shadow:inset 0 1px 0 #fff1,0 14px 40px #000c}
+.bm-panel .bm-hero{border:0;padding:0 0 8px}
+.bm-btn{width:100%;min-width:0;display:flex;align-items:center;gap:10px;justify-content:flex-start;text-align:left;padding:11px 14px;font:700 13px Cinzel,Georgia,serif;letter-spacing:1.6px;text-transform:uppercase;color:#f2cb7d;background:linear-gradient(105deg,rgba(49,33,23,.98),rgba(20,14,11,.98) 70%);border:1px solid #8b6337;border-radius:5px;box-shadow:inset 0 1px 0 #fff1,0 6px 14px #0008}
+.bm-btn .e{width:32px;height:32px;display:grid;place-items:center;border:1px solid #856137;border-radius:50%;background:radial-gradient(circle,#5c3b20,#24170f 70%);font-size:16px;flex:none;color:#f2cb7d}
+.bm-center{justify-content:center}.bm-toggles{display:grid;gap:8px;width:100%}.bm-toggles .bm-btn{justify-content:center;padding:13px}
+.bm-cta{width:100%;min-width:0;padding:14px;font:800 14px Cinzel,Georgia,serif;letter-spacing:3px;color:#ffe4a8;background:linear-gradient(145deg,#a43d28,#4c1712);border:1px solid #f1cc7b;border-radius:5px;box-shadow:0 0 0 3px #392316,0 6px 14px #000a;text-transform:uppercase}
+.bm-danger{background:transparent!important;border:1px solid #a4423a!important;color:#e58b80!important;box-shadow:none!important}.bm-danger .e{border-color:#a4423a!important;background:transparent!important;color:#e58b80!important}
+.bm-field{width:100%;display:flex;flex-direction:column;gap:7px;padding:12px;text-align:left;border:1px solid #8b6337;border-radius:5px;background:linear-gradient(105deg,rgba(49,33,23,.98),rgba(20,14,11,.98) 70%);box-shadow:inset 0 1px 0 #fff1,0 8px 20px #0008}
+.bm-field span{font:700 10px Cinzel,Georgia,serif;letter-spacing:2.4px;color:#b58b50;text-transform:uppercase}
+.bm-field input[type=text]{width:100%;box-sizing:border-box;font:700 20px Cinzel,Georgia,serif;letter-spacing:3px;text-align:left;color:#f5d38e;background:#0009;border:1px solid #75542f;border-radius:4px;padding:11px 12px}
+.bm-field input:focus{outline:none;border-color:#f1c36f;box-shadow:0 0 0 2px #b27a3555}
+.bm-setc{width:100%;box-sizing:border-box;margin:0;display:flex;flex-direction:column;gap:14px}.bm-setc label.sl{width:100%}
+.card{background:linear-gradient(105deg,rgba(49,33,23,.98),rgba(20,14,11,.98) 70%);border:1px solid #8b6337;border-radius:5px;box-shadow:inset 0 1px 0 #fff1,0 8px 20px #0008;position:relative;color:#f2e6d1}
+.card::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:linear-gradient(transparent,#d8a95e,transparent)}
+.card b{color:#f2cb7d}
+.qh,#helpBody h2{display:flex;align-items:center;gap:12px;font:700 12px Cinzel,Georgia,serif;letter-spacing:2.4px;text-transform:uppercase;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--gold);filter:none;margin:16px 0 8px}
+.qh:before,.qh:after,#helpBody h2:before,#helpBody h2:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#8d6738)}.qh:after,#helpBody h2:after{transform:scaleX(-1)}
+#helpBody{width:min(92%,390px);box-sizing:border-box;padding:18px 16px}#helpBody .bm-hero{padding-bottom:8px}#helpBody p{line-height:1.5;color:#d6c3a5}
+#lb{width:100%;display:flex;flex-direction:column;gap:8px}
+button.mgc{width:100%;border:1px solid #8b6337;border-radius:5px;background:linear-gradient(105deg,rgba(49,33,23,.98),rgba(20,14,11,.98) 70%);box-shadow:inset 0 1px 0 #fff1,0 8px 20px #0008;padding:12px;letter-spacing:0;font-weight:400;color:#f2e6d1;position:relative}
+button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;background:linear-gradient(transparent,#d8a95e,transparent)}
+.mgc .mge{width:46px;height:46px;display:grid;place-items:center;border:1px solid #856137;border-radius:50%;background:radial-gradient(circle,#5c3b20,#24170f 70%);font-size:22px;flex:none}
+.mgc b{font:700 15px Cinzel,Georgia,serif;letter-spacing:0;color:#f2cb7d}
+#qList button[data-qc],#qList button[data-rc]{min-width:84px;font:800 11px Cinzel,Georgia,serif;letter-spacing:1.5px;color:#ffe4a8;background:linear-gradient(145deg,#a43d28,#4c1712);border:1px solid #f1cc7b;border-radius:5px;padding:9px}
+#qList button:disabled{background:#1a120d;border-color:#5a4125;color:#8d7a5c;box-shadow:none}
+#dmgbar{display:none;flex-direction:column;gap:3px;width:min(94%,380px)}#dmgbar .r{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--gold)}#dmgbar .t{flex:1;height:8px;border-radius:4px;background:#7a1a12;border:1px solid var(--gold);overflow:hidden}#dmgbar .t i{display:block;height:100%;background:linear-gradient(90deg,#b27a35,#ffd98a);transition:width .4s}#dmgbar small{text-align:center;opacity:.8;font-size:.62rem;letter-spacing:.08em}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -210,10 +240,11 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 
 <section class="scr" id="s-name" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>NAME YOUR WARRIOR</h2>
- <input type="text" id="n1" maxlength="12" placeholder="PLAYER 1" autocomplete="off">
- <input type="text" id="n2" maxlength="12" placeholder="PLAYER 2" autocomplete="off">
- <button id="nameOk">CONTINUE</button>
+ <header class="bm-hero"><div class="bm-kicker">Every legend has a name</div><h1>Name Your Warrior</h1><div class="bm-sub">Carve it into the arena wall.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+ <div class="bm-head"><h2>Who enters the arena</h2></div>
+ <label class="bm-field"><span id="f1t">⚔️ Your warrior</span><input type="text" id="n1" maxlength="12" placeholder="PLAYER 1" autocomplete="off"></label>
+ <label class="bm-field" id="f2"><span>🛡️ Player 2</span><input type="text" id="n2" maxlength="12" placeholder="PLAYER 2" autocomplete="off"></label>
+ <button id="nameOk" class="bm-cta">CONTINUE</button>
 </section>
 
 <section class="scr" id="s-diff" style="--bg:url(img/menu_bg.webp)">
@@ -242,7 +273,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
  <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b></div>
   <div id="mid"><span id="lvl"></span><small id="tgt"></small><span id="clock"></span></div>
   <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b></div></div>
- <div id="layers"></div><div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
+ <div id="layers"></div><div id="shield"><i></i></div><div id="dmgbar"><div class="r"><b id="dn0"></b><div class="t"><i></i></div><b id="dn1"></b></div><small>DAMAGE · MOST DAMAGE WINS WHEN THE LAST SHIELD FALLS</small></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
  <div class="plate"><input id="num" type="text" readonly inputmode="none" placeholder="?"></div><div id="info"></div>
  <div class="kp" id="kp"></div>
  <div class="pw" id="pows"></div>
@@ -257,39 +288,44 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 
 <section class="scr" id="s-house" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>👑 THE HOUSE</h2><small style="text-align:center;opacity:.9;width:min(92%,380px);line-height:1.4">Eight champions of the arena, named for the family behind it. Win a match against each one to earn their laurel.</small>
+ <header class="bm-hero"><div class="bm-kicker">Champions of the arena</div><h1>The House</h1><div class="bm-sub">Eight champions named for the family behind it. Beat each one to earn their laurel.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div id="houseList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
 </section>
 
 <section class="scr" id="s-quests" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>📜 QUESTS &amp; REWARDS</h2><div id="qList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
+ <header class="bm-hero"><div class="bm-kicker">Deeds earn rewards</div><h1>Quests &amp; Rewards</h1><div class="bm-sub">Complete deeds, then claim coins and XP.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="qList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
 </section>
 
 <section class="scr" id="s-hall" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>🏆 HALL OF GLORY</h2><div id="lb"></div><button id="houseBtn">👑 THE HOUSE</button>
+ <header class="bm-hero"><div class="bm-kicker">Remembered forever</div><h1>Hall of Glory</h1><div class="bm-sub">The five finest victories in the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="lb"></div><button id="houseBtn" class="bm-btn bm-center">👑 THE HOUSE</button>
 </section>
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>🛒 THE ARMORY</h2><div id="gold" class="big"></div><div id="shopList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
+ <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><div id="shopList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
 </section>
 
 <section class="scr" id="s-set" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>SETTINGS</h2>
- <label class="sl"><span>🎵 Music volume <b id="vmv"></b></span><input type="range" id="vm" min="0" max="1" step=".05"></label>
- <label class="sl"><span>🔊 Effects volume <b id="vsv"></b></span><input type="range" id="vs" min="0" max="1" step=".05"></label>
- <small style="opacity:.8;text-align:center">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
- <div class="row"><button id="tMute"></button><button id="tTimer"></button><button id="tVib"></button></div>
- <button id="clrLb">CLEAR HALL OF GLORY</button>
- <small style="opacity:.75;text-align:center;margin-top:14px;letter-spacing:.5px">MindStrike: Number Wars<br>Developed by <b>Kirabo Isa Bilal</b></small>
+ <header class="bm-hero"><div class="bm-kicker">Tune the arena</div><h1>Settings</h1><div class="bm-sub">Sound, rhythm and the rules of the round.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+ <div class="bm-head"><h2>Sound</h2></div>
+ <div class="card bm-setc">
+  <label class="sl"><span>🎵 Music volume <b id="vmv"></b></span><input type="range" id="vm" min="0" max="1" step=".05"></label>
+  <label class="sl"><span>🔊 Effects volume <b id="vsv"></b></span><input type="range" id="vs" min="0" max="1" step=".05"></label>
+ </div>
+ <div class="bm-head"><h2>Gameplay</h2></div>
+ <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button></div>
+ <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
+ <div class="bm-head"><h2>Records</h2></div>
+ <button id="clrLb" class="bm-btn bm-danger">CLEAR HALL OF GLORY</button>
+ <small class="bm-note" style="margin-top:12px">MindStrike: Number Wars<br>Developed by <b>Kirabo Isa Bilal</b></small>
 </section>
 
 <section class="scr" id="s-mini" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>🎮 MINI GAMES</h2><small style="opacity:.85;text-align:center">Every rank-up unlocks a new game. Each has its own best score and mastery.</small>
+ <header class="bm-hero"><div class="bm-kicker">Sharpen your mind</div><h1>Mini Games</h1><div class="bm-sub">Every rank-up unlocks a new game, each with its own best score and mastery.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div id="miniList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
 </section>
 
@@ -305,8 +341,8 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 
 <section class="scr" id="s-map" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>🗺️ CONQUEST MAP</h2><div id="mapTot" class="big" style="font-size:1.6rem"></div>
- <small style="opacity:.85;text-align:center">⭐ win · ⭐ combo ×3 · ⭐ no powers — stars open new regions</small>
+ <header class="bm-hero"><div class="bm-kicker">The road to empire</div><h1>Conquest Map</h1><div class="bm-sub">Four regions. Win battles, earn stars, unlock Rome.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="mapTot" class="big" style="font-size:1.6rem"></div>
+ <small class="bm-note">⭐ win · ⭐ combo ×3 · ⭐ no powers — stars open new regions</small>
  <div id="mapList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
 </section>
 
@@ -319,7 +355,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 <div id="intel" class="row"><button data-i="DIRECTION"><span><b>🧭 BATTLE SENSE</b><small>Higher or lower than the middle</small></span><i></i></button><button data-i="RANGE"><span><b>📏 BATTLE RANGE</b><small>Narrow the range around the secret</small></span><i></i></button><button data-i="ODDEVEN"><span><b>🔮 THE OMEN</b><small>Odd or even</small></span><i></i></button><button data-i="DIGIT"><span><b>🔢 LAST MARK</b><small>Reveal the final digit</small></span><i></i></button><button data-i="PROPERTY"><span><b>🗝️ SECRET TRAIT</b><small>Prime, multiple of 3 or 5, high/low</small></span><i></i></button></div>
 <button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
 <div id="bolt"><svg viewBox="0 0 100 160" preserveAspectRatio="none"><polyline points="58,0 44,38 56,40 38,82 52,84 30,130 40,132 28,160"/><polyline points="82,0 72,30 80,34 66,70 76,74 62,112 70,114 60,160"/><polyline points="20,0 28,26 20,30 30,64 22,68 34,100"/></svg></div>
-<div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="restart">RESTART MATCH</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
+<div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><div class="bm-panel"><header class="bm-hero"><div class="bm-kicker">The arena holds its breath</div><h1>Paused</h1><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><button id="resume" class="bm-cta"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg>RESUME</button><button id="restart" class="bm-btn"><span class="e">↻</span>Restart match</button><button id="pSet" class="bm-btn"><span class="e">⚙︎</span>Settings</button><button id="pHow" class="bm-btn"><span class="e">?</span>How to play</button><button id="quit" class="bm-btn bm-danger"><span class="e">🏛️</span>Quit to menu</button></div></div>
 <div class="pop" id="mgRes" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="mgRT"></h2><div id="mgRB" style="line-height:1.6;margin:8px 0"></div><button id="mgAgain" style="width:100%">🔁 PLAY AGAIN</button><button id="mgHub" style="width:100%;margin-top:8px">🎮 MINI GAMES</button><button id="mgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
 <div class="pop" id="cbrief" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="cbT"></h2><div id="cbB" style="text-align:left;line-height:1.55;margin:8px 0"></div><button id="cbGo" style="width:100%">⚔️ FIGHT</button><button id="cbX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="chest" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 DAILY CHEST</h2><div id="chestDays" class="row" style="margin:6px 0"></div><div id="chestBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="chestTxt">Tap the chest to open it!</p><button id="chestBtn" style="width:100%">OPEN</button></div></div>
@@ -392,7 +428,7 @@ $('#vm').oninput=e=>{S.music=+e.target.value;applyVol();save();setUI()};$('#vs')
 $('#tMute').onclick=()=>{S.mute=!S.mute;save();setUI();S.mute?curM&&curM.pause():curM&&curM.play().catch(()=>{})};
 $('#tTimer').onclick=()=>{S.timer=!S.timer;rwPrev();save();setUI();if(G){timerReset();render()}};
 $('#clrLb').onclick=()=>{LS.set('ms_lb',[]);lbShow()};setUI();
-const HELP=`<h2>THE IMPERIUM</h2><p>Reach the target score before your rival to unlock the <b>BOSS PHASE</b>.</p>
+const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><h1>How to Play</h1><div class="bm-sub">Everything a legion needs to conquer the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><h2>THE IMPERIUM</h2><p>Reach the target score before your rival to unlock the <b>BOSS PHASE</b>.</p>
 <h2>THE ROUND</h2><p>Guess the secret number. <b>Higher/Lower</b> shows direction; <b>blazing → freezing</b> shows how close you are. Fewer attempts = more points; first-try hits are CRITICAL (×2). Chain wins for a COMBO; 5 in a row is UNSTOPPABLE.</p>
 <h2>POWERS (3 charges each)</h2><p><b>SCAN</b> reveals the upper/lower half. <b>FOCUS</b> shows exact distance on your next guess. <b>RISK</b> pays 3× but costs 2 attempts (-3 if you lose the round). <b>SHIELD</b> protects your combo. <b>STEAL</b> takes 5 points on a near-miss (within 2). <b>JAM</b> (2-player) hides your rival's temperature hint next turn.</p>
 <h2>INTEL</h2><p>Spend SCAN charges: Battle Sense, Battle Range, The Omen, Last Mark, Secret Trait. Each type costs 1, then 2, then 3.</p>
@@ -404,7 +440,7 @@ const HELP=`<h2>THE IMPERIUM</h2><p>Reach the target score before your rival to 
 <h2>TODAY'S MARKET</h2><p>Four fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
 <h2>FRIEND CHALLENGE</h2><p>Play 5 seeded rounds, then share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day).</p>
-<button onclick="this.closest('.pop').classList.remove('on')" style="width:100%;margin-top:10px">CLOSE</button>`;
+<button class="bm-cta" onclick="this.closest('.pop').classList.remove('on')" style="margin-top:12px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
 // ---- engine ----
 const newRF=()=>({focus:0,risk:0,steal:0,shield:0,scanned:0,riskUsed:0,intelUsed:[],info:[]});
@@ -515,14 +551,14 @@ function useIntel(t){if(!canAct()||G.rf.intelUsed.includes(t))return;G.powUsed=1
  G.rf.info.push(r);$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
- Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,dmg:[0,0]});
+ Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],dmg:[0,0]});
  if(G.mode==='PVP'){G.dmg[o]=40;G.pow[o].SCAN++}
  if(G.mode==='AI'){G.names[1]='KIRAXO';if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
  play(G.mode==='PVP'?'boss':'boss');bossIntro();G.busy=true;bg();render(`${nm(trig)} reached the target — IMPERATOR KIRAXO PRIME takes the field!`);
  later(()=>{G.busy=false;G.round=G.round;startBossFirst()},1600)}
 function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=0;G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v;timerReset();
  render(`${nm(G.cur)}, shatter his shields!`);if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
-function layerHit(who){if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
+function layerHit(who){if(G.bk)G.bk[who]++;if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
  if(G.layers<=0){const d=G.dmg;return finish(d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
  G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
@@ -855,6 +891,7 @@ function render(msg){if(!G)return;const b=G.boss;
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
  $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
  $('#range').textContent=`${G.kLo} — ${G.kHi}`;
+ {const bd=$('#dmgbar');bd.style.display=G.boss?'flex':'none';if(G.boss){const a=G.dmg[0],c=G.dmg[1],t=a+c;$('#dn0').textContent='💥 '+a;$('#dn1').textContent=c+' 💥';bd.querySelector('i').style.width=(t?a/t*100:50)+'%'}}
  $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<svg class="hrt${i<G.att?' u':G.rf.risk&&i<G.att+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/></svg>`).join('');
  $('#pips').setAttribute('aria-label',(G.maxAtt-G.att)+' attempts left');
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
@@ -874,13 +911,13 @@ $$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forE
 $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 // ---- end & leaderboard ----
 const lbGet=()=>LS.get('ms_lb',[]);
-function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','4️⃣','5️⃣'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
+function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','IV','V'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
 function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
  const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
- $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?'Imperator Kiraxo bows before the legion.':'The general yields the arena.'):(G.boss?'Imperator Kiraxo claims the arena.':nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
+ $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?'Imperator Kiraxo bows before the legion.':'The general yields the arena.'):(G.boss?'Imperator Kiraxo claims the arena.':nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}<br>💥 Boss damage: ${G.dmg[0]} vs ${G.dmg[1]} — most damage wins`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
  render0();campBtns(win);stack.push('s-end');show('s-end')}
 // ---- v14: gear, daily market, relics, wagers, generals, friend challenges ----
 const gl=k=>(PRO.gear&&PRO.gear[k])||0;
@@ -978,7 +1015,7 @@ $('#matches').innerHTML=Object.keys(MATCH).filter(k=>k!=='Camp').map(k=>`<button
 function rwPrev(){$$('[data-rw]').forEach(e=>e.textContent=`×${rwx(setup.d,e.dataset.rw).toFixed(1)} coins & XP`);wgUI()}
 const selIn=(attr,val)=>$$(`[${attr}]`).forEach(x=>x.classList.toggle('sel',x.getAttribute(attr)===val));
 $('#play').onclick=()=>{play('theme');gate('s-mode')};
-$$('[data-mode]').forEach(b=>b.onclick=()=>{setup.mode=b.dataset.mode;sfx('click');$('#n2').style.display=setup.mode==='PVP'?'':'none';$('#n1').value=S.n1;$('#n2').value=S.n2;
+$$('[data-mode]').forEach(b=>b.onclick=()=>{setup.mode=b.dataset.mode;sfx('click');$('#f2').style.display=setup.mode==='PVP'?'':'none';$('#f1t').textContent=setup.mode==='PVP'?'⚔️ Player 1':'⚔️ Your warrior';$('#n1').value=S.n1;$('#n2').value=S.n2;
  $('#n1').placeholder=setup.mode==='PVP'?'PLAYER 1':'YOUR NAME';$('#styleBox').style.display=setup.mode==='PVP'?'none':'contents';go('s-name')});
 $('#nameOk').onclick=()=>{wgUI();S.n1=$('#n1').value.trim().toUpperCase();S.n2=$('#n2').value.trim().toUpperCase();save();sfx('click');go('s-diff')};
 $$('[data-d]').forEach(b=>b.onclick=()=>{setup.d=b.dataset.d;selIn('data-d',setup.d);sfx('click');rwPrev()});
