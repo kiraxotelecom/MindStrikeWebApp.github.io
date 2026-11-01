@@ -33,6 +33,9 @@ Settings cog moved from the top-right to the bottom centre of the home screen. B
 ## v18 changes
 Developer credit added: "Developed by Kirabo Isa Bilal" at the bottom of Settings, plus an author meta tag. Bump `V` in `sw.js` after every change.
 
+## v19 changes
+Opponent screen redesigned to match the rest (hero + battle cards); modes renamed **Defy the Imperator** (vs AI) and **Clash of Legions** (2 players). Campaign play buttons are now a drawn gold triangle instead of the blue ▶ emoji. Attempts are shown as hearts (RISK previews the 2 hearts it will cost). RISK can no longer be armed, or spend a charge, when fewer than 2 attempts remain. Bump `V` in `sw.js` after every change.
+
 ## Roadmap (none of these are built yet)
 Ordered by expected impact. **The first three are next.**
 
