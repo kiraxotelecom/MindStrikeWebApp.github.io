@@ -48,7 +48,7 @@ ol{margin:0;padding-left:1.4em}
 </section>
 
 <section class="scr" id="s-game" style="--bg:url(img/game_bg.webp)">
- <div id="hud"><div>YOU<br><b id="ps">0</b></div><div id="lvl">ROUND 1<br><small id="tgt"></small></div><div>KIRAXO<br><b id="ks">0</b></div></div>
+ <div id="hud"><div>YOU<br><b id="ps">0</b></div><div><span id="lvl">ROUND 1</span><br><small id="tgt"></small></div><div>KIRAXO<br><b id="ks">0</b></div></div>
  <div id="shield"><i></i></div>
  <div id="banner"></div>
  <div id="range"></div>
@@ -183,7 +183,7 @@ $('#scan').onclick=()=>{if(G.scanned||G.scan<=0||G.done||G.busy)return;G.scan--;
 $('#sh').onclick=()=>{if(G.shield||G.shieldCh<=0||G.done||G.busy)return;G.shieldCh--;G.shield=true;sfx('powerup');render('SHIELD raised — your combo is protected this round.')};
 // ---- render ----
 function render(msg){const b=G.boss;$('#ps').textContent=G.p;$('#ks').textContent=G.k;
- $('#lvl').innerHTML=b?'BOSS PHASE':`ROUND ${G.round+1}`;
+ $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round+1}`;
  $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
  $('#shield').style.display=b?'block':'none';if(b)$('#shield i').style.width=Math.max(0,G.armor)+'%';
  $('#app').style.setProperty('--x','');$('#s-game').style.setProperty('--bg',`url(img/${b?'boss_bg':'game_bg'}.webp)`);
