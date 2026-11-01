@@ -28,13 +28,13 @@ img.logo{width:min(80%,340px)}
 #banner{color:var(--gold);font-weight:bold;min-height:1.3em;text-align:center;letter-spacing:.1em}
 #msg{min-height:2.8em;text-align:center;font-size:1rem}
 #range{font-size:1.5rem;color:var(--gold);font-weight:bold}
-#pips{display:flex;gap:6px;min-height:14px}#pips i{width:12px;height:12px;border-radius:50%;border:2px solid var(--gold);background:var(--gold)}#pips i.u{background:transparent;opacity:.4}
-#num{font:inherit;font-size:2.2rem;width:150px;text-align:center;background:#000b;color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}
+#pips,#dPips{display:flex;gap:6px;min-height:14px}#pips i,#dPips i{width:12px;height:12px;border-radius:50%;border:2px solid var(--gold);background:var(--gold)}#pips i.u,#dPips i.u{background:transparent;opacity:.4}
+#num,#dNum{font:inherit;font-size:2.2rem;width:150px;text-align:center;background:#000b;color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}
 #hist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:1.8em}
 #hist span{background:#000b;border:1px solid var(--sand);border-radius:6px;padding:2px 8px;font-size:.85rem}
 #shield{width:80%;height:10px;background:#000a;border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none}#shield i{display:block;height:100%;background:#4a7fb0}
 #info{font-size:.82rem;text-align:center;color:var(--gold)}
-.pw{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}
+.pw{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
 .pw button{min-width:0;padding:7px 4px;font-size:.68rem;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative;letter-spacing:.04em}
 .pw button i{position:absolute;top:2px;right:5px;font-style:normal;font-size:.7rem;color:var(--gold)}
 .big{font-size:2.6rem;color:var(--gold);font-weight:bold}
@@ -44,12 +44,31 @@ img.logo{width:min(80%,340px)}
 .card h2{margin:8px 0}.card p{margin:4px 0}
 input[type=text]{font:inherit;font-size:1.3rem;text-align:center;background:#000b;color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:8px;width:240px;text-transform:uppercase}
 label.sl{display:flex;flex-direction:column;gap:4px;width:min(300px,90%);font-size:.9rem}input[type=range]{width:100%;accent-color:var(--gold)}
+#s-game{--heat:#e6a633}
+h1,h2{background:linear-gradient(#ffe7a8,#e6a633 55%,#9a5f10);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 2px #000)}
+button{transition:transform .08s,filter .15s,box-shadow .2s;box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff22}
+button:active{transform:translateY(2px) scale(.97);box-shadow:0 1px 0 #000a}button.sel{box-shadow:0 0 14px var(--gold)}
+.scr.on>*:not(.bar){animation:rise .35s backwards}@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+img.logo{animation:flo 4s ease-in-out infinite;filter:drop-shadow(0 0 18px #e6a63366)}@keyframes flo{50%{transform:translateY(-7px)}}
+#range{color:var(--heat);text-shadow:0 0 16px var(--heat);transition:color .3s}
+#num,#dNum{color:var(--heat);border-color:var(--heat);text-shadow:0 0 10px var(--heat);caret-color:transparent}
+.kp{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%}.kp button{min-width:0;padding:10px 0;font-size:1.2rem}.kp .st{grid-column:span 4;font-size:1rem}
+#spec{position:relative;width:88%;height:12px;background:#000a;border:1px solid var(--gold);border-radius:6px;overflow:hidden;flex:none}
+#spec .win{position:absolute;top:0;bottom:0;background:#e6a63355;transition:all .3s}#spec .pin{position:absolute;top:0;width:5px;height:100%;margin-left:-2px;border-radius:2px}
+#hist span{font-weight:bold;background:#000c}#msg{min-height:2.4em}
+#fx{position:absolute;inset:0;pointer-events:none;z-index:12;overflow:hidden}.fx{position:absolute;font-size:1.6rem;will-change:transform,opacity}
+.ft{position:absolute;left:50%;top:34%;transform:translateX(-50%);font-weight:bold;font-size:2rem;white-space:nowrap;color:var(--gold);text-shadow:0 2px 8px #000,0 0 14px #e6a633}
+@keyframes shk{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,2px)}}#app.shk{animation:shk .35s}
+#toast{position:absolute;top:calc(58px + env(safe-area-inset-top));left:50%;transform:translate(-50%,-160%);transition:transform .4s;z-index:13;background:#140a08;border:2px solid var(--gold);border-radius:10px;padding:8px 14px;text-align:center;font-size:.9rem;pointer-events:none;width:max-content;max-width:90%}#toast.on{transform:translate(-50%,0)}
+#prof{width:min(90%,340px);font-size:.8rem;text-align:center;background:#000a;border:1px solid var(--gold);border-radius:8px;padding:6px 10px}
+#xp{height:8px;background:#000a;border:1px solid var(--gold);border-radius:5px;overflow:hidden;margin:4px 0}#xp i{display:block;height:100%;background:linear-gradient(90deg,#9a5f10,var(--gold))}
+@media(prefers-reduced-motion:reduce){#app.shk,img.logo,.scr.on>*{animation:none}}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><span></span><div class="r"><button class="ib" data-go="s-set" aria-label="Settings" data-ic="gear"></button></div></div>
  <img class="logo" src="img/logo.webp" alt="MindStrike Number Wars">
- <button id="play">ENTER THE ARENA</button><button data-go="s-set">SETTINGS</button><button id="how">HOW TO PLAY</button>
+ <div id="prof"></div><button id="dailyBtn"></button><button id="play">ENTER THE ARENA</button><button data-go="s-set">SETTINGS</button><button id="how">HOW TO PLAY</button>
  <div id="lb" style="font-size:.85rem;text-align:center"></div>
 </section>
 
@@ -81,11 +100,17 @@ label.sl{display:flex;flex-direction:column;gap:4px;width:min(300px,90%);font-si
  <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b></div>
   <div id="mid"><span id="lvl"></span><small id="tgt"></small><span id="clock"></span></div>
   <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b></div></div>
- <div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="hist"></div><div id="msg"></div>
- <input id="num" type="number" inputmode="numeric" placeholder="?"><div id="info"></div>
- <button id="strike" style="min-width:150px"></button>
+ <div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
+ <input id="num" type="text" readonly inputmode="none" placeholder="?"><div id="info"></div>
+ <div class="kp" id="kp"></div>
  <div class="pw" id="pows"></div>
  <div class="row" id="intel" style="display:none"><button data-i="DIRECTION">BATTLE SENSE · <i></i></button><button data-i="RANGE">BATTLE RANGE · <i></i></button><button data-i="ODDEVEN">THE OMEN · <i></i></button><button data-i="DIGIT">LAST MARK · <i></i></button><button data-i="PROPERTY">SECRET TRAIT · <i></i></button></div>
+</section>
+
+<section class="scr" id="s-daily" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <h2>☀️ DAILY STRIKE</h2><div id="dInfo"></div><div id="dRange" class="big"></div><div id="dPips"></div><div id="dTrail" style="font-size:1.3rem;min-height:1.6em"></div><div id="dMsg" aria-live="polite" style="min-height:2.4em;text-align:center"></div>
+ <input id="dNum" type="text" readonly inputmode="none" placeholder="?"><div class="kp" id="dkp"></div>
 </section>
 
 <section class="scr" id="s-set" style="--bg:url(img/menu_bg.webp)">
@@ -93,16 +118,16 @@ label.sl{display:flex;flex-direction:column;gap:4px;width:min(300px,90%);font-si
  <h2>SETTINGS</h2>
  <label class="sl">Music volume<input type="range" id="vm" min="0" max="1" step=".05"></label>
  <label class="sl">Effects volume<input type="range" id="vs" min="0" max="1" step=".05"></label>
- <div class="row"><button id="tMute"></button><button id="tTimer"></button></div>
+ <div class="row"><button id="tMute"></button><button id="tTimer"></button><button id="tVib"></button></div>
  <button id="clrLb">CLEAR HALL OF GLORY</button>
 </section>
 
 <section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
  <div class="big" id="endt"></div><div id="ends" style="text-align:center;line-height:1.5"></div>
- <button id="again">FIGHT AGAIN</button><button id="home">MAIN MENU</button>
+ <button id="share">📤 SHARE RESULT</button><button id="again">FIGHT AGAIN</button><button id="home">MAIN MENU</button>
 </section>
 
-<div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
+<div id="fx"></div><div id="toast"></div><div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
 <div class="pop" id="pop" style="pointer-events:none"><img id="popimg" alt=""></div>
 <div class="pop" id="help"><div class="card" id="helpBody"></div></div>
@@ -134,7 +159,7 @@ const SPECIAL={DOUBLE:['GOLDEN SPOILS',3,'double'],ONE_SHOT:['GLADIUS TRIAL',2,'
 const PTS={1:15,2:10,3:6},RAGE_ACC=.88,CHIP={blazing:35,hot:15},ARMOR=100,SHRINK=.55,MINW=8,DESP_T=15;
 const LEVELS=['I · RECRUIT','II · LEGIONARY','III · CENTURION','IV · LEGATUS','V · IMPERATOR KIRAXO'];
 const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt:0},Psycho:{mod:.05,risky:0,adapt:1},Prime:{mod:.10,risky:0,adapt:1}};
-const AI_WIN=['Too easy, Roman.','The gods favour me today.','Numbers obey me.'],AI_LOSE=['Lucky. Next time.','Hmph. The dice are cold.','You live another round.'];
+const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
 const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
 // ---- audio ----
@@ -164,7 +189,7 @@ const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classLi
 // timers that respect pause and a quit game
 function later(fn,ms){const g=G;setTimeout(function w(){if(G!==g||!g||g.done&&!g.finishing)return;if(g.paused)return setTimeout(w,200);fn()},ms)}
 // ---- settings ----
-function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF')}
+function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON')}
 $('#vm').oninput=e=>{S.music=+e.target.value;applyVol();save()};$('#vs').oninput=e=>{S.sfx=+e.target.value;applyVol();save();sfx('ding')};
 $('#tMute').onclick=()=>{S.mute=!S.mute;save();setUI();S.mute?curM&&curM.pause():curM&&curM.play().catch(()=>{})};
 $('#tTimer').onclick=()=>{S.timer=!S.timer;save();setUI();if(G){timerReset();render()}};
@@ -200,7 +225,7 @@ function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesse
    if(G.mode==='AI')popup(SPECIAL[G.special][2])}
   G.secret=rnd(G.lo,G.hi);G.kLo=G.lo;G.kHi=G.hi}
  if(G.special==='SHIELD')G.rf.shield=1;
- bg();timerReset();
+ bg();$('#s-game').style.setProperty('--heat','#e6a633');timerReset();
  if(G.mode==='PVP'&&!first){G.waiting=true;$('#passname').textContent=nm(G.cur);$('#passsp').textContent=G.special&&G.special!=='BOSS'?(G.special==='KIRAXO_RAGE'?'OVERDRIVE':SPECIAL[G.special][0]):'';$('#pass').classList.add('on')}
  render(G.mode==='AI'&&G.cur===1?'':`${nm(G.cur)}, strike! Guess ${G.kLo}–${G.kHi}.`);
  if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
@@ -219,7 +244,7 @@ function afterTurn(){if(G.done)return;const t=G.M.t,w=G.cur;
 function award(who,tries,risky){let pts=Math.round((PTS[tries]||3)*G.D.mult)*(risky?3:1),crit=tries===1;if(crit)pts*=2;
  const c=++G.combo[who];G.st[who].best=Math.max(G.st[who].best,c);G.st[who].ok++;if(crit)G.st[who].crit++;
  if(c>=2)pts+=4*(c-1);if(c===5)pts+=15;if(G.special==='DOUBLE')pts*=2;if(Math.random()<.05)pts+=10;
- G.score[who]+=pts;G.wins[who]++;return{pts,crit,c}}
+ G.score[who]+=pts;G.wins[who]++;fxWin(who,pts,c,crit);return{pts,crit,c}}
 function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
  const t=c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing';
  const L={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'};
@@ -228,7 +253,7 @@ function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
 const limit=()=>G.M.time;
 function timerReset(){G.tLeft=S.timer?limit():0}
 setInterval(()=>{if(!G||G.done||G.busy||G.paused||G.waiting||!human()||!S.timer||!$('#s-game').classList.contains('on'))return;
- G.tLeft-=.25;clockUI();if(G.tLeft<=0)failTurn(true)},250);
+ G.tLeft-=.25;clockUI();if(G.tLeft<=5&&G.tLeft>0&&G.tLeft%1===0)tone(880,.06,'square',.08);if(G.tLeft<=0)failTurn(true)},250);
 function clockUI(){const c=$('#clock');c.textContent=S.timer&&G?Math.max(0,Math.ceil(G.tLeft))+'s':'';c.classList.toggle('low',S.timer&&G&&G.tLeft<=5)}
 // ---- player actions ----
 function strike(){if(!canAct())return;const el=$('#num'),g=parseInt(el.value,10),w=G.cur,rf=G.rf;
@@ -238,23 +263,23 @@ function strike(){if(!canAct())return;const el=$('#num'),g=parseInt(el.value,10)
  const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);
  if(rf.focus){rf.focus=0;text=`EXACT FOCUS: ${Math.round(c*100)}% close — ${tier.toUpperCase()}!`}
  let stole=0;if(!exact&&rf.steal&&Math.abs(g-G.secret)<=2){stole=Math.min(5,G.score[1-w]);G.score[w]+=stole;G.score[1-w]-=stole;rf.steal=0}
- G.hist.push(g);let broke=false;
+ G.hist.push({g,t:G.jam?null:tier,d:g<G.secret?'↑':g>G.secret?'↓':'✓'});let broke=false;
  if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg[w]+=CHIP[tier];broke=G.armor<=0}
  if(exact||bull||broke){let r={pts:0,c:0},dm='';
   if(exact||bull){r=award(w,G.guesses,risky);if(bull){G.score[w]+=12;r.pts+=12}
-   if(G.desp[w].active){G.desp[w].active=0;G.score[w]+=25;r.pts+=25;dm=' · DESPERATION +25'}}
+   if(G.desp[w].active){G.desp[w].active=0;G.score[w]+=25;r.pts+=25;dm=' · DESPERATION +25';if(w===0)unlock('comeback')}}
   sfx('ding');if(G.boss){if(exact||bull)G.dmg[w]+=100;return layerHit(w)}
   return turnDone(`${bull?'BULLSEYE! ':'Correct! '}+${r.pts} pts${risky?' · RISKY ×3':''}${r.crit?' · CRITICAL!':''}${r.c>=2?` · COMBO ×${r.c}`:''}${r.c===5?' · UNSTOPPABLE!':''}${stole?` · STOLE ${stole}`:''}${dm}`)}
  if(G.att>=G.maxAtt)return failTurn(false);
  const dir=g<G.secret?'Higher':'Lower';g<G.secret?G.kLo=Math.max(G.kLo,g+1):G.kHi=Math.min(G.kHi,g-1);
- if(G.jam)text='[JAMMED — no hint!]';timerReset();
- render(`${dir} — ${text}${stole?` · STOLE ${stole} pts!`:''}`)}
+ if(G.jam)text='[JAMMED — no hint!]';else heat(tier,c);timerReset();
+ render(`${G.jam?'❔':TE[tier]} ${dir} — ${text}${stole?` · STOLE ${stole} pts!`:''}`)}
 function turnDone(msg){G.busy=true;render(msg);later(afterTurn,1500)}
 function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secret}.`;let msg,pen='';G.busy=true;
  if(rf.riskUsed&&!timeout){G.score[w]=Math.max(0,G.score[w]-3);pen=' (-3 RISK PENALTY)'}
  if(rf.shield){rf.shield=0;msg=`${timeout?"Time's up — but your ":'Your '}SHIELD absorbed the loss!${rev}${pen}`}
  else{let dp='';if(G.desp[w].active){G.desp[w].active=0;G.score[w]=Math.max(0,G.score[w]-10);dp=' (-10 DESPERATION)'}
-  G.combo[w]=0;sfx('buzz');if(G.mode==='AI'&&w===0)popup('taunt',1200);
+  G.combo[w]=0;sfx('buzz');shake();vib([70,40,70]);if(G.mode==='AI'&&w===0)popup('taunt',1200);
   msg=(timeout?`TIME'S UP! Round forfeited.${rev}`:`Out of attempts!${rev}`)+pen+dp}
  render(msg);later(afterTurn,1500)}
 function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf;
@@ -288,7 +313,7 @@ function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G
  later(()=>{G.busy=false;G.round=G.round;startBossFirst()},1600)}
 function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=0;G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v;timerReset();
  render(`${nm(G.cur)}, shatter his shields!`);if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
-function layerHit(who){G.layers--;G.broken++;
+function layerHit(who){G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
  if(G.layers<=0){const d=G.dmg;return finish(d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
  G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
@@ -316,21 +341,73 @@ function aiBoss(){const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),
  const r=aiGuesses(acc,G.vit[1],chip,useF),fn=useF?'⚡ Kiraxo activated FOCUS!  ':'';
  if(r.g===G.secret||broke){if(r.g===G.secret)G.dmg[1]+=100;sfx('buzz');G.busy=false;return layerHit(1)}
  G.busy=true;render(fn+'Kiraxo missed the weak point.');later(()=>nextTurn(),1500)}
+// ---- v6: juice, keypad, progression, daily ----
+const TC={blazing:'#ff4d1a',hot:'#ff9a3c',warm:'#e6c45a',cold:'#6fb3e0',freezing:'#a8e0ff'},TE={blazing:'🔥',hot:'🌶️',warm:'☀️',cold:'🌬️',freezing:'🧊'},
+EM={DOUBLE:'💰',ONE_SHOT:'🗡️',HOT_ZONE:'🎯',KIRAXO_RAGE:'😡',BULLSEYE:'🎯',SHIELD:'🛡️'};
+const mood=()=>G.boss?'👹':G.special==='KIRAXO_RAGE'?'🤬':G.score[1]-G.score[0]>15?'😈':G.score[0]-G.score[1]>15?'😤':'😐';
+let AC,shareText='',tt;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function tone(f,d=.08,ty='sine',v=.15){if(S.mute||!S.sfx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v*S.sfx,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(t+d)}catch(e){}}
+const vib=p=>{if(S.vib!==false)try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+$('#tVib').onclick=()=>{S.vib=S.vib===false;save();setUI();vib(40)};
+function shake(){if(RM)return;const a=$('#app');a.classList.remove('shk');void a.offsetWidth;a.classList.add('shk')}
+function burst(ch,n=18){if(RM)return;const f=$('#fx'),W=f.clientWidth;for(let i=0;i<n;i++){const e=document.createElement('span');e.className='fx';e.textContent=ch[i%ch.length];e.style.left=W/2+'px';e.style.top='42%';f.appendChild(e);
+ e.animate([{transform:'translate(0,0) scale(.4)',opacity:1},{transform:`translate(${(Math.random()-.5)*W*.9}px,${-260+Math.random()*380}px) rotate(${(Math.random()-.5)*540}deg) scale(1.3)`,opacity:0}],{duration:800+Math.random()*600,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=()=>e.remove()}}
+function ft(t){const e=document.createElement('div');e.className='ft';e.textContent=t;$('#fx').appendChild(e);e.animate([{transform:'translate(-50%,10px) scale(.6)',opacity:0},{transform:'translate(-50%,-10px) scale(1.15)',opacity:1,offset:.25},{transform:'translate(-50%,-90px) scale(1)',opacity:0}],{duration:1300,easing:'ease-out'}).onfinish=()=>e.remove()}
+function heat(t,c){$('#s-game').style.setProperty('--heat',TC[t]);if(t==='blazing')vib(25);tone(250+Math.max(0,c)*700,.1,'triangle')}
+function fxWin(w,p,c,crit){ft(`+${p}${crit?' ⚡':''}${c>1?' 🔥×'+c:''}`);if(G.mode==='PVP'||w===0){burst(crit?['⚡','✨','🎯']:c>1?['🔥','✨']:['✨','🪙']);shake();vib([40,30,60]);tone(440+c*90,.12,'triangle');setTimeout(()=>tone(660+c*90,.18,'triangle',.12),90);
+ if(crit)unlock('sniper');if(c>=3)unlock('streak3');if(c>=5)unlock('unstop')}else tone(180,.3,'sawtooth')}
+function keypad(h,inp,fire,id){const b=(t,c,f)=>{const x=document.createElement('button');x.innerHTML=t;if(c)x.className=c;x.onclick=f;h.appendChild(x);return x};
+ '1234567890'.split('').forEach(d=>b(d,'',()=>{if(inp.value.length<3){inp.value+=d;tone(520+d*40,.04)}}));
+ b('⌫','',()=>{inp.value=inp.value.slice(0,-1);tone(300,.04)});b('⚔️ STRIKE','st',fire).id=id}
+keypad($('#kp'),$('#num'),()=>strike(),'strike');keypad($('#dkp'),$('#dNum'),()=>dStrike(),'dStrike');
+addEventListener('keydown',e=>{const d=$('#s-daily').classList.contains('on'),g=$('#s-game').classList.contains('on');if(!d&&!g)return;const i=d?$('#dNum'):$('#num');
+ if(/^\d$/.test(e.key)&&i.value.length<3)i.value+=e.key;else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')(d?dStrike:strike)()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){openPause();curM&&curM.pause()}else if(!S.mute&&curM)curM.play().catch(()=>{})});
+// progression
+const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['LEGIONARY',100],['CENTURION',300],['OPTIO',650],['LEGATUS',1200],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
+const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
+function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800);tone(784,.12,'triangle')}
+function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_ach',a);toast(`${ACH[k][0]} <b>${ACH[k][1]}</b><br><small>${ACH[k][2]}</small>`)}
+const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
+function profUI(){const i=rk(),n=RANKS[i],nx=RANKS[i+1],p=nx?(PRO.xp-n[1])/(nx[1]-n[1])*100:100,ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
+ $('#prof').innerHTML=`🛡️ <b>${n[0]}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins`;
+ $('#dailyBtn').innerHTML='☀️ DAILY STRIKE'+(PRO.dl===today()?' ✓':'')}
+function xpEnd(win){if(G.mode!=='AI')return 0;const g=Math.round((G.score[0]/2+(win?50:10))*G.D.mult),r0=rk();PRO.xp+=g;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b>`),1500);return g}
+function shareIt(){if(navigator.share)navigator.share({text:shareText}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(shareText).then(()=>toast('📋 Copied!'))}
+$('#share').onclick=shareIt;
+// daily strike: same numbers for everyone, once per day
+const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296},seed=s=>{let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0};
+const DR=[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]],tr=(g,s,sp)=>{const c=1-Math.abs(g-s)/sp;return c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing'};let D=null;
+function dailyOpen(){if(PRO.dl===today())return dailyEnd();const r=mul(seed(today()));D={r:0,sec:DR.map(([a,b])=>a+Math.floor(r()*(b-a+1))),tries:0,trail:[],lines:[],score:0,kLo:1,kHi:10};$('#dNum').value='';go('s-daily');dRender('Same numbers for everyone today. 5 rounds — each solvable with smart guesses!')}
+function dRender(m){const mx=DR[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/5 · ${D.score} pts`;$('#dRange').textContent=`${D.kLo} — ${D.kHi}`;$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
+function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=DR[D.r],s=D.sec[D.r];if(!el.value||g<a||g>b){$('#dMsg').textContent=`Enter a number from ${a} to ${b}.`;tone(150,.15,'square');return}
+ el.value='';D.tries++;
+ if(g===s){D.trail.push('🎯');D.score+=Math.round((mx-D.tries+1)/mx*100);sfx('ding');burst(['✨','🎯','🪙'],14);vib(40);return dNext(`✅ Got it in ${D.tries}!`)}
+ const t=tr(g,s,b-a);D.trail.push(TE[t]);
+ if(D.tries>=mx){D.trail.push('💀');sfx('buzz');shake();vib([70,40,70]);return dNext(`💀 It was ${s}.`)}
+ g<s?D.kLo=Math.max(D.kLo,g+1):D.kHi=Math.min(D.kHi,g-1);tone(250+(1-Math.abs(g-s)/(b-a))*700,.1,'triangle');dRender(`${TE[t]} ${g<s?'Higher':'Lower'} — ${t}`)}
+function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;if(D.r>=5)return dDone();const[a,b]=DR[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
+function dDone(){PRO.ds=PRO.dl===ydy()?PRO.ds+1:1;PRO.dl=today();PRO.dres={l:D.lines,s:D.score};PRO.xp+=20+Math.round(D.score/10);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
+function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
+ $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>New numbers tomorrow!`;$('#again').style.display='none';stack.push('s-end');show('s-end')}
+$('#dailyBtn').onclick=()=>{sfx('click');dailyOpen()};
 // ---- render ----
 function render(msg){if(!G)return;const b=G.boss;
- $('#n0').textContent=nm(0);$('#n1h').textContent=nm(1);$('#s0').textContent=G.score[0];$('#s1').textContent=G.score[1];
+ $('#n0').textContent=nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
  $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round}`;
  $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
  $('#shield').style.display=b?'block':'none';if(b)$('#shield i').style.width=Math.max(0,G.armor)+'%';
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
- $('#banner').textContent=b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv]));
+ $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
  $('#range').textContent=`${G.kLo} — ${G.kHi}`;
  $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<i class="${i<G.att?'u':''}"></i>`).join('');
- $('#hist').innerHTML=G.hist.map(h=>`<span>${h}</span>`).join('');
+ $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
+ const sp=Math.max(1,G.hi-G.lo),pc=x=>Math.min(100,Math.max(0,(x-G.lo)/sp*100));
+ $('#spec').innerHTML=`<div class="win" style="left:${pc(G.kLo)}%;width:${Math.max(2,pc(G.kHi)-pc(G.kLo))}%"></div>`+G.hist.map(h=>`<i class="pin" style="left:${pc(h.g)}%;background:${h.t?TC[h.t]:'#fff'}"></i>`).join('');
  if(msg!==undefined)$('#msg').textContent=msg;
  $('#info').innerHTML=G.rf.info.map(x=>`<div>${x}</div>`).join('');
- $('#strike').innerHTML=`${ic('back').replace('<path d="M15 5l-7 7 7 7"/>','<path d="M4 20L20 4M14 4h6v6M4 14l6 6"/>')} STRIKE`;
+ $('#strike').textContent='⚔️ STRIKE';
  render0();clockUI()}
 function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;
  $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');b.style.display=(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
@@ -342,13 +419,13 @@ $$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forE
 $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 // ---- end & leaderboard ----
 const lbGet=()=>LS.get('ms_lb',[]);
-function lbShow(){const l=lbGet();$('#lb').innerHTML=l.length?'<b>HALL OF GLORY</b><br>'+l.map((e,i)=>`${i+1}. ${e.n||'—'} · ${e.s} pts · ${e.d}`).join('<br>'):''}
+function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?'<b>HALL OF GLORY</b><br>'+l.map((e,i)=>`${i+1}. ${e.n||'—'} · ${e.s} pts · ${e.d}`).join('<br>'):''}
 function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
- const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');
+ const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');const xg=xpEnd(win);$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
- $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?'Kiraxo bows before the legion.':'Imperator Kiraxo claims the arena.'}<br>${st(0)}<br>${st(1)}<br>${G.D.name} · ${G.M.label}`;
+ $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?'Kiraxo bows before the legion.':'Imperator Kiraxo claims the arena.'}<br>${st(0)}<br>${st(1)}<br>${G.D.name} · ${G.M.label}${xg?`<br><b>+${xg} XP</b>`:''}`;
  render0();stack.push('s-end');show('s-end')}
 // ---- setup wiring ----
 let setup={mode:'AI',d:'Medium',k:'Calculator',lastOpts:null};
