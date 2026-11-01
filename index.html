@@ -42,7 +42,9 @@ ol{margin:0;padding-left:1.4em}
 <section class="scr" id="s-diff" style="--bg:url(img/menu_bg.webp)">
  <h2>CHOOSE YOUR RANK</h2>
  <button data-d="Easy">LEGIONARY · 1–10</button><button data-d="Medium">CENTURION · 1–25</button><button data-d="Hard">IMPERATOR · 1–100</button>
- <h2 style="margin-top:12px;font-size:1.1rem">CHOOSE YOUR BATTLE</h2>
+ <h2 style="margin-top:8px;font-size:1.1rem">KIRAXO'S STYLE</h2>
+ <div class="row"><button data-k="Calculator">STRATEGIST</button><button data-k="Gambler">MERCENARY</button><button data-k="Psycho">BERSERKER</button><button data-k="Prime">PRIME</button></div>
+ <h2 style="margin-top:8px;font-size:1.1rem">CHOOSE YOUR BATTLE</h2>
  <div class="row" id="matches"></div>
  <button id="back1" style="min-width:0">‹ BACK</button>
 </section>
@@ -56,7 +58,10 @@ ol{margin:0;padding-left:1.4em}
  <div id="hist"></div>
  <div id="msg"></div>
  <input id="num" type="number" inputmode="numeric" placeholder="?">
- <div class="row"><button id="strike">STRIKE</button><button id="scan">SCAN ×<span id="sc">3</span></button><button id="sh">SHIELD ×<span id="shc">1</span></button></div>
+ <div id="info" style="font-size:.85rem;text-align:center;color:var(--gold)"></div>
+ <div class="row"><button id="strike" style="min-width:140px">STRIKE</button></div>
+ <div class="row" id="pows"><button data-p="SCAN" title="Reveal upper/lower half">SCAN ×<i></i></button><button data-p="FOCUS" title="Exact distance on next guess">FOCUS ×<i></i></button><button data-p="RISK" title="3x points, costs 2 attempts">RISK ×<i></i></button><button data-p="SHIELD" title="Protect combo this round">SHIELD ×<i></i></button><button data-p="STEAL" title="Steal 5 pts on a near-miss">STEAL ×<i></i></button><button id="intelBtn">INTEL</button></div>
+ <div class="row" id="intel" style="display:none"><button data-i="DIRECTION">BATTLE SENSE · <i></i></button><button data-i="RANGE">BATTLE RANGE · <i></i></button><button data-i="ODDEVEN">THE OMEN · <i></i></button><button data-i="DIGIT">LAST MARK · <i></i></button><button data-i="PROPERTY">SECRET TRAIT · <i></i></button></div>
 </section>
 
 <section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
@@ -103,8 +108,8 @@ const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classLi
 // ---- state ----
 let G;
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
-function newGame(d,m){const D=DIFF[d],M=MATCH[m];
- G={d,m,D,M,p:0,k:0,pc:0,kc:0,round:0,pw:0,kw:0,scan:3,shieldCh:1,boss:false,done:false,busy:false};
+function newGame(d,m,pers){const D=DIFF[d],M=MATCH[m];
+ G={d,m,D,M,p:0,k:0,pc:0,kc:0,round:0,pw:0,kw:0,pow:{SCAN:3,FOCUS:3,RISK:3,SHIELD:3,STEAL:3},intelUses:{},pg:[],kfocus:3,pers:pers||'Calculator',boss:false,done:false,busy:false};
  nextRound(true)}
 function nextRound(first){const D=G.D;
  if(!first)G.round++;
@@ -116,71 +121,101 @@ function nextRound(first){const D=G.D;
   if(G.special==='ONE_SHOT')G.maxAtt=1;
   if(G.special==='HOT_ZONE'){const span=Math.max(4,Math.floor((D.hi-D.lo)/3)),c=rnd(D.lo,D.hi);let lo=Math.max(D.lo,c-span/2|0),hi=Math.min(D.hi,lo+span);lo=Math.max(D.lo,hi-span);G.lo=lo;G.hi=hi}
   popup(SPECIAL[G.special][2])}
- G.secret=rnd(G.lo,G.hi);G.kLo=G.lo;G.kHi=G.hi;G.scanned=false;render(`A new battle begins. Guess ${G.lo}–${G.hi}.`)}
+ G.secret=rnd(G.lo,G.hi);G.kLo=G.lo;G.kHi=G.hi;G.scanned=false;Object.assign(G,{guesses:0,focus:false,risk:false,steal:false,riskUsed:false,info:[],intelUsed:[]});render(`A new battle begins. Guess ${G.lo}–${G.hi}.`)}
 function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
  const t=c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing';
  const L={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'};
- return[t,G.D.hint==='weak'?(c>.35?'warmer…':'colder…'):L[t]]}
-function award(who,tries){let pts=Math.round((PTS[tries]||3)*G.D.mult),crit=tries===1;if(crit)pts*=2;
+ return[t,G.D.hint==='weak'?(c>.35?'warmer…':'colder…'):L[t],c]}
+function award(who,tries,risky){let pts=Math.round((PTS[tries]||3)*G.D.mult)*(risky?3:1),crit=tries===1;if(crit)pts*=2;
  const c=who==='p'?++G.pc:++G.kc;if(c>=2)pts+=4*(c-1);if(c===5)pts+=15;
  if(G.special==='DOUBLE')pts*=2;if(Math.random()<.05)pts+=10;
  who==='p'?G.p+=pts:G.k+=pts;who==='p'?G.pw++:G.kw++;return{pts,crit,c}}
 const resetCombo=w=>{w==='p'?G.pc=0:G.kc=0};
 // ---- boss ----
-function enterBoss(){const[lo,hi]=G.D.boss;Object.assign(G,{boss:true,lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers,total:G.D.layers,armor:ARMOR,broken:0,dmg:{p:0,k:0},att:0,hist:[],maxAtt:4,special:'BOSS',scanned:false});
+function enterBoss(){const[lo,hi]=G.D.boss;Object.assign(G,{boss:true,lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers,total:G.D.layers,armor:ARMOR,broken:0,dmg:{p:0,k:0},att:0,hist:[],maxAtt:4,special:'BOSS',scanned:false,guesses:0,focus:false,risk:false,steal:false,riskUsed:false,info:[],intelUsed:[],kfocus:3});
  play('boss');popup('rage',1500);render('IMPERATOR KIRAXO PRIME takes the field! Shatter his shields.')}
 function layerHit(who){G.layers--;G.broken++;
  if(G.layers<=0){G.done=true;const w=G.dmg.p===G.dmg.k?who:(G.dmg.p>G.dmg.k?'p':'k');return finish(w)}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
- G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.hist=[];G.scanned=false;
+ G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.hist=[];G.scanned=false;G.guesses=0;G.info=[];G.intelUsed=[];
  sfx('powerup');render(`SHIELD SHATTERED! ${G.layers}/${G.total} remain — keep swinging!`)}
 // ---- player turn ----
 function strike(){if(G.done||G.busy)return;const el=$('#num'),g=parseInt(el.value,10);
  if(isNaN(g)||g<G.lo||g>G.hi){$('#msg').textContent=`Enter a number from ${G.lo} to ${G.hi}.`;sfx('buzz');return}
- el.value='';sfx('click');G.att++;
- const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2,[tier,text]=temp(g);
+ const risky=G.risk;if(risky&&G.att+2>G.maxAtt){$('#msg').textContent='Not enough attempts left for RISK.';sfx('buzz');return}
+ el.value='';sfx('click');G.att+=risky?2:1;G.guesses++;G.pg.push(g);if(risky){G.riskUsed=true;G.risk=false}
+ const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);
+ if(G.focus){G.focus=false;text=`EXACT FOCUS: ${Math.round(c*100)}% close — ${tier.toUpperCase()}!`}
+ let stole=0;if(!exact&&G.steal&&Math.abs(g-G.secret)<=2){stole=Math.min(5,G.k);G.p+=stole;G.k-=stole;G.steal=false}
  G.hist.push(g);let broke=false;
  if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg.p+=CHIP[tier];broke=G.armor<=0}
  if(exact||bull||broke){let r={pts:0};
-  if(exact||bull){r=award('p',G.att);if(bull){G.p+=12;r.pts+=12}}
+  if(exact||bull){r=award('p',G.guesses,risky);if(bull){G.p+=12;r.pts+=12}}
   sfx('ding');
   if(G.boss){if(exact||bull)G.dmg.p+=100;return layerHit('p')}
-  const m=`${bull?'BULLSEYE! ':'Correct! '}+${r.pts} pts${r.crit?' · CRITICAL!':''}${r.c>=2?` · COMBO ×${r.c}`:''}${r.c===5?' · UNSTOPPABLE!':''}`;
+  const m=`${bull?'BULLSEYE! ':'Correct! '}+${r.pts} pts${risky?' · RISKY ×3':''}${r.crit?' · CRITICAL!':''}${r.c>=2?` · COMBO ×${r.c}`:''}${r.c===5?' · UNSTOPPABLE!':''}${stole?` · STOLE ${stole}`:''}`;
   render(m);return afterRound('p',m)}
- if(G.att>=G.maxAtt){
-  if(G.shield){G.shield=false;return endTurn(`Your SHIELD absorbed the loss!${G.boss?'':' It was '+G.secret+'.'}`,'p',true)}
+ if(G.att>=G.maxAtt){const pen=G.riskUsed?3:0;if(pen)G.p=Math.max(0,G.p-pen);const pn=pen?' (-3 RISK PENALTY)':'';
+  if(G.shield){G.shield=false;return endTurn(`Your SHIELD absorbed the loss!${G.boss?'':' It was '+G.secret+'.'}${pn}`,'p',true)}
   resetCombo('p');sfx('buzz');popup('taunt',1200);
-  return endTurn(`Out of attempts!${G.boss?'':' It was '+G.secret+'.'}`,'p')}
+  return endTurn(`Out of attempts!${G.boss?'':' It was '+G.secret+'.'}${pn}`,'p')}
  const dir=g<G.secret?'Higher':'Lower';g<G.secret?G.kLo=Math.max(G.kLo,g+1):G.kHi=Math.min(G.kHi,g-1);
- render(`${dir} — ${text}`)}
+ render(`${dir} — ${text}${stole?` · STOLE ${stole} pts!`:''}`)}
 function afterRound(){G.busy=true;if(G.boss){G.busy=false;return}
  if(!G.boss&&G.M.t<9999&&G.p>=G.M.t){setTimeout(()=>{G.busy=false;enterBoss()},1400);return}
  setTimeout(()=>{G.busy=false;kiraxoTurn()},1400)}
 function endTurn(msg,who,keep){render(msg);G.busy=true;setTimeout(()=>{G.busy=false;G.boss?kiraxoBoss():kiraxoTurn()},1500)}
 // ---- Kiraxo ----
-function kiraxoTurn(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO IS THINKING…';$('#msg').innerHTML='<img src="img/kiraxo.webp" height="80" alt="">';
- setTimeout(()=>{const rage=G.special==='KIRAXO_RAGE',acc=Math.min(.95,(rage?RAGE_ACC:G.D.acc)+.1);
-  let lo=G.lo,hi=G.hi,g=rnd(lo,hi),tries=1;const bull=x=>G.special==='BULLSEYE'&&x!==G.secret&&Math.abs(x-G.secret)<=2;
-  while(g!==G.secret&&!bull(g)&&tries<G.maxAtt){g<G.secret?lo=Math.max(lo,g+1):hi=Math.min(hi,g-1);g=Math.random()<acc&&lo<=hi?rnd(lo,hi):rnd(G.lo,G.hi);tries++}
-  let m;if(g===G.secret||bull(g)){const r=award('k',tries);m=`Kiraxo guessed it in ${tries} ${tries>1?'tries':'try'}! +${r.pts} pts  “${pick(AI_WIN)}”`}
+const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt:0},Psycho:{mod:.05,risky:0,adapt:1},Prime:{mod:.10,risky:0,adapt:1}};
+function aiGuesses(acc,maxT,onGuess,focus){const P=PERS[G.pers];let lo=G.lo,hi=G.hi,g,tries=1;
+ if(focus){const mg=Math.max(1,(G.hi-G.lo)/20|0);g=rnd(Math.max(G.lo,G.secret-mg),Math.min(G.hi,G.secret+mg))}else g=rnd(lo,hi);
+ let bias=null;if(P.adapt&&G.pg.length){const av=G.pg.reduce((a,b)=>a+b,0)/G.pg.length;bias=av>(G.D.lo+G.D.hi)/2?'h':'l'}
+ const bull=x=>G.special==='BULLSEYE'&&x!==G.secret&&Math.abs(x-G.secret)<=2;
+ let stop=onGuess(g)||g===G.secret||bull(g);
+ while(!stop&&tries<maxT){g<G.secret?lo=Math.max(lo,g+1):hi=Math.min(hi,g-1);
+  if(P.risky&&Math.random()<.3)g=rnd(G.lo,G.hi);
+  else if(Math.random()<acc&&lo<=hi){const m=(lo+hi)>>1;g=bias==='h'?rnd(m,hi):bias==='l'?rnd(lo,m):rnd(lo,hi)}else g=rnd(G.lo,G.hi);
+  tries++;stop=onGuess(g)||g===G.secret||bull(g)}
+ return{g,tries,bull:bull(g)}}
+function kiraxoTurn(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO IS THINKING…';$('#msg').innerHTML='<img src="img/kiraxo.webp" height="80" alt="">';render0();
+ setTimeout(()=>{const rage=G.special==='KIRAXO_RAGE',acc=Math.min(.95,(rage?RAGE_ACC:G.D.acc)+PERS[G.pers].mod);
+  const r=aiGuesses(acc,G.maxAtt,()=>false,false),tries=r.tries;let m;
+  if(r.g===G.secret||r.bull){const a=award('k',tries,false);if(r.bull){G.k+=12;a.pts+=12}m=`Kiraxo ${r.bull?'landed a BULLSEYE':'guessed it'} in ${tries} ${tries>1?'tries':'try'}! +${a.pts} pts  “${pick(AI_WIN)}”`}
   else{resetCombo('k');m=`Kiraxo couldn't find it (it was ${G.secret}).  “${pick(AI_LOSE)}”`}
   G.busy=false;render(m);checkEnd(m)},1200)}
-function kiraxoBoss(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO STRIKES…';
- setTimeout(()=>{const acc=Math.min(.95,G.D.acc+.1+.07*G.broken);let lo=G.lo,hi=G.hi,g=rnd(lo,hi),tries=1,broke=false;
-  const chip=x=>{if(x===G.secret)return;const c=1-Math.abs(x-G.secret)/Math.max(1,G.hi-G.lo),t=c>.85?'blazing':c>.6?'hot':'';if(CHIP[t]){G.armor-=CHIP[t];G.dmg.k+=CHIP[t];if(G.armor<=0)broke=true}};
-  chip(g);while(g!==G.secret&&!broke&&tries<3){g<G.secret?lo=Math.max(lo,g+1):hi=Math.min(hi,g-1);g=Math.random()<acc&&lo<=hi?rnd(lo,hi):rnd(G.lo,G.hi);tries++;chip(g)}
-  G.busy=false;if(g===G.secret||broke){if(g===G.secret)G.dmg.k+=100;sfx('buzz');
-   const d=G.layers-1<=0;layerHit('k');if(!d){render("Kiraxo cracks a shield layer open!");G.busy=true;setTimeout(()=>{G.busy=false;G.att=0;G.hist=[];render('Your turn — the new weak point is smaller.')},1500)}return}
-  G.att=0;G.hist=[];render('Kiraxo missed the weak point. Your turn.')},1200)}
+function kiraxoBoss(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO STRIKES…';render0();
+ setTimeout(()=>{const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),useF=G.kfocus>0;if(useF)G.kfocus--;let broke=false;
+  const chip=x=>{if(x===G.secret)return false;const c=1-Math.abs(x-G.secret)/Math.max(1,G.hi-G.lo),t=c>.85?'blazing':c>.6?'hot':'';if(CHIP[t]){G.armor-=CHIP[t];G.dmg.k+=CHIP[t];if(G.armor<=0)broke=true}return broke};
+  const r=aiGuesses(acc,3,chip,useF),fn=useF?'⚡ Kiraxo activated FOCUS!  ':'';G.busy=false;
+  if(r.g===G.secret||broke){if(r.g===G.secret)G.dmg.k+=100;sfx('buzz');
+   const last=G.layers-1<=0;layerHit('k');if(!last){render(fn+"Kiraxo cracks a shield layer open!");G.busy=true;setTimeout(()=>{G.busy=false;G.att=0;G.hist=[];G.guesses=0;render('Your turn — the new weak point is smaller.')},1500)}return}
+  G.att=0;G.hist=[];G.guesses=0;render(fn+'Kiraxo missed the weak point. Your turn.')},1200)}
 function checkEnd(m){const M=G.M;
  if(G.m==='Sudden'&&(G.pw>=M.wins||G.kw>=M.wins))return finish(G.pw>G.kw?'p':'k');
  if(M.t<9999&&G.k>=M.t)return finish('k');
  if(M.t<9999&&G.p>=M.t&&!G.boss)return enterBoss();
  G.busy=true;setTimeout(()=>{G.busy=false;nextRound()},1500)}
-// ---- powers ----
-$('#scan').onclick=()=>{if(G.scanned||G.scan<=0||G.done||G.busy)return;G.scan--;G.scanned=true;sfx('powerup');
- const mid=(G.kLo+G.kHi)>>1,up=G.secret>mid;up?G.kLo=Math.max(G.kLo,mid+1):G.kHi=Math.min(G.kHi,mid);render(`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${G.kLo}–${G.kHi}).`)};
-$('#sh').onclick=()=>{if(G.shield||G.shieldCh<=0||G.done||G.busy)return;G.shieldCh--;G.shield=true;sfx('powerup');render('SHIELD raised — your combo is protected this round.')};
+// ---- powers & intel ----
+const intelCost=t=>[1,2,3][Math.min(G.intelUses[t]||0,2)];
+function usePow(n){if(G.done||G.busy||G.pow[n]<=0)return;
+ const act={SCAN:G.scanned,SHIELD:G.shield,FOCUS:G.focus,RISK:G.risk,STEAL:G.steal}[n];if(act)return;
+ G.pow[n]--;sfx('powerup');let m='';
+ if(n==='SCAN'){G.scanned=true;const mid=(G.kLo+G.kHi)>>1,up=G.secret>mid;up?G.kLo=Math.max(G.kLo,mid+1):G.kHi=Math.min(G.kHi,mid);m=`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${G.kLo}–${G.kHi}).`}
+ if(n==='FOCUS'){G.focus=true;m='FOCUS active — your next guess shows the exact distance!'}
+ if(n==='RISK'){G.risk=true;m='RISK active — next guess costs 2 attempts but pays 3×!'}
+ if(n==='SHIELD'){G.shield=true;m='SHIELD raised — your combo is protected this round.'}
+ if(n==='STEAL'){G.steal=true;m='STEAL active — land within 2 numbers to steal 5 points!'}
+ render(m)}
+function useIntel(t){if(G.done||G.busy||G.intelUsed.includes(t))return;const c=intelCost(t);if(G.pow.SCAN<c){$('#msg').textContent=`Needs ${c} SCAN charges.`;sfx('buzz');return}
+ G.pow.SCAN-=c;G.intelUsed.push(t);G.intelUses[t]=(G.intelUses[t]||0)+1;sfx('powerup');const mid=(G.lo+G.hi)>>1;let r;
+ if(t==='DIRECTION')r=`BATTLE SENSE: the secret is ${G.secret>mid?'above':'at or below'} the middle.`;
+ if(t==='RANGE'){const q=(G.hi-G.lo)>>2;r=`BATTLE RANGE: between ${Math.max(G.lo,G.secret-q)} and ${Math.min(G.hi,G.secret+q)}.`}
+ if(t==='ODDEVEN')r=`THE OMEN: the secret is ${G.secret%2?'ODD':'EVEN'}.`;
+ if(t==='DIGIT')r=`LAST MARK: the secret ends in ${G.secret%10}.`;
+ if(t==='PROPERTY'){const p=[];if(isPrime(G.secret))p.push('prime');if(G.secret%3===0)p.push('multiple of 3');if(G.secret%5===0)p.push('multiple of 5');p.push(G.secret>mid?'high':'low');r=`SECRET TRAIT: ${pick(p).toUpperCase()}.`}
+ G.info.push(r);render(r)}
+$$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forEach(b=>b.onclick=()=>useIntel(b.dataset.i));
+$('#intelBtn').onclick=()=>{const i=$('#intel');i.style.display=i.style.display==='none'?'flex':'none'};
 // ---- render ----
 function render(msg){const b=G.boss;$('#ps').textContent=G.p;$('#ks').textContent=G.k;
  $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round+1}`;
@@ -192,8 +227,10 @@ function render(msg){const b=G.boss;$('#ps').textContent=G.p;$('#ks').textConten
  $('#range').textContent=`${G.kLo} — ${G.kHi}`;
  $('#att').textContent='⚔'.repeat(Math.max(0,G.maxAtt-G.att))+'·'.repeat(G.att);
  $('#hist').innerHTML=G.hist.map(h=>`<span>${h}</span>`).join('');$('#msg').textContent=msg||'';
- $('#sc').textContent=G.scan;$('#shc').textContent=G.shieldCh;
- const off=G.busy||G.done;$('#strike').disabled=off;$('#scan').disabled=off||G.scanned||G.scan<=0;$('#sh').disabled=off||G.shield||G.shieldCh<=0}
+ $('#info').innerHTML=(G.info||[]).map(x=>`<div>${x}</div>`).join('');render0(msg)}
+function render0(){const off=G.busy||G.done;$('#strike').disabled=off;
+ $$('[data-p]').forEach(b=>{const n=b.dataset.p,act={SCAN:G.scanned,SHIELD:G.shield,FOCUS:G.focus,RISK:G.risk,STEAL:G.steal}[n];b.querySelector('i').textContent=G.pow[n];b.disabled=off||G.pow[n]<=0||!!act;b.style.borderColor=act?'#fff':'';b.style.background=act?'#8e1b16':''});
+ $$('[data-i]').forEach(b=>{const t=b.dataset.i,c=intelCost(t);b.querySelector('i').textContent=c;b.disabled=off||G.intelUsed.includes(t)||G.pow.SCAN<c})}
 // ---- end & leaderboard ----
 const LB='ms_lb';const lbGet=()=>{try{return JSON.parse(localStorage.getItem(LB))||[]}catch(e){return[]}};
 function lbShow(){const l=lbGet();$('#lb').innerHTML=l.length?'<b>HALL OF GLORY</b><br>'+l.map((e,i)=>`${i+1}. ${e.s} pts · ${e.d} · ${e.m}`).join('<br>'):''}
@@ -202,14 +239,16 @@ function finish(w){G.done=true;G.busy=true;const win=w==='p';play('theme');sfx(w
  $('#endt').textContent=win?'VICTORY':'DEFEAT';
  $('#ends').innerHTML=`${win?'Kiraxo bows before the legion.':'Imperator Kiraxo claims the arena.'}<br>You ${G.p} — Kiraxo ${G.k}<br>${G.D.name} · ${MATCH[G.m].label}`;show('s-end')}
 // ---- wiring ----
-let pick_d='Medium';
+let pick_d='Medium',pick_p='Calculator';
 $('#matches').innerHTML=Object.entries(MATCH).map(([k,v])=>`<button data-m="${k}">${v.label}</button>`).join('');
 $('#play').onclick=()=>{play('theme');sfx('click');show('s-diff')};
 $('#how').onclick=()=>$('#help').classList.add('on');
 $('#back1').onclick=()=>show('s-home');
 $$('[data-d]').forEach(b=>b.onclick=()=>{pick_d=b.dataset.d;$$('[data-d]').forEach(x=>{x.style.borderColor=x===b?'#fff':'';x.style.background=x===b?'#8e1b16':''});sfx('click')});
 $('[data-d=Medium]').click();
-$$('[data-m]').forEach(b=>b.onclick=()=>{if(!pick_d){pick_d='Medium'}sfx('click');newGame(pick_d,b.dataset.m);window._last=[pick_d,b.dataset.m];show('s-game')});
+$$('[data-k]').forEach(b=>b.onclick=()=>{pick_p=b.dataset.k;$$('[data-k]').forEach(x=>{x.style.borderColor=x===b?'#fff':'';x.style.background=x===b?'#8e1b16':''});sfx('click')});
+$('[data-k=Calculator]').click();
+$$('[data-m]').forEach(b=>b.onclick=()=>{if(!pick_d){pick_d='Medium'}sfx('click');newGame(pick_d,b.dataset.m,pick_p);window._last=[pick_d,b.dataset.m,pick_p];show('s-game')});
 $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 $('#again').onclick=()=>{play('theme');newGame(...window._last);show('s-game')};
 $('#home').onclick=()=>{lbShow();show('s-home')};
