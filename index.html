@@ -109,11 +109,30 @@ label.sl span{display:flex;justify-content:space-between}
 #app .kp .st.rdy{opacity:1;animation:kglow 1.4s infinite}@keyframes kglow{50%{box-shadow:0 4px 0 #000,0 0 22px #ffb347}}
 #num,#dNum{width:170px;font-size:2.7rem;background:linear-gradient(#050302,#150d07);box-shadow:inset 0 3px 12px #000}
 #bt.on{animation:slam 2s both,glt .2s steps(2) 8}@keyframes glt{0%{text-shadow:3px 0 #0ff,-3px 0 #f0f}50%{text-shadow:-4px 2px #0ff,4px -2px #f0f}}
+img.logo{width:min(92%,400px);margin:4px 0}
+#hud .pl{flex:1.5}#mid{flex:.7;padding:3px 4px;font-size:.7rem}#mid #clock{font-size:.95rem}
+.ttl{display:flex;align-items:center;gap:10px;width:100%;font-size:1rem}.ttl::before,.ttl::after{content:'';flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,transparent 6px 10px);opacity:.7}
+.opts{display:grid;gap:8px;width:100%}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:repeat(2,1fr)}.c1{grid-template-columns:1fr}
+#app button.opt{min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;position:relative;letter-spacing:.06em;background:linear-gradient(#2a1a10,#120a05);border:2px solid #6b4d1a;box-shadow:inset 0 0 14px #000;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px)}
+.opt b{font-size:1.6rem}.opt span{font-size:.8rem;color:var(--gold)}.opt small{font-size:.65rem;opacity:.8;letter-spacing:.02em}
+#app button.opt.sel{background:linear-gradient(#7a5316,#2b1a04);border-color:#ffd27a;color:#fff4d0}.opt.sel::after{content:'✔';position:absolute;top:2px;right:8px;font-size:.8rem;color:#ffd27a}
+#app .c1 button.opt{display:grid;grid-template-columns:44px 1fr 20px;column-gap:10px;align-items:center;text-align:left;padding:10px 16px}.c1 .opt b{grid-row:span 2}.c1 .opt em{grid-row:span 2;font-style:normal;color:var(--gold)}
+[data-p=SCAN]{--pc:#3f78a8}[data-p=FOCUS]{--pc:#d39b22}[data-p=RISK]{--pc:#c0281c}[data-p=SHIELD]{--pc:#4f9a3a}[data-p=STEAL]{--pc:#9a3fb0}[data-p=JAM]{--pc:#d1402c}[data-p=DESP]{--pc:#e07b1a}
+#app .pw button[data-p]:not([data-p=INTEL]),#app #kp [data-p]{border-color:var(--pc);background:linear-gradient(135deg,color-mix(in srgb,var(--pc) 55%,#000),#140a08 85%)}
+#app .pw button[data-p].sel,#app #kp [data-p].sel{background:var(--pc);box-shadow:0 0 14px var(--pc);color:#fff}
+#app #kp [data-p]{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:6px 0;font-size:.62rem;letter-spacing:.05em;position:relative;font-family:inherit}#kp [data-p] i{position:absolute;top:2px;right:5px;font-style:normal;font-size:.7rem;color:#fff}#kp [data-p] .ic{width:1.8em;height:1.8em}
+#kp .st{grid-column:span 3}
+#app .kp .st[data-arm=RISK]{background:linear-gradient(#e0402e,#6a0d08);border-color:#ff9a8a}#app .kp .st[data-arm=FOCUS]{background:linear-gradient(#f0c040,#8a5a08);border-color:#fff0a0}#app .kp .st[data-arm=STEAL]{background:linear-gradient(#b85ad0,#4a1060);border-color:#e8b0ff}#app .kp .st[data-arm=SHIELD]{background:linear-gradient(#6cc04a,#245a14);border-color:#c0ffa0}
+#intel button{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;flex:1 1 100%;font-size:.8rem}#intel button small{display:block;font-weight:normal;opacity:.8;letter-spacing:0}#intel i{font-style:normal;white-space:nowrap}#intel i::after{content:' ⚡'}
+.plate{display:flex;justify-content:center;align-items:center;gap:8px;width:100%}.plate::before,.plate::after{content:'🌿';font-size:1.6rem}.plate::before{transform:scaleX(-1)}
+#num,#dNum{width:180px;font-family:Georgia,serif;letter-spacing:.1em;border:2px solid var(--gold);border-radius:4px;box-shadow:0 0 0 3px #000,inset 0 0 22px #000;
+ background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 16px) top/100% 3px no-repeat,repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 16px) bottom/100% 3px no-repeat,radial-gradient(#33261a,#0d0703)}
+#num::placeholder,#dNum::placeholder{color:var(--gold);opacity:.4}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><span></span><div class="r"><button class="ib" data-go="s-set" aria-label="Settings" data-ic="gear"></button></div></div>
- <div class="hero"><img class="logo" src="img/logo.webp" alt="MindStrike Number Wars"></div>
+ <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <button id="play">ENTER THE ARENA</button><button id="dailyBtn"></button><button id="shopBtn"></button><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">HOW TO PLAY</button><div id="prof"></div>
 </section>
 
@@ -133,29 +152,29 @@ label.sl span{display:flex;justify-content:space-between}
 
 <section class="scr" id="s-diff" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>CHOOSE YOUR RANK</h2>
- <div class="row"><button data-d="Easy">LEGIONARY · 1–10</button><button data-d="Medium">CENTURION · 1–25</button><button data-d="Hard">IMPERATOR · 1–100</button></div>
- <div id="styleBox" style="display:contents"><h2>KIRAXO'S STYLE</h2>
- <div class="row"><button data-k="Calculator">STRATEGIST</button><button data-k="Gambler">MERCENARY</button><button data-k="Psycho">BERSERKER</button><button data-k="Prime">PRIME</button></div></div>
- <h2>CHOOSE YOUR BATTLE</h2><div class="row" id="matches"></div>
+ <h2 class="ttl">CHOOSE YOUR RANK</h2>
+ <div class="opts c3"><button class="opt" data-d="Easy"><b>🛡️</b><span>LEGIONARY</span><small>1–10 · 3 tries</small></button><button class="opt" data-d="Medium"><b>⚔️</b><span>CENTURION</span><small>1–25 · 4 tries</small></button><button class="opt" data-d="Hard"><b>👑</b><span>IMPERATOR</span><small>1–100 · 5 tries</small></button></div>
+ <div id="styleBox" style="display:contents"><h2 class="ttl">KIRAXO'S STYLE</h2>
+ <div class="opts c2"><button class="opt" data-k="Calculator"><b>🧮</b><span>STRATEGIST</span><small>Cold, precise logic</small></button><button class="opt" data-k="Gambler"><b>🎲</b><span>MERCENARY</span><small>Gambles for glory</small></button><button class="opt" data-k="Psycho"><b>🔥</b><span>BERSERKER</span><small>Learns your habits</small></button><button class="opt" data-k="Prime"><b>👹</b><span>PRIME</span><small>Ruthless &amp; adaptive</small></button></div></div>
+ <h2 class="ttl">CHOOSE YOUR BATTLE</h2><div class="opts c1" id="matches"></div>
 </section>
 
 <section class="scr" id="s-game" style="--bg:url(img/game_bg.webp)">
- <div class="bar"><button class="ib bk" aria-label="Back / pause" data-ic="back"></button><div class="r"><button class="ib" id="pauseBtn" aria-label="Pause" data-ic="pause"></button><button class="ib" id="gearBtn" aria-label="Settings" data-ic="gear"></button></div></div>
+ <div class="bar"><button class="ib bk" aria-label="Back / pause" data-ic="back"></button><div class="r"><button class="ib" id="pauseBtn" aria-label="Pause" data-ic="pause"></button></div></div>
  <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b></div>
   <div id="mid"><span id="lvl"></span><small id="tgt"></small><span id="clock"></span></div>
   <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b></div></div>
  <div id="layers"></div><div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
- <input id="num" type="text" readonly inputmode="none" placeholder="?"><div id="info"></div>
+ <div class="plate"><input id="num" type="text" readonly inputmode="none" placeholder="?"></div><div id="info"></div>
  <div class="kp" id="kp"></div>
  <div class="pw" id="pows"></div>
- <div class="row" id="intel" style="display:none"><button data-i="DIRECTION">BATTLE SENSE · <i></i></button><button data-i="RANGE">BATTLE RANGE · <i></i></button><button data-i="ODDEVEN">THE OMEN · <i></i></button><button data-i="DIGIT">LAST MARK · <i></i></button><button data-i="PROPERTY">SECRET TRAIT · <i></i></button></div>
+ 
 </section>
 
 <section class="scr" id="s-daily" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <h2>☀️ DAILY STRIKE</h2><div id="dInfo"></div><div id="dRange" class="big"></div><div id="dPips"></div><div id="dTrail" style="font-size:1.3rem;min-height:1.6em"></div><div id="dMsg" aria-live="polite" style="min-height:2.4em;text-align:center"></div>
- <input id="dNum" type="text" readonly inputmode="none" placeholder="?"><div class="kp" id="dkp"></div>
+ <div class="plate"><input id="dNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="dkp"></div>
 </section>
 
 <section class="scr" id="s-hall" style="--bg:url(img/menu_bg.webp)">
@@ -182,9 +201,11 @@ label.sl span{display:flex;justify-content:space-between}
  <button id="share">📤 SHARE RESULT</button><button id="again">FIGHT AGAIN</button><button id="home">MAIN MENU</button>
 </section>
 
-<div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
+<div class="pop" id="secPop"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🔮 SECRETS OF THE ARENA</h2><p id="secCh"></p><p style="font-size:.8rem">Each secret costs more every time you buy it.</p>
+<div id="intel" class="row"><button data-i="DIRECTION"><span><b>🧭 BATTLE SENSE</b><small>Higher or lower than the middle</small></span><i></i></button><button data-i="RANGE"><span><b>📏 BATTLE RANGE</b><small>Narrow the range around the secret</small></span><i></i></button><button data-i="ODDEVEN"><span><b>🔮 THE OMEN</b><small>Odd or even</small></span><i></i></button><button data-i="DIGIT"><span><b>🔢 LAST MARK</b><small>Reveal the final digit</small></span><i></i></button><button data-i="PROPERTY"><span><b>🗝️ SECRET TRAIT</b><small>Prime, multiple of 3 or 5, high/low</small></span><i></i></button></div>
+<button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
 <div id="bolt"><svg viewBox="0 0 100 160" preserveAspectRatio="none"><polyline points="58,0 44,38 56,40 38,82 52,84 30,130 40,132 28,160"/><polyline points="82,0 72,30 80,34 66,70 76,74 62,112 70,114 60,160"/><polyline points="20,0 28,26 20,30 30,64 22,68 34,100"/></svg></div>
-<div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
+<div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="restart">RESTART MATCH</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
 <div class="pop" id="pop" style="pointer-events:none"><img id="popimg" alt=""></div>
 <div class="pop" id="help"><div class="card" id="helpBody"></div></div>
@@ -203,7 +224,7 @@ const P={back:'<path d="M15 5l-7 7 7 7"/>',pause:'<path d="M8 5v14M16 5v14" styl
  INTEL:'<path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3z"/><path d="M9 9h6M9 13h6"/>',DESP:'<path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-9z"/>'};
 const ic=n=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
 $$('[data-ic]').forEach(b=>b.innerHTML=ic(b.dataset.ic));
-const POWS=[['SCAN','SCAN'],['FOCUS','FOCUS'],['RISK','RISK'],['SHIELD','SHIELD'],['STEAL','STEAL'],['JAM','JAM'],['INTEL','🔮 INTEL · SECRETS'],['DESP','DESPERATE']];
+const POWS=[['SCAN','SCAN'],['FOCUS','FOCUS'],['RISK','RISK'],['SHIELD','SHIELD'],['STEAL','STEAL'],['JAM','JAM'],['INTEL','🔮 SECRETS'],['DESP','DESPERATE']];
 $('#pows').innerHTML=POWS.map(([k,l])=>`<button data-p="${k}">${ic(k)}<span>${l}</span><i></i></button>`).join('');
 // ---- tuning (from main.py) ----
 const DIFF={Easy:{lo:1,hi:10,att:3,mult:1,acc:.45,hint:'strong',boss:[1,50],layers:2,name:'LEGIONARY'},
@@ -240,7 +261,7 @@ $$('.bk').forEach(b=>b.onclick=back);$$('[data-go]').forEach(b=>b.onclick=()=>{s
 const openPause=()=>{if(!G||G.done||G.paused)return;G.paused=true;$('#pause').classList.add('on')};
 const resume=()=>{if(G)G.paused=false;$('#pause').classList.remove('on');if(G){render0();clockUI()}};
 $('#pauseBtn').onclick=openPause;$('#resume').onclick=resume;$('#quit').onclick=home;
-$('#gearBtn').onclick=()=>{openPause();$('#pause').classList.remove('on');go('s-set')};
+
 $('#pSet').onclick=()=>{$('#pause').classList.remove('on');go('s-set')};
 const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classList.add('on');setTimeout(()=>$('#pop').classList.remove('on'),ms)};
 // timers that respect pause and a quit game
@@ -340,7 +361,7 @@ function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secr
   msg=(timeout?`TIME'S UP! Round forfeited.${rev}`:`Out of attempts!${rev}`)+pen+dp}
  render(msg);later(afterTurn,1500)}
 function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf;
- if(n==='INTEL'){const i=$('#intel');i.style.display=i.style.display==='none'?'flex':'none';return}
+ if(n==='INTEL'){$('#secPop').classList.add('on');return}
  if(n==='DESP'){if(!despOK())return;G.desp[w]={used:1,active:1};sfx('powerup');return render('DESPERATION — win this round for +25, lose it for -10!')}
  if(G.pow[w][n]<=0)return;const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,JAM:0}[n];if(act)return;
  G.pow[w][n]--;sfx('powerup');let m='';
@@ -361,7 +382,7 @@ function useIntel(t){if(!canAct()||G.rf.intelUsed.includes(t))return;const w=G.c
  if(t==='ODDEVEN')r=`THE OMEN: the secret is ${G.secret%2?'ODD':'EVEN'}.`;
  if(t==='DIGIT')r=`LAST MARK: the secret ends in ${G.secret%10}.`;
  if(t==='PROPERTY'){const p=[];if(isPrime(G.secret))p.push('prime');if(G.secret%3===0)p.push('multiple of 3');if(G.secret%5===0)p.push('multiple of 5');p.push(G.secret>mid?'high':'low');r=`SECRET TRAIT: ${pick(p).toUpperCase()}.`}
- G.rf.info.push(r);render(r)}
+ G.rf.info.push(r);$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;
  Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,dmg:[0,0]});
@@ -487,8 +508,10 @@ function route(){if(R)return;try{AC=AC||new(window.AudioContext||window.webkitAu
  Object.values(M).forEach(m=>AC.createMediaElementSource(m).connect(MG));Object.values(A).forEach(a=>AC.createMediaElementSource(a).connect(SG));R=1;applyVol()}catch(e){}}
 addEventListener('pointerdown',()=>{route();if(AC&&AC.state==='suspended')AC.resume()});
 let gating=0;function gate(next){if(gating)return;gating=1;const g=$('#gate'),d=[...g.children],mv=(a,b,t,e)=>d.forEach((x,i)=>x.animate([{transform:`translateX(${a(i)})`},{transform:`translateX(${b(i)})`}],{duration:t,easing:e,fill:'forwards'})),out=i=>i?'100%':'-100%';
- if(RM){go(next);gating=0;return}g.classList.add('on');sfx('whoosh');mv(out,()=>'0',350,'ease-in');
- setTimeout(()=>{go(next);tone(70,.5,'sawtooth',.2);shake();vib([30,20,60]);mv(()=>'0',out,900,'cubic-bezier(.6,0,.2,1)');setTimeout(()=>{g.classList.remove('on');gating=0},950)},420)}
+ if(RM){go(next);gating=0;return}g.classList.add('on');sfx('whoosh');mv(out,()=>'0',200,'ease-in');
+ setTimeout(()=>{go(next);tone(70,.5,'sawtooth',.2);shake();vib([30,20,60]);mv(()=>'0',out,450,'cubic-bezier(.6,0,.2,1)');setTimeout(()=>{g.classList.remove('on');gating=0},480)},240)}
+$('#kp').insertBefore($('#pows [data-p=RISK]'),$('#strike'));
+$('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick=()=>{if(confirm('Restart this match?'))launch()};
 // ---- render ----
 function render(msg){if(!G)return;const b=G.boss;
  $('#n0').textContent=nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];$('#s1').textContent=G.score[1];
@@ -508,7 +531,7 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#info').innerHTML=G.rf.info.map(x=>`<div>${x}</div>`).join('');
  $('#strike').textContent='⚔️ STRIKE';
  render0();clockUI()}
-function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;
+function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;const arm=rf.risk?'RISK':rf.focus?'FOCUS':rf.steal?'STEAL':rf.shield?'SHIELD':'';$('#strike').dataset.arm=arm;$('#strike').textContent='⚔️ STRIKE'+(arm?' · '+arm:'');$('#secCh').textContent='⚡ SCAN charges: '+G.pow[w].SCAN;
  $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');b.style.display=(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
   const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,DESP:G.desp[w].active,JAM:0}[n];
   if(n==='INTEL'){i.textContent=G.pow[w].SCAN+' ⚡';b.disabled=off;return}if(n==='DESP'){i.textContent='';b.disabled=off||!!act;b.classList.toggle('sel',!!act);return}
@@ -528,7 +551,8 @@ function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').
  render0();stack.push('s-end');show('s-end')}
 // ---- setup wiring ----
 let setup={mode:'AI',d:'Medium',k:'Calculator',lastOpts:null};
-$('#matches').innerHTML=Object.entries(MATCH).map(([k,v])=>`<button data-m="${k}">${v.label}</button>`).join('');
+const MI={Quick:['⚡','First to 30 · 20s per guess'],Standard:['🏛️','First to 60, then the Boss'],War:['🔥','First to 100, then the Boss'],Endless:['♾️','10 rounds · highest score wins'],Sudden:['💀','First to 3 round wins']};
+$('#matches').innerHTML=Object.entries(MATCH).map(([k,v])=>`<button class="opt" data-m="${k}"><b>${MI[k][0]}</b><span>${v.label}</span><small>${MI[k][1]}</small><em>▶</em></button>`).join('');
 const selIn=(attr,val)=>$$(`[${attr}]`).forEach(x=>x.classList.toggle('sel',x.getAttribute(attr)===val));
 $('#play').onclick=()=>{play('theme');gate('s-mode')};
 $$('[data-mode]').forEach(b=>b.onclick=()=>{setup.mode=b.dataset.mode;sfx('click');$('#n2').style.display=setup.mode==='PVP'?'':'none';$('#n1').value=S.n1;$('#n2').value=S.n2;
