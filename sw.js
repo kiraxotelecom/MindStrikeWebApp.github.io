@@ -1,4 +1,5 @@
-const V='mindstrike-v2',F=["./", "index.html", "manifest.webmanifest", "img/boss_bg.webp", "img/bullseye.webp", "img/double.webp", "img/game_bg.webp", "img/hotzone.webp", "img/kiraxo.webp", "img/logo.webp", "img/menu_bg.webp", "img/oneshot.webp", "img/rage.webp", "img/taunt.webp", "audio/boss.mp3", "audio/buzz.wav", "audio/click.wav", "audio/ding.wav", "audio/fanfare.wav", "audio/powerup.wav", "audio/theme.mp3", "icons/icon-192.png", "icons/icon-512.png"];
-self.addEventListener('install',e=>e.waitUntil(caches.open(V).then(c=>c.addAll(F)).then(()=>self.skipWaiting())));
+const V='mindstrike-v3';
+self.addEventListener('install',e=>self.skipWaiting());
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(r=>r||fetch(e.request))));
+// network-first (so updates always arrive), fall back to cache when offline
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r}).catch(()=>caches.match(e.request,{ignoreSearch:true}).then(r=>r||caches.match('index.html'))))});
