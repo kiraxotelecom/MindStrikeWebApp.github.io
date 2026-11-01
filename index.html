@@ -162,12 +162,22 @@ button.cn small{font-size:.55rem;letter-spacing:0;white-space:nowrap}
 button.cn.dn{border-color:#ffe08a;background:linear-gradient(#7a4a12,#3a1d06)}
 button.cn.bs{width:72px;height:74px;border-color:#fff;box-shadow:0 0 12px var(--gold)}
 button.cn.lk{filter:grayscale(1)}
+button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;flex:none}
+.mgc .mge{font-size:1.8rem}.mgc>div{flex:1;min-width:0}.mgc b{display:block;color:var(--gold);letter-spacing:.08em;font-size:.9rem}
+.mgc small{display:block;font-weight:normal;letter-spacing:0;font-size:.72rem;color:#d6c3a5;line-height:1.3}.mgc.lk{filter:grayscale(1);opacity:.7}
+.mgh{display:flex;gap:8px;width:100%}.mgh>div{background:#000a;border:1px solid var(--gold);border-radius:8px;padding:5px 8px;text-align:center;flex:1;font-size:.9rem;min-width:0}
+.mgh small{display:block;font-size:.6rem;letter-spacing:.08em;opacity:.8}
+#mgBar{width:80%;height:10px;background:#000a;border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none;flex:none}
+#mgBar i{display:block;height:100%;background:linear-gradient(90deg,#e6a633,#ffd98a)}
+.mgchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px}.mgchips span{border:1px solid;border-radius:8px;padding:2px 8px;font-size:.85rem;background:#000a}
+.mgg{display:grid;gap:5px;width:min(94%,360px)}.mgg button{min-width:0;padding:0;aspect-ratio:1;font-size:.85rem;border-radius:8px;display:flex;align-items:center;justify-content:center;letter-spacing:0}
+.mgg button.dug{background:#1d130b;border-color:#75532f}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><span></span><div class="r"><button class="ib" data-go="s-set" aria-label="Settings" data-ic="gear"></button></div></div>
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
- <button id="play">ENTER THE ARENA</button><button id="mapBtn"></button><button id="dailyBtn"></button><button id="shopBtn"></button><button id="questBtn"></button><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">HOW TO PLAY</button><div id="prof"></div>
+ <button id="play">ENTER THE ARENA</button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="shopBtn"></button><button id="questBtn"></button><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">HOW TO PLAY</button><div id="prof"></div>
 </section>
 
 <section class="scr" id="s-mode" style="--bg:url(img/menu_bg.webp)">
@@ -247,6 +257,22 @@ button.cn.lk{filter:grayscale(1)}
  <button id="clrLb">CLEAR HALL OF GLORY</button>
 </section>
 
+<section class="scr" id="s-mini" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <h2>🎮 MINI GAMES</h2><small style="opacity:.85;text-align:center">Every rank-up unlocks a new game. Each has its own best score and mastery.</small>
+ <div id="miniList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
+</section>
+
+<section class="scr" id="s-mg" style="--bg:url(img/game_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <h2 id="mgTitle"></h2>
+ <div class="mgh"><div><small>SCORE</small><b id="mgS">0</b></div><div><small id="mgMt"></small><b id="mgMv"></b></div><div><small id="mgRt"></small><b id="mgRv"></b></div></div>
+ <div id="mgBar"><i></i></div><div id="mgRange" class="big" style="font-size:1.8rem"></div><div id="mgBoard" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:6px"></div>
+ <div id="mgChips" class="mgchips"></div><div id="mgMsg" aria-live="polite" style="min-height:2.6em;text-align:center"></div>
+ <div id="mgIn" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:8px"><div class="plate"><input id="mgNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="mgKp"></div></div>
+ <div class="pw" id="mgPw" style="grid-template-columns:repeat(3,1fr);display:none"></div>
+</section>
+
 <section class="scr" id="s-map" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <h2>🗺️ CONQUEST MAP</h2><div id="mapTot" class="big" style="font-size:1.6rem"></div>
@@ -264,6 +290,7 @@ button.cn.lk{filter:grayscale(1)}
 <button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
 <div id="bolt"><svg viewBox="0 0 100 160" preserveAspectRatio="none"><polyline points="58,0 44,38 56,40 38,82 52,84 30,130 40,132 28,160"/><polyline points="82,0 72,30 80,34 66,70 76,74 62,112 70,114 60,160"/><polyline points="20,0 28,26 20,30 30,64 22,68 34,100"/></svg></div>
 <div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><h2>PAUSED</h2><button id="resume">RESUME</button><button id="restart">RESTART MATCH</button><button id="pSet">SETTINGS</button><button id="pHow">HOW TO PLAY</button><button id="quit">QUIT TO MENU</button></div>
+<div class="pop" id="mgRes" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="mgRT"></h2><div id="mgRB" style="line-height:1.6;margin:8px 0"></div><button id="mgAgain" style="width:100%">🔁 PLAY AGAIN</button><button id="mgHub" style="width:100%;margin-top:8px">🎮 MINI GAMES</button><button id="mgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
 <div class="pop" id="cbrief" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="cbT"></h2><div id="cbB" style="text-align:left;line-height:1.55;margin:8px 0"></div><button id="cbGo" style="width:100%">⚔️ FIGHT</button><button id="cbX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="chest" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 DAILY CHEST</h2><div id="chestDays" class="row" style="margin:6px 0"></div><div id="chestBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="chestTxt">Tap the chest to open it!</p><button id="chestBtn" style="width:100%">OPEN</button></div></div>
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
@@ -341,7 +368,7 @@ const HELP=`<h2>THE IMPERIUM</h2><p>Reach the target score before your rival to 
 <h2>DESPERATION</h2><p>When you trail by 15 or more, gamble once per match: win the round for +25, lose it for -10.</p>
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
 <h2>SPECIAL BATTLES</h2><p>Golden Spoils ×2 · Gladius Trial (1 attempt) · Killing Ground (tight range) · Imperator's Wrath (sharper Kiraxo; Overdrive in 2-player) · Bullseye (within 2 counts) · Shield.</p>
-<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, a combo of 3+, and a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. The most total damage wins when the last layer falls. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
+<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, a combo of 3+, and a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Each rank-up opens a new one: <b>Lightning Round</b>, <b>Sniper Range</b>, <b>Number Duel</b>, <b>Arena Gauntlet</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. The most total damage wins when the last layer falls. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
 <button onclick="this.closest('.pop').classList.remove('on')" style="width:100%;margin-top:10px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
 // ---- engine ----
@@ -507,7 +534,7 @@ addEventListener('keydown',e=>{const d=$('#s-daily').classList.contains('on'),g=
  if(/^\d$/.test(e.key)&&i.value.length<3)i.value+=e.key;else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')(d?dStrike:strike)()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){openPause();curM&&curM.pause()}else if(!S.mute&&curM)curM.play().catch(()=>{})});
 // progression
-const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['LEGIONARY',100],['CENTURION',300],['OPTIO',650],['LEGATUS',1200],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
+const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['LEGIONARY',100],['CENTURION',300],['OPTIO',650],['LEGATUS',1200],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
 const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
 
 // ---- v12: Conquest Map ----
@@ -570,18 +597,130 @@ $('#mapBtn').onclick=()=>{sfx('click');play('theme');mapOpen()};
 $('#mapList').onclick=e=>{const b=e.target.closest('.cn');if(!b||b.disabled)return;sfx('click');cbrief(+b.dataset.cr,+b.dataset.cn)};
 $('#cbGo').onclick=()=>{const[r,i]=camp.sel;startCamp(r,i)};$('#cbX').onclick=()=>$('#cbrief').classList.remove('on');
 $('#nextB').onclick=()=>{if(camp.next){sfx('click');cbrief(camp.next[0],camp.next[1])}};$('#mapB').onclick=()=>{sfx('click');toMap()};
+
+// ---- v12: mini games ----
+const MINI=[
+ {k:'light',n:'LIGHTNING ROUND',e:'⚡',rk:1,d:'The timer shrinks after every correct guess. Play until you fail.'},
+ {k:'sniper',n:'SNIPER RANGE',e:'🎯',rk:2,d:'Only 2 shots at a huge range (1–999). Hit the zone — streaks multiply the payout.'},
+ {k:'duel',n:'NUMBER DUEL',e:'🤺',rk:3,d:'You and the general each hide a number. First to crack the other wins.'},
+ {k:'gaunt',n:'ARENA GAUNTLET',e:'🛡️',rk:4,d:'12 back-to-back rounds, no breaks. Powers never refill.'},
+ {k:'hunt',n:'TREASURE HUNT',e:'💎',rk:5,d:'Dig the grid. Hot/cold hints lead you to the treasure.'}];
+const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>rk()>=MINI[i].rk,mgm=k=>PRO.mg[k]||(PRO.mg[k]={b:0,p:0,t:0,s:0});
+const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
+const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. LUCIUS',.7],['GEN. BRUTUS',.8],['GEN. MARCELLUS',.9],['KIRAXO',.97]];
+let X=null;
+const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}_show(id)};
+function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
+ return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
+const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
+const mgSet=t=>{$('#mgMsg').textContent=t};
+function mgChips(){$('#mgChips').innerHTML=X.hist.map(h=>`<span style="border-color:${h.txt?h.c:TC[h.t]};color:${h.txt?h.c:TC[h.t]}">${h.txt||h.d+h.g+TE[h.t]}</span>`).join('')}
+const mgRangeUI=()=>{$('#mgRange').textContent=X.kLo==null?'':`${X.kLo} — ${X.kHi}`};
+function mgUpd(){if(!X)return;const k=X.k,set=(a,b,c,d)=>{$('#mgMt').textContent=a;$('#mgMv').textContent=b;$('#mgRt').textContent=c;$('#mgRv').textContent=d};$('#mgS').textContent=X.score;
+ if(k==='light')set('ROUND',X.r,'TIME',Math.max(0,Math.ceil(X.tLeft))+'s');
+ else if(k==='sniper')set('STREAK',`${X.st} · ×${snMult().toFixed(1)}`,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
+ else if(k==='duel')set('VS',X.foe.replace('GEN. ',''),'WIN STREAK',mgm('duel').s||0);
+ else if(k==='gaunt')set('ROUND',`${X.r}/${GT.length}`,'SHIELDS','🛡️'.repeat(X.sh)||'—');
+ else set('HUNT',`${X.n}/5`,'DIGS',X.digs)}
+function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({g,t,d:up?'↑':'↓'});tone(250+Math.max(0,c)*700,.1,'triangle');mgChips();mgRangeUI();
+ mgSet(foc?`EXACT FOCUS: ${Math.round(c*100)}% close — ${t.toUpperCase()}! ${up?'Higher':'Lower'}`:`${TE[t]} ${up?'Higher':'Lower'} — ${LBL[t]}`)}
+function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
+function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
+function mgEnd(){if(!X||X.abandon||X.fin)return;X.fin=1;const k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
+ const coins=Math.round(X.score/5)+2+(l1>l0?25*l1:0),xp=Math.round(X.score/4)+3,r0=rk();PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
+ if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
+ const stat={light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 The general cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`}[k]();
+ $('#mgRT').innerHTML=`${M.e} ${M.n}${nb&&X.score>0?'<br><small>🏆 NEW BEST!</small>':''}`;
+ $('#mgRB').innerHTML=`${X.sum&&X.sum!==stat?X.sum+'<br>':''}${stat}<br><b>Score ${X.score}</b> · best ${m.b}<br>+${coins} 💰 · +${xp} XP${l1>l0?`<br>⭐ <b>MASTERY LEVEL ${l1}!</b> (+${25*l1} 💰 included)`:''}<br><small>Mastery L${l1} · ${m.p} plays</small>`;
+ $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
+function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))return;const M=MINI[i];
+ X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};
+ $('#mgRes').classList.remove('on');$('#mgTitle').textContent=M.e+' '+M.n;$('#mgNum').value='';$('#mgChips').innerHTML='';$('#mgBoard').innerHTML='';$('#mgRange').textContent='';
+ $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'?'grid':'none';$('#mgIn').style.display=k==='hunt'?'none':'flex';$('#mgRange').style.display=k==='hunt'?'none':'';
+ if(k==='gaunt')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
+ if(!$('#s-mg').classList.contains('on'))go('s-mg');
+ ({light:lgInit,sniper:snInit,duel:duInit,gaunt:gtInit,hunt:huInit})[k]();mgUpd()}
+function mgFire(){if(!X||X.done||X.busy||X.k==='hunt')return;const el=$('#mgNum'),g=parseInt(el.value,10);
+ if(isNaN(g)||g<X.lo||g>X.hi){mgSet(`Enter a number from ${X.lo} to ${X.hi}.`);sfx('buzz');return}
+ el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({light:lgFire,sniper:snFire,duel:duFire,gaunt:gtFire})[X.k](g);mgUpd()}
+// -- Lightning Round --
+function lgInit(){X.r=0;lgRound(true)}
+function lgRound(first){X.r++;const r=X.r;X.lo=1;X.hi=Math.min(100,30+5*(r-1));X.secret=rnd(X.lo,X.hi);X.tl=X.tLeft=Math.max(4,20*Math.pow(.92,r-1));X.ls=0;X.att=0;X.kLo=X.lo;X.kHi=X.hi;X.hist=[];mgChips();mgRangeUI();
+ if(first)mgSet('⚡ Beat the clock! 7 attempts per round — it gets faster every round.')}
+function lgFire(g){X.att++;if(g===X.secret){const pts=10+2*X.r+Math.floor(X.tLeft);X.score+=pts;sfx('ding');ft('+'+pts);lgRound();mgSet(`⚡ Cracked it! +${pts}`);return}
+ if(X.att>=7)return mgFail(`Out of attempts — it was ${X.secret}.`);mgHint(g)}
+setInterval(()=>{if(!X||X.done||X.k!=='light'||document.hidden||!$('#s-mg').classList.contains('on'))return;X.tLeft-=.1;$('#mgBar i').style.width=Math.max(0,X.tLeft/X.tl*100)+'%';
+ const sc=Math.ceil(X.tLeft);if(sc!==X.ls){X.ls=sc;if(sc<=3&&sc>0)tone(880,.05,'square',.08)}mgUpd();if(X.tLeft<=0)mgFail(`Time's up! It was ${X.secret}.`)},100);
+// -- Sniper Range --
+const snTol=()=>Math.max(15,40-3*Math.floor(X.hits/3)),snMult=()=>1+.5*Math.min(X.st,6);
+function snInit(){X.lives=3;X.st=0;X.hits=0;X.hi=999;snTarget()}
+function snTarget(){X.secret=rnd(1,999);X.shot=0;X.kLo=1;X.kHi=999;X.hist=[];X.busy=false;mgChips();mgRangeUI();mgUpd();mgSet(`🎯 New target. Hit zone: ±${snTol()}. You have 2 shots.`)}
+function snFire(g){X.shot++;const d=Math.abs(g-X.secret);
+ if(d<=snTol()){const pts=Math.round(((X.shot===1?60:25)+(d===0?100:0))*snMult());X.score+=pts;X.st++;X.hits++;X.busy=true;sfx('ding');burst(['🎯','✨'],14);ft('+'+pts);
+  mgSet(`🎯 HIT! ${d===0?'DEAD CENTER! ':''}+${pts} · target was ${X.secret}`);setTimeout(()=>{if(!X.done)snTarget()},1100);return}
+ if(X.shot>=2){X.lives--;X.st=0;sfx('buzz');shake();mgSet(`💨 Missed — it was ${X.secret}.`);if(X.lives<=0){mgUpd();return mgOver('Out of lives')}X.busy=true;setTimeout(()=>{if(!X.done)snTarget()},1200);return}
+ mgHint(g)}
+// -- Number Duel --
+function duInit(){const m=mgm('duel'),L=mlv(m.t),f=DUEL[Math.min(3,L>>1)];X.foe=f[0];X.acc=f[1];X.hi=Math.min(100,30+10*L);X.secret=rnd(1,X.hi);X.mine=0;X.ph='pick';X.g=0;X.ai={lo:1,hi:X.hi,n:0};X.first=m.p%2===0;
+ mgSet(`Choose your SECRET number (1–${X.hi}). ${X.foe} will try to crack it.`)}
+function duBoard(){$('#mgBoard').innerHTML=`<div>🔒 Your number: <b>${X.mine}</b> &nbsp;·&nbsp; ${X.foe}: <b>??</b></div>`}
+function duFire(g){if(X.ph==='pick'){X.mine=g;X.ph='play';X.kLo=1;X.kHi=X.hi;duBoard();mgRangeUI();
+  if(X.first)mgSet('Secret locked 🔒 You strike first — guess the general’s number!');else{X.busy=true;mgSet(`Secret locked 🔒 ${X.foe} strikes first…`);setTimeout(duAI,900)}return}
+ X.g++;if(g===X.secret){const m=mgm('duel'),pts=Math.max(30,110-10*X.g)+15*Math.min(m.s||0,5);X.score=pts;X.won=1;m.s=(m.s||0)+1;burst(['🏆','✨'],24);sfx('ding');mgSet(`🏆 You cracked it in ${X.g}! +${pts}`);return mgOver('Victory')}
+ const up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({txt:`YOU ${up?'↑':'↓'}${g}`,c:'#e6c15a'});mgChips();mgRangeUI();
+ mgSet(`${up?'Higher':'Lower'}! ${X.foe} is thinking…`);X.busy=true;setTimeout(duAI,900)}
+function duAI(){if(X.done)return;const a=X.ai;a.n++;const g=Math.random()<X.acc&&a.lo<=a.hi?(a.lo+a.hi)>>1:rnd(1,X.hi),fn=X.foe.replace('GEN. ','');
+ if(g===X.mine){X.hist.push({txt:`${fn} ✓${g}`,c:'#ff4d1a'});mgChips();const m=mgm('duel');m.s=0;X.score=10;X.won=0;sfx('buzz');shake();mgSet(`💀 ${X.foe} cracked your number (${X.mine}) in ${a.n}!`);return mgOver('Defeat')}
+ const low=g<X.mine;low?a.lo=Math.max(a.lo,g+1):a.hi=Math.min(a.hi,g-1);X.hist.push({txt:`${fn} ${low?'↑':'↓'}${g}`,c:'#6fb3e0'});mgChips();X.busy=false;
+ mgSet(`${X.foe} guessed ${g} — ${low?'too low':'too high'}. Your turn!`)}
+// -- Arena Gauntlet --
+function gtInit(){X.r=0;X.sc=3;X.fo=2;X.sh=2;X.cl=0;X.focus=0;gtRound(true)}
+function gtRound(first){X.r++;X.lo=1;X.hi=GT[X.r-1];X.secret=rnd(1,X.hi);X.kLo=1;X.kHi=X.hi;X.att=0;X.maxA=Math.floor(Math.log2(X.hi))+2;X.hist=[];X.busy=false;X.scanned=0;mgChips();mgRangeUI();gtPw();mgUpd();
+ mgSet(first?'🛡️ No breaks. SCAN ×3 · FOCUS ×2 · SHIELD ×2 — they never refill.':`Round ${X.r}: 1–${X.hi}, ${X.maxA} attempts.`)}
+function gtPw(){const b=n=>$(`#mgPw [data-mp=${n}]`);if(!b('SCAN'))return;b('SCAN').querySelector('i').textContent=X.sc;b('FOCUS').querySelector('i').textContent=X.fo;b('SHIELD').querySelector('i').textContent=X.sh;
+ b('SCAN').disabled=X.sc<=0||!!X.scanned||X.busy;b('FOCUS').disabled=X.fo<=0||!!X.focus||X.busy;b('SHIELD').disabled=true}
+function gtPow(n){if(n==='SCAN'&&X.sc>0&&!X.scanned){X.sc--;X.scanned=1;const mid=(X.kLo+X.kHi)>>1,up=X.secret>mid;up?X.kLo=Math.max(X.kLo,mid+1):X.kHi=Math.min(X.kHi,mid);mgRangeUI();mgSet(`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${X.kLo}–${X.kHi}).`)}
+ else if(n==='FOCUS'&&X.fo>0&&!X.focus){X.fo--;X.focus=1;mgSet('FOCUS active — your next guess shows the exact closeness!')}else return;
+ sfx('powerup');gtPw()}
+function gtFire(g){X.att++;const foc=X.focus;X.focus=0;
+ if(g===X.secret){const left=X.maxA-X.att,pts=8+4*X.r+3*left;X.score+=pts;X.cl++;sfx('ding');ft('+'+pts);
+  if(X.r>=GT.length){X.score+=150;burst(['🏆','✨'],30);return mgOver('🏆 GAUNTLET CLEARED! +150')}
+  X.busy=true;gtPw();mgSet(`✅ Round ${X.r} cleared! +${pts} — next round…`);setTimeout(()=>{if(!X.done)gtRound()},650);return}
+ if(X.att>=X.maxA){if(X.sh>0){X.sh--;X.busy=true;gtPw();sfx('powerup');mgSet(`🛡️ SHIELD absorbed the loss (it was ${X.secret}).`);mgUpd();
+   setTimeout(()=>{if(X.done)return;if(X.r>=GT.length)return mgOver('Gauntlet survived');gtRound()},900);return}
+  return mgFail(`Fallen in round ${X.r}. It was ${X.secret}.`)}
+ mgHint(g,foc);gtPw()}
+// -- Treasure Hunt --
+function huInit(){X.base=Math.min(6,4+(mlv(mgm('hunt').t)>>1));X.n=0;X.found=0;huNext()}
+function huNext(){X.n++;const s=X.size=Math.min(8,X.base+((X.n-1)>>1));X.digs=s+1;X.tr=[rnd(0,s-1),rnd(0,s-1)];X.dug={};X.dugT={};X.busy=false;huGrid();mgUpd();mgSet(`💎 Hunt ${X.n}/5 — grid ${s}×${s}. Dig up the treasure! ${X.digs} digs.`)}
+function huGrid(){const s=X.size;$('#mgBoard').innerHTML=`<div class="mgg" style="grid-template-columns:repeat(${s},1fr)">`+Array.from({length:s*s},(_,i)=>{const d=X.dug[i];return `<button data-hc="${i}" class="${d?'dug':''}" ${d?'disabled':''} style="${d&&d!=='💎'?'color:'+TC[X.dugT[i]]:''}">${d||i+1}</button>`}).join('')+'</div>'}
+function huDig(i){if(!X||X.done||X.busy||X.dug[i])return;X.dugT=X.dugT||{};const s=X.size,d=Math.abs((i/s|0)-X.tr[0])+Math.abs(i%s-X.tr[1]);X.digs--;sfx('click');
+ if(d===0){X.dug[i]='💎';const pts=40+15*X.digs+10*X.n;X.score+=pts;X.found++;X.busy=true;sfx('ding');burst(['💎','✨','🪙'],22);huGrid();mgUpd();
+  if(X.n>=5){X.score+=100;mgSet(`💎 FOUND! +${pts} — all 5 treasures! +100 bonus`);return mgOver('All 5 treasures found!')}
+  mgSet(`💎 FOUND! +${pts}`);setTimeout(()=>{if(!X.done){X.dugT={};huNext()}},1100);return}
+ const t=d<=1?'blazing':d<=2?'hot':d<=3?'warm':d<=5?'cold':'freezing';X.dug[i]=TE[t];X.dugT[i]=t;tone(300+(6-Math.min(d,6))*110,.1,'triangle');huGrid();mgUpd();
+ if(X.digs<=0){X.dug[X.tr[0]*s+X.tr[1]]='💎';huGrid();return mgFail('The treasure slipped away…')}
+ mgSet(`${TE[t]} ${LBL[t]} — ${X.digs} digs left`)}
+keypad($('#mgKp'),$('#mgNum'),()=>mgFire(),'mgStrike');
+$('#mgBoard').onclick=e=>{const b=e.target.closest('[data-hc]');if(b)huDig(+b.dataset.hc)};
+$('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||!X||X.done||X.busy)return;gtPow(b.dataset.mp)};
+addEventListener('keydown',e=>{if(!$('#s-mg').classList.contains('on')||!X||X.done||X.busy||X.k==='hunt')return;const i=$('#mgNum');
+ if(/^\d$/.test(e.key)){if(i.value.length<3)i.value+=e.key}else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')mgFire()});
+$('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
+$('#miniList').onclick=e=>{const b=e.target.closest('[data-mg]');if(!b||b.disabled)return;sfx('click');startMini(b.dataset.mg)};
+$('#mgAgain').onclick=()=>{sfx('click');startMini(X.k)};$('#mgHub').onclick=()=>{sfx('click');$('#mgRes').classList.remove('on');miniUI();back()};$('#mgHome').onclick=()=>{$('#mgRes').classList.remove('on');home()};
 function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800);tone(784,.12,'triangle')}
 function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_ach',a);toast(`${ACH[k][0]} <b>${ACH[k][1]}</b><br><small>${ACH[k][2]}</small>`)}
 const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
 function profUI(){const i=rk(),n=RANKS[i],nx=RANKS[i+1],p=nx?(PRO.xp-n[1])/(nx[1]-n[1])*100:100,ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  $('#prof').innerHTML=`${PRO.ps?PSK[PRO.ps][0]:'🛡️'} <b>${n[0]}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins<br>${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}`;
- $('#dailyBtn').innerHTML='☀️ DAILY STRIKE'+(PRO.dl===today()?' ✓':'');$('#shopBtn').innerHTML=`🛒 ARMORY · 💰 ${PRO.gold}`;$('#mapBtn').innerHTML=`🗺️ CONQUEST MAP · ⭐ ${cTotal()}`;qBadge()}
+ $('#dailyBtn').innerHTML='☀️ DAILY STRIKE'+(PRO.dl===today()?' ✓':'');$('#shopBtn').innerHTML=`🛒 ARMORY · 💰 ${PRO.gold}`;$('#mapBtn').innerHTML=`🗺️ CONQUEST MAP · ⭐ ${cTotal()}`;$('#miniBtn').innerHTML=`🎮 MINI GAMES · ${MINI.filter((_,i)=>mgOpen(i)).length}/${MINI.length}`;qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
 function hsCheck(w){if(G.cf){G.hs={old:0,sc:0,isNew:false};return}const key=`${G.mode}|${G.d}|${G.m}`,sc=G.mode==='PVP'?(w>=0?G.score[w]:0):G.score[0];PRO.hs=PRO.hs||{};const old=PRO.hs[key]||0;G.hs={old,sc,isNew:sc>old&&sc>0};if(G.hs.isNew){PRO.hs[key]=sc;LS.set('ms_pro',PRO)}}
 function xpEnd(win){if(G.mode!=='AI')return 0;const k=rwx(G.d,G.m),r0=rk();
  const xp=Math.round((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)),gd=Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1))+(G.hs&&G.hs.isNew?25:0);
- PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests</small>`),1500);return xp}
+ PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return xp}
 const rwHtml=xg=>xg?`<br><b>+${xg} XP · 💰 +${G.gg}</b><br><small>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${G.hs&&G.hs.isNew?' · +25 high-score bonus':''}${G.tome||G.mag?'<br>📜🧲 boosts applied':''}</small>`:'';
 const hsHtml=()=>G.hs&&!G.cf?(G.hs.isNew?`<div class="hs">🏆 NEW HIGH SCORE! ${G.hs.sc}<br><small>${G.D.name} · ${G.M.label}${G.hs.old?' · previous best '+G.hs.old:''}</small></div>`:`<br><small>Best here: ${G.hs.old}</small>`):'';
 function shareIt(){if(navigator.share)navigator.share({text:shareText}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(shareText).then(()=>toast('📋 Copied!'))}
