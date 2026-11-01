@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MindStrike: Number Wars</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1a0d0b">
+<link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{--gold:#e6a633;--sand:#d9c6a3;--red:#8e1b16;--ink:#140a08}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--ink);color:var(--sand);font-family:Georgia,'Times New Roman',serif}
+#app{max-width:520px;height:100%;margin:auto;position:relative;background:#000 center/cover;overflow:hidden}
+.scr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));background:linear-gradient(#0009,#000c),var(--bg) center/cover}
+.scr.on{display:flex}
+h1,h2{color:var(--gold);letter-spacing:.12em;text-align:center;margin:0}
+button{font:inherit;font-weight:bold;letter-spacing:.1em;color:var(--sand);background:linear-gradient(#5a1612,#2b0a08);border:2px solid var(--gold);border-radius:8px;padding:12px 18px;min-width:230px;cursor:pointer}
+button:active{filter:brightness(1.4)}button:disabled{opacity:.4}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.row button{min-width:0;padding:10px 12px;font-size:.8rem}
+img.logo{width:min(80%,340px)}
+#hud{display:flex;justify-content:space-between;width:100%;font-size:.95rem}
+#hud div{background:#000a;border:1px solid var(--gold);border-radius:8px;padding:6px 10px;text-align:center}
+#banner{color:var(--gold);font-weight:bold;min-height:1.4em;text-align:center;letter-spacing:.1em}
+#msg{min-height:3.2em;text-align:center;font-size:1.05rem}
+#range{font-size:1.4rem;color:var(--gold)}
+#num{font:inherit;font-size:2.2rem;width:150px;text-align:center;background:#000b;color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:6px}
+#hist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:2em}
+#hist span{background:#000b;border:1px solid var(--sand);border-radius:6px;padding:2px 8px;font-size:.85rem}
+#shield{width:80%;height:10px;background:#000a;border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none}#shield i{display:block;height:100%;background:#4a7fb0}
+.big{font-size:2.6rem;color:var(--gold);font-weight:bold}
+.mute{position:absolute;top:calc(8px + env(safe-area-inset-top));right:8px;min-width:0;padding:6px 10px;z-index:5}
+.pop{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:#000d;z-index:9}
+.pop.on{display:flex}.pop img{max-width:70%;max-height:50%}
+ol{margin:0;padding-left:1.4em}
+</style></head><body><div id="app">
+<button class="mute" id="mute" aria-label="Toggle sound">🔊</button>
+
+<section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
+ <img class="logo" src="img/logo.webp" alt="MindStrike Number Wars">
+ <button id="play">ENTER THE ARENA</button><button id="how">HOW TO PLAY</button>
+ <div id="lb" style="font-size:.85rem"></div>
+</section>
+
+<section class="scr" id="s-diff" style="--bg:url(img/menu_bg.webp)">
+ <h2>CHOOSE YOUR RANK</h2>
+ <button data-d="Easy">LEGIONARY · 1–10</button><button data-d="Medium">CENTURION · 1–25</button><button data-d="Hard">IMPERATOR · 1–100</button>
+ <h2 style="margin-top:12px;font-size:1.1rem">CHOOSE YOUR BATTLE</h2>
+ <div class="row" id="matches"></div>
+ <button id="back1" style="min-width:0">‹ BACK</button>
+</section>
+
+<section class="scr" id="s-game" style="--bg:url(img/game_bg.webp)">
+ <div id="hud"><div>YOU<br><b id="ps">0</b></div><div id="lvl">ROUND 1<br><small id="tgt"></small></div><div>KIRAXO<br><b id="ks">0</b></div></div>
+ <div id="shield"><i></i></div>
+ <div id="banner"></div>
+ <div id="range"></div>
+ <div id="att"></div>
+ <div id="hist"></div>
+ <div id="msg"></div>
+ <input id="num" type="number" inputmode="numeric" placeholder="?">
+ <div class="row"><button id="strike">STRIKE</button><button id="scan">SCAN ×<span id="sc">3</span></button><button id="sh">SHIELD ×<span id="shc">1</span></button></div>
+</section>
+
+<section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
+ <div class="big" id="endt"></div><div id="ends" style="text-align:center"></div>
+ <button id="again">FIGHT AGAIN</button><button id="home">MAIN MENU</button>
+</section>
+
+<div class="pop" id="pop"><img id="popimg" alt=""></div>
+<div class="pop" id="help"><div style="background:#140a08;border:2px solid var(--gold);border-radius:10px;margin:16px;padding:16px;max-height:85%;overflow:auto;font-size:.95rem">
+<h2>THE IMPERIUM</h2><ol>
+<li>Guess the secret number. Each miss gives <b>Higher/Lower</b> plus a temperature: blazing → freezing.</li>
+<li>Fewer attempts = more points. A first-try hit is a <b>CRITICAL</b> (×2). Win rounds back-to-back for a <b>COMBO</b>; 5 in a row is <b>UNSTOPPABLE</b>.</li>
+<li>Reach the target score before Kiraxo to unlock the <b>BOSS PHASE</b>: break his shield layers by hitting the secret, or wear them down with hot/blazing near-misses.</li>
+<li><b>SCAN</b> reveals which half the secret is in. <b>SHIELD</b> protects your combo if you run out of attempts.</li>
+<li>Special rounds: Golden Spoils (×2), Gladius Trial (1 attempt), Killing Ground (tight range), Imperator's Wrath (Kiraxo sharper), Bullseye (within 2 counts).</li></ol>
+<button onclick="this.closest('.pop').classList.remove('on')" style="width:100%">CLOSE</button></div></div>
+</div>
+<script>
+'use strict';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// ---- tuning (ported from main.py) ----
+const DIFF={Easy:{lo:1,hi:10,att:3,mult:1,acc:.45,hint:'strong',boss:[1,50],layers:2,name:'LEGIONARY'},
+ Medium:{lo:1,hi:25,att:4,mult:1.5,acc:.60,hint:'normal',boss:[1,100],layers:3,name:'CENTURION'},
+ Hard:{lo:1,hi:100,att:5,mult:2,acc:.75,hint:'weak',boss:[1,200],layers:4,name:'IMPERATOR'}};
+const MATCH={Quick:{t:30,label:'SKIRMISH'},Standard:{t:60,label:'CAMPAIGN'},War:{t:100,label:'CONQUEST'},
+ Endless:{t:9999,rounds:10,label:'ETERNAL · 10 ROUNDS'},Sudden:{t:9999,wins:3,label:'LAST STAND · 3 WINS'}};
+const SPECIAL={DOUBLE:['GOLDEN SPOILS',3,'double'],ONE_SHOT:['GLADIUS TRIAL',2,'oneshot'],HOT_ZONE:['KILLING GROUND',3,'hotzone'],
+ KIRAXO_RAGE:["IMPERATOR'S WRATH",2,'rage'],BULLSEYE:['BULLSEYE',2,'bullseye']};
+const PTS={1:15,2:10,3:6},RAGE_ACC=.88,CHIP={blazing:35,hot:15},ARMOR=100,SHRINK=.55,MINW=8;
+const LEVELS=['I · RECRUIT','II · LEGIONARY','III · CENTURION','IV · LEGATUS','V · IMPERATOR KIRAXO'];
+const AI_WIN=['Too easy, Roman.','The gods favour me today.','Numbers obey me.'],AI_LOSE=['Lucky. Next time.','Hmph. The dice are cold.','You live another round.'];
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
+// ---- audio ----
+let muted=localStorage.getItem('ms_mute')==='1';const A={};
+['ding','buzz','fanfare','click','powerup'].forEach(n=>A[n]=new Audio(`audio/${n}.wav`));
+const music={theme:new Audio('audio/theme.mp3'),boss:new Audio('audio/boss.mp3')};Object.values(music).forEach(m=>{m.loop=true;m.volume=.35});
+const sfx=n=>{if(muted||!A[n])return;try{A[n].currentTime=0;A[n].play()}catch(e){}};
+let cur=null;const play=n=>{if(cur&&cur!==music[n])cur.pause();cur=music[n]||null;if(cur&&!muted)cur.play().catch(()=>{})};
+$('#mute').onclick=()=>{muted=!muted;localStorage.setItem('ms_mute',muted?1:0);$('#mute').textContent=muted?'🔇':'🔊';muted?cur&&cur.pause():cur&&cur.play().catch(()=>{})};
+$('#mute').textContent=muted?'🔇':'🔊';
+// ---- screens ----
+const show=id=>{$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id))};
+const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classList.add('on');setTimeout(()=>$('#pop').classList.remove('on'),ms)};
+// ---- state ----
+let G;
+const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
+function newGame(d,m){const D=DIFF[d],M=MATCH[m];
+ G={d,m,D,M,p:0,k:0,pc:0,kc:0,round:0,pw:0,kw:0,scan:3,shieldCh:1,boss:false,done:false,busy:false};
+ nextRound(true)}
+function nextRound(first){const D=G.D;
+ if(!first)G.round++;
+ if(G.M.rounds&&G.round>=G.M.rounds)return finish(G.p>=G.k?'p':'k');
+ if(G.M.wins&&(G.pw>=G.M.wins||G.kw>=G.M.wins))return finish(G.pw>G.kw?'p':'k');
+ G.special=null;G.lo=D.lo;G.hi=D.hi;G.maxAtt=D.att;G.shield=false;G.hist=[];G.att=0;G.rage=false;
+ if(!first&&Math.random()<.22){const keys=Object.keys(SPECIAL);let tot=keys.reduce((s,k)=>s+SPECIAL[k][1],0),r=Math.random()*tot;
+  G.special=keys.find(k=>(r-=SPECIAL[k][1])<0)||keys[0];
+  if(G.special==='ONE_SHOT')G.maxAtt=1;
+  if(G.special==='HOT_ZONE'){const span=Math.max(4,Math.floor((D.hi-D.lo)/3)),c=rnd(D.lo,D.hi);let lo=Math.max(D.lo,c-span/2|0),hi=Math.min(D.hi,lo+span);lo=Math.max(D.lo,hi-span);G.lo=lo;G.hi=hi}
+  popup(SPECIAL[G.special][2])}
+ G.secret=rnd(G.lo,G.hi);G.kLo=G.lo;G.kHi=G.hi;G.scanned=false;render(`A new battle begins. Guess ${G.lo}–${G.hi}.`)}
+function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
+ const t=c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing';
+ const L={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'};
+ return[t,G.D.hint==='weak'?(c>.35?'warmer…':'colder…'):L[t]]}
+function award(who,tries){let pts=Math.round((PTS[tries]||3)*G.D.mult),crit=tries===1;if(crit)pts*=2;
+ const c=who==='p'?++G.pc:++G.kc;if(c>=2)pts+=4*(c-1);if(c===5)pts+=15;
+ if(G.special==='DOUBLE')pts*=2;if(Math.random()<.05)pts+=10;
+ who==='p'?G.p+=pts:G.k+=pts;who==='p'?G.pw++:G.kw++;return{pts,crit,c}}
+const resetCombo=w=>{w==='p'?G.pc=0:G.kc=0};
+// ---- boss ----
+function enterBoss(){const[lo,hi]=G.D.boss;Object.assign(G,{boss:true,lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers,total:G.D.layers,armor:ARMOR,broken:0,dmg:{p:0,k:0},att:0,hist:[],maxAtt:4,special:'BOSS',scanned:false});
+ play('boss');popup('rage',1500);render('IMPERATOR KIRAXO PRIME takes the field! Shatter his shields.')}
+function layerHit(who){G.layers--;G.broken++;
+ if(G.layers<=0){G.done=true;const w=G.dmg.p===G.dmg.k?who:(G.dmg.p>G.dmg.k?'p':'k');return finish(w)}
+ const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
+ G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.hist=[];G.scanned=false;
+ sfx('powerup');render(`SHIELD SHATTERED! ${G.layers}/${G.total} remain — keep swinging!`)}
+// ---- player turn ----
+function strike(){if(G.done||G.busy)return;const el=$('#num'),g=parseInt(el.value,10);
+ if(isNaN(g)||g<G.lo||g>G.hi){$('#msg').textContent=`Enter a number from ${G.lo} to ${G.hi}.`;sfx('buzz');return}
+ el.value='';sfx('click');G.att++;
+ const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2,[tier,text]=temp(g);
+ G.hist.push(g);let broke=false;
+ if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg.p+=CHIP[tier];broke=G.armor<=0}
+ if(exact||bull||broke){let r={pts:0};
+  if(exact||bull){r=award('p',G.att);if(bull){G.p+=12;r.pts+=12}}
+  sfx('ding');
+  if(G.boss){if(exact||bull)G.dmg.p+=100;return layerHit('p')}
+  const m=`${bull?'BULLSEYE! ':'Correct! '}+${r.pts} pts${r.crit?' · CRITICAL!':''}${r.c>=2?` · COMBO ×${r.c}`:''}${r.c===5?' · UNSTOPPABLE!':''}`;
+  render(m);return afterRound('p',m)}
+ if(G.att>=G.maxAtt){
+  if(G.shield){G.shield=false;return endTurn(`Your SHIELD absorbed the loss!${G.boss?'':' It was '+G.secret+'.'}`,'p',true)}
+  resetCombo('p');sfx('buzz');popup('taunt',1200);
+  return endTurn(`Out of attempts!${G.boss?'':' It was '+G.secret+'.'}`,'p')}
+ const dir=g<G.secret?'Higher':'Lower';g<G.secret?G.kLo=Math.max(G.kLo,g+1):G.kHi=Math.min(G.kHi,g-1);
+ render(`${dir} — ${text}`)}
+function afterRound(){G.busy=true;if(G.boss){G.busy=false;return}
+ if(!G.boss&&G.M.t<9999&&G.p>=G.M.t){setTimeout(()=>{G.busy=false;enterBoss()},1400);return}
+ setTimeout(()=>{G.busy=false;kiraxoTurn()},1400)}
+function endTurn(msg,who,keep){render(msg);G.busy=true;setTimeout(()=>{G.busy=false;G.boss?kiraxoBoss():kiraxoTurn()},1500)}
+// ---- Kiraxo ----
+function kiraxoTurn(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO IS THINKING…';$('#msg').innerHTML='<img src="img/kiraxo.webp" height="80" alt="">';
+ setTimeout(()=>{const rage=G.special==='KIRAXO_RAGE',acc=Math.min(.95,(rage?RAGE_ACC:G.D.acc)+.1);
+  let lo=G.lo,hi=G.hi,g=rnd(lo,hi),tries=1;const bull=x=>G.special==='BULLSEYE'&&x!==G.secret&&Math.abs(x-G.secret)<=2;
+  while(g!==G.secret&&!bull(g)&&tries<G.maxAtt){g<G.secret?lo=Math.max(lo,g+1):hi=Math.min(hi,g-1);g=Math.random()<acc&&lo<=hi?rnd(lo,hi):rnd(G.lo,G.hi);tries++}
+  let m;if(g===G.secret||bull(g)){const r=award('k',tries);m=`Kiraxo guessed it in ${tries} ${tries>1?'tries':'try'}! +${r.pts} pts  “${pick(AI_WIN)}”`}
+  else{resetCombo('k');m=`Kiraxo couldn't find it (it was ${G.secret}).  “${pick(AI_LOSE)}”`}
+  G.busy=false;render(m);checkEnd(m)},1200)}
+function kiraxoBoss(){if(G.done)return;G.busy=true;$('#banner').textContent='KIRAXO STRIKES…';
+ setTimeout(()=>{const acc=Math.min(.95,G.D.acc+.1+.07*G.broken);let lo=G.lo,hi=G.hi,g=rnd(lo,hi),tries=1,broke=false;
+  const chip=x=>{if(x===G.secret)return;const c=1-Math.abs(x-G.secret)/Math.max(1,G.hi-G.lo),t=c>.85?'blazing':c>.6?'hot':'';if(CHIP[t]){G.armor-=CHIP[t];G.dmg.k+=CHIP[t];if(G.armor<=0)broke=true}};
+  chip(g);while(g!==G.secret&&!broke&&tries<3){g<G.secret?lo=Math.max(lo,g+1):hi=Math.min(hi,g-1);g=Math.random()<acc&&lo<=hi?rnd(lo,hi):rnd(G.lo,G.hi);tries++;chip(g)}
+  G.busy=false;if(g===G.secret||broke){if(g===G.secret)G.dmg.k+=100;sfx('buzz');
+   const d=G.layers-1<=0;layerHit('k');if(!d){render("Kiraxo cracks a shield layer open!");G.busy=true;setTimeout(()=>{G.busy=false;G.att=0;G.hist=[];render('Your turn — the new weak point is smaller.')},1500)}return}
+  G.att=0;G.hist=[];render('Kiraxo missed the weak point. Your turn.')},1200)}
+function checkEnd(m){const M=G.M;
+ if(G.m==='Sudden'&&(G.pw>=M.wins||G.kw>=M.wins))return finish(G.pw>G.kw?'p':'k');
+ if(M.t<9999&&G.k>=M.t)return finish('k');
+ if(M.t<9999&&G.p>=M.t&&!G.boss)return enterBoss();
+ G.busy=true;setTimeout(()=>{G.busy=false;nextRound()},1500)}
+// ---- powers ----
+$('#scan').onclick=()=>{if(G.scanned||G.scan<=0||G.done||G.busy)return;G.scan--;G.scanned=true;sfx('powerup');
+ const mid=(G.kLo+G.kHi)>>1,up=G.secret>mid;up?G.kLo=Math.max(G.kLo,mid+1):G.kHi=Math.min(G.kHi,mid);render(`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${G.kLo}–${G.kHi}).`)};
+$('#sh').onclick=()=>{if(G.shield||G.shieldCh<=0||G.done||G.busy)return;G.shieldCh--;G.shield=true;sfx('powerup');render('SHIELD raised — your combo is protected this round.')};
+// ---- render ----
+function render(msg){const b=G.boss;$('#ps').textContent=G.p;$('#ks').textContent=G.k;
+ $('#lvl').innerHTML=b?'BOSS PHASE':`ROUND ${G.round+1}`;
+ $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
+ $('#shield').style.display=b?'block':'none';if(b)$('#shield i').style.width=Math.max(0,G.armor)+'%';
+ $('#app').style.setProperty('--x','');$('#s-game').style.setProperty('--bg',`url(img/${b?'boss_bg':'game_bg'}.webp)`);
+ const lv=Math.min(4,Math.floor(Math.max(0,G.p)/(G.M.t<9999?G.M.t:200)*4));
+ $('#banner').textContent=b?'IMPERATOR KIRAXO PRIME':(G.special?SPECIAL[G.special][0]:LEVELS[lv]);
+ $('#range').textContent=`${G.kLo} — ${G.kHi}`;
+ $('#att').textContent='⚔'.repeat(Math.max(0,G.maxAtt-G.att))+'·'.repeat(G.att);
+ $('#hist').innerHTML=G.hist.map(h=>`<span>${h}</span>`).join('');$('#msg').textContent=msg||'';
+ $('#sc').textContent=G.scan;$('#shc').textContent=G.shieldCh;
+ const off=G.busy||G.done;$('#strike').disabled=off;$('#scan').disabled=off||G.scanned||G.scan<=0;$('#sh').disabled=off||G.shield||G.shieldCh<=0}
+// ---- end & leaderboard ----
+const LB='ms_lb';const lbGet=()=>{try{return JSON.parse(localStorage.getItem(LB))||[]}catch(e){return[]}};
+function lbShow(){const l=lbGet();$('#lb').innerHTML=l.length?'<b>HALL OF GLORY</b><br>'+l.map((e,i)=>`${i+1}. ${e.s} pts · ${e.d} · ${e.m}`).join('<br>'):''}
+function finish(w){G.done=true;G.busy=true;const win=w==='p';play('theme');sfx(win?'fanfare':'buzz');
+ try{const l=lbGet();l.push({s:G.p,d:G.D.name,m:MATCH[G.m].label});l.sort((a,b)=>b.s-a.s);localStorage.setItem(LB,JSON.stringify(l.slice(0,5)))}catch(e){}
+ $('#endt').textContent=win?'VICTORY':'DEFEAT';
+ $('#ends').innerHTML=`${win?'Kiraxo bows before the legion.':'Imperator Kiraxo claims the arena.'}<br>You ${G.p} — Kiraxo ${G.k}<br>${G.D.name} · ${MATCH[G.m].label}`;show('s-end')}
+// ---- wiring ----
+let pick_d=null;
+$('#matches').innerHTML=Object.entries(MATCH).map(([k,v])=>`<button data-m="${k}">${v.label}</button>`).join('');
+$('#play').onclick=()=>{play('theme');sfx('click');show('s-diff')};
+$('#how').onclick=()=>$('#help').classList.add('on');
+$('#back1').onclick=()=>show('s-home');
+$$('[data-d]').forEach(b=>b.onclick=()=>{pick_d=b.dataset.d;$$('[data-d]').forEach(x=>x.style.borderColor=x===b?'#fff':'');sfx('click')});
+$$('[data-m]').forEach(b=>b.onclick=()=>{if(!pick_d){pick_d='Medium'}sfx('click');newGame(pick_d,b.dataset.m);window._last=[pick_d,b.dataset.m];show('s-game')});
+$('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
+$('#again').onclick=()=>{play('theme');newGame(...window._last);show('s-game')};
+$('#home').onclick=()=>{lbShow();show('s-home')};
+lbShow();
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script></body></html>
