@@ -176,7 +176,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #app .ib{width:42px;height:42px;color:var(--gold);background:radial-gradient(circle at 35% 30%,#7a2218,#2b0a08 75%);border:2px solid var(--gold);box-shadow:0 0 0 2px #000,0 3px 10px #000b,inset 0 0 8px #e6a63344}
 #app .ib .ic{width:24px;height:24px;stroke-width:2.2}
 #app .ib:active{filter:brightness(1.3)}
-#s-home{gap:9px}#s-home img.logo{width:min(76%,310px);margin:0}
+#s-home{gap:9px}#app #setBtn{width:50px;height:50px;flex:none;margin-top:auto}#app #setBtn .ic{width:28px;height:28px}#s-home img.logo{width:min(76%,310px);margin:0}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(92%,370px)}
 #app .tiles button{min-width:0;width:100%;padding:11px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.76rem;letter-spacing:.1em;border-radius:12px;position:relative}
 .tiles .ti{font-style:normal;font-size:1.65rem;line-height:1.1}
@@ -188,12 +188,12 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
- <div class="bar"><span></span><div class="r"><button class="ib" data-go="s-set" aria-label="Settings" data-ic="gear"></button></div></div>
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <button id="play">ENTER THE ARENA</button>
  <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button></div>
  <div id="prof"></div>
+ <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
 
 <section class="scr" id="s-mode" style="--bg:url(img/menu_bg.webp)">
@@ -221,10 +221,10 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
  </div>
  <div id="styleBox" style="display:contents"><div class="bm-head"><h2>Choose your general</h2></div>
  <div class="bm-grid2">
-  <button class="bm-opt" data-k="Calculator"><span class="bm-sym">♟️</span><strong>Scipio</strong><small>Strategist · cold logic</small></button>
-  <button class="bm-opt" data-k="Gambler"><span class="bm-sym">🎲</span><strong>Crassus</strong><small>Mercenary · reckless</small></button>
-  <button class="bm-opt" data-k="Psycho"><span class="bm-sym">🔥</span><strong>Brutus</strong><small>Berserker · learns you</small></button>
-  <button class="bm-opt" data-k="Prime"><span class="bm-sym">☠️</span><strong>Sulla</strong><small>Prime · ruthless</small></button>
+  <button class="bm-opt" data-k="Calculator"><span class="bm-sym">♟️</span><strong>Mariamne</strong><small>Strategist · cold logic</small></button>
+  <button class="bm-opt" data-k="Gambler"><span class="bm-sym">⚓</span><strong>Imrandros</strong><small>Mercenary · reckless</small></button>
+  <button class="bm-opt" data-k="Psycho"><span class="bm-sym">🛡️</span><strong>Asantius</strong><small>Berserker · learns you</small></button>
+  <button class="bm-opt" data-k="Prime"><span class="bm-sym">👑</span><strong>Christinea</strong><small>Prime · ruthless</small></button>
  </div><div id="genInfo" style="font-size:.8rem;text-align:center;width:min(94%,390px);line-height:1.45"></div>
  <div class="bm-head"><h2>Place your wager</h2></div><div class="bm-grid2" id="wgrid"></div><div id="wgInfo" style="font-size:.75rem;text-align:center;opacity:.85;width:min(94%,390px)"></div></div>
  <div class="bm-head"><h2>Select your campaign</h2></div>
@@ -249,6 +249,12 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
  <div class="plate"><input id="dNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="dkp"></div>
 </section>
 
+<section class="scr" id="s-house" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <h2>👑 THE HOUSE</h2><small style="text-align:center;opacity:.9;width:min(92%,380px);line-height:1.4">Eight champions of the arena, named for the family behind it. Win a match against each one to earn their laurel.</small>
+ <div id="houseList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
+</section>
+
 <section class="scr" id="s-quests" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <h2>📜 QUESTS &amp; REWARDS</h2><div id="qList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
@@ -256,7 +262,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 
 <section class="scr" id="s-hall" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <h2>🏆 HALL OF GLORY</h2><div id="lb"></div>
+ <h2>🏆 HALL OF GLORY</h2><div id="lb"></div><button id="houseBtn">👑 THE HOUSE</button>
 </section>
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
@@ -344,7 +350,7 @@ const LEVELS=['I · RECRUIT','II · LEGIONARY','III · CENTURION','IV · LEGATUS
 const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt:0},Psycho:{mod:.05,risky:0,adapt:1},Prime:{mod:.10,risky:0,adapt:1}};
 const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
 const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🏛️','#ffe08a','GOLDEN LAUREL'],obsidian:['🖤','#9a8cff','OBSIDIAN GUARD']};
-const GEN={Easy:'GEN. LUCIUS',Medium:'GEN. BRUTUS',Hard:'GEN. MARCELLUS'};
+const GEN={Easy:'GEN. NANAIA',Medium:'GEN. SHANITARI',Hard:'GEN. ELIJAHOS'};
 const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
 // ---- audio ----
@@ -389,7 +395,7 @@ const HELP=`<h2>THE IMPERIUM</h2><p>Reach the target score before your rival to 
 <h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, a combo of 3+, and a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Each rank-up opens a new one: <b>Lightning Round</b>, <b>Sniper Range</b>, <b>Number Duel</b>, <b>Arena Gauntlet</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. The most total damage wins when the last layer falls. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
 <h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Four fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
-<h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Scipio, Crassus, Brutus and Sulla.</p>
+<h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
 <h2>FRIEND CHALLENGE</h2><p>Play 5 seeded rounds, then share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day).</p>
 <button onclick="this.closest('.pop').classList.remove('on')" style="width:100%;margin-top:10px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
@@ -402,10 +408,10 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
  G={cf:o.cf||null,trick:o.cf?o.cf.tr:'',mode:o.mode,d:o.d,m:o.m,D,M:Mt,names:[...o.names],pers:o.pers,score:[0,0],combo:[0,0],wins:[0,0],round:1,cur:0,
   pow:[0,1].map(()=>({SCAN:3,FOCUS:3,RISK:3,SHIELD:3,STEAL:3,JAM:3})),intelUses:[{},{}],desp:[{used:0,active:0},{used:0,active:0}],jamFor:[0,0],
   st:[{ok:0,best:0,crit:0},{ok:0,best:0,crit:0}],pg:[],boss:false,done:false,busy:false,paused:false,waiting:false,dmg:[0,0],broken:0,tLeft:0};
- if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true)}
+ if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true)}
 function bg(){$('#app').classList.toggle('bossm',!!G.boss);$('#s-game').style.setProperty('--bg',`url(img/${G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(G.trick==='sand'&&G.cur===0&&G.round%3===0)G.jam=1;
- if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast('☠️ <b>PROSCRIPTION</b><br><small>Sulla jams your hints this round!</small>'),400)}
+ if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast(`👑 <b>IMPERIAL EDICT</b><br><small>${GENS.Prime.n} jams your hints this round!</small>`),400)}
  if(G.boss){G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v}
  else{G.special=null;G.lo=D.lo;G.hi=D.hi;G.maxAtt=Math.max(2,D.att+(G.bonusA||0)-(G.mut==='lean'?1:0));
   if(!first&&Math.random()<(G.mut==='jack'?.45:.22)){const keys=Object.keys(SPECIAL);let r=Math.random()*keys.reduce((s,k)=>s+SPECIAL[k][1],0);G.special=keys.find(k=>(r-=SPECIAL[k][1])<0)||keys[0];
@@ -528,7 +534,7 @@ function aiGuesses(acc,maxT,onGuess,focus){const P=PERS[G.pers];let lo=G.lo,hi=G
 function aiPlay(){if(G.done||G.cur!==1)return;G.busy=true;$('#msg').textContent=`${mood()} ${nm(1)} is calculating…`;render0();
  later(()=>{G.boss?aiBoss():aiTurn()},1200)}
 function aiTurn(){const acc=Math.min(.95,(G.special==='KIRAXO_RAGE'?RAGE_ACC:G.D.acc)+PERS[G.pers].mod),r=aiGuesses(acc,G.maxAtt,()=>false,false);let m;
- if(r.g===G.secret||r.bull){const a=award(1,r.tries,false);if(r.bull){G.score[1]+=12;a.pts+=12}m=`${nm(1)} ${r.bull?'landed a BULLSEYE':'guessed it'} in ${r.tries} ${r.tries>1?'tries':'try'}! +${a.pts} pts  “${aw()}”`;sfx('buzz');if(G.gen==='Gambler'){const st=Math.min(2,G.score[0]);G.score[0]-=st;G.score[1]+=st;if(st)m+=` · 💰 BLOOD MONEY steals ${st}`}if(G.gen==='Psycho'&&G.combo[1]===3){G.score[1]+=6;m+=' · 🗡️ ET TU? +6'}if(G.trick==='raid'){const s=Math.min(3,G.score[0]);G.score[0]-=s;G.score[1]+=s;if(s)m+=` · 🗡️ RAID steals ${s}`}}
+ if(r.g===G.secret||r.bull){const a=award(1,r.tries,false);if(r.bull){G.score[1]+=12;a.pts+=12}m=`${nm(1)} ${r.bull?'landed a BULLSEYE':'guessed it'} in ${r.tries} ${r.tries>1?'tries':'try'}! +${a.pts} pts  “${aw()}”`;sfx('buzz');if(G.gen==='Gambler'){const st=Math.min(2,G.score[0]);G.score[0]-=st;G.score[1]+=st;if(st)m+=` · ⚓ PLUNDER steals ${st}`}if(G.gen==='Psycho'&&G.combo[1]===3){G.score[1]+=6;m+=' · 🗡️ BACKSTAB +6'}if(G.trick==='raid'){const s=Math.min(3,G.score[0]);G.score[0]-=s;G.score[1]+=s;if(s)m+=` · 🗡️ RAID steals ${s}`}}
  else{G.combo[1]=0;m=`${nm(1)} couldn't find it (it was ${G.secret}).  “${al()}”`}
  turnDone(m)}
 function aiBoss(){const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),useF=G.pow[1].FOCUS>0;if(useF)G.pow[1].FOCUS--;let broke=false;
@@ -560,7 +566,7 @@ addEventListener('keydown',e=>{const d=$('#s-daily').classList.contains('on'),g=
  if(/^\d$/.test(e.key)&&i.value.length<3)i.value+=e.key;else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')(d?dStrike:strike)()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){openPause();curM&&curM.pause()}else if(!S.mute&&curM)curM.play().catch(()=>{})});
 // progression
-const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{},gear:{h:0,s:0,b:0},rel:{},dsh:{d:'',b:[]},ch:{},cd:{d:'',n:0}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['LEGIONARY',100],['CENTURION',300],['OPTIO',650],['LEGATUS',1200],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
+const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{},gear:{h:0,s:0,b:0},rel:{},dsh:{d:'',b:[]},ch:{},cd:{d:'',n:0},hk:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['LEGIONARY',100],['CENTURION',300],['OPTIO',650],['LEGATUS',1200],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
 const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
 
 // ---- v12: Conquest Map ----
@@ -568,21 +574,21 @@ ACH.conq=['🗺️','CONQUEROR','Defeat Kiraxo on the Conquest Map'];
 // node: [name, target score, rules {hi range, a attempts delta, mut, head AI head start}, opponent]
 const CAMP=[
  {id:'gaul',n:'GAUL',e:'🌲',d:'Easy',pers:'Calculator',need:0,twist:'Dark forests. Standard rules, a gentle start.',
-  gen:{n:'GEN. BRENNUS',tr:'ambush',trd:'Ambush — he starts the battle 10 points ahead.'},
+  gen:{n:'CHIEF ASANTORIX',tr:'ambush',trd:'Ambush — he starts the battle 10 points ahead.'},
   win:['🪓 The forest takes another Roman.','🐗 Run back to your walls!','🔥 Gaul does not kneel.'],lose:['😠 Lucky strike, Roman.','🪓 The forest remembers…','😤 This is not over.'],
-  nodes:[['Forest Ambush',15,{},'SCOUT CADO'],['River Crossing',20,{hi:12},'RAIDER ANDO'],['Druid Grove',20,{mut:'jack'},'DRUID VELLA'],['Hillfort Siege',25,{a:-1,head:5},'CHIEF ARTO'],['Brennus’ Stronghold',35,{},'GEN. BRENNUS']]},
+  nodes:[['Forest Ambush',15,{},'SCOUT ELIJAHRIX'],['River Crossing',20,{hi:12},'RAIDER IMRANIX'],['Druid Grove',20,{mut:'jack'},'DRUID SHANITEA'],['Hillfort Siege',25,{a:-1,head:5},'CHIEF KIRABIX'],['Asantorix’ Stronghold',35,{},'CHIEF ASANTORIX']]},
  {id:'egypt',n:'EGYPT',e:'🏜️',d:'Medium',pers:'Psycho',need:7,dx:{hi:15,att:3,acc:.7},twist:'Desert sands. Tighter range (1–15) and only 3 attempts.',
-  gen:{n:'PHARAOH KHAFRE',tr:'sand',trd:'Sandstorm — your temperature hint vanishes every 3rd round.'},
+  gen:{n:'PHARAOH KIRABOTEP',tr:'sand',trd:'Sandstorm — your temperature hint vanishes every 3rd round.'},
   win:['🏺 The sands bury all who dare.','🐍 The gods are not on your side.','☀️ Ra blinds you, Roman.'],lose:['😒 Even the Nile floods…','🏺 A fluke, mortal.','👁️ The pharaoh sees all… still.'],
-  nodes:[['Nile Delta',20,{},'SCRIBE NEFRU'],['Oasis Raid',25,{mut:'rush'},'NOMAD SETI'],['Sandstorm Pass',25,{hi:12},'SCOUT AMUN'],['Valley of Kings',30,{mut:'primes'},'PRIEST HOREB'],['Sphinx Riddle',30,{mut:'lean',hi:10},'GUARD ANKH'],['Khafre’s Tomb',40,{},'PHARAOH KHAFRE']]},
+  nodes:[['Nile Delta',20,{},'SCRIBE SHANITARI'],['Oasis Raid',25,{mut:'rush'},'NOMAD IMRANKHET'],['Sandstorm Pass',25,{hi:12},'SCOUT ELIJAMOSE'],['Valley of Kings',30,{mut:'primes'},'PRIESTESS MARIAMUN'],['Sphinx Riddle',30,{mut:'lean',hi:10},'GUARD NANAMUN'],['Kirabotep’s Tomb',40,{},'PHARAOH KIRABOTEP']]},
  {id:'carth',n:'CARTHAGE',e:'🐘',d:'Medium',pers:'Gambler',need:17,twist:'Mercenary generals take risky, reckless guesses.',
-  gen:{n:'GEN. HANNO',tr:'raid',trd:'Raid — every round he wins steals 3 of your points.'},
+  gen:{n:'GEN. IMRANDROS',tr:'raid',trd:'Raid — every round he wins steals 3 of your points.'},
   win:['🐘 My elephants crush your plans.','💰 Everything has a price, Roman.','⚓ Carthage rules the seas.'],lose:['😤 A gamble lost, nothing more.','💰 I will double the stakes.','🐘 You were lucky.'],
-  nodes:[['Harbor Skirmish',25,{},'SAILOR BODO'],['Elephant Pass',30,{mut:'jack'},'DRIVER MAGO'],['Salt Mines',30,{a:-1},'FOREMAN GISCO'],['Tyrian Docks',35,{mut:'lean',head:5},'CAPT. HIMILCO'],['Walls of Carthage',35,{hi:40},'GUARD BARCA'],['Hanno’s Fleet',45,{},'GEN. HANNO']]},
+  nodes:[['Harbor Skirmish',25,{},'SAILOR ELIJAHOS'],['Elephant Pass',30,{mut:'jack'},'DRIVER ASANTEOS'],['Salt Mines',30,{a:-1},'FOREMAN KIRABOS'],['Tyrian Docks',35,{mut:'lean',head:5},'CAPT. CHRISTINEA'],['Walls of Carthage',35,{hi:40},'GUARD NANAIA'],['Imrandros’ Fleet',45,{},'GEN. IMRANDROS']]},
  {id:'rome',n:'ROME',e:'🏛️',d:'Hard',pers:'Calculator',pers2:'Prime',need:29,final:1,twist:'The heart of the empire. Full 1–100 range at the end.',
   gen:{n:'KIRAXO',tr:'',trd:'Imperator Kiraxo Prime — win the scoreboard, then break his shield layers.'},
   win:AI_WIN,lose:AI_LOSE,
-  nodes:[['Appian Way',30,{hi:60},'LEGIONARY GAIUS'],['Circus Maximus',35,{mut:'jack',hi:80},'DRIVER LUCA'],['Colosseum Floor',40,{},'GLAD. MARCUS'],['Senate Intrigue',40,{mut:'primes'},'SENATOR CATO'],['Praetorian Guard',45,{mut:'lean'},'PREFECT RUFUS'],['Palatine Hill',50,{head:10},'TRIBUNE VARRO'],['Kiraxo’s Throne',60,{mut:'armor'},'KIRAXO']]}];
+  nodes:[['Appian Way',30,{hi:60},'LEGIONARY ASANTIUS'],['Circus Maximus',35,{mut:'jack',hi:80},'DRIVER ELIJAHUS'],['Colosseum Floor',40,{},'GLAD. IMRANUS'],['Senate Intrigue',40,{mut:'primes'},'SENATOR CHRISTINEA'],['Praetorian Guard',45,{mut:'lean'},'PREFECT KIRABUS'],['Palatine Hill',50,{head:10},'TRIBUNE MARIAMNA'],['Kiraxo’s Throne',60,{mut:'armor'},'KIRAXO']]}];
 const camp={sel:null,next:null};
 const ck=(r,i)=>CAMP[r].id+i,cStars=r=>CAMP[r].nodes.reduce((a,_,i)=>a+(PRO.cp[ck(r,i)]||0),0),cTotal=()=>CAMP.reduce((a,_,r)=>a+cStars(r),0),cMax=()=>CAMP.reduce((a,R)=>a+R.nodes.length*3,0);
 const bossDone=r=>(PRO.cp[ck(r,CAMP[r].nodes.length-1)]||0)>0,rOpen=r=>r===0||(bossDone(r-1)&&cTotal()>=CAMP[r].need),nOpen=(r,i)=>rOpen(r)&&(i===0||(PRO.cp[ck(r,i-1)]||0)>0);
@@ -633,7 +639,7 @@ const MINI=[
  {k:'hunt',n:'TREASURE HUNT',e:'💎',rk:5,d:'Dig the grid. Hot/cold hints lead you to the treasure.'}];
 const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>rk()>=MINI[i].rk,mgm=k=>PRO.mg[k]||(PRO.mg[k]={b:0,p:0,t:0,s:0});
 const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
-const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. LUCIUS',.7],['GEN. BRUTUS',.8],['GEN. MARCELLUS',.9],['KIRAXO',.97]];
+const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. NANAIA',.7],['GEN. SHANITARI',.8],['GEN. ELIJAHOS',.9],['KIRAXO',.97]];
 let X=null;
 const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}_show(id)};
 function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
@@ -861,7 +867,7 @@ $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key===
 const lbGet=()=>LS.get('ms_lb',[]);
 function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','4️⃣','5️⃣'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
 function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
- const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
+ const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
@@ -912,14 +918,14 @@ $('#wgrid').onclick=e=>{const b=e.target.closest('[data-w]');if(!b||b.disabled)r
 function wagerEnd(win,draw){G.wtxt='';if(!G.wager)return;const w=G.wager;let p=0;if(win)p=Math.round(w*WM[G.d]);else if(draw)p=w;PRO.gold+=p;LS.set('ms_pro',PRO);G.wp=p;
  G.wtxt=`<br>🎲 <b>Wager ${w} 💰</b> · ${win?`WON — paid ${p} (+${p-w})`:draw?'draw — refunded':'lost'}`;if(win)setTimeout(()=>burst(['🪙','💰','✨'],24),900)}
 // -- generals
-const GENS={Calculator:{n:'GEN. SCIPIO',e:'♟️',t:'COLD LOGIC',d:'Opens most rounds at the exact midpoint — he rarely wastes a guess.',
-  win:['♟️ Check. And mate.','🧠 Every move was counted.','📐 Predictable, Roman.'],lose:['♟️ A sacrifice. Calculated.','🤔 Impossible. Recounting…','📐 Even Carthage fell once.']},
- Gambler:{n:'GEN. CRASSUS',e:'🎲',t:'BLOOD MONEY',d:'Reckless guesses, but every round he wins steals 2 of your points.',
-  win:['💰 Everything has a price. You lost.','🪙 Pay up, legionary.','😏 Gold always wins.'],lose:['💸 A bad investment.','🪙 Keep your coin… for now.','😒 I will buy my revenge.']},
- Psycho:{n:'GEN. BRUTUS',e:'🔥',t:'BACKSTAB',d:'Learns your habits — and a 3-win combo lands a free +6 strike on you.',
-  win:['🗡️ Et tu? Too slow.','🔥 You never saw it coming.','😈 Turn your back — a mistake.'],lose:['😤 Lucky. I hate lucky.','🗡️ The knife will find you yet.','🔥 This is not over!']},
- Prime:{n:'GEN. SULLA',e:'☠️',t:'PROSCRIPTION',d:'Ruthless and adaptive. In round 4 he jams your hints.',
-  win:['☠️ Your name is on the list.','👑 Obey, or be proscribed.','😈 The Republic is mine.'],lose:['☠️ I will remember this.','🥶 You live. For now.','👑 Dictators do not forget.']}};
+const GENS={Calculator:{n:'QUEEN MARIAMNE',e:'♟️',t:'COLD LOGIC',d:'Opens most rounds at the exact midpoint — she rarely wastes a guess.',
+  win:['♟️ Check. And mate.','🧠 Every move was counted.','📐 Predictable, Roman.'],lose:['♟️ A sacrifice. Calculated.','🤔 Impossible. Recounting…','📐 Even queens lose a pawn.']},
+ Gambler:{n:'GEN. IMRANDROS',e:'⚓',t:'PLUNDER',d:'Reckless guesses, but every round he wins plunders 2 of your points.',
+  win:['⚓ The tide favours me.','🪙 Pay up, legionary.','😏 Fortune sails with me.'],lose:['🌊 A bad wave. I will return.','🪙 Keep your coin… for now.','😒 I will buy my revenge.']},
+ Psycho:{n:'GEN. ASANTIUS',e:'🛡️',t:'BACKSTAB',d:'Learns your habits — and a 3-win combo lands a free +6 strike on you.',
+  win:['🗡️ Too slow, legionary.','🔥 You never saw it coming.','😈 Never turn your back on a shield-bearer.'],lose:['😤 Lucky. I hate lucky.','🗡️ The blade will find you yet.','🔥 This is not over!']},
+ Prime:{n:'EMPRESS CHRISTINEA',e:'👑',t:'IMPERIAL EDICT',d:'Ruthless and adaptive. In round 4 she decrees your hints jammed.',
+  win:['👑 By imperial decree: you lose.','☠️ Your name is on the list.','😈 The empire obeys me.'],lose:['👑 The decree stands… next time.','🥶 You live. For now.','☠️ I will remember this.']}};
 function genUI(){const g=GENS[setup.k];$('#genInfo').innerHTML=`<b>${g.e} ${g.n}</b> — <b>${g.t}</b><br>${g.d}`}
 $$('[data-k]').forEach(b=>b.addEventListener('click',genUI));
 // -- friend challenges (seeded rounds, shared by link)
@@ -946,6 +952,15 @@ function chalDone(){const c=D.ch,s=D.score,old=PRO.ch[c.code],first=old==null,be
 function chalHash(){if(!/^#ch=/i.test(location.hash))return;const c=chalParse(location.hash);history.replaceState(null,'',location.pathname+location.search);if(c)setTimeout(()=>chalMenu(c),1300)}
 chalHash();addEventListener('hashchange',chalHash);
 
+// ---- v16: the House (kids as Greek/Roman/Egyptian champions) ----
+ACH.house=['👑','HOUSE OF HEROES','Win a match against all eight champions of the House'];
+const KIDS=[['ASANTE','ASANTIUS','Roman','The Unbroken Shield','ASANT','🛡️'],['ELIJAH','ELIJAHOS','Greek','Sun-Runner','ELIJA','☀️'],['IMRAN','IMRANDROS','Greek','Lord of Ships','IMRAN','⚓'],['CHRISTINE','CHRISTINEA','Roman','Empress of the Edict','CHRISTIN','👑'],
+ ['KIRABO','KIRABOTEP','Egyptian','Pharaoh of the Golden Dune','KIRAB','🏺'],['SHANITA','SHANITARI','Egyptian','Queen of the Nile','SHANIT','🪷'],['MARIAM','MARIAMNE','Greek','Queen of Strategy','MARIAM','♟️'],['NANA','NANAIA','Greek','Star of the Arena','NANA','⭐']];
+function kidSpots(r){const rg=CAMP.filter(R=>R.gen.n.includes(r)||R.nodes.some(x=>x[3].includes(r))).map(R=>R.n[0]+R.n.slice(1).toLowerCase()),o=[...rg];if(Object.values(GENS).some(g=>g.n.includes(r)))o.push('Quick match');if(DUEL.some(d=>d[0].includes(r)))o.push('Number Duel');return o.join(' · ')}
+function houseUI(){const n=Object.keys(PRO.hk||{}).length;$('#houseList').innerHTML=`<div class="card" style="margin:0;text-align:center"><b>🌿 ${n} / ${KIDS.length} laurels</b></div>`+KIDS.map(k=>`<div class="card" style="margin:0;display:flex;gap:10px;align-items:center"><span style="font-size:1.8rem">${k[5]}</span><div style="flex:1"><b>${k[1]}</b> <small>· ${k[2]} form of ${k[0]}</small><br><small>${k[3]}</small><br><small style="opacity:.75">${kidSpots(k[4])}</small></div><span style="font-size:1.5rem">${PRO.hk[k[1]]?'🌿':'🔒'}</span></div>`).join('')}
+function houseMark(win){if(!win||!G||G.mode!=='AI')return;const n=(G.opp||'').toUpperCase(),k=KIDS.find(x=>n.includes(x[4]));if(!k||PRO.hk[k[1]])return;PRO.hk[k[1]]=1;LS.set('ms_pro',PRO);
+ setTimeout(()=>toast(`🌿 <b>${k[1]}</b> bows to you<br><small>Laurel earned · ${Object.keys(PRO.hk).length}/${KIDS.length}</small>`),1800);if(Object.keys(PRO.hk).length>=KIDS.length)setTimeout(()=>unlock('house'),4800)}
+$('#houseBtn').onclick=()=>{sfx('click');houseUI();go('s-house')};
 // ---- setup wiring ----
 let setup={mode:'AI',d:'Medium',k:'Calculator',lastOpts:null};
 const MI={Quick:['Skirmish','⚔️','Quick engagement','First to 30','20s per guess'],Standard:['Campaign','🏛️','Test your discipline','First to 60','Then face Kiraxo'],War:['Conquest','🦅','The road to empire','First to 100','Then face Kiraxo'],Endless:['Eternal','♾️','Endless arena','10 rounds','Highest score wins'],Sudden:['Last Stand','💀','Sudden death','First to 3 wins','No mercy']};
