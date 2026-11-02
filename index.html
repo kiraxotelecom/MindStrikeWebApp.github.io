@@ -222,6 +222,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #oHud{display:flex;justify-content:space-between;align-items:center;width:100%;color:var(--gold)}#oHud>div{display:flex;flex-direction:column;align-items:center;min-width:90px}#oHud b{font-size:2rem}#oHud small{font:700 11px Cinzel,Georgia,serif;letter-spacing:2px;text-transform:uppercase}#oMid{text-align:center}#oMid span{font:700 13px Cinzel,Georgia,serif;letter-spacing:2px}
 .oh{display:flex;gap:5px;min-height:22px;justify-content:center}.oh .hrt{width:22px;height:22px;fill:#d0281c;stroke:#f1c36f;stroke-width:1.6;filter:drop-shadow(0 1px 2px #000)}.oh .hrt.u{fill:#1c120d;stroke:#6b4d1a;opacity:.55;transform:scale(.85)}#oOpPips .hrt{width:14px;height:14px}
 #oHist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px}#oHist span{border:1px solid;border-radius:8px;padding:2px 9px;font-size:.95rem;background:#000a}
+#oTurn{font:700 14px Cinzel,Georgia,serif;letter-spacing:2px;color:var(--gold);text-align:center;min-height:1.4em}#oTurn.my{color:#ffd98a;text-shadow:0 0 10px #e6a633}#oHist span.me{border-color:#e6a633}#oHist span.foe{border-color:#c0281c}#oHist span b{opacity:.7;margin-right:4px;font-size:.75em}
 #oMsg{min-height:3em;text-align:center;font-size:1.05rem;line-height:1.4;color:#f2e6d1}
 .oin{font:700 2.2rem Cinzel,Georgia,serif!important;text-align:center;width:min(58%,200px);box-sizing:border-box;background:#0009;color:#f5d38e;border:1px solid #75542f;border-radius:5px;padding:10px}
 </style></head><body><div id="app">
@@ -339,10 +340,11 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 <section class="scr" id="s-online" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib" id="oBack" aria-label="Back" data-ic="back"></button><span></span></div>
  <div class="op" id="oMenu">
-  <header class="bm-hero"><div class="bm-kicker">Play with friends, anywhere</div><h1>Clash Online</h1><div class="bm-sub">Make a room, share the code, duel from any network.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+  <header class="bm-hero"><div class="bm-kicker">Play with friends, anywhere</div><h1>Clash Online</h1><div class="bm-sub">Pick a mode, share the code, play from any network.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
   <label class="bm-field"><span>⚔️ Your name</span><input type="text" id="oName" maxlength="12" placeholder="YOUR NAME" autocomplete="off"></label>
-  <div class="bm-head"><h2>Choose</h2></div>
-  <button class="bm-battle bm-mode" id="oCreate"><div class="bm-bi">🌐</div><div><div class="bm-bn">Create a room</div><div class="bm-bt">You host · invite with a code</div></div><div class="bm-bd"><b>Host</b><br>5 rounds · first to crack it</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
+  <div class="bm-head"><h2>Create a room</h2></div>
+  <button class="bm-battle bm-mode" id="oCreateT"><div class="bm-bi">⚔️</div><div><div class="bm-bn">Duel of Legions</div><div class="bm-bt">Turn by turn · 20s each</div></div><div class="bm-bd"><b>5 rounds</b><br>Shared hints, you alternate</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
+  <button class="bm-battle bm-mode" id="oCreateR"><div class="bm-bi">📜</div><div><div class="bm-bn">Race for the War Code</div><div class="bm-bt">Both at once · private hints</div></div><div class="bm-bd"><b>3 rounds</b><br>First to crack the code</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
   <label class="bm-field"><span>🔑 Or join with a code</span><input type="text" id="oCode" maxlength="5" placeholder="CODE" autocomplete="off" autocapitalize="characters"></label>
   <button class="bm-cta" id="oJoin">JOIN ROOM</button>
   <small class="bm-note" id="oErr"></small>
@@ -350,6 +352,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div class="op" id="oLobby" hidden>
   <header class="bm-hero"><div class="bm-kicker">Send this code to your friend</div><h1>Your Room</h1><div class="bm-sub">Keep this screen open until they join.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
   <div id="oCodeBig"></div>
+  <small class="bm-note" id="oModeNm"></small>
   <small class="bm-note" id="oWait"></small>
   <button class="bm-cta" id="oShare">SHARE INVITE</button>
   <button class="bm-cta" id="oStart">START THE DUEL</button>
@@ -357,6 +360,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  </div>
  <div class="op" id="oGame" hidden>
   <div id="oHud"><div><small id="oN0"></small><b id="oS0">0</b></div><div id="oMid"><span id="oRd"></span><small id="oRg"></small></div><div><small id="oN1"></small><b id="oS1">0</b></div></div>
+  <div id="oTurn"></div>
   <div class="oh" id="oPips"></div>
   <small class="bm-note" id="oOpp"></small><div class="oh" id="oOpPips"></div>
   <div id="oHist"></div>
@@ -1101,12 +1105,15 @@ setTimeout(chestCheck,900);
 lbShow();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script><script>
-/* MindStrike Online: Firebase Realtime Database, host-authoritative duel. The secret never leaves the host's phone. */
+/* MindStrike Online: Firebase Realtime Database, host-authoritative. The secret never leaves the host's phone.
+   Modes: "turn" (Duel of Legions: strict turns, shared hints, 20s per turn, starter alternates) and "race" (War Code: simultaneous, private hints). */
 (()=>{
 const CFG={apiKey:"AIzaSyCjcXLy2T0pqsIUg1b4o05E_T7eb7yCsWc",authDomain:"mindstrike-4cabd.firebaseapp.com",databaseURL:"https://mindstrike-4cabd-default-rtdb.europe-west1.firebasedatabase.app",projectId:"mindstrike-4cabd",storageBucket:"mindstrike-4cabd.firebasestorage.app",messagingSenderId:"763536842719",appId:"1:763536842719:web:1cdb5d764ba3336c4fae6a"};
 const SDK='https://www.gstatic.com/firebasejs/10.14.1/',CH='ABCDEFGHJKMNPQRSTUVWXYZ23456789',PANELS=['oMenu','oLobby','oGame'];
 const HP='M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z';
-let F=null,uid='',code='',role='',R=null,unsub=null,secret=0,hostK={h:0,g:0},lastG=0,ended=true,hist=[],histRd=-1,myK=0,lastFin=-1,left=true,timer=0;
+const MODES={turn:{mode:'turn',lo:1,hi:100,att:5,rounds:5,tl:20},race:{mode:'race',lo:1,hi:100,att:6,rounds:3}};
+const MN={turn:'Duel of Legions',race:'Race for the War Code'},MR={turn:'Take turns guessing the same secret. Everyone sees every hint. 20 seconds per turn, 5 rounds, the starter alternates.',race:'Both guess at the same time with private hints. First to crack the war code wins the round. 3 rounds.'};
+let F=null,uid='',code='',role='',R=null,unsub=null,secret=0,hostK={h:0,g:0},lastG=0,ended=true,hist=[],histRd=-1,myK=0,lastFin=-1,left=true,timer=0,tt=0,sentTk=-1,tkSeen=-1,tkAt=0,tick=0,tk=0,logN=0;
 const showP=id=>PANELS.forEach(p=>$('#'+p).hidden=p!==id),err=m=>{$('#oErr').textContent=m||''};
 const rname=()=>$('#oName').value.trim().toUpperCase().slice(0,12);
 const ref=p=>F.D.ref(F.db,p),upd=o=>F.D.update(ref('rooms/'+code),o).catch(()=>{});
@@ -1114,69 +1121,88 @@ const why=e=>{const m=String(e&&(e.code||e.message)||e);return /operation-not-al
 async function fb(){if(F)return F;const[A,Au,D]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-auth.js'),import(SDK+'firebase-database.js')]);
  const app=A.initializeApp(CFG),auth=Au.getAuth(app),cr=await Au.signInAnonymously(auth);uid=cr.user.uid;F={D,db:D.getDatabase(app)};return F}
 function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||''}
-async function create(){const name=rname();if(!name)return err('Enter your name first.');err('Connecting…');sfx('click');
+async function create(mode){const name=rname();if(!name)return err('Enter your name first.');err('Connecting…');sfx('click');
  try{await fb()}catch(e){return err(why(e))}
  for(let i=0;i<6;i++){const c=Array.from({length:5},()=>CH[Math.floor(Math.random()*CH.length)]).join('');
-  try{await F.D.set(ref('rooms/'+c),{host:{uid,name},cfg:{lo:1,hi:50,att:5,rounds:5},st:'lobby',scores:{h:0,g:0},rd:0,ts:Date.now()});code=c;role='h';return enter()}
+  try{await F.D.set(ref('rooms/'+c),{host:{uid,name},cfg:{...MODES[mode]},st:'lobby',scores:{h:0,g:0},rd:0,ts:Date.now()});code=c;role='h';return enter()}
   catch(e){if(i===5||!/permission/i.test(String(e&&(e.code||e.message))))return err(why(e))}}}
 async function join(c){const name=rname();c=(c||'').trim().toUpperCase();if(!name)return err('Enter your name first.');if(c.length<4)return err('Type the room code.');err('Connecting…');sfx('click');
  try{await fb();const s=await F.D.get(ref('rooms/'+c));if(!s.exists())return err('No room with that code.');const v=s.val();
   if(v.host&&v.host.uid===uid)return err('That is your own room.');if(v.guest&&v.guest.uid!==uid)return err('That room is full.');
   await F.D.set(ref('rooms/'+c+'/guest'),{uid,name});code=c;role='g';enter()}catch(e){err(why(e))}}
-function enter(){left=false;err('');S.n1=rname();save();hist=[];histRd=-1;myK=0;lastFin=-1;
+function enter(){left=false;err('');S.n1=rname();save();hist=[];histRd=-1;myK=0;lastFin=-1;tkSeen=-1;sentTk=-1;tk=0;
+ clearInterval(tick);tick=setInterval(tickUi,250);
  unsub=F.D.onValue(ref('rooms/'+code),s=>{R=s.val();onRoom()},e=>{leave(why(e))})}
 function onRoom(){if(left)return;
  if(!R){leave('The room was closed.');return}
- if(role==='h'&&R.st!=='lobby'&&!R.guest){upd({st:'lobby',rd:0,res:null,in:null,fin:null,winner:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
+ if(role==='h'&&R.st!=='lobby'&&!R.guest){clearTimeout(tt);clearTimeout(timer);ended=true;upd({st:'lobby',rd:0,res:null,in:null,fin:null,log:null,turn:null,winner:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
  if(role==='g'&&!R.guest){leave('You left the room.');return}
  if(R.st==='lobby'){lobby();return}
  showP('oGame');
  if(role==='h'&&R.st==='play'&&!ended&&R.in&&R.in.g&&R.in.g.n===R.rd&&R.in.g.k>lastG){lastG=R.in.g.k;evalGuess('g',R.in.g.g)}
  render()}
-function lobby(){showP('oLobby');const g=R.guest;$('#oCodeBig').textContent=code;
+function lobby(){showP('oLobby');const g=R.guest,m=R.cfg.mode||'turn';$('#oCodeBig').textContent=code;$('#oModeNm').innerHTML='<b>'+MN[m]+'</b><br>'+MR[m];
  $('#oWait').textContent=role==='h'?(g?g.name+' has joined. Start when ready.':'Waiting for your friend to enter the code…'):'Joined '+R.host.name+'’s room. Waiting for the host to start…';
  $('#oStart').style.display=role==='h'&&g?'':'none';$('#oShare').style.display=role==='h'?'':'none'}
 const hearts=(n,u)=>Array.from({length:n},(_,i)=>`<svg class="hrt${i<u?' u':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HP}"/></svg>`).join('');
-function render(){const c=R.cfg,opp=role==='h'?'g':'h',nmOf=r=>r==='h'?R.host.name:(R.guest?R.guest.name:'?'),sc=R.scores||{h:0,g:0};
+const nmOf=r=>r==='h'?R.host.name:(R.guest?R.guest.name:'?');
+function logOf(){return R.log?Object.keys(R.log).sort().map(k=>R.log[k]):[]}
+function tickUi(){if(!R||left||R.st!=='play'||!R.cfg||R.cfg.mode!=='turn'||(R.fin&&R.fin.n===R.rd)){const t=$('#oTurn');if(t){t.textContent='';t.className=''}return}
+ if(tkSeen!==R.tk){tkSeen=R.tk;tkAt=Date.now()}
+ const rem=Math.max(0,Math.ceil(R.cfg.tl-(Date.now()-tkAt)/1000)),t=$('#oTurn'),mine=R.turn===role;
+ t.className=mine?'my':'';t.textContent=mine?'⚔️ YOUR TURN · '+rem+'s':'⏳ '+nmOf(R.turn)+'’S TURN · '+rem+'s'}
+function render(){const c=R.cfg,tm=c.mode==='turn',opp=role==='h'?'g':'h',sc=R.scores||{h:0,g:0};
  $('#oN0').textContent=nmOf(role);$('#oN1').textContent=nmOf(opp);$('#oS0').textContent=sc[role]||0;$('#oS1').textContent=sc[opp]||0;
- $('#oRd').textContent=R.rd>c.rounds?'TIEBREAK':'ROUND '+R.rd+'/'+c.rounds;$('#oRg').textContent='Secret: '+c.lo+'–'+c.hi;
+ $('#oRd').textContent=R.rd>c.rounds?'TIEBREAK':'ROUND '+R.rd+'/'+c.rounds;$('#oRg').textContent=(tm?'Shared secret: ':'Secret: ')+c.lo+'–'+c.hi;
  if(histRd!==R.rd){histRd=R.rd;hist=[];myK=0}
- const mr=R.res&&R.res[role],or=R.res&&R.res[opp],fin=R.fin&&R.fin.n===R.rd?R.fin:null;
- if(mr&&mr.n===R.rd&&mr.k>hist.length)hist.push(mr);
- const used=mr&&mr.n===R.rd?mr.k:0,oused=or&&or.n===R.rd?or.k:0,busy=myK>used;
- $('#oPips').innerHTML=hearts(c.att,used);$('#oOpPips').innerHTML=hearts(c.att,oused);
- $('#oOpp').textContent=or&&or.n===R.rd?nmOf(opp)+' · last hint '+(TE[or.tier]||'🎯'):nmOf(opp)+' is thinking…';
- $('#oHist').innerHTML=hist.map(h=>`<span style="border-color:${TC[h.tier]||'#fff'}">${h.g} ${h.dir} ${TE[h.tier]||''}</span>`).join('');
+ const fin=R.fin&&R.fin.n===R.rd?R.fin:null;let used=0,oused=0,busy=false,chips='';
+ if(tm){const L=logOf();used=L.filter(e=>e.w===role).length;oused=L.filter(e=>e.w===opp).length;busy=sentTk===R.tk;
+  chips=L.map(e=>`<span class="${e.w===role?'me':'foe'}"><b>${nmOf(e.w)[0]}</b>${e.to?'⏱':e.g+' '+e.dir+' '+(TE[e.tier]||'')}</span>`).join('')}
+ else{const mr=R.res&&R.res[role],or=R.res&&R.res[opp];if(mr&&mr.n===R.rd&&mr.k>hist.length)hist.push(mr);
+  used=mr&&mr.n===R.rd?mr.k:0;oused=or&&or.n===R.rd?or.k:0;busy=myK>used;
+  chips=hist.map(h=>`<span style="border-color:${TC[h.tier]||'#fff'}">${h.g} ${h.dir} ${TE[h.tier]||''}</span>`).join('')}
+ $('#oPips').innerHTML=hearts(c.att,used);$('#oOpPips').innerHTML=hearts(c.att,oused);$('#oHist').innerHTML=chips;
+ const or2=R.res&&R.res[opp];
+ $('#oOpp').textContent=tm?nmOf(opp)+' · '+(c.att-oused)+' attempts left':(or2&&or2.n===R.rd?nmOf(opp)+' · last hint '+(TE[or2.tier]||'🎯'):nmOf(opp)+' is thinking…');
  let msg='';
  if(fin&&lastFin!==R.rd){lastFin=R.rd;if(fin.w===role){sfx('fanfare');burst(['🎉','✨','🏆'],24)}else{sfx('buzz');shake()}}
  if(R.st==='over'){const win=R.winner===role;msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small>'}
  else if(fin)msg=fin.w===role?`🏆 You cracked ${fin.secret}! +${fin.pts}`:fin.w==='-'?`Nobody got it. It was ${fin.secret}.`:`${nmOf(fin.w)} cracked it (${fin.secret}) +${fin.pts}`;
+ else if(tm)msg=R.turn===role?(used>=c.att?'Out of attempts.':'Your turn. Pick a number from '+c.lo+' to '+c.hi+'.'):'Waiting for '+nmOf(R.turn)+'…';
  else if(used>=c.att)msg='Out of attempts. Waiting for '+nmOf(opp)+'…';
  else if(busy)msg='Waiting for the host…';
- else if(mr&&mr.n===R.rd)msg=(TE[mr.tier]||'')+' '+(mr.dir==='↑'?'Higher':'Lower');
- else msg='Guess the secret number!';
+ else if(hist.length){const h=hist[hist.length-1];msg=(TE[h.tier]||'')+' '+(h.dir==='↑'?'Higher':'Lower')}
+ else msg='Crack the war code first!';
  $('#oMsg').innerHTML=msg;
- const can=R.st==='play'&&!fin&&used<c.att&&!busy;$('#oStrike').disabled=!can;$('#oNum').disabled=!can;$('#oStrike').style.display=R.st==='over'?'none':'';$('#oNum').style.display=R.st==='over'?'none':'';
- $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>'}
+ const can=R.st==='play'&&!fin&&used<c.att&&!busy&&(!tm||R.turn===role);$('#oStrike').disabled=!can;$('#oNum').disabled=!can;
+ $('#oStrike').style.display=R.st==='over'?'none':'';$('#oNum').style.display=R.st==='over'?'none':'';
+ $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>';
+ tickUi()}
 // ---- host only ----
-function startRound(n){const c=R.cfg;secret=Math.floor(Math.random()*(c.hi-c.lo+1))+c.lo;hostK={h:0,g:0};lastG=0;ended=false;return upd({st:'play',rd:n,res:null,in:null,fin:null,winner:null})}
-function evalGuess(who,g){const c=R.cfg;if(ended||!Number.isInteger(g)||g<c.lo||g>c.hi||hostK[who]>=c.att)return;const k=++hostK[who];
- if(g===secret)return endRound(who,k);
- upd({['res/'+who]:{n:R.rd,k,g,tier:mtemp(g,secret,c.lo,c.hi)[0],dir:g<secret?'↑':'↓'}});
- if(hostK.h>=c.att&&hostK.g>=c.att)setTimeout(()=>endRound('-',0),700)}
-function endRound(w,k){if(ended)return;ended=true;const c=R.cfg,rd=R.rd,sc={h:R.scores.h||0,g:R.scores.g||0},pts=w==='-'?0:(10+5*(c.att-k))*(k===1?2:1);if(w!=='-')sc[w]+=pts;
- const u={fin:{n:rd,w,secret,pts},scores:sc};if(w!=='-')u['res/'+w]={n:rd,k,g:secret,tier:'blazing',dir:'✓'};upd(u);
+function armTimer(){clearTimeout(tt);if(!R||R.cfg.mode!=='turn')return;tt=setTimeout(()=>{if(left||ended||!R||R.cfg.mode!=='turn')return;const who=R.turn;hostK[who]++;turnMiss(who,{w:who,to:1})},(R.cfg.tl+2)*1000)}
+function startRound(n){const c=R.cfg,tm=c.mode==='turn';secret=Math.floor(Math.random()*(c.hi-c.lo+1))+c.lo;hostK={h:0,g:0};lastG=0;ended=false;logN=0;tk++;
+ upd({st:'play',rd:n,res:null,in:null,fin:null,log:null,winner:null,turn:tm?(n%2?'h':'g'):null,tk});if(tm)armTimer()}
+function turnMiss(who,entry){const c=R.cfg,o=who==='h'?'g':'h',u={['log/'+String(logN++).padStart(2,'0')]:entry};
+ if(hostK.h>=c.att&&hostK.g>=c.att){clearTimeout(tt);upd(u);setTimeout(()=>endRound('-',0),700);return}
+ u.turn=hostK[o]<c.att?o:who;u.tk=++tk;upd(u);armTimer()}
+function evalGuess(who,g){const c=R.cfg,tm=c.mode==='turn';if(ended||!Number.isInteger(g)||g<c.lo||g>c.hi||hostK[who]>=c.att)return;if(tm&&R.turn!==who)return;const k=++hostK[who];
+ if(g===secret)return endRound(who,k,tm?{['log/'+String(logN++).padStart(2,'0')]:{w:who,g,tier:'blazing',dir:'✓'}}:null);
+ const tier=mtemp(g,secret,c.lo,c.hi)[0],dir=g<secret?'↑':'↓';
+ if(tm)return turnMiss(who,{w:who,g,tier,dir});
+ upd({['res/'+who]:{n:R.rd,k,g,tier,dir}});if(hostK.h>=c.att&&hostK.g>=c.att)setTimeout(()=>endRound('-',0),700)}
+function endRound(w,k,extra){if(ended)return;ended=true;clearTimeout(tt);const c=R.cfg,rd=R.rd,sc={h:R.scores.h||0,g:R.scores.g||0},pts=w==='-'?0:(10+5*(c.att-k))*(k===1?2:1);if(w!=='-')sc[w]+=pts;
+ const u={fin:{n:rd,w,secret,pts},scores:sc,turn:null};if(extra)Object.assign(u,extra);else if(w!=='-')u['res/'+w]={n:rd,k,g:secret,tier:'blazing',dir:'✓'};upd(u);
  clearTimeout(timer);timer=setTimeout(()=>{if(left||!R||R.rd!==rd)return;if(rd>=c.rounds&&sc.h!==sc.g)upd({st:'over',winner:sc.h>sc.g?'h':'g'});else startRound(rd+1)},3800)}
 // ---- actions ----
 function strike(){if(!R||R.st!=='play')return;const g=parseInt($('#oNum').value,10),c=R.cfg;if(isNaN(g)||g<c.lo||g>c.hi){$('#oMsg').textContent='Enter a number from '+c.lo+' to '+c.hi+'.';sfx('buzz');return}
- $('#oNum').value='';sfx('click');if(role==='h')evalGuess('h',g);else{myK++;F.D.set(ref('rooms/'+code+'/in/g'),{n:R.rd,k:myK,g}).catch(()=>{});render()}}
-async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer);if(unsub){unsub();unsub=null}
+ $('#oNum').value='';sfx('click');if(role==='h')evalGuess('h',g);else{myK++;if(c.mode==='turn')sentTk=R.tk;F.D.set(ref('rooms/'+code+'/in/g'),{n:R.rd,k:myK,g}).catch(()=>{});render()}}
+async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer);clearTimeout(tt);clearInterval(tick);if(unsub){unsub();unsub=null}
  try{if(F&&code){if(role==='h')await F.D.remove(ref('rooms/'+code));else if(role==='g')await F.D.remove(ref('rooms/'+code+'/guest'))}}catch(e){}
  role='';code='';R=null;showP('oMenu');home();if(msg)setTimeout(()=>toast(msg),400)}
-async function share(){const url=location.origin+location.pathname+'#room='+code,text='Join my MindStrike duel! Room code: '+code;
+async function share(){const url=location.origin+location.pathname+'#room='+code,text='Join my MindStrike room! Code: '+code;
  try{if(navigator.share)await navigator.share({title:'MindStrike: Number Wars',text,url});else{await navigator.clipboard.writeText(text+' '+url);toast('📋 <b>Invite copied</b>')}}catch(e){}}
 $('#onlineBtn').onclick=()=>{sfx('click');openOnline()};
-$('#oCreate').onclick=create;$('#oJoin').onclick=()=>join($('#oCode').value);
+$('#oCreateT').onclick=()=>create('turn');$('#oCreateR').onclick=()=>create('race');$('#oJoin').onclick=()=>join($('#oCode').value);
 $('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;
 $('#oNum').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 $('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0}}).then(()=>startRound(1))};
