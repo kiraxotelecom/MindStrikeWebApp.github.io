@@ -100,3 +100,9 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 ## v34 changes
 - Fixed `Cannot access 'worldsH' before initialization` (Worlds runtime ran in <head> before PRO/PR existed; moved into the main script, WORLDS data stays in <head>).
 - Settings: redesigned music / sound-effects sliders (no more clipped row).
+
+
+## v35 changes
+- New world: ICE · FROSTLANDS (Norse vocabulary: Jarl, Fjord, Valhalla, Frostlands). Glacier blue, white and silver, light-first (turns on light mode the first time it is equipped).
+- Light mode is its own switch (Settings > Look > Brightness) and works in every world: Roman = parchment and ink, Shogun's Realm = washi and red seals, Neon Grid = pale glass, Ice = white and glacier blue with deep navy text.
+- Technique: every hsl() lightness runs through --lt and the black overlays through --k, so future worlds get a light mode for free (just add html.light.wd-<id>{...} variables).
