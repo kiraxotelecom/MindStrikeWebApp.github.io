@@ -51,6 +51,9 @@ Clash Online now has a **mode menu**. **Duel of Legions** (strict turns, 20s per
 ## v24 changes
 **Secrets no longer repeat a digit** (11, 22, 77, 111...) in the main game, mini games and online (`rndS` helper). **Relic draft** between online rounds: pick 1 of 3 of Second Wind, Free Strike, Golden Laurel, Sharpshooter, Oracle, Compass, Time Lord (duel only), Last Laurel; they last the whole match. **Taunts**: six one-tap messages (fixed list, no typing). **Family record**: head-to-head wins per pair of names, saved on each phone and shown on the Online menu and the match-over screen. Bump `V` in `sw.js` after every change.
 
+## v25 changes
+**Clash Online upgrade.** (1) **Connection alerts**: a red banner when you go offline, and when your rival drops ("Shanita lost connection · waiting 30s"). Presence is tracked in the room (`pres/h`, `pres/g`, cleared by the server on disconnect); the turn timer pauses while anyone is away, and after 30s the match ends (host: back to the lobby, guest: back to the menu). The screen is kept awake during matches (Wake Lock). (2) **Rising ranges** (option on the Online menu): each round the range grows, e.g. Duel 1-20, 1-50, 1-100, 1-250, 1-500 with more attempts and a points multiplier (x1.5, x2 in the late rounds). (3) **Sealed Scrolls**, a third mode: each player seals a number for the other, then both race to crack the number their rival sealed. The setter's phone judges the guesses and watches them close in live. Secrets never touch the database; only a commit hash does, and the number is revealed at round end and checked against it. (4) **Powers online** (option): SCAN, FOCUS and MARK, one per round, -5 pts if you win that round; they only give information, so they cannot change attempts or scores. `firebase-rules.json` is unchanged. Bump `V` in `sw.js` after every change.
+
 ## Roadmap (none of these are built yet)
 Ordered by expected impact. **The first three are next.**
 
