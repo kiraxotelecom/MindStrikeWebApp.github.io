@@ -459,7 +459,7 @@ const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt
 const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
 const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🏛️','#ffe08a','GOLDEN LAUREL'],obsidian:['🖤','#9a8cff','OBSIDIAN GUARD']};
 const GEN={Easy:'GEN. NANAIA',Medium:'GEN. SHANITARI',Hard:'GEN. ELIJAHOS'};
-const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,rndS=(a,b)=>{let n,i=0;do{n=rnd(a,b)}while(b-a>=15&&i++<40&&/^(\d)\1+$/.test(''+n));return n},pick=a=>a[rnd(0,a.length-1)];
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,rndS=(a,b)=>{let n,i=0;do{n=rnd(a,b)}while(b-a>=15&&i++<40&&/^(\d)\1+$/.test(''+n));return n},pick=a=>a[rnd(0,a.length-1)],NARROW=(a,b)=>b-a<=1,RNG=(a,b,sep='—')=>NARROW(a,b)?'🎯 Almost there!':`${a}${sep}${b}`,PAR=(a,b)=>NARROW(a,b)?'':` (${a}–${b})`;
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
 // ---- audio ----
 const A={};['ding','buzz','fanfare','click','powerup','glitch','whoosh'].forEach(n=>A[n]=new Audio(`audio/${n}.wav`));
@@ -532,7 +532,7 @@ function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesse
  if(G.spyLeft>0&&G.mode==='AI'&&G.cur===0&&!G.boss){G.spyLeft--;G.rf.info.push('🔭 SPY GLASS: the secret is '+(G.secret%2?'ODD':'EVEN')+'.')}
  bg();$('#s-game').style.setProperty('--heat','#e6a633');timerReset();
  if(G.mode==='PVP'&&!first){G.waiting=true;$('#passname').textContent=nm(G.cur);$('#passsp').textContent=G.special&&G.special!=='BOSS'?(G.special==='KIRAXO_RAGE'?'OVERDRIVE':SPECIAL[G.special][0]):'';$('#pass').classList.add('on')}
- render(G.mode==='AI'&&G.cur===1?'':`${nm(G.cur)}, strike! Guess ${G.kLo}–${G.kHi}.${G.mut==='primes'&&!G.boss?' It is PRIME.':''}`);
+ render(G.mode==='AI'&&G.cur===1?'':`${nm(G.cur)}, strike! ${NARROW(G.kLo,G.kHi)?'🎯 Almost there!':`Guess ${G.kLo}–${G.kHi}.`}${G.mut==='primes'&&!G.boss?' It is PRIME.':''}`);
  if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
 $('#ready').onclick=()=>{G.waiting=false;$('#pass').classList.remove('on');timerReset();render()};
 function nextTurn(){G.cur=1-G.cur;if(G.cur===0)G.round++;
@@ -596,7 +596,7 @@ function usePow(n){if(!canAct())return;if(n!=='INTEL')G.powUsed=1;const w=G.cur,
  if(n==='RISK'&&!rf.risk&&G.att+2>G.maxAtt){$('#msg').textContent='RISK costs 2 attempts — you only have '+(G.maxAtt-G.att)+' left.';sfx('buzz');return}
  if(G.pow[w][n]<=0)return;const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,JAM:0}[n];if(act)return;
  G.pow[w][n]--;sfx('powerup');let m='';
- if(n==='SCAN'){rf.scanned=1;const mid=(G.kLo+G.kHi)>>1,up=G.secret>mid;up?G.kLo=Math.max(G.kLo,mid+1):G.kHi=Math.min(G.kHi,mid);m=`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${G.kLo}–${G.kHi}).`}
+ if(n==='SCAN'){rf.scanned=1;const mid=(G.kLo+G.kHi)>>1,up=G.secret>mid;up?G.kLo=Math.max(G.kLo,mid+1):G.kHi=Math.min(G.kHi,mid);m=`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half${PAR(G.kLo,G.kHi)}.`}
  if(n==='FOCUS'){rf.focus=1;m='FOCUS active — your next guess shows the exact distance!'}
  if(n==='RISK'){rf.risk=1;m='RISK active — next guess costs 2 attempts but pays 3×!'}
  if(n==='SHIELD'){rf.shield=1;m='SHIELD raised — your combo is protected this round.'}
@@ -756,7 +756,7 @@ function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{const open=mgOpen(i)
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
 const mgSet=t=>{$('#mgMsg').textContent=t};
 function mgChips(){$('#mgChips').innerHTML=X.hist.map(h=>`<span style="border-color:${h.txt?h.c:TC[h.t]};color:${h.txt?h.c:TC[h.t]}">${h.txt||h.d+h.g+TE[h.t]}</span>`).join('')}
-const mgRangeUI=()=>{$('#mgRange').textContent=X.kLo==null?'':`${X.kLo} — ${X.kHi}`};
+const mgRangeUI=()=>{$('#mgRange').textContent=X.kLo==null?'':RNG(X.kLo,X.kHi)};
 function mgUpd(){if(!X)return;const k=X.k,set=(a,b,c,d)=>{$('#mgMt').textContent=a;$('#mgMv').textContent=b;$('#mgRt').textContent=c;$('#mgRv').textContent=d};$('#mgS').textContent=X.score;
  if(k==='light')set('ROUND',X.r,'TIME',Math.max(0,Math.ceil(X.tLeft))+'s');
  else if(k==='sniper')set('STREAK',`${X.st} · ×${snMult().toFixed(1)}`,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
@@ -820,7 +820,7 @@ function gtRound(first){X.r++;X.lo=1;X.hi=GT[X.r-1];X.secret=rndS(1,X.hi);X.kLo=
  mgSet(first?'🛡️ No breaks. SCAN ×3 · FOCUS ×2 · SHIELD ×2 — they never refill.':`Round ${X.r}: 1–${X.hi}, ${X.maxA} attempts.`)}
 function gtPw(){const b=n=>$(`#mgPw [data-mp=${n}]`);if(!b('SCAN'))return;b('SCAN').querySelector('i').textContent=X.sc;b('FOCUS').querySelector('i').textContent=X.fo;b('SHIELD').querySelector('i').textContent=X.sh;
  b('SCAN').disabled=X.sc<=0||!!X.scanned||X.busy;b('FOCUS').disabled=X.fo<=0||!!X.focus||X.busy;b('SHIELD').disabled=true}
-function gtPow(n){if(n==='SCAN'&&X.sc>0&&!X.scanned){X.sc--;X.scanned=1;const mid=(X.kLo+X.kHi)>>1,up=X.secret>mid;up?X.kLo=Math.max(X.kLo,mid+1):X.kHi=Math.min(X.kHi,mid);mgRangeUI();mgSet(`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half (${X.kLo}–${X.kHi}).`)}
+function gtPow(n){if(n==='SCAN'&&X.sc>0&&!X.scanned){X.sc--;X.scanned=1;const mid=(X.kLo+X.kHi)>>1,up=X.secret>mid;up?X.kLo=Math.max(X.kLo,mid+1):X.kHi=Math.min(X.kHi,mid);mgRangeUI();mgSet(`SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half${PAR(X.kLo,X.kHi)}.`)}
  else if(n==='FOCUS'&&X.fo>0&&!X.focus){X.fo--;X.focus=1;mgSet('FOCUS active — your next guess shows the exact closeness!')}else return;
  sfx('powerup');gtPw()}
 function gtFire(g){X.att++;const foc=X.focus;X.focus=0;
@@ -873,7 +873,7 @@ const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.i
 const DR=[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]],tr=(g,s,sp)=>{const c=1-Math.abs(g-s)/sp;return c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing'};let D=null;
 function dStart(sd,ch){const r=mul(seed(sd));D={r:0,sec:DR.map(([a,b])=>a+Math.floor(r()*(b-a+1))),tries:0,trail:[],lines:[],score:0,kLo:1,kHi:10,ch:ch||null};$('#dTitle').textContent=ch?'⚔️ FRIEND CHALLENGE':'☀️ DAILY STRIKE';$('#dNum').value='';go('s-daily');dRender(ch?(ch.fs!=null?`${ch.from} scored ${ch.fs}. Same numbers — beat it!`:'You set the numbers. 5 rounds — then send the link!'):'Same numbers for everyone today. 5 rounds — each solvable with smart guesses!')}
 function dailyOpen(){if(PRO.dl===today())return dailyEnd();dStart(today())}
-function dRender(m){const mx=DR[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/5 · ${D.score} pts`+(D.ch&&D.ch.fs!=null?` · 🎯 beat ${D.ch.fs}`:'');$('#dRange').textContent=`${D.kLo} — ${D.kHi}`;$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
+function dRender(m){const mx=DR[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/5 · ${D.score} pts`+(D.ch&&D.ch.fs!=null?` · 🎯 beat ${D.ch.fs}`:'');$('#dRange').textContent=RNG(D.kLo,D.kHi);$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
 function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=DR[D.r],s=D.sec[D.r];if(!el.value||g<a||g>b){$('#dMsg').textContent=`Enter a number from ${a} to ${b}.`;tone(150,.15,'square');return}
  el.value='';D.tries++;
  if(g===s){D.trail.push('🎯');D.score+=Math.round((mx-D.tries+1)/mx*100);sfx('ding');burst(['✨','🎯','🪙'],14);vib(40);return dNext(`✅ Got it in ${D.tries}!`)}
@@ -955,7 +955,7 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#layers').style.display=b?'flex':'none';if(b)$('#layers').innerHTML=Array.from({length:G.total},(_,i)=>`<div class="ly ${i<G.broken?'brk '+(G.own[i]===0?'me':'foe'):i===G.broken?'cur':''}" style="--cr:${i<G.broken?1:i===G.broken?(1-Math.max(0,G.armor)/100).toFixed(2):0}"></div>`).join('');
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
  $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
- $('#range').textContent=`${G.kLo} — ${G.kHi}`;
+ $('#range').textContent=RNG(G.kLo,G.kHi);
  $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<svg class="hrt${i<G.att?' u':G.rf.risk&&i<G.att+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/></svg>`).join('');
  $('#pips').setAttribute('aria-label',(G.maxAtt-G.att)+' attempts left');
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
@@ -1287,7 +1287,7 @@ function sendTaunt(i){if(!R||!net||Date.now()-tzLast<1500)return;tzLast=Date.now
 function jInit(w,rg){jP[w]={u:0,fx:0,lo:rg.lo,hi:rg.hi,t:{}}}
 function trk(ws,g){ws.forEach(w=>{const j=jP[w];if(!j)return;if(g<secret)j.lo=Math.max(j.lo,g+1);else j.hi=Math.min(j.hi,g-1)})}
 function judgePower(w,t){const j=jP[w];if(!j||j.u||!PW[t])return;j.u=1;
- if(t==='scan'){const mid=(j.lo+j.hi)>>1,up=secret>mid;up?j.lo=Math.max(j.lo,mid+1):j.hi=Math.min(j.hi,mid);j.t.s='🔭 SCAN: the secret lies in the '+(up?'UPPER':'LOWER')+' half ('+j.lo+'–'+j.hi+')'}
+ if(t==='scan'){const mid=(j.lo+j.hi)>>1,up=secret>mid;up?j.lo=Math.max(j.lo,mid+1):j.hi=Math.min(j.hi,mid);j.t.s='🔭 SCAN: the secret lies in the '+(up?'UPPER':'LOWER')+' half'+PAR(j.lo,j.hi)}
  else if(t==='mark')j.t.m='🔢 MARK: the secret ends in '+(secret%10);
  else{j.fx=1;j.t.f='🎯 FOCUS armed: your next guess shows its exact closeness'}
  upd({['pt/'+w]:j.t,['pu/'+w]:1})}
