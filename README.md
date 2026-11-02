@@ -95,3 +95,8 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 
 ## v30 changes
 **First-time tutorial**: an 11-step spotlight tour of the home screen (rank card, each tile, Enter the Arena, Hall/How/Online, Settings) that starts once for brand-new players (no matches, no XP; flag `ms_tour`) and can be replayed from **Settings → Help → Replay the tutorial**. The install card is hidden while the tour runs. Bump `V` in `sw.js` after every change.
+
+
+## v34 changes
+- Fixed `Cannot access 'worldsH' before initialization` (Worlds runtime ran in <head> before PRO/PR existed; moved into the main script, WORLDS data stays in <head>).
+- Settings: redesigned music / sound-effects sliders (no more clipped row).

@@ -26,25 +26,6 @@ const WORLDS={
    ['druid','monk'],['chief','warlord'],['scribe','scholar'],['nomad','wanderer'],['priestess','miko'],['driver','courier'],['foreman','smith'],['glad.','sumo'],['senator','minister'],['prefect','magistrate'],['pharaoh','emperor'],
    ['hoplite','footman'],['gladiator','ronin'],['spartan','ninja'],['praetorian','kensei'],['eagle','crane'],['vestal flame','sakura flame'],['vestal','sakura'],['roman legion set','samurai clan set'],['galea','kabuto'],['scutum','tate'],['gladius','katana']],
   emo:[['🏛️','🏯'],['🦅','🦢'],['🌲','🎋'],['🐘','⚓'],['🏺','🍶'],['🔱','🥷']]}};
-const WID=PRO.wd&&WORLDS[PRO.wd]&&(PRO.own['wd:'+PRO.wd])?PRO.wd:'';
-const LX=(()=>{const W=WID&&WORLDS[WID];if(!W||!W.lex)return null;const map={},esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),
-  up=x=>x.toUpperCase(),cf=x=>x[0].toUpperCase()+x.slice(1),te=x=>x.replace(/\b[a-z]/g,c=>c.toUpperCase()),tt=x=>te(x).replace(/ (Of|The|To|And|A)\b/g,m=>m.toLowerCase());
- W.lex.forEach(([a,b])=>[[a,b],[cf(a),cf(b)],[up(a),up(b)],[te(a),te(b)],[tt(a),tt(b)]].forEach(([k,v])=>{map[k]=v}));
- const keys=Object.keys(map).sort((x,y)=>y.length-x.length),em={};(W.emo||[]).forEach(([a,b])=>{em[a]=b});
- const ek=Object.keys(em).sort((x,y)=>y.length-x.length);
- return{map,em,re:new RegExp('\\b(?:'+keys.map(k=>esc(k)+(/\w$/.test(k)?'\\b':'')).join('|')+')','g'),ere:ek.length?new RegExp(ek.map(esc).join('|'),'g'):null}})();
-const lexStr=t=>{if(!LX)return t;let r=t.replace(LX.re,m=>LX.map[m]);if(LX.ere)r=r.replace(LX.ere,m=>LX.em[m]);return r};
-function lexNode(n){if(n.nodeType===3){const p=n.parentNode;if(!p||/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)||(p.closest&&p.closest('[data-nx]')))return;const v=n.nodeValue,r=lexStr(v);if(r!==v)n.nodeValue=r;return}
- if(n.nodeType!==1||/^(SCRIPT|STYLE)$/.test(n.nodeName)||n.closest&&n.closest('[data-nx]'))return;
- for(const at of['title','aria-label']){const v=n.getAttribute(at);if(v){const r=lexStr(v);if(r!==v)n.setAttribute(at,r)}}
- for(let c=n.firstChild;c;c=c.nextSibling)lexNode(c)}
-if(LX){lexNode(document.body);document.title=lexStr(document.title);
- new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData')lexNode(m.target);else m.addedNodes.forEach(lexNode)}}).observe(document.body,{childList:true,characterData:true,subtree:true})}
-const worldsH=(card,h2,bt)=>'<div data-nx="1">'+h2('🌍 WORLDS · same game, new look')+Object.keys(WORLDS).map(id=>{const W=WORLDS[id],own=id==='roman'||PRO.own['wd:'+id],on=(WID||'roman')===id;
- return card(W.e,W.n,W.d,`<button data-wd="${id}" ${bt} ${on?'disabled':''}>${on?'✓ ON':own?'EQUIP':'💰 '+PR(W.price)}</button>`)}).join('')+'</div>';
-$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
- if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
- PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
 </script>
 <meta name="author" content="Kirabo Isa Bilal">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1a0d0b">
@@ -313,6 +294,21 @@ html.wd-samurai{--hs:0deg;--ss:.75;--gold:#e0b04a;--sand:#efe6d6;--red:#b3122a;-
 html.wd-samurai #app,html.wd-samurai #app *{font-family:var(--wfont)!important}
 html.wd-samurai #app h1,html.wd-samurai #app h2{text-shadow:0 0 12px #e5233c99;letter-spacing:.08em}
 html.wd-samurai #app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% -5%,#e5233c30,#0000 60%),repeating-linear-gradient(90deg,#0000 0 46px,#ffffff06 46px 47px)}
+
+/* v33: Settings sliders. Fixed the clipped Music row (the card was being squashed by the flex column) and gave each slider a roomy row of its own. */
+#s-set>*{flex-shrink:0}
+.bm-setc{gap:0!important;padding:6px 16px!important;overflow:visible;min-height:0}
+.vrow{display:flex;flex-direction:column;gap:10px;padding:14px 0}
+.vrow+.vrow{border-top:1px solid hsla(calc(31.4deg + var(--hs)),calc(43.3% * var(--ss)),38.0%,.45)}
+.vh{display:flex;align-items:center;gap:10px;line-height:1.2}
+.vi{font-size:1.25rem}.vt{flex:1;font:700 12px Cinzel,Georgia,serif;letter-spacing:2.4px;text-transform:uppercase;color:var(--sand)}
+.vp{font:700 1.05rem Georgia,serif;color:var(--gold);min-width:3.2em;text-align:right}
+.vrow input[type=range]{width:100%;height:34px;margin:0;border:0;background:transparent;-webkit-appearance:none;appearance:none;touch-action:pan-y}
+.vrow input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:6px;border:1px solid var(--gold);background:linear-gradient(90deg,var(--gold) var(--p,50%),#000b var(--p,50%))}
+.vrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-11px;border-radius:50%;background:var(--gold);border:3px solid #000;box-shadow:0 0 0 2px var(--gold),0 2px 8px #000a}
+.vrow input[type=range]::-moz-range-track{height:10px;border-radius:6px;border:1px solid var(--gold);background:#000b}
+.vrow input[type=range]::-moz-range-progress{height:10px;border-radius:6px;background:var(--gold)}
+.vrow input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--gold);border:3px solid #000}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -409,8 +405,8 @@ html.wd-samurai #app::after{content:"";position:absolute;inset:0;pointer-events:
  <header class="bm-hero"><div class="bm-kicker">Tune the arena</div><h1>Settings</h1><div class="bm-sub">Sound, rhythm and the rules of the round.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div class="bm-head"><h2>Sound</h2></div>
  <div class="card bm-setc">
-  <label class="sl"><span>🎵 Music volume <b id="vmv"></b></span><input type="range" id="vm" min="0" max="1" step=".05"></label>
-  <label class="sl"><span>🔊 Effects volume <b id="vsv"></b></span><input type="range" id="vs" min="0" max="1" step=".05"></label>
+  <div class="vrow"><div class="vh"><span class="vi">🎵</span><span class="vt">Music</span><b class="vp" id="vmv"></b></div><input type="range" id="vm" min="0" max="1" step=".05" aria-label="Music volume"></div>
+  <div class="vrow"><div class="vh"><span class="vi">🔊</span><span class="vt">Sound effects</span><b class="vp" id="vsv"></b></div><input type="range" id="vs" min="0" max="1" step=".05" aria-label="Sound effects volume"></div>
  </div>
  <div class="bm-head"><h2>Gameplay</h2></div>
  <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tRem"></button></div>
@@ -772,6 +768,26 @@ const PRO=Object.assign({wd:'',xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},o
 if((PRO.rv||0)<2){const mv={0:0,1:2,2:4,3:6,4:8,5:12},nr={};Object.keys(PRO.rr||{}).forEach(k=>{if(PRO.rr[k]&&mv[k]!=null)nr[mv[k]]=1});PRO.rr=nr;PRO.rv=2;LS.set('ms_pro',PRO)}
 /* v27: prices are per item — bigger upgrades and stronger power-ups cost more, rank does not matter */
 const PR=n=>Math.max(5,Math.round(n/5)*5);
+/* v33: Worlds runtime. Lives here (after PRO, PR, toast, tone, qEv exist) so worldsH is initialised before the Armory uses it. WORLDS itself stays in <head>. */
+const WID=PRO.wd&&WORLDS[PRO.wd]&&(PRO.own['wd:'+PRO.wd])?PRO.wd:'';
+const LX=(()=>{const W=WID&&WORLDS[WID];if(!W||!W.lex)return null;const map={},esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),
+  up=x=>x.toUpperCase(),cf=x=>x[0].toUpperCase()+x.slice(1),te=x=>x.replace(/\b[a-z]/g,c=>c.toUpperCase()),tt=x=>te(x).replace(/ (Of|The|To|And|A)\b/g,m=>m.toLowerCase());
+ W.lex.forEach(([a,b])=>[[a,b],[cf(a),cf(b)],[up(a),up(b)],[te(a),te(b)],[tt(a),tt(b)]].forEach(([k,v])=>{map[k]=v}));
+ const keys=Object.keys(map).sort((x,y)=>y.length-x.length),em={};(W.emo||[]).forEach(([a,b])=>{em[a]=b});
+ const ek=Object.keys(em).sort((x,y)=>y.length-x.length);
+ return{map,em,re:new RegExp('\\b(?:'+keys.map(k=>esc(k)+(/\w$/.test(k)?'\\b':'')).join('|')+')','g'),ere:ek.length?new RegExp(ek.map(esc).join('|'),'g'):null}})();
+const lexStr=t=>{if(!LX)return t;let r=t.replace(LX.re,m=>LX.map[m]);if(LX.ere)r=r.replace(LX.ere,m=>LX.em[m]);return r};
+function lexNode(n){if(n.nodeType===3){const p=n.parentNode;if(!p||/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)||(p.closest&&p.closest('[data-nx]')))return;const v=n.nodeValue,r=lexStr(v);if(r!==v)n.nodeValue=r;return}
+ if(n.nodeType!==1||/^(SCRIPT|STYLE)$/.test(n.nodeName)||n.closest&&n.closest('[data-nx]'))return;
+ for(const at of['title','aria-label']){const v=n.getAttribute(at);if(v){const r=lexStr(v);if(r!==v)n.setAttribute(at,r)}}
+ for(let c=n.firstChild;c;c=c.nextSibling)lexNode(c)}
+if(LX){lexNode(document.body);document.title=lexStr(document.title);
+ new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData')lexNode(m.target);else m.addedNodes.forEach(lexNode)}}).observe(document.body,{childList:true,characterData:true,subtree:true})}
+const worldsH=(card,h2,bt)=>'<div data-nx="1">'+h2('🌍 WORLDS · same game, new look')+Object.keys(WORLDS).map(id=>{const W=WORLDS[id],own=id==='roman'||PRO.own['wd:'+id],on=(WID||'roman')===id;
+ return card(W.e,W.n,W.d,`<button data-wd="${id}" ${bt} ${on?'disabled':''}>${on?'✓ ON':own?'EQUIP':'💰 '+PR(W.price)}</button>`)}).join('')+'</div>';
+$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
+ if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
+ PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
 const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
 const SKC=k=>{const f=k.slice(0,2),v=k.slice(3);return f==='ps'?(PSK[v]||[])[1]:f==='ks'?KSC[v]:f==='th'?THC[v]:''};
 function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div');e.className='skS';e.style.setProperty('--sk',col||'#ffd27a');e.innerHTML=`<b>${em}</b><span>${name||''}</span><small>${sub||''}</small>`;f.appendChild(e);setTimeout(()=>e.remove(),1900);burst([em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
