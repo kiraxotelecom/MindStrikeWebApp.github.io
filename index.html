@@ -35,9 +35,13 @@ img.logo{width:min(80%,340px)}
 #hist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:1.8em}
 #hist span{background:#000b;border:1px solid var(--sand);border-radius:6px;padding:2px 8px;font-size:.85rem}
 #shield{width:80%;height:10px;background:#000a;border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none}#shield i{display:block;height:100%;background:#4a7fb0}
+.skE{position:absolute;left:7px;top:50%;margin-top:-17px;font-size:2rem;line-height:1;font-style:normal;filter:drop-shadow(0 0 6px var(--sk)) drop-shadow(0 0 14px var(--sk));animation:skf 2.4s ease-in-out infinite;pointer-events:none}#skE1{left:auto;right:7px}@keyframes skf{50%{transform:translateY(-3px) scale(1.1)}}
+#s-game.skin{box-shadow:inset 0 0 60px 4px color-mix(in srgb,var(--sk) 55%,transparent)}
+.skS{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:30;pointer-events:none;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--sk) 45%,transparent),transparent 65%);animation:sks 1.8s ease-out forwards}.skS b{font-size:7.5rem;line-height:1;filter:drop-shadow(0 0 18px var(--sk)) drop-shadow(0 0 40px var(--sk))}.skS span{font-size:1.5rem;letter-spacing:.22em;color:#fff;font-weight:bold;text-shadow:0 0 12px var(--sk),0 2px 0 #000}.skS small{font-size:.8rem;letter-spacing:.3em;color:var(--sk);text-shadow:0 1px 0 #000}
+@keyframes sks{0%{opacity:0;transform:scale(.4)}18%{opacity:1;transform:scale(1.12)}75%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}
+.skP{font-size:2.1rem;vertical-align:middle;filter:drop-shadow(0 0 8px var(--sk)) drop-shadow(0 0 16px var(--sk))}[data-i].sel{outline:2px solid var(--gold);background:#4a2a70}
 #info{font-size:.82rem;text-align:center;color:var(--gold)}
 .pw{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
-#pwBar{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;font-size:.74rem;color:var(--gold);letter-spacing:.05em}#pwBar button{min-width:0;padding:3px 10px;font-size:.7rem;line-height:1.2}#pwBar{margin:-2px 0}#pwBar button:disabled{opacity:.35}
 .pw button{min-width:0;padding:7px 4px;font-size:.68rem;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative;letter-spacing:.04em}
 .pw button i{position:absolute;top:2px;right:5px;font-style:normal;font-size:.7rem;color:var(--gold)}
 .big{font-size:2.6rem;color:var(--gold);font-weight:bold}
@@ -113,7 +117,7 @@ label.sl span{display:flex;justify-content:space-between}
 #num,#dNum{width:170px;font-size:2.7rem;background:linear-gradient(#050302,#150d07);box-shadow:inset 0 3px 12px #000}
 #bt.on{animation:slam 2s both,glt .2s steps(2) 8}@keyframes glt{0%{text-shadow:3px 0 #0ff,-3px 0 #f0f}50%{text-shadow:-4px 2px #0ff,4px -2px #f0f}}
 img.logo{width:min(92%,400px);margin:4px 0}
-#hud .pl{flex:1.5}#mid{flex:.7;padding:3px 4px;font-size:.7rem}#mid #clock{font-size:.95rem}
+#hud .pl{flex:1.5;position:relative}#mid{flex:.7;padding:3px 4px;font-size:.7rem}#mid #clock{font-size:.95rem}
 .ttl{display:flex;align-items:center;gap:10px;width:100%;font-size:1rem}.ttl::before,.ttl::after{content:'';flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,transparent 6px 10px);opacity:.7}
 .opts{display:grid;gap:8px;width:100%}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:repeat(2,1fr)}.c1{grid-template-columns:1fr}
 #app button.opt{min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;position:relative;letter-spacing:.06em;background:linear-gradient(#2a1a10,#120a05);border:2px solid #6b4d1a;box-shadow:inset 0 0 14px #000;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px)}
@@ -295,7 +299,6 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div id="layers"></div><div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
  <div class="plate"><input id="num" type="text" readonly inputmode="none" placeholder="?"></div><div id="info"></div>
  <div class="kp" id="kp"></div>
- <div id="pwBar"><span id="pwCap"></span><button id="pwUndo" type="button">↩️ UNDO POWER</button></div>
  <div class="pw" id="pows"></div>
  
 </section>
@@ -497,7 +500,7 @@ $('#tTimer').onclick=()=>{S.timer=!S.timer;rwPrev();save();setUI();if(G){timerRe
 $('#clrLb').onclick=()=>{LS.set('ms_lb',[]);lbShow()};setUI();
 const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><h1>How to Play</h1><div class="bm-sub">Everything a legion needs to conquer the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><h2>THE IMPERIUM</h2><p>Reach the target score before your rival to unlock the <b>BOSS PHASE</b>.</p>
 <h2>THE ROUND</h2><p>Guess the secret number. <b>Higher/Lower</b> shows direction; <b>blazing → freezing</b> shows how close you are. Fewer attempts = more points; first-try hits are CRITICAL (×2). Chain wins for a COMBO; 5 in a row is UNSTOPPABLE.</p>
-<h2>POWERS (3 charges each · max 2 per round)</h2><p>You can use at most <b>2 powers per round</b>. Pressed one by mistake? Tap <b>↩️ UNDO POWER</b> before your next guess and the charge comes back. <b>SCAN</b> reveals the upper/lower half. <b>FOCUS</b> shows exact distance on your next guess. <b>RISK</b> pays 3× but costs 2 attempts (-3 if you lose the round). <b>SHIELD</b> protects your combo. <b>STEAL</b> takes 5 points on a near-miss (within 2). <b>JAM</b> (2-player) hides your rival's temperature hint next turn.</p>
+<h2>POWERS (3 charges each · max 2 per round)</h2><p>You can use at most <b>2 powers per round</b>. Pressed one by mistake? Tap the same power (lit up) again before your next guess and the charge comes back. <b>SCAN</b> reveals the upper/lower half. <b>FOCUS</b> shows exact distance on your next guess. <b>RISK</b> pays 3× but costs 2 attempts (-3 if you lose the round). <b>SHIELD</b> protects your combo. <b>STEAL</b> takes 5 points on a near-miss (within 2). <b>JAM</b> (2-player) hides your rival's temperature hint next turn.</p>
 <h2>INTEL</h2><p>Spend SCAN charges: Battle Sense, Battle Range, The Omen, Last Mark, Secret Trait. Each type costs 1, then 2, then 3.</p>
 <h2>DESPERATION</h2><p>When you trail by 15 or more, gamble once per match: win the round for +25, lose it for -10.</p>
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
@@ -519,7 +522,9 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
  G={cf:o.cf||null,trick:o.cf?o.cf.tr:'',mode:o.mode,d:o.d,m:o.m,D,M:Mt,names:[...o.names],pers:o.pers,score:[0,0],combo:[0,0],wins:[0,0],round:1,cur:0,
   pow:[0,1].map(()=>({SCAN:3,FOCUS:3,RISK:3,SHIELD:3,STEAL:3,JAM:3})),intelUses:[{},{}],desp:[{used:0,active:0},{used:0,active:0}],jamFor:[0,0],
   st:[{ok:0,best:0,crit:0},{ok:0,best:0,crit:0}],pg:[],boss:false,done:false,busy:false,paused:false,waiting:false,dmg:[0,0],broken:0,tLeft:0};
- if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true)}
+ if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
+ if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
+ if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI')setTimeout(()=>{if(G&&!G.done)skSplash(KS[PRO.ks][4],KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
 function bg(){$('#app').classList.toggle('bossm',!!G.boss);$('#s-game').style.setProperty('--bg',`url(img/${G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(G.trick==='sand'&&G.cur===0&&G.round%3===0)G.jam=1;
  if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast(`👑 <b>IMPERIAL EDICT</b><br><small>${GENS.Prime.n} jams your hints this round!</small>`),400)}
@@ -593,12 +598,16 @@ function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secr
   G.combo[w]=0;sfx('buzz');shake();vib([70,40,70]);if(G.mode==='AI'&&w===0)ft('😈 HA!');
   msg=(timeout?`TIME'S UP! Round forfeited.${rev}`:`Out of attempts!${rev}`)+pen+dp}
  render(msg);later(afterTurn,1500)}
-function snapPow(n){const w=G.cur,rf=G.rf,us=rf.us||(rf.us=[]),r2=Object.assign({},rf);delete r2.us;us.push({n,w,pow:Object.assign({},G.pow[w]),kLo:G.kLo,kHi:G.kHi,rf:JSON.parse(JSON.stringify(r2)),pu:G.powUsed,desp:Object.assign({},G.desp[w]),jf:[...G.jamFor],iu:Object.assign({},G.intelUses[w])})}
-function powLim(){if((G.rf.pu||0)>=MAXPOW){$('#msg').textContent=`⚡ Power limit: ${MAXPOW} per round. Use ↩️ UNDO POWER to swap one.`;sfx('buzz');return true}return false}
-function undoPow(){if(!canAct())return;const us=G.rf.us;if(!us||!us.length)return;const s=us.pop(),w=s.w;Object.assign(G.pow[w],s.pow);G.kLo=s.kLo;G.kHi=s.kHi;const nr=s.rf;nr.us=us;G.rf=nr;G.powUsed=s.pu;G.desp[w]=s.desp;G.jamFor=s.jf;G.intelUses[w]=s.iu;sfx('click');render(`↩️ ${s.n==='SECRET'?'SECRET':s.n} undone — the charge is back.`)}
-function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf;
- if(n==='INTEL'){if(powLim())return;$('#secPop').classList.add('on');return}
- if(n==='DESP'){if(!despOK()||powLim())return;snapPow(n);G.powUsed=1;rf.pu=(rf.pu||0)+1;G.desp[w]={used:1,active:1};sfx('powerup');return render('DESPERATION — win this round for +25, lose it for -10!')}
+function snapPow(n){const w=G.cur,rf=G.rf,sn={n,w,kLo:G.kLo,kHi:G.kHi,pu:G.powUsed};if(!rf.us||!rf.us.length)rf.p0=G.powUsed;(rf.us||(rf.us=[])).push(sn);return sn}
+function powLim(){if((G.rf.pu||0)>=MAXPOW){$('#msg').textContent=`⚡ Max ${MAXPOW} powers per round. Tap an active power again to take it back.`;sfx('buzz');return true}return false}
+function unPow(ix){const rf=G.rf,w=G.cur,s=rf.us.splice(ix,1)[0],n=s.n;
+ if(n==='SECRET'){G.pow[w].SCAN+=s.c;rf.intelUsed=rf.intelUsed.filter(x=>x!==s.t);const k=rf.info.indexOf(s.r);if(k>=0)rf.info.splice(k,1);G.intelUses[w][s.t]=Math.max(0,(G.intelUses[w][s.t]||1)-1)}
+ else{if(n!=='DESP')G.pow[w][n]++;if(n==='SCAN'){rf.scanned=0;G.kLo=s.kLo;G.kHi=s.kHi}if(n==='FOCUS')rf.focus=0;if(n==='RISK')rf.risk=0;if(n==='SHIELD')rf.shield=0;if(n==='STEAL')rf.steal=0;if(n==='JAM')G.jamFor[1-w]=0;if(n==='DESP')G.desp[w]={used:0,active:0}}
+ rf.pu=Math.max(0,(rf.pu||1)-1);G.powUsed=rf.us.length?1:rf.p0;sfx('click');render(`↩️ ${n==='SECRET'?'Secret':n} taken back — charge refunded.`)}
+function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf,us=rf.us||[];
+ if(n==='INTEL'){if((rf.pu||0)>=MAXPOW&&!us.some(x=>x.n==='SECRET')){powLim();return}$('#secPop').classList.add('on');return}
+ const ix=us.map(x=>x.n).lastIndexOf(n);if(ix>=0)return unPow(ix);
+ if(n==='DESP'){if(!despOK()||powLim())return;snapPow(n);G.powUsed=1;rf.pu=(rf.pu||0)+1;G.desp[w]={used:1,active:1};sfx('powerup');return render(`DESPERATION — win this round for +25, lose it for -10! (⚡ ${rf.pu}/${MAXPOW} · tap again to undo)`)}
  if(n==='RISK'&&!rf.risk&&G.att+2>G.maxAtt){$('#msg').textContent='RISK costs 2 attempts — you only have '+(G.maxAtt-G.att)+' left.';sfx('buzz');return}
  if(G.pow[w][n]<=0)return;const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,JAM:0}[n];if(act)return;
  if(powLim())return;snapPow(n);G.powUsed=1;rf.pu=(rf.pu||0)+1;
@@ -609,18 +618,18 @@ function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf;
  if(n==='SHIELD'){rf.shield=1;m='SHIELD raised — your combo is protected this round.'}
  if(n==='STEAL'){rf.steal=1;m='STEAL active — land within 2 numbers to steal 5 points!'}
  if(n==='JAM'){G.jamFor[1-w]=1;m=`JAM set — ${nm(1-w)} gets no temperature hint on their next turn.`}
- render(m+' (↩️ tap UNDO POWER if that was a slip)')}
+ render(`${m} (⚡ ${rf.pu}/${MAXPOW} · tap again to undo)`)}
 const despOK=()=>G&&!G.desp[G.cur].used&&(G.score[1-G.cur]-G.score[G.cur])>=DESP_T;
 const intelCost=t=>[1,2,3][Math.min(G.intelUses[G.cur][t]||0,2)];
-function useIntel(t){if(!canAct()||G.rf.intelUsed.includes(t))return;const w=G.cur,c=intelCost(t);
+function useIntel(t){if(!canAct())return;if(G.rf.intelUsed.includes(t)){const ix=G.rf.us.findIndex(x=>x.n==='SECRET'&&x.t===t);if(ix>=0){$('#secPop').classList.remove('on');unPow(ix)}return}const w=G.cur,c=intelCost(t);
  if(G.pow[w].SCAN<c){$('#msg').textContent=`Needs ${c} SCAN charges.`;sfx('buzz');return}
- if(powLim()){$('#secPop').classList.remove('on');return}snapPow('SECRET');G.powUsed=1;G.rf.pu=(G.rf.pu||0)+1;G.pow[w].SCAN-=c;G.rf.intelUsed.push(t);G.intelUses[w][t]=(G.intelUses[w][t]||0)+1;sfx('powerup');const mid=(G.lo+G.hi)>>1;let r;
+ if(powLim()){$('#secPop').classList.remove('on');return}const sn=snapPow('SECRET');sn.t=t;sn.c=c;G.powUsed=1;G.rf.pu=(G.rf.pu||0)+1;G.pow[w].SCAN-=c;G.rf.intelUsed.push(t);G.intelUses[w][t]=(G.intelUses[w][t]||0)+1;sfx('powerup');const mid=(G.lo+G.hi)>>1;let r;
  if(t==='DIRECTION')r=`BATTLE SENSE: the secret is ${G.secret>mid?'above':'at or below'} the middle.`;
  if(t==='RANGE'){const q=(G.hi-G.lo)>>2;r=`BATTLE RANGE: between ${Math.max(G.lo,G.secret-q)} and ${Math.min(G.hi,G.secret+q)}.`}
  if(t==='ODDEVEN')r=`THE OMEN: the secret is ${G.secret%2?'ODD':'EVEN'}.`;
  if(t==='DIGIT')r=`LAST MARK: the secret ends in ${G.secret%10}.`;
  if(t==='PROPERTY'){const p=[];if(isPrime(G.secret))p.push('prime');if(G.secret%3===0)p.push('multiple of 3');if(G.secret%5===0)p.push('multiple of 5');p.push(G.secret>mid?'high':'low');r=`SECRET TRAIT: ${pick(p).toUpperCase()}.`}
- G.rf.info.push(r);$('#secPop').classList.remove('on');render(r)}
+ G.rf.info.push(r);sn.r=r;$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
  Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rndS(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
@@ -672,7 +681,7 @@ function burst(ch,n=18){if(RM)return;const f=$('#fx'),W=f.clientWidth;for(let i=
  e.animate([{transform:'translate(0,0) scale(.4)',opacity:1},{transform:`translate(${(Math.random()-.5)*W*.9}px,${-260+Math.random()*380}px) rotate(${(Math.random()-.5)*540}deg) scale(1.3)`,opacity:0}],{duration:800+Math.random()*600,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=()=>e.remove()}}
 function ft(t){const e=document.createElement('div');e.className='ft';e.textContent=t;$('#fx').appendChild(e);e.animate([{transform:'translate(-50%,10px) scale(.6)',opacity:0},{transform:'translate(-50%,-10px) scale(1.15)',opacity:1,offset:.25},{transform:'translate(-50%,-90px) scale(1)',opacity:0}],{duration:1300,easing:'ease-out'}).onfinish=()=>e.remove()}
 function heat(t,c){$('#s-game').style.setProperty('--heat',TC[t]);if(t==='blazing')vib(25);tone(250+Math.max(0,c)*700,.1,'triangle')}
-function fxWin(w,p,c,crit){ft(`+${p}${crit?' ⚡':''}${c>1?' 🔥×'+c:''}`);if(G.mode==='PVP'||w===0){burst(crit?['⚡','✨','🎯']:c>1?['🔥','✨']:['✨','🪙']);shake();vib([40,30,60]);tone(440+c*90,.12,'triangle');setTimeout(()=>tone(660+c*90,.18,'triangle',.12),90);
+function fxWin(w,p,c,crit){ft(`+${p}${crit?' ⚡':''}${c>1?' 🔥×'+c:''}`);if(G.mode==='PVP'||w===0){burst((crit?['⚡','✨','🎯']:c>1?['🔥','✨']:['✨','🪙']).concat(PRO.ps&&PSK[PRO.ps]?[PSK[PRO.ps][0],PSK[PRO.ps][0]]:[]));shake();vib([40,30,60]);tone(440+c*90,.12,'triangle');setTimeout(()=>tone(660+c*90,.18,'triangle',.12),90);
  if(crit)unlock('sniper');if(c>=3)unlock('streak3');if(c>=5)unlock('unstop')}else tone(180,.3,'sawtooth')}
 function keypad(h,inp,fire,id){const up=()=>{const x=h.querySelector('.st');x&&x.classList.toggle('rdy',!!inp.value)};const b=(t,c,f)=>{const x=document.createElement('button');x.innerHTML=t;if(c)x.className=c;x.onclick=f;h.appendChild(x);return x};
  '1234567890'.split('').forEach(d=>b(d,'',()=>{if(inp.value.length<3){inp.value+=d;tone(520+d*40,.04);vib(8);up()}}));
@@ -685,9 +694,11 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){openPause(
 const PRO=Object.assign({xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{},gear:{h:0,s:0,b:0},rel:{},dsh:{d:'',b:[]},ch:{},cd:{d:'',n:0},hk:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['VELITE',40],['LEGIONARY',100],['HASTATUS',200],['CENTURION',300],['SIGNIFER',450],['OPTIO',650],['TRIBUNE',900],['LEGATUS',1200],['PRAEFECT',1600],['PROCONSUL',2000],['CONSUL',2250],['IMPERATOR',2500]],rk=()=>RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);
 /* v27: ranks went from 6 to 13. Old rank-reward claims move to the new index of the same rank. */
 if((PRO.rv||0)<2){const mv={0:0,1:2,2:4,3:6,4:8,5:12},nr={};Object.keys(PRO.rr||{}).forEach(k=>{if(PRO.rr[k]&&mv[k]!=null)nr[mv[k]]=1});PRO.rr=nr;PRO.rv=2;LS.set('ms_pro',PRO)}
-/* v27: merchants charge by rank — recruits pay base price, an Imperator pays double */
-const PM=[1,1.05,1.1,1.15,1.2,1.25,1.3,1.4,1.5,1.6,1.7,1.8,2],pmul=()=>PM[rk()],PR=n=>Math.max(5,Math.round(n*pmul()/5)*5);
-const priceNote=()=>`<div class="card" style="margin:0;text-align:center">🏷️ <b>${RANKS[rk()][0]}</b> prices · ×${pmul().toFixed(2)}<br><small>Merchants charge more as your rank grows. Quests and rank rewards pay more too.</small></div>`;
+/* v27: prices are per item — bigger upgrades and stronger power-ups cost more, rank does not matter */
+const PR=n=>Math.max(5,Math.round(n/5)*5);
+const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
+const SKC=k=>{const f=k.slice(0,2),v=k.slice(3);return f==='ps'?(PSK[v]||[])[1]:f==='ks'?KSC[v]:f==='th'?THC[v]:''};
+function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div');e.className='skS';e.style.setProperty('--sk',col||'#ffd27a');e.innerHTML=`<b>${em}</b><span>${name||''}</span><small>${sub||''}</small>`;f.appendChild(e);setTimeout(()=>e.remove(),1900);burst([em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
 const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
 
 // ---- v12: Conquest Map ----
@@ -867,7 +878,7 @@ function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_
 const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
 function profUI(){const i=rk(),n=RANKS[i],nx=RANKS[i+1],p=nx?(PRO.xp-n[1])/(nx[1]-n[1])*100:100,ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
- $('#prof').innerHTML=`${PRO.ps?PSK[PRO.ps][0]:'🛡️'} <b>${n[0]}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div><div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
+ $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div><div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
  $('#dailyBtn').innerHTML=tl('☀️','DAILY STRIKE',PRO.dl===today()?'✓ done today':'new numbers');$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
@@ -926,10 +937,11 @@ const SHOP=[['pack','🎒','ARMORY PACK','+1 charge of every power',80,'c'],['x:
 const SEC={c:'🎒 CONSUMABLES · used next VS match',ps:'⚔️ PLAYER SKINS',ks:'😈 KIRAXO SKINS',th:'🏛️ ARENAS',pm:'⭐ PERMANENT UPGRADES · equip one'};
 function applyTheme(){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();if(PRO.th)a.classList.add('th-'+PRO.th)}
 function shopOld(){let last='';return SHOP.map(([k,e,n,d,c,t])=>{const cons=t==='c',own=cons?PRO.inv[k]||0:PRO.own[k],on=!cons&&PRO[k.slice(0,2)]===k.slice(3),sec=cons?'c':k.slice(0,2),h=sec!==last?`<h2 style="margin:12px 0 2px;font-size:.9rem">${SEC[sec]}</h2>`:'';last=sec;
- return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?'💰 '+PR(c):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
+ const col=cons?'':SKC(k),fx={ps:' · big glowing emblem on your HUD, arena aura &amp; victory bursts',ks:' · big emblem on Kiraxo + entrance splash',th:' · recolours the whole game'}[k.slice(0,2)]||'';
+ return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span ${col?`data-pv="${k}" title="Tap to preview" style="font-size:2.9rem;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px ${col}) drop-shadow(0 0 20px ${col})"`:'style="font-size:1.8rem"'}>${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${fx}${col?' · <u>tap the icon to preview</u>':''}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?'💰 '+PR(c):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
 $('#shopList').onclick=e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
  if(cons||!had){if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=PR(it[4]);if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
- if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v}
+ if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KS[v][4],KSC[v],it[2],'EQUIPPED')}}
  LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()};
 $('#shopBtn').onclick=()=>{sfx('click');shopUI();go('s-shop')};applyTheme();
 function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast(`${CM()[1]} <b>${CM()[2]}</b><br><small>${CM()[3]}</small>`),600)}if(G.mode!=='AI')return;const u=[];
@@ -958,7 +970,10 @@ let gating=0;function gate(next){if(gating)return;gating=1;const g=$('#gate'),d=
 $('#kp').insertBefore($('#pows [data-p=RISK]'),$('#strike'));
 $('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick=()=>{if(confirm('Restart this match?')){if(G&&G.wager&&!G.done){PRO.gold+=G.wager;G.wager=0}launch()}};
 // ---- render ----
-function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?p[1]:'';h.style.boxShadow=p?`0 0 12px ${p[1]}88`:''}
+function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?p[1]:'';h.style.boxShadow=p?`0 0 12px ${p[1]}88`:'';
+ const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
+ let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
+ const kc=PRO.ks&&KSC[PRO.ks],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
 function render(msg){if(!G)return;const b=G.boss;
  $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
@@ -979,20 +994,19 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#strike').textContent='⚔️ STRIKE';
  render0();clockUI()}
 function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;const arm=rf.risk?'RISK':rf.focus?'FOCUS':rf.steal?'STEAL':rf.shield?'SHIELD':'';$('#strike').dataset.arm=arm;$('#strike').textContent='⚔️ STRIKE'+(arm?' · '+arm:'');$('#secCh').textContent='⚡ SCAN charges: '+G.pow[w].SCAN;
- $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');b.style.display=(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
+ const us=rf.us||[],pu=rf.pu||0,cap=pu>=MAXPOW;
+ $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');const used=us.some(x=>x.n===n);b.style.display=(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
   const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,DESP:G.desp[w].active,JAM:0}[n];
-  if(n==='INTEL'){i.textContent=G.pow[w].SCAN+' ⚡';b.disabled=off;return}if(n==='DESP'){i.textContent='';b.disabled=off||!!act;b.classList.toggle('sel',!!act);return}
-  i.textContent=G.pow[w][n];b.disabled=off||G.pow[w][n]<=0||!!act||(n==='RISK'&&G.att+2>G.maxAtt);b.classList.toggle('sel',!!act)});
- const pu=rf.pu||0,cap=pu>=MAXPOW;if(cap)$$('[data-p]').forEach(b=>b.disabled=true);
- $('#pwCap').textContent='⚡ Powers this round: '+pu+'/'+MAXPOW;$('#pwCap').style.color=cap?'#ff8a7a':'';$('#pwUndo').disabled=off||!(rf.us&&rf.us.length);
- $$('[data-i]').forEach(b=>{const t=b.dataset.i,c=intelCost(t);b.querySelector('i').textContent=c;b.disabled=off||cap||rf.intelUsed.includes(t)||G.pow[w].SCAN<c})}
-$('#pwUndo').onclick=undoPow;$$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forEach(b=>b.onclick=()=>useIntel(b.dataset.i));
+  if(n==='INTEL'){i.textContent=G.pow[w].SCAN+' ⚡';b.disabled=off;return}if(n==='DESP'){i.textContent='';b.disabled=off||(!used&&cap);b.classList.toggle('sel',!!act||used);return}
+  i.textContent=G.pow[w][n];b.disabled=off||(!used&&(G.pow[w][n]<=0||!!act||cap||(n==='RISK'&&G.att+2>G.maxAtt)));b.classList.toggle('sel',!!act||used)});
+ $$('[data-i]').forEach(b=>{const t=b.dataset.i,c=intelCost(t);b.querySelector('i').textContent=c;const u=rf.intelUsed.includes(t);b.disabled=off||(!u&&(cap||G.pow[w].SCAN<c));b.classList.toggle('sel',u)})}
+$$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forEach(b=>b.onclick=()=>useIntel(b.dataset.i));
 $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 // ---- end & leaderboard ----
 const lbGet=()=>LS.get('ms_lb',[]);
 function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','IV','V'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
 function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
- const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
+ const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');if(win&&PRO.ps&&PSK[PRO.ps])setTimeout(()=>burst([PSK[PRO.ps][0],'✨','🪙'],32),300);hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
@@ -1022,7 +1036,7 @@ const dPrice=(it,pct)=>PR(it[3]*(1-pct/100));
 function gearPrice(k,l){const b=GEAR[k][4][l],d=dsDay();return PR(d.gs===k?b*(1-d.gp/100):b)}
 function shopUI(){$('#gold').textContent='💰 '+PRO.gold;const dd=dsDay(),m=new Date(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+1)-m,hh=Math.floor(ms/36e5),mm=Math.floor(ms%36e5/6e4);
  const card=(e,n,d,btn)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}</small></div>${btn}</div>`,h2=t=>`<h2 style="margin:12px 0 2px;font-size:.9rem">${t}</h2>`,bt='style="min-width:84px;padding:8px"';
- let h=priceNote()+h2(`🏺 TODAY’S MARKET · refreshes in ${hh}h ${mm}m`)+dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('');
+ let h=h2(`🏺 TODAY’S MARKET · refreshes in ${hh}h ${mm}m`)+dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('');
  h+=h2('⚒️ THE FORGE · gear upgrades')+['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<3;
   return card(g[0],`${g[1]} · ${g[2]} ${'■'.repeat(l)}${'□'.repeat(3-l)}`,(l?`NOW: ${g[3][l-1]}<br>`:'')+(l<3?`NEXT: ${g[3][l]}${sale?` · 🔥 −${dd.gp}% today`:''}`:'MAX LEVEL'),`<button data-gu="${k}" ${bt} ${l>=3?'disabled':''}>${l>=3?'MAX':'⬆ 💰 '+gearPrice(k,l)}</button>`)}).join('');
  h+=h2('📿 RELICS · one-time purchases')+RELICS.map(r=>{const own=PRO.rel[r[0]];return card(r[1],r[2],r[3],`<button data-rl="${r[0]}" ${bt} ${own?'disabled':''}>${own?'OWNED':'💰 '+PR(r[4])}</button>`)}).join('');
@@ -1036,8 +1050,11 @@ $('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-dp],
  else if(b.dataset.rl){const k=b.dataset.rl,r=RELICS.find(x=>x[0]===k);if(!PRO.rel[k]&&pay(PR(r[4]))){PRO.rel[k]=1;qEv('buy');toast(`${r[1]} <b>${r[2]}</b><br><small>${r[3]}</small>`);ok=1}}
  else if(b.dataset.set){if(!PRO.own.romanset&&pay(PR(SETP))){PRO.own.romanset=1;qEv('buy');toast('🏛️ <b>ROMAN LEGION SET</b><br><small>Equip a skin below</small>');ok=1}}
  else if(b.dataset.bn!=null){const bn=BUNDLES[+b.dataset.bn];if(pay(PR(bn[3]))){grant(bn[4]);qEv('buy');toast(`${bn[0]} <b>${bn[1]}</b><br><small>${bn[2]} — added to your pack</small>`);ok=1}}
- else if(b.dataset.eq){PRO.ps=PRO.ps===b.dataset.eq?'':b.dataset.eq;ok=1}
+ else if(b.dataset.eq){PRO.ps=PRO.ps===b.dataset.eq?'':b.dataset.eq;if(PRO.ps)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'EQUIPPED');ok=1}
  if(ok){tone(660,.1,'triangle');LS.set('ms_pro',PRO);shopUI();profUI()}});
+$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.pv,f=k.slice(0,2),v=k.slice(3),it=SHOP.find(x=>x[0]===k);
+ if(f==='th'){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();a.classList.add('th-'+v);toast('🎨 Previewing '+it[2]+'…');setTimeout(applyTheme,2600)}
+ else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KS[v][4],KSC[v],it[2],'PREVIEW')});
 // -- coin wagers
 const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100];
 function wgUI(){const g=document.getElementById('wgrid');if(!g||typeof setup==='undefined')return;if(setup.w==null)setup.w=0;if(setup.w>PRO.gold)setup.w=[...WS].reverse().find(x=>x<=PRO.gold)||0;const m=WM[setup.d]||2;

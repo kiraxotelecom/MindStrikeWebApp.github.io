@@ -69,9 +69,10 @@ Ordered by expected impact. **The first three are next.**
 7. **Friend challenges with more bite.** Show the three best scores for a challenge code, let a friend rematch with a new seed, and turn the result into a shareable picture card.
 8. **Short first-time tutorial and gentle adaptive difficulty.** After 3 losses in a row, make the next game slightly easier.
 
-## v27 changes
-**Ranks**: 13 instead of 6 — Recruit, Velite, Legionary, Hastatus, Centurion, Signifer, Optio, Tribune, Legatus, Praefect, Proconsul, Consul and **Imperator** (still the highest, still 2500 XP). Nobody loses a rank: the old thresholds are unchanged, and old rank-reward claims are moved to the matching new rank (`ms_pro.rv`). Every rank has a reward (`RR`); mini games still unlock at Legionary / Centurion / Optio / Legatus / Imperator.
-**Quests**: 18 daily and 16 weekly quests (4 daily + 3 weekly are drawn), many pay items as well as coins and XP; new quest types: Conquest battles, mini games, Daily Strike, wagers, blazing guesses, market purchases. Claim all of a set for a **Daily Sweep** / **Weekly Sweep** bonus.
-**Market**: prices scale with rank (`PM`, ×1.00 for Recruit up to ×2.00 for Imperator, shown at the top of the Armory). Five daily offers instead of four, a bigger daily pool, five War Chests (bundles), 4 new player skins, 2 Kiraxo skins, 4 arenas, 3 permanent upgrades (equip one), and 2 new relics (Merchant's Seal +10% coins, Scribe's Quill +10% XP).
-**Powers**: at most 2 per round (`MAXPOW`), and an **↩️ UNDO POWER** button gives the charge back until you make your next guess (works for every power, Secrets and Desperation).
+## v28 changes (includes v27)
+**Ranks**: 13 instead of 6 — Recruit, Velite, Legionary, Hastatus, Centurion, Signifer, Optio, Tribune, Legatus, Praefect, Proconsul, Consul and **Imperator** (still the highest, 2500 XP). Old thresholds are unchanged and old rank-reward claims move to the matching new rank (`ms_pro.rv`). Every rank has a reward (`RR`); mini games still unlock at Legionary / Centurion / Optio / Legatus / Imperator.
+**Quests**: 18 daily and 16 weekly quests (4 daily + 3 weekly drawn), many pay items; new types: Conquest, mini games, Daily Strike, wagers, blazing guesses, market buys. Claiming a full set pays a **Daily / Weekly Sweep** bonus.
+**Market**: prices are per item (bigger upgrades and stronger power-ups cost more; rank does not change prices). Five daily offers from a bigger pool, five War Chests, more skins / Kiraxo skins / arenas, three permanent upgrades (equip one), relics Merchant's Seal (+10% coins) and Scribe's Quill (+10% XP).
+**Skins you can see**: an equipped player skin gives a big glowing emblem in your HUD, a coloured aura around the arena, an entrance splash at match start, and your emblem in every victory burst. Kiraxo skins show a big emblem on his HUD and a splash. In the Armory tap a skin or arena icon to preview it; equipping plays the splash.
+**Powers**: at most 2 per round (`MAXPOW`). Tap a lit-up power again (before your next guess) to take it back and get the charge refunded. Works for Secrets and Desperation too.
 Bump `V` in `sw.js` after every change.
