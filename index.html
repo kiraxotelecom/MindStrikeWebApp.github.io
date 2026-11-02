@@ -244,6 +244,15 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #inst{width:min(92%,370px);box-sizing:border-box;text-align:center;font-size:.8rem;line-height:1.45;background:linear-gradient(160deg,rgba(49,33,23,.97),rgba(16,11,8,.98));border:1px solid var(--gold);border-radius:10px;padding:10px 12px;position:relative;color:#f2e6d1}
 #inst[hidden]{display:none}#inst b{color:#f5d38e}#inst .ix{position:absolute;top:2px;right:4px;min-width:0;width:30px;height:30px;padding:0;border:0;background:none;box-shadow:none;font-size:1.1rem;color:#cdb98f}
 #inst .ib2{min-width:0;margin-top:6px;padding:8px 16px;font-size:.78rem;letter-spacing:.1em}#inst .bell{margin-top:8px;padding-top:8px;border-top:1px dashed #8b6337}
+
+#tour{position:absolute;inset:0;z-index:30;display:none}#tour.on{display:block}
+#tSpot{position:absolute;border:2px solid #ffd27a;border-radius:12px;box-shadow:0 0 0 200vmax rgba(0,0,0,.8),0 0 18px #e6a633aa;transition:all .28s;pointer-events:none}
+#tour.mid #tSpot{opacity:0;box-shadow:none;border-color:transparent}#tour.mid{background:rgba(0,0,0,.82)}
+#tCard{position:absolute;left:50%;transform:translateX(-50%);width:min(90%,340px);box-sizing:border-box;background:linear-gradient(160deg,#312117,#100b08);border:2px solid #ffd27a;border-radius:12px;padding:14px 14px 12px;text-align:center;color:#f2e6d1;box-shadow:0 8px 28px #000;font-size:.92rem;line-height:1.45}
+#tCard h3{margin:0 0 4px;font:800 1.02rem Cinzel,Georgia,serif;letter-spacing:.08em;color:#f5d38e}#tCard p{margin:0 0 10px}#tCard b{color:#f5d38e}
+#tDots{display:flex;gap:5px;justify-content:center;margin-bottom:10px}#tDots i{width:7px;height:7px;border-radius:50%;background:#5a4630}#tDots i.on{background:#ffd27a}
+#tBtns{display:flex;gap:8px;justify-content:center}#tBtns button{min-width:0;padding:9px 16px;font-size:.8rem;letter-spacing:.1em}#tSkip{background:#000a!important;border-width:1px!important;flex:0 0 auto}#tNext{flex:1}
+#app.touring #inst{display:none!important}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -346,6 +355,8 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div class="bm-head"><h2>Gameplay</h2></div>
  <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tRem"></button></div>
  <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
+ <div class="bm-head"><h2>Help</h2></div>
+ <button id="tutBtn" class="bm-btn bm-center">📖 REPLAY THE TUTORIAL</button>
  <div class="bm-head"><h2>Records</h2></div>
  <button id="clrLb" class="bm-btn bm-danger">CLEAR HALL OF GLORY</button>
  <small class="bm-note" style="margin-top:12px">MindStrike: Number Wars<br>Developed by <b>Kirabo Isa Bilal</b></small>
@@ -1174,6 +1185,56 @@ $('#chestBox').onclick=$('#chestBtn').onclick=chestAct;
 setTimeout(chestCheck,900);
 lbShow();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+// ---- v30: first-time guided tour (replay from Settings) ----
+(()=>{
+const app=$('#app'),el=document.createElement('div');el.id='tour';
+el.innerHTML='<div id="tSpot"></div><div id="tCard"><h3 id="tH"></h3><p id="tP"></p><div id="tDots"></div><div id="tBtns"><button id="tSkip">SKIP</button><button id="tNext" class="bm-cta">NEXT</button></div></div>';
+app.appendChild(el);
+const ST=[
+ [null,'⚔️ WELCOME, LEGIONARY','Welcome to <b>MindStrike: Number Wars</b>! The goal is simple: <b>guess the secret number</b>. Every guess tells you <b>higher or lower</b> and how <b>hot or cold</b> you are. Fewer tries = more points. Let’s take a quick tour (20 seconds).'],
+ ['#prof','🛡️ YOUR RANK CARD','This shows your <b>rank, XP, win streak and wins</b>. Win matches to earn XP, rank up, and unlock new modes and rewards.'],
+ ['#mapBtn','🗺️ CONQUEST MAP','Fight through <b>Gaul, Egypt, Carthage and Rome</b>. Win battles to collect ⭐ stars and unlock the next region. A great place to start!'],
+ ['#miniBtn','🎮 MINI GAMES','Special game modes that <b>unlock as your rank grows</b>, each with its own best score.'],
+ ['#dailyBtn','☀️ DAILY STRIKE','<b>Same numbers for everyone, new every day.</b> Finish it daily to build a 🔥 streak and share your result with friends.'],
+ ['#chalBtn','⚔️ FRIEND CHALLENGE','Play 5 rounds, then <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
+ ['#shopBtn','🛒 THE ARMORY','Spend the 💰 coins you win on <b>gear, powers and daily market deals</b> to get stronger.'],
+ ['#questBtn','📜 QUESTS','Complete deeds, then <b>claim coins and XP</b>. A red number means rewards are waiting for you.'],
+ ['#play','🏛️ ENTER THE ARENA','Ready to fight? Tap here to play <b>against the Imperator (1 player)</b> or <b>2 players on one phone</b>.'],
+ ['.sub2','🏆 HALL · ❓ HELP · 🌐 ONLINE','See the <b>best scores</b>, read the <b>full rules</b>, or <b>play online</b> against a friend anywhere.'],
+ ['#setBtn','⚙️ SETTINGS','Sound, timer and <b>daily reminders</b> live here. You can <b>replay this tutorial anytime</b> from Settings. Good luck, legionary! 🏆']];
+let i=0;const $t=id=>el.querySelector(id);
+function pos(){
+ const st=ST[i],t=st[0]?$(t0()):null;
+ function t0(){return st[0]}
+ el.classList.toggle('mid',!t);
+ const card=$t('#tCard'),sp=$t('#tSpot'),ar=app.getBoundingClientRect();
+ if(!t){card.style.top='50%';card.style.bottom='auto';card.style.transform='translate(-50%,-50%)';return}
+ card.style.transform='translateX(-50%)';
+ const r=t.getBoundingClientRect(),pd=6;
+ sp.style.cssText=`left:${r.left-ar.left-pd}px;top:${r.top-ar.top-pd}px;width:${r.width+pd*2}px;height:${r.height+pd*2}px`;
+ const below=ar.bottom-r.bottom,above=r.top-ar.top;
+ if(below>=above){card.style.top=Math.min(r.bottom-ar.top+16,ar.height-card.offsetHeight-8)+'px';card.style.bottom='auto'}
+ else{card.style.top=Math.max(r.top-ar.top-16-card.offsetHeight,8)+'px';card.style.bottom='auto'}
+}
+function draw(){
+ const st=ST[i];$t('#tH').textContent=st[1];$t('#tP').innerHTML=st[2];
+ $t('#tDots').innerHTML=ST.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
+ $t('#tNext').textContent=i===ST.length-1?'LET’S GO!':i===0?'START TOUR':'NEXT';
+ $t('#tSkip').style.display=i===ST.length-1?'none':'';
+ const t=st[0]?$(st[0]):null;if(t)t.scrollIntoView({block:'center',behavior:'instant'});
+ requestAnimationFrame(()=>requestAnimationFrame(pos));
+}
+function open(){i=0;app.classList.add('touring');el.classList.add('on');draw()}
+function close(){el.classList.remove('on');app.classList.remove('touring');LS.set('ms_tour',1);const h=$('#s-home');h&&(h.scrollTop=0)}
+$t('#tNext').onclick=()=>{try{sfx('click')}catch(e){}if(i>=ST.length-1)close();else{i++;draw()}};
+$t('#tSkip').onclick=close;
+addEventListener('resize',()=>{if(el.classList.contains('on'))draw()});
+$('#tutBtn').onclick=()=>{try{sfx('click')}catch(e){}home();setTimeout(open,450)};
+// auto-start once for brand-new players
+addEventListener('load',()=>{if(LS.get('ms_tour',0)||PRO.m||PRO.xp)return;let n=0;const w=setInterval(()=>{if(++n>60||LS.get('ms_tour',0)){clearInterval(w);return}
+ if($('#chest').classList.contains('on')||!$('#s-home').classList.contains('on'))return;clearInterval(w);open()},800)});
+})();
 
 // ---- v29: install help + daily reminders ----
 (()=>{

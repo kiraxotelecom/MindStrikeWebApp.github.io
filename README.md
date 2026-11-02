@@ -79,3 +79,6 @@ Bump `V` in `sw.js` after every change.
 
 ## v29 changes
 Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA** (between Armory/Quests and the Hall/How-to/Online row). New **install helper** card for visitors (device-aware: iPhone Safari/other, Android Chrome/Samsung/Firefox, in-app browsers, desktop; real INSTALL button when the browser offers it; hides when dismissed or installed). New **daily reminder** (opt-in on the home card and in Settings): a service-worker notification when new Daily Strike numbers are available and the player hasn't finished them, via Periodic Background Sync (installed Chrome/Edge on Android). Bump `V` in `sw.js` after every change.
+
+## v30 changes
+**First-time tutorial**: an 11-step spotlight tour of the home screen (rank card, each tile, Enter the Arena, Hall/How/Online, Settings) that starts once for brand-new players (no matches, no XP; flag `ms_tour`) and can be replayed from **Settings → Help → Replay the tutorial**. The install card is hidden while the tour runs. Bump `V` in `sw.js` after every change.
