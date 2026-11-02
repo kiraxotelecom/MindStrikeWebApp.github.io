@@ -78,8 +78,8 @@ img.logo{animation:flo 4s ease-in-out infinite;filter:drop-shadow(0 0 18px #e6a6
 #bt{position:absolute;inset:0;z-index:15;display:none;align-items:center;justify-content:center;text-align:center;pointer-events:none;font-size:2.4rem;font-weight:bold;letter-spacing:.15em;color:#ff3b2a;text-shadow:0 0 20px #f00,0 4px 0 #000;line-height:1.1}#bt.on{display:flex}@keyframes slam{0%{transform:scale(3);opacity:0}15%{transform:scale(1);opacity:1}80%{opacity:1}100%{opacity:0;transform:scale(1.1)}}
 #shield i{transition:width .25s;background:linear-gradient(90deg,#ff3b2a,#ffb347)}#shield.hit{animation:shk .3s}
 #layers{display:none;gap:8px;justify-content:center;min-height:54px}
-.ly{width:44px;height:50px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(#ff6a4a,#7a0d08);position:relative}
-.ly.cur{filter:drop-shadow(0 0 6px #f33);background:linear-gradient(#ffb347,#c01e10)}.ly.off{background:#2a0d0b;opacity:.3}
+.ly{width:44px;height:50px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(#b9c0ca,#4a505a);position:relative}
+.ly.cur{filter:drop-shadow(0 0 7px #fff);background:linear-gradient(#e6ebf2,#69717d)}.ly.brk.me{background:linear-gradient(#ffe08a,#b27a1a);filter:drop-shadow(0 0 5px #e6a633)}.ly.brk.foe{background:linear-gradient(#ff5a44,#6a0a05);filter:drop-shadow(0 0 5px #c0281c)}
 .ly::after{content:'';position:absolute;inset:0;opacity:var(--cr,0);background:linear-gradient(115deg,transparent 45%,#000 46% 49%,transparent 50%),linear-gradient(60deg,transparent 58%,#000 59% 62%,transparent 63%),linear-gradient(170deg,transparent 30%,#000 31% 34%,transparent 35%)}
 .sh{position:absolute;width:12px;height:16px;background:linear-gradient(#ff8a6a,#a00);clip-path:polygon(50% 0,100% 100%,0 100%)}
 #wpb{position:relative;width:86%;height:36px;background:#1a0505;border:2px solid var(--gold);border-radius:8px;overflow:hidden}
@@ -216,7 +216,6 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 .mgc b{font:700 15px Cinzel,Georgia,serif;letter-spacing:0;color:#f2cb7d}
 #qList button[data-qc],#qList button[data-rc]{min-width:84px;font:800 11px Cinzel,Georgia,serif;letter-spacing:1.5px;color:#ffe4a8;background:linear-gradient(145deg,#a43d28,#4c1712);border:1px solid #f1cc7b;border-radius:5px;padding:9px}
 #qList button:disabled{background:#1a120d;border-color:#5a4125;color:#8d7a5c;box-shadow:none}
-#dmgbar{display:none;flex-direction:column;gap:3px;width:min(94%,380px)}#dmgbar .r{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--gold)}#dmgbar .t{flex:1;height:8px;border-radius:4px;background:#7a1a12;border:1px solid var(--gold);overflow:hidden}#dmgbar .t i{display:block;height:100%;background:linear-gradient(90deg,#b27a35,#ffd98a);transition:width .4s}#dmgbar small{text-align:center;opacity:.8;font-size:.62rem;letter-spacing:.08em}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -273,7 +272,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b></div>
   <div id="mid"><span id="lvl"></span><small id="tgt"></small><span id="clock"></span></div>
   <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b></div></div>
- <div id="layers"></div><div id="shield"><i></i></div><div id="dmgbar"><div class="r"><b id="dn0"></b><div class="t"><i></i></div><b id="dn1"></b></div><small>DAMAGE · MOST DAMAGE WINS WHEN THE LAST SHIELD FALLS</small></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
+ <div id="layers"></div><div id="shield"><i></i></div><div id="banner"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
  <div class="plate"><input id="num" type="text" readonly inputmode="none" placeholder="?"></div><div id="info"></div>
  <div class="kp" id="kp"></div>
  <div class="pw" id="pows"></div>
@@ -435,7 +434,7 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>DESPERATION</h2><p>When you trail by 15 or more, gamble once per match: win the round for +25, lose it for -10.</p>
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
 <h2>SPECIAL BATTLES</h2><p>Golden Spoils ×2 · Gladius Trial (1 attempt) · Killing Ground (tight range) · Imperator's Wrath (sharper Kiraxo; Overdrive in 2-player) · Bullseye (within 2 counts) · Shield.</p>
-<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, a combo of 3+, and a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Each rank-up opens a new one: <b>Lightning Round</b>, <b>Sniper Range</b>, <b>Number Duel</b>, <b>Arena Gauntlet</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. The most total damage wins when the last layer falls. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
+<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, a combo of 3+, and a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Each rank-up opens a new one: <b>Lightning Round</b>, <b>Sniper Range</b>, <b>Number Duel</b>, <b>Arena Gauntlet</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. Whoever breaks more shields wins when the last layer falls (gold = yours, red = theirs); if it's a tie, total damage decides. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
 <h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Four fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
@@ -551,15 +550,15 @@ function useIntel(t){if(!canAct()||G.rf.intelUsed.includes(t))return;G.powUsed=1
  G.rf.info.push(r);$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
- Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],dmg:[0,0]});
+ Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
  if(G.mode==='PVP'){G.dmg[o]=40;G.pow[o].SCAN++}
  if(G.mode==='AI'){G.names[1]='KIRAXO';if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
  play(G.mode==='PVP'?'boss':'boss');bossIntro();G.busy=true;bg();render(`${nm(trig)} reached the target — IMPERATOR KIRAXO PRIME takes the field!`);
  later(()=>{G.busy=false;G.round=G.round;startBossFirst()},1600)}
 function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=0;G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v;timerReset();
  render(`${nm(G.cur)}, shatter his shields!`);if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
-function layerHit(who){if(G.bk)G.bk[who]++;if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
- if(G.layers<=0){const d=G.dmg;return finish(d[0]===d[1]?who:(d[0]>d[1]?0:1))}
+function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
+ if(G.layers<=0){const k=G.bk,d=G.dmg;return finish(k[0]!==k[1]?(k[0]>k[1]?0:1):d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
  G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
  if(G.mode==='AI'&&who===1){G.busy=true;render(`Kiraxo cracks a shield layer open! ${G.layers}/${G.total} remain.`);later(()=>{G.busy=false;aiPlay()},1500)}
@@ -887,11 +886,10 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round}`;
  $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
  $('#shield').style.display=b?'block':'none';if(b)$('#shield i').style.width=Math.max(0,G.armor)+'%';
- $('#layers').style.display=b?'flex':'none';if(b)$('#layers').innerHTML=Array.from({length:G.total},(_,i)=>`<div class="ly ${i<G.broken?'off':i===G.broken?'cur':''}" style="--cr:${i===G.broken?(1-Math.max(0,G.armor)/100).toFixed(2):0}"></div>`).join('');
+ $('#layers').style.display=b?'flex':'none';if(b)$('#layers').innerHTML=Array.from({length:G.total},(_,i)=>`<div class="ly ${i<G.broken?'brk '+(G.own[i]===0?'me':'foe'):i===G.broken?'cur':''}" style="--cr:${i<G.broken?1:i===G.broken?(1-Math.max(0,G.armor)/100).toFixed(2):0}"></div>`).join('');
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
  $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
  $('#range').textContent=`${G.kLo} — ${G.kHi}`;
- {const bd=$('#dmgbar');bd.style.display=G.boss?'flex':'none';if(G.boss){const a=G.dmg[0],c=G.dmg[1],t=a+c;$('#dn0').textContent='💥 '+a;$('#dn1').textContent=c+' 💥';bd.querySelector('i').style.width=(t?a/t*100:50)+'%'}}
  $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<svg class="hrt${i<G.att?' u':G.rf.risk&&i<G.att+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/></svg>`).join('');
  $('#pips').setAttribute('aria-label',(G.maxAtt-G.att)+' attempts left');
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
@@ -917,7 +915,7 @@ function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
- $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?'Imperator Kiraxo bows before the legion.':'The general yields the arena.'):(G.boss?'Imperator Kiraxo claims the arena.':nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}<br>💥 Boss damage: ${G.dmg[0]} vs ${G.dmg[1]} — most damage wins`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
+ $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?'Imperator Kiraxo bows before the legion.':'The general yields the arena.'):(G.boss?'Imperator Kiraxo claims the arena.':nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}${G.bk[0]===G.bk[1]?`<br>⚖️ Tied on shields, so damage decided it: ${G.dmg[0]} vs ${G.dmg[1]}`:''}`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
  render0();campBtns(win);stack.push('s-end');show('s-end')}
 // ---- v14: gear, daily market, relics, wagers, generals, friend challenges ----
 const gl=k=>(PRO.gear&&PRO.gear[k])||0;
