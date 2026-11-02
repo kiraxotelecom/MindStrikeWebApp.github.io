@@ -57,6 +57,19 @@ Clash Online now has a **mode menu**. **Duel of Legions** (strict turns, 20s per
 ## v26 changes
 **No more "7 — 7" giveaways.** The known-range display (main game, boss phase, daily/challenge, mini games, SCAN messages and online SCAN) now shows "🎯 Almost there!" once only 1 or 2 numbers are left, instead of printing the exact answer. Bump `V` in `sw.js` after every change.
 
+## v31 changes
+**Conquest Map star goals.** The fixed "combo ×3" star is gone: in short battles (e.g. target 15) two solved rounds already reach the target, so the star could never be earned. Every battle now has its own goal (`OBJS` in `index.html`): Combo ×n, Flawless, Swift (win within n rounds), Dominant (win by n+), Sharp (solve in ≤ n guesses), Heat-seeker (n blazing-hot guesses). `objOf()` re-checks each goal against that battle's target, attempts and score multipliers and lowers or swaps any goal that could not be reached. The goal shows on the briefing, as a live chip above the board, and on the result screen. Saved stars are unchanged.
+**4 new Mini Games**: 🔐 Codebreaker (Hastatus), 🔮 Oracle’s Sequence (Signifer), 🧠 Echo Scroll (Tribune), 🃏 Fate’s Cards (Proconsul). Now 9 in total. Bump `V` in `sw.js` after every change.
+
+## v32 changes
+**Worlds** (Armory → 🌍 WORLDS): buyable themes that keep every rule, save and rank and change only the look and the words. The first is **Neon Grid** (cyber); Roman Empire stays the free default. Switching reloads the app once.
+How it works: (1) the stylesheet's bronze/gold colours now follow `--hs` (hue shift) and `--ss` (saturation scale), so a world recolours the whole UI by setting two variables; background art is tinted with `--wtint`/`--wblend`, images with `--wimg`. Heat colours (hot/cold hints) are not shifted, so the game stays readable. (2) Words are themed on screen only, by a lexicon of word pairs per world (`lex`/`emo` in `WORLDS`), so names, saves and game logic are never altered. The House champions screen is left Roman (`data-nx`).
+**Adding a world:** add an entry to `WORLDS` (id, name, icon, price, blurb, `lex`, `emo`) and one `html.wd-<id>{…}` CSS block. Keep replacement words free of other lexicon keys. Roman-only for now: music, background art and the House champions. A world that needs its own art can later set `--bg`-style image variables the same way.
+Bump `V` in `sw.js` after every change.
+
+## v33 changes
+**Second world: Shogun’s Realm** (feudal Japan, 600 💰): ink-black panels, crimson tinted art, a Japanese serif font, 侍 in place of SPQR, and its own ranks (Apprentice → Ashigaru → Bushi → Samurai → … → Shogun), regions (Ezo, Tottori, Nagasaki, Edo), battles, generals’ titles and gear (Kabuto, Tate, Katana). It is one `WORLDS` entry plus one `html.wd-samurai` CSS block. Fix: the Worlds shelf and its switch toast are exempt from the word list (`data-nx`), so "Roman Empire" is never renamed inside another world. Bump `V` in `sw.js` after every change.
+
 ## Roadmap (none of these are built yet)
 Ordered by expected impact. **The first three are next.**
 
