@@ -189,7 +189,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #prof{font-size:.78rem;line-height:1.4;padding:7px 10px}#prof .st{opacity:.9}#prof .mt{font-size:.7rem;opacity:.8;margin-top:3px}
 
 /* v20 shared skin */
-#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:#8d6738;--ln:rgba(221,177,103,.38)}
+#s-online,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:#8d6738;--ln:rgba(221,177,103,.38)}
 .bm-note{display:block;text-align:center;color:#b6a58c;font-size:11px;line-height:1.5}.bm-note b{color:#f0c879}
 .bm-panel{width:min(92%,380px);display:flex;flex-direction:column;gap:9px;align-items:stretch;text-align:center;padding:20px 16px 16px;border:1px solid #8b6337;border-radius:6px;background:linear-gradient(160deg,rgba(49,33,23,.98),rgba(16,11,8,.99) 75%);box-shadow:inset 0 1px 0 #fff1,0 14px 40px #000c}
 .bm-panel .bm-hero{border:0;padding:0 0 8px}
@@ -216,13 +216,21 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 .mgc b{font:700 15px Cinzel,Georgia,serif;letter-spacing:0;color:#f2cb7d}
 #qList button[data-qc],#qList button[data-rc]{min-width:84px;font:800 11px Cinzel,Georgia,serif;letter-spacing:1.5px;color:#ffe4a8;background:linear-gradient(145deg,#a43d28,#4c1712);border:1px solid #f1cc7b;border-radius:5px;padding:9px}
 #qList button:disabled{background:#1a120d;border-color:#5a4125;color:#8d7a5c;box-shadow:none}
+
+.op{width:100%;display:flex;flex-direction:column;gap:10px;align-items:center}.op[hidden]{display:none}
+#oCodeBig{font:800 3.2rem Cinzel,Georgia,serif;letter-spacing:.28em;padding-left:.28em;color:#f5d38e;text-shadow:0 3px 18px #000;border:1px solid #8b6337;border-radius:6px;padding:14px 10px 14px .28em;width:100%;text-align:center;background:linear-gradient(160deg,rgba(49,33,23,.98),rgba(16,11,8,.99))}
+#oHud{display:flex;justify-content:space-between;align-items:center;width:100%;color:var(--gold)}#oHud>div{display:flex;flex-direction:column;align-items:center;min-width:90px}#oHud b{font-size:2rem}#oHud small{font:700 11px Cinzel,Georgia,serif;letter-spacing:2px;text-transform:uppercase}#oMid{text-align:center}#oMid span{font:700 13px Cinzel,Georgia,serif;letter-spacing:2px}
+.oh{display:flex;gap:5px;min-height:22px;justify-content:center}.oh .hrt{width:22px;height:22px;fill:#d0281c;stroke:#f1c36f;stroke-width:1.6;filter:drop-shadow(0 1px 2px #000)}.oh .hrt.u{fill:#1c120d;stroke:#6b4d1a;opacity:.55;transform:scale(.85)}#oOpPips .hrt{width:14px;height:14px}
+#oHist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px}#oHist span{border:1px solid;border-radius:8px;padding:2px 9px;font-size:.95rem;background:#000a}
+#oMsg{min-height:3em;text-align:center;font-size:1.05rem;line-height:1.4;color:#f2e6d1}
+.oin{font:700 2.2rem Cinzel,Georgia,serif!important;text-align:center;width:min(58%,200px);box-sizing:border-box;background:#0009;color:#f5d38e;border:1px solid #75542f;border-radius:5px;padding:10px}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <button id="play">ENTER THE ARENA</button>
  <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
- <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button></div>
+ <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
  <div id="prof"></div>
  <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
@@ -326,6 +334,38 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <header class="bm-hero"><div class="bm-kicker">Sharpen your mind</div><h1>Mini Games</h1><div class="bm-sub">Every rank-up unlocks a new game, each with its own best score and mastery.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div id="miniList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
+</section>
+
+<section class="scr" id="s-online" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib" id="oBack" aria-label="Back" data-ic="back"></button><span></span></div>
+ <div class="op" id="oMenu">
+  <header class="bm-hero"><div class="bm-kicker">Play with friends, anywhere</div><h1>Clash Online</h1><div class="bm-sub">Make a room, share the code, duel from any network.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+  <label class="bm-field"><span>⚔️ Your name</span><input type="text" id="oName" maxlength="12" placeholder="YOUR NAME" autocomplete="off"></label>
+  <div class="bm-head"><h2>Choose</h2></div>
+  <button class="bm-battle bm-mode" id="oCreate"><div class="bm-bi">🌐</div><div><div class="bm-bn">Create a room</div><div class="bm-bt">You host · invite with a code</div></div><div class="bm-bd"><b>Host</b><br>5 rounds · first to crack it</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
+  <label class="bm-field"><span>🔑 Or join with a code</span><input type="text" id="oCode" maxlength="5" placeholder="CODE" autocomplete="off" autocapitalize="characters"></label>
+  <button class="bm-cta" id="oJoin">JOIN ROOM</button>
+  <small class="bm-note" id="oErr"></small>
+ </div>
+ <div class="op" id="oLobby" hidden>
+  <header class="bm-hero"><div class="bm-kicker">Send this code to your friend</div><h1>Your Room</h1><div class="bm-sub">Keep this screen open until they join.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+  <div id="oCodeBig"></div>
+  <small class="bm-note" id="oWait"></small>
+  <button class="bm-cta" id="oShare">SHARE INVITE</button>
+  <button class="bm-cta" id="oStart">START THE DUEL</button>
+  <button class="bm-btn bm-danger bm-center" id="oLeave2">LEAVE ROOM</button>
+ </div>
+ <div class="op" id="oGame" hidden>
+  <div id="oHud"><div><small id="oN0"></small><b id="oS0">0</b></div><div id="oMid"><span id="oRd"></span><small id="oRg"></small></div><div><small id="oN1"></small><b id="oS1">0</b></div></div>
+  <div class="oh" id="oPips"></div>
+  <small class="bm-note" id="oOpp"></small><div class="oh" id="oOpPips"></div>
+  <div id="oHist"></div>
+  <div id="oMsg" aria-live="polite"></div>
+  <input type="text" id="oNum" class="oin" inputmode="numeric" maxlength="3" placeholder="?" autocomplete="off">
+  <button class="bm-cta" id="oStrike">⚔️ STRIKE</button>
+  <button class="bm-cta" id="oRe" style="display:none">REMATCH</button>
+  <button class="bm-btn bm-danger bm-center" id="oLeave">LEAVE MATCH</button>
+ </div>
 </section>
 
 <section class="scr" id="s-mg" style="--bg:url(img/game_bg.webp)">
@@ -1060,4 +1100,90 @@ $('#chestBox').onclick=$('#chestBtn').onclick=chestAct;
 setTimeout(chestCheck,900);
 lbShow();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-</script></body></html>
+</script><script>
+/* MindStrike Online: Firebase Realtime Database, host-authoritative duel. The secret never leaves the host's phone. */
+(()=>{
+const CFG={apiKey:"AIzaSyCjcXLy2T0pqsIUg1b4o05E_T7eb7yCsWc",authDomain:"mindstrike-4cabd.firebaseapp.com",databaseURL:"https://mindstrike-4cabd-default-rtdb.europe-west1.firebasedatabase.app",projectId:"mindstrike-4cabd",storageBucket:"mindstrike-4cabd.firebasestorage.app",messagingSenderId:"763536842719",appId:"1:763536842719:web:1cdb5d764ba3336c4fae6a"};
+const SDK='https://www.gstatic.com/firebasejs/10.14.1/',CH='ABCDEFGHJKMNPQRSTUVWXYZ23456789',PANELS=['oMenu','oLobby','oGame'];
+const HP='M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z';
+let F=null,uid='',code='',role='',R=null,unsub=null,secret=0,hostK={h:0,g:0},lastG=0,ended=true,hist=[],histRd=-1,myK=0,lastFin=-1,left=true,timer=0;
+const showP=id=>PANELS.forEach(p=>$('#'+p).hidden=p!==id),err=m=>{$('#oErr').textContent=m||''};
+const rname=()=>$('#oName').value.trim().toUpperCase().slice(0,12);
+const ref=p=>F.D.ref(F.db,p),upd=o=>F.D.update(ref('rooms/'+code),o).catch(()=>{});
+const why=e=>{const m=String(e&&(e.code||e.message)||e);return /operation-not-allowed|admin-restricted/i.test(m)?'Turn on Anonymous sign-in in Firebase (Authentication, then Sign-in method).':/permission/i.test(m)?'The database rules are not set yet (Realtime Database, then Rules).':navigator.onLine?'Could not reach the online service. Try again.':'You are offline. Online play needs internet.'};
+async function fb(){if(F)return F;const[A,Au,D]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-auth.js'),import(SDK+'firebase-database.js')]);
+ const app=A.initializeApp(CFG),auth=Au.getAuth(app),cr=await Au.signInAnonymously(auth);uid=cr.user.uid;F={D,db:D.getDatabase(app)};return F}
+function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||''}
+async function create(){const name=rname();if(!name)return err('Enter your name first.');err('Connecting…');sfx('click');
+ try{await fb()}catch(e){return err(why(e))}
+ for(let i=0;i<6;i++){const c=Array.from({length:5},()=>CH[Math.floor(Math.random()*CH.length)]).join('');
+  try{await F.D.set(ref('rooms/'+c),{host:{uid,name},cfg:{lo:1,hi:50,att:5,rounds:5},st:'lobby',scores:{h:0,g:0},rd:0,ts:Date.now()});code=c;role='h';return enter()}
+  catch(e){if(i===5||!/permission/i.test(String(e&&(e.code||e.message))))return err(why(e))}}}
+async function join(c){const name=rname();c=(c||'').trim().toUpperCase();if(!name)return err('Enter your name first.');if(c.length<4)return err('Type the room code.');err('Connecting…');sfx('click');
+ try{await fb();const s=await F.D.get(ref('rooms/'+c));if(!s.exists())return err('No room with that code.');const v=s.val();
+  if(v.host&&v.host.uid===uid)return err('That is your own room.');if(v.guest&&v.guest.uid!==uid)return err('That room is full.');
+  await F.D.set(ref('rooms/'+c+'/guest'),{uid,name});code=c;role='g';enter()}catch(e){err(why(e))}}
+function enter(){left=false;err('');S.n1=rname();save();hist=[];histRd=-1;myK=0;lastFin=-1;
+ unsub=F.D.onValue(ref('rooms/'+code),s=>{R=s.val();onRoom()},e=>{leave(why(e))})}
+function onRoom(){if(left)return;
+ if(!R){leave('The room was closed.');return}
+ if(role==='h'&&R.st!=='lobby'&&!R.guest){upd({st:'lobby',rd:0,res:null,in:null,fin:null,winner:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
+ if(role==='g'&&!R.guest){leave('You left the room.');return}
+ if(R.st==='lobby'){lobby();return}
+ showP('oGame');
+ if(role==='h'&&R.st==='play'&&!ended&&R.in&&R.in.g&&R.in.g.n===R.rd&&R.in.g.k>lastG){lastG=R.in.g.k;evalGuess('g',R.in.g.g)}
+ render()}
+function lobby(){showP('oLobby');const g=R.guest;$('#oCodeBig').textContent=code;
+ $('#oWait').textContent=role==='h'?(g?g.name+' has joined. Start when ready.':'Waiting for your friend to enter the code…'):'Joined '+R.host.name+'’s room. Waiting for the host to start…';
+ $('#oStart').style.display=role==='h'&&g?'':'none';$('#oShare').style.display=role==='h'?'':'none'}
+const hearts=(n,u)=>Array.from({length:n},(_,i)=>`<svg class="hrt${i<u?' u':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HP}"/></svg>`).join('');
+function render(){const c=R.cfg,opp=role==='h'?'g':'h',nmOf=r=>r==='h'?R.host.name:(R.guest?R.guest.name:'?'),sc=R.scores||{h:0,g:0};
+ $('#oN0').textContent=nmOf(role);$('#oN1').textContent=nmOf(opp);$('#oS0').textContent=sc[role]||0;$('#oS1').textContent=sc[opp]||0;
+ $('#oRd').textContent=R.rd>c.rounds?'TIEBREAK':'ROUND '+R.rd+'/'+c.rounds;$('#oRg').textContent='Secret: '+c.lo+'–'+c.hi;
+ if(histRd!==R.rd){histRd=R.rd;hist=[];myK=0}
+ const mr=R.res&&R.res[role],or=R.res&&R.res[opp],fin=R.fin&&R.fin.n===R.rd?R.fin:null;
+ if(mr&&mr.n===R.rd&&mr.k>hist.length)hist.push(mr);
+ const used=mr&&mr.n===R.rd?mr.k:0,oused=or&&or.n===R.rd?or.k:0,busy=myK>used;
+ $('#oPips').innerHTML=hearts(c.att,used);$('#oOpPips').innerHTML=hearts(c.att,oused);
+ $('#oOpp').textContent=or&&or.n===R.rd?nmOf(opp)+' · last hint '+(TE[or.tier]||'🎯'):nmOf(opp)+' is thinking…';
+ $('#oHist').innerHTML=hist.map(h=>`<span style="border-color:${TC[h.tier]||'#fff'}">${h.g} ${h.dir} ${TE[h.tier]||''}</span>`).join('');
+ let msg='';
+ if(fin&&lastFin!==R.rd){lastFin=R.rd;if(fin.w===role){sfx('fanfare');burst(['🎉','✨','🏆'],24)}else{sfx('buzz');shake()}}
+ if(R.st==='over'){const win=R.winner===role;msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small>'}
+ else if(fin)msg=fin.w===role?`🏆 You cracked ${fin.secret}! +${fin.pts}`:fin.w==='-'?`Nobody got it. It was ${fin.secret}.`:`${nmOf(fin.w)} cracked it (${fin.secret}) +${fin.pts}`;
+ else if(used>=c.att)msg='Out of attempts. Waiting for '+nmOf(opp)+'…';
+ else if(busy)msg='Waiting for the host…';
+ else if(mr&&mr.n===R.rd)msg=(TE[mr.tier]||'')+' '+(mr.dir==='↑'?'Higher':'Lower');
+ else msg='Guess the secret number!';
+ $('#oMsg').innerHTML=msg;
+ const can=R.st==='play'&&!fin&&used<c.att&&!busy;$('#oStrike').disabled=!can;$('#oNum').disabled=!can;$('#oStrike').style.display=R.st==='over'?'none':'';$('#oNum').style.display=R.st==='over'?'none':'';
+ $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>'}
+// ---- host only ----
+function startRound(n){const c=R.cfg;secret=Math.floor(Math.random()*(c.hi-c.lo+1))+c.lo;hostK={h:0,g:0};lastG=0;ended=false;return upd({st:'play',rd:n,res:null,in:null,fin:null,winner:null})}
+function evalGuess(who,g){const c=R.cfg;if(ended||!Number.isInteger(g)||g<c.lo||g>c.hi||hostK[who]>=c.att)return;const k=++hostK[who];
+ if(g===secret)return endRound(who,k);
+ upd({['res/'+who]:{n:R.rd,k,g,tier:mtemp(g,secret,c.lo,c.hi)[0],dir:g<secret?'↑':'↓'}});
+ if(hostK.h>=c.att&&hostK.g>=c.att)setTimeout(()=>endRound('-',0),700)}
+function endRound(w,k){if(ended)return;ended=true;const c=R.cfg,rd=R.rd,sc={h:R.scores.h||0,g:R.scores.g||0},pts=w==='-'?0:(10+5*(c.att-k))*(k===1?2:1);if(w!=='-')sc[w]+=pts;
+ const u={fin:{n:rd,w,secret,pts},scores:sc};if(w!=='-')u['res/'+w]={n:rd,k,g:secret,tier:'blazing',dir:'✓'};upd(u);
+ clearTimeout(timer);timer=setTimeout(()=>{if(left||!R||R.rd!==rd)return;if(rd>=c.rounds&&sc.h!==sc.g)upd({st:'over',winner:sc.h>sc.g?'h':'g'});else startRound(rd+1)},3800)}
+// ---- actions ----
+function strike(){if(!R||R.st!=='play')return;const g=parseInt($('#oNum').value,10),c=R.cfg;if(isNaN(g)||g<c.lo||g>c.hi){$('#oMsg').textContent='Enter a number from '+c.lo+' to '+c.hi+'.';sfx('buzz');return}
+ $('#oNum').value='';sfx('click');if(role==='h')evalGuess('h',g);else{myK++;F.D.set(ref('rooms/'+code+'/in/g'),{n:R.rd,k:myK,g}).catch(()=>{});render()}}
+async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer);if(unsub){unsub();unsub=null}
+ try{if(F&&code){if(role==='h')await F.D.remove(ref('rooms/'+code));else if(role==='g')await F.D.remove(ref('rooms/'+code+'/guest'))}}catch(e){}
+ role='';code='';R=null;showP('oMenu');home();if(msg)setTimeout(()=>toast(msg),400)}
+async function share(){const url=location.origin+location.pathname+'#room='+code,text='Join my MindStrike duel! Room code: '+code;
+ try{if(navigator.share)await navigator.share({title:'MindStrike: Number Wars',text,url});else{await navigator.clipboard.writeText(text+' '+url);toast('📋 <b>Invite copied</b>')}}catch(e){}}
+$('#onlineBtn').onclick=()=>{sfx('click');openOnline()};
+$('#oCreate').onclick=create;$('#oJoin').onclick=()=>join($('#oCode').value);
+$('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;
+$('#oNum').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
+$('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0}}).then(()=>startRound(1))};
+$('#oLeave').onclick=()=>{if(confirm('Leave the match?'))leave()};$('#oLeave2').onclick=()=>leave();
+$('#oBack').onclick=()=>{if(code)leave();else home()};
+const hj=()=>{const m=/^#room=([A-Za-z0-9]{4,6})/.exec(location.hash);if(!m)return;const c=m[1].toUpperCase();history.replaceState(null,'',location.pathname+location.search);setTimeout(()=>{openOnline();$('#oCode').value=c},1300)};
+hj();addEventListener('hashchange',hj);
+})();
+</script>
+</body></html>

@@ -42,6 +42,9 @@ Opponent screen redesigned to match the rest (hero + battle cards); modes rename
 ## v21 changes
 **Boss phase rule**: whoever breaks more shields wins; total damage only breaks a tie (2 and 4 layer bosses can tie). Shield icons are now steel while intact, and gold (you / Player 1) or red (Kiraxo / Player 2) once broken. The damage bar was removed; the end screen shows shields broken, and the damage totals only when a tie was decided by damage. Bump `V` in `sw.js` after every change.
 
+## v22 changes
+**Clash Online** (🌐 ONLINE on the home screen): create a room, share the 5-letter code or invite link (`#room=CODE`), and duel from any network. Uses the Firebase Realtime Database (project `mindstrike-4cabd`, Belgium) with anonymous sign-in, loaded only when you open Online, so the rest of the game still works offline. The host's phone holds the secret and judges guesses (it never goes into the database), so the host must keep the app open. Rules: 5 rounds, 5 attempts, first to crack the number scores `(10 + 5 × attempts left)`, doubled on the first try; most points wins, ties go to a tiebreak round. Paste `firebase-rules.json` into Realtime Database → Rules → Publish. Service worker now ignores cross-origin requests. Bump `V` in `sw.js` after every change.
+
 ## Roadmap (none of these are built yet)
 Ordered by expected impact. **The first three are next.**
 
