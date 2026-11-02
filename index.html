@@ -10,7 +10,7 @@
 // Nothing else changes: rules, saves and ranks are shared. Text is themed only on screen (a DOM pass), never in the game data.
 const WORLDS={
  roman:{n:'ROMAN EMPIRE',e:'🏛️',price:0,d:'The original: legions, generals and glory.'},
- cyber:{n:'NEON GRID',e:'🌆',price:600,d:'The same battles in a neon future city. Recolours everything and renames ranks, regions, generals and gear.',
+ cyber:{n:'NEON GRID',e:'🌆',price:600,art:'cyber',mus:'cyber',d:'The same battles in a neon future city. Recolours everything and renames ranks, regions, generals and gear.',
   lex:[['recruit','rookie'],['velite','script kiddie'],['legionary','runner'],['hastatus','hacker'],['centurion','operator'],['signifer','specialist'],['optio','decker'],['tribune','architect'],['legatus','commander'],['praefect','director'],['proconsul','sysop'],['consul','admin'],['imperator','overlord'],
    ['legion','network'],['legions','networks'],['imperial','corporate'],['empire','grid'],['road to empire','road to the core'],['spqr','sys://grid'],['laurel','chip'],['laurels','chips'],['gods','algorithms'],['mortal','human'],['roman','runner'],['romans','runners'],
    ['gaul','sector zero'],['egypt','data desert'],['carthage','port nexus'],['rome','core city'],
@@ -18,7 +18,7 @@ const WORLDS={
    ['druid','weaver'],['chief','boss'],['scribe','coder'],['nomad','drifter'],['priestess','oracle'],['guard','sentry'],['sailor','pilot'],['driver','racer'],['foreman','engineer'],['glad.','cyborg'],['senator','delegate'],['prefect','warden'],['pharaoh','monarch'],
    ['hoplite','drone'],['gladiator','cyborg'],['spartan','mech'],['praetorian','enforcer'],['eagle','drone'],['vestal flame','plasma flame'],['vestal','ghost'],['roman legion set','neon runner set'],['galea','visor'],['scutum','firewall'],['gladius','monoblade']],
   emo:[['🏛️','🌆'],['🦅','🦾'],['🌲','🔋'],['🏜️','💾'],['🐘','🛰️'],['🏺','💽'],['🔱','🔧'],['🪖','🥽']]},
- samurai:{n:'SHOGUN’S REALM',e:'⛩️',price:600,d:'The same battles in feudal Japan. Ink-black and crimson, with ranks, regions, generals and gear renamed.',
+ samurai:{n:'SHOGUN’S REALM',e:'⛩️',price:600,art:'samurai',mus:'samurai',d:'The same battles in feudal Japan. Ink-black and crimson, with ranks, regions, generals and gear renamed.',
   lex:[['recruit','apprentice'],['velite','ashigaru'],['legionary','bushi'],['hastatus','samurai'],['centurion','kenshi'],['signifer','hatamoto'],['optio','kashira'],['tribune','taisho'],['legatus','karo'],['praefect','daimyo'],['proconsul','regent'],['consul','tairo'],['imperator','shogun'],
    ['legion','army'],['legions','armies'],['imperial','shogunate'],['empire','shogunate'],['road to empire','road to the shogunate'],['spqr','侍'],['laurel','blossom'],['laurels','blossoms'],['gods','kami'],['mortal','fool'],['roman','ronin'],['romans','ronin'],
    ['gaul','ezo'],['egypt','tottori'],['carthage','nagasaki'],['rome','edo'],
@@ -26,7 +26,7 @@ const WORLDS={
    ['druid','monk'],['chief','warlord'],['scribe','scholar'],['nomad','wanderer'],['priestess','miko'],['driver','courier'],['foreman','smith'],['glad.','sumo'],['senator','minister'],['prefect','magistrate'],['pharaoh','emperor'],
    ['hoplite','footman'],['gladiator','ronin'],['spartan','ninja'],['praetorian','kensei'],['eagle','crane'],['vestal flame','sakura flame'],['vestal','sakura'],['roman legion set','samurai clan set'],['galea','kabuto'],['scutum','tate'],['gladius','katana']],
   emo:[['🏛️','🏯'],['🦅','🦢'],['🌲','🎋'],['🐘','⚓'],['🏺','🍶'],['🔱','🥷']]},
- ice:{n:'ICE · FROSTLANDS',e:'🏔️',price:600,d:'The same battles in the frozen Norse north. Glacier blue, white and silver, with ranks, regions, generals and gear renamed (Jarl, Fjord, Valhalla). Built light-first, and it has a night mode too.',
+ ice:{n:'ICE · FROSTLANDS',e:'🏔️',price:600,art:'ice',mus:'viking',d:'The same battles in the frozen Norse north. Glacier blue, white and silver, with ranks, regions, generals and gear renamed (Jarl, Fjord, Valhalla). Built light-first, and it has a night mode too.',
   lex:[['recruit','thrall'],['velite','karl'],['legionary','huskarl'],['hastatus','raider'],['centurion','hirdman'],['signifer','stallari'],['optio','drengr'],['tribune','thane'],['legatus','hersir'],['praefect','skald'],['proconsul','jarl'],['consul','high jarl'],['imperator','konungr'],
    ['legion','warband'],['legions','warbands'],['imperial','frozen'],['empire','northern realm'],['road to empire','road to Valhalla'],['spqr','ᚠᚢᚦᚨᚱ'],['laurel','rune'],['laurels','runes'],['gods','Aesir'],['mortal','frostbitten'],['roman','norseman'],['romans','norsemen'],
    ['gaul','frostlands'],['egypt','fjordheim'],['carthage','niflheim'],['rome','Valhalla'],
@@ -333,6 +333,12 @@ html.light #app.bossm{--gold:#b3150a;--sand:#3a0d08;--red:#7a0a05}
 html.light #app img{filter:drop-shadow(0 2px 3px #0005)}
 html.light[class*="wd-"] #app img{filter:var(--wimg) drop-shadow(0 2px 3px #0005)}
 html.light #app::after{mix-blend-mode:multiply;opacity:.5}
+
+/* v36: world art. Menus and mini-games use <world>_menu.webp, boss fights use <world>_boss.webp (picked in bg()). The old colour tint is switched off so the art keeps its own colours. */
+html.wd-cyber .scr,html.wd-samurai .scr,html.wd-ice .scr{--wblend:normal;--wtint:linear-gradient(#0000,#0000)}
+html.wd-cyber .scr:not(#s-game){--bg:url(img/cyber_menu.webp)!important}
+html.wd-samurai .scr:not(#s-game){--bg:url(img/samurai_menu.webp)!important}
+html.wd-ice .scr:not(#s-game){--bg:url(img/ice_menu.webp)!important}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -624,7 +630,7 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
  if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
  if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
  if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI')setTimeout(()=>{if(G&&!G.done)skSplash(KS[PRO.ks][4],KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
-function bg(){$('#app').classList.toggle('bossm',!!G.boss);$('#s-game').style.setProperty('--bg',`url(img/${G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
+function bg(){$('#app').classList.toggle('bossm',!!G.boss);const wa=(document.documentElement.className.match(/wd-(cyber|samurai|ice)/)||[])[1];$('#s-game').style.setProperty('--bg',`url(img/${wa?wa+(G.boss?'_boss':'_menu'):G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(G.trick==='sand'&&G.cur===0&&G.round%3===0)G.jam=1;
  if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast(`👑 <b>IMPERIAL EDICT</b><br><small>${GENS.Prime.n} jams your hints this round!</small>`),400)}
  if(G.boss){G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v}
@@ -798,6 +804,7 @@ if((PRO.rv||0)<2){const mv={0:0,1:2,2:4,3:6,4:8,5:12},nr={};Object.keys(PRO.rr||
 const PR=n=>Math.max(5,Math.round(n/5)*5);
 /* v33: Worlds runtime. Lives here (after PRO, PR, toast, tone, qEv exist) so worldsH is initialised before the Armory uses it. WORLDS itself stays in <head>. */
 const WID=PRO.wd&&WORLDS[PRO.wd]&&(PRO.own['wd:'+PRO.wd])?PRO.wd:'';
+{const wm=WORLDS[WID]&&WORLDS[WID].mus;if(wm){const a=new Audio(`audio/theme_${wm}.mp3`);a.loop=true;M.theme=a;applyVol()}}
 const LX=(()=>{const W=WID&&WORLDS[WID];if(!W||!W.lex)return null;const map={},esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),
   up=x=>x.toUpperCase(),cf=x=>x[0].toUpperCase()+x.slice(1),te=x=>x.replace(/\b[a-z]/g,c=>c.toUpperCase()),tt=x=>te(x).replace(/ (Of|The|To|And|A)\b/g,m=>m.toLowerCase());
  W.lex.forEach(([a,b])=>[[a,b],[cf(a),cf(b)],[up(a),up(b)],[te(a),te(b)],[tt(a),tt(b)]].forEach(([k,v])=>{map[k]=v}));
