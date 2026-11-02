@@ -240,14 +240,19 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #oFeed{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}#oFeed:empty{display:none}#oFeed .sc{font:700 12px Cinzel,Georgia,serif;letter-spacing:2px;color:#f5d38e;border:1px dashed #8b6337;border-radius:6px;padding:6px 14px;background:#000a}#oFeed .sc b{font-size:1.5rem;color:#fff;margin-left:8px}#oFeed span.fd{border:1px solid;border-radius:8px;padding:2px 9px;font-size:.95rem;background:#000a}
 #oPw{display:flex;gap:8px;justify-content:center;width:100%}#oPw button{flex:1;max-width:120px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 4px;border:1px solid #75542f;border-radius:8px;background:#000a;color:#f2cb7d;font:700 11px Cinzel,Georgia,serif;letter-spacing:1px;min-width:0}#oPw button span{font-size:1.2rem}#oPw button i{font-style:normal;color:#fff;font-size:.9rem}#oPw button:disabled{opacity:.4}
 #oBubble{min-height:1.6em;text-align:center;font-weight:700;color:#ffd98a;opacity:0;transition:opacity .25s}#oBubble.on{opacity:1}
+
+#inst{width:min(92%,370px);box-sizing:border-box;text-align:center;font-size:.8rem;line-height:1.45;background:linear-gradient(160deg,rgba(49,33,23,.97),rgba(16,11,8,.98));border:1px solid var(--gold);border-radius:10px;padding:10px 12px;position:relative;color:#f2e6d1}
+#inst[hidden]{display:none}#inst b{color:#f5d38e}#inst .ix{position:absolute;top:2px;right:4px;min-width:0;width:30px;height:30px;padding:0;border:0;background:none;box-shadow:none;font-size:1.1rem;color:#cdb98f}
+#inst .ib2{min-width:0;margin-top:6px;padding:8px 16px;font-size:.78rem;letter-spacing:.1em}#inst .bell{margin-top:8px;padding-top:8px;border-top:1px dashed #8b6337}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
- <button id="play">ENTER THE ARENA</button>
- <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
- <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
  <div id="prof"></div>
+ <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
+ <button id="play">ENTER THE ARENA</button>
+ <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
+ <div id="inst" hidden></div>
  <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
 
@@ -339,7 +344,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
   <label class="sl"><span>🔊 Effects volume <b id="vsv"></b></span><input type="range" id="vs" min="0" max="1" step=".05"></label>
  </div>
  <div class="bm-head"><h2>Gameplay</h2></div>
- <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button></div>
+ <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tRem"></button></div>
  <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
  <div class="bm-head"><h2>Records</h2></div>
  <button id="clrLb" class="bm-btn bm-danger">CLEAR HALL OF GLORY</button>
@@ -1169,6 +1174,65 @@ $('#chestBox').onclick=$('#chestBtn').onclick=chestAct;
 setTimeout(chestCheck,900);
 lbShow();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+// ---- v29: install help + daily reminders ----
+(()=>{
+const UA=navigator.userAgent,iOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
+ android=/Android/.test(UA),inApp=/FBAN|FBAV|Instagram|Line\/|musical_ly|TikTok|Bytedance|Snapchat|Twitter|MicroMessenger|; wv\)/i.test(UA),
+ samsung=/SamsungBrowser/.test(UA),ffox=/Firefox|FxiOS/.test(UA),edge=/Edg|EdgA|EdgiOS/.test(UA),
+ safari=/Safari/.test(UA)&&!/CriOS|FxiOS|EdgiOS|Chrome|Android/.test(UA),
+ standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+let dp=null;const box=$('#inst');
+const done=()=>LS.get('ms_inst',0);
+const canNotify='Notification'in window&&'serviceWorker'in navigator;
+function how(){
+ if(inApp)return `<b>📲 Install MindStrike</b><br>You opened this inside another app. Tap <b>⋮ / ⋯</b> and choose <b>Open in browser</b> (Chrome${iOS?' or Safari':''}), then install from there.`;
+ if(iOS)return safari?`<b>📲 Add MindStrike to your Home Screen</b><br>Tap the <b>Share</b> button <b>⬆︎</b> at the bottom, scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.`:`<b>📲 Add MindStrike to your Home Screen</b><br>Tap the <b>Share</b> button <b>⬆︎</b>, then <b>Add to Home Screen</b>. If you can't see it, open this link in <b>Safari</b> first.`;
+ if(samsung)return `<b>📲 Install MindStrike</b><br>Tap the <b>≡ menu</b>, then <b>Add page to</b> → <b>Home screen</b>.`;
+ if(android)return ffox?`<b>📲 Install MindStrike</b><br>Tap <b>⋮</b>, then <b>Install</b> (or <b>Add to Home screen</b>).`:`<b>📲 Install MindStrike</b><br>Tap <b>⋮</b> at the top right, then <b>Install app</b> (or <b>Add to Home screen</b>).`;
+ if(ffox||safari)return `<b>📲 Install MindStrike</b><br>For the full app experience open this link in <b>Chrome</b> or <b>Edge</b> and click the install icon in the address bar.`;
+ return `<b>📲 Install MindStrike</b><br>Click the <b>install icon ⊕</b> in the address bar, or open the browser menu and choose <b>Install MindStrike</b>.`}
+function paint(){
+ if(!box)return;
+ if(standalone()){LS.set('ms_inst',1);box.hidden=true;return}
+ const showInst=!done(),showBell=canNotify&&Notification.permission==='default'&&!LS.get('ms_remx',0)&&!LS.get('ms_rem',0);
+ if(!showInst&&!showBell){box.hidden=true;return}
+ let h='';
+ if(showInst){h+=`<button class="ix" id="instX" aria-label="Dismiss">✕</button>${how()}`+(dp?`<br><button class="ib2" id="instGo">INSTALL NOW</button>`:'')}
+ if(showBell)h+=`<div class="${showInst?'bell':''}">🔔 Get a reminder when new <b>Daily Strike</b> numbers arrive.<br><button class="ib2" id="bellGo">TURN ON REMINDERS</button>${showInst?'':'<button class="ix" id="bellX" aria-label="Dismiss">✕</button>'}</div>`;
+ box.innerHTML=h;box.hidden=false;
+ const g=id=>box.querySelector(id);
+ g('#instX')&&(g('#instX').onclick=()=>{LS.set('ms_inst',1);paint()});
+ g('#bellX')&&(g('#bellX').onclick=()=>{LS.set('ms_remx',1);paint()});
+ g('#instGo')&&(g('#instGo').onclick=async()=>{try{dp.prompt();const r=await dp.userChoice;if(r.outcome==='accepted')LS.set('ms_inst',1)}catch(e){}dp=null;paint()});
+ g('#bellGo')&&(g('#bellGo').onclick=()=>remOn());
+}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;paint()});
+addEventListener('appinstalled',()=>{LS.set('ms_inst',1);dp=null;paint()});
+matchMedia('(display-mode: standalone)').addEventListener&&matchMedia('(display-mode: standalone)').addEventListener('change',paint);
+// reminders: a local notification from the service worker (needs the app installed on Android/Chrome; iOS needs the Home Screen app, iOS 16.4+)
+async function syncMeta(){try{const c=await caches.open('ms-meta');await c.put('dl',new Response(PRO.dl||''))}catch(e){}}
+async function remOn(){
+ if(!canNotify){toast('🔔 This browser can’t show notifications');return}
+ if(iOS&&!standalone()){toast('🔔 On iPhone, first add MindStrike to your Home Screen, then turn reminders on');return}
+ let p=Notification.permission;if(p==='default')try{p=await Notification.requestPermission()}catch(e){}
+ if(p!=='granted'){LS.set('ms_rem',0);toast('🔔 Reminders blocked — allow notifications in your browser settings');setUI&&setUI();paint();return}
+ LS.set('ms_rem',1);
+ try{const reg=await navigator.serviceWorker.ready;
+  if('periodicSync'in reg)try{await reg.periodicSync.register('daily-numbers',{minInterval:12*36e5})}catch(e){}
+  await syncMeta();
+  reg.showNotification('MindStrike ⚔️',{body:'Reminders on! We’ll nudge you when new Daily Strike numbers arrive.',icon:'icons/icon-192.png',badge:'icons/icon-192.png',tag:'ms-on'})}catch(e){}
+ toast('🔔 Daily reminders ON');setUI&&setUI();paint()}
+async function remOff(){LS.set('ms_rem',0);try{const reg=await navigator.serviceWorker.ready;'periodicSync'in reg&&await reg.periodicSync.unregister('daily-numbers')}catch(e){}toast('🔕 Daily reminders OFF');setUI&&setUI();paint()}
+window.remLabel=()=>!canNotify?'REMINDERS: N/A':(LS.get('ms_rem',0)&&Notification.permission==='granted')?'DAILY REMINDER: ON':'DAILY REMINDER: OFF';
+$('#tRem').onclick=()=>{(LS.get('ms_rem',0)&&Notification.permission==='granted')?remOff():remOn()};
+$('#tRem').textContent=remLabel();
+const _su=setUI;setUI=function(){_su.apply(this,arguments);$('#tRem').textContent=remLabel()};
+// when the player finishes the Daily, tell the worker so it won't nag
+document.addEventListener('visibilitychange',()=>{if(document.hidden)syncMeta()});addEventListener('pagehide',syncMeta);
+setInterval(syncMeta,60000);syncMeta();
+addEventListener('load',()=>setTimeout(paint,1200));paint();
+})();
 </script><script>
 /* MindStrike Online v25: Firebase Realtime Database. Whoever holds a secret judges guesses against it; secrets never go into the database.
    Modes: "turn" (Duel of Legions), "race" (War Code), "swap" (Sealed Scrolls: each player seals a number for the other, with a commit hash).
