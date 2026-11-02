@@ -68,3 +68,10 @@ Ordered by expected impact. **The first three are next.**
 6. **Seasonal track.** Weekly goals that fill a progress bar toward a skin or title, alongside the existing weekly rule.
 7. **Friend challenges with more bite.** Show the three best scores for a challenge code, let a friend rematch with a new seed, and turn the result into a shareable picture card.
 8. **Short first-time tutorial and gentle adaptive difficulty.** After 3 losses in a row, make the next game slightly easier.
+
+## v27 changes
+**Ranks**: 13 instead of 6 — Recruit, Velite, Legionary, Hastatus, Centurion, Signifer, Optio, Tribune, Legatus, Praefect, Proconsul, Consul and **Imperator** (still the highest, still 2500 XP). Nobody loses a rank: the old thresholds are unchanged, and old rank-reward claims are moved to the matching new rank (`ms_pro.rv`). Every rank has a reward (`RR`); mini games still unlock at Legionary / Centurion / Optio / Legatus / Imperator.
+**Quests**: 18 daily and 16 weekly quests (4 daily + 3 weekly are drawn), many pay items as well as coins and XP; new quest types: Conquest battles, mini games, Daily Strike, wagers, blazing guesses, market purchases. Claim all of a set for a **Daily Sweep** / **Weekly Sweep** bonus.
+**Market**: prices scale with rank (`PM`, ×1.00 for Recruit up to ×2.00 for Imperator, shown at the top of the Armory). Five daily offers instead of four, a bigger daily pool, five War Chests (bundles), 4 new player skins, 2 Kiraxo skins, 4 arenas, 3 permanent upgrades (equip one), and 2 new relics (Merchant's Seal +10% coins, Scribe's Quill +10% XP).
+**Powers**: at most 2 per round (`MAXPOW`), and an **↩️ UNDO POWER** button gives the charge back until you make your next guess (works for every power, Secrets and Desperation).
+Bump `V` in `sw.js` after every change.
