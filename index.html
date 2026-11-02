@@ -225,6 +225,12 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #oTurn{font:700 14px Cinzel,Georgia,serif;letter-spacing:2px;color:var(--gold);text-align:center;min-height:1.4em}#oTurn.my{color:#ffd98a;text-shadow:0 0 10px #e6a633}#oHist span.me{border-color:#e6a633}#oHist span.foe{border-color:#c0281c}#oHist span b{opacity:.7;margin-right:4px;font-size:.75em}
 #oMsg{min-height:3em;text-align:center;font-size:1.05rem;line-height:1.4;color:#f2e6d1}
 .oin{font:700 2.2rem Cinzel,Georgia,serif!important;text-align:center;width:min(58%,200px);box-sizing:border-box;background:#0009;color:#f5d38e;border:1px solid #75542f;border-radius:5px;padding:10px}
+
+#oFam{width:100%;display:flex;flex-direction:column;gap:6px}.famr{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font:700 13px Cinzel,Georgia,serif;letter-spacing:1px;color:#f2cb7d}.famr b{font-size:1.15rem;color:#fff}.famr span:last-child{text-align:right}
+#oRel{display:flex;justify-content:space-between;width:100%;font-size:1.1rem;min-height:1.4em}#oHint{min-height:1.2em;text-align:center;color:#8fe0a6;font-size:.95rem}
+#oDraft{width:100%;display:flex;flex-direction:column;gap:8px}.oRelic{align-items:flex-start!important;text-transform:none!important;letter-spacing:.3px!important}.oRelic.sel{border-color:#f1cc7b!important;box-shadow:0 0 14px #e6a63366!important}.oRelic small{font:400 12px system-ui,sans-serif;color:#cdb98f;letter-spacing:0}.oRelic:disabled:not(.sel){opacity:.45}
+#oTz{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}#oTz button{padding:6px 10px;font-size:.78rem;border:1px solid #75542f;border-radius:14px;background:#000a;color:#f2cb7d;min-width:0}
+#oBubble{min-height:1.6em;text-align:center;font-weight:700;color:#ffd98a;opacity:0;transition:opacity .25s}#oBubble.on{opacity:1}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -342,6 +348,8 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div class="op" id="oMenu">
   <header class="bm-hero"><div class="bm-kicker">Play with friends, anywhere</div><h1>Clash Online</h1><div class="bm-sub">Pick a mode, share the code, play from any network.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
   <label class="bm-field"><span>⚔️ Your name</span><input type="text" id="oName" maxlength="12" placeholder="YOUR NAME" autocomplete="off"></label>
+  <div class="bm-head"><h2>Family record</h2></div>
+  <div id="oFam"></div>
   <div class="bm-head"><h2>Create a room</h2></div>
   <button class="bm-battle bm-mode" id="oCreateT"><div class="bm-bi">⚔️</div><div><div class="bm-bn">Duel of Legions</div><div class="bm-bt">Turn by turn · 20s each</div></div><div class="bm-bd"><b>5 rounds</b><br>Shared hints, you alternate</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
   <button class="bm-battle bm-mode" id="oCreateR"><div class="bm-bi">📜</div><div><div class="bm-bn">Race for the War Code</div><div class="bm-bt">Both at once · private hints</div></div><div class="bm-bd"><b>3 rounds</b><br>First to crack the code</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
@@ -361,13 +369,18 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
  <div class="op" id="oGame" hidden>
   <div id="oHud"><div><small id="oN0"></small><b id="oS0">0</b></div><div id="oMid"><span id="oRd"></span><small id="oRg"></small></div><div><small id="oN1"></small><b id="oS1">0</b></div></div>
   <div id="oTurn"></div>
+  <div id="oRel"></div>
   <div class="oh" id="oPips"></div>
   <small class="bm-note" id="oOpp"></small><div class="oh" id="oOpPips"></div>
   <div id="oHist"></div>
+  <div id="oHint"></div>
   <div id="oMsg" aria-live="polite"></div>
+  <div id="oDraft" style="display:none"></div>
   <input type="text" id="oNum" class="oin" inputmode="numeric" maxlength="3" placeholder="?" autocomplete="off">
   <button class="bm-cta" id="oStrike">⚔️ STRIKE</button>
   <button class="bm-cta" id="oRe" style="display:none">REMATCH</button>
+  <div id="oBubble"></div>
+  <div id="oTz"></div>
   <button class="bm-btn bm-danger bm-center" id="oLeave">LEAVE MATCH</button>
  </div>
 </section>
@@ -437,7 +450,7 @@ const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt
 const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
 const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🏛️','#ffe08a','GOLDEN LAUREL'],obsidian:['🖤','#9a8cff','OBSIDIAN GUARD']};
 const GEN={Easy:'GEN. NANAIA',Medium:'GEN. SHANITARI',Hard:'GEN. ELIJAHOS'};
-const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[rnd(0,a.length-1)];
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,rndS=(a,b)=>{let n,i=0;do{n=rnd(a,b)}while(b-a>=15&&i++<40&&/^(\d)\1+$/.test(''+n));return n},pick=a=>a[rnd(0,a.length-1)];
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
 // ---- audio ----
 const A={};['ding','buzz','fanfare','click','powerup','glitch','whoosh'].forEach(n=>A[n]=new Audio(`audio/${n}.wav`));
@@ -594,7 +607,7 @@ function useIntel(t){if(!canAct()||G.rf.intelUsed.includes(t))return;G.powUsed=1
  G.rf.info.push(r);$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
- Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rnd(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
+ Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rndS(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
  if(G.mode==='PVP'){G.dmg[o]=40;G.pow[o].SCAN++}
  if(G.mode==='AI'){G.names[1]='KIRAXO';if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
  play(G.mode==='PVP'?'boss':'boss');bossIntro();G.busy=true;bg();render(`${nm(trig)} reached the target — IMPERATOR KIRAXO PRIME takes the field!`);
@@ -604,7 +617,7 @@ function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.g
 function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
  if(G.layers<=0){const k=G.bk,d=G.dmg;return finish(k[0]!==k[1]?(k[0]>k[1]?0:1):d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
- G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rnd(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
+ G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rndS(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
  if(G.mode==='AI'&&who===1){G.busy=true;render(`Kiraxo cracks a shield layer open! ${G.layers}/${G.total} remain.`);later(()=>{G.busy=false;aiPlay()},1500)}
  else{render(`SHIELD SHATTERED! ${G.layers}/${G.total} remain — ${nm(who)} keeps swinging!`);weakPoint(who)}}
 // ---- Kiraxo AI ----
@@ -764,7 +777,7 @@ function mgFire(){if(!X||X.done||X.busy||X.k==='hunt')return;const el=$('#mgNum'
  el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({light:lgFire,sniper:snFire,duel:duFire,gaunt:gtFire})[X.k](g);mgUpd()}
 // -- Lightning Round --
 function lgInit(){X.r=0;lgRound(true)}
-function lgRound(first){X.r++;const r=X.r;X.lo=1;X.hi=Math.min(100,30+5*(r-1));X.secret=rnd(X.lo,X.hi);X.tl=X.tLeft=Math.max(4,20*Math.pow(.92,r-1));X.ls=0;X.att=0;X.kLo=X.lo;X.kHi=X.hi;X.hist=[];mgChips();mgRangeUI();
+function lgRound(first){X.r++;const r=X.r;X.lo=1;X.hi=Math.min(100,30+5*(r-1));X.secret=rndS(X.lo,X.hi);X.tl=X.tLeft=Math.max(4,20*Math.pow(.92,r-1));X.ls=0;X.att=0;X.kLo=X.lo;X.kHi=X.hi;X.hist=[];mgChips();mgRangeUI();
  if(first)mgSet('⚡ Beat the clock! 7 attempts per round — it gets faster every round.')}
 function lgFire(g){X.att++;if(g===X.secret){const pts=10+2*X.r+Math.floor(X.tLeft);X.score+=pts;sfx('ding');ft('+'+pts);lgRound();mgSet(`⚡ Cracked it! +${pts}`);return}
  if(X.att>=7)return mgFail(`Out of attempts — it was ${X.secret}.`);mgHint(g)}
@@ -773,14 +786,14 @@ setInterval(()=>{if(!X||X.done||X.k!=='light'||document.hidden||!$('#s-mg').clas
 // -- Sniper Range --
 const snTol=()=>Math.max(15,40-3*Math.floor(X.hits/3)),snMult=()=>1+.5*Math.min(X.st,6);
 function snInit(){X.lives=3;X.st=0;X.hits=0;X.hi=999;snTarget()}
-function snTarget(){X.secret=rnd(1,999);X.shot=0;X.kLo=1;X.kHi=999;X.hist=[];X.busy=false;mgChips();mgRangeUI();mgUpd();mgSet(`🎯 New target. Hit zone: ±${snTol()}. You have 2 shots.`)}
+function snTarget(){X.secret=rndS(1,999);X.shot=0;X.kLo=1;X.kHi=999;X.hist=[];X.busy=false;mgChips();mgRangeUI();mgUpd();mgSet(`🎯 New target. Hit zone: ±${snTol()}. You have 2 shots.`)}
 function snFire(g){X.shot++;const d=Math.abs(g-X.secret);
  if(d<=snTol()){const pts=Math.round(((X.shot===1?60:25)+(d===0?100:0))*snMult());X.score+=pts;X.st++;X.hits++;X.busy=true;sfx('ding');burst(['🎯','✨'],14);ft('+'+pts);
   mgSet(`🎯 HIT! ${d===0?'DEAD CENTER! ':''}+${pts} · target was ${X.secret}`);setTimeout(()=>{if(!X.done)snTarget()},1100);return}
  if(X.shot>=2){X.lives--;X.st=0;sfx('buzz');shake();mgSet(`💨 Missed — it was ${X.secret}.`);if(X.lives<=0){mgUpd();return mgOver('Out of lives')}X.busy=true;setTimeout(()=>{if(!X.done)snTarget()},1200);return}
  mgHint(g)}
 // -- Number Duel --
-function duInit(){const m=mgm('duel'),L=mlv(m.t),f=DUEL[Math.min(3,L>>1)];X.foe=f[0];X.acc=f[1];X.hi=Math.min(100,30+10*L);X.secret=rnd(1,X.hi);X.mine=0;X.ph='pick';X.g=0;X.ai={lo:1,hi:X.hi,n:0};X.first=m.p%2===0;
+function duInit(){const m=mgm('duel'),L=mlv(m.t),f=DUEL[Math.min(3,L>>1)];X.foe=f[0];X.acc=f[1];X.hi=Math.min(100,30+10*L);X.secret=rndS(1,X.hi);X.mine=0;X.ph='pick';X.g=0;X.ai={lo:1,hi:X.hi,n:0};X.first=m.p%2===0;
  mgSet(`Choose your SECRET number (1–${X.hi}). ${X.foe} will try to crack it.`)}
 function duBoard(){$('#mgBoard').innerHTML=`<div>🔒 Your number: <b>${X.mine}</b> &nbsp;·&nbsp; ${X.foe}: <b>??</b></div>`}
 function duFire(g){if(X.ph==='pick'){X.mine=g;X.ph='play';X.kLo=1;X.kHi=X.hi;duBoard();mgRangeUI();
@@ -794,7 +807,7 @@ function duAI(){if(X.done)return;const a=X.ai;a.n++;const g=Math.random()<X.acc&
  mgSet(`${X.foe} guessed ${g} — ${low?'too low':'too high'}. Your turn!`)}
 // -- Arena Gauntlet --
 function gtInit(){X.r=0;X.sc=3;X.fo=2;X.sh=2;X.cl=0;X.focus=0;gtRound(true)}
-function gtRound(first){X.r++;X.lo=1;X.hi=GT[X.r-1];X.secret=rnd(1,X.hi);X.kLo=1;X.kHi=X.hi;X.att=0;X.maxA=Math.floor(Math.log2(X.hi))+2;X.hist=[];X.busy=false;X.scanned=0;mgChips();mgRangeUI();gtPw();mgUpd();
+function gtRound(first){X.r++;X.lo=1;X.hi=GT[X.r-1];X.secret=rndS(1,X.hi);X.kLo=1;X.kHi=X.hi;X.att=0;X.maxA=Math.floor(Math.log2(X.hi))+2;X.hist=[];X.busy=false;X.scanned=0;mgChips();mgRangeUI();gtPw();mgUpd();
  mgSet(first?'🛡️ No breaks. SCAN ×3 · FOCUS ×2 · SHIELD ×2 — they never refill.':`Round ${X.r}: 1–${X.hi}, ${X.maxA} attempts.`)}
 function gtPw(){const b=n=>$(`#mgPw [data-mp=${n}]`);if(!b('SCAN'))return;b('SCAN').querySelector('i').textContent=X.sc;b('FOCUS').querySelector('i').textContent=X.fo;b('SHIELD').querySelector('i').textContent=X.sh;
  b('SCAN').disabled=X.sc<=0||!!X.scanned||X.busy;b('FOCUS').disabled=X.fo<=0||!!X.focus||X.busy;b('SHIELD').disabled=true}
@@ -866,7 +879,7 @@ $('#dailyBtn').onclick=()=>{sfx('click');dailyOpen()};
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
 const MUT=[['primes','🔢','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
 CM=()=>MUT[Math.floor((Date.now()/864e5+3)/7)%MUT.length];
-function pickS(){const pr=[];if(G.mut==='primes')for(let i=G.lo;i<=G.hi;i++)if(isPrime(i))pr.push(i);return pr.length?pick(pr):rnd(G.lo,G.hi)}
+function pickS(){const pr=[];if(G.mut==='primes')for(let i=G.lo;i<=G.hi;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))pr.push(i);return pr.length?pick(pr):rndS(G.lo,G.hi)}
 function flash(){const e=$('#fl');e.classList.remove('on');void e.offsetWidth;e.classList.add('on')}
 function bossIntro(){shake(true);sfx('glitch');const re=i=>{const e=$(i);e.classList.remove('on');void e.offsetWidth;e.classList.add('on');return e};re('#bolt');const b=re('#bt');b.innerHTML='IMPERATOR<br>KIRAXO PRIME';setTimeout(()=>b.classList.remove('on'),2100);
  vib([200,80,200,80,400]);tone(55,1.2,'sawtooth',.3);setTimeout(()=>tone(48,.8,'square',.2),400);burst(['⚡','🔥','💀'],30)}
@@ -1105,22 +1118,33 @@ setTimeout(chestCheck,900);
 lbShow();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script><script>
-/* MindStrike Online: Firebase Realtime Database, host-authoritative. The secret never leaves the host's phone.
-   Modes: "turn" (Duel of Legions: strict turns, shared hints, 20s per turn, starter alternates) and "race" (War Code: simultaneous, private hints). */
+/* MindStrike Online: Firebase Realtime Database, host-authoritative. The secret never leaves the host's phone (relic hints reveal only odd/even or a half).
+   Modes: "turn" (Duel of Legions) and "race" (War Code). Relic draft between rounds, quick taunts, local family record. */
 (()=>{
 const CFG={apiKey:"AIzaSyCjcXLy2T0pqsIUg1b4o05E_T7eb7yCsWc",authDomain:"mindstrike-4cabd.firebaseapp.com",databaseURL:"https://mindstrike-4cabd-default-rtdb.europe-west1.firebasedatabase.app",projectId:"mindstrike-4cabd",storageBucket:"mindstrike-4cabd.firebasestorage.app",messagingSenderId:"763536842719",appId:"1:763536842719:web:1cdb5d764ba3336c4fae6a"};
 const SDK='https://www.gstatic.com/firebasejs/10.14.1/',CH='ABCDEFGHJKMNPQRSTUVWXYZ23456789',PANELS=['oMenu','oLobby','oGame'];
 const HP='M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z';
 const MODES={turn:{mode:'turn',lo:1,hi:100,att:5,rounds:5,tl:20},race:{mode:'race',lo:1,hi:100,att:6,rounds:3}};
-const MN={turn:'Duel of Legions',race:'Race for the War Code'},MR={turn:'Take turns guessing the same secret. Everyone sees every hint. 20 seconds per turn, 5 rounds, the starter alternates.',race:'Both guess at the same time with private hints. First to crack the war code wins the round. 3 rounds.'};
-let F=null,uid='',code='',role='',R=null,unsub=null,secret=0,hostK={h:0,g:0},lastG=0,ended=true,hist=[],histRd=-1,myK=0,lastFin=-1,left=true,timer=0,tt=0,sentTk=-1,tkSeen=-1,tkAt=0,tick=0,tk=0,logN=0;
+const MN={turn:'Duel of Legions',race:'Race for the War Code'},MR={turn:'Take turns guessing the same secret. Everyone sees every hint. 20 seconds per turn, 5 rounds, the starter alternates. Draft a relic after each round.',race:'Both guess at the same time with private hints. First to crack the war code wins the round. 3 rounds, with a relic draft between rounds.'};
+const RELICS={wind:['❤️','Second Wind','+1 attempt every round'],free:['🎁','Free Strike','Every 3rd guess costs no attempt'],gold:['💰','Golden Laurel','Round wins score +50%'],crit:['⚡','Sharpshooter','A first-try hit scores ×3, not ×2'],oracle:['🔮','Oracle','Each round, learn if the secret is odd or even'],halve:['🧭','Compass','Each round, learn which half holds the secret'],time:['⏳','Time Lord','+10 seconds on every turn (duel only)'],pity:['🛡️','Last Laurel','+5 points when you lose a round']};
+const TZ=['Too slow! 🐢','So close! 😬','Nice one! 👏','Bow to me! 👑','Lucky! 🍀','Good game ⚔️'];
+let F=null,uid='',code='',role='',R=null,unsub=null,secret=0,hostK={h:0,g:0},lastG=0,ended=true,hist=[],histRd=-1,myK=0,lastFin=-1,left=true,timer=0,tt=0,dt=0,sentTk=-1,tkSeen=-1,tkAt=0,tick=0,tk=0,logN=0,tzSeen={h:0,g:0},tzLast=0,tzT=0,recId='',drSig='';
 const showP=id=>PANELS.forEach(p=>$('#'+p).hidden=p!==id),err=m=>{$('#oErr').textContent=m||''};
 const rname=()=>$('#oName').value.trim().toUpperCase().slice(0,12);
 const ref=p=>F.D.ref(F.db,p),upd=o=>F.D.update(ref('rooms/'+code),o).catch(()=>{});
 const why=e=>{const m=String(e&&(e.code||e.message)||e);return /operation-not-allowed|admin-restricted/i.test(m)?'Turn on Anonymous sign-in in Firebase (Authentication, then Sign-in method).':/permission/i.test(m)?'The database rules are not set yet (Realtime Database, then Rules).':navigator.onLine?'Could not reach the online service. Try again.':'You are offline. Online play needs internet.'};
+const has=(w,id)=>!!(R&&R.relics&&R.relics[w]&&R.relics[w].split(',').includes(id));
+const attOf=w=>R.cfg.att+(has(w,'wind')?1:0),usedN=(w,n)=>n-(has(w,'free')?Math.floor(n/3):0),tlOf=w=>R.cfg.tl+(has(w,'time')?10:0),usedOf=w=>usedN(w,hostK[w]);
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+// ---- family record (stored on this phone) ----
+function famGet(){return LS.get('ms_fam',{})}
+function famRecord(a,b,win){if(!a||!b||a===b)return;const f=famGet(),k=[a,b].sort(),key=k.join('|'),e=f[key]||{a:k[0],b:k[1],aw:0,bw:0};if((win?a:b)===e.a)e.aw++;else e.bw++;f[key]=e;LS.set('ms_fam',f)}
+function famLine(a,b){const e=famGet()[[a,b].sort().join('|')];return e?e.a+' '+e.aw+' – '+e.bw+' '+e.b:''}
+function famUI(){const rows=Object.values(famGet()).sort((x,y)=>(y.aw+y.bw)-(x.aw+x.bw)).slice(0,5);
+ $('#oFam').innerHTML=rows.length?rows.map(e=>`<div class="card famr"><span>${e.a}</span><b>${e.aw} – ${e.bw}</b><span>${e.b}</span></div>`).join(''):'<small class="bm-note">Play a match to start your family record.</small>'}
 async function fb(){if(F)return F;const[A,Au,D]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-auth.js'),import(SDK+'firebase-database.js')]);
  const app=A.initializeApp(CFG),auth=Au.getAuth(app),cr=await Au.signInAnonymously(auth);uid=cr.user.uid;F={D,db:D.getDatabase(app)};return F}
-function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||''}
+function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||'';famUI()}
 async function create(mode){const name=rname();if(!name)return err('Enter your name first.');err('Connecting…');sfx('click');
  try{await fb()}catch(e){return err(why(e))}
  for(let i=0;i<6;i++){const c=Array.from({length:5},()=>CH[Math.floor(Math.random()*CH.length)]).join('');
@@ -1130,73 +1154,96 @@ async function join(c){const name=rname();c=(c||'').trim().toUpperCase();if(!nam
  try{await fb();const s=await F.D.get(ref('rooms/'+c));if(!s.exists())return err('No room with that code.');const v=s.val();
   if(v.host&&v.host.uid===uid)return err('That is your own room.');if(v.guest&&v.guest.uid!==uid)return err('That room is full.');
   await F.D.set(ref('rooms/'+c+'/guest'),{uid,name});code=c;role='g';enter()}catch(e){err(why(e))}}
-function enter(){left=false;err('');S.n1=rname();save();hist=[];histRd=-1;myK=0;lastFin=-1;tkSeen=-1;sentTk=-1;tk=0;
+function enter(){left=false;err('');S.n1=rname();save();hist=[];histRd=-1;myK=0;lastFin=-1;tkSeen=-1;sentTk=-1;tk=0;tzSeen={h:Date.now(),g:Date.now()};drSig='';
+ $('#oTz').innerHTML=TZ.map((t,i)=>`<button data-i="${i}">${t}</button>`).join('');$$('#oTz button').forEach(b=>b.onclick=()=>sendTaunt(+b.dataset.i));
  clearInterval(tick);tick=setInterval(tickUi,250);
  unsub=F.D.onValue(ref('rooms/'+code),s=>{R=s.val();onRoom()},e=>{leave(why(e))})}
 function onRoom(){if(left)return;
  if(!R){leave('The room was closed.');return}
- if(role==='h'&&R.st!=='lobby'&&!R.guest){clearTimeout(tt);clearTimeout(timer);ended=true;upd({st:'lobby',rd:0,res:null,in:null,fin:null,log:null,turn:null,winner:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
+ if(role==='h'&&R.st!=='lobby'&&!R.guest){clearTimeout(tt);clearTimeout(timer);clearTimeout(dt);ended=true;upd({st:'lobby',rd:0,res:null,in:null,fin:null,log:null,turn:null,winner:null,relics:null,offer:null,pick:null,hint:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
  if(role==='g'&&!R.guest){leave('You left the room.');return}
+ const opp=role==='h'?'g':'h',t=R.tz&&R.tz[opp];if(t&&t.n!==tzSeen[opp]){tzSeen[opp]=t.n;if(Date.now()-t.n<6000)showTaunt(nmOf(opp),TZ[t.i])}
  if(R.st==='lobby'){lobby();return}
  showP('oGame');
- if(role==='h'&&R.st==='play'&&!ended&&R.in&&R.in.g&&R.in.g.n===R.rd&&R.in.g.k>lastG){lastG=R.in.g.k;evalGuess('g',R.in.g.g)}
+ if(role==='h'){if(R.st==='play'&&!ended&&R.in&&R.in.g&&R.in.g.n===R.rd&&R.in.g.k>lastG){lastG=R.in.g.k;evalGuess('g',R.in.g.g)}
+  if(R.st==='draft'&&R.pick&&R.pick.h&&R.pick.g)finishDraft()}
  render()}
 function lobby(){showP('oLobby');const g=R.guest,m=R.cfg.mode||'turn';$('#oCodeBig').textContent=code;$('#oModeNm').innerHTML='<b>'+MN[m]+'</b><br>'+MR[m];
  $('#oWait').textContent=role==='h'?(g?g.name+' has joined. Start when ready.':'Waiting for your friend to enter the code…'):'Joined '+R.host.name+'’s room. Waiting for the host to start…';
  $('#oStart').style.display=role==='h'&&g?'':'none';$('#oShare').style.display=role==='h'?'':'none'}
 const hearts=(n,u)=>Array.from({length:n},(_,i)=>`<svg class="hrt${i<u?' u':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HP}"/></svg>`).join('');
 const nmOf=r=>r==='h'?R.host.name:(R.guest?R.guest.name:'?');
+const relStr=w=>(R.relics&&R.relics[w]||'').split(',').filter(Boolean).map(id=>`<span title="${RELICS[id][1]}: ${RELICS[id][2]}">${RELICS[id][0]}</span>`).join(' ');
 function logOf(){return R.log?Object.keys(R.log).sort().map(k=>R.log[k]):[]}
-function tickUi(){if(!R||left||R.st!=='play'||!R.cfg||R.cfg.mode!=='turn'||(R.fin&&R.fin.n===R.rd)){const t=$('#oTurn');if(t){t.textContent='';t.className=''}return}
+function tickUi(){const t=$('#oTurn');if(!R||left||R.st!=='play'||!R.cfg||R.cfg.mode!=='turn'||(R.fin&&R.fin.n===R.rd)||!R.turn){if(t){t.textContent='';t.className=''}return}
  if(tkSeen!==R.tk){tkSeen=R.tk;tkAt=Date.now()}
- const rem=Math.max(0,Math.ceil(R.cfg.tl-(Date.now()-tkAt)/1000)),t=$('#oTurn'),mine=R.turn===role;
+ const rem=Math.max(0,Math.ceil(tlOf(R.turn)-(Date.now()-tkAt)/1000)),mine=R.turn===role;
  t.className=mine?'my':'';t.textContent=mine?'⚔️ YOUR TURN · '+rem+'s':'⏳ '+nmOf(R.turn)+'’S TURN · '+rem+'s'}
-function render(){const c=R.cfg,tm=c.mode==='turn',opp=role==='h'?'g':'h',sc=R.scores||{h:0,g:0};
+function render(){const c=R.cfg,tm=c.mode==='turn',opp=role==='h'?'g':'h',sc=R.scores||{h:0,g:0},pl=R.st==='play',dr=R.st==='draft';
  $('#oN0').textContent=nmOf(role);$('#oN1').textContent=nmOf(opp);$('#oS0').textContent=sc[role]||0;$('#oS1').textContent=sc[opp]||0;
  $('#oRd').textContent=R.rd>c.rounds?'TIEBREAK':'ROUND '+R.rd+'/'+c.rounds;$('#oRg').textContent=(tm?'Shared secret: ':'Secret: ')+c.lo+'–'+c.hi;
+ $('#oRel').innerHTML='<span>'+relStr(role)+'</span><span>'+relStr(opp)+'</span>';$('#oHint').textContent=pl&&R.hint&&R.hint[role]||'';
  if(histRd!==R.rd){histRd=R.rd;hist=[];myK=0}
  const fin=R.fin&&R.fin.n===R.rd?R.fin:null;let used=0,oused=0,busy=false,chips='';
- if(tm){const L=logOf();used=L.filter(e=>e.w===role).length;oused=L.filter(e=>e.w===opp).length;busy=sentTk===R.tk;
+ if(tm){const L=logOf();used=usedN(role,L.filter(e=>e.w===role).length);oused=usedN(opp,L.filter(e=>e.w===opp).length);busy=sentTk===R.tk;
   chips=L.map(e=>`<span class="${e.w===role?'me':'foe'}"><b>${nmOf(e.w)[0]}</b>${e.to?'⏱':e.g+' '+e.dir+' '+(TE[e.tier]||'')}</span>`).join('')}
  else{const mr=R.res&&R.res[role],or=R.res&&R.res[opp];if(mr&&mr.n===R.rd&&mr.k>hist.length)hist.push(mr);
-  used=mr&&mr.n===R.rd?mr.k:0;oused=or&&or.n===R.rd?or.k:0;busy=myK>used;
+  used=mr&&mr.n===R.rd?usedN(role,mr.k):0;oused=or&&or.n===R.rd?usedN(opp,or.k):0;busy=myK>(mr&&mr.n===R.rd?mr.k:0);
   chips=hist.map(h=>`<span style="border-color:${TC[h.tier]||'#fff'}">${h.g} ${h.dir} ${TE[h.tier]||''}</span>`).join('')}
- $('#oPips').innerHTML=hearts(c.att,used);$('#oOpPips').innerHTML=hearts(c.att,oused);$('#oHist').innerHTML=chips;
+ $('#oPips').innerHTML=hearts(attOf(role),used);$('#oOpPips').innerHTML=hearts(attOf(opp),oused);$('#oHist').innerHTML=chips;
  const or2=R.res&&R.res[opp];
- $('#oOpp').textContent=tm?nmOf(opp)+' · '+(c.att-oused)+' attempts left':(or2&&or2.n===R.rd?nmOf(opp)+' · last hint '+(TE[or2.tier]||'🎯'):nmOf(opp)+' is thinking…');
+ $('#oOpp').textContent=tm?nmOf(opp)+' · '+(attOf(opp)-oused)+' attempts left':(or2&&or2.n===R.rd?nmOf(opp)+' · last hint '+(TE[or2.tier]||'🎯'):nmOf(opp)+' is thinking…');
  let msg='';
  if(fin&&lastFin!==R.rd){lastFin=R.rd;if(fin.w===role){sfx('fanfare');burst(['🎉','✨','🏆'],24)}else{sfx('buzz');shake()}}
- if(R.st==='over'){const win=R.winner===role;msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small>'}
+ if(R.st==='over'){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;famRecord(nmOf(role),nmOf(opp),win)}
+  msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small><br><small>Family record: '+famLine(nmOf(role),nmOf(opp))+'</small>'}
+ else if(dr)msg='🎴 Relic draft';
  else if(fin)msg=fin.w===role?`🏆 You cracked ${fin.secret}! +${fin.pts}`:fin.w==='-'?`Nobody got it. It was ${fin.secret}.`:`${nmOf(fin.w)} cracked it (${fin.secret}) +${fin.pts}`;
- else if(tm)msg=R.turn===role?(used>=c.att?'Out of attempts.':'Your turn. Pick a number from '+c.lo+' to '+c.hi+'.'):'Waiting for '+nmOf(R.turn)+'…';
- else if(used>=c.att)msg='Out of attempts. Waiting for '+nmOf(opp)+'…';
+ else if(tm)msg=R.turn===role?(used>=attOf(role)?'Out of attempts.':'Your turn. Pick a number from '+c.lo+' to '+c.hi+'.'):'Waiting for '+nmOf(R.turn)+'…';
+ else if(used>=attOf(role))msg='Out of attempts. Waiting for '+nmOf(opp)+'…';
  else if(busy)msg='Waiting for the host…';
  else if(hist.length){const h=hist[hist.length-1];msg=(TE[h.tier]||'')+' '+(h.dir==='↑'?'Higher':'Lower')}
  else msg='Crack the war code first!';
  $('#oMsg').innerHTML=msg;
- const can=R.st==='play'&&!fin&&used<c.att&&!busy&&(!tm||R.turn===role);$('#oStrike').disabled=!can;$('#oNum').disabled=!can;
- $('#oStrike').style.display=R.st==='over'?'none':'';$('#oNum').style.display=R.st==='over'?'none':'';
+ const can=pl&&!fin&&used<attOf(role)&&!busy&&(!tm||R.turn===role);$('#oStrike').disabled=!can;$('#oNum').disabled=!can;
+ $('#oStrike').style.display=pl?'':'none';$('#oNum').style.display=pl?'':'none';$('#oHist').style.display=dr?'none':'';$('#oPips').style.display=dr?'none':'';$('#oOpPips').style.display=dr?'none':'';$('#oOpp').style.display=dr?'none':'';
  $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>';
- tickUi()}
+ draftUI();tickUi()}
+function draftUI(){const d=$('#oDraft'),dr=R.st==='draft';d.style.display=dr?'':'none';if(!dr){drSig='';return}
+ const opp=role==='h'?'g':'h',mine=(R.offer&&R.offer[role]||'').split(',').filter(Boolean),pk=R.pick&&R.pick[role],sig=mine.join()+'|'+pk+'|'+!!(R.pick&&R.pick[opp]);if(sig===drSig)return;drSig=sig;
+ d.innerHTML='<div class="bm-head"><h2>Choose a relic</h2></div>'+mine.map(id=>`<button class="bm-btn oRelic${pk===id?' sel':''}" data-r="${id}" ${pk?'disabled':''}><span class="e">${RELICS[id][0]}</span><span><b>${RELICS[id][1]}</b><br><small>${RELICS[id][2]}</small></span></button>`).join('')+`<small class="bm-note">${pk?'Waiting for '+nmOf(opp)+' to choose…':'Pick one. It lasts the whole match.'}</small>`;
+ $$('#oDraft .oRelic').forEach(b=>b.onclick=()=>pickRelic(b.dataset.r))}
+function pickRelic(id){if(!R||R.st!=='draft'||(R.pick&&R.pick[role]))return;sfx('click');if(role==='h')upd({'pick/h':id});else F.D.set(ref('rooms/'+code+'/pick/g'),id).catch(()=>{})}
+function showTaunt(who,text){const b=$('#oBubble');b.textContent=who+': '+text;b.classList.add('on');sfx('click');clearTimeout(tzT);tzT=setTimeout(()=>b.classList.remove('on'),2600)}
+function sendTaunt(i){if(!R||Date.now()-tzLast<1500)return;tzLast=Date.now();const n=Date.now();tzSeen[role]=n;showTaunt('You',TZ[i]);F.D.set(ref('rooms/'+code+'/tz/'+role),{i,n}).catch(()=>{})}
 // ---- host only ----
-function armTimer(){clearTimeout(tt);if(!R||R.cfg.mode!=='turn')return;tt=setTimeout(()=>{if(left||ended||!R||R.cfg.mode!=='turn')return;const who=R.turn;hostK[who]++;turnMiss(who,{w:who,to:1})},(R.cfg.tl+2)*1000)}
-function startRound(n){const c=R.cfg,tm=c.mode==='turn';secret=Math.floor(Math.random()*(c.hi-c.lo+1))+c.lo;hostK={h:0,g:0};lastG=0;ended=false;logN=0;tk++;
- upd({st:'play',rd:n,res:null,in:null,fin:null,log:null,winner:null,turn:tm?(n%2?'h':'g'):null,tk});if(tm)armTimer()}
+function armTimer(){clearTimeout(tt);if(!R||R.cfg.mode!=='turn')return;tt=setTimeout(()=>{if(left||ended||!R||R.cfg.mode!=='turn')return;const who=R.turn;hostK[who]++;turnMiss(who,{w:who,to:1})},(tlOf(R.turn)+2)*1000)}
+function startRound(n){const c=R.cfg,tm=c.mode==='turn';secret=rndS(c.lo,c.hi);hostK={h:0,g:0};lastG=0;ended=false;logN=0;tk++;
+ const hint={};for(const w of['h','g']){if(has(w,'oracle'))hint[w]='🔮 The secret is '+(secret%2?'ODD':'EVEN');if(has(w,'halve')){const m=Math.floor((c.lo+c.hi)/2);hint[w]=(hint[w]?hint[w]+' · ':'')+'🧭 '+(secret<=m?'LOWER half ('+c.lo+'–'+m+')':'UPPER half ('+(m+1)+'–'+c.hi+')')}}
+ const u={st:'play',rd:n,res:null,in:null,fin:null,log:null,winner:null,offer:null,pick:null,turn:tm?(n%2?'h':'g'):null,tk,hint:Object.keys(hint).length?hint:null};
+ if(n===1){u.mid=(R.mid||0)+1;u.relics=null}
+ upd(u);if(tm)armTimer()}
+function startDraft(rd){const c=R.cfg,offer={};for(const w of['h','g']){const own=(R.relics&&R.relics[w]||'').split(',');offer[w]=shuf(Object.keys(RELICS).filter(k=>!own.includes(k)&&!(k==='time'&&c.mode!=='turn'))).slice(0,3).join(',')}
+ upd({st:'draft',offer,pick:null,res:null,in:null,hint:null,turn:null});clearTimeout(dt);dt=setTimeout(finishDraft,22000)}
+function finishDraft(){clearTimeout(dt);if(left||!R||R.st!=='draft')return;const rel={h:(R.relics&&R.relics.h)||'',g:(R.relics&&R.relics.g)||''};
+ for(const w of['h','g']){let p=R.pick&&R.pick[w];if(!p){const o=R.offer[w].split(',');p=o[Math.floor(Math.random()*o.length)]}rel[w]=rel[w]?rel[w]+','+p:p}
+ upd({relics:rel,offer:null,pick:null});startRound(R.rd+1)}
 function turnMiss(who,entry){const c=R.cfg,o=who==='h'?'g':'h',u={['log/'+String(logN++).padStart(2,'0')]:entry};
- if(hostK.h>=c.att&&hostK.g>=c.att){clearTimeout(tt);upd(u);setTimeout(()=>endRound('-',0),700);return}
- u.turn=hostK[o]<c.att?o:who;u.tk=++tk;upd(u);armTimer()}
-function evalGuess(who,g){const c=R.cfg,tm=c.mode==='turn';if(ended||!Number.isInteger(g)||g<c.lo||g>c.hi||hostK[who]>=c.att)return;if(tm&&R.turn!==who)return;const k=++hostK[who];
+ if(usedOf('h')>=attOf('h')&&usedOf('g')>=attOf('g')){clearTimeout(tt);upd(u);setTimeout(()=>endRound('-',0,0),700);return}
+ u.turn=usedOf(o)<attOf(o)?o:who;u.tk=++tk;upd(u);armTimer()}
+function evalGuess(who,g){const c=R.cfg,tm=c.mode==='turn';if(ended||!Number.isInteger(g)||g<c.lo||g>c.hi||usedOf(who)>=attOf(who))return;if(tm&&R.turn!==who)return;const k=++hostK[who];
  if(g===secret)return endRound(who,k,tm?{['log/'+String(logN++).padStart(2,'0')]:{w:who,g,tier:'blazing',dir:'✓'}}:null);
  const tier=mtemp(g,secret,c.lo,c.hi)[0],dir=g<secret?'↑':'↓';
  if(tm)return turnMiss(who,{w:who,g,tier,dir});
- upd({['res/'+who]:{n:R.rd,k,g,tier,dir}});if(hostK.h>=c.att&&hostK.g>=c.att)setTimeout(()=>endRound('-',0),700)}
-function endRound(w,k,extra){if(ended)return;ended=true;clearTimeout(tt);const c=R.cfg,rd=R.rd,sc={h:R.scores.h||0,g:R.scores.g||0},pts=w==='-'?0:(10+5*(c.att-k))*(k===1?2:1);if(w!=='-')sc[w]+=pts;
- const u={fin:{n:rd,w,secret,pts},scores:sc,turn:null};if(extra)Object.assign(u,extra);else if(w!=='-')u['res/'+w]={n:rd,k,g:secret,tier:'blazing',dir:'✓'};upd(u);
- clearTimeout(timer);timer=setTimeout(()=>{if(left||!R||R.rd!==rd)return;if(rd>=c.rounds&&sc.h!==sc.g)upd({st:'over',winner:sc.h>sc.g?'h':'g'});else startRound(rd+1)},3800)}
+ upd({['res/'+who]:{n:R.rd,k,g,tier,dir}});if(usedOf('h')>=attOf('h')&&usedOf('g')>=attOf('g'))setTimeout(()=>endRound('-',0,0),700)}
+function endRound(w,k,extra){if(ended)return;ended=true;clearTimeout(tt);const c=R.cfg,rd=R.rd,sc={h:R.scores.h||0,g:R.scores.g||0};
+ let pts=0;if(w!=='-'){pts=(10+5*(attOf(w)-usedOf(w)))*(k===1?(has(w,'crit')?3:2):1)*(has(w,'gold')?1.5:1);pts=Math.round(pts);sc[w]+=pts;const l=w==='h'?'g':'h';if(has(l,'pity'))sc[l]+=5}
+ const u={fin:{n:rd,w,secret,pts},scores:sc,turn:null};if(extra&&typeof extra==='object')Object.assign(u,extra);else if(w!=='-')u['res/'+w]={n:rd,k,g:secret,tier:'blazing',dir:'✓'};upd(u);
+ clearTimeout(timer);timer=setTimeout(()=>{if(left||!R||R.rd!==rd)return;if(rd>=c.rounds){if(sc.h!==sc.g)upd({st:'over',winner:sc.h>sc.g?'h':'g'});else startRound(rd+1)}else startDraft(rd)},3800)}
 // ---- actions ----
 function strike(){if(!R||R.st!=='play')return;const g=parseInt($('#oNum').value,10),c=R.cfg;if(isNaN(g)||g<c.lo||g>c.hi){$('#oMsg').textContent='Enter a number from '+c.lo+' to '+c.hi+'.';sfx('buzz');return}
  $('#oNum').value='';sfx('click');if(role==='h')evalGuess('h',g);else{myK++;if(c.mode==='turn')sentTk=R.tk;F.D.set(ref('rooms/'+code+'/in/g'),{n:R.rd,k:myK,g}).catch(()=>{});render()}}
-async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer);clearTimeout(tt);clearInterval(tick);if(unsub){unsub();unsub=null}
+async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer);clearTimeout(tt);clearTimeout(dt);clearInterval(tick);if(unsub){unsub();unsub=null}
  try{if(F&&code){if(role==='h')await F.D.remove(ref('rooms/'+code));else if(role==='g')await F.D.remove(ref('rooms/'+code+'/guest'))}}catch(e){}
  role='';code='';R=null;showP('oMenu');home();if(msg)setTimeout(()=>toast(msg),400)}
 async function share(){const url=location.origin+location.pathname+'#room='+code,text='Join my MindStrike room! Code: '+code;
@@ -1205,7 +1252,7 @@ $('#onlineBtn').onclick=()=>{sfx('click');openOnline()};
 $('#oCreateT').onclick=()=>create('turn');$('#oCreateR').onclick=()=>create('race');$('#oJoin').onclick=()=>join($('#oCode').value);
 $('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;
 $('#oNum').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
-$('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0}}).then(()=>startRound(1))};
+$('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0},relics:null}).then(()=>startRound(1))};
 $('#oLeave').onclick=()=>{if(confirm('Leave the match?'))leave()};$('#oLeave2').onclick=()=>leave();
 $('#oBack').onclick=()=>{if(code)leave();else home()};
 const hj=()=>{const m=/^#room=([A-Za-z0-9]{4,6})/.exec(location.hash);if(!m)return;const c=m[1].toUpperCase();history.replaceState(null,'',location.pathname+location.search);setTimeout(()=>{openOnline();$('#oCode').value=c},1300)};

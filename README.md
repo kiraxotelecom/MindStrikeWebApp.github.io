@@ -48,6 +48,9 @@ Opponent screen redesigned to match the rest (hero + battle cards); modes rename
 ## v23 changes
 Clash Online now has a **mode menu**. **Duel of Legions** (strict turns, 20s per turn, shared hints, the starting player alternates each round, a timeout costs an attempt) and **Race for the War Code** (both guess at once with private hints, 3 rounds, 1 to 100). Match flow, scoring and the host-holds-the-secret design are unchanged. Bump `V` in `sw.js` after every change.
 
+## v24 changes
+**Secrets no longer repeat a digit** (11, 22, 77, 111...) in the main game, mini games and online (`rndS` helper). **Relic draft** between online rounds: pick 1 of 3 of Second Wind, Free Strike, Golden Laurel, Sharpshooter, Oracle, Compass, Time Lord (duel only), Last Laurel; they last the whole match. **Taunts**: six one-tap messages (fixed list, no typing). **Family record**: head-to-head wins per pair of names, saved on each phone and shown on the Online menu and the match-over screen. Bump `V` in `sw.js` after every change.
+
 ## Roadmap (none of these are built yet)
 Ordered by expected impact. **The first three are next.**
 
