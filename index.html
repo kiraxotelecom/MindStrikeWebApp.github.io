@@ -50,6 +50,25 @@ const WORLDS={
    ['druid','sage'],['chief','sheikh'],['scribe','calligrapher'],['nomad','bedouin'],['priestess','seeress'],['sailor','seafarer'],['driver','cameleer'],['foreman','artisan'],['glad.','duelist'],['senator','vizier'],['prefect','governor'],['pharaoh','emir'],
    ['hoplite','spearman'],['gladiator','duelist'],['spartan','desert knight'],['praetorian','royal guard'],['eagle','falcon'],['vestal flame','lantern flame'],['vestal','seeress'],['roman legion set','desert rider set'],['galea','turban'],['scutum','buckler'],['gladius','scimitar']],
   emo:[['🏛️','🕌'],['🌲','🌴'],['🐘','🐪'],['🏺','🪔'],['🔱','🗡️'],['🪖','👳']]}};
+
+const KV={A:['asantius','asantorix','asanteos'],E:['elijahos','elijahus','elijahrix','elijamose'],I:['imrandros','imranus','imranix','imrankhet'],C:['christinea'],K:['kirabotep','kirabus','kirabos','kirabix'],S:['shanitari','shanitea'],M:['mariamne','mariamna','mariamun'],N:['nanaia','nanamun']};
+const KN={
+ cyber:{A:'asantron',E:'elijax',I:'imranet',C:'christinex',K:'kirabyte',S:'shanitek',M:'mariamind',N:'nanova'},
+ samurai:{A:'asantomaru',E:'elijiro',I:'imranosuke',C:'christinehime',K:'kiraboshi',S:'shanitako',M:'mariamiko',N:'nanahime'},
+ ice:{A:'asanthor',E:'elijarr',I:'imrulf',C:'christinhild',K:'kirabjorn',S:'shanitrud',M:'mariamdis',N:'nanarun'},
+ buganda:{A:'asante',E:'eliya',I:'imrani',C:'kirisitina',K:'kirabo',S:'shanita',M:'mariamu',N:'nana'},
+ gold:{A:'asantar',E:'elyas',I:'imran',C:'karistina',K:'kiraban',S:'shanitah',M:'maryam',N:'nanaya'}};
+const KT={ /* titles, same order as KIDS: Asante, Elijah, Imran, Christine, Kirabo, Shanita, Mariam, Nana */
+ cyber:['The Unbreakable Firewall','Lightspeed Courier','Lord of the Data Docks','Empress of the Edict Protocol','Admin of the Golden Mainframe','Queen of the Data Stream','Grandmaster Algorithm','Star of the Neon Arena'],
+ samurai:['The Unbroken Shield','Runner of the Rising Sun','Lord of the Sea Fleet','Lady of the Imperial Edict','Lord of the Golden Dunes','Lady of the Moonlit River','Master of Strategy','Star of the Dojo'],
+ ice:['The Unbroken Shield-Wall','Sun-Runner of the North','Lord of Longships','Jarl-Queen of the Law','Frost-King of the Glacier Dunes','Queen of the Frozen River','Seeress of Strategy','Star of the Great Hall'],
+ buganda:['The Unbroken Shield','Sun-Runner of the Lake','Lord of the Canoes','Mistress of the Royal Edict','The Gift of the Kingdom','Queen of the Nile','Queen of Strategy','Star of the Arena'],
+ gold:['The Unbroken Shield','Sun-Runner of the Desert','Lord of the Dhows','Sultana of the Edict','Emir of the Golden Dune','Queen of the Oasis','The Grand Strategist','Star of the Grand Arena']};
+const KC={cyber:'Cyber alias',samurai:'Samurai name',ice:'Norse name',buganda:'Baganda name',gold:'Arabian name'};
+for(const id in KN){const W=WORLDS[id];if(!W||!W.lex)continue;const n=KN[id],lw=w=>{const q=W.lex.find(x=>x[0]===w);return q?q[1]:w};
+ for(const k in KV)KV[k].forEach(v=>W.lex.push([v,n[k]]));
+ W.lex.push(['asantorix’ stronghold',lw('stronghold')+' of '+n.A],['kirabotep’s tomb',lw('tomb')+' of '+n.K],['imrandros’ fleet','fleet of '+n.I]);
+ W.kt=KT[id];W.cul=KC[id]}
 </script>
 <meta name="author" content="Kirabo Isa Bilal">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1a0d0b">
@@ -287,7 +306,9 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #oNet{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;text-align:center;font:700 13px Cinzel,Georgia,serif;letter-spacing:1px;color:#fff;background:#a8281c;box-shadow:0 2px 12px #000;transform:translateY(-120%);transition:transform .25s;pointer-events:none}#oNet.on{transform:none}#oNet.ok{background:#2f7d32}
 #oFeed{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}#oFeed:empty{display:none}#oFeed .sc{font:700 12px Cinzel,Georgia,serif;letter-spacing:2px;color:hsl(calc(40.2deg + var(--hs)),calc(83.7% * var(--ss)),calc(75.9% + var(--lt) * -51.8%));border:1px dashed hsl(calc(31.4deg + var(--hs)),calc(43.3% * var(--ss)),calc(38.0% + var(--lt) * 24.0%));border-radius:6px;padding:6px 14px;background:rgb(var(--k) / 0.67)}#oFeed .sc b{font-size:1.5rem;color:#fff;margin-left:8px}#oFeed span.fd{border:1px solid;border-radius:8px;padding:2px 9px;font-size:.95rem;background:rgb(var(--k) / 0.67)}
 #oPw{display:flex;gap:8px;justify-content:center;width:100%}#oPw button{flex:1;max-width:120px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 4px;border:1px solid hsl(calc(31.7deg + var(--hs)),calc(42.7% * var(--ss)),calc(32.2% + var(--lt) * 35.6%));border-radius:8px;background:rgb(var(--k) / 0.67);color:hsl(calc(40.0deg + var(--hs)),calc(81.8% * var(--ss)),calc(72.0% + var(--lt) * -44.0%));font:700 11px Cinzel,Georgia,serif;letter-spacing:1px;min-width:0}#oPw button span{font-size:1.2rem}#oPw button i{font-style:normal;color:#fff;font-size:.9rem}#oPw button:disabled{opacity:.4}
-#oBubble{min-height:1.6em;text-align:center;font-weight:700;color:hsl(calc(40.5deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%));opacity:0;transition:opacity .25s}#oBubble.on{opacity:1}
+#oStrike{display:none!important}#okp{padding:6px!important;gap:5px!important;width:min(100%,360px)}#app #okp button{padding:8px 0;font-size:1.25rem}#oNum{margin:0}
+#oTz{flex-wrap:nowrap!important;gap:6px!important}#oTz button{flex:1;max-width:52px;padding:6px 0!important;font-size:1.25rem!important;border-radius:12px!important}
+#oBubble{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 56px);transform:translateX(-50%);z-index:20;pointer-events:none;white-space:nowrap;padding:7px 16px;border-radius:16px;border:1px solid var(--gold);background:rgb(var(--k) / 0.92);min-height:0!important;text-align:center;font-weight:700;color:hsl(calc(40.5deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%));opacity:0;transition:opacity .25s}#oBubble.on{opacity:1}
 
 #inst{width:min(92%,370px);box-sizing:border-box;text-align:center;font-size:.8rem;line-height:1.45;background:linear-gradient(160deg,hsla(calc(23.1deg + var(--hs)),calc(36.1% * var(--ss)),calc(14.1% + var(--lt) * 71.8%),0.970),hsla(calc(22.5deg + var(--hs)),calc(33.3% * var(--ss)),calc(4.7% + var(--lt) * 90.6%),0.980));border:1px solid var(--gold);border-radius:10px;padding:10px 12px;position:relative;color:hsl(calc(38.2deg + var(--hs)),calc(55.9% * var(--ss)),calc(88.4% + var(--lt) * -76.8%))}
 #inst[hidden]{display:none}#inst b{color:hsl(calc(40.2deg + var(--hs)),calc(83.7% * var(--ss)),calc(75.9% + var(--lt) * -51.8%))}#inst .ix{position:absolute;top:2px;right:4px;min-width:0;width:30px;height:30px;padding:0;border:0;background:none;box-shadow:none;font-size:1.1rem;color:hsl(calc(40.6deg + var(--hs)),calc(38.3% * var(--ss)),calc(68.2% + var(--lt) * -36.4%))}
@@ -427,7 +448,7 @@ html.wd-gold{--bA:#b48cff;--bS:#eadfff;--bR:#4a1a8a;--bB:#120428;--bV:#2a0a50aa;
   <button class="bm-opt" data-k="Psycho"><span class="bm-sym">🛡️</span><strong>Asantius</strong><small>Berserker · learns you</small></button>
   <button class="bm-opt" data-k="Prime"><span class="bm-sym">👑</span><strong>Christinea</strong><small>Prime · ruthless</small></button>
  </div><div id="genInfo" style="font-size:.8rem;text-align:center;width:min(94%,390px);line-height:1.45"></div>
- <div class="bm-head"><h2>Place your wager</h2></div><div class="bm-grid2" id="wgrid"></div><div id="wgInfo" style="font-size:.75rem;text-align:center;opacity:.85;width:min(94%,390px)"></div></div>
+ <button class="bm-btn bm-center" id="wgBtn" style="margin-top:10px">🎲 Wager ▸</button></div>
  <div class="bm-head"><h2>Select your campaign</h2></div>
  <div class="bm-list" id="matches"></div>
 </section>
@@ -536,7 +557,7 @@ html.wd-gold{--bA:#b48cff;--bS:#eadfff;--bR:#4a1a8a;--bB:#120428;--bV:#2a0a50aa;
   <div id="oPw"></div><small class="bm-note" id="oPwN">One power per round · −5 pts if you win that round</small>
   <div id="oMsg" aria-live="polite"></div>
   <div id="oDraft" style="display:none"></div>
-  <input type="text" id="oNum" class="oin" inputmode="numeric" maxlength="3" placeholder="?" autocomplete="off">
+  <input type="text" id="oNum" class="oin" readonly inputmode="none" maxlength="3" placeholder="?" autocomplete="off"><div class="kp" id="okp"></div>
   <button class="bm-cta" id="oStrike">⚔️ STRIKE</button>
   <button class="bm-cta" id="oRe" style="display:none">REMATCH</button>
   <div id="oBubble"></div>
@@ -579,6 +600,7 @@ html.wd-gold{--bA:#b48cff;--bS:#eadfff;--bR:#4a1a8a;--bB:#120428;--bV:#2a0a50aa;
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
 <div class="pop" id="pop" style="pointer-events:none"><img id="popimg" alt=""></div>
 <div class="pop" id="help"><div class="card" id="helpBody"></div></div>
+<div class="pop" id="wgPop" style="z-index:12"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🎲 PLACE YOUR WAGER</h2><div class="bm-grid2" id="wgrid"></div><div id="wgInfo" style="font-size:.75rem;text-align:center;opacity:.85;margin:8px 0"></div><button id="wgOk" style="width:100%">CLOSE</button></div></div>
 </div>
 <script>
 'use strict';
@@ -1342,8 +1364,10 @@ $('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-pv]'
 const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100];
 function wgUI(){const g=document.getElementById('wgrid');if(!g||typeof setup==='undefined')return;if(setup.w==null)setup.w=0;if(setup.w>PRO.gold)setup.w=[...WS].reverse().find(x=>x<=PRO.gold)||0;const m=WM[setup.d]||2;
  g.innerHTML=WS.map(w=>`<button class="bm-opt${setup.w===w?' sel':''}" data-w="${w}" ${w>PRO.gold?'disabled style="opacity:.4"':''}><span class="bm-sym">${w?'🪙':'🕊️'}</span><strong>${w?w+' 💰':'No wager'}</strong><small>${w?'Win → '+Math.round(w*m)+' 💰':'Play for glory'}</small></button>`).join('');
- $('#wgInfo').textContent=`Win ×${m} · draw refunds · loss or quitting forfeits · you hold 💰 ${PRO.gold}`}
-$('#wgrid').onclick=e=>{const b=e.target.closest('[data-w]');if(!b||b.disabled)return;setup.w=+b.dataset.w;sfx('click');wgUI()};
+ $('#wgInfo').textContent=`Win ×${m} · draw refunds · loss or quitting forfeits · you hold 💰 ${PRO.gold}`;
+ const wb=$('#wgBtn');if(wb)wb.textContent=setup.w?`🎲 Wager ${setup.w} 💰 → win ${Math.round(setup.w*m)} ▸`:'🎲 Wager: none ▸'}
+$('#wgrid').onclick=e=>{const b=e.target.closest('[data-w]');if(!b||b.disabled)return;setup.w=+b.dataset.w;sfx('click');wgUI();$('#wgPop').classList.remove('on')};
+$('#wgBtn').onclick=()=>{sfx('click');wgUI();$('#wgPop').classList.add('on')};$('#wgOk').onclick=()=>{sfx('click');$('#wgPop').classList.remove('on')};
 function wagerEnd(win,draw){G.wtxt='';if(!G.wager)return;const w=G.wager;let p=0;if(win){p=Math.round(w*WM[G.d]);qEv('wager')}else if(draw)p=w;PRO.gold+=p;LS.set('ms_pro',PRO);G.wp=p;
  G.wtxt=`<br>🎲 <b>Wager ${w} 💰</b> · ${win?`WON — paid ${p} (+${p-w})`:draw?'draw — refunded':'lost'}`;if(win)setTimeout(()=>burst(['🪙','💰','✨'],24),900)}
 // -- generals
@@ -1386,7 +1410,7 @@ ACH.house=['👑','HOUSE OF HEROES','Win a match against all eight champions of 
 const KIDS=[['ASANTE','ASANTIUS','Roman','The Unbroken Shield','ASANT','🛡️'],['ELIJAH','ELIJAHOS','Greek','Sun-Runner','ELIJA','☀️'],['IMRAN','IMRANDROS','Greek','Lord of Ships','IMRAN','⚓'],['CHRISTINE','CHRISTINEA','Roman','Empress of the Edict','CHRISTIN','👑'],
  ['KIRABO','KIRABOTEP','Egyptian','Pharaoh of the Golden Dune','KIRAB','🏺'],['SHANITA','SHANITARI','Egyptian','Queen of the Nile','SHANIT','🪷'],['MARIAM','MARIAMNE','Greek','Queen of Strategy','MARIAM','♟️'],['NANA','NANAIA','Greek','Star of the Arena','NANA','⭐']];
 function kidSpots(r){const rg=CAMP.filter(R=>R.gen.n.includes(r)||R.nodes.some(x=>x[3].includes(r))).map(R=>R.n[0]+R.n.slice(1).toLowerCase()),o=[...rg];if(Object.values(GENS).some(g=>g.n.includes(r)))o.push('Quick match');if(DUEL.some(d=>d[0].includes(r)))o.push('Number Duel');return o.join(' · ')}
-function houseUI(){const n=Object.keys(PRO.hk||{}).length;$('#houseList').innerHTML=`<div class="card" style="margin:0;text-align:center"><b>🌿 ${n} / ${KIDS.length} laurels</b></div>`+KIDS.map(k=>`<div class="card" style="margin:0;display:flex;gap:10px;align-items:center"><span style="font-size:1.8rem">${k[5]}</span><div style="flex:1"><b>${k[1]}</b> <small>· ${k[2]} form of ${k[0]}</small><br><small>${k[3]}</small><br><small style="opacity:.75">${kidSpots(k[4])}</small></div><span style="font-size:1.5rem">${PRO.hk[k[1]]?'🌿':'🔒'}</span></div>`).join('')}
+function houseUI(){const n=Object.keys(PRO.hk||{}).length;$('#houseList').innerHTML=`<div class="card" style="margin:0;text-align:center"><b>🌿 ${n} / ${KIDS.length} laurels</b></div>`+KIDS.map((k,i)=>{const W=WID&&WORLDS[WID]||{},nm=lexStr(k[1]),real=nm.toLowerCase()===k[0].toLowerCase(),lab=W.kt?(real?'real name of '+k[0]:W.cul+' of '+k[0]):k[2]+' form of '+k[0],ti=W.kt?W.kt[i]:k[3];return `<div class="card" style="margin:0;display:flex;gap:10px;align-items:center"><span style="font-size:1.8rem">${k[5]}</span><div style="flex:1"><b>${nm}</b> <small>· ${lab}</small><br><small>${ti}</small><br><small style="opacity:.75">${lexStr(kidSpots(k[4]))}</small></div><span style="font-size:1.5rem">${PRO.hk[k[1]]?'🌿':'🔒'}</span></div>`}).join('')}
 function houseMark(win){if(!win||!G||G.mode!=='AI')return;const n=(G.opp||'').toUpperCase(),k=KIDS.find(x=>n.includes(x[4]));if(!k||PRO.hk[k[1]])return;PRO.hk[k[1]]=1;LS.set('ms_pro',PRO);
  setTimeout(()=>toast(`🌿 <b>${k[1]}</b> bows to you<br><small>Laurel earned · ${Object.keys(PRO.hk).length}/${KIDS.length}</small>`),1800);if(Object.keys(PRO.hk).length>=KIDS.length)setTimeout(()=>unlock('house'),4800)}
 $('#houseBtn').onclick=()=>{sfx('click');houseUI();go('s-house')};
@@ -1575,7 +1599,8 @@ const LAD={turn:[[20,4,1],[50,5,1],[100,5,1.5],[250,6,1.5],[500,7,2]],race:[[30,
 const MODES={turn:{mode:'turn',lo:1,hi:100,att:5,rounds:5,tl:20},race:{mode:'race',lo:1,hi:100,att:6,rounds:3},swap:{mode:'swap',lo:1,hi:100,att:6,rounds:3}};
 const MN={turn:'Duel of Legions',race:'Race for the War Code',swap:'Sealed Scrolls'},MR={turn:'Take turns guessing the same secret. Everyone sees every hint. 20 seconds per turn, 5 rounds, the starter alternates. Draft a relic after each round.',race:'Both guess at the same time with private hints. First to crack the war code wins the round. 3 rounds, with a relic draft between rounds.',swap:'Each of you seals a secret number for the other, then you race to crack the scroll your rival sealed. Their phone judges your guesses, so you can feel them closing in on yours. 3 rounds.'};
 const RELICS={wind:['❤️','Second Wind','+1 attempt every round'],free:['🎁','Free Strike','Every 3rd guess costs no attempt'],gold:['💰','Golden Laurel','Round wins score +50%'],crit:['⚡','Sharpshooter','A first-try hit scores ×3, not ×2'],oracle:['🔮','Oracle','Each round, learn if the secret is odd or even'],halve:['🧭','Compass','Each round, learn which half holds the secret'],time:['⏳','Time Lord','+10 seconds on every turn (duel only)'],pity:['🛡️','Last Laurel','+5 points when you lose a round']};
-const TZ=['Too slow! 🐢','So close! 😬','Nice one! 👏','Bow to me! 👑','Lucky! 🍀','Good game ⚔️'];
+/* v39: quick chat is emoji + one short word. Same six slots as before, so old and new phones still understand each other. */
+const TZ=[['🐢','Slow!'],['😬','Close!'],['👏','Nice!'],['👑','Bow!'],['🍀','Lucky!'],['⚔️','GG']];
 /* powers: information only, so they can never change attempts or scores by accident. One per round, -5 pts if you win that round. */
 const PW={scan:['🔭','SCAN','Which half of what you have not ruled out'],focus:['🎯','FOCUS','Your next guess shows exact closeness'],mark:['🔢','MARK','The last digit of the secret']};
 const OPT=Object.assign({lad:1,pw:1},LS.get('ms_oopt',{}));
@@ -1614,7 +1639,7 @@ async function join(c){const name=rname();c=(c||'').trim().toUpperCase();if(!nam
   await F.D.set(ref('rooms/'+c+'/guest'),{uid,name});code=c;role='g';enter()}catch(e){err(why(e))}}
 function enter(){left=false;err('');S.n1=rname();save();hist=[];myK=0;lastFin='';tkSeen=-1;sentTk=-1;tk=0;tzSeen={h:Date.now(),g:Date.now()};drSig='';
  rKey='';curMid=-1;sealKey='';pwKey='';rvKey='';goKey='';setKey='';jP={};feed=[];sealOk=null;vDone='';chg={scan:2,focus:2,mark:1};away=false;backAt=0;net=true;fbOn=true;
- $('#oTz').innerHTML=TZ.map((t,i)=>`<button data-i="${i}">${t}</button>`).join('');$$('#oTz button').forEach(b=>b.onclick=()=>sendTaunt(+b.dataset.i));
+ $('#oTz').innerHTML=TZ.map((t,i)=>`<button data-i="${i}" aria-label="${t[1]}">${t[0]}</button>`).join('');$$('#oTz button').forEach(b=>b.onclick=()=>sendTaunt(+b.dataset.i));
  $('#oPw').innerHTML=Object.keys(PW).map(t=>`<button data-t="${t}" title="${PW[t][2]}"><span>${PW[t][0]}</span><b>${PW[t][1]}</b><i></i></button>`).join('');$$('#oPw button').forEach(b=>b.onclick=()=>usePower(b.dataset.t));
  clearInterval(tick);tick=setInterval(tickUi,250);wake();
  conn=F.D.onValue(ref('.info/connected'),s=>setNet(s.val()===true));
@@ -1708,6 +1733,7 @@ function render(){const c=R.cfg,md=c.mode,tm=md==='turn',sw=md==='swap',opp=oppO
  const can=pl&&!fin&&net&&used<attOf(role)&&!busy&&(!tm||R.turn===role),canSeal=se&&!sealed&&net;
  $('#oStrike').textContent=se?'🔏 SEAL SCROLL':'⚔️ STRIKE';$('#oStrike').disabled=!(can||canSeal);$('#oNum').disabled=!(can||canSeal);
  $('#oStrike').style.display=pl||se?'':'none';$('#oNum').style.display=pl||se?'':'none';
+ {const kb=$('#oKpGo');if(kb){kb.textContent=$('#oStrike').textContent;$$('#okp button').forEach(b=>b.disabled=!(can||canSeal));$('#okp').style.display=pl||se?'':'none'}}
  const hide=dr||se;$('#oHist').style.display=hide?'none':'';$('#oPips').style.display=hide?'none':'';$('#oOpPips').style.display=hide?'none':'';$('#oOpp').style.display=hide?'none':'';
  $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>';
  draftUI();pwUI();tickUi()}
@@ -1716,8 +1742,8 @@ function draftUI(){const d=$('#oDraft'),dr=R.st==='draft';d.style.display=dr?'':
  d.innerHTML='<div class="bm-head"><h2>Choose a relic</h2></div>'+mine.map(id=>`<button class="bm-btn oRelic${pk===id?' sel':''}" data-r="${id}" ${pk?'disabled':''}><span class="e">${RELICS[id][0]}</span><span><b>${RELICS[id][1]}</b><br><small>${RELICS[id][2]}</small></span></button>`).join('')+`<small class="bm-note">${pk?'Waiting for '+nmOf(opp)+' to choose…':'Pick one. It lasts the whole match.'}</small>`;
  $$('#oDraft .oRelic').forEach(b=>b.onclick=()=>pickRelic(b.dataset.r))}
 function pickRelic(id){if(!R||R.st!=='draft'||(R.pick&&R.pick[role]))return;sfx('click');if(role==='h')upd({'pick/h':id});else F.D.set(ref('rooms/'+code+'/pick/g'),id).catch(()=>{})}
-function showTaunt(who,text){const b=$('#oBubble');b.textContent=who+': '+text;b.classList.add('on');sfx('click');clearTimeout(tzT);tzT=setTimeout(()=>b.classList.remove('on'),2600)}
-function sendTaunt(i){if(!R||!net||Date.now()-tzLast<1500)return;tzLast=Date.now();const n=Date.now();tzSeen[role]=n;showTaunt('You',TZ[i]);F.D.set(ref('rooms/'+code+'/tz/'+role),{i,n}).catch(()=>{})}
+function showTaunt(who,t){const b=$('#oBubble');t=t||['💬',''];b.textContent=(who+'').slice(0,12)+'  '+t[0]+' '+t[1];b.classList.add('on');sfx('click');clearTimeout(tzT);tzT=setTimeout(()=>b.classList.remove('on'),2600)}
+function sendTaunt(i){if(!R||!net||!TZ[i]||Date.now()-tzLast<2500)return;tzLast=Date.now();const n=Date.now();tzSeen[role]=n;showTaunt('You',TZ[i]);F.D.set(ref('rooms/'+code+'/tz/'+role),{i,n}).catch(()=>{})}
 // ---- powers (the player who holds the secret answers) ----
 function jInit(w,rg){jP[w]={u:0,fx:0,lo:rg.lo,hi:rg.hi,t:{}}}
 function trk(ws,g){ws.forEach(w=>{const j=jP[w];if(!j)return;if(g<secret)j.lo=Math.max(j.lo,g+1);else j.hi=Math.min(j.hi,g-1)})}
@@ -1785,7 +1811,7 @@ async function share(){const url=location.origin+location.pathname+'#room='+code
 $('#onlineBtn').onclick=()=>{sfx('click');openOnline()};
 $('#oCreateT').onclick=()=>create('turn');$('#oCreateR').onclick=()=>create('race');$('#oCreateS').onclick=()=>create('swap');$('#oJoin').onclick=()=>join($('#oCode').value);
 $('#oLad').onclick=()=>{OPT.lad=OPT.lad?0:1;LS.set('ms_oopt',OPT);optUI();sfx('click')};$('#oPwT').onclick=()=>{OPT.pw=OPT.pw?0:1;LS.set('ms_oopt',OPT);optUI();sfx('click')};
-$('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;
+$('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;if(typeof keypad==='function')keypad($('#okp'),$('#oNum'),()=>strike(),'oKpGo');
 $('#oNum').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 $('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0},relics:null}).then(()=>startRound(1))};
 $('#oLeave').onclick=()=>{if(confirm('Leave the match?'))leave()};$('#oLeave2').onclick=()=>leave();
