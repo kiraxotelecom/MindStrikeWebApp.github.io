@@ -111,3 +111,12 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 ## v36 changes
 - World art: Ice, Neon Grid and Shogun's Realm each get their own menu/gameplay background (img/<world>_menu.webp) and boss background (img/<world>_boss.webp). The old colour tint is off for these worlds so the art keeps its own colours. Roman keeps its original art.
 - World music: Viking (Ice), Cyber Future (Neon Grid) and the Japan loop (Shogun's Realm) play on the menus and during normal gameplay. Boss fights still use the original boss.mp3 in every world.
+
+
+## v37 changes
+- Two new worlds (600 💰 each, Armory > 🌍 WORLDS):
+  - **BUGANDA · KINGDOM** (royal green and gold). Ranks run Omukopi, Omuvubuka, Omusirikale, Omulwanyi, Omukungu, Omwami, Omutaka, Ssaza head, Omulangira, Omuwanika, Omulamuzi, Katikkiro, Kabaka. Regions are Buddu, Busiro, Kyaggwe and Mengo, and the badge reads BUGANDA instead of SPQR.
+  - **GOLDEN SANDS · ARABIA** (sunset gold and black). Ranks run Mujannad, Jundi, Faris, Bahlawan, Naqib, Alamdar, Muqaddam, Aqid, Amir, Wali, Wazir, Grand Wazir, Sultan. Regions are Najd, Hejaz, Hadramawt and Baghdad, and the badge reads سلطان.
+- Each world has its own menu art (img/<world>_menu.webp), boss art (img/<world>_boss.webp) and menu/gameplay music (audio/theme_<world>.mp3). Boss fights still use boss.mp3.
+- Both have a light mode (html.light.wd-buganda / html.light.wd-gold) and are in the offline cache. `V` in sw.js is now mindstrike-v37.
+- Technique: same recipe as v36, one WORLDS entry + one CSS block + the art/music files. bg() now matches `wd-(cyber|samurai|ice|buganda|gold)`.
