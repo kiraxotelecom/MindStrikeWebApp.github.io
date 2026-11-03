@@ -519,6 +519,19 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 #oPad #okp{width:100%}#oPad #oPw{width:100%;justify-content:center}
 @keyframes v40pulse{50%{transform:scale(1.04);filter:brightness(1.25)}}
 #oTurn{font-weight:700;letter-spacing:.14em}#oTurn.my{animation:v40pulse 1.3s ease-in-out infinite}
+
+/* v41: Armory category pop-ups, skins float above the cards, pause bottom-centre */
+#shopList.shHub{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;max-width:420px}
+#shopList .shTile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;padding:14px 6px;text-align:center;line-height:1.15}
+#shopList .shTile .e{font-size:2.1rem;line-height:1}#shopList .shTile b{font-size:.85rem;letter-spacing:.05em}#shopList .shTile small{font-size:.7rem;opacity:.85}
+#shopPop .shBox{width:min(94%,400px);max-height:86%;display:flex;flex-direction:column;gap:8px;text-align:center}
+#shopPop .shBox h2{margin:0}#shopPopG{font-weight:bold}
+#shopPopB>*{flex:none}#shopPopB{overflow-y:auto;display:flex;flex-direction:column;gap:8px;text-align:left;min-height:0;flex:1;-webkit-overflow-scrolling:touch}
+#s-game{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+#s-game .bar{top:auto;bottom:calc(8px + env(safe-area-inset-bottom));left:0;right:0;justify-content:center}
+#app #pauseBtn{width:50px;height:50px}#app #pauseBtn .ic{width:28px;height:28px}
+#s-game #hud{margin-top:42px}
+#hud .skE,#hud #skE1{left:50%;right:auto;top:auto;bottom:100%;margin:0 0 -2px -1.35rem;width:2.7rem;text-align:center;font-size:2.4rem}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -607,7 +620,7 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><div id="shopList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
+ <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><div id="shopList" class="shHub"></div>
 </section>
 
 <section class="scr" id="s-set" style="--bg:url(img/menu_bg.webp)">
@@ -702,6 +715,7 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
  <button id="share">📤 SHARE RESULT</button><button id="nextB" style="display:none">NEXT BATTLE ▶︎</button><button id="again">FIGHT AGAIN</button><button id="mapB" style="display:none">🗺️ CONQUEST MAP</button><button id="home">MAIN MENU</button>
 </section>
 
+<div class="pop" id="shopPop"><div class="card shBox"><h2 id="shopPopT"></h2><div id="shopPopG"></div><div id="shopPopB"></div><button id="shopPopX" style="width:100%">CLOSE</button></div></div>
 <div class="pop" id="secPop"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🔮 SECRETS OF THE ARENA</h2><p id="secCh"></p><p style="font-size:.8rem">Each secret costs more every time you buy it.</p>
 <div id="intel" class="row"><button data-i="DIRECTION"><span><b>🧭 BATTLE SENSE</b><small>Higher or lower than the middle</small></span><i></i></button><button data-i="RANGE"><span><b>📏 BATTLE RANGE</b><small>Narrow the range around the secret</small></span><i></i></button><button data-i="ODDEVEN"><span><b>🔮 THE OMEN</b><small>Odd or even</small></span><i></i></button><button data-i="DIGIT"><span><b>🔢 LAST MARK</b><small>Reveal the final digit</small></span><i></i></button><button data-i="PROPERTY"><span><b>🗝️ SECRET TRAIT</b><small>Prime, multiple of 3 or 5, high/low</small></span><i></i></button></div>
 <button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div class="pop" id="oFamPop"><div class="card opc"><h2>🏆 Family record</h2><div id="oFam"></div><button class="oclose" data-close="1">CLOSE</button></div></div>
@@ -999,7 +1013,7 @@ if(LX){lexNode(document.body);document.title=lexStr(document.title);
  new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData')lexNode(m.target);else m.addedNodes.forEach(lexNode)}}).observe(document.body,{childList:true,characterData:true,subtree:true})}
 const worldsH=(card,h2,bt)=>'<div data-nx="1">'+h2('🌍 WORLDS · same game, new look')+Object.keys(WORLDS).map(id=>{const W=WORLDS[id],own=id==='roman'||PRO.own['wd:'+id],on=(WID||'roman')===id;
  return card(W.e,W.n,W.d,`<button data-wd="${id}" ${bt} ${on?'disabled':''}>${on?'✓ ON':own?'EQUIP':'💰 '+PR(W.price)}</button>`)}).join('')+'</div>';
-$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
+shopOn(e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
  if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
  PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
 const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
@@ -1357,14 +1371,15 @@ const SHOP=[['pack','🎒','ARMORY PACK','+1 charge of every power',80,'c'],['x:
 ['pm:ring','⌛','TIMEKEEPER’S RING','Permanent +2s on every guess',300,''],['pm:vigil','🧿','AUGUR’S EYE','Permanent +1 SCAN every match',280,''],['pm:eagle','🦅','LEGION EAGLE','Permanent +1 FOCUS every match',280,''],['pm:bulwark','🧱','BULWARK','Permanent +1 SHIELD every match',280,'']];
 const SEC={c:'🎒 CONSUMABLES · used next VS match',ps:'⚔️ PLAYER SKINS',ks:'😈 KIRAXO SKINS',th:'🏛️ ARENAS',pm:'⭐ PERMANENT UPGRADES · equip one'};
 function applyTheme(){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();if(PRO.th)a.classList.add('th-'+PRO.th)}
-function shopOld(){let last='';return SHOP.map(([k,e,n,d,c,t])=>{const cons=t==='c',own=cons?PRO.inv[k]||0:PRO.own[k],on=!cons&&PRO[k.slice(0,2)]===k.slice(3),sec=cons?'c':k.slice(0,2),h=sec!==last?`<h2 style="margin:12px 0 2px;font-size:.9rem">${SEC[sec]}</h2>`:'';last=sec;
+function shopOn(fn){$('#shopList').addEventListener('click',fn);$('#shopPopB').addEventListener('click',fn)}
+function shopOld(S){return SHOP.map(([k,e,n,d,c,t])=>{const cons=t==='c',own=cons?PRO.inv[k]||0:PRO.own[k],on=!cons&&PRO[k.slice(0,2)]===k.slice(3),sec=cons?'c':k.slice(0,2),h='';if(sec!==S)return '';
  const col=cons?'':SKC(k),fx={ps:' · big glowing emblem on your HUD, arena aura &amp; victory bursts',ks:' · big emblem on Kiraxo + entrance splash',th:' · recolours the whole game'}[k.slice(0,2)]||'';
  return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span ${col?`data-pv="${k}" title="Tap to preview" style="font-size:2.9rem;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px ${col}) drop-shadow(0 0 20px ${col})"`:'style="font-size:1.8rem"'}>${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${fx}${col?' · <u>tap the icon to preview</u>':''}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?'💰 '+PR(c):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
-$('#shopList').onclick=e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
+shopOn(e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
  if(cons||!had){if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=PR(it[4]);if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
  if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KS[v][4],KSC[v],it[2],'EQUIPPED')}}
- LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()};
-$('#shopBtn').onclick=()=>{sfx('click');shopUI();go('s-shop')};applyTheme();
+ LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()});
+$('#shopBtn').onclick=()=>{sfx('click');SHCAT='';shopUI();go('s-shop')};applyTheme();
 function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast(`${CM()[1]} <b>${CM()[2]}</b><br><small>${CM()[3]}</small>`),600)}if(G.mode!=='AI')return;const u=[];
  if(PRO.inv.pack>0){PRO.inv.pack--;Object.keys(G.pow[0]).forEach(k=>G.pow[0][k]++);u.push('🎒')}
  if(PRO.inv.time>0){PRO.inv.time--;G.bonusT=(G.bonusT||0)+10;u.push('⏳')}
@@ -1455,17 +1470,29 @@ function dsDay(){if(!PRO.dsh||PRO.dsh.d!==today())PRO.dsh={d:today(),b:[]};const
  return{offers,gs:['h','s','b'][Math.floor(r()*3)],gp:[20,25,30][Math.floor(r()*3)]}}
 const dPrice=(it,pct)=>PR(it[3]*(1-pct/100));
 function gearPrice(k,l){const b=GEAR[k][4][l],d=dsDay();return PR(d.gs===k?b*(1-d.gp/100):b)}
+let SHCAT='';
+const SHCATS=[['wd','🌍','WORLDS','Same game, new look'],['mk','🏺','TODAY’S MARKET','Daily deals'],['fg','⚒️','THE FORGE','Gear upgrades'],['rl','📿','RELICS','One-time buys'],['bn','🎁','WAR CHESTS','Bundles'],['c','🎒','CONSUMABLES','Used next VS match'],['ps','⚔️','PLAYER SKINS','Incl. Roman Legion Set'],['ks','😈','KIRAXO SKINS','Foe looks'],['th','🏛️','ARENAS','Recolour the game'],['pm','⭐','PERMANENT','Equip one upgrade']];
 function shopUI(){$('#gold').textContent='💰 '+PRO.gold;const dd=dsDay(),m=new Date(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+1)-m,hh=Math.floor(ms/36e5),mm=Math.floor(ms%36e5/6e4);
- const card=(e,n,d,btn)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}</small></div>${btn}</div>`,h2=t=>`<h2 style="margin:12px 0 2px;font-size:.9rem">${t}</h2>`,bt='style="min-width:84px;padding:8px"';
- let h=worldsH(card,h2,bt)+h2(`🏺 TODAY’S MARKET · refreshes in ${hh}h ${mm}m`)+dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('');
- h+=h2('⚒️ THE FORGE · gear upgrades')+['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<3;
+ const card=(e,n,d,btn)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}</small></div>${btn}</div>`,h2=()=>'',bt='style="min-width:84px;padding:8px"';
+ $('#shopList').innerHTML=SHCATS.map(c=>`<button class="shTile" data-cat="${c[0]}"><span class="e">${c[1]}</span><b>${c[2]}</b><small>${c[0]==='mk'?'refreshes in '+hh+'h '+mm+'m':c[3]}</small></button>`).join('');
+ const P=$('#shopPop');if(!SHCAT){P.classList.remove('on');return}
+ const C=SHCATS.find(x=>x[0]===SHCAT);let h='',g='';
+ if(SHCAT==='wd')h=worldsH(card,h2,bt);
+ else if(SHCAT==='mk'){g='refreshes in '+hh+'h '+mm+'m';h=dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('')}
+ else if(SHCAT==='fg')h=['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<3;
   return card(g[0],`${g[1]} · ${g[2]} ${'■'.repeat(l)}${'□'.repeat(3-l)}`,(l?`NOW: ${g[3][l-1]}<br>`:'')+(l<3?`NEXT: ${g[3][l]}${sale?` · 🔥 −${dd.gp}% today`:''}`:'MAX LEVEL'),`<button data-gu="${k}" ${bt} ${l>=3?'disabled':''}>${l>=3?'MAX':'⬆ 💰 '+gearPrice(k,l)}</button>`)}).join('');
- h+=h2('📿 RELICS · one-time purchases')+RELICS.map(r=>{const own=PRO.rel[r[0]];return card(r[1],r[2],r[3],`<button data-rl="${r[0]}" ${bt} ${own?'disabled':''}>${own?'OWNED':'💰 '+PR(r[4])}</button>`)}).join('');
- h+=h2('🎁 WAR CHESTS · bundles')+BUNDLES.map((bn,i)=>card(bn[0],bn[1],bn[2],`<button data-bn="${i}" ${bt}>💰 ${PR(bn[3])}</button>`)).join('');
- const so=PRO.own.romanset;h+=h2('🏛️ ROMAN LEGION SET')+card('🏛️','ROMAN LEGION SET','Four player skins: Legionary, Centurion, Senator, Vestal Flame',`<button data-set="1" ${bt} ${so?'disabled':''}>${so?'OWNED':'💰 '+PR(SETP)}</button>`);
- if(so)h+=`<div class="row" style="gap:6px">${SETK.map(k=>`<button data-eq="${k}" style="min-width:0;flex:1;padding:8px 4px${PRO.ps===k?';box-shadow:0 0 14px var(--gold)':''}">${PSK[k][0]}<br><small>${PSK[k][2]}</small></button>`).join('')}</div>`;
- $('#shopList').innerHTML=h+shopOld()}
-$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[data-eq],[data-bn]');if(!b||b.disabled)return;let ok=0;const pay=p=>{if(PRO.gold<p){tone(150,.2,'square');toast('Not enough gold');return false}PRO.gold-=p;return true};
+ else if(SHCAT==='rl')h=RELICS.map(r=>{const own=PRO.rel[r[0]];return card(r[1],r[2],r[3],`<button data-rl="${r[0]}" ${bt} ${own?'disabled':''}>${own?'OWNED':'💰 '+PR(r[4])}</button>`)}).join('');
+ else if(SHCAT==='bn')h=BUNDLES.map((bn,i)=>card(bn[0],bn[1],bn[2],`<button data-bn="${i}" ${bt}>💰 ${PR(bn[3])}</button>`)).join('');
+ else{if(SHCAT==='ps'){const so=PRO.own.romanset;h=card('🏛️','ROMAN LEGION SET','Four player skins: Legionary, Centurion, Senator, Vestal Flame',`<button data-set="1" ${bt} ${so?'disabled':''}>${so?'OWNED':'💰 '+PR(SETP)}</button>`);
+  if(so)h+=`<div class="row" style="gap:6px">${SETK.map(k=>`<button data-eq="${k}" style="min-width:0;flex:1;padding:8px 4px${PRO.ps===k?';box-shadow:0 0 14px var(--gold)':''}">${PSK[k][0]}<br><small>${PSK[k][2]}</small></button>`).join('')}</div>`}
+  h+=shopOld(SHCAT)}
+ const b=$('#shopPopB'),sc=b.scrollTop;$('#shopPopT').textContent=C[1]+' '+C[2];$('#shopPopG').textContent=(g?g+' · ':'')+'💰 '+PRO.gold;b.innerHTML=h;b.scrollTop=sc;P.classList.add('on')}
+function shopOpen(c){SHCAT=c;$('#shopPopB').scrollTop=0;shopUI()}
+function shopClose(){SHCAT='';shopUI()}
+$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;sfx('click');shopOpen(b.dataset.cat)});
+$('#shopPopX').onclick=()=>{sfx('click');shopClose()};
+$('#shopPop').addEventListener('click',e=>{if(e.target.id==='shopPop')shopClose()});
+shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[data-eq],[data-bn]');if(!b||b.disabled)return;let ok=0;const pay=p=>{if(PRO.gold<p){tone(150,.2,'square');toast('Not enough gold');return false}PRO.gold-=p;return true};
  if(b.dataset.dp!=null){const id=+b.dataset.dp,o=dsDay().offers.find(x=>x.id===id),it=DPOOL[id];if(o&&!PRO.dsh.b.includes(id)&&pay(dPrice(it,o.pct))){grant(it[4]);PRO.dsh.b.push(id);qEv('buy');toast(`${it[0]} <b>${it[1]}</b><br><small>Added to your pack</small>`);ok=1}}
  else if(b.dataset.gu){const k=b.dataset.gu,l=gl(k);if(l<3&&pay(gearPrice(k,l))){PRO.gear[k]=l+1;qEv('buy');toast(`${GEAR[k][0]} <b>${GEAR[k][1]} LEVEL ${l+1}</b><br><small>${GEAR[k][3][l]}</small>`);burst(['⚒️','✨','🪙'],18);ok=1}}
  else if(b.dataset.rl){const k=b.dataset.rl,r=RELICS.find(x=>x[0]===k);if(!PRO.rel[k]&&pay(PR(r[4]))){PRO.rel[k]=1;qEv('buy');toast(`${r[1]} <b>${r[2]}</b><br><small>${r[3]}</small>`);ok=1}}
@@ -1473,7 +1500,7 @@ $('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-dp],
  else if(b.dataset.bn!=null){const bn=BUNDLES[+b.dataset.bn];if(pay(PR(bn[3]))){grant(bn[4]);qEv('buy');toast(`${bn[0]} <b>${bn[1]}</b><br><small>${bn[2]} — added to your pack</small>`);ok=1}}
  else if(b.dataset.eq){PRO.ps=PRO.ps===b.dataset.eq?'':b.dataset.eq;if(PRO.ps)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'EQUIPPED');ok=1}
  if(ok){tone(660,.1,'triangle');LS.set('ms_pro',PRO);shopUI();profUI()}});
-$('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.pv,f=k.slice(0,2),v=k.slice(3),it=SHOP.find(x=>x[0]===k);
+shopOn(e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.pv,f=k.slice(0,2),v=k.slice(3),it=SHOP.find(x=>x[0]===k);
  if(f==='th'){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();a.classList.add('th-'+v);toast('🎨 Previewing '+it[2]+'…');setTimeout(applyTheme,2600)}
  else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KS[v][4],KSC[v],it[2],'PREVIEW')});
 // -- coin wagers
