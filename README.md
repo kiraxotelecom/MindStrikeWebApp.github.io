@@ -141,3 +141,10 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 - Power buttons are smaller in the arena and in online matches.
 - Online secret number box redesigned as a vault plate that glows once a number is entered.
 - Arena: the opponent intro pop-up (e.g. Mariamind) is removed. Remaining toasts (power-up explanations) now sit at the very top, above the timer, in a smaller size.
+
+### v40c
+- **Theme prices by beauty:** Ice 3,000 · Neon Grid 3,800 · Buganda 5,200 · Golden Sands 6,400 · Shogun's Realm 8,000 coins (already-owned worlds stay owned).
+- **Coins are slower to earn:** every coin reward (matches, conquest, mini games, daily strike, challenges, daily chest, rank rewards, weekly rewards) is multiplied by `COINX` (0.6, set next to `PR`). Change that one number to make coins easier or harder.
+- **Easy / Medium / Hard** are back on the rank cards.
+- **Online pad:** number box, keypad and powers now sit together in one themed card (world ornament on top), powers below the keypad.
+- **Online wording:** "YOUR SHOT" / "<name> IS GUESSING", "<name> is thinking…"; the "Pick a number from X to Y" line is gone because the range is already beside the round. Relics are now **Boosts**: Extra Attempt, Free Guess, Bonus Points, Lucky Shot, Odd or Even, Which Half?, Extra Time, Safety Points.

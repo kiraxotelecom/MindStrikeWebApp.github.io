@@ -10,7 +10,7 @@
 // Nothing else changes: rules, saves and ranks are shared. Text is themed only on screen (a DOM pass), never in the game data.
 const WORLDS={
  roman:{n:'ROMAN EMPIRE',e:'🏛️',price:0,d:'The original: legions, generals and glory.'},
- cyber:{n:'NEON GRID',e:'🌆',price:600,art:'cyber',mus:'cyber',d:'The same battles in a neon future city. Recolours everything and renames ranks, regions, generals and gear.',
+ cyber:{n:'NEON GRID',e:'🌆',price:3800,art:'cyber',mus:'cyber',d:'The same battles in a neon future city. Recolours everything and renames ranks, regions, generals and gear.',
   lex:[['recruit','rookie'],['velite','script kiddie'],['legionary','runner'],['hastatus','hacker'],['centurion','operator'],['signifer','specialist'],['optio','decker'],['tribune','architect'],['legatus','commander'],['praefect','director'],['proconsul','sysop'],['consul','admin'],['imperator','overlord'],
    ['legion','network'],['legions','networks'],['imperial','corporate'],['empire','grid'],['road to empire','road to the core'],['spqr','sys://grid'],['laurel','chip'],['laurels','chips'],['gods','algorithms'],['mortal','human'],['roman','runner'],['romans','runners'],
    ['gaul','sector zero'],['egypt','data desert'],['carthage','port nexus'],['rome','core city'],
@@ -18,7 +18,7 @@ const WORLDS={
    ['druid','weaver'],['chief','boss'],['scribe','coder'],['nomad','drifter'],['priestess','oracle'],['guard','sentry'],['sailor','pilot'],['driver','racer'],['foreman','engineer'],['glad.','cyborg'],['senator','delegate'],['prefect','warden'],['pharaoh','monarch'],
    ['hoplite','drone'],['gladiator','cyborg'],['spartan','mech'],['praetorian','enforcer'],['eagle','drone'],['vestal flame','plasma flame'],['vestal','ghost'],['roman legion set','neon runner set'],['galea','visor'],['scutum','firewall'],['gladius','monoblade']],
   emo:[['🏛️','🌆'],['🦅','🦾'],['🌲','🔋'],['🏜️','💾'],['🐘','🛰️'],['🏺','💽'],['🔱','🔧'],['🪖','🥽']]},
- samurai:{n:'SHOGUN’S REALM',e:'⛩️',price:600,art:'samurai',mus:'samurai',d:'The same battles in feudal Japan. Ink-black and crimson, with ranks, regions, generals and gear renamed.',
+ samurai:{n:'SHOGUN’S REALM',e:'⛩️',price:8000,art:'samurai',mus:'samurai',d:'The same battles in feudal Japan. Ink-black and crimson, with ranks, regions, generals and gear renamed.',
   lex:[['recruit','apprentice'],['velite','ashigaru'],['legionary','bushi'],['hastatus','samurai'],['centurion','kenshi'],['signifer','hatamoto'],['optio','kashira'],['tribune','taisho'],['legatus','karo'],['praefect','daimyo'],['proconsul','regent'],['consul','tairo'],['imperator','shogun'],
    ['legion','army'],['legions','armies'],['imperial','shogunate'],['empire','shogunate'],['road to empire','road to the shogunate'],['spqr','侍'],['laurel','blossom'],['laurels','blossoms'],['gods','kami'],['mortal','fool'],['roman','ronin'],['romans','ronin'],
    ['gaul','ezo'],['egypt','tottori'],['carthage','nagasaki'],['rome','edo'],
@@ -26,7 +26,7 @@ const WORLDS={
    ['druid','monk'],['chief','warlord'],['scribe','scholar'],['nomad','wanderer'],['priestess','miko'],['driver','courier'],['foreman','smith'],['glad.','sumo'],['senator','minister'],['prefect','magistrate'],['pharaoh','emperor'],
    ['hoplite','footman'],['gladiator','ronin'],['spartan','ninja'],['praetorian','kensei'],['eagle','crane'],['vestal flame','sakura flame'],['vestal','sakura'],['roman legion set','samurai clan set'],['galea','kabuto'],['scutum','tate'],['gladius','katana']],
   emo:[['🏛️','🏯'],['🦅','🦢'],['🌲','🎋'],['🐘','⚓'],['🏺','🍶'],['🔱','🥷']]},
- ice:{n:'ICE · FROSTLANDS',e:'🏔️',price:600,art:'ice',mus:'viking',d:'The same battles in the frozen Norse north. Glacier blue, white and silver, with ranks, regions, generals and gear renamed (Jarl, Fjord, Valhalla). Built light-first, and it has a night mode too.',
+ ice:{n:'ICE · FROSTLANDS',e:'🏔️',price:3000,art:'ice',mus:'viking',d:'The same battles in the frozen Norse north. Glacier blue, white and silver, with ranks, regions, generals and gear renamed (Jarl, Fjord, Valhalla). Built light-first, and it has a night mode too.',
   lex:[['recruit','thrall'],['velite','karl'],['legionary','huskarl'],['hastatus','raider'],['centurion','hirdman'],['signifer','stallari'],['optio','drengr'],['tribune','thane'],['legatus','hersir'],['praefect','skald'],['proconsul','jarl'],['consul','high jarl'],['imperator','konungr'],
    ['legion','warband'],['legions','warbands'],['imperial','frozen'],['empire','northern realm'],['road to empire','road to Valhalla'],['spqr','ᚠᚢᚦᚨᚱ'],['laurel','rune'],['laurels','runes'],['gods','Aesir'],['mortal','frostbitten'],['roman','norseman'],['romans','norsemen'],
    ['gaul','frostlands'],['egypt','fjordheim'],['carthage','niflheim'],['rome','Valhalla'],
@@ -34,7 +34,7 @@ const WORLDS={
    ['druid','völva'],['chief','chieftain'],['scribe','skald'],['nomad','wanderer'],['priestess','seeress'],['driver','sledder'],['foreman','shipwright'],['glad.','berserker'],['senator','lawspeaker'],['prefect','steward'],['pharaoh','frost king'],
    ['hoplite','shieldman'],['gladiator','viking'],['spartan','berserker'],['praetorian','einherjar'],['eagle','raven'],['vestal flame','frost flame'],['vestal','valkyrie'],['roman legion set','frost warband set'],['galea','horned helm'],['scutum','round shield'],['gladius','seax']],
   emo:[['🏛️','🏔️'],['🦅','🐺'],['🌲','❄️'],['🏜️','🧊'],['🐘','🦣'],['🏺','🍺'],['🔱','🪓']]},
- buganda:{n:'BUGANDA · KINGDOM',e:'🦁',price:600,art:'buganda',mus:'buganda',d:'The same battles in the Kingdom of Buganda. Royal green and gold, with ranks, counties, generals and gear renamed (Kabaka, Katikkiro, Buddu, Mengo).',
+ buganda:{n:'BUGANDA · KINGDOM',e:'🦁',price:5200,art:'buganda',mus:'buganda',d:'The same battles in the Kingdom of Buganda. Royal green and gold, with ranks, counties, generals and gear renamed (Kabaka, Katikkiro, Buddu, Mengo).',
   lex:[['recruit','omukopi'],['velite','omuvubuka'],['legionary','omusirikale'],['hastatus','omulwanyi'],['centurion','omukungu'],['signifer','omwami'],['optio','omutaka'],['tribune','ssaza head'],['legatus','omulangira'],['praefect','omuwanika'],['proconsul','omulamuzi'],['consul','katikkiro'],['imperator','kabaka'],
    ['legion','regiment'],['legions','regiments'],['imperial','royal'],['empire','kingdom'],['road to empire','road to the throne'],['spqr','buganda'],['laurel','cowrie'],['laurels','cowries'],['gods','ancestors'],['mortal','commoner'],['roman','muganda'],['romans','baganda'],
    ['gaul','buddu'],['egypt','busiro'],['carthage','kyaggwe'],['rome','mengo'],
@@ -42,7 +42,7 @@ const WORLDS={
    ['druid','seer'],['chief','omutaka'],['scribe','clerk'],['nomad','herdsman'],['priestess','healer'],['sailor','canoeist'],['driver','boda rider'],['foreman','builder'],['glad.','warrior'],['senator','minister'],['prefect','county head'],['pharaoh','omukama'],
    ['hoplite','spearman'],['gladiator','wrestler'],['spartan','lion guard'],['praetorian','royal guard'],['eagle','crane'],['vestal flame','sacred fire'],['vestal','healer'],['roman legion set','royal regiment set'],['galea','feather crown'],['scutum','hide shield'],['gladius','spear']],
   emo:[['🏛️','🛖'],['🦅','🦁'],['🌲','🌴'],['🏜️','🍌'],['🐘','🦬'],['🏺','🥁'],['🔱','🏹'],['🪖','🪶']]},
- gold:{n:'GOLDEN SANDS · ARABIA',e:'🕌',price:600,art:'gold',mus:'gold',d:'The same battles in the golden deserts of Arabia. Sunset gold and black, with ranks, regions, generals and gear renamed (Emir, Wazir, Sultan, Baghdad).',
+ gold:{n:'GOLDEN SANDS · ARABIA',e:'🕌',price:6400,art:'gold',mus:'gold',d:'The same battles in the golden deserts of Arabia. Sunset gold and black, with ranks, regions, generals and gear renamed (Emir, Wazir, Sultan, Baghdad).',
   lex:[['recruit','mujannad'],['velite','jundi'],['legionary','faris'],['hastatus','bahlawan'],['centurion','naqib'],['signifer','alamdar'],['optio','muqaddam'],['tribune','aqid'],['legatus','amir'],['praefect','wali'],['proconsul','wazir'],['consul','grand wazir'],['imperator','sultan'],
    ['legion','army'],['legions','armies'],['imperial','royal'],['empire','sultanate'],['road to empire','road to the sultanate'],['spqr','سلطان'],['laurel','dinar'],['laurels','dinars'],['gods','heavens'],['mortal','traveler'],['roman','rider'],['romans','riders'],
    ['gaul','najd'],['egypt','hejaz'],['carthage','hadramawt'],['rome','baghdad'],
@@ -509,6 +509,16 @@ html.wd-gold #app .bm-laurel{display:inline-block;align-self:center;padding:3px 
  box-shadow:inset 0 6px 14px #000,0 0 0 4px rgba(0,0,0,.45),0 4px 14px #000a;transition:box-shadow .2s}
 #oNum.oin::placeholder{color:var(--gold);opacity:.35;text-shadow:none}
 #oNum.oin:not(:placeholder-shown){box-shadow:inset 0 6px 14px #000,0 0 0 4px rgba(0,0,0,.45),0 0 22px var(--gold),0 4px 14px #000a}
+
+/* ======== v40c: online pad (number box + keypad + powers) with a theme ornament, turn banner ======== */
+#oPad.opad{width:min(100%,380px);margin:4px auto;padding:10px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-height:none;overflow:visible;box-sizing:border-box}
+#oPad:has(#oNum[style*="none"]){display:none}
+.opad::before{content:var(--emb,"🏛️ ✦ 🏛️");display:block;white-space:nowrap;font-size:.95rem;letter-spacing:.35em;opacity:.9;line-height:1}
+html.wd-samurai{--emb:"⛩️ 侍 ⛩️"}html.wd-cyber{--emb:"▰▰ 🔷 ▰▰"}html.wd-ice{--emb:"❄️ ᛟ ❄️"}html.wd-buganda{--emb:"🥁 ◆ 🥁"}html.wd-gold{--emb:"🌙 ✦ 🌙"}
+html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPad.opad{padding-bottom:22px}
+#oPad #okp{width:100%}#oPad #oPw{width:100%;justify-content:center}
+@keyframes v40pulse{50%{transform:scale(1.04);filter:brightness(1.25)}}
+#oTurn{font-weight:700;letter-spacing:.14em}#oTurn.my{animation:v40pulse 1.3s ease-in-out infinite}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -545,9 +555,9 @@ html.wd-gold #app .bm-laurel{display:inline-block;align-self:center;padding:3px 
  <header class="bm-hero"><div class="bm-kicker">Fortune favours the bold</div><h1>Prepare for Glory</h1><div class="bm-sub">Choose your rank. Command your mind. Conquer the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div class="bm-head"><h2>Choose your rank</h2></div>
  <div class="bm-grid3">
-  <button class="bm-opt" data-d="Easy"><span class="bm-sym">🛡️</span><strong>Legionary</strong><small>1–10 · 3 attempts</small></button>
-  <button class="bm-opt" data-d="Medium"><span class="bm-sym">⚔️</span><strong>Centurion</strong><small>1–25 · 4 attempts</small></button>
-  <button class="bm-opt" data-d="Hard"><span class="bm-sym">👑</span><strong>Imperator</strong><small>1–100 · 5 attempts</small></button>
+  <button class="bm-opt" data-d="Easy"><span class="bm-sym">🛡️</span><strong>Legionary</strong><small>Easy<br>1–10 · 3 attempts</small></button>
+  <button class="bm-opt" data-d="Medium"><span class="bm-sym">⚔️</span><strong>Centurion</strong><small>Medium<br>1–25 · 4 attempts</small></button>
+  <button class="bm-opt" data-d="Hard"><span class="bm-sym">👑</span><strong>Imperator</strong><small>Hard<br>1–100 · 5 attempts</small></button>
  </div>
  <div id="styleBox" style="display:contents"><div class="bm-head"><h2>Choose your general</h2></div>
  <div class="bm-grid2">
@@ -659,10 +669,9 @@ html.wd-gold #app .bm-laurel{display:inline-block;align-self:center;padding:3px 
   <div id="oFeed"></div>
   <div id="oHist"></div>
   <div id="oHint"></div>
-  <div id="oPw"></div><small class="bm-note" id="oPwN">One power per round · −5 pts if you win that round</small>
   <div id="oMsg" aria-live="polite"></div>
   <div id="oDraft" style="display:none"></div>
-  <input type="text" id="oNum" class="oin" readonly inputmode="none" maxlength="3" placeholder="•••" autocomplete="off"><div class="kp" id="okp"></div>
+  <div id="oPad" class="card opad"><input type="text" id="oNum" class="oin" readonly inputmode="none" maxlength="3" placeholder="•••" autocomplete="off"><div class="kp" id="okp"></div><div id="oPw"></div><small class="bm-note" id="oPwN">One power per round · −5 pts if you win that round</small></div>
   <button class="bm-cta" id="oStrike">⚔️ STRIKE</button>
   <button class="bm-cta" id="oRe" style="display:none">REMATCH</button>
   <div id="oBubble"></div>
@@ -971,7 +980,7 @@ const PRO=Object.assign({wd:'',xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},o
 /* v27: ranks went from 6 to 13. Old rank-reward claims move to the new index of the same rank. */
 if((PRO.rv||0)<2){const mv={0:0,1:2,2:4,3:6,4:8,5:12},nr={};Object.keys(PRO.rr||{}).forEach(k=>{if(PRO.rr[k]&&mv[k]!=null)nr[mv[k]]=1});PRO.rr=nr;PRO.rv=2;LS.set('ms_pro',PRO)}
 /* v27: prices are per item — bigger upgrades and stronger power-ups cost more, rank does not matter */
-const PR=n=>Math.max(5,Math.round(n/5)*5);
+const PR=n=>Math.max(5,Math.round(n/5)*5);const COINX=.6,cx=n=>Math.max(1,Math.round(n*COINX));
 /* v33: Worlds runtime. Lives here (after PRO, PR, toast, tone, qEv exist) so worldsH is initialised before the Armory uses it. WORLDS itself stays in <head>. */
 const WID=PRO.wd&&WORLDS[PRO.wd]&&(PRO.own['wd:'+PRO.wd])?PRO.wd:'';
 {const wm=WORLDS[WID]&&WORLDS[WID].mus;if(wm){const a=new Audio(`audio/theme_${wm}.mp3`);a.loop=true;M.theme=a;applyVol()}}
@@ -1083,8 +1092,8 @@ function startCamp(r,i){const o=campOpts(r,i),R=CAMP[r];setup.lastOpts=o;$('#cbr
  setTimeout(()=>{if(G&&G.cf)toast(`${o.cf.boss?'👹':'⚔️'} <b>${o.names[1]}</b><br><small>“${pick(R.win)}”</small>`)},700)}
 function campEnd(win){const c=G.cf;let h=`<br><b>🗺️ ${c.rn} · ${c.nn}</b>`;
  if(!win)return{html:h+'<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>'};
- qEv('conq');const cb=objCheck(G,c.ob),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=gain*(15+10*c.ri),note='';
- if(c.boss&&first){const b=100+50*c.ri;coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
+ qEv('conq');const cb=objCheck(G,c.ob),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=cx(gain*(15+10*c.ri)),note='';
+ if(c.boss&&first){const b=cx(100+50*c.ri);coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
  if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;LS.set('ms_pro',PRO);
  if(c.boss&&first){if(c.fin){unlock('conq');note+='<br>👑 <b>Kiraxo falls — Rome is yours!</b>'}else{const nr=c.ri+1;note+=rOpen(nr)?`<br>🔓 <b>${CAMP[nr].n} unlocked!</b>`:`<br>🔒 ${CAMP[nr].n} needs ⭐ ${CAMP[nr].need} in total (you have ${cTotal()})`}}
  return{html:h+`<br>${'⭐'.repeat(st)}${'☆'.repeat(3-st)}${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
@@ -1133,7 +1142,7 @@ function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X
 function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
 function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
 function mgEnd(){if(!X||X.abandon||X.fin)return;X.fin=1;const k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
- const coins=Math.round(X.score/5)+2+(l1>l0?25*l1:0),xp=Math.round(X.score/4)+3,r0=rk();PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
+ const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=Math.round(X.score/4)+3,r0=rk();PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
  const stat={light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 The general cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]();
  $('#mgRT').innerHTML=`${M.e} ${M.n}${nb&&X.score>0?'<br><small>🏆 NEW BEST!</small>':''}`;
@@ -1297,7 +1306,7 @@ const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endles
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
 function hsCheck(w){if(G.cf){G.hs={old:0,sc:0,isNew:false};return}const key=`${G.mode}|${G.d}|${G.m}`,sc=G.mode==='PVP'?(w>=0?G.score[w]:0):G.score[0];PRO.hs=PRO.hs||{};const old=PRO.hs[key]||0;G.hs={old,sc,isNew:sc>old&&sc>0};if(G.hs.isNew){PRO.hs[key]=sc;LS.set('ms_pro',PRO)}}
 function xpEnd(win){if(G.mode!=='AI')return 0;const k=rwx(G.d,G.m),r0=rk();
- const xp=Math.round((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0);
+ const xp=Math.round((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=cx(Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0));
  PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return xp}
 const rwHtml=xg=>xg?`<br><b>+${xg} XP · 💰 +${G.gg}</b><br><small>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${G.hs&&G.hs.isNew?' · +25 high-score bonus':''}${G.tome||G.mag?'<br>📜🧲 boosts applied':''}</small>`:'';
 const hsHtml=()=>G.hs&&!G.cf?(G.hs.isNew?`<div class="hs">🏆 NEW HIGH SCORE! ${G.hs.sc}<br><small>${G.D.name} · ${G.M.label}${G.hs.old?' · previous best '+G.hs.old:''}</small></div>`:`<br><small>Best here: ${G.hs.old}</small>`):'';
@@ -1316,7 +1325,7 @@ function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=DR[D.r],s=D.sec[D.r]
  if(D.tries>=mx){D.trail.push('💀');sfx('buzz');shake();vib([70,40,70]);return dNext(`💀 It was ${s}.`)}
  g<s?D.kLo=Math.max(D.kLo,g+1):D.kHi=Math.min(D.kHi,g-1);tone(250+(1-Math.abs(g-s)/(b-a))*700,.1,'triangle');dRender(`${TE[t]} ${g<s?'Higher':'Lower'} — ${t}`)}
 function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;if(D.r>=5)return dDone();const[a,b]=DR[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
-function dDone(){if(D.ch)return chalDone();qEv('daily');PRO.ds=PRO.dl===ydy()?PRO.ds+1:1;PRO.dl=today();PRO.dres={l:D.lines,s:D.score};PRO.xp+=20+Math.round(D.score/10);PRO.gold+=25;if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
+function dDone(){if(D.ch)return chalDone();qEv('daily');PRO.ds=PRO.dl===ydy()?PRO.ds+1:1;PRO.dl=today();PRO.dres={l:D.lines,s:D.score};PRO.xp+=20+Math.round(D.score/10);PRO.gold+=cx(25);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
 function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
  $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>New numbers tomorrow!`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
 $('#dailyBtn').onclick=()=>{sfx('click');dailyOpen()};
@@ -1503,7 +1512,7 @@ $('#chalX').onclick=()=>$('#chal').classList.remove('on');
 $('#chalJoin').onclick=()=>{const c=chalParse($('#chalIn').value);if(!c){toast('Paste a challenge link or code');tone(150,.2,'square');return}$('#chalIn').value='';chalMenu(c)};
 $('#chalBtn').innerHTML='<i class="ti">🤝</i><span>CHALLENGE</span><small>duel a friend</small>';$('#chalBtn').onclick=()=>{sfx('click');chalMenu()};
 function chalDone(){const c=D.ch,s=D.score,old=PRO.ch[c.code],first=old==null,beat=c.fs!=null&&s>c.fs;let rw='';PRO.ch[c.code]=Math.max(old||0,s);const ks=Object.keys(PRO.ch);if(ks.length>40)delete PRO.ch[ks[0]];
- if(c.fs!=null&&first){if(PRO.cd.d!==today())PRO.cd={d:today(),n:0};if(PRO.cd.n<3){PRO.cd.n++;const g=10+(beat?25:0);PRO.gold+=g;PRO.xp+=10;rw=`<br><b>+${g} 💰 · +10 XP</b>`}else rw='<br><small>Challenge rewards maxed for today (3 links)</small>'}
+ if(c.fs!=null&&first){if(PRO.cd.d!==today())PRO.cd={d:today(),n:0};if(PRO.cd.n<3){PRO.cd.n++;const g=cx(10+(beat?25:0));PRO.gold+=g;PRO.xp+=10;rw=`<br><b>+${g} 💰 · +10 XP</b>`}else rw='<br><small>Challenge rewards maxed for today (3 links)</small>'}
  if(beat)unlock('rival');LS.set('ms_pro',PRO);
  const name=S.n1||'LEGIONARY',link=chalLink(c.code,s,name),vs=c.fs!=null?`<br>${beat?'🏆 You beat':s===c.fs?'🤝 You tied':'💀 You fell to'} <b>${c.from}</b> (${c.fs})`:'';
  shareText=`MindStrike ⚔️ ${name} scored ${s}/500 on challenge ${c.code.toUpperCase()}${c.fs!=null?` (${beat?'beat':s===c.fs?'tied':'lost to'} ${c.from}’s ${c.fs})`:''} — can you beat it?\n${link}`;
@@ -1544,11 +1553,11 @@ const QD=[['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the fir
  ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}]];
 const QW=[['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
  ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}]];
-const SW={d:{c:100,x:60,inv:{pack:1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1}}};
-const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}];
+const SW={d:{c:100,x:60,inv:{pack:1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
+const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}].map(x=>({...x,c:cx(x.c)}));
 const RR={1:{c:60,inv:{'x:SCAN':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
  6:{c:400,own:['ps:gladiator'],inv:{tome:1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ks:dragon'],inv:{tome:1,'x:SCAN':2}},
- 10:{c:1000,own:['ps:pharaoh'],inv:{mag:1,bane:2,'x:SHIELD':2}},11:{c:1300,own:['th:imperial','ps:titan'],inv:{phx:2,pack:2}},12:{c:2000,own:['ps:imperator','ps:laurel','th:tyrian'],inv:{mag:2,tome:2,bane:2,pack:2}}};
+ 10:{c:1000,own:['ps:pharaoh'],inv:{mag:1,bane:2,'x:SHIELD':2}},11:{c:1300,own:['th:imperial','ps:titan'],inv:{phx:2,pack:2}},12:{c:2000,own:['ps:imperator','ps:laurel','th:tyrian'],inv:{mag:2,tome:2,bane:2,pack:2}}};Object.values(RR).forEach(x=>x.c=cx(x.c));
 const nmOf=k=>{const it=SHOP.find(x=>x[0]===k);return it?it[1]+' '+it[2]:k};
 function grant(r){PRO.gold+=r.c||0;const t=[`💰 ${r.c||0}`];for(const k in r.inv||{}){PRO.inv[k]=(PRO.inv[k]||0)+r.inv[k];t.push(`${r.inv[k]}× ${nmOf(k)}`)}(r.own||[]).forEach(k=>{PRO.own[k]=1;t.push('NEW: '+nmOf(k))});if(r.x)PRO.xp+=r.x;LS.set('ms_pro',PRO);return t.join(' · ')}
 function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now()/864e5+3)/7));let ch=0;
@@ -1705,7 +1714,7 @@ const GRACE=30000,SET_T=30;
 const LAD={turn:[[20,4,1],[50,5,1],[100,5,1.5],[250,6,1.5],[500,7,2]],race:[[30,5,1],[100,6,1.5],[300,8,2]],swap:[[25,5,1],[80,6,1.5],[200,7,2]]};
 const MODES={turn:{mode:'turn',lo:1,hi:100,att:5,rounds:5,tl:20},race:{mode:'race',lo:1,hi:100,att:6,rounds:3},swap:{mode:'swap',lo:1,hi:100,att:6,rounds:3}};
 const MN={turn:'Duel of Legions',race:'Race for the War Code',swap:'Sealed Scrolls'},MR={turn:'Take turns guessing the same secret. Everyone sees every hint. 20 seconds per turn, 5 rounds, the starter alternates. Draft a relic after each round.',race:'Both guess at the same time with private hints. First to crack the war code wins the round. 3 rounds, with a relic draft between rounds.',swap:'Each of you seals a secret number for the other, then you race to crack the scroll your rival sealed. Their phone judges your guesses, so you can feel them closing in on yours. 3 rounds.'};
-const RELICS={wind:['❤️','Second Wind','+1 attempt every round'],free:['🎁','Free Strike','Every 3rd guess costs no attempt'],gold:['💰','Golden Laurel','Round wins score +50%'],crit:['⚡','Sharpshooter','A first-try hit scores ×3, not ×2'],oracle:['🔮','Oracle','Each round, learn if the secret is odd or even'],halve:['🧭','Compass','Each round, learn which half holds the secret'],time:['⏳','Time Lord','+10 seconds on every turn (duel only)'],pity:['🛡️','Last Laurel','+5 points when you lose a round']};
+const RELICS={wind:['❤️','Extra Attempt','Get 1 extra attempt every round'],free:['🎁','Free Guess','Every 3rd guess is free (no attempt used)'],gold:['💰','Bonus Points','Win a round and score 50% more points'],crit:['⚡','Lucky Shot','Guess right on the first try for triple points'],oracle:['🔮','Odd or Even','Each round, you learn if the secret is odd or even'],halve:['🧭','Which Half?','Each round, you learn which half the secret is in'],time:['⏳','Extra Time','+10 seconds on every turn (duel only)'],pity:['🛡️','Safety Points','Lose a round and still get +5 points']};
 /* v39: quick chat is emoji + one short word. Same six slots as before, so old and new phones still understand each other. */
 const TZ=[['🐢','Slow!'],['😬','Close!'],['👏','Nice!'],['👑','Bow!'],['🍀','Lucky!'],['⚔️','GG']];
 /* powers: information only, so they can never change attempts or scores by accident. One per round, -5 pts if you win that round. */
@@ -1798,13 +1807,13 @@ function logOf(){return R.log?Object.keys(R.log).sort().map(k=>R.log[k]):[]}
 function tickUi(){netUi();const t=$('#oTurn');if(!t)return;if(!R||left){t.textContent='';t.className='';return}
  const c=R.cfg,rg=RG();
  if(R.st==='set'){if(setKey!==rKey){setKey=rKey;setAt=Date.now()}const rem=Math.max(0,Math.ceil(SET_T-(Date.now()-setAt)/1000)),done=sealKey===rKey;
-  t.className=done?'':'my';t.textContent=done?'🔏 SEALED · waiting for '+nmOf(oppOf()):'🔏 SEAL YOUR SCROLL · '+rem+'s';
+  t.className=done?'':'my';t.textContent=done?'🔏 SEALED · '+nmOf(oppOf())+' is still sealing':'🔏 SEAL YOUR SCROLL · '+rem+'s';
   if(!done&&rem<=0&&net){sealKey=rKey;doSeal(rndS(rg.lo,rg.hi))}return}
  if(R.st!=='play'||c.mode!=='turn'||(R.fin&&R.fin.n===R.rd)||!R.turn){t.textContent='';t.className='';return}
  if(away||!net){t.className='';t.textContent='⏸ PAUSED';return}
  if(tkSeen!==R.tk){tkSeen=R.tk;tkAt=Date.now()}
  const rem=Math.max(0,Math.ceil(tlOf(R.turn)-(Date.now()-tkAt)/1000)),mine=R.turn===role;
- t.className=mine?'my':'';t.textContent=mine?'⚔️ YOUR TURN · '+rem+'s':'⏳ '+nmOf(R.turn)+'’S TURN · '+rem+'s'}
+ t.className=mine?'my':'';t.textContent=mine?'🎯 YOUR SHOT · '+rem+'s':'🤔 '+nmOf(R.turn)+' IS GUESSING · '+rem+'s'}
 function pwUI(){const on=!!R.cfg.pw&&R.st==='play';$('#oPw').style.display=on?'':'none';$('#oPwN').style.display=on?'':'none';if(!on)return;
  const fin=R.fin&&R.fin.n===R.rd,used=pwKey===rKey;$$('#oPw button').forEach(b=>{const t=b.dataset.t;b.querySelector('i').textContent='×'+chg[t];b.disabled=!net||fin||used||chg[t]<=0})}
 function render(){const c=R.cfg,md=c.mode,tm=md==='turn',sw=md==='swap',opp=oppOf(),sc=R.scores||{h:0,g:0},pl=R.st==='play',dr=R.st==='draft',se=R.st==='set',rg=RG(),sealed=sealKey===rKey;
@@ -1827,13 +1836,13 @@ function render(){const c=R.cfg,md=c.mode,tm=md==='turn',sw=md==='swap',opp=oppO
  if(sw&&fin)verify();
  if(R.st==='over'){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;famRecord(nmOf(role),nmOf(opp),win)}
   msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small><br><small>Family record: '+famLine(nmOf(role),nmOf(opp))+'</small>'}
- else if(dr)msg='🎴 Relic draft';
- else if(se)msg=sealed?'🔏 Scroll sealed. Waiting for '+nmOf(opp)+'…':'Seal a secret number for '+nmOf(opp)+' ('+rg.lo+'–'+rg.hi+'). Make it tricky!';
+ else if(dr)msg='🎴 Pick a boost';
+ else if(se)msg=sealed?'🔏 Scroll sealed. '+nmOf(opp)+' is still sealing…':'Pick a secret number for '+nmOf(opp)+'. Make it tricky!';
  else if(fin){if(sw){const rv=R.rv&&R.rv[opp];msg=(fin.w===role?'🏆 You cracked their scroll! +'+fin.pts:fin.w==='-'?'Nobody cracked a scroll.':nmOf(fin.w)+' cracked your scroll +'+fin.pts)+'<br><small>Your scroll: '+(sealed?secret:'?')+' · Their scroll: '+(rv&&rv.n===R.rd?rv.v:'…')+(sealOk===false?' · ⚠️ seal broken':'')+'</small>'}
   else msg=fin.w===role?`🏆 You cracked ${fin.secret}! +${fin.pts}`:fin.w==='-'?`Nobody got it. It was ${fin.secret}.`:`${nmOf(fin.w)} cracked it (${fin.secret}) +${fin.pts}`}
- else if(tm)msg=R.turn===role?(used>=attOf(role)?'Out of attempts.':'Your turn. Pick a number from '+rg.lo+' to '+rg.hi+'.'):'Waiting for '+nmOf(R.turn)+'…';
- else if(used>=attOf(role))msg='Out of attempts. Waiting for '+nmOf(opp)+'…';
- else if(busy)msg=sw?'Waiting for '+nmOf(opp)+'’s verdict…':'Waiting for the host…';
+ else if(tm)msg=R.turn===role?(used>=attOf(role)?'Out of attempts.':'👇 Tap your guess'):nmOf(R.turn)+' is thinking… 🤔';
+ else if(used>=attOf(role))msg='Out of attempts. '+nmOf(opp)+' is still guessing…';
+ else if(busy)msg=sw?nmOf(opp)+' is checking your guess…':'Checking your guess…';
  else if(hist.length){const h=hist[hist.length-1];msg=(TE[h.tier]||'')+' '+(h.dir==='↑'?'Higher':'Lower')}
  else msg=sw?'Crack their scroll first!':'Crack the war code first!';
  $('#oMsg').innerHTML=msg;
@@ -1842,11 +1851,11 @@ function render(){const c=R.cfg,md=c.mode,tm=md==='turn',sw=md==='swap',opp=oppO
  $('#oStrike').style.display=pl||se?'':'none';$('#oNum').style.display=pl||se?'':'none';
  {const kb=$('#oKpGo');if(kb){kb.textContent=$('#oStrike').textContent;$$('#okp button').forEach(b=>b.disabled=!(can||canSeal));$('#okp').style.display=pl||se?'':'none'}}
  const hide=dr||se;$('#oHist').style.display=hide?'none':'';$('#oPips').style.display=hide?'none':'';$('#oOpPips').style.display=hide?'none':'';$('#oOpp').style.display=hide?'none':'';
- $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>Waiting for the host to start a rematch…</small>';
+ $('#oRe').style.display=R.st==='over'&&role==='h'?'':'none';if(R.st==='over'&&role==='g')$('#oMsg').innerHTML+='<br><small>The host will start the next match…</small>';
  draftUI();pwUI();tickUi()}
 function draftUI(){const d=$('#oDraft'),dr=R.st==='draft';d.style.display=dr?'':'none';if(!dr){drSig='';return}
  const opp=oppOf(),mine=(R.offer&&R.offer[role]||'').split(',').filter(Boolean),pk=R.pick&&R.pick[role],sig=mine.join()+'|'+pk+'|'+!!(R.pick&&R.pick[opp]);if(sig===drSig)return;drSig=sig;
- d.innerHTML='<div class="bm-head"><h2>Choose a relic</h2></div>'+mine.map(id=>`<button class="bm-btn oRelic${pk===id?' sel':''}" data-r="${id}" ${pk?'disabled':''}><span class="e">${RELICS[id][0]}</span><span><b>${RELICS[id][1]}</b><br><small>${RELICS[id][2]}</small></span></button>`).join('')+`<small class="bm-note">${pk?'Waiting for '+nmOf(opp)+' to choose…':'Pick one. It lasts the whole match.'}</small>`;
+ d.innerHTML='<div class="bm-head"><h2>Choose a boost</h2></div>'+mine.map(id=>`<button class="bm-btn oRelic${pk===id?' sel':''}" data-r="${id}" ${pk?'disabled':''}><span class="e">${RELICS[id][0]}</span><span><b>${RELICS[id][1]}</b><br><small>${RELICS[id][2]}</small></span></button>`).join('')+`<small class="bm-note">${pk?nmOf(opp)+' is choosing…':'Pick one. It lasts the whole match.'}</small>`;
  $$('#oDraft .oRelic').forEach(b=>b.onclick=()=>pickRelic(b.dataset.r))}
 function pickRelic(id){if(!R||R.st!=='draft'||(R.pick&&R.pick[role]))return;sfx('click');if(role==='h')upd({'pick/h':id});else F.D.set(ref('rooms/'+code+'/pick/g'),id).catch(()=>{})}
 function showTaunt(who,t){const b=$('#oBubble');t=t||['💬',''];b.textContent=(who+'').slice(0,12)+'  '+t[0]+' '+t[1];b.classList.add('on');sfx('click');clearTimeout(tzT);tzT=setTimeout(()=>b.classList.remove('on'),2600)}
