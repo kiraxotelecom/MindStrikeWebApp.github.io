@@ -115,7 +115,7 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 
 ## v37 changes
 - Two new worlds (600 💰 each, Armory > 🌍 WORLDS):
-  - **BUGANDA · KINGDOM** (royal green and gold). Ranks run Omukopi, Omuvubuka, Omusirikale, Omulwanyi, Omukungu, Omwami, Omutaka, Ssaza head, Omulangira, Omuwanika, Omulamuzi, Katikkiro, Kabaka. Regions are Buddu, Busiro, Kyaggwe and Mengo, and the badge reads BUGANDA instead of SPQR.
+  - **BUGANDA · KINGDOM** (royal green and gold). Ranks run Omukopi, Omuvubuka, Omumbowa, Omulwanyi, Omukungu, Omwami, Omutaka, Ssaza head, Omulangira, Omuwanika, Omulamuzi, Katikkiro, Kabaka. Regions are Buddu, Busiro, Mawokota and Mengo, and the badge reads BUGANDA instead of SPQR.
   - **GOLDEN SANDS · ARABIA** (sunset gold and black). Ranks run Mujannad, Jundi, Faris, Bahlawan, Naqib, Alamdar, Muqaddam, Aqid, Amir, Wali, Wazir, Grand Wazir, Sultan. Regions are Najd, Hejaz, Hadramawt and Baghdad, and the badge reads سلطان.
 - Each world has its own menu art (img/<world>_menu.webp), boss art (img/<world>_boss.webp) and menu/gameplay music (audio/theme_<world>.mp3). Boss fights still use boss.mp3.
 - Both have a light mode (html.light.wd-buganda / html.light.wd-gold) and are in the offline cache. `V` in sw.js is now mindstrike-v37.
@@ -129,7 +129,7 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 ## v39 changes
 **Wager is one pop-up button.** "Place your wager" no longer takes a block of the opponent screen: a single 🎲 button shows the current stake (e.g. "Wager 50 💰 → win 100") and opens a small pop-up; tapping an amount picks it and closes the pop-up.
 **Online: limited chat + on-screen buttons.** Quick chat is now six emoji buttons in one row (🐢 Slow! · 😬 Close! · 👏 Nice! · 👑 Bow! · 🍀 Lucky! · ⚔️ GG), shown to your rival as a short floating bubble, with a 2.5s cooldown. Online guesses use the same on-screen keypad as the main game, so the phone keyboard no longer covers the screen. Slot order is unchanged, so v38 and v39 phones still understand each other.
-**The House wears each world's names.** `KN` (names), `KT` (titles) and `KC` (labels) in `<head>` map every Roman form used in the game (`KV`) to a name per world, e.g. Buganda, Neon Grid, Shogun's Realm, Frostlands, Golden Sands. In **Buganda, ASANTE and KIRABO keep their real names**; Eliya, Kirisitina and Mariamu are the Luganda forms of Elijah, Christine and Mariam. The House screen, campaign nodes, quick-match generals and toasts all follow. Bump `V` in `sw.js` after every change.
+**The House wears each world's names.** `KN` (names), `KT` (titles) and `KC` (labels) in `<head>` map every Roman form used in the game (`KV`) to a name per world, e.g. Buganda, Neon Grid, Shogun's Realm, Frostlands, Golden Sands. In **Buganda, ASANTE and KIRABO keep their real names**; Eliya and Kirisitina are the Luganda forms of Elijah and Christine, and Imran, Shanita and Mariam become Mubiru, Namuli and Nakibuuka. The House screen, campaign nodes, quick-match generals and toasts all follow. Bump `V` in `sw.js` after every change.
 
 ## v40 changes
 - **Plain English for kids.** Only **Skirmish** was replaced: the Quick mode is now **Quick Match** and the Conquest Map battle "Harbor Skirmish" is "Harbor Fight" in every world. Campaign, Conquest, Defy the Imperator, Clash of Legions, Attempts and Victory keep their original wording.
