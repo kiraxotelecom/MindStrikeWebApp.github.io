@@ -120,16 +120,16 @@ img.logo{animation:flo 4s ease-in-out infinite;filter:drop-shadow(0 0 18px hsla(
 @media(prefers-reduced-motion:reduce){#app.shk,img.logo,.scr.on>*{animation:none}}
 #app.th-azure{--gold:#5db7ff;--sand:#d6ecff;--red:#123a78}#app.th-emerald{--gold:#4fd68a;--sand:#d8f5e3;--red:#0e5a33}#app.th-tyrian{--gold:#c77dff;--sand:#ecd9ff;--red:#5a1a7a}#app.th-crimson{--gold:#ff6b5e;--sand:#ffe0dc;--red:#7a1410}#app.th-sunset{--gold:hsl(calc(29.2deg + var(--hs)),calc(100.0% * var(--ss)),calc(64.5% + var(--lt) * -29.0%));--sand:hsl(calc(30.6deg + var(--hs)),calc(100.0% * var(--ss)),calc(90.0% + var(--lt) * -80.0%));--red:hsl(calc(21.9deg + var(--hs)),calc(84.0% * var(--ss)),calc(29.4% + var(--lt) * 41.2%))}#app.th-onyx{--gold:#cfd6dd;--sand:#f1f3f5;--red:#222a33}#app.th-imperial{--gold:hsl(calc(47.1deg + var(--hs)),calc(100.0% * var(--ss)),calc(64.5% + var(--lt) * -29.0%));--sand:hsl(calc(46.2deg + var(--hs)),calc(100.0% * var(--ss)),calc(88.0% + var(--lt) * -76.0%));--red:#4a1a6e}
 #app[class*=th-] button{background:linear-gradient(var(--red),#0a0a14)}
-#app.bossm{--gold:#ff3b2a;--sand:#ffd0c8;--red:#7a0a05}#app.bossm button{background:linear-gradient(#7a0a05,#2b0300)}
-#app.bossm .scr{background:linear-gradient(#3a0000aa,rgb(var(--k) / 0.87)),var(--wtint),var(--bg) center/cover;background-blend-mode:normal,var(--wblend),normal}
-@keyframes thr{50%{box-shadow:inset 0 0 110px 20px #d0000099}}#app.bossm .scr.on{box-shadow:inset 0 0 70px 8px #a0000099;animation:thr 2s infinite}
-@keyframes fk{0%,92%,100%{opacity:1}94%{opacity:.3}96%{opacity:1}98%{opacity:.4}}#app.bossm #banner{animation:fk 1.6s infinite;text-shadow:0 0 12px #f00}
+#app.bossm{--gold:var(--bA,#ff3b2a);--sand:var(--bS,#ffd0c8);--red:var(--bR,#7a0a05)}#app.bossm button{background:linear-gradient(var(--bR,#7a0a05),var(--bB,#2b0300))}
+#app.bossm .scr{background:linear-gradient(var(--bV,#3a0000aa),rgb(var(--k) / 0.87)),var(--wtint),var(--bg) center/cover;background-blend-mode:normal,var(--wblend),normal}
+@keyframes thr{50%{box-shadow:inset 0 0 110px 20px var(--bG1,#d0000099)}}#app.bossm .scr.on{box-shadow:inset 0 0 70px 8px var(--bG2,#a0000099);animation:thr 2s infinite}
+@keyframes fk{0%,92%,100%{opacity:1}94%{opacity:.3}96%{opacity:1}98%{opacity:.4}}#app.bossm #banner{animation:fk 1.6s infinite;text-shadow:var(--bT,0 0 12px #f00)}
 @keyframes shk2{10%,50%,90%{transform:translate(-14px,8px) rotate(-1.2deg)}30%,70%{transform:translate(14px,-8px) rotate(1.2deg)}}#app.shk2{animation:shk2 .9s linear}
 #fl{position:absolute;inset:0;z-index:14;pointer-events:none;background:#fff;opacity:0}#fl.on{animation:fl .3s}@keyframes fl{from{opacity:.8}to{opacity:0}}
-#bolt{position:absolute;inset:0;z-index:14;pointer-events:none;opacity:0}#bolt svg{width:100%;height:100%}#bolt polyline{fill:none;stroke:#fff;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-width:3px;filter:drop-shadow(0 0 4px #f33) drop-shadow(0 0 12px #f00)}
-#bolt.on{animation:bolt 1.4s steps(1) both}@keyframes bolt{0%{opacity:1;background:#fff}8%{opacity:0}14%{opacity:1;background:#f004}22%{opacity:0}30%{opacity:1;background:#fff8}38%{opacity:.6;background:#0000}60%{opacity:1}75%{opacity:0}100%{opacity:0}}
-#bt{position:absolute;inset:0;z-index:15;display:none;align-items:center;justify-content:center;text-align:center;pointer-events:none;font-size:2.4rem;font-weight:bold;letter-spacing:.15em;color:#ff3b2a;text-shadow:0 0 20px #f00,0 4px 0 #000;line-height:1.1}#bt.on{display:flex}@keyframes slam{0%{transform:scale(3);opacity:0}15%{transform:scale(1);opacity:1}80%{opacity:1}100%{opacity:0;transform:scale(1.1)}}
-#shield i{transition:width .25s;background:linear-gradient(90deg,#ff3b2a,hsl(calc(35.2deg + var(--hs)),calc(100.0% * var(--ss)),calc(63.9% + var(--lt) * -27.8%)))}#shield.hit{animation:shk .3s}
+#bolt{position:absolute;inset:0;z-index:14;pointer-events:none;opacity:0}#bolt svg{width:100%;height:100%}#bolt polyline{fill:none;stroke:#fff;stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-width:3px;filter:drop-shadow(0 0 4px var(--bW2,#f33)) drop-shadow(0 0 12px var(--bW,#f00))}
+#bolt.on{animation:bolt 1.4s steps(1) both}@keyframes bolt{0%{opacity:1;background:#fff}8%{opacity:0}14%{opacity:1;background:var(--bF,#f004)}22%{opacity:0}30%{opacity:1;background:#fff8}38%{opacity:.6;background:#0000}60%{opacity:1}75%{opacity:0}100%{opacity:0}}
+#bt{position:absolute;inset:0;z-index:15;display:none;align-items:center;justify-content:center;text-align:center;pointer-events:none;font-size:2.4rem;font-weight:bold;letter-spacing:.15em;color:var(--bA,#ff3b2a);text-shadow:0 0 20px var(--bW,#f00),0 4px 0 #000;line-height:1.1}#bt.on{display:flex}@keyframes slam{0%{transform:scale(3);opacity:0}15%{transform:scale(1);opacity:1}80%{opacity:1}100%{opacity:0;transform:scale(1.1)}}
+#shield i{transition:width .25s;background:linear-gradient(90deg,var(--bA,#ff3b2a),hsl(calc(35.2deg + var(--hs)),calc(100.0% * var(--ss)),calc(63.9% + var(--lt) * -27.8%)))}#shield.hit{animation:shk .3s}
 #layers{display:none;gap:8px;justify-content:center;min-height:54px}
 .ly{width:44px;height:50px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(#b9c0ca,#4a505a);position:relative}
 .ly.cur{filter:drop-shadow(0 0 7px #fff);background:linear-gradient(#e6ebf2,#69717d)}.ly.brk.me{background:linear-gradient(hsl(calc(44.1deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%)),hsl(calc(37.9deg + var(--hs)),calc(74.5% * var(--ss)),calc(40.0% + var(--lt) * 20.0%)));filter:drop-shadow(0 0 5px hsl(calc(38.5deg + var(--hs)),calc(78.2% * var(--ss)),calc(55.1% + var(--lt) * -10.2%)))}.ly.brk.foe{background:linear-gradient(#ff5a44,#6a0a05);filter:drop-shadow(0 0 5px #c0281c)}
@@ -314,10 +314,14 @@ html[class*="wd-"] #app img{filter:var(--wimg)}
 html.wd-cyber #app,html.wd-cyber #app *{font-family:var(--wfont)!important}
 html.wd-cyber #app h1,html.wd-cyber #app h2{text-shadow:0 0 14px var(--gold)}
 html.wd-cyber #app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:repeating-linear-gradient(0deg,#0000 0 2px,#00e5ff12 2px 3px)}
-html.wd-samurai{--hs:0deg;--ss:.75;--gold:#e0b04a;--sand:#efe6d6;--red:#b3122a;--ink:#0a0809;--wtint:linear-gradient(180deg,#d4142f,#2a0a10);--wblend:color;--wimg:saturate(.85) hue-rotate(-12deg);--wfont:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif}
+html.wd-samurai{--hs:205deg;--ss:.7;--k:5 7 26;--gold:#f4b6cc;--sand:#e8ecf7;--red:#34439a;--ink:#070918;--wtint:linear-gradient(180deg,#34439a,#070918);--wblend:color;--wimg:hue-rotate(285deg) saturate(.85) brightness(1.1);--wfont:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif}
 html.wd-samurai #app,html.wd-samurai #app *{font-family:var(--wfont)!important}
-html.wd-samurai #app h1,html.wd-samurai #app h2{text-shadow:0 0 12px #e5233c99;letter-spacing:.08em}
-html.wd-samurai #app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% -5%,#e5233c30,#0000 60%),repeating-linear-gradient(90deg,#0000 0 46px,#ffffff06 46px 47px)}
+html.wd-samurai #app h1,html.wd-samurai #app h2{text-shadow:0 0 12px #f4b6cc88;letter-spacing:.08em}
+html.wd-samurai #app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% -5%,#f4b6cc26,#0000 60%),radial-gradient(circle at 50% 100%,#0000 0 40%,#cdd5ec12 41% 44%,#0000 45% 57%,#cdd5ec12 58% 61%,#0000 62%) 0 0/44px 22px,radial-gradient(circle at 50% 100%,#0000 0 40%,#cdd5ec12 41% 44%,#0000 45% 57%,#cdd5ec12 58% 61%,#0000 62%) 22px 11px/44px 22px}
+/* v38 Shogun: flat lacquer, square corners, silver double-line borders, red hanko seal */
+html.wd-samurai #app button:not(.ib),html.wd-samurai #app .bm-btn,html.wd-samurai #app .bm-cta{border-radius:2px;border-color:#cdd5ec;box-shadow:inset 0 0 0 3px #0000,inset 0 0 0 4px #cdd5ec44;letter-spacing:.14em}
+html.wd-samurai #app .card,html.wd-samurai #app #hud .pl,html.wd-samurai #app #mid{border-radius:2px}
+html.wd-samurai #app .bm-laurel{display:inline-block;align-self:center;color:#fff3ee;background:#d0201a;border-radius:3px;padding:2px 12px;font-size:16px;letter-spacing:6px;transform:rotate(-2deg);box-shadow:inset 0 0 0 1px #ffffff66}
 
 /* v33: Settings sliders. Fixed the clipped Music row (the card was being squashed by the flex column) and gave each slider a roomy row of its own. */
 #s-set>*{flex-shrink:0}
@@ -340,12 +344,12 @@ html.wd-ice #app,html.wd-ice #app *{font-family:var(--wfont)!important}
 html.wd-ice #app h1,html.wd-ice #app h2{text-shadow:0 0 14px #8fdcff88;letter-spacing:.1em}
 html.wd-ice #app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% -8%,#bfeaff33,#0000 60%),repeating-linear-gradient(60deg,#0000 0 38px,#ffffff08 38px 39px)}
 html.wd-cyber{--b1:#6b2cff;--b2:#1d0a4a;--c0:#5a2cc0;--c1:#8a2be2;--c2:#2a0d5a}
-html.wd-samurai{--b1:#b3122a;--b2:#3a0810;--c0:#a31428;--c1:#c0182f;--c2:#4a0a14}
+html.wd-samurai{--b1:#2c3a86;--b2:#0b1030;--c0:#3a4aa0;--c1:#4658b8;--c2:#141c4a}
 html.light{--lt:1;--k:244 236 218;--on:#f6e8c8;--ibc:#f0c565;--gold:#8a5410;--sand:#2a190c;--red:#8e1b16;--ink:#eadfc4}
 html.light.wd-cyber{--k:230 246 251;--on:#d7fbff;--ibc:#19f2ff;--gold:#0a7f99;--sand:#0b1a3a;--red:#c2105f;--ink:#e6f6fb;--wtint:linear-gradient(150deg,#bff6ff,#e3d4ff 55%,#ffd0e6)}
-html.light.wd-samurai{--k:243 238 226;--on:#f4ecd8;--ibc:#e0b04a;--gold:#b3122a;--sand:#1c1614;--red:#b3122a;--ink:#f1ebdc;--wtint:linear-gradient(180deg,#ffffff,#f3d6d9)}
+html.light.wd-samurai{--k:240 242 250;--on:#f4f6ff;--ibc:#cdd5ec;--gold:#8a2f58;--sand:#141a3a;--red:#34439a;--ink:#eceff9;--wtint:linear-gradient(180deg,#ffffff,#dfe4f6)}
 html.light.wd-ice{--k:238 248 253;--on:#f4fbff;--ibc:#dff4ff;--gold:#1c6aa8;--sand:#0a1d42;--red:#2a5fb8;--ink:#e9f6fc;--wtint:linear-gradient(180deg,#ffffff,#a9dff2 70%,#c9ccd6)}
-html.light #app.bossm{--gold:#b3150a;--sand:#3a0d08;--red:#7a0a05}
+html.light #app.bossm{--gold:var(--bAL,#b3150a);--sand:var(--bSL,#3a0d08);--red:var(--bR,#7a0a05)}
 html.light #app img{filter:drop-shadow(0 2px 3px #0005)}
 html.light[class*="wd-"] #app img{filter:var(--wimg) drop-shadow(0 2px 3px #0005)}
 html.light #app::after{mix-blend-mode:multiply;opacity:.5}
@@ -370,6 +374,12 @@ html.light.wd-gold{--k:253 246 226;--on:#fff3d0;--ibc:#ffd45a;--gold:#8a5a00;--s
 html.wd-buganda .scr,html.wd-gold .scr{--wblend:normal;--wtint:linear-gradient(#0000,#0000)}
 html.wd-buganda .scr:not(#s-game){--bg:url(img/buganda_menu.webp)!important}
 html.wd-gold .scr:not(#s-game){--bg:url(img/gold_menu.webp)!important}
+/* v38: boss phase colours per world (unset = the original Roman crimson). bA accent, bS text, bR/bB button gradient, bV screen tint, bG1/bG2 pulsing edge glow, bT banner flicker, bAL/bSL light-mode accent/text. */
+html.wd-cyber{--bA:#ff2bd6;--bS:#ffd6f7;--bR:#7a0a6e;--bB:#1d0230;--bV:#3a0040aa;--bG1:#ff2bd699;--bG2:#c000b399;--bT:-2px 0 #19f2ff,2px 0 #ff2bd6,0 0 14px #ff2bd6;--bAL:#a3008f;--bSL:#3a0d36;--bW:#ff2bd6;--bW2:#ff7be8;--bF:#ff2bd644}
+html.wd-samurai{--bA:#ff3b2a;--bS:#ffd6cc;--bR:#8a1208;--bB:#1a0402;--bV:#3a0600aa;--bG1:#e0200099;--bG2:#b01a0099;--bT:0 0 12px #f00;--bAL:#b3150a;--bSL:#3a0d08;--bW:#f00;--bW2:#f33;--bF:#f004}
+html.wd-ice{--bA:#ff7a2a;--bS:#ffe2cc;--bR:#8a3206;--bB:#2b1000;--bV:#3a1400aa;--bG1:#ff6a0099;--bG2:#c0500099;--bT:0 0 12px #ff7a00;--bAL:#b84a00;--bSL:#3a1a08;--bW:#ff7a00;--bW2:#ffa860;--bF:#ff7a0044}
+html.wd-buganda{--bA:#ffd21a;--bS:#fff3c2;--bR:#1c6b34;--bB:#020d05;--bV:#001a08cc;--bG1:#ffc80099;--bG2:#c8960099;--bT:0 0 14px #ffc400;--bAL:#8a5a00;--bSL:#1c2a08;--bW:#ffc400;--bW2:#ffe066;--bF:#ffc40044}
+html.wd-gold{--bA:#b48cff;--bS:#eadfff;--bR:#4a1a8a;--bB:#120428;--bV:#2a0a50aa;--bG1:#8a4dff99;--bG2:#6a30d099;--bT:0 0 14px #9b6bff;--bAL:#5a2bb8;--bSL:#241040;--bW:#9b6bff;--bW2:#c7adff;--bF:#9b6bff44}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">

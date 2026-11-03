@@ -120,3 +120,8 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 - Each world has its own menu art (img/<world>_menu.webp), boss art (img/<world>_boss.webp) and menu/gameplay music (audio/theme_<world>.mp3). Boss fights still use boss.mp3.
 - Both have a light mode (html.light.wd-buganda / html.light.wd-gold) and are in the offline cache. `V` in sw.js is now mindstrike-v37.
 - Technique: same recipe as v36, one WORLDS entry + one CSS block + the art/music files. bg() now matches `wd-(cyber|samurai|ice|buganda|gold)`.
+
+## v38 changes
+- **Shogun's Realm redesigned** so it no longer reads as Roman: midnight indigo panels, sakura-pink accents, silver double-line borders, flat square-cornered lacquer buttons, a seigaiha wave pattern, and the 侍 badge as a red hanko seal. Vermilion is now reserved for the seal and the boss phase. Light mode is moon-white with plum accents.
+- **Boss phase colour is per world.** The five red spots (accent, button gradient, screen tint, pulsing edge glow, banner flicker) now read variables with the old red as default. Per world: Roman crimson, Shogun vermilion, Neon Grid ultraviolet magenta (cyan glitch split on the banner), Ice fire orange, Buganda blazing amber on near-black green, Golden Sands royal violet. To add one for a new world set --bA, --bS, --bR, --bB, --bV, --bG1, --bG2, --bT (and --bAL, --bSL for light mode) on its html.wd-<id> block.
+- `V` in sw.js is now mindstrike-v38.
