@@ -132,6 +132,12 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 **The House wears each world's names.** `KN` (names), `KT` (titles) and `KC` (labels) in `<head>` map every Roman form used in the game (`KV`) to a name per world, e.g. Buganda, Neon Grid, Shogun's Realm, Frostlands, Golden Sands. In **Buganda, ASANTE and KIRABO keep their real names**; Eliya, Kirisitina and Mariamu are the Luganda forms of Elijah, Christine and Mariam. The House screen, campaign nodes, quick-match generals and toasts all follow. Bump `V` in `sw.js` after every change.
 
 ## v40 changes
-- **Plain English for kids.** Skirmish / Campaign / Conquest matches are now **Quick Match / Normal Match / Long Match** (labels on the leaderboard and target chip follow). "Defy the Imperator" is **Fight the Imperator**, "Clash of Legions" is **Play with a Friend**. "Attempts" is now "tries". The name and rank screens use short sentences (Easy / Medium / Hard shown under each rank), opponent descriptions say what they do ("Point stealer", "Hint blocker"), and the end-of-match lines are simple ("You win!", "It is a draw."). The Conquest Map battle "Harbor Skirmish" is "Harbor Fight" in every world. How to Play still has some older wording.
+- **Plain English for kids.** Only **Skirmish** was replaced: the Quick mode is now **Quick Match** and the Conquest Map battle "Harbor Skirmish" is "Harbor Fight" in every world. Campaign, Conquest, Defy the Imperator, Clash of Legions, Attempts and Victory keep their original wording.
 - **Opponent, name and rank screens are centred** (they used to be pinned to the top, leaving half the screen empty).
 - **A design language per world** (Roman and Shogun unchanged): **Neon Grid** = HUD corner brackets, scanline glass, slanted action bars, hex badges, glitch heading. **Ice** = frosted blue shards with hanging icicles, crystal gems, diamond rune buttons, drifting snow. **Buganda** = woven bark-cloth diamond bands, shield badges, pill buttons, rising embers. **Golden Sands** = leaf corners with a double-line frame, eight-point-star lattice, star medallions, pointed-arch buttons, drifting gold dust. All in the v40 block at the end of the CSS; ambient particles hide during matches and respect reduced-motion. `V` in sw.js is now mindstrike-v40.
+
+### v40b
+- Online menu: **Family record** and **Match options** are now two small buttons that open pop-ups, so Join Room fits on screen without scrolling.
+- Power buttons are smaller in the arena and in online matches.
+- Online secret number box redesigned as a vault plate that glows once a number is entered.
+- Arena: the opponent intro pop-up (e.g. Mariamind) is removed. Remaining toasts (power-up explanations) now sit at the very top, above the timer, in a smaller size.
