@@ -807,7 +807,7 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Five fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
-<h2>FRIEND CHALLENGE</h2><p>Play 5 seeded rounds, then share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day).</p>
+<h2>WORLD GAME &amp; WORLD QUESTS</h2><p>Every world has its own mini game in <b>Mini Games</b> (Forum Trader, Cowrie Count, Binary Breach, Haiku Blade, Rune Stones, Caravan Ledger), open from the start in whichever world you wear. Each day and week also brings one quest for your current world, paying extra coins, XP and gear.</p><h2>FRIEND CHALLENGE</h2><p>Play 5 seeded rounds, then share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day).</p>
 <button class="bm-cta" onclick="this.closest('.pop').classList.remove('on')" style="margin-top:12px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
 // ---- engine ----
@@ -1120,7 +1120,7 @@ $('#cbGo').onclick=()=>{const[r,i]=camp.sel;startCamp(r,i)};$('#cbX').onclick=()
 $('#nextB').onclick=()=>{if(camp.next){sfx('click');cbrief(camp.next[0],camp.next[1])}};$('#mapB').onclick=()=>{sfx('click');toMap()};
 
 // ---- v12: mini games ----
-const BRD=['hunt','echo','cards'],MINI=[
+const BRD=['hunt','echo','cards','tm_roman','tm_buganda','tm_cyber','tm_samurai','tm_ice','tm_gold'],MINI=[
  {k:'light',n:'LIGHTNING ROUND',e:'⚡',rk:2,d:'The timer shrinks after every correct guess. Play until you fail.'},
  {k:'code',n:'CODEBREAKER',e:'🔐',rk:3,d:'Crack a secret 3-digit vault code. 🎯 right digit, right place · 🔸 right digit, wrong place. 5 vaults.'},
  {k:'sniper',n:'SNIPER RANGE',e:'🎯',rk:4,d:'Only 2 shots at a huge range (1–999). Hit the zone — streaks multiply the payout.'},
@@ -1130,12 +1130,12 @@ const BRD=['hunt','echo','cards'],MINI=[
  {k:'gaunt',n:'ARENA GAUNTLET',e:'🛡️',rk:8,d:'12 back-to-back rounds, no breaks. Powers never refill.'},
  {k:'cards',n:'FATE’S CARDS',e:'🃏',rk:10,d:'Higher or lower? Count the deck, build a streak, and BANK it before luck turns.'},
  {k:'hunt',n:'TREASURE HUNT',e:'💎',rk:12,d:'Dig the grid. Hot/cold hints lead you to the treasure.'}];
-const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>rk()>=MINI[i].rk,mgm=k=>PRO.mg[k]||(PRO.mg[k]={b:0,p:0,t:0,s:0});
+const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>MINI[i].wd?MINI[i].wd===TW:rk()>=MINI[i].rk,mgm=k=>PRO.mg[k]||(PRO.mg[k]={b:0,p:0,t:0,s:0});
 const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
 const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. NANAIA',.7],['GEN. SHANITARI',.8],['GEN. ELIJAHOS',.9],['KIRAXO',.97]];
 let X=null;
 const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}_show(id)};
-function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
+function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{if(M.wd&&M.wd!==TW)return'';const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
  return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
 const mgSet=t=>{$('#mgMsg').textContent=t};
@@ -1150,15 +1150,15 @@ function mgUpd(){if(!X)return;const k=X.k,set=(a,b,c,d)=>{$('#mgMt').textContent
  else if(k==='oracle')set('RIDDLE',X.r,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
  else if(k==='echo')set('LENGTH',X.seq.length,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(2-X.lives));
  else if(k==='cards')set('STREAK',X.st,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
- else set('HUNT',`${X.n}/5`,'DIGS',X.digs)}
+ else if(k.startsWith('tm_'))set('ROUND',X.r,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));else set('HUNT',`${X.n}/5`,'DIGS',X.digs)}
 function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({g,t,d:up?'↑':'↓'});tone(250+Math.max(0,c)*700,.1,'triangle');mgChips();mgRangeUI();
  mgSet(foc?`EXACT FOCUS: ${Math.round(c*100)}% close — ${t.toUpperCase()}! ${up?'Higher':'Lower'}`:`${TE[t]} ${up?'Higher':'Lower'} — ${LBL[t]}`)}
 function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
 function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
-function mgEnd(){if(!X||X.abandon||X.fin)return;X.fin=1;const k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
+function mgEnd(){if(!X||X.abandon||X.fin)return;X.fin=1;const k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
  const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=Math.round(X.score/4)+3,r0=rk();PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
- const stat={light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 The general cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]();
+ const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 The general cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
  $('#mgRT').innerHTML=`${M.e} ${M.n}${nb&&X.score>0?'<br><small>🏆 NEW BEST!</small>':''}`;
  $('#mgRB').innerHTML=`${X.sum&&X.sum!==stat?X.sum+'<br>':''}${stat}<br><b>Score ${X.score}</b> · best ${m.b}<br>+${coins} 💰 · +${xp} XP${l1>l0?`<br>⭐ <b>MASTERY LEVEL ${l1}!</b> (+${25*l1} 💰 included)`:''}<br><small>Mastery L${l1} · ${m.p} plays</small>`;
  $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
@@ -1168,7 +1168,7 @@ function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))retu
  $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'?'grid':'none';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
  if(k==='gaunt')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
  if(!$('#s-mg').classList.contains('on'))go('s-mg');
- ({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,cards:cdInit,hunt:huInit})[k]();mgUpd()}
+ (({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,cards:cdInit,hunt:huInit})[k]||tmInit)();mgUpd()}
 function mgFire(){if(!X||X.done||X.busy||BRD.includes(X.k))return;const el=$('#mgNum'),g=parseInt(el.value,10);
  if(isNaN(g)||g<X.lo||g>X.hi){mgSet(`Enter a number from ${X.lo} to ${X.hi}.`);sfx('buzz');return}
  el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({light:lgFire,code:cbFire,sniper:snFire,oracle:orFire,duel:duFire,gaunt:gtFire})[X.k](g);mgUpd()}
@@ -1306,6 +1306,30 @@ $('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||
 addEventListener('keydown',e=>{if(!$('#s-mg').classList.contains('on')||!X||X.done||X.busy||BRD.includes(X.k))return;const i=$('#mgNum');
  if(/^\d$/.test(e.key)){if(i.value.length<3)i.value+=e.key}else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')mgFire()});
 $('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
+
+// ---- v43: one special mini game per world (themed) ----
+const TW=WID||'roman';
+const TG={
+ roman:{k:'tm_roman',n:'FORUM TRADER',e:'🏛️',d:'Haggle in the Forum: work out the change before the merchant loses patience. Streaks and speed pay.',mk:r=>{const p=rnd(2,8+(r>>1)),q=rnd(2,6+(r>>2)),t=p*q,pay=Math.ceil((t+1)/10)*10+(r>6?10*rnd(0,2):0);return{q:`🏺 ${q} amphorae at ${p} denarii each. You pay ${pay}. Your change?`,a:pay-t}}},
+ buganda:{k:'tm_buganda',n:'COWRIE COUNT · ENSIMBI',e:'🐚',d:'Count the royal tribute: bundles of cowries plus loose shells. Quick, the Kabaka is waiting.',mk:r=>{const a=rnd(2,4+(r>>1)),b=pick([5,10,12]),c=rnd(1,9);return{q:`🐚 ${a} bundles of ${b} cowries and ${c} loose. How many cowries in all?`,a:a*b+c}}},
+ cyber:{k:'tm_cyber',n:'BINARY BREACH',e:'💾',d:'Decode the firewall: turn binary into decimal. The key gets longer as you go deeper.',mk:r=>{const n=Math.min(8,3+(r>>1)),v=rnd(2**(n-1),2**n-1);return{q:`💾 Decode ${v.toString(2)}₂ to decimal`,a:v}}},
+ samurai:{k:'tm_samurai',n:'HAIKU BLADE',e:'🗡️',d:'Each haiku has a missing line. Count the syllables to complete it and strike true.',mk:r=>{const a=rnd(3,9+(r>>1)),c=rnd(3,9+(r>>1)),b=rnd(4,12+(r>>1));const m=pick([0,1,2]),v=[a,b,c];return{q:`🗡️ Syllables: ${v.map((x,i)=>i===m?'?':x).join(' + ')} = ${a+b+c}. What is missing?`,a:v[m]}}},
+ ice:{k:'tm_ice',n:'RUNE STONES',e:'ᚱ',d:'Read the runes: every stone has a value this round. Add up the casting before the fire dies.',mk:r=>{const R=['ᚠ','ᚢ','ᚦ'],v=R.map(()=>rnd(2,6+(r>>1))),n=rnd(4,5+(r>>3)),s=Array.from({length:n},()=>rnd(0,2));return{q:`ᚱ ${R.map((x,i)=>x+'='+v[i]).join('  ')}<br>Total of ${s.map(i=>R[i]).join(' ')} ?`,a:s.reduce((t,i)=>t+v[i],0)}}},
+ gold:{k:'tm_gold',n:'CARAVAN LEDGER',e:'🐪',d:'Keep the caravan books: camels, dates and raiders. How much cargo reaches the bazaar?',mk:r=>{const n=rnd(3,6+(r>>1)),k=rnd(4,9+(r>>2)),l=rnd(2,Math.min(n*k-1,12+r));return{q:`🐪 ${n} camels carry ${k} sacks of dates each. Raiders steal ${l}. Sacks left?`,a:n*k-l}}}};
+const TGM=TG[TW];MINI.unshift({k:TGM.k,n:TGM.n,e:TGM.e,rk:-1,wd:TW,d:'⭐ WORLD GAME · '+TGM.d});
+function tmInit(){X.r=0;X.lives=3;X.cl=0;X.st=0;X.stat='Correct answers: 0';tmNext()}
+function tmNext(){const x=X;if(!x||x.done)return;x.r++;if(x.r>25){x.score+=100;mgSet('🏆 Flawless! +100');return mgOver('🏆 You mastered it!')}
+ const g=TGM.mk(x.r),a=g.a,sp=Math.max(1,Math.round(a*.08)),o=new Set([a]);let i=0;while(o.size<4&&i++<60){const d=Math.max(1,sp*rnd(1,3))*(Math.random()<.5?-1:1);if(a+d>0)o.add(a+d)}for(let j=1;o.size<4;j++)o.add(a+j);
+ x.cur=g;x.opts=[...o].sort(()=>Math.random()-.5);x.T=Math.max(5,14-(x.r>>1));x.t0=Date.now();x.busy=false;
+ $('#mgBoard').innerHTML=`<div class="card" style="margin:0;width:min(94%,390px);text-align:center;font-size:1.05rem;line-height:1.5">${g.q}</div><div class="mgg" style="grid-template-columns:1fr 1fr;width:min(94%,390px)">${x.opts.map((v,j)=>`<button data-tm="${j}" style="font-size:1.4rem">${v}</button>`).join('')}</div>`;
+ $('#mgBar').style.display='block';mgUpd();mgSet(`${TGM.e} Round ${x.r} · ${x.T}s`);tmTick(x,x.r)}
+function tmTick(x,r){const l=x.T-(Date.now()-x.t0)/1000,b=$('#mgBar i');if(b)b.style.width=Math.max(0,l/x.T*100)+'%';
+ if(X!==x||x.done||x.r!==r||x.busy)return;if(l<=0)return tmAns(-1);setTimeout(()=>tmTick(x,r),100)}
+function tmAns(j){const x=X;if(!x||x.done||x.busy||!x.k.startsWith('tm_'))return;x.busy=true;const left=Math.max(0,x.T-(Date.now()-x.t0)/1000),ok=j>=0&&x.opts[j]===x.cur.a;
+ $$('#mgBoard [data-tm]').forEach(b=>{if(x.opts[+b.dataset.tm]===x.cur.a)b.classList.add('lit');b.disabled=true});
+ if(ok){x.st++;x.cl++;const pts=10+Math.min(x.r,20)*2+Math.min(x.st,10)*3+Math.ceil(left);x.score+=pts;x.stat='Correct answers: '+x.cl;sfx('ding');ft('+'+pts);mgUpd();mgSet(`✅ +${pts}${x.st>2?' · 🔥 streak '+x.st:''}`);setTimeout(tmNext,700)}
+ else{x.st=0;x.lives--;sfx('buzz');shake();mgUpd();if(x.lives<=0)return mgFail(`${j<0?'Time is up!':'Wrong!'} The answer was ${x.cur.a}.`);mgSet(`💔 ${j<0?'Too slow':'Wrong'} — it was ${x.cur.a}`);setTimeout(tmNext,1200)}}
+$('#mgBoard').addEventListener('click',e=>{const b=e.target.closest('[data-tm]');if(b&&!b.disabled)tmAns(+b.dataset.tm)});
 $('#miniList').onclick=e=>{const b=e.target.closest('[data-mg]');if(!b||b.disabled)return;sfx('click');startMini(b.dataset.mg)};
 $('#mgAgain').onclick=()=>{sfx('click');startMini(X.k)};$('#mgHub').onclick=()=>{sfx('click');$('#mgRes').classList.remove('on');miniUI();back()};$('#mgHome').onclick=()=>{$('#mgRes').classList.remove('on');home()};
 function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800);tone(784,.12,'triangle')}
@@ -1580,6 +1604,15 @@ const QD=[['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the fir
  ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}]];
 const QW=[['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
  ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}]];
+
+// ---- v43: themed quests (one daily + one weekly per world, plus world-flavoured rewards) ----
+const TN={roman:'Rome',buganda:'Buganda',cyber:'the Neon Grid',samurai:"the Shogun's Realm",ice:'the Frostlands',gold:'Golden Sands'};
+function TQ(){const w=TW,N=TN[w],G=TG[w],E=x=>'w:'+w+':'+x,I=(...a)=>'T'+w+a[0];
+ return{d:[[I('d1'),`${G.e} Win a Conquest Map battle in ${N}`,E('conq'),1,60,35,{'x:SCAN':1}],[I('d2'),`${G.e} Play ${G.n}`,E('tm'),1,45,25,{head:1}],[I('d3'),`${G.e} Win 3 rounds in ${N}`,E('round'),3,45,25,{'x:FOCUS':1}],[I('d4'),`${G.e} Score 80+ in ${G.n}`,E('tms'),80,55,30,{time:1}]],
+ w:[[I('w1'),`${G.e} Win 4 Conquest Map battles in ${N}`,E('conq'),4,320,160,{pack:1,'x:SCAN':1}],[I('w2'),`${G.e} Score 200+ in ${G.n}`,E('tms'),200,360,170,{tome:1}],[I('w3'),`${G.e} Win 3 VS matches in ${N}`,E('win'),3,300,150,{mag:1}],[I('w4'),`${G.e} Play ${G.n} 5 times`,E('tm'),5,280,130,{bane:1,'x:SHIELD':1}]]}}
+function tqFix(){let c=0;const T=TQ(),swap=(arr,pool,sd)=>{if(arr.some(q=>q.id[0]==='T'&&q.id.startsWith('T'+TW)))return;const i=arr.map((q,k)=>k).reverse().find(k=>!arr[k].p&&!arr[k].cl);if(i==null)return;const[id,n,e,t,cc,x,it]=pool[Math.floor(mul(seed(sd))()*pool.length)];arr[i]={id,n,e,t,c:cc,x,it,p:0,cl:0};c=1};
+ if(PRO.q.d&&!PRO.q.d.some(q=>q.id.startsWith('T')))swap(PRO.q.d,T.d,'tqd'+today());
+ if(PRO.q.w&&!PRO.q.w.some(q=>q.id.startsWith('T')))swap(PRO.q.w,T.w,'tqw'+Math.floor((Date.now()/864e5+3)/7));return c}
 const SW={d:{c:100,x:60,inv:{pack:1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
 const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}].map(x=>({...x,c:cx(x.c)}));
 const RR={1:{c:60,inv:{'x:SCAN':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
@@ -1589,12 +1622,13 @@ const nmOf=k=>{const it=SHOP.find(x=>x[0]===k);return it?it[1]+' '+it[2]:k};
 function grant(r){PRO.gold+=r.c||0;const t=[`💰 ${r.c||0}`];for(const k in r.inv||{}){PRO.inv[k]=(PRO.inv[k]||0)+r.inv[k];t.push(`${r.inv[k]}× ${nmOf(k)}`)}(r.own||[]).forEach(k=>{PRO.own[k]=1;t.push('NEW: '+nmOf(k))});if(r.x)PRO.xp+=r.x;LS.set('ms_pro',PRO);return t.join(' · ')}
 function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now()/864e5+3)/7));let ch=0;
  const draw=(pool,n,sd)=>{const r=mul(seed(sd)),p=[...pool],o=[];while(o.length<n){const[id,nme,e,t,c,x,it]=p.splice(Math.floor(r()*p.length),1)[0];o.push({id,n:nme,e,t,c,x,it,p:0,cl:0})}return o};
- if(PRO.q.dk!==dk){PRO.q.d=draw(QD,4,'qd'+dk);PRO.q.dk=dk;PRO.q.sd=0;ch=1}
- if(PRO.q.wk!==wk){PRO.q.w=draw(QW,3,'qw'+wk);PRO.q.wk=wk;PRO.q.sw=0;ch=1}
- if(ch)LS.set('ms_pro',PRO)}
+ if(PRO.q.dk!==dk){PRO.q.d=draw(QD,3,'qd'+dk).concat(draw(TQ().d,1,'tqd'+dk));PRO.q.dk=dk;PRO.q.sd=0;ch=1}
+ if(PRO.q.wk!==wk){PRO.q.w=draw(QW,2,'qw'+wk).concat(draw(TQ().w,1,'tqw'+wk));PRO.q.wk=wk;PRO.q.sw=0;ch=1}
+ if(tqFix())ch=1;if(ch)LS.set('ms_pro',PRO)}
 function qEach(f){qInit();[...PRO.q.d,...PRO.q.w].forEach(q=>{if(!q.cl&&q.p<q.t)f(q)})}
 function qDone(q){if(q.p>=q.t){toast(`📜 <b>QUEST COMPLETE</b><br><small>${q.n} — claim it in Quests</small>`);qBadge()}}
 function qEv(e,n=1){qEach(q=>{if(q.e===e){q.p=Math.min(q.t,q.p+n);qDone(q)}});LS.set('ms_pro',PRO)}
+var _qEv=qEv;qEv=function(e,n=1){_qEv(e,n);_qEv('w:'+TW+':'+e,n)};
 function qMax(e,v){qEach(q=>{if(q.e===e&&v>q.p){q.p=Math.min(q.t,v);qDone(q)}});LS.set('ms_pro',PRO)}
 function qCount(){qInit();return[...PRO.q.d,...PRO.q.w].filter(q=>q.p>=q.t&&!q.cl).length+Object.keys(RR).filter(i=>rk()>=i&&!PRO.rr[i]).length+['d','w'].filter(k=>PRO.q[k].every(q=>q.cl)&&!PRO.q['s'+k]).length}
 function qBadge(){const b=$('#questBtn');if(!b)return;const n=qCount();b.innerHTML=`<i class="ti">📜</i><span>QUESTS</span><small>${n?n+' to claim':'rewards'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
