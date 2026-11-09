@@ -172,3 +172,9 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 ## v54 changes
 **Boss skins**: five new Kiraxo skins in the Armory (KIRAXO SKINS) drawn from the boss portraits: Kabaka Kiraxo (Buganda), Sultan Kiraxo (Golden Sands), Viking Kiraxo (Frostlands), Shogun Kiraxo (Shogun's Realm) and Cyber-God Kiraxo (Neon Grid). Portraits live in `img/ks_<world>.webp`, the colour glow is `KSC`, the table is `KSI`. Equipped, the portrait sits on Kiraxo's HUD and in the entrance splash.
 **Arena Trials**: the home tile "Daily & Events" is now **ARENA TRIALS** and opens a chooser with two cards, Daily Strike and Weekly Challenge, each with its own screen (`s-dstrike`, `s-weekly`). The Today's Board button moved from the home screen to the Daily Strike screen. "Weekly Event" is now "Weekly Challenge". The blue numbers emoji is gone from the tile, and Prime Week uses an abacus. Bump `V` in `sw.js` after every change.
+
+## v55 changes
+**New game icon**: the "Champions of History" artwork is now the app icon (`icon-192.png`, `icon-512.png`, plus a padded `icon-maskable-512.png` so round Android masks don't crop the title). The manifest lists them as separate `any` and `maskable` icons.
+**Plainer mini game words**: Forum Trader is now **Market Change** (jars and coins, no amphorae/denarii), Rune Stones is **Stone Sums**, Oracle's Sequence is **Next Number**, Echo Scroll is **Memory Echo**, Arena Gauntlet is **Non-Stop Challenge**, Fate's Cards is **Higher or Lower**, and "the general" is "a rival". Locked mini games now also show the XP needed.
+**Stone Sums timer**: much slower, 30s on round 1 shrinking to a 16s floor (was 14s down to 5s). Other mini games are unchanged; a world game can set its own `tf:[start,min,roundsPerSecond]`.
+**Back button at the bottom centre** on every screen that has one, matching Settings (home) and Pause (in game). Those screens now have more room at the top. Bump `V` in `sw.js` after every change.

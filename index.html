@@ -529,7 +529,8 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 #shopPop .shBox h2{margin:0}#shopPopG{font-weight:bold}
 #shopPopB>*{flex:none}#shopPopB{overflow-y:auto;display:flex;flex-direction:column;gap:8px;text-align:left;min-height:0;flex:1;-webkit-overflow-scrolling:touch}
 #s-game{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:calc(66px + env(safe-area-inset-bottom))}
-#s-game .bar{top:auto;bottom:calc(8px + env(safe-area-inset-bottom));left:0;right:0;justify-content:center}
+#s-game .bar,.scr .bar{top:auto;bottom:calc(8px + env(safe-area-inset-bottom));left:0;right:0;justify-content:center}
+.scr:not(#s-game){padding-top:calc(14px + env(safe-area-inset-top));padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 #app #pauseBtn{width:50px;height:50px}#app #pauseBtn .ic{width:28px;height:28px}
 #s-game #hud{margin-top:42px}
 #hud .skE,#hud #skE1{left:50%;right:auto;top:auto;bottom:100%;margin:0 0 -2px -1.35rem;width:2.7rem;text-align:center;font-size:2.4rem}
@@ -1177,11 +1178,11 @@ const BRD=['hunt','echo','cards','tm_roman','tm_buganda','tm_cyber','tm_samurai'
  {k:'light',n:'LIGHTNING ROUND',e:'⚡',rk:1,d:'The timer shrinks after every correct guess. Play until you fail.'},
  {k:'code',n:'CODEBREAKER',e:'🔐',rk:2,d:'Crack a secret 3-digit vault code. 🎯 right digit, right place · 🔸 right digit, wrong place. 5 vaults.'},
  {k:'sniper',n:'SNIPER RANGE',e:'🎯',rk:3,d:'Only 2 shots at a huge range (1–999). Hit the zone — streaks multiply the payout.'},
- {k:'oracle',n:'ORACLE’S SEQUENCE',e:'🔮',rk:4,d:'Find the next number in the pattern. Two tries per riddle, three lives, and the patterns get nastier.'},
- {k:'duel',n:'NUMBER DUEL',e:'🤺',rk:5,d:'You and the general each hide a number. First to crack the other wins.'},
- {k:'echo',n:'ECHO SCROLL',e:'🧠',rk:6,d:'Watch the numbers light up, then repeat them. One more number every round.'},
- {k:'gaunt',n:'ARENA GAUNTLET',e:'🛡️',rk:7,d:'12 back-to-back rounds, no breaks. Powers never refill.'},
- {k:'cards',n:'FATE’S CARDS',e:'🃏',rk:8,d:'Higher or lower? Count the deck, build a streak, and BANK it before luck turns.'},
+ {k:'oracle',n:'NEXT NUMBER',e:'🔮',rk:4,d:'Find the next number in the pattern. Two tries per riddle, three lives, and the patterns get nastier.'},
+ {k:'duel',n:'NUMBER DUEL',e:'🤺',rk:5,d:'You and a rival each hide a number. First to crack the other wins.'},
+ {k:'echo',n:'MEMORY ECHO',e:'🧠',rk:6,d:'Watch the numbers light up, then repeat them. One more number every round.'},
+ {k:'gaunt',n:'NON-STOP CHALLENGE',e:'🛡️',rk:7,d:'12 back-to-back rounds, no breaks. Powers never refill.'},
+ {k:'cards',n:'HIGHER OR LOWER',e:'🃏',rk:8,d:'Higher or lower? Count the deck, build a streak, and BANK it before luck turns.'},
  {k:'hunt',n:'TREASURE HUNT',e:'💎',rk:9,d:'Dig the grid. Hot/cold hints lead you to the treasure.'}];
 const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>MINI[i].wd?MINI[i].wd===TW:rk()>=MINI[i].rk,mgm=k=>PRO.mg[k]||(PRO.mg[k]={b:0,p:0,t:0,s:0});
 const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
@@ -1189,7 +1190,7 @@ const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'fr
 let X=null;
 const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}_show(id)};
 function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{if(M.wd&&M.wd!==TW)return'';const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
- return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
+ return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' ('+RANKS[M.rk][1]+' XP) to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
 const mgSet=t=>{$('#mgMsg').textContent=t};
 function mgChips(){$('#mgChips').innerHTML=X.hist.map(h=>`<span style="border-color:${h.txt?h.c:TC[h.t]};color:${h.txt?h.c:TC[h.t]}">${h.txt||h.d+h.g+TE[h.t]}</span>`).join('')}
@@ -1211,7 +1212,7 @@ function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
 function mgEnd(){if(!X||X.abandon||X.fin)return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
  const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=Math.round(X.score/4)+3,r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
- const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 The general cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
+ const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
  $('#mgRT').innerHTML=`${M.e} ${M.n}${nb&&X.score>0?'<br><small>🏆 NEW BEST!</small>':''}`;
  $('#mgRB').innerHTML=`${X.sum&&X.sum!==stat?X.sum+'<br>':''}${stat}<br><b>Score ${X.score}</b> · best ${m.b}<br>+${coins} 💰 · +${xp} XP${l1>l0?`<br>⭐ <b>MASTERY LEVEL ${l1}!</b> (+${25*l1} 💰 included)`:''}<br><small>Mastery L${l1} · ${m.p} plays</small>`;
  $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
@@ -1247,7 +1248,7 @@ function duInit(){const m=mgm('duel'),L=mlv(m.t),f=DUEL[Math.min(3,L>>1)];X.foe=
  mgSet(`Choose your SECRET number (1–${X.hi}). ${X.foe} will try to crack it.`)}
 function duBoard(){$('#mgBoard').innerHTML=`<div>🔒 Your number: <b>${X.mine}</b> &nbsp;·&nbsp; ${X.foe}: <b>??</b></div>`}
 function duFire(g){if(X.ph==='pick'){X.mine=g;X.ph='play';X.kLo=1;X.kHi=X.hi;duBoard();mgRangeUI();
-  if(X.first)mgSet('Secret locked 🔒 You strike first — guess the general’s number!');else{X.busy=true;mgSet(`Secret locked 🔒 ${X.foe} strikes first…`);setTimeout(duAI,900)}return}
+  if(X.first)mgSet('Secret locked 🔒 You strike first — guess your rival’s number!');else{X.busy=true;mgSet(`Secret locked 🔒 ${X.foe} strikes first…`);setTimeout(duAI,900)}return}
  X.g++;if(g===X.secret){const m=mgm('duel'),pts=Math.max(30,110-10*X.g)+15*Math.min(m.s||0,5);X.score=pts;X.won=1;m.s=(m.s||0)+1;burst(['🏆','✨'],24);sfx('ding');mgSet(`🏆 You cracked it in ${X.g}! +${pts}`);return mgOver('Victory')}
  const up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({txt:`YOU ${up?'↑':'↓'}${g}`,c:'#e6c15a'});mgChips();mgRangeUI();
  mgSet(`${up?'Higher':'Lower'}! ${X.foe} is thinking…`);X.busy=true;setTimeout(duAI,900)}
@@ -1266,10 +1267,10 @@ function gtPow(n){if(n==='SCAN'&&X.sc>0&&!X.scanned){X.sc--;X.scanned=1;const mi
  sfx('powerup');gtPw()}
 function gtFire(g){X.att++;const foc=X.focus;X.focus=0;
  if(g===X.secret){const left=X.maxA-X.att,pts=8+4*X.r+3*left;X.score+=pts;X.cl++;sfx('ding');ft('+'+pts);
-  if(X.r>=GT.length){X.score+=150;burst(['🏆','✨'],30);return mgOver('🏆 GAUNTLET CLEARED! +150')}
+  if(X.r>=GT.length){X.score+=150;burst(['🏆','✨'],30);return mgOver('🏆 CHALLENGE CLEARED! +150')}
   X.busy=true;gtPw();mgSet(`✅ Round ${X.r} cleared! +${pts} — next round…`);setTimeout(()=>{if(!X.done)gtRound()},650);return}
  if(X.att>=X.maxA){if(X.sh>0){X.sh--;X.busy=true;gtPw();sfx('powerup');mgSet(`🛡️ SHIELD absorbed the loss (it was ${X.secret}).`);mgUpd();
-   setTimeout(()=>{if(X.done)return;if(X.r>=GT.length)return mgOver('Gauntlet survived');gtRound()},900);return}
+   setTimeout(()=>{if(X.done)return;if(X.r>=GT.length)return mgOver('Challenge survived');gtRound()},900);return}
   return mgFail(`Fallen in round ${X.r}. It was ${X.secret}.`)}
  mgHint(g,foc);gtPw()}
 // -- Treasure Hunt --
@@ -1320,7 +1321,7 @@ function orRound(first){X.r++;X.lo=0;X.hi=999;const tr=X.r<=3?0:X.r<=7?1:2;let g
 function orShow(rev){const q=X.seq.slice(0,X.show).join(' · ');$('#mgBoard').innerHTML=`<div class="orq">${q} · ${rev?`<i>${X.ans}</i>`:'<b>?</b>'}</div>`}
 function orFire(g){X.tr++;
  if(g===X.ans){const t=Math.floor((Date.now()-X.t0)/1000),pts=Math.round((12+3*X.r+Math.max(0,12-t))*(X.tr===1?1:.5));X.score+=pts;X.cl++;X.busy=true;sfx('ding');ft('+'+pts);orShow(true);
-  if(X.r>=15){X.score+=100;mgSet(`🔮 Correct! +${pts} — the Oracle is silenced. +100 bonus`);return mgOver('🏆 All 15 riddles solved!')}
+  if(X.r>=15){X.score+=100;mgSet(`🔮 Correct! +${pts} — every riddle solved! +100 bonus`);return mgOver('🏆 All 15 riddles solved!')}
   mgSet(`🔮 Correct! +${pts} — rule: ${X.rule}.`);setTimeout(()=>{if(!X.done)orRound()},1800);return}
  if(X.tr>=2){X.lives--;X.busy=true;orShow(true);if(X.lives<=0)return mgFail(`Out of lives — it was ${X.ans} (${X.rule}).`);
   sfx('buzz');shake();mgSet(`💔 It was ${X.ans} — ${X.rule}.`);setTimeout(()=>{if(!X.done)orRound()},2200);return}
@@ -1363,17 +1364,17 @@ $('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
 // ---- v43: one special mini game per world (themed) ----
 const TW=WID||'roman';
 const TG={
- roman:{k:'tm_roman',n:'FORUM TRADER',e:'🏛️',d:'Haggle in the Forum: work out the change before the merchant loses patience. Streaks and speed pay.',mk:r=>{const p=rnd(2,8+(r>>1)),q=rnd(2,6+(r>>2)),t=p*q,pay=Math.ceil((t+1)/10)*10+(r>6?10*rnd(0,2):0);return{q:`🏺 ${q} amphorae at ${p} denarii each. You pay ${pay}. Your change?`,a:pay-t}}},
+ roman:{k:'tm_roman',n:'MARKET CHANGE',e:'🛒',d:'Shopping at the market: work out your change before the seller loses patience. Streaks and speed pay.',mk:r=>{const p=rnd(2,8+(r>>1)),q=rnd(2,6+(r>>2)),t=p*q,pay=Math.ceil((t+1)/10)*10+(r>6?10*rnd(0,2):0);return{q:`🛒 ${q} jars at ${p} coins each. You pay ${pay}. Your change?`,a:pay-t}}},
  buganda:{k:'tm_buganda',n:'COWRIE COUNT · ENSIMBI',e:'🐚',d:'Count the royal tribute: bundles of cowries plus loose shells. Quick, the Kabaka is waiting.',mk:r=>{const a=rnd(2,4+(r>>1)),b=pick([5,10,12]),c=rnd(1,9);return{q:`🐚 ${a} bundles of ${b} cowries and ${c} loose. How many cowries in all?`,a:a*b+c}}},
  cyber:{k:'tm_cyber',n:'BINARY BREACH',e:'💾',d:'Decode the firewall: turn binary into decimal. The key gets longer as you go deeper.',mk:r=>{const n=Math.min(8,3+(r>>1)),v=rnd(2**(n-1),2**n-1);return{q:`💾 Decode ${v.toString(2)}₂ to decimal`,a:v}}},
  samurai:{k:'tm_samurai',n:'HAIKU BLADE',e:'🗡️',d:'Each haiku has a missing line. Count the syllables to complete it and strike true.',mk:r=>{const a=rnd(3,9+(r>>1)),c=rnd(3,9+(r>>1)),b=rnd(4,12+(r>>1));const m=pick([0,1,2]),v=[a,b,c];return{q:`🗡️ Syllables: ${v.map((x,i)=>i===m?'?':x).join(' + ')} = ${a+b+c}. What is missing?`,a:v[m]}}},
- ice:{k:'tm_ice',n:'RUNE STONES',e:'ᚱ',d:'Read the runes: every stone has a value this round. Add up the casting before the fire dies.',mk:r=>{const R=['ᚠ','ᚢ','ᚦ'],v=R.map(()=>rnd(2,6+(r>>1))),n=rnd(4,5+(r>>3)),s=Array.from({length:n},()=>rnd(0,2));return{q:`ᚱ ${R.map((x,i)=>x+'='+v[i]).join('  ')}<br>Total of ${s.map(i=>R[i]).join(' ')} ?`,a:s.reduce((t,i)=>t+v[i],0)}}},
+ ice:{k:'tm_ice',n:'STONE SUMS',e:'🪨',tf:[30,16,2],d:'Every symbol stone has a number. Add up the stones in the row. Extra time on every round.',mk:r=>{const R=['ᚠ','ᚢ','ᚦ'],v=R.map(()=>rnd(2,6+(r>>1))),n=rnd(4,5+(r>>3)),s=Array.from({length:n},()=>rnd(0,2));return{q:`🪨 ${R.map((x,i)=>x+' = '+v[i]).join('   ')}<br>Add up: ${s.map(i=>R[i]).join(' ')} = ?`,a:s.reduce((t,i)=>t+v[i],0)}}},
  gold:{k:'tm_gold',n:'CARAVAN LEDGER',e:'🐪',d:'Keep the caravan books: camels, dates and raiders. How much cargo reaches the bazaar?',mk:r=>{const n=rnd(3,6+(r>>1)),k=rnd(4,9+(r>>2)),l=rnd(2,Math.min(n*k-1,12+r));return{q:`🐪 ${n} camels carry ${k} sacks of dates each. Raiders steal ${l}. Sacks left?`,a:n*k-l}}}};
 const TGM=TG[TW];MINI.unshift({k:TGM.k,n:TGM.n,e:TGM.e,rk:-1,wd:TW,d:'⭐ WORLD GAME · '+TGM.d});
 function tmInit(){X.r=0;X.lives=3;X.cl=0;X.st=0;X.stat='Correct answers: 0';tmNext()}
 function tmNext(){const x=X;if(!x||x.done)return;x.r++;if(x.r>25){x.score+=100;mgSet('🏆 Flawless! +100');return mgOver('🏆 You mastered it!')}
  const g=TGM.mk(x.r),a=g.a,sp=Math.max(1,Math.round(a*.08)),o=new Set([a]);let i=0;while(o.size<4&&i++<60){const d=Math.max(1,sp*rnd(1,3))*(Math.random()<.5?-1:1);if(a+d>0)o.add(a+d)}for(let j=1;o.size<4;j++)o.add(a+j);
- x.cur=g;x.opts=[...o].sort(()=>Math.random()-.5);x.T=Math.max(5,14-(x.r>>1));x.t0=Date.now();x.busy=false;
+ x.cur=g;x.opts=[...o].sort(()=>Math.random()-.5);const tf=TGM.tf||[14,5,2];x.T=Math.max(tf[1],tf[0]-Math.floor(x.r/tf[2]));x.t0=Date.now();x.busy=false;
  $('#mgBoard').innerHTML=`<div class="card" style="margin:0;width:min(94%,390px);text-align:center;font-size:1.05rem;line-height:1.5">${g.q}</div><div class="mgg" style="grid-template-columns:1fr 1fr;width:min(94%,390px)">${x.opts.map((v,j)=>`<button data-tm="${j}" style="font-size:1.4rem">${v}</button>`).join('')}</div>`;
  $('#mgBar').style.display='block';mgUpd();mgSet(`${TGM.e} Round ${x.r} · ${x.T}s`);tmTick(x,x.r)}
 function tmTick(x,r){const l=x.T-(Date.now()-x.t0)/1000,b=$('#mgBar i');if(b)b.style.width=Math.max(0,l/x.T*100)+'%';
