@@ -104,8 +104,9 @@ img.logo{width:min(80%,340px)}
 #shield{width:80%;height:10px;background:rgb(var(--k) / 0.67);border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none}#shield i{display:block;height:100%;background:#4a7fb0}
 .skE{position:absolute;left:7px;top:50%;margin-top:-17px;font-size:2rem;line-height:1;font-style:normal;filter:drop-shadow(0 0 6px var(--sk)) drop-shadow(0 0 14px var(--sk));animation:skf 2.4s ease-in-out infinite;pointer-events:none}#skE1{left:auto;right:7px}@keyframes skf{50%{transform:translateY(-3px) scale(1.1)}}
 #s-game.skin{box-shadow:inset 0 0 60px 4px color-mix(in srgb,var(--sk) 55%,transparent)}
-.skS{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:30;pointer-events:none;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--sk) 45%,transparent),transparent 65%);animation:sks 1.8s ease-out forwards}.skS b{font-size:7.5rem;line-height:1;filter:drop-shadow(0 0 18px var(--sk)) drop-shadow(0 0 40px var(--sk))}.skS span{font-size:1.5rem;letter-spacing:.22em;color:#fff;font-weight:bold;text-shadow:0 0 12px var(--sk),0 2px 0 #000}.skS small{font-size:.8rem;letter-spacing:.3em;color:var(--sk);text-shadow:0 1px 0 #000}
+.skS{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:30;pointer-events:none;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--sk) 45%,transparent),transparent 65%);animation:sks 1.8s ease-out forwards}.skS b{font-size:7.5rem;line-height:1;filter:drop-shadow(0 0 18px var(--sk)) drop-shadow(0 0 40px var(--sk))}.skS span{max-width:94%;text-align:center;font-size:clamp(1rem,5.4vw,1.5rem);letter-spacing:.22em;color:#fff;font-weight:bold;text-shadow:0 0 12px var(--sk),0 2px 0 #000}.skS small{font-size:.8rem;letter-spacing:.3em;color:var(--sk);text-shadow:0 1px 0 #000}
 @keyframes sks{0%{opacity:0;transform:scale(.4)}18%{opacity:1;transform:scale(1.12)}75%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}
+.skS b .skI{width:min(54vw,230px);aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;border-radius:18px;border:3px solid var(--sk);box-shadow:0 0 28px var(--sk),0 0 60px var(--sk)}.skE.im{width:46px;height:46px;margin-top:-23px}.skE.im img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--sk);box-shadow:0 0 10px var(--sk);display:block}.skE.im u{position:absolute;right:-7px;bottom:-5px;font-size:.95rem;text-decoration:none;line-height:1}#hud #skE1.im{width:3.2rem;height:3.2rem;margin:0 0 -2px -1.6rem}.card>span:has(>.skTh){flex:none}.skTh{flex:none;min-width:56px;width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 20%;display:block;border:2px solid currentColor;box-shadow:0 0 12px var(--sk,#fff)}
 .skP{font-size:2.1rem;vertical-align:middle;filter:drop-shadow(0 0 8px var(--sk)) drop-shadow(0 0 16px var(--sk))}[data-i].sel{outline:2px solid var(--gold);background:#4a2a70}
 #info{font-size:.82rem;text-align:center;color:var(--gold)}
 .pw{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
@@ -533,21 +534,22 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 #s-game #hud{margin-top:42px}
 #hud .skE,#hud #skE1{left:50%;right:auto;top:auto;bottom:100%;margin:0 0 -2px -1.35rem;width:2.7rem;text-align:center;font-size:2.4rem}
 
-/* v51: Daily & Events hub */
-#evBody .ev{margin:0;padding:14px;text-align:center}
-#evBody .evx{border-color:var(--gold);box-shadow:0 0 22px rgba(255,200,58,.22)}
-#evBody .evh{display:flex;justify-content:space-between;align-items:center;font:700 .74rem Cinzel,Georgia,serif;letter-spacing:.12em;color:var(--gold)}
-#evBody .evh b{font-size:.72rem;opacity:.9}
-#evBody h3{font:800 1.25rem Cinzel,Georgia,serif;letter-spacing:.06em;margin:8px 0 2px}
-#evBody p{margin:4px 0 8px;line-height:1.4;font-size:.86rem}
-#evBody .evp{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0}
-#evBody .evp span:first-child,#evBody .evp small{font-size:.68rem;letter-spacing:.1em;opacity:.85}
-#evBody .evpips{display:flex;gap:6px}#evBody .evpips i{width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);background:var(--gold)}#evBody .evpips i.u{background:transparent;opacity:.4}
-#evBody .evs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
-#evBody .evs div{border:1px solid rgba(255,200,58,.35);border-radius:8px;padding:7px 4px;display:flex;flex-direction:column;gap:1px}
-#evBody .evs small{font-size:.62rem;letter-spacing:.1em;opacity:.8}#evBody .evs b{font-size:1.5rem;line-height:1.15}#evBody .evs em{font-style:normal;font-size:.72rem;color:var(--gold)}
-#evBody button{width:100%;margin-top:6px}#evBody .evn{display:block;margin-top:8px;font-size:.66rem;opacity:.75;line-height:1.35}
-#evBody .evc{border-color:#4cd17a}
+/* v51 hub, v54: Arena Trials chooser + Daily + Weekly screens */
+:is(#evBody,#wkBody,#dsBody) .ev{margin:0;padding:14px;text-align:center}
+:is(#evBody,#wkBody,#dsBody) .evx{border-color:var(--gold);box-shadow:0 0 22px rgba(255,200,58,.22)}
+:is(#evBody,#wkBody,#dsBody) .evh{display:flex;justify-content:space-between;align-items:center;font:700 .74rem Cinzel,Georgia,serif;letter-spacing:.12em;color:var(--gold)}
+:is(#evBody,#wkBody,#dsBody) .evh b{font-size:.72rem;opacity:.9}
+:is(#evBody,#wkBody,#dsBody) h3{font:800 1.25rem Cinzel,Georgia,serif;letter-spacing:.06em;margin:8px 0 2px}
+:is(#evBody,#wkBody,#dsBody) p{margin:4px 0 8px;line-height:1.4;font-size:.86rem}
+:is(#evBody,#wkBody,#dsBody) .evp{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0}
+:is(#evBody,#wkBody,#dsBody) .evp span:first-child,:is(#evBody,#wkBody,#dsBody) .evp small{font-size:.68rem;letter-spacing:.1em;opacity:.85}
+:is(#evBody,#wkBody,#dsBody) .evpips{display:flex;gap:6px}:is(#evBody,#wkBody,#dsBody) .evpips i{width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);background:var(--gold)}:is(#evBody,#wkBody,#dsBody) .evpips i.u{background:transparent;opacity:.4}
+:is(#evBody,#wkBody,#dsBody) .evs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+:is(#evBody,#wkBody,#dsBody) .evs div{border:1px solid rgba(255,200,58,.35);border-radius:8px;padding:7px 4px;display:flex;flex-direction:column;gap:1px}
+:is(#evBody,#wkBody,#dsBody) .evs small{font-size:.62rem;letter-spacing:.1em;opacity:.8}:is(#evBody,#wkBody,#dsBody) .evs b{font-size:1.5rem;line-height:1.15}:is(#evBody,#wkBody,#dsBody) .evs em{font-style:normal;font-size:.72rem;color:var(--gold)}
+:is(#evBody,#wkBody,#dsBody) button{width:100%;margin-top:6px}:is(#evBody,#wkBody,#dsBody) .evn{display:block;margin-top:8px;font-size:.66rem;opacity:.75;line-height:1.35}
+:is(#evBody,#wkBody,#dsBody) .evc{border-color:#4cd17a}
+:is(#evBody,#wkBody,#dsBody){flex:none!important}:is(#evBody,#wkBody,#dsBody)>*{flex:none}:is(#evBody,#wkBody,#dsBody)>.card{max-height:none!important;overflow:visible!important}.tiles.one{grid-template-columns:1fr;width:100%}.tiles.one button{padding:20px 10px 18px!important;gap:4px}.tiles.one .ti{font-size:2.3rem}.tiles.one span{font-size:.95rem}.tiles.one small{font-size:.8rem}#evBody .evnote{font-size:.74rem;line-height:1.45;opacity:.8;text-align:center;margin:2px 6px}
 .evtabs{display:flex;gap:6px;margin:6px 0}.evtabs button{flex:1;min-width:0;padding:7px 2px;font-size:.62rem;letter-spacing:.05em}.evtabs button.on{box-shadow:0 0 0 2px var(--gold) inset}
 </style></head><body><div id="app">
 
@@ -557,7 +559,6 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
  <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
- <div class="sub2" style="margin-top:8px"><button id="lbHome">📅 TODAY’S DAILY BOARD</button></div>
  <div id="inst" hidden></div>
  <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
@@ -622,8 +623,20 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 
 <section class="scr" id="s-events" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">The arena calendar</div><h1>Daily &amp; Events</h1><div class="bm-sub">Fresh challenges every day, a global event every week.</div></header>
+ <header class="bm-hero"><div class="bm-kicker">Prove yourself</div><h1>Arena Trials</h1><div class="bm-sub">Choose your trial: a fresh Daily Strike, or the Weekly Challenge.</div></header>
  <div id="evBody" style="width:min(94%,390px);display:flex;flex-direction:column;gap:12px;padding-bottom:20px"></div>
+</section>
+
+<section class="scr" id="s-dstrike" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <header class="bm-hero"><div class="bm-kicker">New numbers every day</div><h1>Daily Strike</h1><div class="bm-sub">Same numbers for every player. Build a streak for bonus coins.</div></header>
+ <div id="dsBody" style="width:min(94%,390px);display:flex;flex-direction:column;gap:12px;padding-bottom:20px"></div>
+</section>
+
+<section class="scr" id="s-weekly" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <header class="bm-hero"><div class="bm-kicker">One contest, all players</div><h1>Weekly Challenge</h1><div class="bm-sub">A new challenge every Monday. Climb the world board.</div></header>
+ <div id="wkBody" style="width:min(94%,390px);display:flex;flex-direction:column;gap:12px;padding-bottom:20px"></div>
 </section>
 
 <section class="scr" id="s-house" style="--bg:url(img/menu_bg.webp)">
@@ -797,7 +810,7 @@ const play=n=>{const m=M[n]||null;if(curM&&curM!==m)curM.pause();curM=m;if(curM&
 applyVol();
 // ---- navigation ----
 let G=null,stack=['s-home'];
-function show(id){$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id));$('#pause').classList.toggle('on',id==='s-game'&&!!G&&G.paused&&!G.done)}
+function show(id){$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id));try{if(id==='s-events')evChoose();else if(id==='s-dstrike')dsRender();else if(id==='s-weekly')evHubRender()}catch(e){}$('#pause').classList.toggle('on',id==='s-game'&&!!G&&G.paused&&!G.done)}
 function go(id){stack.push(id);show(id)}
 function home(){stack=['s-home'];const fw=G&&G.wager&&!G.done?G.wager:0;if(fw)setTimeout(()=>toast('🎲 Wager of '+fw+' 💰 forfeited'),300);if(G)G.done=true;G=null;$('#app').classList.remove('bossm');play('theme');lbShow();show('s-home')}
 function back(){const c=stack[stack.length-1];
@@ -846,7 +859,7 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
   st:[{ok:0,best:0,crit:0},{ok:0,best:0,crit:0}],pg:[],boss:false,done:false,busy:false,paused:false,waiting:false,dmg:[0,0],broken:0,tLeft:0};
  if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;wagerOpen(o,D,Mt);LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
  if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
- if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI'&&(!o.cf||o.cf.fin))setTimeout(()=>{if(G&&!G.done)skSplash(KS[PRO.ks][4],KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
+ if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI'&&(!o.cf||o.cf.fin))setTimeout(()=>{if(G&&!G.done)skSplash(KSE(PRO.ks),KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
 function bg(){$('#app').classList.toggle('bossm',!!G.boss);const wa=(document.documentElement.className.match(/wd-(cyber|samurai|ice|buganda|gold)/)||[])[1];$('#s-game').style.setProperty('--bg',`url(img/${wa?wa+(G.boss?'_boss':'_menu'):G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(G.trick==='sand'&&G.cur===0&&G.round%3===0)G.jam=1;
  if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast(`👑 <b>IMPERIAL EDICT</b><br><small>${GENS.Prime.n} jams your hints this round!</small>`),400)}
@@ -992,7 +1005,7 @@ function aiBoss(){const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),
 // ---- v6: juice, keypad, progression, daily ----
 const TC={blazing:'#ff4d1a',hot:'#ff9a3c',warm:'#e6c45a',cold:'#6fb3e0',freezing:'#a8e0ff'},TE={blazing:'🔥',hot:'🌶️',warm:'☀️',cold:'🌬️',freezing:'🧊'},
 EM={DOUBLE:'💰',ONE_SHOT:'🗡️',HOT_ZONE:'🎯',KIRAXO_RAGE:'😡',BULLSEYE:'🎯',SHIELD:'🛡️'};
-const KS={'':['😐','😈','😤','🤬','👹'],robot:['🤖','🦾','🥴','💢','👾'],skull:['💀','☠️','😵','👻','🧟'],dragon:['🐲','🔥','😤','💥','🐉'],alien:['👽','🛸','😵','💢','👾']},mood=()=>KS[PRO.ks||''][G.boss?4:G.special==='KIRAXO_RAGE'?3:G.score[1]-G.score[0]>15?1:G.score[0]-G.score[1]>15?2:0];
+const KS={'':['😐','😈','😤','🤬','👹'],robot:['🤖','🦾','🥴','💢','👾'],skull:['💀','☠️','😵','👻','🧟'],dragon:['🐲','🔥','😤','💥','🐉'],alien:['👽','🛸','😵','💢','👾'],buganda:['👑','🦁','😤','💢','🔥'],gold:['🕌','🐪','😤','💢','🔥'],cyber:['🤖','🦾','🥴','💢','⚡'],samurai:['⛩️','🗡️','😤','💢','🔥'],ice:['🏔️','🪓','😤','💢','❄️']},KSI={buganda:'img/ks_buganda.webp',gold:'img/ks_gold.webp',cyber:'img/ks_cyber.webp',samurai:'img/ks_samurai.webp',ice:'img/ks_ice.webp'},KSE=v=>KSI[v]||KS[v][4],mood=()=>KS[PRO.ks||''][G.boss?4:G.special==='KIRAXO_RAGE'?3:G.score[1]-G.score[0]>15?1:G.score[0]-G.score[1]>15?2:0];
 let AC,shareText='',tt;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function tone(f,d=.08,ty='sine',v=.15){if(S.mute||!S.sfx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v*S.sfx,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(t+d)}catch(e){}}
 const HL=document.createElement('label');HL.style.cssText='position:fixed;top:0;left:0;opacity:0;pointer-events:none';HL.innerHTML='<input type="checkbox" switch>';document.body.appendChild(HL);
@@ -1053,9 +1066,9 @@ const worldsH=(card,h2,bt)=>'<div data-nx="1">'+h2('🌍 WORLDS · same game, ne
 shopOn(e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
  if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
  PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
-const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
+const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a',buganda:'#f2c94c',gold:'#ffb83a',cyber:'#19f2ff',samurai:'#ff4a3a',ice:'#8fdcff'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
 const SKC=k=>{const f=k.slice(0,2),v=k.slice(3);return f==='ps'?(PSK[v]||[])[1]:f==='ks'?KSC[v]:f==='th'?THC[v]:''};
-function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div');e.className='skS';e.style.setProperty('--sk',col||'#ffd27a');e.innerHTML=`<b>${em}</b><span>${name||''}</span><small>${sub||''}</small>`;f.appendChild(e);setTimeout(()=>e.remove(),1900);burst([em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
+function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div');e.className='skS';e.style.setProperty('--sk',col||'#ffd27a');const im=/^img\//.test(em);e.innerHTML=`<b>${im?`<img class="skI" src="${em}" alt="">`:em}</b><span>${name||''}</span><small>${sub||''}</small>`;f.appendChild(e);setTimeout(()=>e.remove(),1900);burst(im?['✨','⭐']:[em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
 const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
 
 // ---- v12: Conquest Map ----
@@ -1378,7 +1391,7 @@ const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(n
 function profUI(){const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
  $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}${pr()?' '+rom(pr()):''}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${trLine(i)}<div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins${evBadgeTxt()}</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
- try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('☀️','DAILY STRIKE',PRO.dl===today()?'✓ done today':'new numbers')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
+ try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ daily done':'daily ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
@@ -1413,7 +1426,6 @@ async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z
 async function dayBoardShow(){let ov=document.getElementById('lbOv');if(!ov){ov=document.createElement('div');ov.id='lbOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='lbX')ov.remove()};document.body.appendChild(ov)}
 const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 TODAY’S BOARD</h2><div style="line-height:1.8;margin:8px 0">${h}</div><button id="lbX" style="width:100%">CLOSE</button></div>`};card('Loading…');
 try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${evName(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
-document.getElementById('lbHome').onclick=()=>{sfx('click');dayBoardShow()};
 document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
 
 /* ===== v51: DAILY & EVENTS hub + Weekly Global Event ===== */
@@ -1422,7 +1434,7 @@ const EV_PLAYS=3,EV_BUY=[900,1800],EV_SYM='💰',evBal=()=>PRO.gold,evSpend=n=>{
 EVS=[
  {k:'gauntlet',e:'🏛️',n:'GAUNTLET WEEK',d:'Five brutal ranges, from 1–20 up to 1–1000. Efficient guessing wins.',r:[[1,20,5],[1,60,6],[1,150,8],[1,400,9],[1,1000,10]]},
  {k:'blind',e:'🌑',n:'BLIND WEEK',d:'No temperature hints this week: only higher or lower. Pure logic.',blind:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
- {k:'primes',e:'🔢',n:'PRIME WEEK',d:'Every secret is a prime number. Think like a mathematician.',primes:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
+ {k:'primes',e:'🧮',n:'PRIME WEEK',d:'Every secret is a prime number. Think like a mathematician.',primes:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
  {k:'sniper',e:'🎯',n:'SNIPER WEEK',d:'Four huge ranges, up to 1–5000. Each round is worth up to 125 pts.',pr:125,r:[[1,100,7],[1,300,9],[1,1000,10],[1,5000,13]]}
 ],
 EV_BASE=Math.floor(Date.UTC(2026,10,9)/6048e5),
@@ -1462,7 +1474,7 @@ const evDay=()=>{const E=evS(),k=evToday();return E.d[k]||(E.d[k]={p:0,b:0})},
 function evUse(){evDay().p++;LS.set('ms_pro',PRO)}
 function evPlay(){if(evLeft()<=0){toast('⏳ No runs left today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${evToday()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
 function evTile(){const left=evLeft(),dn=PRO.dl===today(),n=(dn?0:1)+(left>0?1:0),ev=EVC();
- $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>DAILY &amp; EVENTS</span><small>${ev.e} ${left?left+' runs':'done today'} · ${evShort()}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
+ $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>ARENA TRIALS</span><small>${n?[dn?'':'daily',left>0?'weekly':''].filter(Boolean).join(' + ')+' ready':'all done today'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
 async function evSync(E){E=E||evS();if(!E.dirty)return;try{const X=await msFb(),{D:Z,db}=X.F,uid=X.uid,n=evSafe(S.n1),w=E.w,pr=[];let tot=0;
  for(const k in E.d){const b=E.d[k].b||0;tot+=b;if(b>0)pr.push(Z.set(Z.ref(db,`events/${w}/day/${k}/${uid}`),{n,s:b}))}
  if(tot>0)pr.push(Z.set(Z.ref(db,`events/${w}/total/${uid}`),{n,s:tot}));await Promise.all(pr);E.dirty=0;LS.set('ms_pro',PRO)}catch(e){}}
@@ -1475,25 +1487,30 @@ function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb)d.b
 function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/500 · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
  $('#endt').textContent=ev.e+' '+ev.n;
- $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">⚔️ DAILY &amp; EVENTS</button></div>`;
+ $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">🏆 WEEKLY CHALLENGE</button></div>`;
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
-function evHubOpen(){go('s-events');evHubRender()}
+function evHubOpen(){go('s-events')}
+function evChoose(){const E=evS(),left=evLeft(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,cl=E.pend.length;
+ $('#evBody').innerHTML=`<div class="tiles one"><button data-ev="goDaily"><i class="ti">☀️</i><span>DAILY STRIKE</span><small>${dn?'✓ done today':'new numbers today'}${ds?' · 🔥 '+ds+'-day streak':''}</small>${dn?'':'<em class="bd" style="font-style:normal">1</em>'}</button><button data-ev="goWeekly"><i class="ti">🏆</i><span>WEEKLY CHALLENGE</span><small>${cl?'🎁 reward waiting · ':''}${left?left+' runs left today':'done today'} · ${evShort()}</small>${left>0||cl?`<em class="bd" style="font-style:normal">${cl||left}</em>`:''}</button></div>
+ <div class="evnote"><b>Daily Strike:</b> one short run a day, same numbers for everyone.<br><b>Weekly Challenge:</b> a world contest that lasts all week, with a leaderboard and rewards.</div>`}
+function dsRender(){const dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
+ $('#dsBody').innerHTML=`<div class="card ev evx"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
+ <p>Five rounds with the same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
+ <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button>
+ <button data-ev="dsBoard">🏆 TODAY’S BOARD</button></div>`}
 const evRew=(r,dy)=>r==null||r>100?(dy>=3?{c:cx(320),x:60}:{c:cx(200),x:40}):r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1}}:r<=3?{c:cx(1500),x:200,inv:{tome:1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:{c:cx(320),x:60};
 function evHubRender(nc){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,tot=evTot(),
  pips=Array.from({length:evCap()},(_,i)=>`<i class="${i<dd.p?'u':''}"></i>`).join('');
- $('#evBody').innerHTML=`<div id="evClaim"></div>
- <div class="card ev evx"><div class="evh"><span>${ev.e} WEEK ${evWn(evNum())} EVENT</span><b>${evLeftTxt()}</b></div>
+ $('#wkBody').innerHTML=`<div id="evClaim"></div>
+ <div class="card ev evx"><div class="evh"><span>${ev.e} WEEK ${evWn(evNum())} CHALLENGE</span><b>${evLeftTxt()}</b></div>
  <h3>${ev.n}</h3><p>${ev.d}</p>${evBadgeList()?`<small class="evn" style="margin:0 0 6px">🏅 ${evBadgeList()}</small>`:''}
  <div class="evp"><span>RUNS TODAY</span><span class="evpips">${pips}</span><small>${left} left</small></div>
  <div class="evs"><div><small>TODAY’S BEST</small><b>${dd.b}</b><em id="evRd">rank …</em></div><div><small>WEEK TOTAL</small><b>${tot}</b><em id="evRw">rank …</em></div></div>
  ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">🪙 BUY A BONUS RUN · ${EV_SYM} ${evCost()}</button><small class="evn">Free runs used. Bonus runs bought today: ${evDay().x||0}/${EV_BUY.length}.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
  <button data-ev="board">🏆 LEADERBOARDS</button>
- <small class="evn">Global event: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+2 bonus runs for coins), your best run each day counts, 7 days, highest week total wins. Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>
- <div class="card ev"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
- <p>Same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
- <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button></div>`;
+ <small class="evn">Global challenge: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+2 bonus runs for coins), your best run each day counts, 7 days, highest week total wins. Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>`;
  (async()=>{const set=(id,x)=>{const el=document.getElementById(id);if(el)el.textContent=x};
-  if(!nc){const o=EVOFF;await evClock();if(Math.abs(EVOFF-o)>6e4&&document.querySelector('#s-events.on'))return evHubRender(1)}
+  if(!nc){const o=EVOFF;await evClock();if(Math.abs(EVOFF-o)>6e4&&document.querySelector('#s-weekly.on'))return evHubRender(1)}
   try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${evToday()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
   evClaimUI()})()}
 async function evClaimUI(){const E=evS(),box=document.getElementById('evClaim');if(!box||!E.pend.length)return;const q=E.pend[0];let rank=null,off=false;
@@ -1515,14 +1532,17 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAga
  if(k==='play'){sfx('click');evPlay()}
  else if(k==='board'||k==='evBd'){sfx('click');evBoard('d')}
  else if(k==='daily'){sfx('click');dailyOpen()}
- else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('Not enough coins');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events'];evPlay()}else{evHubRender();profUI()}}
- else if(k==='evAgain'){sfx('click');stack=['s-home','s-events'];evPlay()}
- else if(k==='evHub'){sfx('click');stack=['s-home'];evHubOpen()}
- else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk,q&&q.dy!=null?q.dy:3);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;let bt='';if(rk&&rk<=3){const n=evWid(q.w);E.badges=E.badges||[];if(!E.badges.some(b=>b.n===n))E.badges.push({n,t:rk===1?'champ':'podium'});bt=rk===1?`<br>👑 <b>Week ${n} Champion</b> badge earned!`:`<br>🥈 Week ${n} Podium badge earned`}toast(`🏛️ <b>${rk?'RANK #'+rk:'EVENT REWARD'}</b>${bt}<br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
+ else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('Not enough coins');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events','s-weekly'];evPlay()}else{evHubRender();profUI()}}
+ else if(k==='evAgain'){sfx('click');stack=['s-home','s-events','s-weekly'];evPlay()}
+ else if(k==='evHub'){sfx('click');stack=['s-home','s-events','s-weekly'];show('s-weekly')}
+  else if(k==='goDaily'){sfx('click');go('s-dstrike')}
+  else if(k==='goWeekly'){sfx('click');go('s-weekly')}
+  else if(k==='dsBoard'){sfx('click');dayBoardShow()}
+ else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk,q&&q.dy!=null?q.dy:3);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;let bt='';if(rk&&rk<=3){const n=evWid(q.w);E.badges=E.badges||[];if(!E.badges.some(b=>b.n===n))E.badges.push({n,t:rk===1?'champ':'podium'});bt=rk===1?`<br>👑 <b>Week ${n} Champion</b> badge earned!`:`<br>🥈 Week ${n} Podium badge earned`}toast(`🏛️ <b>${rk?'RANK #'+rk:'CHALLENGE REWARD'}</b>${bt}<br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
 addEventListener('online',()=>{try{evClock().then(()=>evSync())}catch(e){}});
 
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
-const MUT=[['primes','🔢','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
+const MUT=[['primes','🧮','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
 CM=()=>MUT[Math.floor((Date.now()/864e5+3)/7)%MUT.length];
 function pickS(){const pr=[];if(G.mut==='primes')for(let i=G.lo;i<=G.hi;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))pr.push(i);return pr.length?pick(pr):rndS(G.lo,G.hi)}
 function flash(){const e=$('#fl');e.classList.remove('on');void e.offsetWidth;e.classList.add('on')}
@@ -1545,7 +1565,7 @@ function weakPoint(who){const g=G;g.busy=true;render0();setTimeout(()=>{if(G!==g
 const SHOP=[['pack','🎒','ARMORY PACK','+1 charge of every power',80,'c'],['x:SCAN','👁️','SCAN CACHE','+2 SCAN charges (also fuels Secrets)',40,'c'],['x:FOCUS','🎯','FOCUS LENS','+2 FOCUS charges',40,'c'],['x:RISK','🎲','WAGER DICE','+2 RISK charges',40,'c'],['x:SHIELD','🛡️','AEGIS PLATE','+2 SHIELD charges',50,'c'],['x:STEAL','🪙','THIEF’S GLOVE','+2 STEAL charges',40,'c'],
 ['time','⏳','HOURGLASS','+10s per guess',50,'c'],['att','🍀','LUCKY CHARM','+1 attempt every round',120,'c'],['phx','🕊️','PHOENIX TOKEN','Forgives your first failed round',90,'c'],['bane','☄️','BOSS BANE','+40 damage head start in the Boss Phase',110,'c'],['head','🏁','HEAD START','Begin the match with +15 points',70,'c'],['tome','📜','SCHOLAR’S TOME','×1.5 XP this match',100,'c'],['mag','🧲','COIN MAGNET','×1.5 coins this match',100,'c'],
 ['ps:hoplite','🏺','HOPLITE','Player skin · bronze frame',150,''],['ps:gladiator','🗡️','GLADIATOR','Player skin · crimson frame',120,''],['ps:spartan','🔱','SPARTAN','Player skin · azure frame',200,''],['ps:praetorian','🦅','PRAETORIAN','Player skin · imperial gold',200,''],['ps:pharaoh','👁️','PHARAOH','Player skin · turquoise frame',250,''],['ps:obsidian','🖤','OBSIDIAN GUARD','Player skin · violet frame',300,''],['ps:laurel','🏛️','GOLDEN LAUREL','Player skin · radiant gold',350,''],['ps:titan','⚡','TITAN','Player skin · storm blue',400,''],['ps:imperator','👑','IMPERATOR’S CROWN','Player skin · pure gold',900,''],
-['ks:robot','🤖','ROBO-KIRAXO','Kiraxo skin',200,''],['ks:skull','💀','DEATH KIRAXO','Kiraxo skin',250,''],['ks:dragon','🐲','DRAGON KIRAXO','Kiraxo skin',280,''],['ks:alien','👽','ALIEN KIRAXO','Kiraxo skin',280,''],
+['ks:robot','🤖','ROBO-KIRAXO','Kiraxo skin',200,''],['ks:skull','💀','DEATH KIRAXO','Kiraxo skin',250,''],['ks:dragon','🐲','DRAGON KIRAXO','Kiraxo skin',280,''],['ks:alien','👽','ALIEN KIRAXO','Kiraxo skin',280,''],['ks:buganda','img/ks_buganda.webp','KABAKA KIRAXO','Boss skin · Buganda · royal gold',600,''],['ks:gold','img/ks_gold.webp','SULTAN KIRAXO','Boss skin · Golden Sands · desert gold',650,''],['ks:ice','img/ks_ice.webp','VIKING KIRAXO','Boss skin · Frostlands · glacier blue',650,''],['ks:samurai','img/ks_samurai.webp','SHOGUN KIRAXO','Boss skin · Shogun’s Realm · crimson',750,''],['ks:cyber','img/ks_cyber.webp','CYBER-GOD KIRAXO','Boss skin · Neon Grid · neon cyan',800,''],
 ['th:azure','🌊','AZURE ARENA','Blue theme',150,''],['th:emerald','🌿','EMERALD ARENA','Green theme',150,''],['th:tyrian','🟣','TYRIAN ARENA','Purple theme',150,''],['th:crimson','🩸','CRIMSON ARENA','Red theme',150,''],['th:sunset','🌅','SUNSET ARENA','Orange theme',180,''],['th:onyx','🌑','ONYX ARENA','Silver & black theme',220,''],['th:imperial','👑','IMPERIAL ARENA','Royal gold & violet theme',320,''],
 ['pm:ring','⌛','TIMEKEEPER’S RING','Permanent +2s on every guess',300,''],['pm:vigil','🧿','AUGUR’S EYE','Permanent +1 SCAN every match',280,''],['pm:eagle','🦅','LEGION EAGLE','Permanent +1 FOCUS every match',280,''],['pm:bulwark','🧱','BULWARK','Permanent +1 SHIELD every match',280,'']];
 const SEC={c:'🎒 CONSUMABLES · used next VS match',ps:'⚔️ PLAYER SKINS',ks:'😈 KIRAXO SKINS',th:'🏛️ ARENAS',pm:'⭐ PERMANENT UPGRADES · equip one'};
@@ -1553,10 +1573,10 @@ function applyTheme(){const a=$('#app');a.className=a.className.replace(/\bth-\S
 function shopOn(fn){$('#shopList').addEventListener('click',fn);$('#shopPopB').addEventListener('click',fn)}
 function shopOld(S){return SHOP.map(([k,e,n,d,c,t])=>{const cons=t==='c',own=cons?PRO.inv[k]||0:PRO.own[k],on=!cons&&PRO[k.slice(0,2)]===k.slice(3),sec=cons?'c':k.slice(0,2),h='';if(sec!==S)return '';
  const col=cons?'':SKC(k),fx={ps:' · big glowing emblem on your HUD, arena aura &amp; victory bursts',ks:' · big emblem on Kiraxo + entrance splash',th:' · recolours the whole game'}[k.slice(0,2)]||'';
- return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span ${col?`data-pv="${k}" title="Tap to preview" style="font-size:2.9rem;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px ${col}) drop-shadow(0 0 20px ${col})"`:'style="font-size:1.8rem"'}>${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${fx}${col?' · <u>tap the icon to preview</u>':''}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?'💰 '+PR(c):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
+ return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span ${col?`data-pv="${k}" title="Tap to preview" style="font-size:2.9rem;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px ${col}) drop-shadow(0 0 20px ${col})"`:'style="font-size:1.8rem"'}>${/^img\//.test(e)?`<img class="skTh" src="${e}" alt="">`:e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${fx}${col?' · <u>tap the icon to preview</u>':''}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?'💰 '+PR(c):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
 shopOn(e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
  if(cons||!had){if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=PR(it[4]);if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
- if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KS[v][4],KSC[v],it[2],'EQUIPPED')}}
+ if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KSE(v),KSC[v],it[2],'EQUIPPED')}}
  LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()});
 $('#shopBtn').onclick=()=>{sfx('click');SHCAT='';shopUI();go('s-shop')};applyTheme();
 function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast(`${CM()[1]} <b>${CM()[2]}</b><br><small>${CM()[3]}</small>`),600)}if(G.mode!=='AI')return;const u=[];
@@ -1588,7 +1608,7 @@ $('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick
 function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?p[1]:'';h.style.boxShadow=p?`0 0 12px ${p[1]}88`:'';
  const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
  let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
- const kc=PRO.ks&&KSC[PRO.ks],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
+ const kc=PRO.ks&&KSC[PRO.ks],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';const ki=on&&KSI[PRO.ks];e1.classList.toggle('im',!!ki);if(ki)e1.innerHTML=`<img src="${KSI[PRO.ks]}" alt=""><u>${mood()}</u>`;else e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
 function render(msg){if(!G)return;const b=G.boss;
  $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
@@ -1681,7 +1701,7 @@ shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[d
  if(ok){tone(660,.1,'triangle');LS.set('ms_pro',PRO);shopUI();profUI()}});
 shopOn(e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.pv,f=k.slice(0,2),v=k.slice(3),it=SHOP.find(x=>x[0]===k);
  if(f==='th'){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();a.classList.add('th-'+v);toast('🎨 Previewing '+it[2]+'…');setTimeout(applyTheme,2600)}
- else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KS[v][4],KSC[v],it[2],'PREVIEW')});
+ else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KSE(v),KSC[v],it[2],'PREVIEW')});
 // -- coin wagers
 // v50: rank-unlocked stakes, side-bets, loss insurance, a 5% rake on winnings (the coin sink)
 const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100,250,500],WR={250:4,500:8},ALLR=11,ALLMIN=600,ALLCAP=10000,RAKE=.05,INS_FEE=.10,INS_BACK=.5;
@@ -1788,9 +1808,9 @@ $$('[data-m]').forEach(b=>b.onclick=()=>{sfx('click');const pvp=setup.mode==='PV
  setup.lastOpts={mode:setup.mode,d:setup.d,m:b.dataset.m,pers:setup.k,names:[S.n1||(pvp?'PLAYER 1':'LEGIONARY'),pvp?(S.n2||'PLAYER 2'):GENS[setup.k].n],gen:pvp?'':setup.k,w:pvp?0:(setup.w||0),wb:pvp?[]:(setup.wb||[]).slice(),wi:pvp?0:(setup.wi?1:0)};launch()});
 $('#again').onclick=launch;$('#home').onclick=home;
 // ---- v11: quests, daily chest, rank rewards ----
-const QD=[['d19','Play a Weekly Event run','evrun',1,40,25],['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the first try','first',2,40,25,{'x:FOCUS':1}],['d3','Win a VS match','win',1,50,30],['d4','Play 2 VS matches','match',2,30,20],['d5','Land a critical hit','crit',1,35,20],['d6','Reach a 3-win combo','combo',3,45,25],['d7','Win a match without powers','clean',1,70,40,{head:1}],['d8','Break 2 shield layers','layer',2,50,30],
+const QD=[['d19','Play a Weekly Challenge run','evrun',1,40,25],['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the first try','first',2,40,25,{'x:FOCUS':1}],['d3','Win a VS match','win',1,50,30],['d4','Play 2 VS matches','match',2,30,20],['d5','Land a critical hit','crit',1,35,20],['d6','Reach a 3-win combo','combo',3,45,25],['d7','Win a match without powers','clean',1,70,40,{head:1}],['d8','Break 2 shield layers','layer',2,50,30],
  ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}]];
-const QW=[['w17','Score 300+ in one Weekly Event run','evhi',300,320,150,{tome:1}],['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
+const QW=[['w17','Score 300+ in one Weekly Challenge run','evhi',300,320,150,{tome:1}],['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
  ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}]];
 
 // ---- v43: themed quests (one daily + one weekly per world, plus world-flavoured rewards) ----
@@ -1812,7 +1832,7 @@ function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now
  const draw=(pool,n,sd)=>{const r=mul(seed(sd)),p=[...pool],o=[];while(o.length<n){const[id,nme,e,t,c,x,it]=p.splice(Math.floor(r()*p.length),1)[0];o.push({id,n:nme,e,t,c,x,it,p:0,cl:0})}return o};
  if(PRO.q.dk!==dk){PRO.q.d=draw(QD,3,'qd'+dk).concat(draw(TQ().d,1,'tqd'+dk));PRO.q.dk=dk;PRO.q.sd=0;ch=1}
  if(PRO.q.wk!==wk){PRO.q.w=draw(QW,2,'qw'+wk).concat(draw(TQ().w,1,'tqw'+wk));PRO.q.wk=wk;PRO.q.sw=0;ch=1}
- if(!PRO.q.w.some(q=>q.id==='wev')){PRO.q.w.push({id:'wev',n:'Play 6 Weekly Event runs',e:'evrun',t:6,c:cx(300),x:140,it:{pack:1},p:0,cl:0});PRO.q.sw=PRO.q.sw&&PRO.q.w.every(q=>q.cl)?PRO.q.sw:0;ch=1}
+ if(!PRO.q.w.some(q=>q.id==='wev')){PRO.q.w.push({id:'wev',n:'Play 6 Weekly Challenge runs',e:'evrun',t:6,c:cx(300),x:140,it:{pack:1},p:0,cl:0});PRO.q.sw=PRO.q.sw&&PRO.q.w.every(q=>q.cl)?PRO.q.sw:0;ch=1}
  if(tqFix())ch=1;if(ch)LS.set('ms_pro',PRO)}
 function qEach(f){qInit();[...PRO.q.d,...PRO.q.w].forEach(q=>{if(!q.cl&&q.p<q.t)f(q)})}
 function qDone(q){if(q.p>=q.t){toast(`📜 <b>QUEST COMPLETE</b><br><small>${q.n} — claim it in Quests</small>`);qBadge()}}
@@ -1853,7 +1873,7 @@ const ST=[
  ['#prof','🛡️ YOUR RANK CARD','This shows your <b>rank, XP, win streak and wins</b>. Win matches to earn XP, rank up, and unlock new modes and rewards.'],
  ['#mapBtn','🗺️ CONQUEST MAP','Fight through <b>Gaul, Egypt, Carthage and Rome</b>. Win battles to collect ⭐ stars and unlock the next region. A great place to start!'],
  ['#miniBtn','🎮 MINI GAMES','Special game modes that <b>unlock as your rank grows</b>, each with its own best score.'],
- ['#dailyBtn','⚔️ DAILY & EVENTS','<b>Your daily hub.</b> ☀️ Daily Strike: same numbers for everyone, build a 🔥 streak. 🏟️ <b>Weekly Event</b>: a global challenge that runs all week — 3 runs a day, your best run each day counts, climb the 🏆 leaderboard for rewards.'],
+ ['#dailyBtn','⚔️ ARENA TRIALS','<b>Your daily and weekly challenges.</b> Pick ☀️ <b>Daily Strike</b> (same numbers for everyone, build a 🔥 streak) or 🏆 <b>Weekly Challenge</b> (a world contest all week — 3 runs a day, your best run each day counts, climb the 🏆 leaderboard for rewards).'],
  ['#chalBtn','⚔️ FRIEND CHALLENGE','Play 5 rounds, then <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
  ['#shopBtn','🛒 THE ARMORY','Spend the 💰 coins you win on <b>gear, powers and daily market deals</b> to get stronger.'],
  ['#questBtn','📜 QUESTS','Complete deeds, then <b>claim coins and XP</b>. A red number means rewards are waiting for you.'],
