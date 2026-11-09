@@ -1377,7 +1377,7 @@ function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_
 const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
 function profUI(){const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
- $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}${pr()?' '+rom(pr()):''}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${trLine(i)}<div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
+ $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}${pr()?' '+rom(pr()):''}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${trLine(i)}<div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins${evBadgeTxt()}</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
  try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('☀️','DAILY STRIKE',PRO.dl===today()?'✓ done today':'new numbers')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
@@ -1409,41 +1409,61 @@ function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today(
  $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
 $('#dailyBtn').onclick=()=>{sfx('click');evHubOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
-async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:(S.n1||'PLAYER').toUpperCase().slice(0,12),s:sc})}catch(e){}}
+async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:evSafe(S.n1),s:sc})}catch(e){}}
 async function dayBoardShow(){let ov=document.getElementById('lbOv');if(!ov){ov=document.createElement('div');ov.id='lbOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='lbX')ov.remove()};document.body.appendChild(ov)}
 const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 TODAY’S BOARD</h2><div style="line-height:1.8;margin:8px 0">${h}</div><button id="lbX" style="width:100%">CLOSE</button></div>`};card('Loading…');
-try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${String(v.n).replace(/[<>&]/g,'')} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
+try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${evName(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
 document.getElementById('lbHome').onclick=()=>{sfx('click');dayBoardShow()};
 document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
 
 /* ===== v51: DAILY & EVENTS hub + Weekly Global Event ===== */
-const EV_PLAYS=3,
+let EVOFF=+LS.get('ms_off',0)||0;
+const EV_PLAYS=3,EV_BUY=[900,1800],EV_SYM='💰',evBal=()=>PRO.gold,evSpend=n=>{PRO.gold-=n},
 EVS=[
  {k:'gauntlet',e:'🏛️',n:'GAUNTLET WEEK',d:'Five brutal ranges, from 1–20 up to 1–1000. Efficient guessing wins.',r:[[1,20,5],[1,60,6],[1,150,8],[1,400,9],[1,1000,10]]},
  {k:'blind',e:'🌑',n:'BLIND WEEK',d:'No temperature hints this week: only higher or lower. Pure logic.',blind:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
  {k:'primes',e:'🔢',n:'PRIME WEEK',d:'Every secret is a prime number. Think like a mathematician.',primes:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
  {k:'sniper',e:'🎯',n:'SNIPER WEEK',d:'Four huge ranges, up to 1–5000. Each round is worth up to 125 pts.',pr:125,r:[[1,100,7],[1,300,9],[1,1000,10],[1,5000,13]]}
 ],
-wkMon=(d=new Date())=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));return x},
-evWk=()=>dk(wkMon()),
-evNum=()=>{const m=wkMon();return Math.floor(Date.UTC(m.getFullYear(),m.getMonth(),m.getDate())/6048e5)},
+EV_BASE=Math.floor(Date.UTC(2026,10,9)/6048e5),
+evNow=()=>Date.now()+EVOFF,
+evEat=()=>new Date(evNow()+108e5),
+evKey=d=>`${d.getUTCFullYear()}-${d.getUTCMonth()+1}-${d.getUTCDate()}`,
+evToday=()=>evKey(evEat()),
+evMon=()=>{const d=evEat();return Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()-((d.getUTCDay()+6)%7))},
+evWk=()=>evKey(new Date(evMon())),
+evNum=()=>Math.floor(evMon()/6048e5),
+evWn=n=>n-EV_BASE+1,
+evWid=w=>{const[y,m,d]=w.split('-').map(Number);return evWn(Math.floor(Date.UTC(y,m-1,d)/6048e5))},
 EVC=()=>EVS[evNum()%EVS.length],
-evLeftTxt=()=>{const m=wkMon(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+7)-Date.now(),d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),mi=Math.floor(ms%36e5/6e4);return 'ends in '+(d?d+'d '+h+'h':h+'h '+mi+'m')};
+evLeftMs=()=>evMon()+7*864e5-108e5-evNow(),
+evLeftParts=()=>{const ms=Math.max(0,evLeftMs());return[Math.floor(ms/864e5),Math.floor(ms%864e5/36e5),Math.floor(ms%36e5/6e4)]},
+evLeftTxt=()=>{const[d,h,m]=evLeftParts();return 'ends in '+(d?d+'d '+h+'h':h+'h '+m+'m')},
+evShort=()=>{const[d,h,m]=evLeftParts();return (d?d+'d '+h+'h':h+'h '+m+'m')+' left'};
+let EVCK=0;
+async function evClock(){if(Date.now()-EVCK<6e4)return;EVCK=Date.now();try{const X=await msFb(),{D:Z,db}=X.F,off=await new Promise((res,rej)=>{const to=setTimeout(rej,6000);Z.onValue(Z.ref(db,'.info/serverTimeOffset'),s=>{clearTimeout(to);res(s.val())},()=>rej(),{onlyOnce:true})});if(typeof off==='number'&&isFinite(off)){EVOFF=off;LS.set('ms_off',off)}}catch(e){}}
+/* basic name filter (substring list for long words, whole-word list for short ones) */
+const EV_BSUB=['fuck','bitch','cunt','nigg','pussy','whore','motherf','asshole','bastard','wank','blowjob'],
+ EV_BWORD=['shit','shithead','ass','sex','fag','cock','dick','anal','anus','tit','tits','rape','rapist','nazi','hitler','porn','penis','vagina','poop','kkk','dildo','cum','piss','twat','slut'];
+function evBad(n){const m={0:'o',1:'i',3:'e',4:'a',5:'s','$':'s','@':'a','!':'i',7:'t'},s=String(n||'').toLowerCase().replace(/[013457$@!]/g,c=>m[c]),w=s.split(/[^a-z]+/).filter(Boolean);return w.some(x=>EV_BWORD.includes(x)||EV_BSUB.some(b=>x.includes(b)))}
+const evName=n=>evBad(n)?'LEGIONARY':String(n).replace(/[<>&]/g,''),evSafe=n=>evBad(n)?'LEGIONARY':String(n||'PLAYER').toUpperCase().replace(/[<>&]/g,'').slice(0,12);
+function evBadgeTxt(){const b=(PRO.ev&&PRO.ev.badges||[]).filter(x=>x.t==='champ');return b.length?' · 👑 Week '+b[b.length-1].n+' Champion':''}
+const evBadgeList=()=>(PRO.ev&&PRO.ev.badges||[]).map(b=>(b.t==='champ'?'👑 Week '+b.n+' Champion':'🥈 Week '+b.n+' Podium')).join(' · ');
 function evPrime(r,a,b){const p=[];for(let i=a;i<=b;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))p.push(i);return p[Math.floor(r()*p.length)]}
 function evS(){const w=evWk();let E=PRO.ev;if(!E||typeof E!=='object')E=PRO.ev={w:'',d:{},pend:[],best:0,dirty:0};
  if(E.w!==w){const tot=Object.values(E.d||{}).reduce((a,x)=>a+(x.b||0),0);
-  if(E.w&&tot>0){E.pend=(E.pend||[]).concat([{w:E.w,t:tot}]).slice(-3);if(E.dirty)evSync({w:E.w,d:JSON.parse(JSON.stringify(E.d)),dirty:1})}
+  if(E.w&&tot>0){E.pend=(E.pend||[]).concat([{w:E.w,t:tot,dy:Object.values(E.d||{}).filter(x=>(x.b||0)>0).length}]).slice(-3);if(E.dirty)evSync({w:E.w,d:JSON.parse(JSON.stringify(E.d)),dirty:1})}
   E.w=w;E.d={};E.dirty=0;E.last=null;LS.set('ms_pro',PRO)}
  E.pend=E.pend||[];return E}
-const evDay=()=>{const E=evS(),k=today();return E.d[k]||(E.d[k]={p:0,b:0})},
- evCap=()=>EV_PLAYS+(evDay().x||0),evCost=()=>cx(400),evCanBuy=()=>evLeft()===0&&!(evDay().x||0),
+const evDay=()=>{const E=evS(),k=evToday();return E.d[k]||(E.d[k]={p:0,b:0})},
+ evCap=()=>EV_PLAYS+(evDay().x||0),evCost=()=>EV_BUY[evDay().x||0]||0,evCanBuy=()=>evLeft()===0&&(evDay().x||0)<EV_BUY.length,
  evLeft=()=>Math.max(0,evCap()-evDay().p),
  evTot=()=>Object.values(evS().d).reduce((a,x)=>a+(x.b||0),0);
 function evUse(){evDay().p++;LS.set('ms_pro',PRO)}
-function evPlay(){if(evLeft()<=0){toast('⏳ No runs left today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${today()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
+function evPlay(){if(evLeft()<=0){toast('⏳ No runs left today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${evToday()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
 function evTile(){const left=evLeft(),dn=PRO.dl===today(),n=(dn?0:1)+(left>0?1:0),ev=EVC();
- $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>DAILY &amp; EVENTS</span><small>${ev.e} ${left?left+' runs left':'event done today'}${dn?'':' · ☀️ ready'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
-async function evSync(E){E=E||evS();if(!E.dirty)return;try{const X=await msFb(),{D:Z,db}=X.F,uid=X.uid,n=(S.n1||'PLAYER').toUpperCase().slice(0,12),w=E.w,pr=[];let tot=0;
+ $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>DAILY &amp; EVENTS</span><small>${ev.e} ${left?left+' runs':'done today'} · ${evShort()}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
+async function evSync(E){E=E||evS();if(!E.dirty)return;try{const X=await msFb(),{D:Z,db}=X.F,uid=X.uid,n=evSafe(S.n1),w=E.w,pr=[];let tot=0;
  for(const k in E.d){const b=E.d[k].b||0;tot+=b;if(b>0)pr.push(Z.set(Z.ref(db,`events/${w}/day/${k}/${uid}`),{n,s:b}))}
  if(tot>0)pr.push(Z.set(Z.ref(db,`events/${w}/total/${uid}`),{n,s:tot}));await Promise.all(pr);E.dirty=0;LS.set('ms_pro',PRO)}catch(e){}}
 async function evTop(path){const X=await msFb(),{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,path),Z.orderByChild('s'),Z.limitToLast(100))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===X.uid})});a.reverse();return a}
@@ -1451,34 +1471,35 @@ const evRank=a=>{const m=a.find(x=>x.me);return m?1+a.filter(x=>x.s>m.s).length:
  evRtxt=(a,sc)=>{const r=evRank(a);return r?`rank #${r}${a.length<100?' of '+a.length:''}`:sc>0?(a.length>=100?'outside top 100':'syncing…'):'play to get ranked'};
 function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb)d.b=sc;
  const dg=cx(6+Math.round(sc/20)),xp=5+Math.round(sc/20);PRO.gold+=dg;PRO.xp+=xp;E.last={l:D.lines,s:sc,k:D.k,dg,xp,nb};E.dirty=1;LS.set('ms_pro',PRO);
- qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${today()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
+ qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${evToday()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
 function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/500 · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
  $('#endt').textContent=ev.e+' '+ev.n;
- $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · 💰 ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">⚔️ DAILY &amp; EVENTS</button></div>`;
+ $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">⚔️ DAILY &amp; EVENTS</button></div>`;
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
 function evHubOpen(){go('s-events');evHubRender()}
-const evRew=r=>r==null?{c:cx(200),x:40}:r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1}}:r<=3?{c:cx(1500),x:200,inv:{tome:1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:r<=100?{c:cx(320),x:60}:{c:cx(200),x:40};
-function evHubRender(){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,tot=evTot(),
+const evRew=(r,dy)=>r==null||r>100?(dy>=3?{c:cx(320),x:60}:{c:cx(200),x:40}):r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1}}:r<=3?{c:cx(1500),x:200,inv:{tome:1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:{c:cx(320),x:60};
+function evHubRender(nc){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,tot=evTot(),
  pips=Array.from({length:evCap()},(_,i)=>`<i class="${i<dd.p?'u':''}"></i>`).join('');
  $('#evBody').innerHTML=`<div id="evClaim"></div>
- <div class="card ev evx"><div class="evh"><span>${ev.e} WEEKLY EVENT</span><b>${evLeftTxt()}</b></div>
- <h3>${ev.n}</h3><p>${ev.d}</p>
+ <div class="card ev evx"><div class="evh"><span>${ev.e} WEEK ${evWn(evNum())} EVENT</span><b>${evLeftTxt()}</b></div>
+ <h3>${ev.n}</h3><p>${ev.d}</p>${evBadgeList()?`<small class="evn" style="margin:0 0 6px">🏅 ${evBadgeList()}</small>`:''}
  <div class="evp"><span>RUNS TODAY</span><span class="evpips">${pips}</span><small>${left} left</small></div>
  <div class="evs"><div><small>TODAY’S BEST</small><b>${dd.b}</b><em id="evRd">rank …</em></div><div><small>WEEK TOTAL</small><b>${tot}</b><em id="evRw">rank …</em></div></div>
- ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">🪙 BUY A BONUS RUN · 💰 ${evCost()}</button><small class="evn">All free runs used. One bonus run a day.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
+ ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">🪙 BUY A BONUS RUN · ${EV_SYM} ${evCost()}</button><small class="evn">Free runs used. Bonus runs bought today: ${evDay().x||0}/${EV_BUY.length}.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
  <button data-ev="board">🏆 LEADERBOARDS</button>
- <small class="evn">Global event: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+1 bonus run for coins), your best run each day counts, 7 days, highest week total wins. Rewards at the end of the week.</small></div>
+ <small class="evn">Global event: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+2 bonus runs for coins), your best run each day counts, 7 days, highest week total wins. Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>
  <div class="card ev"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
  <p>Same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
  <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button></div>`;
  (async()=>{const set=(id,x)=>{const el=document.getElementById(id);if(el)el.textContent=x};
-  try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${today()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
+  if(!nc){const o=EVOFF;await evClock();if(Math.abs(EVOFF-o)>6e4&&document.querySelector('#s-events.on'))return evHubRender(1)}
+  try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${evToday()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
   evClaimUI()})()}
 async function evClaimUI(){const E=evS(),box=document.getElementById('evClaim');if(!box||!E.pend.length)return;const q=E.pend[0];let rank=null,off=false;
  try{const a=await evTop(`events/${q.w}/total`);rank=evRank(a)}catch(e){off=true}
- if(!document.getElementById('evClaim'))return;const R=evRew(rank),ev=EVS[(evNum()-1+EVS.length*9)%EVS.length];
- document.getElementById('evClaim').innerHTML=`<div class="card ev evc"><div class="evh"><span>🏛️ LAST WEEK’S RESULT</span></div><h3>${rank?'Rank #'+rank:'Event complete'}</h3><p>You scored <b>${q.t}</b> over the week.${off?'<br><small>Connect to the internet to see your final rank. Claiming now gives the participation reward.</small>':''}</p><button data-ev="claim">🎁 CLAIM · 💰 ${R.c}${R.inv?' + items':''}</button></div>`;
+ if(!document.getElementById('evClaim'))return;const R=evRew(rank,q.dy==null?3:q.dy),wn=evWid(q.w);
+ document.getElementById('evClaim').innerHTML=`<div class="card ev evc"><div class="evh"><span>🏛️ LAST WEEK’S RESULT</span></div><h3>Week ${wn}: ${rank?'Rank #'+rank:'complete'}</h3><p>${rank===1?'👑 <b>You are the Week '+wn+' Champion!</b><br>':''}You scored <b>${q.t}</b> over the week.${off?'<br><small>Connect to the internet to see your final rank. Claiming now gives the participation reward.</small>':''}</p><button data-ev="claim">🎁 CLAIM · 💰 ${R.c}${R.inv?' + items':''}</button></div>`;
  box.dataset.rank=rank==null?'':rank}
 async function evBoard(tab){tab=tab||'d';let ov=document.getElementById('evOv');
  if(!ov){ov=document.createElement('div');ov.id='evOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='evX')ov.remove();const b=e.target.closest('[data-tab]');if(b)evBoard(b.dataset.tab)};document.body.appendChild(ov)}
@@ -1486,7 +1507,7 @@ async function evBoard(tab){tab=tab||'d';let ov=document.getElementById('evOv');
  const paint=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 ${tab==='y'?'DAILY STRIKE':ev.n}</h2><div class="evtabs">${tabs}</div><div style="line-height:1.8;margin:8px 0">${h}</div><button id="evX" style="width:100%">CLOSE</button></div>`};
  paint('Loading…');
  try{if(tab==='y'){if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s)}else await evSync();
-  const a=await evTop(tab==='d'?`events/${E.w}/day/${today()}`:tab==='w'?`events/${E.w}/total`:'daily/'+today()),clean=s=>String(s).replace(/[<>&]/g,''),row=(v,i)=>`${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${clean(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`;
+  const a=await evTop(tab==='d'?`events/${E.w}/day/${evToday()}`:tab==='w'?`events/${E.w}/total`:'daily/'+today()),clean=evName,row=(v,i)=>`${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${clean(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`;
   let h=a.length?a.slice(0,20).map(row).join('<br>'):'No scores yet.';const mi=a.findIndex(x=>x.me);
   if(mi>=20)h+=`<br>⋯<br>${row(a[mi],evRank(a)-1)}`;else if(mi<0&&a.length)h+=`<br><small>${(tab==='y'?PRO.dl===today():(tab==='d'?evDay().b:evTot())>0)?(a.length>=100?'You are outside the top 100.':'Your score is syncing…'):(tab==='y'?'Finish today’s Daily Strike to join the board.':'Play a run to join the board.')}</small>`;
   paint(h)}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
@@ -1494,11 +1515,11 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAga
  if(k==='play'){sfx('click');evPlay()}
  else if(k==='board'||k==='evBd'){sfx('click');evBoard('d')}
  else if(k==='daily'){sfx('click');dailyOpen()}
- else if(k==='buy'){if(!evCanBuy())return;if(PRO.gold<evCost()){toast('Not enough coins');tone(150,.2,'square');return}PRO.gold-=evCost();evDay().x=1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events'];evPlay()}else{evHubRender();profUI()}}
+ else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('Not enough coins');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events'];evPlay()}else{evHubRender();profUI()}}
  else if(k==='evAgain'){sfx('click');stack=['s-home','s-events'];evPlay()}
  else if(k==='evHub'){sfx('click');stack=['s-home'];evHubOpen()}
- else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;toast(`🏛️ <b>${rk?'RANK #'+rk:'EVENT REWARD'}</b><br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
-addEventListener('online',()=>{try{evSync()}catch(e){}});
+ else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk,q&&q.dy!=null?q.dy:3);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;let bt='';if(rk&&rk<=3){const n=evWid(q.w);E.badges=E.badges||[];if(!E.badges.some(b=>b.n===n))E.badges.push({n,t:rk===1?'champ':'podium'});bt=rk===1?`<br>👑 <b>Week ${n} Champion</b> badge earned!`:`<br>🥈 Week ${n} Podium badge earned`}toast(`🏛️ <b>${rk?'RANK #'+rk:'EVENT REWARD'}</b>${bt}<br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
+addEventListener('online',()=>{try{evClock().then(()=>evSync())}catch(e){}});
 
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
 const MUT=[['primes','🔢','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
