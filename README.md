@@ -115,7 +115,7 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 
 ## v37 changes
 - Two new worlds (600 💰 each, Armory > 🌍 WORLDS):
-  - **BUGANDA · KINGDOM** (royal green and gold). Ranks run Omukopi, Omuvubuka, Omusirikale, Omulwanyi, Omukungu, Omwami, Omutaka, Ssaza head, Omulangira, Omuwanika, Omulamuzi, Katikkiro, Kabaka. Regions are Buddu, Busiro, Kyaggwe and Mengo, and the badge reads BUGANDA instead of SPQR.
+  - **BUGANDA · KINGDOM** (royal green and gold). Ranks run Omukopi, Omuvubuka, Omumbowa, Omulwanyi, Omukungu, Omwami, Omutaka, Ssaza head, Omulangira, Omuwanika, Omulamuzi, Katikkiro, Kabaka. Regions are Buddu, Busiro, Mawokota and Mengo, and the badge reads BUGANDA instead of SPQR.
   - **GOLDEN SANDS · ARABIA** (sunset gold and black). Ranks run Mujannad, Jundi, Faris, Bahlawan, Naqib, Alamdar, Muqaddam, Aqid, Amir, Wali, Wazir, Grand Wazir, Sultan. Regions are Najd, Hejaz, Hadramawt and Baghdad, and the badge reads سلطان.
 - Each world has its own menu art (img/<world>_menu.webp), boss art (img/<world>_boss.webp) and menu/gameplay music (audio/theme_<world>.mp3). Boss fights still use boss.mp3.
 - Both have a light mode (html.light.wd-buganda / html.light.wd-gold) and are in the offline cache. `V` in sw.js is now mindstrike-v37.
@@ -129,12 +129,22 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 ## v39 changes
 **Wager is one pop-up button.** "Place your wager" no longer takes a block of the opponent screen: a single 🎲 button shows the current stake (e.g. "Wager 50 💰 → win 100") and opens a small pop-up; tapping an amount picks it and closes the pop-up.
 **Online: limited chat + on-screen buttons.** Quick chat is now six emoji buttons in one row (🐢 Slow! · 😬 Close! · 👏 Nice! · 👑 Bow! · 🍀 Lucky! · ⚔️ GG), shown to your rival as a short floating bubble, with a 2.5s cooldown. Online guesses use the same on-screen keypad as the main game, so the phone keyboard no longer covers the screen. Slot order is unchanged, so v38 and v39 phones still understand each other.
-**The House wears each world's names.** `KN` (names), `KT` (titles) and `KC` (labels) in `<head>` map every Roman form used in the game (`KV`) to a name per world, e.g. Buganda, Neon Grid, Shogun's Realm, Frostlands, Golden Sands. In **Buganda, ASANTE and KIRABO keep their real names**; Eliya, Kirisitina and Mariamu are the Luganda forms of Elijah, Christine and Mariam. The House screen, campaign nodes, quick-match generals and toasts all follow. Bump `V` in `sw.js` after every change.
+**The House wears each world's names.** `KN` (names), `KT` (titles) and `KC` (labels) in `<head>` map every Roman form used in the game (`KV`) to a name per world, e.g. Buganda, Neon Grid, Shogun's Realm, Frostlands, Golden Sands. In **Buganda, ASANTE and KIRABO keep their real names**; Eliya and Kirisitina are the Luganda forms of Elijah and Christine, and Imran, Shanita and Mariam become Mubiru, Namuli and Nakibuuka. The House screen, campaign nodes, quick-match generals and toasts all follow. Bump `V` in `sw.js` after every change.
 
 ## v40 changes
-- **Plain English for kids.** Skirmish / Campaign / Conquest matches are now **Quick Match / Normal Match / Long Match** (labels on the leaderboard and target chip follow). "Defy the Imperator" is **Fight the Imperator**, "Clash of Legions" is **Play with a Friend**. "Attempts" is now "tries". The name and rank screens use short sentences (Easy / Medium / Hard shown under each rank), opponent descriptions say what they do ("Point stealer", "Hint blocker"), and the end-of-match lines are simple ("You win!", "It is a draw."). The Conquest Map battle "Harbor Skirmish" is "Harbor Fight" in every world. How to Play still has some older wording.
+- **Plain English for kids.** Only **Skirmish** was replaced: the Quick mode is now **Quick Match** and the Conquest Map battle "Harbor Skirmish" is "Harbor Fight" in every world. Campaign, Conquest, Defy the Imperator, Clash of Legions, Attempts and Victory keep their original wording.
 - **Opponent, name and rank screens are centred** (they used to be pinned to the top, leaving half the screen empty).
 - **A design language per world** (Roman and Shogun unchanged): **Neon Grid** = HUD corner brackets, scanline glass, slanted action bars, hex badges, glitch heading. **Ice** = frosted blue shards with hanging icicles, crystal gems, diamond rune buttons, drifting snow. **Buganda** = woven bark-cloth diamond bands, shield badges, pill buttons, rising embers. **Golden Sands** = leaf corners with a double-line frame, eight-point-star lattice, star medallions, pointed-arch buttons, drifting gold dust. All in the v40 block at the end of the CSS; ambient particles hide during matches and respect reduced-motion. `V` in sw.js is now mindstrike-v40.
 
-## v41 changes
-**XP and ranks.** The 13 ranks now run 0 · 100 · 300 · 600 · 1,000 · 1,600 · 2,400 · 3,400 · 4,700 · 6,400 · 8,500 · 11,000 · 15,000 XP (`RANKS`). Rank is recomputed from XP, so nobody is grandfathered; claimed rank rewards stay claimed. **Rank trials** gate the top three: Proconsul needs every star in one Conquest region, Consul mastery level 3 in three Mini Games, Imperator 50 stars on the Conquest Map (`TRIALS`; XP keeps counting while a trial is pending, and the rank card shows it). **Prestige**: past Imperator every 5,000 XP is a new level (Imperator II to X) paying coins and an Armory Pack (`ms_pro.pg`). Mini games now unlock on ranks 1 to 9 (`MINI.rk`), and one you have already played stays open. Bump `V` in `sw.js` after every change.
+### v40b
+- Online menu: **Family record** and **Match options** are now two small buttons that open pop-ups, so Join Room fits on screen without scrolling.
+- Power buttons are smaller in the arena and in online matches.
+- Online secret number box redesigned as a vault plate that glows once a number is entered.
+- Arena: the opponent intro pop-up (e.g. Mariamind) is removed. Remaining toasts (power-up explanations) now sit at the very top, above the timer, in a smaller size.
+
+### v40c
+- **Theme prices by beauty:** Ice 3,000 · Neon Grid 3,800 · Buganda 5,200 · Golden Sands 6,400 · Shogun's Realm 8,000 coins (already-owned worlds stay owned).
+- **Coins are slower to earn:** every coin reward (matches, conquest, mini games, daily strike, challenges, daily chest, rank rewards, weekly rewards) is multiplied by `COINX` (0.6, set next to `PR`). Change that one number to make coins easier or harder.
+- **Easy / Medium / Hard** are back on the rank cards.
+- **Online pad:** number box, keypad and powers now sit together in one themed card (world ornament on top), powers below the keypad.
+- **Online wording:** "YOUR SHOT" / "<name> IS GUESSING", "<name> is thinking…"; the "Pick a number from X to Y" line is gone because the range is already beside the round. Relics are now **Boosts**: Extra Attempt, Free Guess, Bonus Points, Lucky Shot, Odd or Even, Which Half?, Extra Time, Safety Points.
