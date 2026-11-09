@@ -540,6 +540,7 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
  <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
+ <div class="sub2" style="margin-top:8px"><button id="lbHome">📅 TODAY’S DAILY BOARD</button></div>
  <div id="inst" hidden></div>
  <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
@@ -1382,7 +1383,10 @@ function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today(
 $('#dailyBtn').onclick=()=>{sfx('click');dailyOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
 async function lbPut(sc){try{await fb();const{D:Z,db}=F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:(S.n1||'PLAYER').toUpperCase().slice(0,12),s:sc})}catch(e){}}
-async function lbShow(){let h='<b>🏆 TODAY’S BOARD</b><br>';try{await fb();const{D:Z,db}=F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(10))),a=[];r.forEach(c=>{a.push(c.val())});a.reverse();h+=a.length?a.map((v,i)=>`${i+1}. ${String(v.n).replace(/[<>&]/g,'')} — ${v.s}`).join('<br>'):'No scores yet.'}catch(e){h+='Board unavailable (offline, or the Firebase rules are not published yet).'}toast(h)}
+async function lbShow(){let ov=document.getElementById('lbOv');if(!ov){ov=document.createElement('div');ov.id='lbOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='lbX')ov.remove()};document.body.appendChild(ov)}
+const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 TODAY’S BOARD</h2><div style="line-height:1.8;margin:8px 0">${h}</div><button id="lbX" style="width:100%">CLOSE</button></div>`};card('Loading…');
+try{await fb();if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${String(v.n).replace(/[<>&]/g,'')} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String(why(e)).replace(/[<>&]/g,'')+'</small>')}}
+document.getElementById('lbHome').onclick=()=>{sfx('click');lbShow()};
 document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return lbShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.textContent=`🧊 STREAK FREEZE (${PRO.fz}) · 💰 ${cx(300)}`;toast('🧊 Freeze bought. It saves one missed day.')});
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
 const MUT=[['primes','🔢','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
