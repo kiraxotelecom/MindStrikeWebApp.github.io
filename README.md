@@ -148,3 +148,20 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 - **Easy / Medium / Hard** are back on the rank cards.
 - **Online pad:** number box, keypad and powers now sit together in one themed card (world ornament on top), powers below the keypad.
 - **Online wording:** "YOUR SHOT" / "<name> IS GUESSING", "<name> is thinking…"; the "Pick a number from X to Y" line is gone because the range is already beside the round. Relics are now **Boosts**: Extra Attempt, Free Guess, Bonus Points, Lucky Shot, Odd or Even, Which Half?, Extra Time, Safety Points.
+
+## v49 changes
+- **Conquest star fix**: a "win N rounds in a row" goal also counts when you win the whole match with no failed round in fewer than N rounds (checked at match end only; the live goal chip is unchanged). The SWIFT goal now measures the round the target was reached, not rounds spent in the shield phase.
+- **Region bosses**: the last battle of Gaul, Egypt and Carthage now plays the shield phase like Kiraxo's, with the general's own name on the intro and banner, one extra shield layer, and a signature: Asantorix ambushes (equal swings plus a damage head start), Kirabotep's sandstorm keeps jamming hints every 3rd round, Imrandros steals 30 damage whenever he breaks a shield. Per-region data lives in `CAMP[].gen` (`s`, `ly`, `tr`). `V` in sw.js is now mindstrike-v49.
+
+## v50 changes — wagers
+- **Rank-unlocked stakes**: 250 at Centurion (rank 4), 500 at Legatus (rank 8), ALL-IN at Consul (rank 11, needs 600+ coins, capped at 10,000). Stakes above your balance stay disabled.
+- **Side-bets** (only after picking a stake): No Powers +0.5×, Swift +0.5× (win at or under the match's normal pace, `wbN()`), Flawless +1×. A missed side-bet only loses its bonus. Swift is dropped for Endless and Last Stand (no round pace). A live chip shows side-bet progress during the match.
+- **Insurance**: costs 10% of the stake up front, returns half the stake on a loss (not for all-in). Restarting a match refunds the fee.
+- **Rake**: the arena keeps 5% of the winnings (profit above the stake, minimum 1 coin) — the coin sink. Constants: `WM, WS, WR, ALLR, RAKE, INS_FEE, INS_BACK, WB`.
+- Not in this version: double-or-nothing and Clash Online wagers. Conquest stays wager-free. `V` in sw.js is now mindstrike-v50.
+
+## v51 changes
+**Daily & Events hub.** The Daily tile is now **DAILY & EVENTS** and opens a hub with two cards. ☀️ **Daily Strike** is unchanged (streak, freezes, board). 🏟️ **Weekly Event** is a global challenge that runs Monday to Sunday (device-local dates) with a rotating theme: Gauntlet, Blind, Prime, Sniper (`EVS`). Everyone plays the same seeded numbers (seed = week + day + run number). **3 runs a day** (`EV_PLAYS`; a run is spent on its first guess); your best run of each day counts, the **week total** (max 3500) decides the final rank. Players see today's best + rank and week total + rank, and a leaderboard with Today / Week / Daily Strike tabs. Finished runs pay small coins + XP; the next week the hub offers a rank reward (1st, top 3, 10, 25, 100, participation). Scores are stored at `events/<week>/day/<date>/<uid>` and `events/<week>/total/<uid>`; **publish the updated `firebase-rules.json`** (adds the `events` branch, scores can only go up). Offline runs sync when you reconnect. Bump `V` in `sw.js` after every change.
+
+## v52 changes
+**Bonus run**: after the 3 free Weekly Event runs you can buy **one bonus run a day** (💰 `evCost()`, 400 × the coin factor) from the hub or the end screen (`EV_PLAYS`, `evCanBuy`). **Event quests**: a fixed weekly quest "Play 6 Weekly Event runs" (`id:'wev'`, always present), plus pool quests "Play a Weekly Event run" (daily) and "Score 300+ in one Weekly Event run" (weekly). Bump `V` in `sw.js` after every change.

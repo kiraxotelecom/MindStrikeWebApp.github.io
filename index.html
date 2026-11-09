@@ -532,6 +532,23 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 #app #pauseBtn{width:50px;height:50px}#app #pauseBtn .ic{width:28px;height:28px}
 #s-game #hud{margin-top:42px}
 #hud .skE,#hud #skE1{left:50%;right:auto;top:auto;bottom:100%;margin:0 0 -2px -1.35rem;width:2.7rem;text-align:center;font-size:2.4rem}
+
+/* v51: Daily & Events hub */
+#evBody .ev{margin:0;padding:14px;text-align:center}
+#evBody .evx{border-color:var(--gold);box-shadow:0 0 22px rgba(255,200,58,.22)}
+#evBody .evh{display:flex;justify-content:space-between;align-items:center;font:700 .74rem Cinzel,Georgia,serif;letter-spacing:.12em;color:var(--gold)}
+#evBody .evh b{font-size:.72rem;opacity:.9}
+#evBody h3{font:800 1.25rem Cinzel,Georgia,serif;letter-spacing:.06em;margin:8px 0 2px}
+#evBody p{margin:4px 0 8px;line-height:1.4;font-size:.86rem}
+#evBody .evp{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0}
+#evBody .evp span:first-child,#evBody .evp small{font-size:.68rem;letter-spacing:.1em;opacity:.85}
+#evBody .evpips{display:flex;gap:6px}#evBody .evpips i{width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);background:var(--gold)}#evBody .evpips i.u{background:transparent;opacity:.4}
+#evBody .evs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+#evBody .evs div{border:1px solid rgba(255,200,58,.35);border-radius:8px;padding:7px 4px;display:flex;flex-direction:column;gap:1px}
+#evBody .evs small{font-size:.62rem;letter-spacing:.1em;opacity:.8}#evBody .evs b{font-size:1.5rem;line-height:1.15}#evBody .evs em{font-style:normal;font-size:.72rem;color:var(--gold)}
+#evBody button{width:100%;margin-top:6px}#evBody .evn{display:block;margin-top:8px;font-size:.66rem;opacity:.75;line-height:1.35}
+#evBody .evc{border-color:#4cd17a}
+.evtabs{display:flex;gap:6px;margin:6px 0}.evtabs button{flex:1;min-width:0;padding:7px 2px;font-size:.62rem;letter-spacing:.05em}.evtabs button.on{box-shadow:0 0 0 2px var(--gold) inset}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -601,6 +618,12 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <h2 id="dTitle">☀️ DAILY STRIKE</h2><div id="dInfo"></div><div id="dRange" class="big"></div><div id="dPips"></div><div id="dTrail" style="font-size:1.3rem;min-height:1.6em"></div><div id="dMsg" aria-live="polite" style="min-height:2.4em;text-align:center"></div>
  <div class="plate"><input id="dNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="dkp"></div>
+</section>
+
+<section class="scr" id="s-events" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <header class="bm-hero"><div class="bm-kicker">The arena calendar</div><h1>Daily &amp; Events</h1><div class="bm-sub">Fresh challenges every day, a global event every week.</div></header>
+ <div id="evBody" style="width:min(94%,390px);display:flex;flex-direction:column;gap:12px;padding-bottom:20px"></div>
 </section>
 
 <section class="scr" id="s-house" style="--bg:url(img/menu_bg.webp)">
@@ -731,7 +754,7 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
 <div class="pop" id="pop" style="pointer-events:none"><img id="popimg" alt=""></div>
 <div class="pop" id="help"><div class="card" id="helpBody"></div></div>
-<div class="pop" id="wgPop" style="z-index:12"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🎲 PLACE YOUR WAGER</h2><div class="bm-grid2" id="wgrid"></div><div id="wgInfo" style="font-size:.75rem;text-align:center;opacity:.85;margin:8px 0"></div><button id="wgOk" style="width:100%">CLOSE</button></div></div>
+<div class="pop" id="wgPop" style="z-index:12"><div class="card" style="width:min(92%,360px);text-align:center;max-height:88vh;overflow-y:auto"><h2>🎲 PLACE YOUR WAGER</h2><div class="bm-grid2" id="wgrid"></div><div id="wsbH" style="font-size:.72rem;letter-spacing:.08em;opacity:.8;margin:10px 0 4px"></div><div class="bm-grid2" id="wsb"></div><div id="wins" style="margin-top:6px"></div><div id="wgInfo" style="font-size:.75rem;text-align:center;opacity:.85;margin:8px 0"></div><button id="wgOk" style="width:100%">CLOSE</button></div></div>
 </div>
 <script>
 'use strict';
@@ -804,10 +827,10 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>DESPERATION</h2><p>When you trail by 15 or more, gamble once per match: win the round for +25, lose it for -10.</p>
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
 <h2>SPECIAL BATTLES</h2><p>Golden Spoils ×2 · Gladius Trial (1 attempt) · Killing Ground (tight range) · Imperator's Wrath (sharper Kiraxo; Overdrive in 2-player) · Bullseye (within 2 counts) · Shield.</p>
-<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a named general with a signature trick. Earn ⭐ for a win, for the battle’s own star goal (shown on the briefing and above the board while you play — each one is set to fit that battle’s score target), and for a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Nine ranks open one each: <b>Lightning Round</b>, <b>Codebreaker</b>, <b>Sniper Range</b>, <b>Oracle’s Sequence</b>, <b>Number Duel</b>, <b>Echo Scroll</b>, <b>Arena Gauntlet</b>, <b>Fate’s Cards</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. Whoever breaks more shields wins when the last layer falls (gold = yours, red = theirs); if it's a tie, total damage decides. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
+<h2>CONQUEST MAP</h2><p>Fight through Gaul, Egypt, Carthage and Rome. Every battle has its own rules; the last battle of each region is a <b>boss fight</b>: win the scoreboard, then break the general’s shield layers, with a signature trick all of his own. Earn ⭐ for a win, for the battle’s own star goal (a “win N rounds in a row” goal also counts if you win the whole match with no failed round in fewer than N rounds; shown on the briefing and above the board while you play — each one is set to fit that battle’s score target), and for a win with no powers. Stars (and the general) unlock the next region.</p>\n<h2>MINI GAMES</h2><p>Nine ranks open one each: <b>Lightning Round</b>, <b>Codebreaker</b>, <b>Sniper Range</b>, <b>Oracle’s Sequence</b>, <b>Number Duel</b>, <b>Echo Scroll</b>, <b>Arena Gauntlet</b>, <b>Fate’s Cards</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. Whoever breaks more shields wins when the last layer falls (gold = yours, red = theirs); if it's a tie, total damage decides. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
 <h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Five fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
-<h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by rank), a draw refunds you, a loss or quitting forfeits it. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
+<h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by difficulty), a draw refunds you, a loss or quitting forfeits it. Bigger stakes unlock with rank: 250 at Centurion, 500 at Legatus, ALL-IN at Consul. <b>Side-bets</b> add a bonus multiplier (No Powers +0.5, Swift +0.5, Flawless +1) and only lose the bonus if you miss them. <b>Insurance</b> costs 10% of the stake and returns half of it if you lose. The arena keeps a 5% rake on your winnings. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
 <h2>RANKS, TRIALS &amp; PRESTIGE</h2><p>There are 13 ranks; Imperator needs 15,000 XP, and early ranks come quickly. To earn <b>Proconsul, Consul and Imperator</b> you need the XP <i>and</i> a trial: three-star a whole Conquest region, reach mastery 3 on three mini games, then three-star two regions and reach mastery 5 on one. Past Imperator, every extra stretch of XP earns <b>Prestige</b> (Imperator I, II, III…) with a reward to claim. Rank follows your XP: if your XP is below a rank, you hold the rank your XP has earned, and the mini games above it stay locked until you get there.</p><h2>WORLD GAME &amp; WORLD QUESTS</h2><p>Every world has its own mini game in <b>Mini Games</b> (Forum Trader, Cowrie Count, Binary Breach, Haiku Blade, Rune Stones, Caravan Ledger), open from the start in whichever world you wear. Each day and week also brings one quest for your current world, paying extra coins, XP and gear.</p><h2>FRIEND CHALLENGE</h2><p>Play 5 seeded rounds, then share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day).</p>
 <button class="bm-cta" onclick="this.closest('.pop').classList.remove('on')" style="margin-top:12px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
@@ -821,9 +844,9 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
  G={cf:o.cf||null,trick:o.cf?o.cf.tr:'',mode:o.mode,d:o.d,m:o.m,D,M:Mt,names:[...o.names],pers:o.pers,score:[0,0],combo:[0,0],wins:[0,0],round:1,cur:0,
   pow:[0,1].map(()=>({SCAN:3,FOCUS:3,RISK:3,SHIELD:3,STEAL:3,JAM:3})),intelUses:[{},{}],desp:[{used:0,active:0},{used:0,active:0}],jamFor:[0,0],
   st:[{ok:0,best:0,crit:0},{ok:0,best:0,crit:0}],pg:[],boss:false,done:false,busy:false,paused:false,waiting:false,dmg:[0,0],broken:0,tLeft:0};
- if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
+ if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;wagerOpen(o,D,Mt);LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
  if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
- if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI')setTimeout(()=>{if(G&&!G.done)skSplash(KS[PRO.ks][4],KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
+ if(PRO.ks&&KSC[PRO.ks]&&o.mode==='AI'&&(!o.cf||o.cf.fin))setTimeout(()=>{if(G&&!G.done)skSplash(KS[PRO.ks][4],KSC[PRO.ks],'KIRAXO','AWAITS YOU')},2600)}
 function bg(){$('#app').classList.toggle('bossm',!!G.boss);const wa=(document.documentElement.className.match(/wd-(cyber|samurai|ice|buganda|gold)/)||[])[1];$('#s-game').style.setProperty('--bg',`url(img/${wa?wa+(G.boss?'_boss':'_menu'):G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(G.trick==='sand'&&G.cur===0&&G.round%3===0)G.jam=1;
  if(G.gen==='Prime'&&G.cur===0&&G.round===4&&!G.proscr&&G.mode==='AI'&&!G.boss){G.proscr=1;G.jam=1;setTimeout(()=>toast(`👑 <b>IMPERIAL EDICT</b><br><small>${GENS.Prime.n} jams your hints this round!</small>`),400)}
@@ -849,7 +872,7 @@ function afterTurn(){if(G.done)return;const t=G.M.t,w=G.cur;
  if(!G.boss){
   if(G.m==='Sudden'&&(G.wins[0]>=G.M.wins||G.wins[1]>=G.M.wins))return finish(G.wins[0]>G.wins[1]?0:1);
   if(t<9999){
-   if(G.mode==='AI'){if(G.score[1]>=t)return finish(1);if(G.score[0]>=t)return G.cf&&!G.cf.fin?finish(0):enterBoss(0)}
+   if(G.mode==='AI'){if(G.score[1]>=t)return finish(1);if(G.score[0]>=t){if(G.cf&&!G.cf.boss)return finish(0);G.brd=G.round;return enterBoss(0)}}
    else if(G.score[0]>=t||G.score[1]>=t)return enterBoss(G.score[w]>=t?w:1-w)}}
  nextTurn()}
 // scoring
@@ -931,18 +954,18 @@ function useIntel(t){if(!canAct())return;if(G.rf.intelUsed.includes(t)){const ix
  G.rf.info.push(r);sn.r=r;$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
 function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
- Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rndS(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0),total:G.D.layers+(G.mut==='armor'?1:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
+ Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rndS(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0)+(G.cf?G.cf.ly:0),total:G.D.layers+(G.mut==='armor'?1:0)+(G.cf?G.cf.ly:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
  if(G.mode==='PVP'){G.dmg[o]=40;G.pow[o].SCAN++}
- if(G.mode==='AI'){G.names[1]='KIRAXO';if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
- play(G.mode==='PVP'?'boss':'boss');bossIntro();G.busy=true;bg();render(`${nm(trig)} reached the target — IMPERATOR KIRAXO PRIME takes the field!`);
+ if(G.mode==='AI'){if(!G.cf)G.names[1]='KIRAXO';if(G.trick==='ambush'){G.vit[1]=Math.max(G.vit[1],G.vit[0]);G.dmg[1]+=30}if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
+ play('boss');bossIntro(bossFull());G.busy=true;bg();render(`${nm(trig)} reached the target — ${bossFull()} takes the field!`);
  later(()=>{G.busy=false;G.round=G.round;startBossFirst()},1600)}
 function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=0;G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v;timerReset();
  render(`${nm(G.cur)}, shatter his shields!`);if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
-function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
+function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===1&&G.trick==='raid'&&G.mode==='AI'){const s=Math.min(30,G.dmg[0]);G.dmg[0]-=s;G.dmg[1]+=s;if(s)setTimeout(()=>toast('🗡️ <b>RAID</b><br><small>He steals '+s+' of your damage!</small>'),300)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
  if(G.layers<=0){const k=G.bk,d=G.dmg;return finish(k[0]!==k[1]?(k[0]>k[1]?0:1):d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
  G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rndS(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
- if(G.mode==='AI'&&who===1){G.busy=true;render(`Kiraxo cracks a shield layer open! ${G.layers}/${G.total} remain.`);later(()=>{G.busy=false;aiPlay()},1500)}
+ if(G.mode==='AI'&&who===1){G.busy=true;render(`${bossShort()} cracks a shield layer open! ${G.layers}/${G.total} remain.`);later(()=>{G.busy=false;aiPlay()},1500)}
  else{render(`SHIELD SHATTERED! ${G.layers}/${G.total} remain — ${nm(who)} keeps swinging!`);weakPoint(who)}}
 // ---- Kiraxo AI ----
 function aiGuesses(acc,maxT,onGuess,focus){const P=PERS[G.pers];let lo=G.lo,hi=G.hi,g,tries=1;
@@ -963,9 +986,9 @@ function aiTurn(){const acc=Math.min(.95,(G.special==='KIRAXO_RAGE'?RAGE_ACC:G.D
  turnDone(m)}
 function aiBoss(){const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),useF=G.pow[1].FOCUS>0;if(useF)G.pow[1].FOCUS--;let broke=false;
  const chip=x=>{if(x===G.secret)return false;const c=1-Math.abs(x-G.secret)/Math.max(1,G.hi-G.lo),t=c>.85?'blazing':c>.6?'hot':'';if(CHIP[t]){G.armor-=CHIP[t];G.dmg[1]+=CHIP[t];if(G.armor<=0)broke=true}return broke};
- const r=aiGuesses(acc,G.vit[1],chip,useF),fn=useF?'⚡ Kiraxo activated FOCUS!  ':'';
+ const r=aiGuesses(acc,G.vit[1],chip,useF),fn=useF?'⚡ '+bossShort()+' activated FOCUS!  ':'';
  if(r.g===G.secret||broke){if(r.g===G.secret)G.dmg[1]+=100;sfx('buzz');G.busy=false;return layerHit(1)}
- G.busy=true;render(fn+'Kiraxo missed the weak point.');later(()=>nextTurn(),1500)}
+ G.busy=true;render(fn+bossShort()+' missed the weak point.');later(()=>nextTurn(),1500)}
 // ---- v6: juice, keypad, progression, daily ----
 const TC={blazing:'#ff4d1a',hot:'#ff9a3c',warm:'#e6c45a',cold:'#6fb3e0',freezing:'#a8e0ff'},TE={blazing:'🔥',hot:'🌶️',warm:'☀️',cold:'🌬️',freezing:'🧊'},
 EM={DOUBLE:'💰',ONE_SHOT:'🗡️',HOT_ZONE:'🎯',KIRAXO_RAGE:'😡',BULLSEYE:'🎯',SHIELD:'🛡️'};
@@ -1040,28 +1063,28 @@ ACH.conq=['🗺️','CONQUEROR','Defeat Kiraxo on the Conquest Map'];
 // node: [name, target score, rules {hi range, a attempts delta, mut, head AI head start}, opponent]
 const CAMP=[
  {id:'gaul',n:'GAUL',e:'🌲',d:'Easy',pers:'Calculator',need:0,twist:'Dark forests. Standard rules, a gentle start.',
-  gen:{n:'CHIEF ASANTORIX',tr:'ambush',trd:'Ambush — he starts the battle 10 points ahead.'},
+  gen:{n:'CHIEF ASANTORIX',s:'ASANTORIX',ly:1,tr:'ambush',trd:'Ambush — he starts 10 points ahead and gets a full set of swings in the shield phase.'},
   win:['🪓 The forest takes another Roman.','🐗 Run back to your walls!','🔥 Gaul does not kneel.'],lose:['😠 Lucky strike, Roman.','🪓 The forest remembers…','😤 This is not over.'],
   nodes:[['Forest Ambush',15,{},'SCOUT ELIJAHRIX'],['River Crossing',20,{hi:12},'RAIDER IMRANIX'],['Druid Grove',20,{mut:'jack'},'DRUID SHANITEA'],['Hillfort Siege',25,{a:-1,head:5},'CHIEF KIRABIX'],['Asantorix’ Stronghold',35,{},'CHIEF ASANTORIX']]},
  {id:'egypt',n:'EGYPT',e:'🏜️',d:'Medium',pers:'Psycho',need:7,dx:{hi:15,att:3,acc:.7},twist:'Desert sands. Tighter range (1–15) and only 3 attempts.',
-  gen:{n:'PHARAOH KIRABOTEP',tr:'sand',trd:'Sandstorm — your temperature hint vanishes every 3rd round.'},
+  gen:{n:'PHARAOH KIRABOTEP',s:'KIRABOTEP',ly:1,tr:'sand',trd:'Sandstorm — your temperature hint vanishes every 3rd round, even inside the shield phase.'},
   win:['🏺 The sands bury all who dare.','🐍 The gods are not on your side.','☀️ Ra blinds you, Roman.'],lose:['😒 Even the Nile floods…','🏺 A fluke, mortal.','👁️ The pharaoh sees all… still.'],
   nodes:[['Nile Delta',20,{},'SCRIBE SHANITARI'],['Oasis Raid',25,{mut:'rush'},'NOMAD IMRANKHET'],['Sandstorm Pass',25,{hi:12},'SCOUT ELIJAMOSE'],['Valley of Kings',30,{mut:'primes'},'PRIESTESS MARIAMUN'],['Sphinx Riddle',30,{mut:'lean',hi:10},'GUARD NANAMUN'],['Kirabotep’s Tomb',40,{},'PHARAOH KIRABOTEP']]},
  {id:'carth',n:'CARTHAGE',e:'🐘',d:'Medium',pers:'Gambler',need:17,twist:'Mercenary generals take risky, reckless guesses.',
-  gen:{n:'GEN. IMRANDROS',tr:'raid',trd:'Raid — every round he wins steals 3 of your points.'},
+  gen:{n:'GEN. IMRANDROS',s:'IMRANDROS',ly:1,tr:'raid',trd:'Raid — every round he wins steals 3 of your points, and every shield he breaks steals 30 of your damage.'},
   win:['🐘 My elephants crush your plans.','💰 Everything has a price, Roman.','⚓ Carthage rules the seas.'],lose:['😤 A gamble lost, nothing more.','💰 I will double the stakes.','🐘 You were lucky.'],
   nodes:[['Harbor Fight',25,{},'SAILOR ELIJAHOS'],['Elephant Pass',30,{mut:'jack'},'DRIVER ASANTEOS'],['Salt Mines',30,{a:-1},'FOREMAN KIRABOS'],['Tyrian Docks',35,{mut:'lean',head:5},'CAPT. CHRISTINEA'],['Walls of Carthage',35,{hi:40},'GUARD NANAIA'],['Imrandros’ Fleet',45,{},'GEN. IMRANDROS']]},
  {id:'rome',n:'ROME',e:'🏛️',d:'Hard',pers:'Calculator',pers2:'Prime',need:29,final:1,twist:'The heart of the empire. Full 1–100 range at the end.',
-  gen:{n:'KIRAXO',tr:'',trd:'Imperator Kiraxo Prime — win the scoreboard, then break his shield layers.'},
+  gen:{n:'KIRAXO',s:'KIRAXO',ly:0,tr:'',trd:'Imperator Kiraxo Prime — win the scoreboard, then break his shield layers.'},
   win:AI_WIN,lose:AI_LOSE,
   nodes:[['Appian Way',30,{hi:60},'LEGIONARY ASANTIUS'],['Circus Maximus',35,{mut:'jack',hi:80},'DRIVER ELIJAHUS'],['Colosseum Floor',40,{},'GLAD. IMRANUS'],['Senate Intrigue',40,{mut:'primes'},'SENATOR CHRISTINEA'],['Praetorian Guard',45,{mut:'lean'},'PREFECT KIRABUS'],['Palatine Hill',50,{head:10},'TRIBUNE MARIAMNA'],['Kiraxo’s Throne',60,{mut:'armor'},'KIRAXO']]}];
 const camp={sel:null,next:null};
 // ---- v31: every battle has its own star goal (replaces the fixed "combo x3", which some battles could never allow) ----
 // [icon, title, describe(n), progress(G,n) -> {v,ok,dead}, latching?]
 const OBJ={
- cmb:['🔥','COMBO',n=>`Win ${n} rounds in a row`,(g,n)=>({v:`${g.st[0].best}/${n}`,ok:g.st[0].best>=n}),1],
+ cmb:['🔥','COMBO',n=>`Win ${n} rounds in a row (or win the match without a failed round in fewer than ${n})`,(g,n,fin)=>({v:`${g.st[0].best}/${n}`,ok:g.st[0].best>=n||!!(fin&&!g.st[0].fail&&g.wins[0]>0&&g.wins[0]<n)}),1],
  clean:['🛡️','FLAWLESS',()=>'Never lose a round (no failed or timed-out rounds)',g=>({v:g.st[0].fail?'broken':'intact',ok:!g.st[0].fail,dead:!!g.st[0].fail})],
- fast:['⚡','SWIFT',n=>`Win within ${n} rounds`,(g,n)=>({v:`round ${g.round}/${n}`,ok:g.round<=n,dead:g.round>n})],
+ fast:['⚡','SWIFT',n=>`Win within ${n} rounds`,(g,n)=>{const r=g.brd||g.round;return{v:`round ${r}/${n}`,ok:r<=n,dead:r>n}}],
  lead:['👑','DOMINANT',n=>`Win by ${n}+ points`,(g,n)=>{const d=g.score[0]-g.score[1];return{v:`${d>=0?'+':''}${d} / +${n}`,ok:d>=n}}],
  sharp:['🎯','SHARP',n=>`Crack a number in ${n} guesses or fewer`,(g,n)=>({v:(g.st[0].mt||99)<=n?'done':'not yet',ok:(g.st[0].mt||99)<=n}),1],
  blaze:['🌡️','HEAT-SEEKER',n=>`Land ${n} blazing-hot guess${n>1?'es':''} (not the exact number)`,(g,n)=>({v:`${g.st[0].blz||0}/${n}`,ok:(g.st[0].blz||0)>=n}),1]};
@@ -1090,8 +1113,11 @@ function objOf(r,i){let o=(OBJS[CAMP[r].id]||[])[i]||['cmb',2];if(objFeasible(r,
  else if(o[0]==='fast')return['fast',Math.ceil(m.t/(m.rp+4))+1];
  else if(o[0]==='lead')return['lead',Math.max(1,Math.floor(m.t*.4))];
  return objFeasible(r,i,['blaze',1])?['blaze',1]:['clean',0]}
-const objDesc=o=>OBJ[o[0]][2](o[1]),objCheck=(g,o)=>OBJ[o[0]][3](g,o[1]).ok;
-function objChip(){const e=$('#objChip');if(!e)return;if(!G||!G.cf||!G.cf.ob){e.style.display='none';return}
+const objDesc=o=>OBJ[o[0]][2](o[1]),objCheck=(g,o,fin)=>OBJ[o[0]][3](g,o[1],fin).ok;
+function objChip(){const e=$('#objChip');if(!e)return;
+ if(G&&!G.cf&&G.wager&&G.wsb&&G.wsb.length){const r=G.brd||G.round,st=k=>k==='np'?(G.powUsed?0:1):k==='flaw'?(G.st[0].fail?0:1):(r<=G.wfn?1:0),
+  txt=k=>k==='fast'?`${WB[k][0]} ${r}/${G.wfn}`:`${WB[k][0]} ${st(k)?'✓':'✗'}`;e.style.display='';e.className=G.wsb.every(k=>!st(k))?'dead':'';e.textContent='🎲 SIDE-BETS · '+G.wsb.map(txt).join(' · ');return}
+ if(!G||!G.cf||!G.cf.ob){e.style.display='none';return}
  const o=G.cf.ob,O=OBJ[o[0]],s=O[3](G,o[1]);e.style.display='';e.className=s.dead?'dead':s.ok&&O[4]?'ok':'';e.textContent=`⭐ ${O[1]} · ${O[2](o[1])} · ${s.v}`}
 const ck=(r,i)=>CAMP[r].id+i,cStars=r=>CAMP[r].nodes.reduce((a,_,i)=>a+(PRO.cp[ck(r,i)]||0),0),cTotal=()=>CAMP.reduce((a,_,r)=>a+cStars(r),0),cMax=()=>CAMP.reduce((a,R)=>a+R.nodes.length*3,0);
 const bossDone=r=>(PRO.cp[ck(r,CAMP[r].nodes.length-1)]||0)>0,rOpen=r=>r===0||(bossDone(r-1)&&cTotal()>=CAMP[r].need),nOpen=(r,i)=>rOpen(r)&&(i===0||(PRO.cp[ck(r,i-1)]||0)>0);
@@ -1100,7 +1126,7 @@ const aw=()=>pick(G.cf&&G.cf.win?G.cf.win:G.gen?GENS[G.gen].win:AI_WIN),al=()=>p
 function campOpts(r,i){const R=CAMP[r],N=R.nodes[i],x=N[2]||{},last=i===R.nodes.length-1,D=Object.assign({},DIFF[R.d],R.dx||{},{name:R.n});
  if(x.hi)D.hi=x.hi;if(x.a)D.att=Math.max(2,D.att+x.a);
  return{mode:'AI',d:R.d,m:'Camp',D,M:{t:N[1],time:MATCH.Camp.time,label:last?'BOSS · '+R.gen.n:'BATTLE '+(i+1)},pers:last&&R.pers2?R.pers2:R.pers,names:[S.n1||'LEGIONARY',N[3]],
-  cf:{k:ck(r,i),ri:r,ni:i,ob:objOf(r,i),rn:R.n,nn:N[0],boss:last,fin:!!(R.final&&last),mut:x.mut||'',head:x.head||(last&&R.gen.tr==='ambush'?10:0),tr:last?R.gen.tr:'',win:R.win,lose:R.lose}}}
+  cf:{k:ck(r,i),ri:r,ni:i,ob:objOf(r,i),rn:R.n,nn:N[0],boss:last,fin:!!(R.final&&last),bn:last?(R.final?'IMPERATOR KIRAXO PRIME':R.gen.n):'',bs:last?R.gen.s:'',ly:last?(R.gen.ly||0):0,mut:x.mut||'',head:x.head||(last&&R.gen.tr==='ambush'?10:0),tr:last?R.gen.tr:'',win:R.win,lose:R.lose}}}
 function mapUI(){$('#mapTot').textContent=`⭐ ${cTotal()} / ${cMax()}`;
  $('#mapList').innerHTML=CAMP.map((R,r)=>{const open=rOpen(r),st=cStars(r);
   return `<div class="mreg ${open?'':'lk'}"><h3><span>${R.e} ${R.n}</span><span>⭐ ${st}/${R.nodes.length*3}</span></h3><p>${open?R.twist+' · General: <b>'+R.gen.n+'</b>':'🔒 '+lockWhy(r)}</p><div class="mrow">`+
@@ -1108,7 +1134,7 @@ function mapUI(){$('#mapTot').textContent=`⭐ ${cTotal()} / ${cMax()}`;
 function mapOpen(){mapUI();go('s-map')}
 const toMap=()=>{home();mapOpen()};
 function cbrief(r,i){const R=CAMP[r],o=campOpts(r,i),D=o.D,c=o.cf,x=R.nodes[i][2]||{},mu=x.mut&&MUT.find(m=>m[0]===x.mut),old=PRO.cp[c.k]||0;camp.sel=[r,i];
- const L=[`🎯 First to <b>${R.nodes[i][1]}</b>${c.fin?' — then Kiraxo’s shield phase':''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(x.mut==='lean'?1:0))}</b> attempts`];
+ const L=[`🎯 First to <b>${R.nodes[i][1]}</b>${c.boss?` — then <b>${R.gen.s[0]+R.gen.s.slice(1).toLowerCase()}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(x.mut==='lean'?1:0))}</b> attempts`];
  if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);
  if(c.head)L.push(`🏁 ${o.names[1]} starts <b>${c.head}</b> points ahead`);
  if(o.pers==='Gambler')L.push('🎲 Mercenary — takes risky guesses');
@@ -1119,8 +1145,8 @@ function cbrief(r,i){const R=CAMP[r],o=campOpts(r,i),D=o.D,c=o.cf,x=R.nodes[i][2
 function startCamp(r,i){const o=campOpts(r,i),R=CAMP[r];setup.lastOpts=o;$('#cbrief').classList.remove('on');launch();
  setTimeout(()=>{if(G&&G.cf)toast(`${o.cf.boss?'👹':'⚔️'} <b>${o.names[1]}</b><br><small>“${pick(R.win)}”</small>`)},700)}
 function campEnd(win){const c=G.cf;let h=`<br><b>🗺️ ${c.rn} · ${c.nn}</b>`;
- if(!win)return{html:h+'<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>'};
- qEv('conq');const cb=objCheck(G,c.ob),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=cx(gain*(15+10*c.ri)),note='';
+ if(!win)return{html:h+`<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>`};
+ qEv('conq');const cb=objCheck(G,c.ob,true),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=cx(gain*(15+10*c.ri)),note='';
  if(c.boss&&first){const b=cx(100+50*c.ri);coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
  const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
  if(c.boss&&first){if(c.fin){unlock('conq');note+='<br>👑 <b>Kiraxo falls — Rome is yours!</b>'}else{const nr=c.ri+1;note+=rOpen(nr)?`<br>🔓 <b>${CAMP[nr].n} unlocked!</b>`:`<br>🔒 ${CAMP[nr].n} needs ⭐ ${CAMP[nr].need} in total (you have ${cTotal()})`}}
@@ -1352,7 +1378,7 @@ const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(n
 function profUI(){const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
  $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}${pr()?' '+rom(pr()):''}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${trLine(i)}<div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
- $('#dailyBtn').innerHTML=tl('☀️','DAILY STRIKE',PRO.dl===today()?'✓ done today':'new numbers');$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
+ try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('☀️','DAILY STRIKE',PRO.dl===today()?'✓ done today':'new numbers')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
@@ -1367,21 +1393,21 @@ $('#share').onclick=shareIt;
 // daily strike: same numbers for everyone, once per day
 const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296},seed=s=>{let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0};
 const DR=[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]],tr=(g,s,sp)=>{const c=1-Math.abs(g-s)/sp;return c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing'};let D=null;
-function dStart(sd,ch){const r=mul(seed(sd));D={r:0,sec:DR.map(([a,b])=>a+Math.floor(r()*(b-a+1))),tries:0,trail:[],lines:[],score:0,kLo:1,kHi:10,ch:ch||null};$('#dTitle').textContent=ch?'⚔️ FRIEND CHALLENGE':'☀️ DAILY STRIKE';$('#dNum').value='';go('s-daily');dRender(ch?(ch.fs!=null?`${ch.from} scored ${ch.fs}. Same numbers — beat it!`:'You set the numbers. 5 rounds — then send the link!'):'Same numbers for everyone today. 5 rounds — each solvable with smart guesses!')}
+function dStart(sd,ch,ev){const r=mul(seed(sd)),dr=ev?ev.ev.r:DR;D={r:0,dr,ev:ev?ev.ev:null,k:ev?ev.k:0,pr:ev?(ev.ev.pr||100):100,sec:dr.map(([a,b])=>ev&&ev.ev.primes?evPrime(r,a,b):a+Math.floor(r()*(b-a+1))),tries:0,trail:[],lines:[],score:0,kLo:dr[0][0],kHi:dr[0][1],ch:ch||null};$('#dTitle').textContent=ev?ev.ev.e+' '+ev.ev.n:ch?'⚔️ FRIEND CHALLENGE':'☀️ DAILY STRIKE';$('#dNum').value='';go('s-daily');dRender(ev?`${ev.ev.d} Run ${ev.k} of ${evCap()}.`:ch?(ch.fs!=null?`${ch.from} scored ${ch.fs}. Same numbers — beat it!`:'You set the numbers. 5 rounds — then send the link!'):'Same numbers for everyone today. 5 rounds — each solvable with smart guesses!')}
 function dailyOpen(){if(PRO.dl===today())return dailyEnd();dStart(today())}
-function dRender(m){const mx=DR[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/5 · ${D.score} pts`+(D.ch&&D.ch.fs!=null?` · 🎯 beat ${D.ch.fs}`:'');$('#dRange').textContent=RNG(D.kLo,D.kHi);$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
-function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=DR[D.r],s=D.sec[D.r];if(!el.value||g<a||g>b){$('#dMsg').textContent=`Enter a number from ${a} to ${b}.`;tone(150,.15,'square');return}
- el.value='';D.tries++;
- if(g===s){D.trail.push('🎯');D.score+=Math.round((mx-D.tries+1)/mx*100);sfx('ding');burst(['✨','🎯','🪙'],14);vib(40);return dNext(`✅ Got it in ${D.tries}!`)}
- const t=tr(g,s,b-a);D.trail.push(TE[t]);
+function dRender(m){const mx=D.dr[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/${D.dr.length} · ${D.score} pts`+(D.ev?` · ${D.ev.e} run ${D.k}/${evCap()}`:'')+(D.ch&&D.ch.fs!=null?` · 🎯 beat ${D.ch.fs}`:'');$('#dRange').textContent=RNG(D.kLo,D.kHi);$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
+function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=D.dr[D.r],s=D.sec[D.r];if(!el.value||g<a||g>b){$('#dMsg').textContent=`Enter a number from ${a} to ${b}.`;tone(150,.15,'square');return}
+ el.value='';D.tries++;if(D.ev&&!D.used){D.used=1;evUse()}
+ if(g===s){D.trail.push('🎯');D.score+=Math.round((mx-D.tries+1)/mx*D.pr);sfx('ding');burst(['✨','🎯','🪙'],14);vib(40);return dNext(`✅ Got it in ${D.tries}!`)}
+ const t=tr(g,s,b-a),bl=D.ev&&D.ev.blind;D.trail.push(bl?(g<s?'⬆️':'⬇️'):TE[t]);
  if(D.tries>=mx){D.trail.push('💀');sfx('buzz');shake();vib([70,40,70]);return dNext(`💀 It was ${s}.`)}
- g<s?D.kLo=Math.max(D.kLo,g+1):D.kHi=Math.min(D.kHi,g-1);tone(250+(1-Math.abs(g-s)/(b-a))*700,.1,'triangle');dRender(`${TE[t]} ${g<s?'Higher':'Lower'} — ${t}`)}
-function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;if(D.r>=5)return dDone();const[a,b]=DR[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
-function dDone(){if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})`};PRO.xp+=20+Math.round(D.score/10);PRO.gold+=dg;lbPut(D.score);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
+ g<s?D.kLo=Math.max(D.kLo,g+1):D.kHi=Math.min(D.kHi,g-1);tone(bl?440:250+(1-Math.abs(g-s)/(b-a))*700,.1,'triangle');dRender(bl?(g<s?'⬆️ Higher':'⬇️ Lower'):`${TE[t]} ${g<s?'Higher':'Lower'} — ${t}`)}
+function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;if(D.r>=D.dr.length)return dDone();const[a,b]=D.dr[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
+function dDone(){if(D.ev)return evDone();if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})`};PRO.xp+=20+Math.round(D.score/10);PRO.gold+=dg;lbPut(D.score);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
 function fzLbl(){return `🧊 STREAK FREEZE<br><small style="font-weight:normal;letter-spacing:.04em">owned ${PRO.fz||0}/3 · 💰 ${cx(300)}</small>`}
 function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
  $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
-$('#dailyBtn').onclick=()=>{sfx('click');dailyOpen()};
+$('#dailyBtn').onclick=()=>{sfx('click');evHubOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
 async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:(S.n1||'PLAYER').toUpperCase().slice(0,12),s:sc})}catch(e){}}
 async function dayBoardShow(){let ov=document.getElementById('lbOv');if(!ov){ov=document.createElement('div');ov.id='lbOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='lbX')ov.remove()};document.body.appendChild(ov)}
@@ -1389,12 +1415,98 @@ const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-
 try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${String(v.n).replace(/[<>&]/g,'')} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
 document.getElementById('lbHome').onclick=()=>{sfx('click');dayBoardShow()};
 document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
+
+/* ===== v51: DAILY & EVENTS hub + Weekly Global Event ===== */
+const EV_PLAYS=3,
+EVS=[
+ {k:'gauntlet',e:'🏛️',n:'GAUNTLET WEEK',d:'Five brutal ranges, from 1–20 up to 1–1000. Efficient guessing wins.',r:[[1,20,5],[1,60,6],[1,150,8],[1,400,9],[1,1000,10]]},
+ {k:'blind',e:'🌑',n:'BLIND WEEK',d:'No temperature hints this week: only higher or lower. Pure logic.',blind:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
+ {k:'primes',e:'🔢',n:'PRIME WEEK',d:'Every secret is a prime number. Think like a mathematician.',primes:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
+ {k:'sniper',e:'🎯',n:'SNIPER WEEK',d:'Four huge ranges, up to 1–5000. Each round is worth up to 125 pts.',pr:125,r:[[1,100,7],[1,300,9],[1,1000,10],[1,5000,13]]}
+],
+wkMon=(d=new Date())=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));return x},
+evWk=()=>dk(wkMon()),
+evNum=()=>{const m=wkMon();return Math.floor(Date.UTC(m.getFullYear(),m.getMonth(),m.getDate())/6048e5)},
+EVC=()=>EVS[evNum()%EVS.length],
+evLeftTxt=()=>{const m=wkMon(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+7)-Date.now(),d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),mi=Math.floor(ms%36e5/6e4);return 'ends in '+(d?d+'d '+h+'h':h+'h '+mi+'m')};
+function evPrime(r,a,b){const p=[];for(let i=a;i<=b;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))p.push(i);return p[Math.floor(r()*p.length)]}
+function evS(){const w=evWk();let E=PRO.ev;if(!E||typeof E!=='object')E=PRO.ev={w:'',d:{},pend:[],best:0,dirty:0};
+ if(E.w!==w){const tot=Object.values(E.d||{}).reduce((a,x)=>a+(x.b||0),0);
+  if(E.w&&tot>0){E.pend=(E.pend||[]).concat([{w:E.w,t:tot}]).slice(-3);if(E.dirty)evSync({w:E.w,d:JSON.parse(JSON.stringify(E.d)),dirty:1})}
+  E.w=w;E.d={};E.dirty=0;E.last=null;LS.set('ms_pro',PRO)}
+ E.pend=E.pend||[];return E}
+const evDay=()=>{const E=evS(),k=today();return E.d[k]||(E.d[k]={p:0,b:0})},
+ evCap=()=>EV_PLAYS+(evDay().x||0),evCost=()=>cx(400),evCanBuy=()=>evLeft()===0&&!(evDay().x||0),
+ evLeft=()=>Math.max(0,evCap()-evDay().p),
+ evTot=()=>Object.values(evS().d).reduce((a,x)=>a+(x.b||0),0);
+function evUse(){evDay().p++;LS.set('ms_pro',PRO)}
+function evPlay(){if(evLeft()<=0){toast('⏳ No runs left today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${today()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
+function evTile(){const left=evLeft(),dn=PRO.dl===today(),n=(dn?0:1)+(left>0?1:0),ev=EVC();
+ $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>DAILY &amp; EVENTS</span><small>${ev.e} ${left?left+' runs left':'event done today'}${dn?'':' · ☀️ ready'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
+async function evSync(E){E=E||evS();if(!E.dirty)return;try{const X=await msFb(),{D:Z,db}=X.F,uid=X.uid,n=(S.n1||'PLAYER').toUpperCase().slice(0,12),w=E.w,pr=[];let tot=0;
+ for(const k in E.d){const b=E.d[k].b||0;tot+=b;if(b>0)pr.push(Z.set(Z.ref(db,`events/${w}/day/${k}/${uid}`),{n,s:b}))}
+ if(tot>0)pr.push(Z.set(Z.ref(db,`events/${w}/total/${uid}`),{n,s:tot}));await Promise.all(pr);E.dirty=0;LS.set('ms_pro',PRO)}catch(e){}}
+async function evTop(path){const X=await msFb(),{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,path),Z.orderByChild('s'),Z.limitToLast(100))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===X.uid})});a.reverse();return a}
+const evRank=a=>{const m=a.find(x=>x.me);return m?1+a.filter(x=>x.s>m.s).length:null},
+ evRtxt=(a,sc)=>{const r=evRank(a);return r?`rank #${r}${a.length<100?' of '+a.length:''}`:sc>0?(a.length>=100?'outside top 100':'syncing…'):'play to get ranked'};
+function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb)d.b=sc;
+ const dg=cx(6+Math.round(sc/20)),xp=5+Math.round(sc/20);PRO.gold+=dg;PRO.xp+=xp;E.last={l:D.lines,s:sc,k:D.k,dg,xp,nb};E.dirty=1;LS.set('ms_pro',PRO);
+ qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${today()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
+function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
+ shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/500 · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
+ $('#endt').textContent=ev.e+' '+ev.n;
+ $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · 💰 ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">⚔️ DAILY &amp; EVENTS</button></div>`;
+ $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
+function evHubOpen(){go('s-events');evHubRender()}
+const evRew=r=>r==null?{c:cx(200),x:40}:r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1}}:r<=3?{c:cx(1500),x:200,inv:{tome:1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:r<=100?{c:cx(320),x:60}:{c:cx(200),x:40};
+function evHubRender(){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,tot=evTot(),
+ pips=Array.from({length:evCap()},(_,i)=>`<i class="${i<dd.p?'u':''}"></i>`).join('');
+ $('#evBody').innerHTML=`<div id="evClaim"></div>
+ <div class="card ev evx"><div class="evh"><span>${ev.e} WEEKLY EVENT</span><b>${evLeftTxt()}</b></div>
+ <h3>${ev.n}</h3><p>${ev.d}</p>
+ <div class="evp"><span>RUNS TODAY</span><span class="evpips">${pips}</span><small>${left} left</small></div>
+ <div class="evs"><div><small>TODAY’S BEST</small><b>${dd.b}</b><em id="evRd">rank …</em></div><div><small>WEEK TOTAL</small><b>${tot}</b><em id="evRw">rank …</em></div></div>
+ ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">🪙 BUY A BONUS RUN · 💰 ${evCost()}</button><small class="evn">All free runs used. One bonus run a day.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
+ <button data-ev="board">🏆 LEADERBOARDS</button>
+ <small class="evn">Global event: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+1 bonus run for coins), your best run each day counts, 7 days, highest week total wins. Rewards at the end of the week.</small></div>
+ <div class="card ev"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
+ <p>Same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
+ <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button></div>`;
+ (async()=>{const set=(id,x)=>{const el=document.getElementById(id);if(el)el.textContent=x};
+  try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${today()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
+  evClaimUI()})()}
+async function evClaimUI(){const E=evS(),box=document.getElementById('evClaim');if(!box||!E.pend.length)return;const q=E.pend[0];let rank=null,off=false;
+ try{const a=await evTop(`events/${q.w}/total`);rank=evRank(a)}catch(e){off=true}
+ if(!document.getElementById('evClaim'))return;const R=evRew(rank),ev=EVS[(evNum()-1+EVS.length*9)%EVS.length];
+ document.getElementById('evClaim').innerHTML=`<div class="card ev evc"><div class="evh"><span>🏛️ LAST WEEK’S RESULT</span></div><h3>${rank?'Rank #'+rank:'Event complete'}</h3><p>You scored <b>${q.t}</b> over the week.${off?'<br><small>Connect to the internet to see your final rank. Claiming now gives the participation reward.</small>':''}</p><button data-ev="claim">🎁 CLAIM · 💰 ${R.c}${R.inv?' + items':''}</button></div>`;
+ box.dataset.rank=rank==null?'':rank}
+async function evBoard(tab){tab=tab||'d';let ov=document.getElementById('evOv');
+ if(!ov){ov=document.createElement('div');ov.id='evOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='evX')ov.remove();const b=e.target.closest('[data-tab]');if(b)evBoard(b.dataset.tab)};document.body.appendChild(ov)}
+ const ev=EVC(),E=evS(),tabs=[['d','TODAY'],['w','WEEK'],['y','DAILY STRIKE']].map(([k,l])=>`<button data-tab="${k}" class="${k===tab?'on':''}">${l}</button>`).join('');
+ const paint=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 ${tab==='y'?'DAILY STRIKE':ev.n}</h2><div class="evtabs">${tabs}</div><div style="line-height:1.8;margin:8px 0">${h}</div><button id="evX" style="width:100%">CLOSE</button></div>`};
+ paint('Loading…');
+ try{if(tab==='y'){if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s)}else await evSync();
+  const a=await evTop(tab==='d'?`events/${E.w}/day/${today()}`:tab==='w'?`events/${E.w}/total`:'daily/'+today()),clean=s=>String(s).replace(/[<>&]/g,''),row=(v,i)=>`${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${clean(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`;
+  let h=a.length?a.slice(0,20).map(row).join('<br>'):'No scores yet.';const mi=a.findIndex(x=>x.me);
+  if(mi>=20)h+=`<br>⋯<br>${row(a[mi],evRank(a)-1)}`;else if(mi<0&&a.length)h+=`<br><small>${(tab==='y'?PRO.dl===today():(tab==='d'?evDay().b:evTot())>0)?(a.length>=100?'You are outside the top 100.':'Your score is syncing…'):(tab==='y'?'Finish today’s Daily Strike to join the board.':'Play a run to join the board.')}</small>`;
+  paint(h)}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAgain,#evBd,#evHub');if(!b)return;const k=b.dataset.ev||b.id;
+ if(k==='play'){sfx('click');evPlay()}
+ else if(k==='board'||k==='evBd'){sfx('click');evBoard('d')}
+ else if(k==='daily'){sfx('click');dailyOpen()}
+ else if(k==='buy'){if(!evCanBuy())return;if(PRO.gold<evCost()){toast('Not enough coins');tone(150,.2,'square');return}PRO.gold-=evCost();evDay().x=1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events'];evPlay()}else{evHubRender();profUI()}}
+ else if(k==='evAgain'){sfx('click');stack=['s-home','s-events'];evPlay()}
+ else if(k==='evHub'){sfx('click');stack=['s-home'];evHubOpen()}
+ else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;toast(`🏛️ <b>${rk?'RANK #'+rk:'EVENT REWARD'}</b><br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
+addEventListener('online',()=>{try{evSync()}catch(e){}});
+
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
 const MUT=[['primes','🔢','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
 CM=()=>MUT[Math.floor((Date.now()/864e5+3)/7)%MUT.length];
 function pickS(){const pr=[];if(G.mut==='primes')for(let i=G.lo;i<=G.hi;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))pr.push(i);return pr.length?pick(pr):rndS(G.lo,G.hi)}
 function flash(){const e=$('#fl');e.classList.remove('on');void e.offsetWidth;e.classList.add('on')}
-function bossIntro(){shake(true);sfx('glitch');const re=i=>{const e=$(i);e.classList.remove('on');void e.offsetWidth;e.classList.add('on');return e};re('#bolt');const b=re('#bt');b.innerHTML='IMPERATOR<br>KIRAXO PRIME';setTimeout(()=>b.classList.remove('on'),2100);
+const bossFull=()=>G&&G.cf&&G.cf.bn?G.cf.bn:'IMPERATOR KIRAXO PRIME',bossShort=()=>{const x=G&&G.cf&&G.cf.bs?G.cf.bs:'KIRAXO';return x[0]+x.slice(1).toLowerCase()};
+function bossIntro(nmv){shake(true);sfx('glitch');const re=i=>{const e=$(i);e.classList.remove('on');void e.offsetWidth;e.classList.add('on');return e};re('#bolt');const b=re('#bt');b.innerHTML=(nmv||'IMPERATOR KIRAXO PRIME').replace(' ','<br>');setTimeout(()=>b.classList.remove('on'),2100);
  vib([200,80,200,80,400]);tone(55,1.2,'sawtooth',.3);setTimeout(()=>tone(48,.8,'square',.2),400);burst(['⚡','🔥','💀'],30)}
 function hitFx(v){ft('🛡️ −'+v);vib(30);tone(200,.12,'square',.12);const e=$('#shield');e.classList.remove('hit');void e.offsetWidth;e.classList.add('hit')}
 function shatter(i){const el=$('#layers').children[i];if(!el)return;flash();ft('💥 SHIELD SHATTERED!');if(RM)return;const f=$('#fx').getBoundingClientRect(),r=el.getBoundingClientRect(),x=r.left-f.left+r.width/2,y=r.top-f.top+r.height/2;
@@ -1450,7 +1562,7 @@ let gating=0;function gate(next){if(gating)return;gating=1;const g=$('#gate'),d=
  if(RM){go(next);gating=0;return}g.classList.add('on');sfx('whoosh');mv(out,()=>'0',200,'ease-in');
  setTimeout(()=>{go(next);tone(70,.5,'sawtooth',.2);shake();vib([30,20,60]);mv(()=>'0',out,450,'cubic-bezier(.6,0,.2,1)');setTimeout(()=>{g.classList.remove('on');gating=0},480)},240)}
 $('#kp').insertBefore($('#pows [data-p=RISK]'),$('#strike'));
-$('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick=()=>{if(confirm('Restart this match?')){if(G&&G.wager&&!G.done){PRO.gold+=G.wager;G.wager=0}launch()}};
+$('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick=()=>{if(confirm('Restart this match?')){if(G&&G.wager&&!G.done){PRO.gold+=G.wager+(G.wfee||0);G.wager=0}launch()}};
 // ---- render ----
 function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?p[1]:'';h.style.boxShadow=p?`0 0 12px ${p[1]}88`:'';
  const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
@@ -1464,7 +1576,7 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#shield').style.display=b?'block':'none';if(b)$('#shield i').style.width=Math.max(0,G.armor)+'%';
  $('#layers').style.display=b?'flex':'none';if(b)$('#layers').innerHTML=Array.from({length:G.total},(_,i)=>`<div class="ly ${i<G.broken?'brk '+(G.own[i]===0?'me':'foe'):i===G.broken?'cur':''}" style="--cr:${i<G.broken?1:i===G.broken?(1-Math.max(0,G.armor)/100).toFixed(2):0}"></div>`).join('');
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
- $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?'IMPERATOR KIRAXO PRIME':(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
+ $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?bossFull():(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
  $('#range').textContent=RNG(G.kLo,G.kHi);
  $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<svg class="hrt${i<G.att?' u':G.rf.risk&&i<G.att+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/></svg>`).join('');
  $('#pips').setAttribute('aria-label',(G.maxAtt-G.att)+' attempts left');
@@ -1492,7 +1604,7 @@ function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
  const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
- $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?'Imperator Kiraxo bows before the legion.':'The general yields the arena.'):(G.boss?'Imperator Kiraxo claims the arena.':nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}${G.bk[0]===G.bk[1]?`<br>⚖️ Tied on shields, so damage decided it: ${G.dmg[0]} vs ${G.dmg[1]}`:''}`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
+ $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' falls. The region is yours.':'Imperator Kiraxo bows before the legion.'):'The general yields the arena.'):(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' holds the region.':'Imperator Kiraxo claims the arena.'):nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}${G.bk[0]===G.bk[1]?`<br>⚖️ Tied on shields, so damage decided it: ${G.dmg[0]} vs ${G.dmg[1]}`:''}`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
  render0();campBtns(win);stack.push('s-end');show('s-end')}
 // ---- v14: gear, daily market, relics, wagers, generals, friend challenges ----
 const gl=k=>(PRO.gear&&PRO.gear[k])||0;
@@ -1550,15 +1662,48 @@ shopOn(e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.
  if(f==='th'){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();a.classList.add('th-'+v);toast('🎨 Previewing '+it[2]+'…');setTimeout(applyTheme,2600)}
  else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KS[v][4],KSC[v],it[2],'PREVIEW')});
 // -- coin wagers
-const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100];
-function wgUI(){const g=document.getElementById('wgrid');if(!g||typeof setup==='undefined')return;if(setup.w==null)setup.w=0;if(setup.w>PRO.gold)setup.w=[...WS].reverse().find(x=>x<=PRO.gold)||0;const m=WM[setup.d]||2;
- g.innerHTML=WS.map(w=>`<button class="bm-opt${setup.w===w?' sel':''}" data-w="${w}" ${w>PRO.gold?'disabled style="opacity:.4"':''}><span class="bm-sym">${w?'🪙':'🕊️'}</span><strong>${w?w+' 💰':'No wager'}</strong><small>${w?'Win → '+Math.round(w*m)+' 💰':'Play for glory'}</small></button>`).join('');
- $('#wgInfo').textContent=`Win ×${m} · draw refunds · loss or quitting forfeits · you hold 💰 ${PRO.gold}`;
- const wb=$('#wgBtn');if(wb)wb.textContent=setup.w?`🎲 Wager ${setup.w} 💰 → win ${Math.round(setup.w*m)} ▸`:'🎲 Wager: none ▸'}
-$('#wgrid').onclick=e=>{const b=e.target.closest('[data-w]');if(!b||b.disabled)return;setup.w=+b.dataset.w;sfx('click');wgUI();$('#wgPop').classList.remove('on')};
+// v50: rank-unlocked stakes, side-bets, loss insurance, a 5% rake on winnings (the coin sink)
+const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100,250,500],WR={250:4,500:8},ALLR=11,ALLMIN=600,ALLCAP=10000,RAKE=.05,INS_FEE=.10,INS_BACK=.5;
+const WB={np:['🛡️','NO POWERS',.5,'Win without using a single power'],flaw:['💎','FLAWLESS',1,'Win with no failed or timed-out round'],fast:['⚡','SWIFT',.5,'Win at or under the match’s normal pace (the round limit shows in the match)']};
+const wsList=()=>WS.filter(w=>!WR[w]||rk()>=WR[w]),wsAll=()=>rk()>=ALLR&&PRO.gold>=ALLMIN;
+const wpay=(w,m)=>{const gr=Math.round(w*m),r=Math.max(1,Math.ceil((gr-w)*RAKE));return gr-r};
+function wbN(D,M){const t=M.t;if(!t||t>=9999)return 0;const p=k=>Math.round((PTS[Math.min(k,D.att)]||3)*D.mult),rp=(p(2)+p(Math.min(D.att,3)))/2;return Math.max(2,Math.ceil(t/(rp+4)))}
+function wagerOpen(o,D,M){G.wsb=[];G.wfee=0;G.wfn=wbN(D,M);G.wsb=(o.wb||[]).filter(k=>WB[k]&&(k!=='fast'||G.wfn));
+ if(o.wi){const fee=Math.ceil(G.wager*INS_FEE);if(PRO.gold>=fee){PRO.gold-=fee;G.wfee=fee}}
+ if((o.wb||[]).includes('fast')&&!G.wfn)setTimeout(()=>toast('⚡ <b>SWIFT side-bet dropped</b><br><small>This match has no round pace</small>'),400)}
+const wbOK=k=>k==='np'?!G.powUsed:k==='flaw'?!G.st[0].fail:k==='fast'?(G.brd||G.round)<=G.wfn:false,
+ wbName=k=>WB[k][0]+' '+WB[k][1]+(k==='fast'&&G.wfn?' (≤'+G.wfn+' rounds)':'');
+function wgUI(){const g=document.getElementById('wgrid');if(!g||typeof setup==='undefined')return;if(setup.w==null)setup.w=0;setup.wb=setup.wb||[];
+ if(setup.wa){if(wsAll())setup.w=Math.min(PRO.gold,ALLCAP);else{setup.wa=0;setup.w=0}}
+ if(setup.w>PRO.gold){setup.wa=0;setup.w=wsList().slice().reverse().find(x=>x<=PRO.gold)||0}
+ if(!setup.w){setup.wb=[];setup.wi=0}
+ const m=WM[setup.d]||2,sel=w=>setup.w===w&&!setup.wa&&w>0||(!w&&!setup.w);
+ let h=WS.map(w=>{const lock=WR[w]&&rk()<WR[w],dis=lock||w>PRO.gold;
+  return `<button class="bm-opt${sel(w)?' sel':''}" data-w="${w}" ${dis?'disabled style="opacity:.4"':''}><span class="bm-sym">${w?'🪙':'🕊️'}</span><strong>${w?w+' 💰':'No wager'}</strong><small>${lock?'🔒 '+RANKS[WR[w]][0]:w?'Win → '+wpay(w,m)+' 💰':'Play for glory'}</small></button>`}).join('');
+ const aLock=rk()<ALLR,aDis=aLock||PRO.gold<ALLMIN,aAmt=Math.min(PRO.gold,ALLCAP);
+ h+=`<button class="bm-opt${setup.wa?' sel':''}" data-all="1" ${aDis?'disabled style="opacity:.4"':''}><span class="bm-sym">🔥</span><strong>ALL-IN${aDis?'':' · '+aAmt+' 💰'}</strong><small>${aLock?'🔒 '+RANKS[ALLR][0]:PRO.gold<ALLMIN?'Needs '+ALLMIN+' 💰':'Win → '+wpay(aAmt,m)+' 💰'}</small></button>`;
+ g.innerHTML=h;
+ $('#wsbH').textContent=setup.w?'SIDE-BETS · bonus multiplier, lose only the bonus':'';
+ $('#wsb').innerHTML=setup.w?Object.keys(WB).map(k=>`<button class="bm-opt${setup.wb.includes(k)?' sel':''}" data-sb="${k}" title="${WB[k][3]}"><span class="bm-sym">${WB[k][0]}</span><strong>${WB[k][1]}</strong><small>+${WB[k][2]}×</small></button>`).join(''):'';
+ const fee=Math.ceil((setup.w||0)*INS_FEE),insOK=setup.w&&!setup.wa&&PRO.gold>=setup.w+fee;if(!insOK)setup.wi=0;
+ $('#wins').innerHTML=setup.w?`<button class="bm-opt${setup.wi?' sel':''}" data-ins="1" ${insOK?'':'disabled style="opacity:.4"'} style="width:100%"><span class="bm-sym">🧾</span><strong>INSURANCE · ${fee} 💰</strong><small>${insOK?'Lose and get half your stake back':'Not available for all-in'}</small></button>`:'';
+ const bon=setup.wb.reduce((a,k)=>a+WB[k][2],0);
+ $('#wgInfo').textContent=`Win ×${m}${bon?' + '+bon+' side-bets':''} · 5% rake on winnings · draw refunds · loss or quitting forfeits · you hold 💰 ${PRO.gold}`;
+ const wb=$('#wgBtn');if(wb)wb.textContent=setup.w?`🎲 Wager ${setup.wa?'ALL-IN ':''}${setup.w} 💰 → win ${wpay(setup.w,m)}${setup.wb.length?' +':''}${setup.wb.length?setup.wb.length+' bet'+(setup.wb.length>1?'s':''):''}${setup.wi?' · 🧾':''} ▸`:'🎲 Wager: none ▸'}
+$('#wgPop').onclick=e=>{const b=e.target.closest('[data-w],[data-sb],[data-all],[data-ins]');if(!b||b.disabled)return;sfx('click');
+ if(b.dataset.w!=null){setup.w=+b.dataset.w;setup.wa=0}
+ else if(b.dataset.all){setup.wa=1;setup.w=Math.min(PRO.gold,ALLCAP)}
+ else if(b.dataset.sb){const k=b.dataset.sb,i=(setup.wb=setup.wb||[]).indexOf(k);i<0?setup.wb.push(k):setup.wb.splice(i,1)}
+ else if(b.dataset.ins)setup.wi=setup.wi?0:1;
+ wgUI()};
 $('#wgBtn').onclick=()=>{sfx('click');wgUI();$('#wgPop').classList.add('on')};$('#wgOk').onclick=()=>{sfx('click');$('#wgPop').classList.remove('on')};
-function wagerEnd(win,draw){G.wtxt='';if(!G.wager)return;const w=G.wager;let p=0;if(win){p=Math.round(w*WM[G.d]);qEv('wager')}else if(draw)p=w;PRO.gold+=p;LS.set('ms_pro',PRO);G.wp=p;
- G.wtxt=`<br>🎲 <b>Wager ${w} 💰</b> · ${win?`WON — paid ${p} (+${p-w})`:draw?'draw — refunded':'lost'}`;if(win)setTimeout(()=>burst(['🪙','💰','✨'],24),900)}
+function wagerEnd(win,draw){G.wtxt='';if(!G.wager)return;const w=G.wager;let p=0,rake=0;
+ if(win){qEv('wager');const hit=(G.wsb||[]).filter(wbOK),m=WM[G.d]+hit.reduce((a,k)=>a+WB[k][2],0),gr=Math.round(w*m);rake=Math.max(1,Math.ceil((gr-w)*RAKE));p=gr-rake}
+ else if(draw)p=w;else if(G.wfee)p=Math.floor(w*INS_BACK);
+ PRO.gold+=p;LS.set('ms_pro',PRO);G.wp=p;
+ const sbl=(G.wsb||[]).map(k=>`${wbName(k)} ${win&&wbOK(k)?'✓ +'+WB[k][2]+'×':'✗'}`).join(' · ');
+ G.wtxt=`<br>🎲 <b>Wager ${w} 💰</b> · ${win?`WON — paid ${p} (+${p-w}) after a ${rake} 💰 rake`:draw?'draw — refunded':p?`lost — insurance returned ${p} 💰`:'lost'}${G.wfee?` · 🧾 insurance ${G.wfee} 💰`:''}${sbl?`<br><small>${sbl}</small>`:''}`;
+ if(win)setTimeout(()=>burst(['🪙','💰','✨'],24),900)}
 // -- generals
 const GENS={Calculator:{n:'QUEEN MARIAMNE',e:'♟️',t:'COLD LOGIC',d:'Opens most rounds at the exact midpoint — she rarely wastes a guess.',
   win:['♟️ Check. And mate.','🧠 Every move was counted.','📐 Predictable, Roman.'],lose:['♟️ A sacrifice. Calculated.','🤔 Impossible. Recounting…','📐 Even queens lose a pawn.']},
@@ -1617,14 +1762,14 @@ $('#nameOk').onclick=()=>{wgUI();S.n1=$('#n1').value.trim().toUpperCase();S.n2=$
 $$('[data-d]').forEach(b=>b.onclick=()=>{setup.d=b.dataset.d;selIn('data-d',setup.d);sfx('click');rwPrev()});
 $$('[data-k]').forEach(b=>b.onclick=()=>{setup.k=b.dataset.k;selIn('data-k',setup.k);sfx('click')});
 selIn('data-d','Medium');selIn('data-k','Calculator');rwPrev();genUI();
-function launch(){const o=setup.lastOpts;if(o.w&&PRO.gold<o.w){o.w=[100,50,25].find(x=>x<=PRO.gold)||0;toast('🎲 Wager lowered to '+o.w+' 💰')}newGame(o);stack=stack.filter(x=>x!=='s-end'&&x!=='s-game');go('s-game')}
+function launch(){const o=setup.lastOpts;if(o.w&&PRO.gold<o.w){o.w=wsList().slice().reverse().find(x=>x>0&&x<=PRO.gold)||0;if(!o.w){o.wb=[];o.wi=0}toast('🎲 Wager lowered to '+o.w+' 💰')}newGame(o);stack=stack.filter(x=>x!=='s-end'&&x!=='s-game');go('s-game')}
 $$('[data-m]').forEach(b=>b.onclick=()=>{sfx('click');const pvp=setup.mode==='PVP';
- setup.lastOpts={mode:setup.mode,d:setup.d,m:b.dataset.m,pers:setup.k,names:[S.n1||(pvp?'PLAYER 1':'LEGIONARY'),pvp?(S.n2||'PLAYER 2'):GENS[setup.k].n],gen:pvp?'':setup.k,w:pvp?0:(setup.w||0)};launch()});
+ setup.lastOpts={mode:setup.mode,d:setup.d,m:b.dataset.m,pers:setup.k,names:[S.n1||(pvp?'PLAYER 1':'LEGIONARY'),pvp?(S.n2||'PLAYER 2'):GENS[setup.k].n],gen:pvp?'':setup.k,w:pvp?0:(setup.w||0),wb:pvp?[]:(setup.wb||[]).slice(),wi:pvp?0:(setup.wi?1:0)};launch()});
 $('#again').onclick=launch;$('#home').onclick=home;
 // ---- v11: quests, daily chest, rank rewards ----
-const QD=[['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the first try','first',2,40,25,{'x:FOCUS':1}],['d3','Win a VS match','win',1,50,30],['d4','Play 2 VS matches','match',2,30,20],['d5','Land a critical hit','crit',1,35,20],['d6','Reach a 3-win combo','combo',3,45,25],['d7','Win a match without powers','clean',1,70,40,{head:1}],['d8','Break 2 shield layers','layer',2,50,30],
+const QD=[['d19','Play a Weekly Event run','evrun',1,40,25],['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the first try','first',2,40,25,{'x:FOCUS':1}],['d3','Win a VS match','win',1,50,30],['d4','Play 2 VS matches','match',2,30,20],['d5','Land a critical hit','crit',1,35,20],['d6','Reach a 3-win combo','combo',3,45,25],['d7','Win a match without powers','clean',1,70,40,{head:1}],['d8','Break 2 shield layers','layer',2,50,30],
  ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}]];
-const QW=[['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
+const QW=[['w17','Score 300+ in one Weekly Event run','evhi',300,320,150,{tome:1}],['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
  ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}]];
 
 // ---- v43: themed quests (one daily + one weekly per world, plus world-flavoured rewards) ----
@@ -1646,6 +1791,7 @@ function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now
  const draw=(pool,n,sd)=>{const r=mul(seed(sd)),p=[...pool],o=[];while(o.length<n){const[id,nme,e,t,c,x,it]=p.splice(Math.floor(r()*p.length),1)[0];o.push({id,n:nme,e,t,c,x,it,p:0,cl:0})}return o};
  if(PRO.q.dk!==dk){PRO.q.d=draw(QD,3,'qd'+dk).concat(draw(TQ().d,1,'tqd'+dk));PRO.q.dk=dk;PRO.q.sd=0;ch=1}
  if(PRO.q.wk!==wk){PRO.q.w=draw(QW,2,'qw'+wk).concat(draw(TQ().w,1,'tqw'+wk));PRO.q.wk=wk;PRO.q.sw=0;ch=1}
+ if(!PRO.q.w.some(q=>q.id==='wev')){PRO.q.w.push({id:'wev',n:'Play 6 Weekly Event runs',e:'evrun',t:6,c:cx(300),x:140,it:{pack:1},p:0,cl:0});PRO.q.sw=PRO.q.sw&&PRO.q.w.every(q=>q.cl)?PRO.q.sw:0;ch=1}
  if(tqFix())ch=1;if(ch)LS.set('ms_pro',PRO)}
 function qEach(f){qInit();[...PRO.q.d,...PRO.q.w].forEach(q=>{if(!q.cl&&q.p<q.t)f(q)})}
 function qDone(q){if(q.p>=q.t){toast(`📜 <b>QUEST COMPLETE</b><br><small>${q.n} — claim it in Quests</small>`);qBadge()}}
@@ -1686,7 +1832,7 @@ const ST=[
  ['#prof','🛡️ YOUR RANK CARD','This shows your <b>rank, XP, win streak and wins</b>. Win matches to earn XP, rank up, and unlock new modes and rewards.'],
  ['#mapBtn','🗺️ CONQUEST MAP','Fight through <b>Gaul, Egypt, Carthage and Rome</b>. Win battles to collect ⭐ stars and unlock the next region. A great place to start!'],
  ['#miniBtn','🎮 MINI GAMES','Special game modes that <b>unlock as your rank grows</b>, each with its own best score.'],
- ['#dailyBtn','☀️ DAILY STRIKE','<b>Same numbers for everyone, new every day.</b> Finish it daily to build a 🔥 streak (bonus coins every day, big rewards at 3, 7, 14 and 30 days, double on Saturdays), buy 🧊 freezes to survive a missed day, and see today’s 🏆 board.'],
+ ['#dailyBtn','⚔️ DAILY & EVENTS','<b>Your daily hub.</b> ☀️ Daily Strike: same numbers for everyone, build a 🔥 streak. 🏟️ <b>Weekly Event</b>: a global challenge that runs all week — 3 runs a day, your best run each day counts, climb the 🏆 leaderboard for rewards.'],
  ['#chalBtn','⚔️ FRIEND CHALLENGE','Play 5 rounds, then <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
  ['#shopBtn','🛒 THE ARMORY','Spend the 💰 coins you win on <b>gear, powers and daily market deals</b> to get stronger.'],
  ['#questBtn','📜 QUESTS','Complete deeds, then <b>claim coins and XP</b>. A red number means rewards are waiting for you.'],
