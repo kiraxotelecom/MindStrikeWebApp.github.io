@@ -435,6 +435,41 @@ html.wd-astral #app .bm-hero{border-bottom:0;padding-bottom:22px;background:line
 html.wd-astral #app #layers .ly{border-radius:50%;background:radial-gradient(circle,#04020c 56%,#ffb347 59% 63%,#0000 70%);border:0;box-shadow:0 0 calc(8px + var(--cr,0)*18px) #ffb347}
 html.wd-astral #app #layers .ly.brk{opacity:.55;background:conic-gradient(from 20deg,#04020c 0 22%,#ffb347 22% 24%,#04020c 24% 61%,#ffb347 61% 63%,#04020c 63%);transform:scale(1.12) rotate(14deg)}
 html.light.wd-astral{--k:232 236 255;--on:#0b0a30;--ibc:#8a5a00;--gold:#5a3fc8;--sand:#14123a;--ink:#e9ecff}
+/* ---- v75: Astral Dominion premium pass: living planets, star-metal buttons. ':not(#z)' lifts specificity above the older Astral rules. ---- */
+@keyframes astEdge{from{background-position:0 0,0% 50%}to{background-position:0 0,300% 50%}}
+@keyframes astBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+@keyframes astSheen{from{background-position:150% 0}to{background-position:-50% 0}}
+@keyframes astRot{from{background-position:0 0,0 0,0 0,0 0,0 0}to{background-position:0 0,60px 0,47px 0,0 0,0 0}}
+@keyframes astMoon{from{transform:rotate(0) translateX(31px)}to{transform:rotate(360deg) translateX(31px)}}
+@keyframes astBreath{0%,100%{transform:scale(1);box-shadow:0 0 16px #e8c66a33,0 0 0 #e8c66a00,inset 0 0 18px #0008}50%{transform:scale(1.015);box-shadow:0 0 22px #e8c66a66,0 0 34px #6a4ad055,inset 0 0 18px #0008}}
+@keyframes astPulse{0%,100%{box-shadow:0 0 10px #3a46c044,inset 0 1px 0 #ffffff25,inset 0 -8px 14px #0006}50%{box-shadow:0 0 18px #5a6ae066,inset 0 1px 0 #ffffff33,inset 0 -8px 14px #0006}}
+/* planet tiles: a sphere (the icon) with its own surface, ring or moon, inside a glass orbit capsule */
+html.wd-astral #app:not(#z) .tiles button{display:grid;grid-template-columns:54px 1fr;grid-template-rows:auto auto;column-gap:12px;row-gap:1px;align-items:center;text-align:left;min-height:72px;padding:9px 12px 9px 10px;border:1px solid #8fa0e066;border-radius:44px 16px 16px 44px;background:linear-gradient(100deg,#141a4cee,#090a2ae6 55%,#05051bf0),radial-gradient(circle at 12% 50%,#4a56d044,#0000 60%);box-shadow:0 0 12px #2a34a044,inset 0 1px 0 #ffffff1c,inset 0 -10px 16px #0006;overflow:visible;animation:astBob 6s ease-in-out infinite;transition:transform .25s,box-shadow .25s,border-color .25s}
+html.wd-astral #app:not(#z) .tiles button:nth-child(2n){animation-delay:-2s}html.wd-astral #app:not(#z) .tiles button:nth-child(3n){animation-delay:-4s}
+html.wd-astral #app:not(#z) .tiles button:before{display:none}
+html.wd-astral #app:not(#z) .tiles button:after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,#0000 38%,#ffffff1f 50%,#0000 62%);background-size:250% 100%;animation:astSheen 8s ease-in-out infinite}
+html.wd-astral #app:not(#z) .tiles button:hover,html.wd-astral #app:not(#z) .tiles button:focus-visible{transform:translateY(-3px) scale(1.02);border-color:#e8c66acc;box-shadow:0 0 20px var(--pl1,#5a4bd6),0 0 6px #e8c66a88,inset 0 1px 0 #ffffff2a;animation-play-state:paused}
+html.wd-astral #app:not(#z) .tiles button:active{transform:scale(.98)}
+html.wd-astral #app:not(#z) .tiles .ti{grid-row:1/3;position:relative;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;line-height:1;margin:0;
+ background:radial-gradient(circle at 30% 24%,#ffffff55,#0000 34%),radial-gradient(circle at 20% 40%,#ffffff26 0 7px,#0000 8px) 0 0/60px 60px,radial-gradient(circle at 65% 70%,#0000003d 0 9px,#0000 10px) 0 0/47px 47px,repeating-linear-gradient(0deg,#ffffff14 0 4px,#0000 4px 11px),radial-gradient(circle at 36% 30%,var(--pl1,#5a4bd6),var(--pl2,#140e44) 70%,#02010a);
+ box-shadow:inset -9px -10px 17px #000d,inset 3px 3px 8px #ffffff22,0 0 14px var(--pl1,#5a4bd6),0 0 30px #0008;animation:astRot 14s linear infinite;text-shadow:0 2px 4px #000c;filter:saturate(1.15)}
+html.wd-astral #app:not(#z) .tiles .ti:before{content:'';position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#9fb0e8 60%,#2a3270);box-shadow:0 0 6px #fff9;animation:astMoon 9s linear infinite;pointer-events:none}
+html.wd-astral #app:not(#z) .tiles .ti:after{content:'';display:none;position:absolute;left:-34%;right:-34%;top:50%;height:38%;margin-top:-19%;border:2px solid #e8c66acc;border-radius:50%;transform:rotate(-18deg);box-shadow:0 0 8px #e8c66a66,inset 0 0 6px #e8c66a44;pointer-events:none}
+html.wd-astral #app:not(#z) :is(#dailyBtn,#chalBtn,#questBtn) .ti:after{display:block}html.wd-astral #app:not(#z) :is(#dailyBtn,#chalBtn,#questBtn) .ti:before{display:none}
+html.wd-astral #app:not(#z) #chalBtn .ti:after{border-color:#b48cffcc;box-shadow:0 0 8px #b48cff66}html.wd-astral #app:not(#z) #questBtn .ti:after{border-color:#ff9cc8bb;box-shadow:0 0 8px #ff9cc855}
+html.wd-astral #app:not(#z) .tiles button span{font-size:.7rem;letter-spacing:.1em;line-height:1.2;white-space:normal;color:#f2ecd2;text-shadow:0 0 8px #b48cff88,0 1px 2px #000}
+html.wd-astral #app:not(#z) .tiles button small{font-size:.62rem;line-height:1.25;color:#d8b45a;text-shadow:0 1px 2px #000}
+/* star-metal buttons: animated aurora-gold edge, leaf-blade corners, soft glow */
+html.wd-astral #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta){border:1px solid transparent;border-radius:6px 18px 6px 18px;color:#e4ebff;text-shadow:0 1px 3px #000;
+ background:radial-gradient(ellipse at 50% -20%,#ffffff22,#0000 62%) padding-box,linear-gradient(180deg,#1c2260,#0c0f3c 50%,#060720 52%,#10153e) padding-box,linear-gradient(120deg,#8fa0e0,#6a4ad0,#e8c66a,#8fa0e0,#4fd0c0,#8fa0e0) border-box;background-size:100% 100%,100% 100%,300% 300%;
+ box-shadow:0 0 10px #3a46c044,inset 0 1px 0 #ffffff25,inset 0 -8px 14px #0006;animation:astEdge 9s linear infinite;transition:transform .2s,filter .2s}
+html.wd-astral #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta):hover{transform:translateY(-2px);filter:brightness(1.18);animation:astEdge 3s linear infinite,astPulse 2.4s ease-in-out infinite}
+html.wd-astral #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta):active{transform:scale(.97)}
+html.wd-astral #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta).sel{color:#fff0bd;
+ background:radial-gradient(ellipse at 50% -20%,#fff2c055,#0000 62%) padding-box,linear-gradient(180deg,#3d2f12,#1c1409 50%,#0b0804 52%,#2e220e) padding-box,linear-gradient(120deg,#ffe9a8,#e8c66a,#a8782a,#ffe9a8,#e8c66a) border-box;background-size:100% 100%,100% 100%,300% 300%;box-shadow:0 0 18px #e8c66a66,inset 0 1px 0 #ffe9a833,inset 0 -8px 14px #0006}
+html.wd-astral #app:not(#z) #play{border:1px solid transparent;border-radius:8px 24px 8px 24px;color:#ffe9a8;text-shadow:0 0 10px #e8c66aaa,0 1px 2px #000;
+ background:radial-gradient(ellipse at 50% -30%,#e8c66a44,#0000 62%) padding-box,linear-gradient(180deg,#241d62,#0d0a30 55%,#06041a) padding-box,conic-gradient(from 0deg,#e8c66a,#6a4ad0,#4fd0c0,#e8c66a,#ffe9a8,#e8c66a) border-box!important;background-size:100% 100%,100% 100%,100% 100%!important;animation:astBreath 3.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){html.wd-astral #app:not(#z) :is(.tiles button,.tiles button:after,.tiles .ti,.tiles .ti:before,.bm-opt,.bm-btn,.sub2 button,.bm-cta,#play){animation:none!important}}
 @media(prefers-reduced-motion:reduce){html.wd-astral #app::before,html.wd-astral #app::after{animation:none}}
 /* ======== v40: centred short screens + a real design language for each world ======== */
 #s-mode,#s-name,#s-diff{justify-content:safe center}
