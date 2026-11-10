@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>MindStrike: Number Wars</title>
-<script>try{var w=JSON.parse(localStorage.getItem("ms_pro")||"{}");var wo=w.wd&&w.own&&w.own["wd:"+w.wd]?w.wd:"";if(wo)document.documentElement.classList.add("wd-"+wo);var ss=JSON.parse(localStorage.getItem("ms_set")||"{}");if(ss.lt===true||(ss.lt===undefined&&wo==="ice"))document.documentElement.classList.add("light")}catch(e){}
+<script>try{var w=JSON.parse(localStorage.getItem("ms_pro")||"{}");var wo=w.wd&&w.own&&w.own["wd:"+w.wd]?w.wd:"";if(wo)document.documentElement.classList.add("wd-"+wo);var ss=JSON.parse(localStorage.getItem("ms_set")||"{}");}catch(e){}
 // ---- v32: Worlds (themes) ----
 // A world is a skin: the same game, a different look and vocabulary. To add one:
 //  1) add an entry to WORLDS (id, name, icon, price, blurb, lex = [from,to] word pairs, emo = emoji pairs)
@@ -805,9 +805,6 @@ html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#f
   <div class="vrow"><div class="vh"><span class="vi">🎵</span><span class="vt">Music</span><b class="vp" id="vmv"></b></div><input type="range" id="vm" min="0" max="1" step=".05" aria-label="Music volume"></div>
   <div class="vrow"><div class="vh"><span class="vi">🔊</span><span class="vt">Sound effects</span><b class="vp" id="vsv"></b></div><input type="range" id="vs" min="0" max="1" step=".05" aria-label="Sound effects volume"></div>
  </div>
- <div class="bm-head"><h2>Look</h2></div>
- <div class="bm-toggles"><button class="bm-btn" id="tLight"></button></div>
- <small class="bm-note">Light or dark, in any world.</small>
  <div class="bm-head"><h2>Gameplay</h2></div>
  <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tRem"></button></div>
  <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
@@ -894,7 +891,7 @@ html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#f
 </section>
 
 <div class="pop" id="shopPop"><div class="card shBox"><h2 id="shopPopT"></h2><div id="shopPopG"></div><div id="shopPopB"></div><button id="shopPopX" style="width:100%">CLOSE</button></div></div>
-<div class="pop" id="secPop"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🔮 SECRETS OF THE ARENA</h2><p id="secCh"></p><p style="font-size:.8rem">Each secret costs more every time you buy it.</p>
+<div class="pop" id="secPop"><div class="card" style="width:min(92%,360px);text-align:center"><h2>🔮 SECRETS OF THE ARENA</h2><p id="secCh"></p><p style="font-size:.8rem">The Omen is free once a match. The other secrets use a Scroll from your Armory pack, one of each per match.</p>
 <div id="intel" class="row"><button data-i="DIRECTION"><span><b>🧭 BATTLE SENSE</b><small>Higher or lower than the middle</small></span><i></i></button><button data-i="RANGE"><span><b>📏 BATTLE RANGE</b><small>Narrow the range around the secret</small></span><i></i></button><button data-i="ODDEVEN"><span><b>🔮 THE OMEN</b><small>Odd or even</small></span><i></i></button><button data-i="DIGIT"><span><b>🔢 LAST MARK</b><small>Reveal the final digit</small></span><i></i></button><button data-i="PROPERTY"><span><b>🗝️ SECRET TRAIT</b><small>Prime, multiple of 3 or 5, high/low</small></span><i></i></button></div>
 <button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div class="pop" id="oFamPop"><div class="card opc"><h2>🏆 Family record</h2><div id="oFam"></div><button class="oclose" data-close="1">CLOSE</button></div></div>
 <div class="pop" id="oOptPop"><div class="card opc"><h2>⚙️ Match options</h2><div class="ocol"><button class="bm-btn" id="oLad"></button><button class="bm-btn" id="oPwT"></button></div><small class="bm-note">Tap a button to switch it on or off.</small><button class="oclose" data-close="1">DONE</button></div></div>
@@ -973,7 +970,7 @@ const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classLi
 // timers that respect pause and a quit game
 function later(fn,ms){const g=G;setTimeout(function w(){if(G!==g||!g||g.done&&!g.finishing)return;if(g.paused)return setTimeout(w,200);fn()},ms)}
 // ---- settings ----
-function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON');$('#tLight').textContent='BRIGHTNESS: '+(document.documentElement.classList.contains('light')?'LIGHT ☀':'DARK ☾')}
+function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON')}
 $('#vm').oninput=e=>{S.music=+e.target.value;applyVol();save();setUI()};$('#vs').oninput=e=>{S.sfx=+e.target.value;applyVol();save();setUI();sfx('ding')};
 $('#tMute').onclick=()=>{S.mute=!S.mute;save();setUI();S.mute?curM&&curM.pause():curM&&curM.play().catch(()=>{})};
 $('#tTimer').onclick=()=>{S.timer=!S.timer;rwPrev();save();setUI();if(G){timerReset();render()}};
@@ -981,7 +978,7 @@ $('#clrLb').onclick=()=>{LS.set('ms_lb',[]);lbShow()};setUI();
 const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><h1>How to Play</h1><div class="bm-sub">Everything a legion needs to conquer the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><h2>THE IMPERIUM</h2><p>Reach the target score before your rival to unlock the <b>BOSS PHASE</b>.</p>
 <h2>THE ROUND</h2><p>Guess the secret number. <b>Higher/Lower</b> shows direction; <b>blazing → freezing</b> shows how close you are. Fewer attempts = more points; first-try hits are CRITICAL (×2). Chain wins for a COMBO; 5 in a row is UNSTOPPABLE.</p>
 <h2>POWERS (3 charges each · max 2 per round)</h2><p>You can use at most <b>2 powers per round</b>. Pressed one by mistake? Tap the same power (lit up) again before your next guess and the charge comes back. <b>SCAN</b> reveals the upper/lower half. <b>FOCUS</b> shows exact distance on your next guess. <b>RISK</b> pays 3× but costs 2 attempts (-3 if you lose the round). <b>SHIELD</b> protects your combo. <b>STEAL</b> takes 5 points on a near-miss (within 2). <b>JAM</b> (2-player) hides your rival's temperature hint next turn.</p>
-<h2>INTEL</h2><p>Spend SCAN charges: Battle Sense, Battle Range, The Omen, Last Mark, Secret Trait. Each type costs 1, then 2, then 3.</p>
+<h2>INTEL</h2><p><b>The Omen</b> is free once a match. <b>Battle Sense, Battle Range, Secret Trait</b> and <b>Last Mark</b> each use one Scroll, which you buy in the Armory or win as rewards. Each secret can be used once per match, even if you own many. There are no Secrets on Easy, Daily Strike or the Weekly Challenge.</p>
 <h2>DESPERATION</h2><p>When you trail by 15 or more, gamble once per match: win the round for +25, lose it for -10.</p>
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
 <h2>SPECIAL BATTLES</h2><p>Golden Spoils ×2 · Gladius Trial (1 attempt) · Killing Ground (tight range) · Imperator's Wrath (sharper Kiraxo; Overdrive in 2-player) · Bullseye (within 2 counts) · Shield.</p>
@@ -1081,11 +1078,11 @@ function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secr
 function snapPow(n){const w=G.cur,rf=G.rf,sn={n,w,kLo:G.kLo,kHi:G.kHi,pu:G.powUsed};if(!rf.us||!rf.us.length)rf.p0=G.powUsed;(rf.us||(rf.us=[])).push(sn);return sn}
 function powLim(){if((G.rf.pu||0)>=MAXPOW){$('#msg').textContent=`⚡ Max ${MAXPOW} powers per round. Tap an active power again to take it back.`;sfx('buzz');return true}return false}
 function unPow(ix){const rf=G.rf,w=G.cur,s=rf.us.splice(ix,1)[0],n=s.n;
- if(n==='SECRET'){G.pow[w].SCAN+=s.c;rf.intelUsed=rf.intelUsed.filter(x=>x!==s.t);const k=rf.info.indexOf(s.r);if(k>=0)rf.info.splice(k,1);G.intelUses[w][s.t]=Math.max(0,(G.intelUses[w][s.t]||1)-1)}
+ if(n==='SECRET'){if(s.c>0){PRO.inv['s:'+s.t]=(PRO.inv['s:'+s.t]||0)+s.c;LS.set('ms_pro',PRO)}rf.intelUsed=rf.intelUsed.filter(x=>x!==s.t);const k=rf.info.indexOf(s.r);if(k>=0)rf.info.splice(k,1);G.intelUses[w][s.t]=Math.max(0,(G.intelUses[w][s.t]||1)-1)}
  else{if(n!=='DESP')G.pow[w][n]++;if(n==='SCAN'){rf.scanned=0;G.kLo=s.kLo;G.kHi=s.kHi}if(n==='FOCUS')rf.focus=0;if(n==='RISK')rf.risk=0;if(n==='SHIELD')rf.shield=0;if(n==='STEAL')rf.steal=0;if(n==='JAM')G.jamFor[1-w]=0;if(n==='DESP')G.desp[w]={used:0,active:0}}
  rf.pu=Math.max(0,(rf.pu||1)-1);G.powUsed=rf.us.length?1:rf.p0;sfx('click');render(`↩️ ${n==='SECRET'?'Secret':n} taken back — charge refunded.`)}
 function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf,us=rf.us||[];
- if(n==='INTEL'){if((rf.pu||0)>=MAXPOW&&!us.some(x=>x.n==='SECRET')){powLim();return}$('#secPop').classList.add('on');return}
+ if(n==='INTEL'){if(G.d==='Easy')return;if((rf.pu||0)>=MAXPOW&&!us.some(x=>x.n==='SECRET')){powLim();return}$('#secPop').classList.add('on');return}
  const ix=us.map(x=>x.n).lastIndexOf(n);if(ix>=0)return unPow(ix);
  if(n==='DESP'){if(!despOK()||powLim())return;snapPow(n);G.powUsed=1;rf.pu=(rf.pu||0)+1;G.desp[w]={used:1,active:1};sfx('powerup');return render(`DESPERATION — win this round for +25, lose it for -10! (⚡ ${rf.pu}/${MAXPOW} · tap again to undo)`)}
  if(n==='RISK'&&!rf.risk&&G.att+2>G.maxAtt){$('#msg').textContent='RISK costs 2 attempts — you only have '+(G.maxAtt-G.att)+' left.';sfx('buzz');return}
@@ -1100,10 +1097,11 @@ function usePow(n){if(!canAct())return;const w=G.cur,rf=G.rf,us=rf.us||[];
  if(n==='JAM'){G.jamFor[1-w]=1;m=`JAM set — ${nm(1-w)} gets no temperature hint on their next turn.`}
  render(`${m} (⚡ ${rf.pu}/${MAXPOW} · tap again to undo)`)}
 const despOK=()=>G&&!G.desp[G.cur].used&&(G.score[1-G.cur]-G.score[G.cur])>=DESP_T;
-const intelCost=t=>[1,2,3][Math.min(G.intelUses[G.cur][t]||0,2)];
-function useIntel(t){if(!canAct())return;if(G.rf.intelUsed.includes(t)){const ix=G.rf.us.findIndex(x=>x.n==='SECRET'&&x.t===t);if(ix>=0){$('#secPop').classList.remove('on');unPow(ix)}return}const w=G.cur,c=intelCost(t);
- if(G.pow[w].SCAN<c){$('#msg').textContent=`Needs ${c} SCAN charges.`;sfx('buzz');return}
- if(powLim()){$('#secPop').classList.remove('on');return}const sn=snapPow('SECRET');sn.t=t;sn.c=c;G.powUsed=1;G.rf.pu=(G.rf.pu||0)+1;G.pow[w].SCAN-=c;G.rf.intelUsed.push(t);G.intelUses[w][t]=(G.intelUses[w][t]||0)+1;sfx('powerup');const mid=(G.lo+G.hi)>>1;let r;
+const intelCost=t=>t==='ODDEVEN'?0:1,SCRN={DIRECTION:'Battle Sense',RANGE:'Battle Range',PROPERTY:'Secret Trait',DIGIT:'Last Mark'},scrollN=t=>G.mode==='PVP'?0:(PRO.inv['s:'+t]||0);
+function useIntel(t){if(!canAct())return;if(G.rf.intelUsed.includes(t)){const ix=G.rf.us.findIndex(x=>x.n==='SECRET'&&x.t===t);if(ix>=0){$('#secPop').classList.remove('on');unPow(ix)}return}const w=G.cur,c=intelCost(t);if(G.d==='Easy')return;
+ if((G.intelUses[w][t]||0)>=1){$('#msg').textContent='You already used that secret this match.';sfx('buzz');return}
+ if(c>0&&scrollN(t)<c){$('#msg').textContent=G.mode==='PVP'?'Only The Omen is allowed in 2-player matches.':`You need a ${SCRN[t]} Scroll. Buy one in the Armory.`;sfx('buzz');return}
+ if(powLim()){$('#secPop').classList.remove('on');return}const sn=snapPow('SECRET');sn.t=t;sn.c=c;G.powUsed=1;G.rf.pu=(G.rf.pu||0)+1;if(c>0){PRO.inv['s:'+t]-=c;LS.set('ms_pro',PRO)}G.rf.intelUsed.push(t);G.intelUses[w][t]=(G.intelUses[w][t]||0)+1;sfx('powerup');const mid=(G.lo+G.hi)>>1;let r;
  if(t==='DIRECTION')r=`BATTLE SENSE: the secret is ${G.secret>mid?'above':'at or below'} the middle.`;
  if(t==='RANGE'){const q=(G.hi-G.lo)>>2;r=`BATTLE RANGE: between ${Math.max(G.lo,G.secret-q)} and ${Math.min(G.hi,G.secret+q)}.`}
  if(t==='ODDEVEN')r=`THE OMEN: the secret is ${G.secret%2?'ODD':'EVEN'}.`;
@@ -1156,7 +1154,7 @@ function tone(f,d=.08,ty='sine',v=.15){if(S.mute||!S.sfx)return;try{AC=AC||new(w
 const HL=document.createElement('label');HL.style.cssText='position:fixed;top:0;left:0;opacity:0;pointer-events:none';HL.innerHTML='<input type="checkbox" switch>';document.body.appendChild(HL);
 const vib=p=>{if(S.vib!==false)try{if(navigator.vibrate)navigator.vibrate(p);else HL.click()}catch(e){}};
 $('#tVib').onclick=()=>{S.vib=S.vib===false;save();setUI();vib(40)};
-$('#tLight').onclick=()=>{const on=!document.documentElement.classList.contains('light');S.lt=on;save();document.documentElement.classList.toggle('light',on);const m=document.querySelector('meta[name=theme-color]');if(m)m.content=on?'#eadfc4':'#1a0d0b';sfx('click');setUI()};
+
 function shake(big){if(RM)return;const a=$('#app');a.classList.remove('shk','shk2');void a.offsetWidth;a.classList.add(big?'shk2':'shk')}
 function supernova(n){const f=$('#fx'),W=f.clientWidth,H=f.clientHeight||640,mk=(css,fr,o)=>{const e=document.createElement('div');e.style.cssText='position:absolute;pointer-events:none;'+css;f.appendChild(e);e.animate(fr,o).onfinish=()=>e.remove()};
  mk('left:50%;top:42%;width:40px;height:40px;margin:-20px;border-radius:50%;background:radial-gradient(circle,#fff,#ffd98a 30%,#ff7ad9 55%,#0000 72%)',[{transform:'scale(.2)',opacity:1},{transform:'scale(14)',opacity:.9,offset:.4},{transform:'scale(26)',opacity:0}],{duration:1500,easing:'cubic-bezier(.1,.7,.2,1)'});
@@ -1758,7 +1756,7 @@ function dsRender(){const dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy(
  <p>Five rounds with the same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
  <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button>
  <button data-ev="dsBoard">🏆 TODAY’S BOARD</button></div>`}
-const evRew=(r,dy)=>r==null||r>100?(dy>=3?{c:cx(320),x:60}:{c:cx(200),x:40}):r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1}}:r<=3?{c:cx(1500),x:200,inv:{tome:1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:{c:cx(320),x:60};
+const evRew=(r,dy)=>r==null||r>100?(dy>=3?{c:cx(320),x:60}:{c:cx(200),x:40}):r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1,'s:DIGIT':2}}:r<=3?{c:cx(1500),x:200,inv:{tome:1,'s:DIGIT':1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:{c:cx(320),x:60};
 function evHubRender(nc){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,tot=evTot(),
  pips=Array.from({length:evCap()},(_,i)=>`<i class="${i<dd.p?'u':''}"></i>`).join('');
  $('#wkBody').innerHTML=`<div id="evClaim"></div>
@@ -1823,7 +1821,7 @@ function weakPoint(who){const g=G;g.busy=true;render0();setTimeout(()=>{if(G!==g
   setTimeout(()=>{w.classList.remove('on');if(G!==g||g.done)return;g.busy=false;timerReset();render()},900)},
  kd=e=>{if(e.key===' '||e.key==='Enter')stop()};w.onpointerdown=stop;addEventListener('keydown',kd);setTimeout(stop,4000)},800)}
 // armory
-const SHOP=[['pack','🎒','ARMORY PACK','+1 charge of every power',80,'c'],['x:SCAN','👁️','SCAN CACHE','+2 SCAN charges (also fuels Secrets)',40,'c'],['x:FOCUS','🎯','FOCUS LENS','+2 FOCUS charges',40,'c'],['x:RISK','🎲','WAGER DICE','+2 RISK charges',40,'c'],['x:SHIELD','🛡️','AEGIS PLATE','+2 SHIELD charges',50,'c'],['x:STEAL','🪙','THIEF’S GLOVE','+2 STEAL charges',40,'c'],
+const SHOP=[['pack','🎒','ARMORY PACK','+1 charge of every power',80,'c'],['x:SCAN','👁️','SCAN CACHE','+2 SCAN charges',40,'c'],['s:DIRECTION','🧭','BATTLE SENSE SCROLL','One Battle Sense secret (1 per match)',30,'c'],['s:RANGE','📏','BATTLE RANGE SCROLL','One Battle Range secret (1 per match)',50,'c'],['s:PROPERTY','🗝️','SECRET TRAIT SCROLL','One Secret Trait secret (1 per match)',60,'c'],['s:DIGIT','🔢','LAST MARK SCROLL','One Last Mark secret (1 per match)',140,'c'],['x:FOCUS','🎯','FOCUS LENS','+2 FOCUS charges',40,'c'],['x:RISK','🎲','WAGER DICE','+2 RISK charges',40,'c'],['x:SHIELD','🛡️','AEGIS PLATE','+2 SHIELD charges',50,'c'],['x:STEAL','🪙','THIEF’S GLOVE','+2 STEAL charges',40,'c'],
 ['time','⏳','HOURGLASS','+10s per guess',50,'c'],['att','🍀','LUCKY CHARM','+1 attempt every round',120,'c'],['phx','🕊️','PHOENIX TOKEN','Forgives your first failed round',90,'c'],['bane','☄️','BOSS BANE','+40 damage head start in the Boss Phase',110,'c'],['head','🏁','HEAD START','Begin the match with +15 points',70,'c'],['tome','📜','SCHOLAR’S TOME','×1.5 XP this match',100,'c'],['mag','🧲','COIN MAGNET','×1.5 coins this match',100,'c'],
 ['ps:hoplite','🏺','HOPLITE','Player skin · bronze frame',150,''],['ps:gladiator','🗡️','GLADIATOR','Player skin · crimson frame',120,''],['ps:spartan','🔱','SPARTAN','Player skin · azure frame',200,''],['ps:praetorian','🦅','PRAETORIAN','Player skin · imperial gold',200,''],['ps:pharaoh','👁️','PHARAOH','Player skin · turquoise frame',250,''],['ps:obsidian','🖤','OBSIDIAN GUARD','Player skin · violet frame',300,''],['ps:laurel','🏛️','GOLDEN LAUREL','Player skin · radiant gold',350,''],['ps:titan','⚡','TITAN','Player skin · storm blue',400,''],['ps:imperator','👑','IMPERATOR’S CROWN','Player skin · pure gold',900,''],
 ['ks:robot','🤖','ROBO-KIRAXO','Kiraxo skin',200,''],['ks:skull','💀','DEATH KIRAXO','Kiraxo skin',250,''],['ks:dragon','🐲','DRAGON KIRAXO','Kiraxo skin',280,''],['ks:alien','👽','ALIEN KIRAXO','Kiraxo skin',280,''],['ks:buganda','img/ks_buganda.webp','KABAKA KIRAXO','Boss skin · Buganda · royal gold',600,''],['ks:gold','img/ks_gold.webp','SULTAN KIRAXO','Boss skin · Golden Sands · desert gold',650,''],['ks:ice','img/ks_ice.webp','VIKING KIRAXO','Boss skin · Frostlands · glacier blue',650,''],['ks:samurai','img/ks_samurai.webp','SHOGUN KIRAXO','Boss skin · Shogun’s Realm · crimson',750,''],['ks:cyber','img/ks_cyber.webp','CYBER-GOD KIRAXO','Boss skin · Neon Grid · neon cyan',800,''],['ks:astral','img/ks_astral.webp','VOID EATER KIRAXO','Boss skin · Astral Dominion · black hole',0,'',45],
@@ -1896,13 +1894,13 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#info').innerHTML=G.rf.info.map(x=>`<div>${x}</div>`).join('');
  $('#strike').textContent='⚔️ STRIKE';
  render0();clockUI();objChip()}
-function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;const arm=rf.risk?'RISK':rf.focus?'FOCUS':rf.steal?'STEAL':rf.shield?'SHIELD':'';$('#strike').dataset.arm=arm;$('#strike').textContent='⚔️ STRIKE'+(arm?' · '+arm:'');$('#secCh').textContent='⚡ SCAN charges: '+G.pow[w].SCAN;
+function render0(){if(!G)return;const off=!canAct()||false,w=G.cur,rf=G.rf;$('#strike').disabled=off;const arm=rf.risk?'RISK':rf.focus?'FOCUS':rf.steal?'STEAL':rf.shield?'SHIELD':'';$('#strike').dataset.arm=arm;$('#strike').textContent='⚔️ STRIKE'+(arm?' · '+arm:'');$('#secCh').textContent='📜 Scrolls: Sense '+scrollN('DIRECTION')+' · Range '+scrollN('RANGE')+' · Trait '+scrollN('PROPERTY')+' · Last Mark '+scrollN('DIGIT');
  const us=rf.us||[],pu=rf.pu||0,cap=pu>=MAXPOW;
- $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');const used=us.some(x=>x.n===n);b.style.display=(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
+ $$('[data-p]').forEach(b=>{const n=b.dataset.p,i=b.querySelector('i');const used=us.some(x=>x.n===n);b.style.display=(n==='INTEL'&&G.d==='Easy')||(n==='JAM'&&G.mode!=='PVP')||(n==='DESP'&&!despOK()&&!G.desp[w].active)?'none':'';
   const act={SCAN:rf.scanned,SHIELD:rf.shield,FOCUS:rf.focus,RISK:rf.risk,STEAL:rf.steal,DESP:G.desp[w].active,JAM:0}[n];
-  if(n==='INTEL'){i.textContent=G.pow[w].SCAN+' ⚡';b.disabled=off;return}if(n==='DESP'){i.textContent='';b.disabled=off||(!used&&cap);b.classList.toggle('sel',!!act||used);return}
+  if(n==='INTEL'){i.textContent=['DIRECTION','RANGE','PROPERTY','DIGIT'].reduce((a,x)=>a+scrollN(x),0)+' 📜';b.disabled=off;return}if(n==='DESP'){i.textContent='';b.disabled=off||(!used&&cap);b.classList.toggle('sel',!!act||used);return}
   i.textContent=G.pow[w][n];b.disabled=off||(!used&&(G.pow[w][n]<=0||!!act||cap||(n==='RISK'&&G.att+2>G.maxAtt)));b.classList.toggle('sel',!!act||used)});
- $$('[data-i]').forEach(b=>{const t=b.dataset.i,c=intelCost(t);b.querySelector('i').textContent=c;const u=rf.intelUsed.includes(t);b.disabled=off||(!u&&(cap||G.pow[w].SCAN<c));b.classList.toggle('sel',u)})}
+ $$('[data-i]').forEach(b=>{const t=b.dataset.i,c=intelCost(t),n=scrollN(t),u=rf.intelUsed.includes(t),done=(G.intelUses[w][t]||0)>=1&&!u;b.querySelector('i').textContent=c===0?'FREE':done?'USED':'×'+n;b.disabled=off||(!u&&(cap||done||(c>0&&n<c)));b.classList.toggle('sel',u)})}
 $$('[data-p]').forEach(b=>b.onclick=()=>usePow(b.dataset.p));$$('[data-i]').forEach(b=>b.onclick=()=>useIntel(b.dataset.i));
 $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 // ---- end & leaderboard ----
@@ -2099,10 +2097,10 @@ function TQ(){const w=TW,N=TN[w],G=TG[w],E=x=>'w:'+w+':'+x,I=(...a)=>'T'+w+a[0];
 function tqFix(){let c=0;const T=TQ(),swap=(arr,pool,sd)=>{if(arr.some(q=>q.id[0]==='T'&&q.id.startsWith('T'+TW)))return;const i=arr.map((q,k)=>k).reverse().find(k=>!arr[k].p&&!arr[k].cl);if(i==null)return;const[id,n,e,t,cc,x,it]=pool[Math.floor(mul(seed(sd))()*pool.length)];arr[i]={id,n,e,t,c:cc,x,it,p:0,cl:0};c=1};
  if(PRO.q.d&&!PRO.q.d.some(q=>q.id.startsWith('T')))swap(PRO.q.d,T.d,'tqd'+today());
  if(PRO.q.w&&!PRO.q.w.some(q=>q.id.startsWith('T')))swap(PRO.q.w,T.w,'tqw'+Math.floor((Date.now()/864e5+3)/7));return c}
-const SW={d:{c:100,x:60,inv:{pack:1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
+const SW={d:{c:100,x:60,inv:{pack:1,'s:DIRECTION':1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1,'s:DIGIT':1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
 const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}].map(x=>({...x,c:cx(x.c)}));
-const RR={1:{c:60,inv:{'x:SCAN':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
- 6:{c:400,own:['ps:gladiator'],inv:{tome:1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ks:dragon'],inv:{tome:1,'x:SCAN':2}},
+const RR={1:{c:60,inv:{'x:SCAN':1,'s:DIRECTION':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1,'s:RANGE':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
+ 6:{c:400,own:['ps:gladiator'],inv:{tome:1,'s:PROPERTY':1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ks:dragon'],inv:{tome:1,'x:SCAN':2,'s:DIGIT':1}},
  10:{c:1000,own:['ps:pharaoh'],inv:{mag:1,bane:2,'x:SHIELD':2}},11:{c:1300,own:['th:imperial','ps:titan'],inv:{phx:2,pack:2}},12:{c:2000,own:['ps:imperator','ps:laurel','th:tyrian'],inv:{mag:2,tome:2,bane:2,pack:2}}};Object.values(RR).forEach(x=>x.c=cx(x.c));
 const nmOf=k=>{const it=SHOP.find(x=>x[0]===k);return it?it[1]+' '+it[2]:k};
 function grant(r){PRO.gold+=r.c||0;const t=[`💰 ${r.c||0}`];for(const k in r.inv||{}){PRO.inv[k]=(PRO.inv[k]||0)+r.inv[k];t.push(`${r.inv[k]}× ${nmOf(k)}`)}(r.own||[]).forEach(k=>{PRO.own[k]=1;t.push('NEW: '+nmOf(k))});if(r.x)PRO.xp+=r.x;LS.set('ms_pro',PRO);return t.join(' · ')}

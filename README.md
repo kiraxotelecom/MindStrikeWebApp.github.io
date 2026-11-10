@@ -211,3 +211,6 @@ Astral Dominion gets two more exclusive mini games, **Gravity Well** (`gwInit`, 
 
 ## v64 changes
 Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim stars and aurora, darker backdrops, and the warrior-name card styled to match. Bump `V` in `sw.js` after every change.
+
+## v65 changes
+**Secrets rework.** The Secrets button is hidden on Easy. Secrets no longer cost SCAN charges: **The Omen** is free once per match, and **Battle Sense, Battle Range, Secret Trait and Last Mark** each need one Scroll (`PRO.inv['s:DIRECTION' | 's:RANGE' | 's:PROPERTY' | 's:DIGIT']`), bought in the Armory (30 / 50 / 60 / 140 coins) or won from rank rewards, Daily and Weekly sweeps and weekly rank prizes. Each secret can be used once per match however many Scrolls you own; taking a secret back refunds the Scroll. 2-player matches allow only The Omen. Daily Strike and the Weekly Challenge have no powers at all. SCAN Cache is now only the SCAN power. The Light/Dark **brightness setting was removed** and the game is always dark (a saved light setting is ignored). Bump `V` in `sw.js` after every change.
