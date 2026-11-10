@@ -199,3 +199,11 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 
 ## v59 changes
 - **Roman world texture:** the default Roman look now has a stone-grain texture on cards, battle rows, mode buttons, option chips, home tiles and the PLAY button, Greek-key (meander) border strips, thin inner double-line frames, squared corners, ringed medallions and a Greek-key line under screen headers. It is one CSS block (`ROMAN EMPIRE` section), scoped with `html:not([class*="wd-"])`, so the other worlds are untouched. Texture colours follow the light/dark variables. Bump `V` in `sw.js` after every change (now `mindstrike-v59`).
+
+
+## v62 changes
+**Astral Dominion** (7th world, Worlds tab in the Armory). Not sold for coins: needs rank PROCONSUL and 120 💎 (`gem` and `rk` on its `WORLDS` entry). Deep-indigo space with slow aurora and drifting stars, constellation-framed cards, star-metal buttons, planet home tiles with orbit rings, a supernova + star-shower victory (`supernova()`), eclipse boss shields, and its own music (`audio/theme_astral.mp3`). Kiraxo becomes the Void Eater (free skin on purchase), and the eight kids become Asantaurus, Elijaries, Imrapisces, Christilibra, Kiraboleo, Shanitaquarius, Mariamscorpio and Nanagittarius (`KN.astral`). First exclusive mini game: **Orbit Lock** (`olInit`), a real-time timing game. Constellation Connect and Gravity Well are planned. Bump `V` in `sw.js` after every change.
+
+
+## v63 changes
+Astral Dominion gets two more exclusive mini games, **Gravity Well** (`gwInit`, higher/lower with a planet pulled toward the hidden number, 5 wells) and **Constellation Connect** (`ccInit`, tap numbered stars smallest to largest before they fade), plus four gem-priced Astral player skins (Comet Rider, Nova Guard, Nebula Warden, Eclipse Knight) that only Astral Dominion owners can buy. Bump `V` in `sw.js` after every change.
