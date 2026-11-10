@@ -33,7 +33,7 @@
             ],
             "$uid": {
               ".write": "auth != null && auth.uid === $uid",
-              ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() <= 500 && newData.child('s').val() >= 0 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12"
+              ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() <= 1000 && newData.child('s').val() >= 0 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12"
             }
           }
         },
@@ -44,7 +44,7 @@
           ],
           "$uid": {
             ".write": "auth != null && auth.uid === $uid",
-            ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() <= 3500 && newData.child('s').val() >= 0 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12"
+            ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() <= 4000 && newData.child('s').val() >= 0 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12"
           }
         }
       }
