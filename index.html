@@ -766,7 +766,7 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 <div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="oNet" role="alert" aria-live="assertive"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
 <div id="bolt"><svg viewBox="0 0 100 160" preserveAspectRatio="none"><polyline points="58,0 44,38 56,40 38,82 52,84 30,130 40,132 28,160"/><polyline points="82,0 72,30 80,34 66,70 76,74 62,112 70,114 60,160"/><polyline points="20,0 28,26 20,30 30,64 22,68 34,100"/></svg></div>
 <div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><div class="bm-panel"><header class="bm-hero"><div class="bm-kicker">The arena holds its breath</div><h1>Paused</h1><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><button id="resume" class="bm-cta"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg>RESUME</button><button id="restart" class="bm-btn"><span class="e">↻</span>Restart match</button><button id="pSet" class="bm-btn"><span class="e">⚙︎</span>Settings</button><button id="pHow" class="bm-btn"><span class="e">?</span>How to play</button><button id="quit" class="bm-btn bm-danger"><span class="e">🏛️</span>Quit to menu</button></div></div>
-<div class="pop" id="mgRv" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>💔 OUT OF LIVES</h2><div id="mgRvT" style="line-height:1.6;margin:8px 0"></div><button id="mgRvYes" style="width:100%"></button><button id="mgRvNo" style="width:100%;margin-top:8px">END RUN</button></div></div>
+<div class="pop" id="mgRvPop" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>💔 OUT OF LIVES</h2><div id="mgRvT" style="line-height:1.6;margin:8px 0"></div><button id="mgRvYes" style="width:100%"></button><button id="mgRvNo" style="width:100%;margin-top:8px">END RUN</button></div></div>
 <div class="pop" id="bkPop" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,380px)"><h2>📥 RESTORE PROGRESS</h2><small>Paste your backup code, or choose a backup file. This replaces the progress on this device. You can undo it once.</small><textarea id="bkTxt" rows="5" placeholder="MS1.…" spellcheck="false"></textarea><input type="file" id="bkFile" accept=".txt,.json,.msbackup,text/plain" hidden><button id="bkPick" style="width:100%">📂 CHOOSE FILE</button><button id="bkGo" style="width:100%;margin-top:8px">RESTORE NOW</button><button id="bkX" style="width:100%;margin-top:8px">CANCEL</button></div></div>
 <div class="pop" id="mgRes" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="mgRT"></h2><div id="mgRB" style="line-height:1.6;margin:8px 0"></div><button id="mgAgain" style="width:100%">🔁 PLAY AGAIN</button><button id="mgHub" style="width:100%;margin-top:8px">🎮 MINI GAMES</button><button id="mgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
 <div class="pop" id="cbrief" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="cbT"></h2><div id="cbB" style="text-align:left;line-height:1.55;margin:8px 0"></div><button id="cbGo" style="width:100%">⚔️ FIGHT</button><button id="cbX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
@@ -822,6 +822,7 @@ function show(id){$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id));try{
 function go(id){stack.push(id);show(id)}
 function home(){stack=['s-home'];const fw=G&&G.wager&&!G.done?G.wager:0;if(fw)setTimeout(()=>toast('🎲 Wager of '+fw+' 💰 forfeited'),300);if(G)G.done=true;G=null;$('#app').classList.remove('bossm');play('theme');lbShow();show('s-home')}
 function back(){const c=stack[stack.length-1];
+ if(c==='s-daily'&&D&&D.used&&!D.fin&&!D.ch&&!confirm('Leave this run? It ends now and your current score is final. There are no restarts.'))return;
  if(c==='s-game'){if(G&&!G.done)openPause();else home();return}
  if(c==='s-end'){home();return}
  if(stack.length>1){stack.pop();show(stack[stack.length-1])}}
@@ -1195,7 +1196,7 @@ const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>MINI[i].wd?MINI[
 const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
 const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. NANAIA',.7],['GEN. SHANITARI',.8],['GEN. ELIJAHOS',.9],['KIRAXO',.97]];
 let X=null;
-const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}_show(id)};
+const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}try{if(id!=='s-daily'&&id!=='s-end'&&D&&D.used&&!D.fin&&!D.ch&&!QUIT)dQuit()}catch(e){}_show(id)};
 function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{if(M.wd&&M.wd!==TW)return'';const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
  return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' ('+RANKS[M.rk][1]+' XP) to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
@@ -1217,7 +1218,7 @@ function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X
 function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
 function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
 function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
- const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=Math.round(X.score/4)+3,r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
+ const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=xpg(X.score/4+3),r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
  const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
  $('#mgRT').innerHTML=`${M.e} ${M.n}${nb&&X.score>0?'<br><small>🏆 NEW BEST!</small>':''}`;
@@ -1369,10 +1370,10 @@ addEventListener('keydown',e=>{if(!$('#s-mg').classList.contains('on')||!X||X.do
 $('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
 // ---- v56: gem continue for mini games ----
 const rvOK=()=>X&&!X.rv&&X.lives<=0&&(/^tm_/.test(X.k)||['cards','echo','oracle'].includes(X.k))&&(X.k!=='cards'||X.deck.length>0)&&X.score>0;
-function rvOffer(){if(!rvOK()||(PRO.gems||0)<RVC)return false;$('#mgRvT').innerHTML=`Keep your score of <b>${X.score}</b> and carry on with 1 life?<br><small>You have 💎 ${PRO.gems}</small>`;$('#mgRvYes').textContent='💎 CONTINUE · '+RVC+' GEMS';$('#mgRv').classList.add('on');return true}
-$('#mgRvYes').onclick=()=>{if(!X||X.rv||(PRO.gems||0)<RVC)return;PRO.gems-=RVC;LS.set('ms_pro',PRO);X.rv=1;X.done=0;X.fin=0;X.lives=1;X.busy=false;$('#mgRv').classList.remove('on');sfx('powerup');const k=X.k;
+function rvOffer(){if(!rvOK()||(PRO.gems||0)<RVC)return false;$('#mgRvT').innerHTML=`Keep your score of <b>${X.score}</b> and carry on with 1 life?<br><small>You have 💎 ${PRO.gems}</small>`;$('#mgRvYes').textContent='💎 CONTINUE · '+RVC+' GEMS';$('#mgRvPop').classList.add('on');return true}
+$('#mgRvYes').onclick=()=>{if(!X||X.rv||(PRO.gems||0)<RVC)return;PRO.gems-=RVC;LS.set('ms_pro',PRO);X.rv=1;X.done=0;X.fin=0;X.lives=1;X.busy=false;$('#mgRvPop').classList.remove('on');sfx('powerup');const k=X.k;
  if(k.startsWith('tm_'))tmNext();else if(k==='cards'){cdUI();mgSet('💎 Second wind! One life left.')}else if(k==='echo')ecPlay(false);else if(k==='oracle')orRound(false);mgUpd();profUI()};
-$('#mgRvNo').onclick=()=>{$('#mgRv').classList.remove('on');if(X){X.rv=1;mgEnd()}};
+$('#mgRvNo').onclick=()=>{$('#mgRvPop').classList.remove('on');if(X){X.rv=1;mgEnd()}};
 // ---- v56: backup & restore (progress lives in this browser; this moves it between devices or browsers) ----
 const BKK=['ms_pro','ms_ach','ms_lb','ms_set','ms_fam','ms_oopt','ms_tour'],bkH=t=>{let h=5381;for(let i=0;i<t.length;i++)h=(h*33^t.charCodeAt(i))>>>0;return h.toString(36)};
 function bkMake(){LS.set('ms_pro',PRO);const d={};BKK.forEach(k=>{const v=localStorage.getItem(k);if(v!=null)d[k]=v});const body=JSON.stringify({a:'mindstrike',v:56,t:Date.now(),d});return{body,code:'MS1.'+btoa(unescape(encodeURIComponent(body)))+'.'+bkH(body)}}
@@ -1422,7 +1423,7 @@ function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearT
 function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_ach',a);gems(GACH[k]||1,ACH[k][1]);toast(`${ACH[k][0]} <b>${ACH[k][1]}</b><br><small>${ACH[k][2]}</small>`)}
 const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
 /* v56: GEMS. A rarer, earn-only currency (no purchases, so online play stays fair). gemSync() is idempotent: it pays rank, region, boss and mastery gems once each, and doubles as the one-time welcome gift for existing players. */
-const GRK=[0,1,1,1,1,2,2,2,3,3,4,5,8],GSTK={3:1,7:2,14:4,30:8},GACH={boss:3,conq:5},RVC=3;
+const GRK=[0,1,1,1,1,2,2,2,3,3,4,5,8],GSTK={3:1,7:2,14:4,30:8},GACH={boss:3,conq:5},RVC=3,XPF=.5,xpg=n=>Math.max(1,Math.round(n*XPF));
 let gemPend=0,gemWhy=[],gemT=0;
 function gems(n,why){if(n<=0)return;PRO.gems=(PRO.gems||0)+n;gemPend+=n;if(why)gemWhy.push(why);LS.set('ms_pro',PRO);clearTimeout(gemT);gemT=setTimeout(()=>{toast(`💎 <b>+${gemPend} GEM${gemPend>1?'S':''}</b><br><small>${gemWhy.slice(0,3).join(' · ')}</small>`);gemPend=0;gemWhy=[]},1700)}
 function gemSync(){const g=PRO.gm||(PRO.gm={});g.rg=g.rg||{};g.bd=g.bd||{};g.ml=g.ml||{};let n=0;const w=[],r=rk(),pd=g.rk===undefined?0:g.rk;
@@ -1440,7 +1441,7 @@ const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endles
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
 function hsCheck(w){if(G.cf){G.hs={old:0,sc:0,isNew:false};return}const key=`${G.mode}|${G.d}|${G.m}`,sc=G.mode==='PVP'?(w>=0?G.score[w]:0):G.score[0];PRO.hs=PRO.hs||{};const old=PRO.hs[key]||0;G.hs={old,sc,isNew:sc>old&&sc>0};if(G.hs.isNew){PRO.hs[key]=sc;LS.set('ms_pro',PRO)}}
 function xpEnd(win){if(G.mode!=='AI')return 0;const k=rwx(G.d,G.m),r0=rk();
- const xp=Math.round((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=cx(Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0));
+ const xp=xpg((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=cx(Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0));
  PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return xp}
 const rwHtml=xg=>xg?`<br><b>+${xg} XP · 💰 +${G.gg}</b><br><small>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${G.hs&&G.hs.isNew?' · +25 high-score bonus':''}${G.tome||G.mag?'<br>📜🧲 boosts applied':''}</small>`:'';
 const hsHtml=()=>G.hs&&!G.cf?(G.hs.isNew?`<div class="hs">🏆 NEW HIGH SCORE! ${G.hs.sc}<br><small>${G.D.name} · ${G.M.label}${G.hs.old?' · previous best '+G.hs.old:''}</small></div>`:`<br><small>Best here: ${G.hs.old}</small>`):'';
@@ -1453,16 +1454,16 @@ function dStart(sd,ch,ev){const r=mul(seed(sd)),dr=ev?ev.ev.r:DR;D={r:0,dr,ev:ev
 function dailyOpen(){if(PRO.dl===today())return dailyEnd();dStart(today())}
 function dRender(m){const mx=D.dr[D.r][2];$('#dInfo').textContent=`ROUND ${D.r+1}/${D.dr.length} · ${D.score} pts`+(D.ev?` · ${D.ev.e} run ${D.k}/${evCap()}`:'')+(D.ch&&D.ch.fs!=null?` · 🎯 beat ${D.ch.fs}`:'');$('#dRange').textContent=RNG(D.kLo,D.kHi);$('#dPips').innerHTML=Array.from({length:mx},(_,i)=>`<i class="${i<D.tries?'u':''}"></i>`).join('');$('#dTrail').textContent=D.trail.join(' ');if(m!==undefined)$('#dMsg').textContent=m}
 function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=D.dr[D.r],s=D.sec[D.r];if(!el.value||g<a||g>b){$('#dMsg').textContent=`Enter a number from ${a} to ${b}.`;tone(150,.15,'square');return}
- el.value='';D.tries++;if(D.ev&&!D.used){D.used=1;evUse()}
+ el.value='';D.tries++;if(!D.used){D.used=1;if(D.ev)evUse();runSave()}
  if(g===s){D.trail.push('🎯');D.score+=Math.round((mx-D.tries+1)/mx*D.pr);sfx('ding');burst(['✨','🎯','🪙'],14);vib(40);return dNext(`✅ Got it in ${D.tries}!`)}
  const t=tr(g,s,b-a),bl=D.ev&&D.ev.blind;D.trail.push(bl?(g<s?'⬆️':'⬇️'):TE[t]);
  if(D.tries>=mx){D.trail.push('💀');sfx('buzz');shake();vib([70,40,70]);return dNext(`💀 It was ${s}.`)}
  g<s?D.kLo=Math.max(D.kLo,g+1):D.kHi=Math.min(D.kHi,g-1);tone(bl?440:250+(1-Math.abs(g-s)/(b-a))*700,.1,'triangle');dRender(bl?(g<s?'⬆️ Higher':'⬇️ Lower'):`${TE[t]} ${g<s?'Higher':'Lower'} — ${t}`)}
-function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;if(D.r>=D.dr.length)return dDone();const[a,b]=D.dr[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
-function dDone(){if(D.ev)return evDone();if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const gs=GSTK[PRO.ds]||0;if(gs)gems(gs,'🔥 '+PRO.ds+'-day streak');const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})${gs?` · 💎 +${gs}`:''}`};PRO.xp+=20+Math.round(D.score/10);PRO.gold+=dg;lbPut(D.score);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
+function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;runSave();if(D.r>=D.dr.length)return dDone();const[a,b]=D.dr[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
+function dDone(){if(D.fin)return;D.fin=1;PRO.run=null;if(D.ev)return evDone();if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const gs=GSTK[PRO.ds]||0;if(gs)gems(gs,'🔥 '+PRO.ds+'-day streak');const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})${gs?` · 💎 +${gs}`:''}`};PRO.xp+=xpg(20+D.score/10);PRO.gold+=dg;lbPut(D.score);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
 function fzLbl(){return `🧊 STREAK FREEZE<br><small style="font-weight:normal;letter-spacing:.04em">owned ${PRO.fz||0}/3 · 💰 ${cx(300)}</small>`}
 function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
- $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
+ $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 $('#dailyBtn').onclick=()=>{sfx('click');evHubOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
 async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:evSafe(S.n1),s:sc})}catch(e){}}
@@ -1471,9 +1472,17 @@ const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-
 try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();card((a.length?a.map((v,i)=>`${['🥇','🥈','🥉'][i]||i+1+'.'} ${evName(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`).join('<br>'):'No scores yet today.')+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
 document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
 
+/* v57: no quitting a started Daily/Weekly run. Leaving, closing or refreshing ends it with the score so far. */
+let QUIT=0;
+function runSave(){if(!D||D.ch||!D.used||D.fin)return;PRO.run={ev:D.ev?D.ev.k:'',k:D.k,day:D.ev?evToday():today(),wk:D.ev?evWk():'',score:D.score,lines:D.lines.slice(),trail:D.trail.join('')};LS.set('ms_pro',PRO)}
+function dQuit(){if(!D||D.ch||!D.used||D.fin)return;if(D.trail.length)D.lines.push(D.trail.join('')+'🚪');else D.lines.push('🚪');D.trail=[];QUIT=1;try{dDone()}finally{QUIT=0}}
+function runRecover(){const R=PRO.run;if(!R)return;PRO.run=null;if(D&&!D.fin)return;const ev=R.ev?EVS.find(e=>e.k===R.ev):null;if(R.ev){if(!ev||R.wk!==evWk()||R.day!==evToday())return}else if(R.day!==today()||PRO.dl===today())return;
+ D={ev,k:R.k,score:R.score,lines:(R.lines||[]).concat([(R.trail||'')+'🚪']),trail:[],used:1,fin:0,ch:null};QUIT=1;try{dDone()}finally{QUIT=0}}
+addEventListener('pagehide',()=>{try{dQuit()}catch(e){}});
+
 /* ===== v51: DAILY & EVENTS hub + Weekly Global Event ===== */
 let EVOFF=+LS.get('ms_off',0)||0;
-const EV_PLAYS=3,EV_BUY=[900,1800],EV_SYM='💰',evBal=()=>PRO.gold,evSpend=n=>{PRO.gold-=n},
+const EV_PLAYS=1,EV_BUY=[3,5],EV_SYM='💎',evBal=()=>PRO.gems||0,evSpend=n=>{PRO.gems=(PRO.gems||0)-n},
 EVS=[
  {k:'gauntlet',e:'🏛️',n:'GAUNTLET WEEK',d:'Five brutal ranges, from 1–20 up to 1–1000. Efficient guessing wins.',r:[[1,20,5],[1,60,6],[1,150,8],[1,400,9],[1,1000,10]]},
  {k:'blind',e:'🌑',n:'BLIND WEEK',d:'No temperature hints this week: only higher or lower. Pure logic.',blind:1,r:[[1,10,4],[1,25,5],[1,50,6],[1,100,7],[1,200,8]]},
@@ -1525,16 +1534,16 @@ async function evTop(path){const X=await msFb(),{D:Z,db}=X.F,r=await Z.get(Z.que
 const evRank=a=>{const m=a.find(x=>x.me);return m?1+a.filter(x=>x.s>m.s).length:null},
  evRtxt=(a,sc)=>{const r=evRank(a);return r?`rank #${r}${a.length<100?' of '+a.length:''}`:sc>0?(a.length>=100?'outside top 100':'syncing…'):'play to get ranked'};
 function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb)d.b=sc;if(PRO.gm.ed!==today()){PRO.gm.ed=today();gems(1,'Weekly Challenge run')}
- const dg=cx(6+Math.round(sc/20)),xp=5+Math.round(sc/20);PRO.gold+=dg;PRO.xp+=xp;E.last={l:D.lines,s:sc,k:D.k,dg,xp,nb};E.dirty=1;LS.set('ms_pro',PRO);
+ const dg=cx(6+Math.round(sc/20)),xp=xpg(5+sc/20);PRO.gold+=dg;PRO.xp+=xp;E.last={l:D.lines,s:sc,k:D.k,dg,xp,nb};E.dirty=1;LS.set('ms_pro',PRO);
  qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${evToday()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
 function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/500 · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
  $('#endt').textContent=ev.e+' '+ev.n;
- $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">🪙 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">🏆 WEEKLY CHALLENGE</button></div>`;
- $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';stack.push('s-end');show('s-end')}
+ $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">💎 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">🏆 WEEKLY CHALLENGE</button></div>`;
+ $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 function evHubOpen(){go('s-events')}
 function evChoose(){const E=evS(),left=evLeft(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,cl=E.pend.length;
- $('#evBody').innerHTML=`<div class="tiles one"><button data-ev="goDaily"><i class="ti">☀️</i><span>DAILY STRIKE</span><small>${dn?'✓ done today':'new numbers today'}${ds?' · 🔥 '+ds+'-day streak':''}</small>${dn?'':'<em class="bd" style="font-style:normal">1</em>'}</button><button data-ev="goWeekly"><i class="ti">🏆</i><span>WEEKLY CHALLENGE</span><small>${cl?'🎁 reward waiting · ':''}${left?left+' runs left today':'done today'} · ${evShort()}</small>${left>0||cl?`<em class="bd" style="font-style:normal">${cl||left}</em>`:''}</button></div>
+ $('#evBody').innerHTML=`<div class="tiles one"><button data-ev="goDaily"><i class="ti">☀️</i><span>DAILY STRIKE</span><small>${dn?'✓ done today':'new numbers today'}${ds?' · 🔥 '+ds+'-day streak':''}</small>${dn?'':'<em class="bd" style="font-style:normal">1</em>'}</button><button data-ev="goWeekly"><i class="ti">🏆</i><span>WEEKLY CHALLENGE</span><small>${cl?'🎁 reward waiting · ':''}${left?left+' run left today':'done today'} · ${evShort()}</small>${left>0||cl?`<em class="bd" style="font-style:normal">${cl||left}</em>`:''}</button></div>
  <div class="evnote"><b>Daily Strike:</b> one short run a day, same numbers for everyone.<br><b>Weekly Challenge:</b> a world contest that lasts all week, with a leaderboard and rewards.</div>`}
 function dsRender(){const dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  $('#dsBody').innerHTML=`<div class="card ev evx"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
@@ -1549,9 +1558,9 @@ function evHubRender(nc){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.
  <h3>${ev.n}</h3><p>${ev.d}</p>${evBadgeList()?`<small class="evn" style="margin:0 0 6px">🏅 ${evBadgeList()}</small>`:''}
  <div class="evp"><span>RUNS TODAY</span><span class="evpips">${pips}</span><small>${left} left</small></div>
  <div class="evs"><div><small>TODAY’S BEST</small><b>${dd.b}</b><em id="evRd">rank …</em></div><div><small>WEEK TOTAL</small><b>${tot}</b><em id="evRw">rank …</em></div></div>
- ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">🪙 BUY A BONUS RUN · ${EV_SYM} ${evCost()}</button><small class="evn">Free runs used. Bonus runs bought today: ${evDay().x||0}/${EV_BUY.length}.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
+ ${left?`<button data-ev="play">⚔️ PLAY · ${left} of ${evCap()} runs left</button>`:evCanBuy()?`<button data-ev="buy">💎 BUY A BONUS RUN · ${EV_SYM} ${evCost()}</button><small class="evn">Free runs used. Bonus runs bought today: ${evDay().x||0}/${EV_BUY.length}.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
  <button data-ev="board">🏆 LEADERBOARDS</button>
- <small class="evn">Global challenge: everyone plays the same numbers. ${EV_PLAYS} free runs a day (+2 bonus runs for coins), your best run each day counts, 7 days, highest week total wins. Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>`;
+ <small class="evn">Global challenge: everyone plays the same numbers. You get ${EV_PLAYS} free run a day, so make it count. Quitting mid-run ends it with the score you have. Extra runs (up to 2 a day) cost 💎 gems. Your best run each day counts, 7 days, highest week total wins. Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>`;
  (async()=>{const set=(id,x)=>{const el=document.getElementById(id);if(el)el.textContent=x};
   if(!nc){const o=EVOFF;await evClock();if(Math.abs(EVOFF-o)>6e4&&document.querySelector('#s-weekly.on'))return evHubRender(1)}
   try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${evToday()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
@@ -1575,7 +1584,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAga
  if(k==='play'){sfx('click');evPlay()}
  else if(k==='board'||k==='evBd'){sfx('click');evBoard('d')}
  else if(k==='daily'){sfx('click');dailyOpen()}
- else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('Not enough coins');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('🪙 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events','s-weekly'];evPlay()}else{evHubRender();profUI()}}
+ else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('💎 Not enough gems');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('💎 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events','s-weekly'];evPlay()}else{evHubRender();profUI()}}
  else if(k==='evAgain'){sfx('click');stack=['s-home','s-events','s-weekly'];evPlay()}
  else if(k==='evHub'){sfx('click');stack=['s-home','s-events','s-weekly'];show('s-weekly')}
   else if(k==='goDaily'){sfx('click');go('s-dstrike')}
@@ -1583,6 +1592,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAga
   else if(k==='dsBoard'){sfx('click');dayBoardShow()}
  else if(k==='claim'){const E=evS(),q=E.pend.shift(),box=document.getElementById('evClaim'),rk=box&&box.dataset.rank?+box.dataset.rank:null,R=evRew(rk,q&&q.dy!=null?q.dy:3);if(!q)return;if(rk&&(!E.best||rk<E.best))E.best=rk;let bt='';if(rk&&rk<=3){const n=evWid(q.w);E.badges=E.badges||[];if(!E.badges.some(b=>b.n===n))E.badges.push({n,t:rk===1?'champ':'podium'});bt=rk===1?`<br>👑 <b>Week ${n} Champion</b> badge earned!`:`<br>🥈 Week ${n} Podium badge earned`}toast(`🏛️ <b>${rk?'RANK #'+rk:'CHALLENGE REWARD'}</b>${bt}<br><small>${grant(R)} · ${R.x} XP</small>`);burst(['🏆','🪙','✨','🎁'],30);LS.set('ms_pro',PRO);evHubRender();profUI()}});
 addEventListener('online',()=>{try{evClock().then(()=>evSync())}catch(e){}});
+try{runRecover()}catch(e){}
 
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
 const MUT=[['primes','🧮','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
@@ -1821,7 +1831,7 @@ $('#chalX').onclick=()=>$('#chal').classList.remove('on');
 $('#chalJoin').onclick=()=>{const c=chalParse($('#chalIn').value);if(!c){toast('Paste a challenge link or code');tone(150,.2,'square');return}$('#chalIn').value='';chalMenu(c)};
 $('#chalBtn').innerHTML='<i class="ti">🤝</i><span>CHALLENGE</span><small>duel a friend</small>';$('#chalBtn').onclick=()=>{sfx('click');chalMenu()};
 function chalDone(){const c=D.ch,s=D.score,old=PRO.ch[c.code],first=old==null,beat=c.fs!=null&&s>c.fs;let rw='';PRO.ch[c.code]=Math.max(old||0,s);const ks=Object.keys(PRO.ch);if(ks.length>40)delete PRO.ch[ks[0]];
- if(c.fs!=null&&first){if(PRO.cd.d!==today())PRO.cd={d:today(),n:0};if(PRO.cd.n<3){PRO.cd.n++;const g=cx(10+(beat?25:0));PRO.gold+=g;PRO.xp+=10;rw=`<br><b>+${g} 💰 · +10 XP</b>`}else rw='<br><small>Challenge rewards maxed for today (3 links)</small>'}
+ if(c.fs!=null&&first){if(PRO.cd.d!==today())PRO.cd={d:today(),n:0};if(PRO.cd.n<3){PRO.cd.n++;const g=cx(10+(beat?25:0));PRO.gold+=g;PRO.xp+=xpg(10);rw=`<br><b>+${g} 💰 · +${xpg(10)} XP</b>`}else rw='<br><small>Challenge rewards maxed for today (3 links)</small>'}
  if(beat)unlock('rival');LS.set('ms_pro',PRO);
  const name=S.n1||'LEGIONARY',link=chalLink(c.code,s,name),vs=c.fs!=null?`<br>${beat?'🏆 You beat':s===c.fs?'🤝 You tied':'💀 You fell to'} <b>${c.from}</b> (${c.fs})`:'';
  shareText=`MindStrike ⚔️ ${name} scored ${s}/500 on challenge ${c.code.toUpperCase()}${c.fs!=null?` (${beat?'beat':s===c.fs?'tied':'lost to'} ${c.from}’s ${c.fs})`:''} — can you beat it?\n${link}`;
@@ -1923,7 +1933,7 @@ const ST=[
  ['#prof','🛡️ YOUR RANK CARD','This shows your <b>rank, XP, win streak and wins</b>. Win matches to earn XP, rank up, and unlock new modes and rewards.'],
  ['#mapBtn','🗺️ CONQUEST MAP','Fight through <b>Gaul, Egypt, Carthage and Rome</b>. Win battles to collect ⭐ stars and unlock the next region. A great place to start!'],
  ['#miniBtn','🎮 MINI GAMES','Special game modes that <b>unlock as your rank grows</b>, each with its own best score.'],
- ['#dailyBtn','⚔️ ARENA TRIALS','<b>Your daily and weekly challenges.</b> Pick ☀️ <b>Daily Strike</b> (same numbers for everyone, build a 🔥 streak) or 🏆 <b>Weekly Challenge</b> (a world contest all week — 3 runs a day, your best run each day counts, climb the 🏆 leaderboard for rewards).'],
+ ['#dailyBtn','⚔️ ARENA TRIALS','<b>Your daily and weekly challenges.</b> Pick ☀️ <b>Daily Strike</b> (same numbers for everyone, build a 🔥 streak) or 🏆 <b>Weekly Challenge</b> (a world contest all week — 1 run a day (extra runs cost gems), your best run each day counts, climb the 🏆 leaderboard for rewards).'],
  ['#chalBtn','⚔️ FRIEND CHALLENGE','Play 5 rounds, then <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
  ['#shopBtn','🛒 THE ARMORY','Spend the 💰 coins you win on <b>gear, powers and daily market deals</b> to get stronger.'],
  ['#questBtn','📜 QUESTS','Complete deeds, then <b>claim coins and XP</b>. A red number means rewards are waiting for you.'],

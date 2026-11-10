@@ -179,6 +179,12 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 **Stone Sums timer**: much slower, 30s on round 1 shrinking to a 16s floor (was 14s down to 5s). Other mini games are unchanged; a world game can set its own `tf:[start,min,roundsPerSecond]`.
 **Back button at the bottom centre** on every screen that has one, matching Settings (home) and Pause (in game). Those screens now have more room at the top. Bump `V` in `sw.js` after every change.
 
+## v57 changes
+- **Fixed: Echo (and Cards/Oracle/Stone Sums) froze after losing all lives.** The revive pop-up shared `id="mgRv"` with the LIVES counter, so the pop-up never appeared and the results screen never opened for anyone holding 3+ gems. The pop-up is now `#mgRvPop`.
+- **Weekly Challenge:** 1 free run a day (was 3). Extra runs (max 2 a day) cost 💎 3 then 💎 5 gems.
+- **No quitting Daily Strike / Weekly runs:** after the first guess, leaving the screen, pressing back, closing or refreshing ends the run with the score so far (back asks for confirmation). Progress is saved each round, so a killed tab is settled on the next launch.
+- **XP slowed:** matches, mini games, Daily Strike, Weekly runs and friend challenges give half the XP (`XPF` constant near `RVC`).
+
 ## v56 changes
 **Gems** 💎: a rare, earn-only second currency (no purchases, so online play stays fair). Stored as `PRO.gems`; one-time payouts are tracked in `PRO.gm`. `gemSync()` is idempotent and runs from `profUI()`: it pays rank-ups (1 to 8 gems per rank), mini game mastery levels (1, or 2 at L5, 4 at L10), each region three-starred (5) and each region boss cleared (2). Existing players get all of that retroactively as a one-time welcome gift. Other sources: Daily Strike streak 3/7/14/30 days (1/2/4/8), achievements (1; Boss Breaker 3, Conqueror 5), daily sweep (1), weekly sweep (3), first Weekly Challenge run each day (1).
 **Gem Vault** (first tile in the Armory): Streak Freeze (3), Phoenix Token (2), 2× Armory Pack (3), 2× Boss Bane (3), Double Boost (4), plus gem-only skins Diamond Guard (30) and Crystal Kiraxo (40). A SHOP row with a 7th field (gem price) is gem-only and lists in the vault.
