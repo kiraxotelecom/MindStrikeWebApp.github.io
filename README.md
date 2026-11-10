@@ -220,3 +220,9 @@ Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim
 
 ## v67 changes
 **Coins a bit more lenient:** `COINX` raised from .6 to .8, so every coin reward is about a third bigger; prices are unchanged. **Gems buy the important things:** the five coin worlds are now gem-priced (Ice Frostlands 30, Neon Grid 40, Buganda 55, Golden Sands 65, Shogun's Realm 80; Astral stays 120 and rank Proconsul), the Imperial (12) and Onyx (8) arenas, and the Scholar's Chest (7) and Warlord's Chest (9). Worlds and items players already own stay owned. How to Play now has **Battle Friends** and **Coins & Gems** sections. Bump `V` in `sw.js` after every change.
+
+## v68 changes
+**First-try gems:** hitting the secret number on your very first guess now pays **1 💎 gem** in every mode (Quick, Campaign, Conquest, Eternal, Last Stand, boss shields, 2-player), through `gems(1,'🎯 First-try hit')` next to the `award()` call in the guess handler. A bullseye near-miss does not count, and the seeded runs (Daily Strike, Weekly Challenge, friend challenges) are left out because their numbers repeat. **Gem price:** buying a gem with coins is now **350 💰** (`GEM_COIN`, was 3000); the limit is still `GEM_COIN_DAY` (3) a day. Help text and Gem Vault text updated. Bump `V` in `sw.js` after every change (now `mindstrike-v68`).
+
+## v69 changes
+**First-try gems skip Easy:** the 1 💎 for a first-try hit is paid on every difficulty except Easy (`G.d!=='Easy'` in the guess handler), because Easy's 1–10 range made it too easy to farm. Help text updated. Bump `V` in `sw.js` after every change (now `mindstrike-v69`).
