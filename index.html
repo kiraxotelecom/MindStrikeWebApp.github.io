@@ -565,6 +565,96 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 :is(#evBody,#wkBody,#dsBody) .evc{border-color:#4cd17a}
 :is(#evBody,#wkBody,#dsBody){flex:none!important}:is(#evBody,#wkBody,#dsBody)>*{flex:none}:is(#evBody,#wkBody,#dsBody)>.card{max-height:none!important;overflow:visible!important}.tiles.one{grid-template-columns:1fr;width:100%}.tiles.one button{padding:20px 10px 18px!important;gap:4px}.tiles.one .ti{font-size:2.3rem}.tiles.one span{font-size:.95rem}.tiles.one small{font-size:.8rem}#evBody .evnote{font-size:.74rem;line-height:1.45;opacity:.8;text-align:center;margin:2px 6px}
 .evtabs{display:flex;gap:6px;margin:6px 0}.evtabs button{flex:1;min-width:0;padding:7px 2px;font-size:.62rem;letter-spacing:.05em}.evtabs button.on{box-shadow:0 0 0 2px var(--gold) inset}
+
+/* v60: victory screen + rank card redesign */
+#app #prof{width:min(92%,360px);padding:12px;text-align:left;font-size:.8rem;line-height:1.3;display:flex;flex-direction:column;gap:10px}
+.pk{display:flex;align-items:center;gap:12px}
+.pkav{flex:none;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--gold);background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--sk) 40%,transparent),rgb(var(--k) / .7) 72%);box-shadow:0 0 18px color-mix(in srgb,var(--sk) 45%,transparent),inset 0 0 0 3px rgb(var(--k) / .6)}
+.pkav .skP{font-size:2.3rem;line-height:1}
+.pkmain{flex:1;min-width:0}
+.pkr{font-size:1.3rem;font-weight:bold;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;line-height:1.1;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.pkr em{font-style:normal;font-size:.75rem;border:1px solid var(--gold);border-radius:4px;padding:1px 6px;letter-spacing:.05em}
+.pkx{margin-top:4px;font-size:.76rem;flex-wrap:wrap;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.pkx b{font-size:.95rem}.pkgo{color:var(--gold);font-weight:bold;letter-spacing:.06em;font-size:.68rem;animation:pkp 1.6s ease-in-out infinite}
+@keyframes pkp{50%{opacity:.45}}
+#prof #xp{height:10px;margin:6px 0 0;border-radius:6px}#prof #xp i{transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.pkt{border-radius:8px;padding:7px 10px;background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 24%,transparent),transparent);border-left:3px solid var(--gold);cursor:pointer}
+.pkt .h{display:flex;justify-content:space-between;gap:8px;font-size:.74rem;letter-spacing:.04em;align-items:center}.pkt .h em{font-style:normal;opacity:.9;white-space:nowrap}.pkt .h em::after{content:' ▾';opacity:.7}
+.pkt .d{display:none;margin-top:5px;font-size:.74rem;opacity:.92;line-height:1.35}.pkt.open .d{display:block}
+.pks{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pks span{display:flex;flex-direction:column;align-items:center;padding:6px 2px 5px;border-radius:9px;background:rgb(var(--k) / .35);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent)}
+.pks i{font-style:normal;font-size:1.05rem;line-height:1.1}.pks b{font-size:1rem;color:var(--gold);line-height:1.2}.pks small{font-size:.6rem;letter-spacing:.1em;opacity:.8;text-transform:uppercase}
+.pkch{text-align:center;font-size:.72rem;letter-spacing:.06em;color:var(--gold);font-weight:bold}
+.pkm{font-size:.72rem;opacity:.9;cursor:pointer;text-align:center;padding-top:8px;border-top:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.pkm .t{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.pkm.open .t{white-space:normal}
+
+#vemb{display:none}
+#s-end[data-k] #vemb{display:grid;place-items:center;width:130px;height:130px;position:relative;font-size:4.2rem;margin-bottom:-6px;flex:none}
+#vemb span{position:relative;z-index:1;filter:drop-shadow(0 4px 10px #000a) drop-shadow(0 0 22px color-mix(in srgb,var(--gold) 70%,transparent));animation:vdrop .9s cubic-bezier(.2,1.5,.4,1) both}
+#s-end[data-k=vic] #vemb::before{content:'';position:absolute;inset:-70px;border-radius:50%;background:repeating-conic-gradient(color-mix(in srgb,var(--gold) 42%,transparent) 0 7deg,transparent 7deg 22deg);-webkit-mask:radial-gradient(circle,#000 14%,transparent 66%);mask:radial-gradient(circle,#000 14%,transparent 66%);animation:vspin 26s linear infinite}
+#s-end[data-k=def] #vemb span{filter:grayscale(.5) drop-shadow(0 4px 10px #000a);animation:vdrop .9s ease both}
+#s-end[data-k] #endt{text-align:center;font-size:2.9rem;letter-spacing:.1em;line-height:1.1;background:linear-gradient(180deg,#fff6cf 0%,var(--gold) 55%,#8a5410 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #0009) drop-shadow(0 0 16px color-mix(in srgb,var(--gold) 50%,transparent));animation:vpop .8s .1s cubic-bezier(.2,1.4,.4,1) both}
+#s-end[data-k=def] #endt{background-image:linear-gradient(180deg,#f1e1de,#c0645a 55%,#55181a);filter:drop-shadow(0 2px 0 #0009)}
+#s-end[data-k=draw] #endt{background-image:linear-gradient(180deg,#fff,#c9ccd2 55%,#6b7078)}
+.vx{width:min(94%,380px);display:flex;flex-direction:column;gap:10px;text-align:center}
+.vx>*{animation:vin .5s backwards}.vx>:nth-child(1){animation-delay:.3s}.vx>:nth-child(2){animation-delay:.4s}.vx>:nth-child(3){animation-delay:.55s}.vx>:nth-child(4){animation-delay:.8s}.vx>:nth-child(5){animation-delay:1s}.vx>:nth-child(6){animation-delay:1.15s}.vx>:nth-child(7){animation-delay:1.3s}.vx>:nth-child(8){animation-delay:1.4s}
+.vq{font-style:italic;font-size:1.02rem;line-height:1.3}
+.vmode{align-self:center;font-size:.66rem;letter-spacing:.14em;padding:3px 12px;border-radius:99px;border:1px solid color-mix(in srgb,var(--gold) 50%,transparent);opacity:.9}
+.vf{margin-top:8px;display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:stretch}
+.vp{position:relative;padding:16px 6px 10px;border-radius:14px;background:rgb(var(--k) / .5);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.vp.w{border:2px solid var(--gold);background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 28%,rgb(var(--k) / .5)),rgb(var(--k) / .55));box-shadow:0 0 24px color-mix(in srgb,var(--gold) 50%,transparent);transform:scale(1.04);z-index:1}
+.vp.l{opacity:.72}
+.vcr{position:absolute;top:-17px;font-style:normal;font-size:1.6rem;filter:drop-shadow(0 2px 3px #000a);animation:vdrop .8s .9s cubic-bezier(.2,1.5,.4,1) backwards}
+.vn{font-size:.7rem;letter-spacing:.08em;font-weight:bold;overflow-wrap:anywhere;min-height:2.2em;display:flex;align-items:center;justify-content:center;line-height:1.1}
+.vp .cnt{font-size:2.4rem;line-height:1.05;color:var(--gold);font-variant-numeric:tabular-nums}
+.vp>small{font-size:.58rem;letter-spacing:.25em;opacity:.75}
+.vm{display:flex;flex-direction:column;gap:2px;margin-top:7px;font-size:.72rem;line-height:1.3}
+.vs{align-self:center;font-weight:bold;font-size:.75rem;opacity:.65}
+.vhs{padding:9px 12px;border-radius:10px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 38%,transparent),transparent);color:var(--gold);font-weight:bold;letter-spacing:.08em;line-height:1.3;border-top:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-bottom:1px solid color-mix(in srgb,var(--gold) 55%,transparent)}
+.vhs small{display:block;font-size:.66rem;font-weight:normal;letter-spacing:.06em;opacity:.85}
+.vbest{font-size:.72rem;opacity:.75}
+.vrw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vt{padding:10px 6px 8px;border-radius:14px;background:linear-gradient(180deg,rgb(var(--k) / .35),rgb(var(--k) / .6));border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);display:flex;flex-direction:column;align-items:center}
+.vt i{font-style:normal;font-size:1.3rem;line-height:1.2}.vt .cnt{font-size:1.75rem;font-weight:bold;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}.vt small{font-size:.6rem;letter-spacing:.25em;opacity:.8}
+.vdt{font-size:.68rem;opacity:.8;line-height:1.4;margin-top:-4px}.vdt summary{cursor:pointer;letter-spacing:.06em;list-style:none}.vdt summary::-webkit-details-marker{display:none}
+.vwg,.vsh,.vcamp{padding:9px 11px;border-radius:12px;background:rgb(var(--k) / .4);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);font-size:.8rem;line-height:1.4}
+.vstars{display:block;font-size:2rem;letter-spacing:.18em;margin:2px 0;animation:vdrop .7s 1s cubic-bezier(.2,1.5,.4,1) backwards}
+.vbt{display:flex;flex-direction:column;align-items:center;gap:10px}
+#s-end[data-k] .vbt{flex-direction:row;flex-wrap:wrap;justify-content:center;width:min(94%,380px);margin-top:4px}
+#app #s-end[data-k] .vbt button{min-width:0;flex:1 1 40%;padding:12px 8px;font-size:.85rem}
+#app #s-end[data-k] .vbt :is(#nextB,#again,#mapB){flex:1 1 100%}
+#s-end[data-k] #nextB{order:1}#s-end[data-k] #again{order:2}#s-end[data-k] #mapB{order:3}#s-end[data-k] #share{order:4}#s-end[data-k] #home{order:5}
+#app #s-end[data-k] .vbt button.pri{font-size:1.1rem;padding:15px 10px;letter-spacing:.14em;background:linear-gradient(var(--gold),color-mix(in srgb,var(--gold) 55%,#000));color:#1a0d08;border-color:#fff3c4;box-shadow:0 3px 0 #000a,0 0 20px color-mix(in srgb,var(--gold) 55%,transparent)}
+@keyframes vpop{from{opacity:0;transform:scale(2.2);filter:blur(10px)}}
+@keyframes vin{from{opacity:0;transform:translateY(16px)}}
+@keyframes vspin{to{transform:rotate(360deg)}}
+@keyframes vdrop{0%{opacity:0;transform:translateY(-50px) scale(.4)}}
+@media(prefers-reduced-motion:reduce){#vemb::before,#vemb span,#endt,.vx>*,.vcr,.vstars,.pkgo{animation:none!important}}
+
+/* v61: Roman colour + texture (dark Roman theme only) */
+html:not(.light):not([class*="wd-"]){--rm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M11 1L21 11 11 21 1 11Z' fill='none' stroke='%23f0c565' stroke-opacity='.16' stroke-width='1'/%3E%3Ccircle cx='11' cy='11' r='1.6' fill='%23f0c565' fill-opacity='.2'/%3E%3C/svg%3E") 0 0/22px 22px;--rmb:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='m' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .05' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 .92  0 0 0 0 .75  0 0 9 -4.6'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23m)' opacity='.2'/%3E%3C/svg%3E") 0 0/160px 160px;--rcard:linear-gradient(160deg,#5a1a30f5,#220c1ef5 75%);--rcard2:linear-gradient(160deg,#5a1a30f5,#220c1ef5 75%)}
+html:not(.light):not([class*="wd-"]) #app :is(.card,.bm-battle,button.mgc,.bm-btn:not(.sel)){background:var(--rt),var(--rmb),var(--rm),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 5.5h2V.8h8v3.6H5.2V2.6H7.4M10 5.5h2' fill='none' stroke='%23e6b94a' stroke-opacity='.75' stroke-width='1'/%3E%3C/svg%3E") 50% calc(100% - 3px)/24px 6px repeat-x,var(--rcard);outline-color:#e6b94a88;box-shadow:inset 0 1px 0 #ffffff1f,inset 0 0 24px #0008}
+html:not(.light):not([class*="wd-"]) #app #prof{background:var(--rt),var(--rmb),var(--rm),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 5.5h2V.8h8v3.6H5.2V2.6H7.4M10 5.5h2' fill='none' stroke='%23e6b94a' stroke-opacity='.75' stroke-width='1'/%3E%3C/svg%3E") 50% 0/24px 6px repeat-x,linear-gradient(160deg,#7a2036,#2e0f26 70%);border-radius:4px;outline:1px solid #e6b94a99;outline-offset:-4px;box-shadow:0 6px 18px #000a,inset 0 1px 0 #ffffff2a,inset 0 0 30px #0007;padding-top:16px}
+html:not(.light):not([class*="wd-"]) #app .tiles button{box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,inset 0 -22px 30px #0005;position:relative}
+html:not(.light):not([class*="wd-"]) #app .tiles button:before{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:var(--rm),linear-gradient(150deg,#ffe9a833 0%,transparent 42%,#0004 100%);z-index:0}
+html:not(.light):not([class*="wd-"]) #app #mapBtn{--b1:#8a2420;--b2:#380a0b}
+html:not(.light):not([class*="wd-"]) #app #miniBtn{--b1:#2f7440;--b2:#0e301a}
+html:not(.light):not([class*="wd-"]) #app #dailyBtn{--b1:#b2661a;--b2:#4a2208}
+html:not(.light):not([class*="wd-"]) #app #chalBtn{--b1:#6a2f8a;--b2:#260f3c}
+html:not(.light):not([class*="wd-"]) #app #shopBtn{--b1:#216a8c;--b2:#0b2a3e}
+html:not(.light):not([class*="wd-"]) #app #questBtn{--b1:#9a2f55;--b2:#3a0f22}
+html:not(.light):not([class*="wd-"]) #app .sub2 button{--b1:#7a5520;--b2:#2e1d09}
+html:not(.light):not([class*="wd-"]) #app :is(.vp,.vt,.vwg,.vsh,.vcamp){background:var(--rt),var(--rm),linear-gradient(165deg,#5a1c34e6,#240d20f0)}
+html:not(.light):not([class*="wd-"]) #app .vp.w{background:var(--rt),var(--rm),linear-gradient(180deg,#c48a24,#6b3d0a 85%);box-shadow:0 0 26px #f0b43a88,inset 0 1px 0 #fff5,inset 0 0 20px #0005}
+html:not(.light):not([class*="wd-"]) #app .vp.w :is(.vn,small,.vm){color:#fff6cf;text-shadow:0 1px 2px #000a;opacity:1}
+html:not(.light):not([class*="wd-"]) #app .vp.w .cnt{color:#fff6cf;text-shadow:0 2px 0 #0008}
+html:not(.light):not([class*="wd-"]) #app .vt:first-child{background:var(--rt),var(--rm),linear-gradient(180deg,#2c4a9a,#121f48)}
+html:not(.light):not([class*="wd-"]) #app .vt:last-child{background:var(--rt),var(--rm),linear-gradient(180deg,#b27a16,#4a2a06)}
+html:not(.light):not([class*="wd-"]) #app .vt .cnt{color:#fff3c4}
+html:not(.light):not([class*="wd-"]) #app #s-end[data-k=vic] .vbt button:not(.pri){background:var(--rt),var(--rm),linear-gradient(#7a2036,#2e0f26)}
+html:not(.light):not([class*="wd-"]) #app :is(.pkt){background:linear-gradient(90deg,#e6b94a44,transparent)}
+html:not(.light):not([class*="wd-"]) #app .pks span{background:var(--rt),var(--rm),linear-gradient(180deg,#00000040,#0000006a)}
+html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#ff8a3d99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(2){border-color:#e6606099}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(3){border-color:#e6b94a99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(4){border-color:#5ac8f099}
 </style></head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -766,8 +856,8 @@ html.wd-buganda #oPad.opad{padding-top:20px;padding-bottom:20px}html.wd-ice #oPa
 </section>
 
 <section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
- <div class="big" id="endt"></div><div id="ends" style="text-align:center;line-height:1.5"></div>
- <button id="share">📤 SHARE RESULT</button><button id="nextB" style="display:none">NEXT BATTLE ▶︎</button><button id="again">FIGHT AGAIN</button><button id="mapB" style="display:none">🗺️ CONQUEST MAP</button><button id="home">MAIN MENU</button>
+ <div id="vemb"></div><div class="big" id="endt"></div><div id="ends" style="text-align:center;line-height:1.5"></div>
+ <div class="vbt"><button id="share">📤 SHARE RESULT</button><button id="nextB" style="display:none">NEXT BATTLE ▶︎</button><button id="again">FIGHT AGAIN</button><button id="mapB" style="display:none">🗺️ CONQUEST MAP</button><button id="home">MAIN MENU</button></div>
 </section>
 
 <div class="pop" id="shopPop"><div class="card shBox"><h2 id="shopPopT"></h2><div id="shopPopG"></div><div id="shopPopB"></div><button id="shopPopX" style="width:100%">CLOSE</button></div></div>
@@ -1185,7 +1275,7 @@ function campEnd(win){const c=G.cf;let h=`<br><b>🗺️ ${c.rn} · ${c.nn}</b>`
  if(c.boss&&first){const b=cx(100+50*c.ri);coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
  const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
  if(c.boss&&first){if(c.fin){unlock('conq');note+='<br>👑 <b>Kiraxo falls — Rome is yours!</b>'}else{const nr=c.ri+1;note+=rOpen(nr)?`<br>🔓 <b>${CAMP[nr].n} unlocked!</b>`:`<br>🔒 ${CAMP[nr].n} needs ⭐ ${CAMP[nr].need} in total (you have ${cTotal()})`}}
- return{html:h+`<br>${'⭐'.repeat(st)}${'☆'.repeat(3-st)}${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
+ return{html:h+`<br><span class="vstars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
 function campBtns(win){const c=G.cf;let nx=null;
  if(c&&win){const R=CAMP[c.ri];if(c.ni+1<R.nodes.length)nx=[c.ri,c.ni+1];else if(c.ri+1<CAMP.length&&rOpen(c.ri+1))nx=[c.ri+1,0]}
  camp.next=nx;$('#nextB').style.display=nx?'':'none';$('#mapB').style.display=c?'':'none';$('#again').textContent=c&&win?'🔁 REPLAY FOR STARS':'FIGHT AGAIN'}
@@ -1464,9 +1554,11 @@ function gemSync(){const g=PRO.gm||(PRO.gm={});g.rg=g.rg||{};g.bd=g.bd||{};g.ml=
  Object.keys(PRO.mg||{}).forEach(k=>{const l=mlv(PRO.mg[k].t),q=g.ml[k]||0;if(l>q){for(let i=q+1;i<=l;i++)n+=i>=10?4:i>=5?2:1;g.ml[k]=l;w.push('mastery')}});
  const first=g.v===undefined;g.v=56;
  if(n>0){if(first&&(PRO.xp>0||PRO.m>0))setTimeout(()=>gems(n,'🎁 Welcome gift for your progress so far'),1400);else gems(n,w.join(' · '))}else LS.set('ms_pro',PRO)}
+$('#prof').addEventListener('click',e=>{const t=e.target.closest('.pkt,.pkm');if(t)t.classList.toggle('open')});
 function profUI(){try{gemSync()}catch(e){}const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
- $('#prof').innerHTML=`<span class="skP" style="--sk:${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a'}">${PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️'}</span> <b>${n[0]}${pr()?' '+rom(pr()):''}</b> · ${PRO.xp}${nx?' / '+nx[1]:''} XP<div id="xp"><i style="width:${p}%"></i></div>${trLine(i)}<div class="st">${ds?`🔥 ${ds}-day streak · `:''}🏅 ${ac}/${Object.keys(ACH).length} · ⚔️ ${PRO.w} wins · 💎 ${PRO.gems||0}${evBadgeTxt()}</div><div class="mt">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</div>`;
+ const skE=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️',skC=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a',tN=i+1,tp=!(tN<10||tN>12||trOk(tN)),tI=tp?TRI(tN):null,full=PRO.xp>=nx[1],ch=evBadgeTxt().replace(/^ · /,''),f=v=>Number(v).toLocaleString('en-US');
+ $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}"><span class="skP">${skE}</span></div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>wins</small></span><span><i>🏅</i><b>${ac}/${Object.keys(ACH).length}</b><small>medals</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>gems</small></span></div>${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
  try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ daily done':'daily ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
@@ -1495,7 +1587,7 @@ function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;runS
 function dDone(){if(D.fin)return;D.fin=1;PRO.run=null;if(D.ev)return evDone();if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const gs=GSTK[PRO.ds]||0;if(gs)gems(gs,'🔥 '+PRO.ds+'-day streak');const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})${gs?` · 💎 +${gs}`:''}`};PRO.xp+=xpg(20+D.score/10);PRO.gold+=dg;lbPut(D.score);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd()}
 function fzLbl(){return `🧊 STREAK FREEZE<br><small style="font-weight:normal;letter-spacing:.04em">owned ${PRO.fz||0}/3 · 💰 ${cx(300)}</small>`}
 function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
- $('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
+ $('#s-end').dataset.k='';$('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 $('#dailyBtn').onclick=()=>{sfx('click');evHubOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
 async function lbPut(sc){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:evSafe(S.n1),s:sc})}catch(e){}}
@@ -1570,7 +1662,7 @@ function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb)d.b
  qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${evToday()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
 function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/500 · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
- $('#endt').textContent=ev.e+' '+ev.n;
+ $('#s-end').dataset.k='';$('#endt').textContent=ev.e+' '+ev.n;
  $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/500</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small><div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">💎 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">🏆 WEEKLY CHALLENGE</button></div>`;
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 function evHubOpen(){go('s-events')}
@@ -1732,12 +1824,21 @@ $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key===
 const lbGet=()=>LS.get('ms_lb',[]);
 function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','IV','V'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
 function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
- const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');if(win&&PRO.ps&&PSK[PRO.ps])setTimeout(()=>burst([PSK[PRO.ps][0],'✨','🪙'],32),300);hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare');toast(`🏆 <b>NEW HIGH SCORE!</b><br><small>${hs.sc} · ${tl}</small>`)},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
+ const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');if(win&&PRO.ps&&PSK[PRO.ps])setTimeout(()=>burst([PSK[PRO.ps][0],'✨','🪙'],32),300);hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss)qEv('boss');if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare')},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
- const st=i=>`${nm(i)}: ${G.score[i]} pts · ${G.st[i].ok} correct · best combo ${G.st[i].best} · ${G.st[i].crit} criticals`;
- $('#ends').innerHTML=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' falls. The region is yours.':'Imperator Kiraxo bows before the legion.'):'The general yields the arena.'):(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' holds the region.':'Imperator Kiraxo claims the arena.'):nm(1)+' claims the arena.')}<br>${st(0)}<br>${st(1)}${G.boss&&G.bk?`<br>🛡️ Shields broken: ${nm(0)} ${G.bk[0]} · ${nm(1)} ${G.bk[1]}${G.bk[0]===G.bk[1]?`<br>⚖️ Tied on shields, so damage decided it: ${G.dmg[0]} vs ${G.dmg[1]}`:''}`:''}<br>${G.D.name} · ${G.M.label}${rwHtml(xg)}${G.wtxt||''}${hsHtml()}${cr?cr.html:''}`;
- render0();campBtns(win);stack.push('s-end');show('s-end')}
+ const kind=draw?'draw':win?'vic':'def',wi=draw?-1:w;$('#s-end').dataset.k=kind;$('#vemb').innerHTML='<span>'+(draw?'⚖️':win?(G.boss?'👑':'🏆'):'💀')+'</span>';
+ const tag=`${draw?'The arena is split.':G.mode==='PVP'?'Glory to the victor.':win?(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' falls. The region is yours.':'Imperator Kiraxo bows before the legion.'):'The general yields the arena.'):(G.boss?(G.cf&&G.cf.bs&&!G.cf.fin?bossShort()+' holds the region.':'Imperator Kiraxo claims the arena.'):nm(1)+' claims the arena.')}`;
+ const card=i=>`<div class="vp${wi===i?' w':''}${wi>=0&&wi!==i?' l':''}">${wi===i?'<i class="vcr">👑</i>':''}<span class="vn">${nm(i)}</span><b class="cnt" data-to="${G.score[i]}">0</b><small>POINTS</small><div class="vm"><span>✅ ${G.st[i].ok} correct</span><span>🔥 combo ${G.st[i].best}</span><span>⚡ ${G.st[i].crit} critical${G.st[i].crit===1?'':'s'}</span></div></div>`;
+ const hsN=G.hs&&!G.cf&&G.hs.isNew,hsO=G.hs&&!G.cf&&!G.hs.isNew&&G.hs.old;
+ const hsB=hsN?`<div class="vhs">🏆 NEW HIGH SCORE · ${G.hs.sc}${G.hs.old?`<small>previous best ${G.hs.old}</small>`:''}</div>`:hsO?`<div class="vbest">Best here: ${G.hs.old}</div>`:'';
+ const shB=G.boss&&G.bk?`<div class="vsh">🛡️ Shields broken · ${nm(0)} <b>${G.bk[0]}</b> · ${nm(1)} <b>${G.bk[1]}</b>${G.bk[0]===G.bk[1]?`<br><small>⚖️ Tied on shields, so damage decided it: ${G.dmg[0]} vs ${G.dmg[1]}</small>`:''}</div>`:'';
+ const rwB=xg?`<div class="vrw"><div class="vt"><i>✨</i><b class="cnt" data-pre="+" data-to="${xg}">+0</b><small>XP</small></div><div class="vt"><i>💰</i><b class="cnt" data-pre="+" data-to="${G.gg}">+0</b><small>COINS</small></div></div><details class="vdt"><summary>How rewards were counted ▾</summary>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${hsN?' · +25 high-score bonus':''}${G.tome||G.mag?' · 📜🧲 boosts applied':''}</details>`:'';
+ const wgB=G.wtxt?`<div class="vwg">${G.wtxt.replace(/^<br>/,'')}</div>`:'';
+ const cpB=cr?`<div class="vcamp">${cr.html.replace(/^<br>/,'')}</div>`:'';
+ $('#ends').innerHTML=`<div class="vx"><div class="vq">${tag}</div><div class="vmode">${G.D.name} · ${G.M.label}</div><div class="vf">${card(0)}<div class="vs">VS</div>${card(1)}</div>${hsB}${cpB}${shB}${rwB}${wgB}</div>`;
+ render0();campBtns(win);{const nb=$('#nextB');$$('#s-end .vbt button').forEach(b=>b.classList.remove('pri'));(nb.style.display==='none'?$('#again'):nb).classList.add('pri')}stack.push('s-end');show('s-end');vCount();if(win&&!RM){setTimeout(()=>burst(['🎉','✨','🪙','⭐'],26),900);setTimeout(()=>burst(['✨','🏆','🎊'],20),1700)}}
+function vCount(){$$('#ends .cnt').forEach(e=>{const to=+e.dataset.to,pre=e.dataset.pre||'';if(RM||to<2){e.textContent=pre+to;return}const t0=performance.now(),d=Math.min(1400,500+to*1.2);e.textContent=pre+'0';const f=n=>{const q=Math.min(1,Math.max(0,(n-t0-350)/d));e.textContent=pre+Math.round(to*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 // ---- v14: gear, daily market, relics, wagers, generals, friend challenges ----
 const gl=k=>(PRO.gear&&PRO.gear[k])||0;
 const ptxt=n=>Math.round(n/5)*5;
@@ -1867,7 +1968,7 @@ function chalDone(){const c=D.ch,s=D.score,old=PRO.ch[c.code],first=old==null,be
  if(beat)unlock('rival');LS.set('ms_pro',PRO);
  const name=S.n1||'LEGIONARY',link=chalLink(c.code,s,name),vs=c.fs!=null?`<br>${beat?'🏆 You beat':s===c.fs?'🤝 You tied':'💀 You fell to'} <b>${c.from}</b> (${c.fs})`:'';
  shareText=`MindStrike ⚔️ ${name} scored ${s}/500 on challenge ${c.code.toUpperCase()}${c.fs!=null?` (${beat?'beat':s===c.fs?'tied':'lost to'} ${c.from}’s ${c.fs})`:''} — can you beat it?\n${link}`;
- $('#endt').textContent='FRIEND CHALLENGE';$('#ends').innerHTML=D.lines.join('<br>')+`<br><b>${s}/500</b>${vs}${rw}<br><small>Tap SHARE — your friend plays the same numbers.</small>`;
+ $('#s-end').dataset.k='';$('#endt').textContent='FRIEND CHALLENGE';$('#ends').innerHTML=D.lines.join('<br>')+`<br><b>${s}/500</b>${vs}${rw}<br><small>Tap SHARE — your friend plays the same numbers.</small>`;
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';burst(beat?['🏆','🎉','✨','🪙']:['⚔️','✨'],30);stack.push('s-end');show('s-end')}
 function chalHash(){if(!/^#ch=/i.test(location.hash))return;const c=chalParse(location.hash);history.replaceState(null,'',location.pathname+location.search);if(c)setTimeout(()=>chalMenu(c),1300)}
 chalHash();addEventListener('hashchange',chalHash);
