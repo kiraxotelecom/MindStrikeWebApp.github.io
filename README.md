@@ -207,3 +207,7 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 
 ## v63 changes
 Astral Dominion gets two more exclusive mini games, **Gravity Well** (`gwInit`, higher/lower with a planet pulled toward the hidden number, 5 wells) and **Constellation Connect** (`ccInit`, tap numbered stars smallest to largest before they fade), plus four gem-priced Astral player skins (Comet Rider, Nova Guard, Nebula Warden, Eclipse Knight) that only Astral Dominion owners can buy. Bump `V` in `sw.js` after every change.
+
+
+## v64 changes
+Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim stars and aurora, darker backdrops, and the warrior-name card styled to match. Bump `V` in `sw.js` after every change.
