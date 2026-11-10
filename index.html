@@ -256,7 +256,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #app .ib{width:42px;height:42px;color:var(--ibc,var(--gold));background:radial-gradient(circle at 35% 30%,var(--c0,#7a2218),var(--b2,#2b0a08) 75%);border:2px solid var(--gold);box-shadow:0 0 0 2px #000,0 3px 10px #000b,inset 0 0 8px hsla(calc(38.5deg + var(--hs)),calc(78.2% * var(--ss)),55.1%,0.267)}
 #app .ib .ic{width:24px;height:24px;stroke-width:2.2}
 #app .ib:active{filter:brightness(1.3)}
-#s-home{gap:9px}#app #setBtn{width:50px;height:50px;flex:none;margin-top:auto}#app #setBtn .ic{width:28px;height:28px}#s-home img.logo{width:min(76%,310px);margin:0}
+#s-home{gap:9px}#s-home .sub2{margin-top:auto}#s-home img.logo{width:min(76%,310px);margin:0}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(92%,370px)}
 #app .tiles button{min-width:0;width:100%;padding:11px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.76rem;letter-spacing:.1em;border-radius:12px;position:relative}
 .tiles .ti{font-style:normal;font-size:1.65rem;line-height:1.1}
@@ -267,7 +267,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #prof{font-size:.78rem;line-height:1.4;padding:7px 10px}#prof .st{opacity:.9}#prof .mt{font-size:.7rem;opacity:.8;margin-top:3px}
 
 /* v20 shared skin */
-#s-online,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
+#s-online,#s-friends,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
 .bm-note{display:block;text-align:center;color:hsl(calc(35.7deg + var(--hs)),calc(22.3% * var(--ss)),calc(63.1% + var(--lt) * -26.2%));font-size:11px;line-height:1.5}.bm-note b{color:hsl(calc(39.8deg + var(--hs)),calc(79.9% * var(--ss)),calc(70.8% + var(--lt) * -41.6%))}
 .bm-panel{width:min(92%,380px);display:flex;flex-direction:column;gap:9px;align-items:stretch;text-align:center;padding:20px 16px 16px;border:1px solid hsl(calc(31.4deg + var(--hs)),calc(43.3% * var(--ss)),calc(38.0% + var(--lt) * 24.0%));border-radius:6px;background:linear-gradient(160deg,hsla(calc(23.1deg + var(--hs)),calc(36.1% * var(--ss)),calc(14.1% + var(--lt) * 71.8%),0.980),hsla(calc(22.5deg + var(--hs)),calc(33.3% * var(--ss)),calc(4.7% + var(--lt) * 90.6%),0.990) 75%);box-shadow:inset 0 1px 0 #fff1,0 14px 40px #000c}
 .bm-panel .bm-hero{border:0;padding:0 0 8px}
@@ -546,6 +546,7 @@ html:not([class*="wd-"]) #app .bm-hero{border-bottom:0;padding-bottom:20px;backg
 #oPw{gap:5px}#oPw button{padding:3px 2px!important;font-size:9px!important;max-width:96px}#oPw button span{font-size:.95rem!important}
 #s-online #oMenu .bm-battle{padding-top:9px;padding-bottom:9px;min-height:0}
 #s-online #oMenu .bm-hero{padding-bottom:6px}
+#s-friends .bm-battle{padding-top:9px;padding-bottom:9px;min-height:0}#s-friends .bm-hero{padding-bottom:6px}
 .ochips{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}.ochips .bm-btn{font-size:.8rem;padding:10px 6px;margin:0}
 .opc{width:min(86%,330px);max-height:72%;overflow:auto;display:flex;flex-direction:column;gap:10px;text-align:center}.opc h2{margin:0;font-size:1.05rem}
 .ocol{display:flex;flex-direction:column;gap:8px}.opc .famr{padding:7px 10px}
@@ -695,9 +696,8 @@ html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#f
  <div id="prof"></div>
  <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
- <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="onlineBtn">🌐 ONLINE</button></div>
+ <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="setRow" data-go="s-set">⚙️ SETTINGS</button></div>
  <div id="inst" hidden></div>
- <button class="ib" id="setBtn" data-go="s-set" aria-label="Settings" data-ic="gear"></button>
 </section>
 
 <section class="scr" id="s-mode" style="--bg:url(img/menu_bg.webp)">
@@ -823,6 +823,20 @@ html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#f
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <header class="bm-hero"><div class="bm-kicker">Sharpen your mind</div><h1>Mini Games</h1><div class="bm-sub">Every rank-up unlocks a new game, each with its own best score and mastery.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div id="miniList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
+</section>
+
+<section class="scr" id="s-friends" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <div class="op" style="width:min(92%,380px)">
+  <header class="bm-hero"><div class="bm-kicker">Rivals, near and far</div><h1>Battle Friends</h1><div class="bm-sub">Duel live, or send a challenge to beat.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+  <label class="bm-field"><span>⚔️ Your name</span><input type="text" id="fName" maxlength="12" placeholder="YOUR NAME" autocomplete="off"></label>
+  <button class="bm-battle bm-mode" id="fLive"><div class="bm-bi">🌐</div><div><div class="bm-bn">Live Duel</div><div class="bm-bt">Clash Online · any network</div></div><div class="bm-bd"><b>Play now</b><br>Make a room, share the code</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
+  <button class="bm-battle bm-mode" id="fChal"><div class="bm-bi">🤝</div><div><div class="bm-bn">Send a Challenge</div><div class="bm-bt">Same 5 rounds · play any time</div></div><div class="bm-bd"><b>Beat my score</b><br>Share a link, works offline</div><span class="bm-play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg></span></button>
+  <div class="bm-head"><h2>Join a friend</h2></div>
+  <label class="bm-field"><span>Paste a link or code</span><input type="text" id="fIn" placeholder="LINK OR CODE" autocomplete="off" autocapitalize="off"></label>
+  <div class="orow"><button class="bm-btn" id="fJoinR">🌐 Live room</button><button class="bm-btn" id="fJoinC">🤝 Challenge</button></div>
+  <small class="bm-note">A full link opens the right place by itself. For a bare code, pick which kind it is.</small>
+ </div>
 </section>
 
 <section class="scr" id="s-online" style="--bg:url(img/menu_bg.webp)">
@@ -2039,13 +2053,21 @@ function chalParse(t){t=String(t||'').trim();let m=/ch=([a-z0-9]{3,12})(?:\.(\d{
  return{code:m[1].toLowerCase(),fs:m[2]!=null?Math.min(500,+m[2]):null,from:n||(m[2]!=null?'A FRIEND':null)}}
 const chalLink=(c,s,n)=>`${location.href.split('#')[0]}#ch=${c}.${s}.${encodeURIComponent((n||'FRIEND').replace(/[^A-Z0-9 ]/gi,'').slice(0,12)||'FRIEND')}`;
 function chalStart(c){$('#chal').classList.remove('on');dStart('chal'+c.code,c)}
-function chalMenu(c){const on=$('#chal');$('#chalJ').style.display=c?'none':'';
+function chalMenu(c,nj){const on=$('#chal');$('#chalJ').style.display=(c||nj)?'none':'';
  if(c){const done=PRO.ch[c.code];$('#chalB').innerHTML=c.fs!=null?`<b>${c.from}</b> scored <b>${c.fs}/500</b>.<br>Same 5 rounds, same secret numbers — can you beat it?${done!=null?`<br><small>Your best on this one: ${done}</small>`:''}`:`Challenge <b>${c.code.toUpperCase()}</b> — play the 5 seeded rounds.`;$('#chalGo').textContent='⚔️ ACCEPT';$('#chalGo').onclick=()=>chalStart(c)}
  else{$('#chalB').innerHTML='Play 5 seeded rounds, then send your link. Your friend plays the <b>exact same numbers</b> and sees your score.';$('#chalGo').textContent='🎲 NEW CHALLENGE';$('#chalGo').onclick=()=>chalStart({code:chalCode(),fs:null,from:null})}
  on.classList.add('on')}
 $('#chalX').onclick=()=>$('#chal').classList.remove('on');
 $('#chalJoin').onclick=()=>{const c=chalParse($('#chalIn').value);if(!c){toast('Paste a challenge link or code');tone(150,.2,'square');return}$('#chalIn').value='';chalMenu(c)};
-$('#chalBtn').innerHTML='<i class="ti">🤝</i><span>CHALLENGE</span><small>duel a friend</small>';$('#chalBtn').onclick=()=>{sfx('click');chalMenu()};
+$('#chalBtn').innerHTML='<i class="ti">🤝</i><span>BATTLE FRIENDS</span><small>live or by link</small>';$('#chalBtn').onclick=()=>{sfx('click');$('#fName').value=S.n1||'';$('#fIn').value='';go('s-friends')};
+$('#fName').oninput=()=>{S.n1=$('#fName').value.trim().toUpperCase().slice(0,12);save()};
+$('#fLive').onclick=()=>{sfx('click');openOnline()};
+$('#fChal').onclick=()=>{sfx('click');chalMenu(null,1)};
+function fJoin(kind){const v=$('#fIn').value.trim();if(!v){toast('Paste a link or a code');tone(150,.2,'square');return}
+ const rm=/room=([A-Za-z0-9]{4,6})/i.exec(v),isCh=/ch=/i.test(v);
+ if(rm||(!isCh&&kind==='r')){const c=rm?rm[1]:v.replace(/[^A-Za-z0-9]/g,'').slice(0,6);$('#fIn').value='';sfx('click');openOnline();$('#oCode').value=c.toUpperCase();return}
+ const c=chalParse(v);if(!c){toast('That does not look like a challenge');tone(150,.2,'square');return}$('#fIn').value='';chalMenu(c)}
+$('#fJoinR').onclick=()=>fJoin('r');$('#fJoinC').onclick=()=>fJoin('c');
 function chalDone(){const c=D.ch,s=D.score,old=PRO.ch[c.code],first=old==null,beat=c.fs!=null&&s>c.fs;let rw='';PRO.ch[c.code]=Math.max(old||0,s);const ks=Object.keys(PRO.ch);if(ks.length>40)delete PRO.ch[ks[0]];
  if(c.fs!=null&&first){if(PRO.cd.d!==today())PRO.cd={d:today(),n:0};if(PRO.cd.n<3){PRO.cd.n++;const g=cx(10+(beat?25:0));PRO.gold+=g;PRO.xp+=xpg(10);rw=`<br><b>+${g} 💰 · +${xpg(10)} XP</b>`}else rw='<br><small>Challenge rewards maxed for today (3 links)</small>'}
  if(beat)unlock('rival');LS.set('ms_pro',PRO);
@@ -2150,12 +2172,12 @@ const ST=[
  ['#mapBtn','🗺️ CONQUEST MAP','Fight through <b>Gaul, Egypt, Carthage and Rome</b>. Win battles to collect ⭐ stars and unlock the next region. A great place to start!'],
  ['#miniBtn','🎮 MINI GAMES','Special game modes that <b>unlock as your rank grows</b>, each with its own best score.'],
  ['#dailyBtn','⚔️ ARENA TRIALS','<b>Your daily and weekly challenges.</b> Pick ☀️ <b>Daily Strike</b> (same numbers for everyone, build a 🔥 streak) or 🏆 <b>Weekly Challenge</b> (a world contest all week — 1 run a day (extra runs cost gems), your best run each day counts, climb the 🏆 leaderboard for rewards).'],
- ['#chalBtn','⚔️ FRIEND CHALLENGE','Play 5 rounds, then <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
+ ['#chalBtn','🤝 BATTLE FRIENDS','<b>Duel a friend live</b> from any network, or play 5 rounds and <b>send your link</b>. Your friend plays the exact same numbers and tries to beat your score.'],
  ['#shopBtn','🛒 THE ARMORY','Spend the 💰 coins you win on <b>gear, powers and daily market deals</b> to get stronger.'],
  ['#questBtn','📜 QUESTS','Complete deeds, then <b>claim coins and XP</b>. A red number means rewards are waiting for you.'],
  ['#play','🏛️ ENTER THE ARENA','Ready to fight? Tap here to play <b>against the Imperator (1 player)</b> or <b>2 players on one phone</b>.'],
- ['.sub2','🏆 HALL · ❓ HELP · 🌐 ONLINE','See the <b>best scores</b>, read the <b>full rules</b>, or <b>play online</b> against a friend anywhere.'],
- ['#setBtn','⚙️ SETTINGS','Sound, timer and <b>daily reminders</b> live here. You can <b>replay this tutorial anytime</b> from Settings. Good luck, legionary! 🏆']];
+ ['.sub2','🏆 HALL · ❓ HELP · ⚙️ SETTINGS','See the <b>best scores</b>, read the <b>full rules</b>, or open <b>Settings</b>.'],
+ ['#setRow','⚙️ SETTINGS','Sound, timer and <b>daily reminders</b> live here. You can <b>replay this tutorial anytime</b> from Settings. Good luck, legionary! 🏆']];
 let i=0;const $t=id=>el.querySelector(id);
 function pos(){
  const st=ST[i],t=st[0]?$(t0()):null;
@@ -2289,7 +2311,7 @@ function famUI(){const rows=Object.values(famGet()).sort((x,y)=>(y.aw+y.bw)-(x.a
 function optUI(){$('#oLad').textContent='📈 Rising ranges: '+(OPT.lad?'ON':'OFF');$('#oPwT').textContent='⚡ Powers: '+(OPT.pw?'ON':'OFF')}
 async function fb(){if(F)return F;const[A,Au,D]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-auth.js'),import(SDK+'firebase-database.js')]);
  const app=A.initializeApp(CFG),auth=Au.getAuth(app),cr=await Au.signInAnonymously(auth);uid=cr.user.uid;F={D,db:D.getDatabase(app)};return F}
-function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||'';famUI();optUI()}
+function openOnline(){go('s-online');showP('oMenu');err('');$('#oName').value=S.n1||'';famUI();optUI()}window.openOnline=openOnline;
 async function create(mode){const name=rname();if(!name)return err('Enter your name first.');err('Connecting…');sfx('click');
  try{await fb()}catch(e){return err(why(e))}
  for(let i=0;i<6;i++){const c=Array.from({length:5},()=>CH[Math.floor(Math.random()*CH.length)]).join('');
@@ -2470,14 +2492,14 @@ async function leave(msg){if(left)return;left=true;ended=true;clearTimeout(timer
  away=false;net=true;fbOn=true;role='';code='';R=null;netUi();showP('oMenu');home();if(msg)setTimeout(()=>toast(msg),400)}
 async function share(){const url=location.origin+location.pathname+'#room='+code,text='Join my MindStrike room! Code: '+code;
  try{if(navigator.share)await navigator.share({title:'MindStrike: Number Wars',text,url});else{await navigator.clipboard.writeText(text+' '+url);toast('📋 <b>Invite copied</b>')}}catch(e){}}
-$('#onlineBtn').onclick=()=>{sfx('click');openOnline()};
+
 $('#oCreateT').onclick=()=>create('turn');$('#oCreateR').onclick=()=>create('race');$('#oCreateS').onclick=()=>create('swap');$('#oJoin').onclick=()=>join($('#oCode').value);
 ['oFamPop','oOptPop'].forEach(id=>{const q=$('#'+id);q.addEventListener('click',e=>{if(e.target===q||e.target.dataset.close)q.classList.remove('on')})});$('#oFamB').onclick=()=>{$('#oFamPop').classList.add('on');sfx('click')};$('#oOptB').onclick=()=>{optUI();$('#oOptPop').classList.add('on');sfx('click')};$('#oLad').onclick=()=>{OPT.lad=OPT.lad?0:1;LS.set('ms_oopt',OPT);optUI();sfx('click')};$('#oPwT').onclick=()=>{OPT.pw=OPT.pw?0:1;LS.set('ms_oopt',OPT);optUI();sfx('click')};
 $('#oStart').onclick=()=>{sfx('click');startRound(1)};$('#oShare').onclick=share;$('#oStrike').onclick=strike;if(typeof keypad==='function')keypad($('#okp'),$('#oNum'),()=>strike(),'oKpGo');
 $('#oNum').addEventListener('keydown',e=>{if(e.key==='Enter')strike()});
 $('#oRe').onclick=()=>{sfx('click');upd({scores:{h:0,g:0},relics:null}).then(()=>startRound(1))};
 $('#oLeave').onclick=()=>{if(confirm('Leave the match?'))leave()};$('#oLeave2').onclick=()=>leave();
-$('#oBack').onclick=()=>{if(code)leave();else home()};
+$('#oBack').onclick=()=>{if(code)leave();else if(stack.includes('s-friends'))back();else home()};
 addEventListener('offline',applyNet);addEventListener('online',applyNet);document.addEventListener('visibilitychange',()=>{if(code&&!left)wake()});
 const hj=()=>{const m=/^#room=([A-Za-z0-9]{4,6})/.exec(location.hash);if(!m)return;const c=m[1].toUpperCase();history.replaceState(null,'',location.pathname+location.search);setTimeout(()=>{openOnline();$('#oCode').value=c},1300)};
 hj();addEventListener('hashchange',hj);
