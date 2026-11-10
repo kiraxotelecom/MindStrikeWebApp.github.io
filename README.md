@@ -190,3 +190,12 @@ Home screen reordered: logo → rank/XP card → six tiles → **ENTER THE ARENA
 **Gem Vault** (first tile in the Armory): Streak Freeze (3), Phoenix Token (2), 2× Armory Pack (3), 2× Boss Bane (3), Double Boost (4), plus gem-only skins Diamond Guard (30) and Crystal Kiraxo (40). A SHOP row with a 7th field (gem price) is gem-only and lists in the vault.
 **Continue** in mini games: when a run ends by running out of lives (Memory Echo, Next Number, Higher or Lower and the six world games) a player with 3 gems can continue once with 1 life.
 **Backup & Restore** (Settings): Save file / Copy code / Restore. The backup is the `ms_*` progress keys (`ms_pro`, `ms_ach`, `ms_lb`, `ms_set`, `ms_fam`, `ms_oopt`, `ms_tour`) as a checksummed `MS1.` code. Restore validates it, keeps the previous progress under `ms_undo` (one-step undo) and reloads. Device-only keys (`ms_inst`, `ms_rem`, `ms_remx`, `ms_off`) are not included. Progress always stays under the site address, so keep the repo and URL the same. Bump `V` in `sw.js` after every change.
+
+## v58 changes
+- **Weekly Challenge:** the play button no longer says "1 of 1 runs left" when you only have one run; the count shows only when there are several runs.
+- **Conquest daily limit:** 5 free Conquest Map battles a day (local midnight reset), counted when a battle starts (including Fight Again / Replay). After that an "Out of battles" pop-up offers one more battle for 2 💎. The map header and each battle briefing show battles left. Constants `CQ_FREE`, `CQ_COST` sit next to `RVC`; state is `PRO.cq` (`d` day, `n` used, `x` extra bought, `g` gems bought with coins today).
+- **Gems can now be bought with coins:** Gem Vault, "BUY A GEM", 3000 💰 each, max 3 a day (`GEM_COIN`, `GEM_COIN_DAY`). The out-of-battles pop-up also offers it when you are short on gems. Note: gems also buy extra Weekly Challenge runs, so coin-bought gems can add up to 2 extra runs a day there too.
+- Bump `V` in `sw.js` after every change (now `mindstrike-v58`).
+
+## v59 changes
+- **Roman world texture:** the default Roman look now has a stone-grain texture on cards, battle rows, mode buttons, option chips, home tiles and the PLAY button, Greek-key (meander) border strips, thin inner double-line frames, squared corners, ringed medallions and a Greek-key line under screen headers. It is one CSS block (`ROMAN EMPIRE` section), scoped with `html:not([class*="wd-"])`, so the other worlds are untouched. Texture colours follow the light/dark variables. Bump `V` in `sw.js` after every change (now `mindstrike-v59`).
