@@ -915,7 +915,7 @@ html.wd-atlantis .scr.on>*:not(.bar):not(.logo){animation:atlIn .6s cubic-bezier
 html.wd-atlantis .scr.on>:nth-child(3){animation-delay:.06s}html.wd-atlantis .scr.on>:nth-child(4){animation-delay:.12s}html.wd-atlantis .scr.on>:nth-child(n+5){animation-delay:.2s}
 html.wd-atlantis .logo{animation:flo 4s ease-in-out infinite;filter:drop-shadow(0 0 16px #3fb2f0aa)}
 /* glass everywhere */
-html.wd-atlantis #app :is(.bm-battle,.card,#prof,#inst,.bm-field){border:1px solid #5fc4f555;border-radius:22px;background:linear-gradient(160deg,rgba(8,50,100,.58),rgba(3,20,50,.82));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 0 18px #0f76b822,inset 0 1px 0 #ffffff22,inset 0 0 24px #00000088}
+html.wd-atlantis #app :is(.bm-battle,.card,#prof,#inst,.bm-field){border:1px solid #5fc4f555;border-radius:22px;background:linear-gradient(160deg,rgba(8,50,100,.3),rgba(3,20,50,.5));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 0 18px #0f76b822,inset 0 1px 0 #ffffff22,inset 0 0 24px #00000088}
 html.wd-atlantis #app .bm-field input[type=text]{background:#02121c99;color:#d8f3ff;border:1px solid #5fc4f588;border-radius:12px}
 html.wd-atlantis #app .bm-field input:focus{border-color:#5fc4f5;box-shadow:0 0 0 2px #5fc4f533,0 0 16px #3fb2f055}
 html.wd-atlantis #app .bm-field span{color:#7fb5d8}
@@ -959,6 +959,17 @@ html.wd-atlantis #app #clock.low{color:#ff9ab8;border-color:#ff5d8f;box-shadow:0
 @keyframes jfSway{from{transform:skewX(-7deg) scaleY(.96)}to{transform:skewX(7deg) scaleY(1.05)}}
 #s-game.on~#atlSky .jfx{opacity:.42}
 @media(prefers-reduced-motion:reduce){.jfx,.jfx *{animation:none!important;transition:none!important}}
+/* v82: the sea is the backdrop; jellyfish drift BEHIND the glass screens and show through the blur, like the benchmark */
+html.wd-atlantis #app{background:linear-gradient(rgba(2,14,38,.3),rgba(2,10,30,.55)),url(img/atlantis_menu.webp) center/cover}
+html.wd-atlantis #app.bossm{background:linear-gradient(rgba(2,14,38,.3),rgba(2,10,30,.55)),url(img/atlantis_boss.webp) center/cover}
+html.wd-atlantis .scr,html.wd-atlantis .scr:not(#s-game){background:transparent!important}
+html.wd-atlantis .scr{z-index:1}
+html.wd-atlantis #atlSky{z-index:0}
+#s-game.on~#atlSky .jfx{opacity:.7}
+html.wd-atlantis #app :is(.bm-battle,.card,#prof,#inst,.bm-field){-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+html.wd-atlantis #app:not(#z) .tiles button{background:radial-gradient(circle at 12% 40%,#3fb6ff33,#0000 55%),linear-gradient(100deg,#0b4a8a55,#05204a77);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+html.wd-atlantis #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta){background:radial-gradient(ellipse at 50% -30%,#ffffff33,#0000 60%),linear-gradient(180deg,#0f4a8a77,#05204a99)}
+html.wd-atlantis #app:not(#z) .kp button{background:radial-gradient(ellipse at 50% -20%,#ffffff44,#0000 60%),linear-gradient(180deg,#0f4a8a88,#05204aaa)}
 /* the rising tide: the timer IS the sea. It climbs as your time drains. */
 #s-game.on~#atlTide{display:block;z-index:4}
 #atlTide{--tide:0}
@@ -2891,7 +2902,7 @@ function place(j,first){const W=sky.clientWidth||innerWidth,Hh=sky.clientHeight|
  j.e.style.transition=first||calm?'none':`transform ${d.toFixed(1)}s cubic-bezier(.45,0,.55,1)`;
  j.e.style.transform=`translate(${x.toFixed(0)}px,${y.toFixed(0)}px) rotate(${Math.max(-22,Math.min(22,dx/(dist||1)*22)).toFixed(0)}deg)`;j.x=x;j.y=y;
  if(!calm)setTimeout(()=>place(j),(first?R(500,2500):d*1000+R(300,2200)))}
-for(let i=0;i<6;i++){const c=PAL[i%PAL.length],e=document.createElement('div'),w=Math.round(R(54,112));e.className='jfx';e.style.width=w+'px';e.style.setProperty('--g',c[1]+'aa');e.style.opacity=(R(.6,.9)).toFixed(2);e.innerHTML=svg(c[0],c[1],++u);sky.appendChild(e);const j={e,w,x:R(0,300),y:R(0,600)};J.push(j);place(j,true)}
+for(let i=0;i<8;i++){const c=PAL[i%PAL.length],e=document.createElement('div'),w=Math.round(i<5?R(54,112):R(130,175));e.className='jfx';e.style.width=w+'px';e.style.setProperty('--g',c[1]+'aa');e.style.opacity=(i<5?R(.6,.9):R(.3,.45)).toFixed(2);e.innerHTML=svg(c[0],c[1],++u);sky.appendChild(e);const j={e,w,x:R(0,300),y:R(0,600)};J.push(j);place(j,true)}
 })();
 </script>
 </body></html>
