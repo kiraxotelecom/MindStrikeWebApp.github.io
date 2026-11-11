@@ -272,7 +272,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #prof{font-size:.78rem;line-height:1.4;padding:7px 10px}#prof .st{opacity:.9}#prof .mt{font-size:.7rem;opacity:.8;margin-top:3px}
 
 /* v20 shared skin */
-#s-online,#s-friends,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map,#s-season,#s-tug{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
+#s-online,#s-friends,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map,#s-season,#s-tug,#s-blitz{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
 .bm-note{display:block;text-align:center;color:hsl(calc(35.7deg + var(--hs)),calc(22.3% * var(--ss)),calc(63.1% + var(--lt) * -26.2%));font-size:11px;line-height:1.5}.bm-note b{color:hsl(calc(39.8deg + var(--hs)),calc(79.9% * var(--ss)),calc(70.8% + var(--lt) * -41.6%))}
 .bm-panel{width:min(92%,380px);display:flex;flex-direction:column;gap:9px;align-items:stretch;text-align:center;padding:20px 16px 16px;border:1px solid hsl(calc(31.4deg + var(--hs)),calc(43.3% * var(--ss)),calc(38.0% + var(--lt) * 24.0%));border-radius:6px;background:linear-gradient(160deg,hsla(calc(23.1deg + var(--hs)),calc(36.1% * var(--ss)),calc(14.1% + var(--lt) * 71.8%),0.980),hsla(calc(22.5deg + var(--hs)),calc(33.3% * var(--ss)),calc(4.7% + var(--lt) * 90.6%),0.990) 75%);box-shadow:inset 0 1px 0 #fff1,0 14px 40px #000c}
 .bm-panel .bm-hero{border:0;padding:0 0 8px}
@@ -1199,14 +1199,15 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 .svh .cd{display:inline-block;padding:3px 12px;border-radius:999px;border:1px solid var(--sa);font-size:.78rem;margin-bottom:8px}.svh .cd.hot{background:#8e1b16;border-color:#ff9a8a}.svb{height:12px;border-radius:7px;border:1px solid var(--sa);background:#0008;overflow:hidden;margin-bottom:4px}.svb i{display:block;height:100%;background:linear-gradient(90deg,var(--sb),var(--sa))}
 #s-season .cn{--gold:var(--sa)}
 </style>
-<style>.tgcv{width:min(94%,380px);height:auto;border:2px solid var(--gold);border-radius:10px;background:linear-gradient(#1c2a44,#0e1626 62%,#2a3a1c 63%,#1a2610)}#tgTop,#tgInfo{text-align:center;line-height:1.4;width:min(94%,380px)}#tgNum{width:170px;font:inherit;font-size:2.7rem;text-align:center;background:rgb(var(--k) / 0.73);color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}</style>
+<style>.tgcv{width:min(94%,380px);height:auto;border:2px solid var(--gold);border-radius:10px;background:linear-gradient(#1c2a44,#0e1626 62%,#2a3a1c 63%,#1a2610)}#tgTop,#tgInfo{text-align:center;line-height:1.4;width:min(94%,380px)}#tgNum,#blNum{width:170px;font:inherit;font-size:2.7rem;text-align:center;background:rgb(var(--k) / 0.73);color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}</style>
 </head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <div id="prof"></div>
- <div class="tiles"><button id="seasonBtn"></button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
+ <div class="tiles"><button id="seasonBtn"></button><button id="questBtn"></button><button id="miniBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
+ <div class="tiles"><button id="mapBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button></div>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="setRow" data-go="s-set">⚙️ SETTINGS</button></div>
  <div id="inst" hidden></div>
 </section>
@@ -1429,7 +1430,16 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
  <div id="tgTop"></div><canvas id="tgCv" class="tgcv" width="360" height="190"></canvas><div id="tgInfo"></div>
  <div class="plate"><input id="tgNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="tgKp"></div>
 </section>
-<div class="pop" id="tgEnd" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>🪢 TUG OF WAR</h2><div id="tgEndT" style="line-height:1.6;margin:8px 0"></div><button id="tgAgain" style="width:100%">🔁 REMATCH</button><button id="tgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
+<div class="pop" id="tgEnd" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>🪢 TUG OF WAR</h2><div id="tgEndT" style="line-height:1.6;margin:8px 0"></div><button id="tgNext" style="width:100%;display:none;margin-bottom:8px">NEXT STAGE ▶︎</button><button id="tgAgain" style="width:100%">🔁 REMATCH</button><button id="tgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
+
+<section class="scr" id="s-blitz" style="--bg:url(img/game_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <div id="blTop" style="text-align:center;line-height:1.4;width:min(94%,380px)"></div>
+ <div style="width:min(94%,380px);height:10px;border:1px solid var(--gold);border-radius:6px;overflow:hidden"><i id="blBar" style="display:block;height:100%;width:100%;background:linear-gradient(90deg,#c9392e,#f0c565)"></i></div>
+ <div id="blInfo" style="text-align:center;line-height:1.4;width:min(94%,380px)"></div>
+ <div class="plate"><input id="blNum" type="text" readonly inputmode="none" placeholder="?"></div><div class="kp" id="blKp"></div>
+</section>
+<div class="pop" id="blEnd" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>⏱️ TIME!</h2><div id="blEndT" style="line-height:1.6;margin:8px 0"></div><button id="blNext" style="width:100%;display:none;margin-bottom:8px">NEXT STAGE ▶︎</button><button id="blAgain" style="width:100%">🔁 RETRY</button><button id="blHome" style="width:100%;margin-top:8px">🎪 MARATHON</button></div></div>
 
 <section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
  <div id="vemb"></div><div class="big" id="endt"></div><div id="ends" style="text-align:center;line-height:1.5"></div>
@@ -3582,7 +3592,7 @@ for(let i=0;i<8;i++){const c=PAL[i%PAL.length],e=document.createElement('div'),w
 setInterval(()=>{try{const on=typeof G!=='undefined'&&G&&!G.done&&G.mode==='AI';k.classList.toggle('vs',!!on);const tl=parseFloat(document.getElementById('atlSky').style.getPropertyValue('--tl'))||.08;k.classList.toggle('wake',tl>.4)}catch(e){}},400)})();
 </script>
 <script>
-/* v105: SEASONAL MARATHON. One limited-time event per calendar month (local time): a 10-stage map, 6 quests and an 8-step reward track paid in event points. State: PRO.sev {id,mp,s:{stage:stars},ms:{claimed},q:[],dd:{d,n},seen}; trophies in PRO.str. Unclaimed rewards are auto-delivered when the month rolls over. Battles reuse the Conquest engine via cf.ev and are free of daily Conquest tickets. */
+/* v107: SEASONAL MARATHON (reworked). One limited-time event per calendar month (local time): a 10-stage map, 6 quests and an 8-step reward track paid in event points. State: PRO.sev {id,mp,s:{stage:stars},ms:{claimed},q:[],dd:{d,n},seen}; trophies in PRO.str. Unclaimed rewards are auto-delivered when the month rolls over. Battles reuse the Conquest engine via cf.ev and are free of daily Conquest tickets. */
 (function(){
 const FOE=['RUNNER KIRABO','WARDEN SHANI','CAPT. IMRAN','SCOUT MARIAM','HUNTER ELIJAH','KEEPER NANA','PIPER CHRISTINE','RANGER ISA','BARD AMINA','SENTRY BILAL','MARSHAL ZAWADI','ACE NAKATO','TITAN OKELLO','WITCH AKELLO','KNIGHT MUGISHA','DASHER ATIM','JESTER OPIO','QUEEN NALWOGA','LORD SSEBU','SAGE NAMATA'];
 const TRK={ambush:'Ambush — he starts 10 points ahead and gets a full set of swings in the shield phase.',sand:'Sandstorm — your temperature hint vanishes every 3rd round, even inside the shield phase.',raid:'Raid — every round he wins steals 3 of your points, and every shield he breaks steals 30 of your damage.'};
@@ -3600,57 +3610,68 @@ A('🍂','Falling Leaves','Chase the wind through the autumn woods.','#ff8a3c','
 A('🎃','Haunted Hollows','Lanterns flicker. Something is counting.','#ff8a1f','#1d0a2e','THE HOLLOW KING','ambush','Cobweb Gate|Lantern Lane|Crooked Bridge|Bone Orchard|Whisper Crypt|Witch’s Kitchen|Graveyard Shift|Ghost Train|Moonlit Spire|Hollow King’s Keep'),
 A('🌨️','Frostfall Expedition','Climb the glacier to the Frost Wyrm’s nest.','#9fe3ff','#0a1e45','THE FROST WYRM','raid','Basecamp|Snowdrift Trail|Icicle Bridge|Aurora Ridge|Whiteout Pass|Frozen Falls|Glacier Cave|Blizzard Gate|Wyrm’s Nest|Wyrm’s Crown'),
 A('🎄','Starlit Solstice','The longest night, the biggest prizes.','#ff6b6b','#0b3a2a','THE SOLSTICE GIANT','sand','Tinsel Gate|Gingerbread Row|Bell Bridge|Candle Cellar|Snow Globe Square|Sleigh Run|Star Tower|Wreath Pass|Midwinter Eve|Giant’s Hall')];
-const MS=[[80,{c:250,inv:{pack:1}}],[200,{c:400,inv:{'x:SCAN':2}}],[380,{c:600,g:2}],[600,{c:800,inv:{tome:1,bane:1}}],[900,{c:1200,g:3}],[1300,{c:1600,inv:{mag:1,pack:2}}],[1800,{c:2200,g:5}],[2400,{c:3500,g:10,inv:{phx:2,tome:2},gp:1}]];
-const QP=[['win','Win {t} Marathon battles',8,120,300,0],['star','Earn {t} ⭐ on the Marathon Map',12,200,500,1],['clean','Win {t} Marathon battles without powers',4,180,450,0],['crit','Land {t} critical hits in Marathon battles',6,120,350,0],['ok','Crack {t} numbers in Marathon battles',25,150,400,0],['blaze','Hit {t} blazing-hot guesses in Marathon battles',12,130,350,0],['combo','Reach a {t}-win combo in a Marathon battle',4,140,380,0],['lead','Win a Marathon battle by {t}+ points',12,140,380,1],['boss','Defeat {boss}',1,250,700,2]];
-const curId=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)},byId=id=>SEA[+id.split('-')[1]-1],endAt=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth()+1,1).getTime()};
+const TY=['duel','tug','blitz'],TYN={duel:'🎯 Guess Battles',tug:'🪢 Tug of War',blitz:'⏱️ Number Blitz'},TYD={duel:'Beat the generals in guessing battles.',tug:'Out-pull rivals in rope duels.',blitz:'Crack as many numbers as you can before time runs out.'};
+const MS=[[120,{c:500,inv:{pack:1}}],[300,{c:900,g:2,inv:{'x:SCAN':2}}],[520,{c:1500,inv:{tome:1,bane:1}}],[780,{c:2500,g:5}],[1080,{c:4000,inv:{mag:2,pack:2}}],[1400,{c:6500,g:10,inv:{phx:2}}],[1650,{c:10000,g:20,inv:{tome:2,bane:2,mag:2}}],[1850,{c:30000,g:60,inv:{phx:4,tome:4,pack:4,mag:3},gp:1}]];
+const QC=[['win','Win {t} Marathon stages',12,90,700,0],['star','Earn {t} ⭐ on the Marathon Map',18,150,1000,2],['clean','Earn the bonus ⭐ on {t} stages',6,130,900,1]];
+const QT={duel:[['crit','Land {t} critical hits',10,100,700,0],['ok','Crack {t} numbers in battles',40,110,800,0],['blaze','Hit {t} blazing-hot guesses',20,110,800,0],['combo','Reach a {t}-win combo in one battle',5,120,900,0],['lead','Win a battle by {t}+ points',15,120,900,1]],tug:[['bull','Land {t} bullseyes',4,110,800,0],['nof','Win {t} rope duels without a freezing guess',4,120,900,1],['hold','Win {t} rope duels without losing half the rope',3,120,900,1]],blitz:[['crack','Crack {t} numbers in blitzes',45,110,800,0],['fast','Crack {t} numbers in 4 guesses or fewer',12,130,900,1]]};
+const QB=['boss','Defeat {boss}',1,200,2500,5];
+/* Schedule: an event starts on the 1st and ends exactly 10 days before the next month's 1st, so there is always a 10-day break. Game type rotates guess battles → tug of war → number blitz. */
+function sched(){const d=new Date(),y=d.getFullYear(),m=d.getMonth(),en=new Date(y,m+1,-9).getTime(),nx=new Date(y,m+1,1).getTime();return{id:y+'-'+(m+1),en,nx,on:Date.now()<en}}
+const byId=id=>SEA[+id.split('-')[1]-1],tyOf=id=>TY[(+id.split('-')[1]+1)%3],nextE=()=>{const sc=sched(),m=new Date(sc.nx).getMonth();return{E:SEA[m],ty:TY[(m+2)%3],ms:Math.max(0,sc.nx-Date.now())}};
+const fmt=ms=>{const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return{d,txt:d>0?`${d}d ${h}h`:`${h}h ${m}m`}},left=()=>fmt(Math.max(0,sched().en-Date.now()));
 function shuf(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function cfg(id){const E=byId(id),r=mul(seed('sev'+id)),foe=shuf(FOE,r),mp=['jack','rush','primes','lean',''],HI=[15,20,25,30,40,50,60,70,80,100],T=[20,25,25,30,35,35,40,45,50,60],PE=['Calculator','Calculator','Gambler','Psycho','Calculator','Gambler','Psycho','Prime','Psycho','Prime'];
- const st=HI.map((hi,i)=>{const boss=i===9,t=T[i],g=i%3;return{n:E.st[i],hi,t,boss,d:i<5?'Medium':'Hard',pers:PE[i],foe:boss?E.boss:foe[i],mut:boss?'armor':i<2?'':mp[Math.floor(r()*mp.length)],a:i>=5&&i<9&&r()<.4?-1:0,head:i>=6&&i<9&&r()<.4?5:0,ob:g===0?['blaze',i<5?1:2]:g===1?['lead',Math.max(4,Math.floor(t*.25))]:['clean',0]}});
- const q=shuf(QP.slice(0,8),r).slice(0,5).concat([QP[8]]).map(([k,n,t,m,c,g])=>({k,n:n.replace('{t}',t).replace('{boss}',E.boss),t,mp:m,c,g,p:0,cl:0}));
- return{id,E,st,q}}
-let C=null;const cur=()=>{const id=curId();if(!C||C.id!==id)C=cfg(id);return C};
+function cfg(id){const E=byId(id),ty=tyOf(id),r=mul(seed('sev'+id)),foe=shuf(FOE,r),mp=['jack','rush','primes','lean',''],HI=[15,20,25,30,40,50,60,70,80,100],T=[25,30,35,40,45,50,55,60,70,80],PE=['Calculator','Calculator','Gambler','Psycho','Calculator','Gambler','Psycho','Prime','Psycho','Prime'],AC=[.35,.42,.5,.57,.64,.7,.76,.82,.88,.93],BH=[10,15,20,25,30,35,40,50,60,80],BT=[60,60,60,55,55,55,50,50,50,45],BN=[3,3,4,4,4,5,5,5,6,6];
+ const st=HI.map((hi,i)=>{const boss=i===9,t=T[i],g=i%3;return{n:E.st[i],hi,t,boss,d:i<3?'Medium':'Hard',pers:PE[i],foe:boss?E.boss:foe[i],mut:boss?'armor':i<2?'':mp[Math.floor(r()*mp.length)],a:i>=4&&i<9&&r()<.5?-1:0,head:i>=4&&i<9?(i>=7?10:5):0,ob:g===0?['blaze',i<5?2:3]:g===1?['lead',Math.max(5,Math.floor(t*.3))]:['clean',0],acc:AC[i],bh:BH[i],bT:BT[i],bn:BN[i]}});
+ const q=[...QC,...shuf(QT[ty],r).slice(0,2),QB].map(([k,n,t,m,c,g])=>({k,n:n.replace('{t}',t).replace('{boss}',E.boss),t,mp:m,c,g,p:0,cl:0}));return{id,E,ty,st,q}}
+let C=null;const cur=()=>{const id=sched().id;if(!C||C.id!==id)C=cfg(id);return C};
 function trophy(id){PRO.str=PRO.str||[];if(!PRO.str.some(x=>x.id===id)){const E=byId(id);PRO.str.push({id,e:E.e,n:E.n})}}
 function deliver(s){const E=byId(s.id);let n=0;MS.forEach((m,i)=>{if(!s.ms[i]&&s.mp>=m[0]){s.ms[i]=1;n++;grant({c:cx(m[1].c),inv:m[1].inv});if(m[1].g)gems(m[1].g,E.n);if(m[1].gp)trophy(s.id)}});
  (s.q||[]).forEach(q=>{if(!q.cl&&q.p>=q.t){q.cl=1;n++;grant({c:cx(q.c)});if(q.g)gems(q.g,E.n)}});
  if(n)setTimeout(()=>toast(`${E.e} <b>${E.n} ended</b><br><small>${n} unclaimed reward${n>1?'s were':' was'} delivered to you</small>`),3200)}
-function roll(){const id=curId();let s=PRO.sev;if(s&&s.id===id)return s;const first=!s;if(s&&s.id&&byId(s.id))deliver(s);const c=cfg(id);C=c;PRO.sev={id,mp:0,s:{},ms:{},q:c.q,dd:{d:'',n:0},seen:0};LS.set('ms_pro',PRO);
- if(!first)setTimeout(()=>toast(`${c.E.e} <b>NEW MARATHON</b><br><small>${c.E.n} is live — fresh map and quests!</small>`),2600);return PRO.sev}
+function roll(){const sc=sched(),id=sc.id;let s=PRO.sev;if(s&&s.id===id){if(!sc.on&&!s.dv){s.dv=1;deliver(s);LS.set('ms_pro',PRO)}return s}
+ const first=!s;if(s&&s.id&&byId(s.id)&&!s.dv){s.dv=1;deliver(s)}const c=cfg(id);C=c;PRO.sev={id,mp:0,s:{},ms:{},q:c.q,dd:{d:'',n:0},seen:0,dv:sc.on?0:1};LS.set('ms_pro',PRO);
+ if(!first&&sc.on)setTimeout(()=>toast(`${c.E.e} <b>NEW MARATHON</b><br><small>${c.E.n} is live: ${TYN[c.ty]}!</small>`),2600);return PRO.sev}
 function addMP(n){const s=roll(),b=s.mp;s.mp+=n;LS.set('ms_pro',PRO);const k=MS.filter(m=>b<m[0]&&s.mp>=m[0]).length;if(k)setTimeout(()=>toast(`${cur().E.e} <b>MILESTONE REACHED</b><br><small>${k>1?k+' rewards':'A reward'} waiting in the Marathon</small>`),2200)}
 function qv(k,n,mx){roll().q.forEach(q=>{if(q.k!==k||q.cl||q.p>=q.t)return;q.p=Math.min(q.t,mx?Math.max(q.p,n):q.p+n);if(q.p>=q.t)setTimeout(()=>toast(`📜 <b>MARATHON QUEST COMPLETE</b><br><small>${q.n} — claim it in the Marathon</small>`),1600)})}
 const fx=n=>{burst(['🪙','✨','🎁'],n);sfx('powerup')};
 function claimMs(i){const s=roll(),m=MS[i],E=cur().E;if(s.ms[i]||s.mp<m[0])return;s.ms[i]=1;const t=grant({c:cx(m[1].c),inv:m[1].inv});if(m[1].g)gems(m[1].g,E.n);if(m[1].gp)trophy(s.id);
  toast(`${m[1].gp?'🏆':E.e} <b>${m[1].gp?'GRAND PRIZE':'MILESTONE'}</b><br><small>${t}${m[1].g?' · 💎 '+m[1].g:''}</small>`);fx(m[1].gp?40:22);svUI();profUI()}
 function claimQ(i){const s=roll(),q=s.q[i];if(!q||q.cl||q.p<q.t)return;q.cl=1;const t=grant({c:cx(q.c)});if(q.g)gems(q.g,'Marathon quest');addMP(q.mp);toast(`✅ <b>QUEST REWARD</b><br><small>${t}${q.g?' · 💎 '+q.g:''} · +${q.mp} ${cur().E.e}</small>`);fx(18);svUI();profUI()}
-function evOpts(i){const C=cur(),E=C.E,N=C.st[i],D=Object.assign({},DIFF[N.d],{name:E.n.toUpperCase()});D.hi=N.hi;if(N.a)D.att=Math.max(2,D.att+N.a);
- return{mode:'AI',d:N.d,m:'Camp',D,M:{t:N.t,time:MATCH.Camp.time,label:N.boss?'BOSS · '+E.boss:'STAGE '+(i+1)},pers:N.pers,names:[S.n1||'LEGIONARY',N.foe],
- cf:{k:'ev'+C.id+'_'+i,ev:1,eid:C.id,ri:0,ni:i,ob:N.ob,rn:E.n,nn:N.n,boss:N.boss,fin:0,bn:N.boss?E.boss:'',bs:N.boss?E.boss:'',ly:N.boss?1:0,mut:N.mut,head:N.head||(N.boss&&E.tr==='ambush'?10:0),tr:N.boss?E.tr:'',
- win:[E.e+' The marathon is mine!',E.e+' Run faster, challenger!','🏁 Not even close…'],lose:[E.e+' Impressive… for now.','😤 You win this lap.',E.e+' I will be back.']}}}
-function evBrief(i){const C=cur(),E=C.E,N=C.st[i],o=evOpts(i),D=o.D,c=o.cf,mu=N.mut&&MUT.find(m=>m[0]===N.mut),old=roll().s[i]||0;camp.gr=null;camp.sel=null;camp.ev=i;
- const L=[`🎯 First to <b>${N.t}</b>${N.boss?` — then <b>${E.boss}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(N.mut==='lean'?1:0))}</b> attempts`];
- if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);if(c.head)L.push(`🏁 ${N.foe} starts <b>${c.head}</b> points ahead`);if(N.pers==='Gambler')L.push('🎲 Takes risky, reckless guesses');if(N.boss)L.push(`⚔️ <b>Signature:</b> ${TRK[E.tr]}`);
- L.push(`⭐ <b>Star goal:</b> ${objDesc(c.ob)}`,`${E.e} Each new ⭐ pays <b>+${10+4*i}</b> points and <b>${cx(25+10*i)}</b> 💰${N.boss?' · first boss win: +60 points, +2 💎':''}`,`<small>⭐ win · ⭐ goal · ⭐ no powers${old?' — your best: '+'⭐'.repeat(old)+'☆'.repeat(3-old):''} · free of Conquest tickets</small>`);
- $('#cbT').innerHTML=`${N.boss?'👹':E.e} ${N.n}<br><small style="letter-spacing:.05em">${E.n} · vs ${N.foe}</small>`;$('#cbB').innerHTML=L.map(l=>`<div>${l}</div>`).join('');$('#cbrief').classList.add('on')}
-function evStart(i){const o=evOpts(i),E=cur().E;setup.lastOpts=o;if(launch()===false)return;$('#cbrief').classList.remove('on');setTimeout(()=>{if(G&&G.cf&&G.cf.ev)toast(`${o.cf.boss?'👹':E.e} <b>${o.names[1]}</b><br><small>“${pick(o.cf.win)}”</small>`)},700)}
-function evEnd(win){const c=G.cf,s=roll(),C=cur(),E=C.E,i=c.ni;if(c.eid!==s.id)return{html:`<br><b>${E.e} Marathon</b><br><small>That marathon has ended, so no rewards this time.</small>`};
- const N=C.st[i],t0=G.st[0];let h=`<br><b>${E.e} ${E.n} · ${N.n}</b>`;qv('crit',t0.crit||0);qv('ok',t0.ok||0);qv('blaze',t0.blz||0);qv('combo',t0.best||0,1);
- if(!win){LS.set('ms_pro',PRO);return{html:h+`<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>`}}
- const cb=objCheck(G,c.ob,true),np=!G.powUsed,stars=1+(cb?1:0)+(np?1:0),old=s.s[i]||0,first=!old,gain=Math.max(0,stars-old);let coins=cx(gain*(25+10*i)),mp=gain*(10+4*i),note='';
- if(N.boss&&first){coins+=cx(400);mp+=60;gems(2,E.n+' boss');note+=`<br>🏴 ${E.boss} defeated · +${cx(400)} 💰 · +2 💎`}
- const dd=s.dd;if(dd.d!==today()){dd.d=today();dd.n=0}if(dd.n<5){dd.n++;mp+=15;note+=`<br>🔥 Daily bonus +15 ${E.e} (${dd.n}/5 today)`}
- if(stars>old)s.s[i]=stars;PRO.gold+=coins;qv('win',1);qv('star',gain);if(np)qv('clean',1);if(N.boss)qv('boss',1);qv('lead',G.score[0]-G.score[1],1);addMP(mp);LS.set('ms_pro',PRO);
- return{html:h+`<br><span class="vstars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'} · <b>+${mp} ${E.e}</b><br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
-function left(){const ms=Math.max(0,endAt()-Date.now()),d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return{d,txt:d>0?`${d}d ${h}h`:`${h}h ${m}m`}}
-function cd(){const e=$('#svCd');if(!e)return;const l=left();e.textContent='⏳ Ends in '+l.txt;e.classList.toggle('hot',l.d<3)}
+/* one place pays out every stage, whatever the game type: win = ⭐, goal = ⭐, bonus = ⭐ */
+function settle(i,eid,win,cb,bn,gl,bl){const s=roll(),C=cur(),E=C.E,N=C.st[i];if(eid!==s.id||!sched().on)return{html:`<br><small>That marathon has ended, so no rewards this time.</small>`};
+ const h=`<br><b>${E.e} ${E.n} · ${N.n}</b>`;if(!win)return{html:h+`<br><small>Not this time. Try again. ⭐ win · ⭐ ${gl} · ⭐ ${bl}</small>`};
+ const stars=1+(cb?1:0)+(bn?1:0),old=s.s[i]||0,first=!old,gain=Math.max(0,stars-old);let coins=cx(gain*(40+15*i)),mp=gain*(8+3*i),note='';
+ if(N.boss&&first){coins+=cx(1500);mp+=40;gems(5,E.n+' boss');note+=`<br>🏴 ${E.boss} defeated · +${cx(1500)} 💰 · +5 💎`}
+ const dd=s.dd;if(dd.d!==today()){dd.d=today();dd.n=0}if(dd.n<3){dd.n++;mp+=10;note+=`<br>🔥 Daily bonus +10 ${E.e} (${dd.n}/3 today)`}
+ if(stars>old)s.s[i]=stars;PRO.gold+=coins;qv('win',1);qv('star',gain);if(bn)qv('clean',1);if(N.boss)qv('boss',1);addMP(mp);LS.set('ms_pro',PRO);
+ return{html:h+`<br><span class="vstars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'} · <b>+${mp} ${E.e}</b><br><small>⭐ win ✓ · ⭐ ${gl} ${cb?'✓':'✗'} · ⭐ ${bl} ${bn?'✓':'✗'}</small>${note}`}}
+function evEnd(win){const c=G.cf,t0=G.st[0];qv('crit',t0.crit||0);qv('ok',t0.ok||0);qv('blaze',t0.blz||0);qv('combo',t0.best||0,1);if(win)qv('lead',G.score[0]-G.score[1],1);return settle(c.ni,c.eid,win,win&&objCheck(G,c.ob,true),!G.powUsed,objDesc(c.ob),'no powers')}
+function evBrief(i){const C=cur(),E=C.E,N=C.st[i],old=roll().s[i]||0,rw=`${E.e} Each new ⭐ pays <b>+${8+3*i}</b> points and <b>${cx(40+15*i)}</b> 💰${N.boss?` · first boss win: +40 points, +5 💎, +${cx(1500)} 💰`:''}`,ft=`<small>⭐ win · ⭐ goal · ⭐ bonus${old?' — your best: '+'⭐'.repeat(old)+'☆'.repeat(3-old):''} · free of Conquest tickets</small>`;camp.gr=null;camp.sel=null;camp.ev=i;let L;
+ if(C.ty==='duel'){const o=evOpts(i),D=o.D,c=o.cf,mu=N.mut&&MUT.find(m=>m[0]===N.mut);L=[`🎯 First to <b>${N.t}</b>${N.boss?` — then <b>${E.boss}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(N.mut==='lean'?1:0))}</b> attempts`];
+  if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);if(c.head)L.push(`🏁 ${N.foe} starts <b>${c.head}</b> points ahead`);if(N.pers==='Gambler')L.push('🎲 Takes risky, reckless guesses');if(N.boss)L.push(`⚔️ <b>Signature:</b> ${TRK[E.tr]}`);L.push(`⭐ <b>Goal:</b> ${objDesc(c.ob)}`,'⭐ <b>Bonus:</b> no powers')}
+ else if(C.ty==='tug')L=[`🪢 Rope duel vs <b>${N.foe}</b>: drag the flag over your line first`,`🧠 Rival accuracy <b>${Math.round(N.acc*100)}%</b>`,`⭐ <b>Goal:</b> ${i%2?'No freezing guess':'Land a bullseye'}`,'⭐ <b>Bonus:</b> never let the flag pass halfway to them'];
+ else L=[`⏱️ Crack numbers <b>1–${N.bh}</b> in <b>${N.bT}s</b>`,`🎯 Win: <b>${N.bn}</b> cracks · ⭐ goal: <b>${N.bn+1}</b> · ⭐ bonus: <b>${N.bn+3}</b>`];
+ L.push(rw,ft);$('#cbT').innerHTML=`${N.boss?'👹':E.e} ${N.n}<br><small style="letter-spacing:.05em">${E.n} · ${TYN[C.ty]}</small>`;$('#cbB').innerHTML=L.map(l=>`<div>${l}</div>`).join('');$('#cbrief').classList.add('on')}
+function evStart(i){const C=cur(),E=C.E,N=C.st[i];if(!sched().on)return;
+ if(C.ty==='duel'){const o=evOpts(i);setup.lastOpts=o;if(launch()===false)return;$('#cbrief').classList.remove('on');setTimeout(()=>{if(G&&G.cf&&G.cf.ev)toast(`${o.cf.boss?'👹':E.e} <b>${o.names[1]}</b><br><small>“${pick(o.cf.win)}”</small>`)},700);return}
+ $('#cbrief').classList.remove('on');const nx=w=>w&&i<9?i+1:null;
+ if(C.ty==='tug')tugEv({foe:N.foe,acc:N.acc,onEnd:(w,st)=>{qv('bull',st.bull);if(w&&!st.frz)qv('nof',1);if(w&&st.worst<.5)qv('hold',1);return{html:settle(i,C.id,w,i%2?st.frz===0:st.bull>0,st.worst<.5,i%2?'no freezing guess':'land a bullseye','never lose half the rope').html,next:nx(w)}}});
+ else blitzEv({name:`${E.e} ${N.n}`,hi:N.bh,T:N.bT,need:[N.bn,N.bn+1,N.bn+3],onEnd:(n,f)=>{qv('crack',n);qv('fast',f);return{html:settle(i,C.id,n>=N.bn,n>=N.bn+1,n>=N.bn+3,`crack ${N.bn+1}+`,`crack ${N.bn+3}+`).html,next:nx(n>=N.bn)}}})}
+const cd=()=>{const e=$('#svCd');if(!e)return;const sc=sched();if(sc.on){const l=left();e.textContent='⏳ Ends in '+l.txt;e.classList.toggle('hot',l.d<3)}else e.textContent='⏳ Next marathon in '+fmt(nextE().ms).txt};
 const rt=r=>[`💰 ${cx(r.c)}`,r.g?`💎 ${r.g}`:'',...Object.entries(r.inv||{}).map(([k,n])=>`${n}× ${nmOf(k)}`)].filter(Boolean).join(' · ');
-function svUI(){const s=roll(),C=cur(),E=C.E,mp=s.mp,nx=MS.find(m=>mp<m[0]),pv=[0,...MS.map(m=>m[0])].filter(v=>v<=mp).pop(),pct=nx?(mp-pv)/(nx[0]-pv)*100:100,stars=Object.values(s.s).reduce((a,b)=>a+b,0),sc=$('#s-season');
- sc.style.setProperty('--sa',E.a);sc.style.setProperty('--sb',E.b);s.seen=1;LS.set('ms_pro',PRO);
+function svUI(){const s=roll(),sc=sched(),sec=$('#s-season'),tr=(PRO.str||[]).map(x=>`${x.e} ${x.n}`).join(' · '),trH=`<h2 class="qh">🏆 TROPHY CASE</h2><div class="card" style="margin:0"><small>${tr||'Claim the Grand Prize to earn a permanent trophy.'}</small></div>`;
+ if(!sc.on){const n=nextE();sec.style.setProperty('--sa',n.E.a);sec.style.setProperty('--sb',n.E.b);$('#svList').innerHTML=`<div class="svh"><div class="e">⏸️</div><h2>MARATHON BREAK</h2><p>The last marathon has ended and its rewards were delivered.</p><div class="cd" id="svCd"></div><p>Up next: ${n.E.e} <b>${n.E.n}</b><br>${TYN[n.ty]} — ${TYD[n.ty]}</p></div>${trH}<small class="bm-note">Every marathon is followed by a 10-day break. Each one plays differently.</small>`;cd();return}
+ const C=cur(),E=C.E,mp=s.mp,nx=MS.find(m=>mp<m[0]),pv=[0,...MS.map(m=>m[0])].filter(v=>v<=mp).pop(),pct=nx?(mp-pv)/(nx[0]-pv)*100:100,stars=Object.values(s.s).reduce((a,b)=>a+b,0);
+ sec.style.setProperty('--sa',E.a);sec.style.setProperty('--sb',E.b);s.seen=1;LS.set('ms_pro',PRO);
  const row=(t,sb,btn,hl)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px${hl?';border-color:var(--sa)':''}"><div style="flex:1">${t}<br><small>${sb}</small></div>${btn}</div>`,bt=(a,i,ok,cl,w)=>`<button data-${a}="${i}" style="min-width:84px;padding:8px" ${ok&&!cl?'':'disabled'}>${cl?'✓':ok?'CLAIM':w}</button>`;
  const ms=MS.map((m,i)=>row(`<b>${m[1].gp?'🏆 GRAND PRIZE':'🎁 Milestone '+(i+1)}</b> · ${m[0]} ${E.e}`,rt(m[1])+(m[1].gp?' · 🏆 Trophy':''),bt('svm',i,mp>=m[0],s.ms[i],'🔒'),m[1].gp)).join('');
- const map=`<div class="mreg" style="align-self:center"><h3><span>${E.e} ${E.n.toUpperCase()}</span><span>⭐ ${stars}/30</span></h3><p>10 stages · ${E.boss} waits at the end. Every new ⭐ earns ${E.e} points.</p><div class="mrow">`+C.st.map((N,i)=>{const v=s.s[i]||0,ok=i===0||(s.s[i-1]||0)>0;return `<button class="cn ${ok?'':'lk'} ${N.boss?'bs':''} ${v?'dn':''}" data-svs="${i}" ${ok?'':'disabled'} aria-label="${N.n}"><span>${N.boss?'👹':i+1}</span><small>${v?'⭐'.repeat(v)+'☆'.repeat(3-v):ok?'☆☆☆':'🔒'}</small></button>`}).join('')+`</div></div>`;
- const qs=s.q.map((q,i)=>row(`<b>${q.n}</b>`,`💰 ${cx(q.c)} · +${q.mp} ${E.e}${q.g?' · 💎 '+q.g:''}<div class="qb"><i style="width:${q.p/q.t*100}%"></i></div>${q.p}/${q.t}`,bt('svq',i,q.p>=q.t,q.cl,'…'))).join(''),tr=(PRO.str||[]).map(x=>`${x.e} ${x.n}`).join(' · ');
- $('#svList').innerHTML=`<div class="svh"><div class="e">${E.e}</div><h2>${E.n.toUpperCase()}</h2><p>${E.tag}</p><div class="cd" id="svCd"></div><div class="svb"><i style="width:${pct}%"></i></div><small>${E.e} <b>${mp}</b> / ${nx?nx[0]:MS[7][0]} points${nx?' to the next reward':' · every reward unlocked'}</small></div><h2 class="qh">🗺️ LIMITED-TIME MAP</h2>${map}<h2 class="qh">🎁 MARATHON REWARDS</h2>${ms}<h2 class="qh">📜 SEASON QUESTS</h2>${qs}<h2 class="qh">🏆 TROPHY CASE</h2><div class="card" style="margin:0"><small>${tr||'Claim the Grand Prize to earn a permanent trophy.'}</small></div><small class="bm-note">A new marathon, map and quests start every month. Rewards you reached but forgot to claim are delivered automatically when it ends.</small>`;cd()}
-function svTile(){const b=$('#seasonBtn');if(!b)return;const s=roll(),E=cur().E,l=left(),n=MS.filter((m,i)=>s.mp>=m[0]&&!s.ms[i]).length+s.q.filter(q=>q.p>=q.t&&!q.cl).length;b.style.setProperty('--sa',E.a);b.style.setProperty('--sb',E.b);
- b.innerHTML=`<i class="sv-e">${E.e}</i><div><b>${E.n.toUpperCase()}</b><small>⏳ ${l.txt} left · ${E.e} ${s.mp}/${MS[7][0]}</small></div>${n?`<em class="bd" style="font-style:normal">${n}</em>`:!s.seen?`<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>`:''}`}
+ const map=`<div class="mreg" style="align-self:center"><h3><span>${E.e} ${E.n.toUpperCase()}</span><span>⭐ ${stars}/30</span></h3><p>${TYN[C.ty]} · 10 stages · ${E.boss} waits at the end.</p><div class="mrow">`+C.st.map((N,i)=>{const v=s.s[i]||0,ok=i===0||(s.s[i-1]||0)>0;return `<button class="cn ${ok?'':'lk'} ${N.boss?'bs':''} ${v?'dn':''}" data-svs="${i}" ${ok?'':'disabled'} aria-label="${N.n}"><span>${N.boss?'👹':i+1}</span><small>${v?'⭐'.repeat(v)+'☆'.repeat(3-v):ok?'☆☆☆':'🔒'}</small></button>`}).join('')+`</div></div>`;
+ const qs=s.q.map((q,i)=>row(`<b>${q.n}</b>`,`💰 ${cx(q.c)} · +${q.mp} ${E.e}${q.g?' · 💎 '+q.g:''}<div class="qb"><i style="width:${q.p/q.t*100}%"></i></div>${q.p}/${q.t}`,bt('svq',i,q.p>=q.t,q.cl,'…'))).join('');
+ $('#svList').innerHTML=`<div class="svh"><div class="e">${E.e}</div><h2>${E.n.toUpperCase()}</h2><p>${E.tag}<br>${TYN[C.ty]} — ${TYD[C.ty]}</p><div class="cd" id="svCd"></div><div class="svb"><i style="width:${pct}%"></i></div><small>${E.e} <b>${mp}</b> / ${nx?nx[0]:MS[7][0]} points${nx?' to the next reward':' · every reward unlocked'}</small></div><h2 class="qh">🗺️ LIMITED-TIME MAP</h2>${map}<h2 class="qh">🎁 MARATHON REWARDS</h2>${ms}<h2 class="qh">📜 SEASON QUESTS</h2>${qs}${trH}<small class="bm-note">A new marathon starts every month with a different game type, followed by a 10-day break. Rewards you reached but forgot to claim are delivered automatically when it ends.</small>`;cd()}
+function svTile(){const b=$('#seasonBtn');if(!b)return;const s=roll(),sc=sched();
+ if(!sc.on){const n=nextE();b.style.setProperty('--sa',n.E.a);b.style.setProperty('--sb',n.E.b);b.innerHTML=`<i class="sv-e">⏸️</i><div><b>NEXT: ${n.E.n.toUpperCase()}</b><small>${TYN[n.ty]} · starts in ${fmt(n.ms).txt}</small></div>`;return}
+ const E=cur().E,l=left(),n=MS.filter((m,i)=>s.mp>=m[0]&&!s.ms[i]).length+s.q.filter(q=>q.p>=q.t&&!q.cl).length;b.style.setProperty('--sa',E.a);b.style.setProperty('--sb',E.b);
+ b.innerHTML=`<i class="sv-e">${E.e}</i><div><b>${E.n.toUpperCase()}</b><small>${TYN[cur().ty]} · ⏳ ${l.txt} left · ${E.e} ${s.mp}/${MS[7][0]}</small></div>${n?`<em class="bd" style="font-style:normal">${n}</em>`:!s.seen?`<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>`:''}`}
 function svOpen(){svUI();go('s-season')}
 window.svOpen=svOpen;window.evBrief=evBrief;window.evStart=evStart;
 const _ce=campEnd;campEnd=function(w){return G&&G.cf&&G.cf.ev?evEnd(w):_ce.apply(this,arguments)};
@@ -3659,27 +3680,35 @@ const _pu=profUI;profUI=function(){const r=_pu.apply(this,arguments);try{svTile(
 $('#seasonBtn').onclick=()=>{sfx('click');play('theme');svOpen()};
 $('#svList').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;if(d.svs!=null){sfx('click');evBrief(+d.svs)}else if(d.svm!=null)claimMs(+d.svm);else if(d.svq!=null)claimQ(+d.svq)};
 setInterval(()=>{try{svTile();cd()}catch(e){}},30000);try{svTile()}catch(e){}
+function evOpts(i){const C=cur(),E=C.E,N=C.st[i],D=Object.assign({},DIFF[N.d],{name:E.n.toUpperCase()});D.hi=N.hi;if(N.a)D.att=Math.max(2,D.att+N.a);
+ return{mode:'AI',d:N.d,m:'Camp',D,M:{t:N.t,time:MATCH.Camp.time,label:N.boss?'BOSS · '+E.boss:'STAGE '+(i+1)},pers:N.pers,names:[S.n1||'LEGIONARY',N.foe],
+ cf:{k:'ev'+C.id+'_'+i,ev:1,eid:C.id,ri:0,ni:i,ob:N.ob,rn:E.n,nn:N.n,boss:N.boss,fin:0,bn:N.boss?E.boss:'',bs:N.boss?E.boss:'',ly:N.boss?2:0,mut:N.mut,head:N.head||(N.boss&&E.tr==='ambush'?10:0),tr:N.boss?E.tr:'',
+ win:[E.e+' The marathon is mine!',E.e+' Run faster, challenger!','🏁 Not even close…'],lose:[E.e+' Impressive… for now.','😤 You win this lap.',E.e+' I will be back.']}}}
 })();
 </script>
 <script>
-/* v106: TUG OF WAR. 2 players, one device. Both chase the same secret (1-100) and take turns; closer guesses pull the rope harder, freezing guesses slip. A verlet rope sags and ripples; first to drag the flag over their line wins. */
+/* v107: TUG OF WAR (now also vs an AI rival for Marathon stages). 2 players, one device. Both chase the same secret (1-100) and take turns; closer guesses pull the rope harder, freezing guesses slip. A verlet rope sags and ripples; first to drag the flag over their line wins. */
 (function(){
-const W=360,N=16,cv=$('#tgCv'),x=cv.getContext('2d'),inp=$('#tgNum'),COL=['#f0c565','#ff6b5e'],ICO=['🛡️','⚔️'],nm=i=>(i?S.n2:S.n1)||('PLAYER '+(i+1));
-let T,P,fx=W/2,fv=0,raf=0,wins=[0,0];
+const W=360,N=16,cv=$('#tgCv'),x=cv.getContext('2d'),inp=$('#tgNum'),COL=['#f0c565','#ff6b5e'],ICO=['🛡️','⚔️'],nm=i=>(i?(T&&T.ai?T.ai.foe:S.n2):S.n1)||('PLAYER '+(i+1));
+let T,P,fx=W/2,fv=0,raf=0,wins=[0,0],AI=null,EV=null;
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 function ropeInit(){P=[];for(let i=0;i<N;i++){const px=36+(W-72)*i/(N-1);P.push({x:px,y:118,ox:px,oy:118})}}
 function round(){T.sec=rndS(1,100);T.lo=1;T.hi=100}
-function newGame(){T={pos:0,turn:Math.random()<.5?0:1,over:0};round();ropeInit();fx=W/2;fv=0;inp.value='';ui('Pull the rope! Closer guesses pull harder.');$('#tgEnd').classList.remove('on')}
+function newGame(){T={pos:0,turn:Math.random()<.5?0:1,over:0,st:{bull:0,frz:0,worst:-1},ai:AI,ev:EV};round();ropeInit();fx=W/2;fv=0;inp.value='';ui('Pull the rope! Closer guesses pull harder.');$('#tgEnd').classList.remove('on');if(AI&&T.turn===1)setTimeout(aiMove,900)}
 function ui(msg){const t=T.turn;$('#tgTop').innerHTML=`<b style="color:${COL[t]}">${ICO[t]} ${nm(t)}</b>, your pull!<br><small>🏆 ${nm(0)} ${wins[0]} – ${wins[1]} ${nm(1)}</small>`;$('#tgInfo').innerHTML=`🔢 Secret is between <b>${T.lo}</b> and <b>${T.hi}</b><br><small>${msg||''}</small>`}
-function fire(){if(T.over)return;const v=parseInt(inp.value,10);inp.value='';if(!v||v<T.lo||v>T.hi){tone(150,.2,'square');toast(`Pick a number from ${T.lo} to ${T.hi}`);return}
- const d=Math.abs(v-T.sec),who=T.turn,dir=who?1:-1;let pull,txt;
+function fire(){if(T.over||(T.ai&&T.turn===1))return;const v=parseInt(inp.value,10);inp.value='';if(!v||v<T.lo||v>T.hi){tone(150,.2,'square');toast(`Pick a number from ${T.lo} to ${T.hi}`);return}play(v)}
+function play(v){if(T.over)return;const d=Math.abs(v-T.sec),who=T.turn,dir=who?1:-1;let pull,txt;
  if(d===0){pull=.5;txt='🎯 BULLSEYE!'}else if(d<=3){pull=.22;txt='🔥 Blazing'}else if(d<=8){pull=.14;txt='♨️ Hot'}else if(d<=15){pull=.09;txt='🌡️ Warm'}else if(d<=30){pull=.04;txt='❄️ Cold'}else{pull=-.03;txt='🧊 Freezing, you slip!'}
- T.pos=cl(T.pos+dir*pull,-1,1);const amp=Math.abs(pull)*30*(RM?0:1);P.forEach((p,i)=>{p.oy+=amp*Math.sin(i/(N-1)*Math.PI)});
+ T.pos=cl(T.pos+dir*pull,-1,1);if(who===0){if(d===0)T.st.bull++;if(pull<0)T.st.frz++}T.st.worst=Math.max(T.st.worst,T.pos);const amp=Math.abs(pull)*30*(RM?0:1);P.forEach((p,i)=>{p.oy+=amp*Math.sin(i/(N-1)*Math.PI)});
  let hint;if(d===0){round();hint='A new secret appears!'}else{if(v<T.sec)T.lo=v+1;else T.hi=v-1;hint=v<T.sec?'⬆️ Higher':'⬇️ Lower'}
  pull>0?(d===0?sfx('powerup'):sfx('click')):sfx('buzz');if(d===0)burst(['🪢','✨'],18);
  if(Math.abs(T.pos)>=1){T.over=1;wins[who]++;setTimeout(()=>end(who),1100);ui(`${txt} The flag crosses the line!`);return}
- T.turn=1-who;ui(`${nm(who)}: <b>${v}</b> → ${txt} ${hint}`)}
-function end(w){sfx('fanfare');burst(['🏆','✨','🎉'],34);$('#tgEndT').innerHTML=`${ICO[w]} <b style="color:${COL[w]}">${nm(w)}</b> WINS!<br><small>🏆 ${nm(0)} ${wins[0]} – ${wins[1]} ${nm(1)}</small>`;$('#tgEnd').classList.add('on')}
+ T.turn=1-who;ui(`${nm(who)}: <b>${v}</b> → ${txt} ${hint}`);if(T.ai&&T.turn===1)setTimeout(aiMove,900)}
+function aiMove(){if(!T||T.over||T.turn!==1||!T.ai)return;const w=(T.hi-T.lo)*(1-T.ai.acc)*.6;play(cl(Math.round((T.lo+T.hi)/2+(Math.random()*2-1)*w),T.lo,T.hi))}
+function end(w){const ev=T.ev,me=w===0,nx=$('#tgNext'),H=(s,f)=>{$('#tgHome').textContent=s;$('#tgHome').onclick=()=>{$('#tgEnd').classList.remove('on');f()}};sfx(me||!ev?'fanfare':'buzz');if(me||!ev)burst(['🏆','✨','🎉'],34);nx.style.display='none';
+ if(ev){const r=ev.onEnd(me,T.st);$('#tgEndT').innerHTML=`${ICO[w]} <b style="color:${COL[w]}">${nm(w)}</b> ${me?'WINS':'wins'}!${r.html}`;$('#tgAgain').textContent='🔁 RETRY';H('🪢 MARATHON',()=>{home();svOpen()});if(r.next!=null){nx.style.display='';nx.onclick=()=>{$('#tgEnd').classList.remove('on');home();svOpen();evBrief(r.next)}}}
+ else{$('#tgEndT').innerHTML=`${ICO[w]} <b style="color:${COL[w]}">${nm(w)}</b> WINS!<br><small>🏆 ${nm(0)} ${wins[0]} – ${wins[1]} ${nm(1)}</small>`;$('#tgAgain').textContent='🔁 REMATCH';H('MAIN MENU',home)}
+ $('#tgEnd').classList.add('on')}
 function step(){fv+=(W/2+T.pos*W*.34-fx)*.08;fv*=.86;fx+=fv;const lean=(fx-W/2)*.22,hl=36+lean,hr=W-36+lean,y0=118,m=N>>1,rest=(hr-hl)/(N-1)*1.04;
  P.forEach((p,i)=>{if(i&&i<N-1){const vx=(p.x-p.ox)*.985,vy=(p.y-p.oy)*.985;p.ox=p.x;p.oy=p.y;p.x+=vx;p.y+=vy+.32}});
  for(let k=0;k<8;k++){P[0].x=hl;P[0].y=y0;P[N-1].x=hr;P[N-1].y=y0;P[m].x=fx;
@@ -3694,8 +3723,26 @@ function draw(){const y0=118;x.clearRect(0,0,W,190);x.fillStyle='#f0c56526';x.fi
  x.font='bold 11px sans-serif';x.fillStyle=COL[0];x.fillText(nm(0).slice(0,10),42,28);x.fillStyle=COL[1];x.fillText(nm(1).slice(0,10),W-42,28)}
 function loop(){raf=requestAnimationFrame(loop);if(document.hidden||!$('#s-tug').classList.contains('on'))return;step();draw()}
 keypad($('#tgKp'),inp,fire,'tgGo');
-$('#tgBtn').onclick=()=>{sfx('click');wins=[0,0];newGame();go('s-tug');if(!raf)loop()};
+$('#tgBtn').onclick=()=>{sfx('click');AI=null;EV=null;wins=[0,0];newGame();go('s-tug');if(!raf)loop()};
 $('#tgAgain').onclick=()=>{sfx('click');newGame()};$('#tgHome').onclick=()=>{$('#tgEnd').classList.remove('on');home()};
+window.tugEv=o=>{AI={foe:o.foe,acc:o.acc};EV=o;wins=[0,0];newGame();go('s-tug');if(!raf)loop()};
+})();
+</script>
+<script>
+/* v107: NUMBER BLITZ (Marathon stage type). Crack as many secret numbers (1-hi) as you can before the clock runs out. */
+(function(){
+const inp=$('#blNum');let B,B0,tm=0;
+const nxt=()=>{B.sec=rndS(1,B.hi);B.g=0};
+function ui(){const l=Math.max(0,B.T-(Date.now()-B.t0)/1000);$('#blBar').style.width=l/B.T*100+'%';$('#blTop').innerHTML=`${B.name}<br>🎯 <b>${B.n}</b> cracked · need ${B.need[0]} · ⭐ ${B.need[1]} · ⭐⭐ ${B.need[2]} · ⏱️ <b>${Math.ceil(l)}s</b>`;$('#blInfo').innerHTML=`🔢 Secret is 1–${B.hi} · guess #${B.g+1}<br><small>${B.msg}</small>`}
+function tick(){if(!B||B.over)return clearInterval(tm);if(!$('#s-blitz').classList.contains('on')){B.over=1;return clearInterval(tm)}if(Date.now()-B.t0>=B.T*1000)end();else ui()}
+function fire(){if(!B||B.over)return;const v=parseInt(inp.value,10);inp.value='';if(!v||v<1||v>B.hi){tone(150,.2,'square');return}B.g++;
+ if(v===B.sec){B.n++;if(B.g<=4)B.fast++;sfx('powerup');B.msg=`🎯 ${v}! Cracked in ${B.g}. New number!`;nxt()}else{sfx('click');B.msg=v<B.sec?'⬆️ Higher':'⬇️ Lower'}ui()}
+function end(){B.over=1;clearInterval(tm);sfx('fanfare');const r=B.onEnd(B.n,B.fast);$('#blEndT').innerHTML=`🎯 Cracked <b>${B.n}</b> number${B.n===1?'':'s'}${r.html}`;B.nx=r.next;$('#blNext').style.display=r.next!=null?'':'none';$('#blEnd').classList.add('on')}
+window.blitzEv=o=>{B0=o;B=Object.assign({n:0,fast:0,g:0,msg:'Go!',t0:Date.now(),over:0},o);inp.value='';nxt();ui();$('#blEnd').classList.remove('on');if(!$('#s-blitz').classList.contains('on'))go('s-blitz');clearInterval(tm);tm=setInterval(tick,200)};
+keypad($('#blKp'),inp,fire,'blGo');
+$('#blAgain').onclick=()=>{sfx('click');blitzEv(B0)};
+$('#blHome').onclick=()=>{$('#blEnd').classList.remove('on');home();svOpen()};
+$('#blNext').onclick=()=>{const n=B.nx;$('#blEnd').classList.remove('on');home();svOpen();evBrief(n)};
 })();
 </script>
 </body></html>
