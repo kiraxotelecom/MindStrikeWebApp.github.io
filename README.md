@@ -265,3 +265,7 @@ Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim
 
 ## v86 changes
 **Atlantis round timer.** The round box now uses the benchmark teal-glass blue with a bright steel-blue pill that drains smoothly and turns coral-red in the last 5 seconds. When Settings > Round Timer is OFF the pill hides itself instead of showing an empty bar.
+
+## v87 changes
+**Atlantis goes blue.** Hue shift moved from 130deg to 195deg so the green/teal tints (keypad panel, hearts, depth bar, pause menu, panel icons) become blues; power buttons now use distinct blues (Scan periwinkle, Focus bright cyan, Shield royal blue).
+**Sea Gates.** In Atlantis, ENTER THE ARENA now closes two coral-trimmed bulkhead doors with a rising wave, blazes a trident seal, then parts the doors on a burst of light, water and bubbles. Other worlds keep their own gate; reduced-motion skips it.

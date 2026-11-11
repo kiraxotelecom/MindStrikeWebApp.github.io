@@ -878,7 +878,7 @@ html:not(.wd-astral) #app #shopPopB .card button:hover:not(:disabled),html:not(.
 html:not(.wd-astral) #app #shopPopB .card button:disabled{opacity:.8;filter:saturate(.6) brightness(.85);box-shadow:inset 0 0 0 1px var(--gold)}
 @media(prefers-reduced-motion:reduce){html:not(.wd-astral) #shopList .shTile,html:not(.wd-astral) #shopList .shTile .e:before,html:not(.wd-astral) #shopPopB .card,html:not(.wd-astral) #shopPopB .card>span:first-child:before,html:not(.wd-astral) #shopList .shTile:after{animation:none!important}}
 /* ======== v79: ATLANTIS · THE DEEP. Bioluminescent sunken city: glass bubbles, drifting jellyfish, a tide that is the round timer, and the Kraken below. ======== */
-html.wd-atlantis{--hs:130deg;--ss:1;--k:2 14 38;--gold:#6ccbf8;--sand:#ccdff3;--red:#e8506a;--ink:#020b21;--b1:#0b3e89;--b2:#02113b;--c0:#094793;--c1:#0f64bc;--c2:#02163f;--wtint:linear-gradient(#0000,#0000);--wblend:normal;--wimg:hue-rotate(135deg) saturate(.9) brightness(1.15);--wfont:"Gill Sans","Trebuchet MS",Candara,"Segoe UI",system-ui,sans-serif;
+html.wd-atlantis{--hs:195deg;--ss:1;--k:2 14 38;--gold:#6ccbf8;--sand:#ccdff3;--red:#e8506a;--ink:#020b21;--b1:#0b3e89;--b2:#02113b;--c0:#094793;--c1:#0f64bc;--c2:#02163f;--wtint:linear-gradient(#0000,#0000);--wblend:normal;--wimg:hue-rotate(135deg) saturate(.9) brightness(1.15);--wfont:"Gill Sans","Trebuchet MS",Candara,"Segoe UI",system-ui,sans-serif;
 --con:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='40'%3E%3Cg fill='none' stroke='%236ccbf8' stroke-opacity='.65' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M6 38C6 26 12 22 12 12M12 24C18 22 20 16 20 8M12 30C20 30 26 26 28 20'/%3E%3C/g%3E%3Cg fill='%23ff8fd8'%3E%3Ccircle cx='12' cy='11' r='2.2'/%3E%3Ccircle cx='20' cy='7' r='1.8'/%3E%3Ccircle cx='28' cy='19' r='1.8'/%3E%3C/g%3E%3C/svg%3E");
 --con2:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='40'%3E%3Cg transform='rotate(180 32 20)' fill='none' stroke='%236ccbf8' stroke-opacity='.65' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M6 38C6 26 12 22 12 12M12 24C18 22 20 16 20 8M12 30C20 30 26 26 28 20'/%3E%3C/g%3E%3Cg transform='rotate(180 32 20)' fill='%23ff8fd8'%3E%3Ccircle cx='12' cy='11' r='2.2'/%3E%3Ccircle cx='20' cy='7' r='1.8'/%3E%3Ccircle cx='28' cy='19' r='1.8'/%3E%3C/g%3E%3C/svg%3E");
 --wavs:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16' viewBox='0 0 120 16'%3E%3Cpath d='M0 9Q15 1 30 9T60 9T90 9T120 9V16H0Z' fill='%236ccbf8' fill-opacity='.38'/%3E%3C/svg%3E");
@@ -1051,6 +1051,38 @@ html.wd-atlantis #app #mid #clock:before{content:'';position:absolute;z-index:-1
 html.wd-atlantis #app #mid #clock.low{color:#fff;border-color:#ff7aa0;text-shadow:0 1px 2px #3a0818,0 0 6px #3a0818;background:#3a1020;box-shadow:0 0 14px #ff5d8fb0,inset 0 0 8px #2a081844;animation:atlClockLow 1s ease-in-out infinite}
 html.wd-atlantis #app #mid #clock.low:before{background:linear-gradient(180deg,#ff7a9e,#e8446f 55%,#c9345c)}
 @media(prefers-reduced-motion:reduce){html.wd-atlantis #app #mid #clock,html.wd-atlantis #app #mid #clock:before{animation:none!important;transition:none!important}}
+/* ======== v87: Atlantis goes blue, not green. Hue shift moved from 130deg to 195deg so every colour derived from the old brown base lands on blue; explicit blues below for the parts that need contrast (keypad, hearts, depth bar, powers, pause and other panels). ======== */
+html.wd-atlantis #app .kp{background:linear-gradient(180deg,#0a2f6acc,#04153ae6);border:1px solid #3f88de;box-shadow:inset 0 0 18px #020f2b,0 0 16px #2a74d044}
+html.wd-atlantis #app #pips .hrt{stroke:#a6d6ff}
+html.wd-atlantis #app #spec{background:#041a44d9;border-color:#4aa0f0aa}
+html.wd-atlantis #app #spec .win{background:#4aa8ff66}
+html.wd-atlantis [data-p=SCAN]{--pc:#6fa6ea}html.wd-atlantis [data-p=FOCUS]{--pc:#22c0f4}html.wd-atlantis [data-p=SHIELD]{--pc:#3d62f2}
+html.wd-atlantis #app .bm-panel{border:1px solid #4b9ae4aa;border-radius:22px 8px 22px 8px;background:radial-gradient(ellipse at 50% 0,#4aa8ff22,#0000 60%),linear-gradient(160deg,#0b3f82ee,#041b4af5);box-shadow:0 0 24px #1b70c666,inset 0 1px 0 #6ccbf877,inset 0 0 26px #02122e99;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+html.wd-atlantis #app .bm-kicker{color:#8cc8ff}
+html.wd-atlantis #app .bm-laurel{color:#79b6ff}
+html.wd-atlantis #app .bm-panel h1{color:#e8f5ff;text-shadow:0 0 14px #3fa0f0cc,0 0 28px #1b70c688}
+html.wd-atlantis #app .bm-btn .e{border:1px solid #6ccbf8aa;color:#e8f6ff;background:radial-gradient(circle at 32% 26%,#6bb6ff,#1a56b8 55%,#07265a);box-shadow:inset 0 0 8px #9fd8ff55,0 0 8px #2a74d055}
+html.wd-atlantis #app .bm-btn.bm-danger .e{background:radial-gradient(circle at 32% 26%,#ff8aa8,#a02a4e 55%,#3a0c1e);border-color:#ff8fa8aa}
+html.wd-atlantis .pop{background:linear-gradient(rgba(2,14,40,.8),rgba(2,10,30,.9))}
+/* ======== v87: SEA GATES (ENTER THE ARENA transition) ======== */
+#atlGate{position:absolute;inset:0;z-index:16;display:none;overflow:hidden;pointer-events:all}#atlGate.on{display:block}
+#atlGate .ag-door{position:absolute;top:0;bottom:0;width:50.6%;box-shadow:inset 0 0 70px #010a22;background:
+ var(--con) 14px 16px/120px auto no-repeat,var(--con2) calc(100% - 14px) calc(100% - 16px)/120px auto no-repeat,
+ var(--wavs) 0 18%/120px 16px repeat-x,var(--wavs) 0 50%/120px 16px repeat-x,var(--wavs) 0 82%/120px 16px repeat-x,
+ repeating-linear-gradient(90deg,#0000 0 44px,#02102f88 44px 47px,#3f9af033 47px 48px),
+ linear-gradient(180deg,#1357b0,#0a3a84 40%,#052257 75%,#020f30)}
+#atlGate .agl{left:0;border-right:4px solid #8fd6ff}#atlGate .agr{right:0;border-left:4px solid #8fd6ff}
+#atlGate .ag-door:before{content:'';position:absolute;top:0;bottom:0;width:26px;background:radial-gradient(circle at 50% 50%,#f2fbff 0 2.5px,#8fd0ff 3.5px,#0000 6px) 50% 0/26px 64px repeat-y}
+#atlGate .agl:before{right:6px}#atlGate .agr:before{left:6px}
+#atlGate .ag-door:after{content:'';position:absolute;top:0;bottom:0;width:10px;background:linear-gradient(90deg,#0000,#bfe9ffcc,#0000);filter:blur(3px)}
+#atlGate .agl:after{right:-5px}#atlGate .agr:after{left:-5px}
+#atlGate .ag-seal{position:absolute;left:50%;top:50%;width:150px;height:150px;opacity:0;transform:translate(-50%,-50%);filter:drop-shadow(0 0 14px #6ccbf8) drop-shadow(0 0 30px #2a74d0);animation:agPulse 1s ease-in-out infinite alternate}
+@keyframes agPulse{from{filter:drop-shadow(0 0 10px #6ccbf8) drop-shadow(0 0 20px #2a74d0)}to{filter:drop-shadow(0 0 20px #d8f2ff) drop-shadow(0 0 40px #4aa8ff)}}
+#atlGate .ag-rays{position:absolute;left:50%;top:-10%;bottom:-10%;width:90%;opacity:0;transform:translateX(-50%);mix-blend-mode:screen;background:radial-gradient(ellipse 22% 55% at 50% 50%,#e8f8ffee,#8fd6ff88 45%,#0000 75%)}
+#atlGate .ag-wash{position:absolute;left:0;right:0;top:0;height:150%;opacity:0;pointer-events:none;background:linear-gradient(0deg,#6ccbf800 0,#4aa8ff55 30%,#2d8be0aa 48%,#9fd8ff66 52%,#6ccbf800 70%)}
+#atlGate .ag-bub{position:absolute;inset:0;pointer-events:none}
+#atlGate .ag-bub i{position:absolute;border-radius:50%;border:1.5px solid #cfeaffcc;background:radial-gradient(circle at 30% 28%,#ffffffaa,#ffffff22 40%,#0000 70%);box-shadow:0 0 8px #6ccbf877;opacity:0}
+@media(prefers-reduced-motion:reduce){#atlGate,#atlGate *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){#atlKraken *,#atlKraken,html.wd-atlantis #app #clock{animation:none!important}}
 </style></head><body><div id="app">
 
@@ -1332,7 +1364,7 @@ html.wd-atlantis #app #mid #clock.low:before{background:linear-gradient(180deg,#
 <div id="intel" class="row"><button data-i="DIRECTION"><span><b>🧭 BATTLE SENSE</b><small>Higher or lower than the middle</small></span><i></i></button><button data-i="RANGE"><span><b>📏 BATTLE RANGE</b><small>Narrow the range around the secret</small></span><i></i></button><button data-i="ODDEVEN"><span><b>🔮 THE OMEN</b><small>Odd or even</small></span><i></i></button><button data-i="DIGIT"><span><b>🔢 LAST MARK</b><small>Reveal the final digit</small></span><i></i></button><button data-i="PROPERTY"><span><b>🗝️ SECRET TRAIT</b><small>Prime, multiple of 3 or 5, high/low</small></span><i></i></button></div>
 <button id="secX" style="width:100%;margin-top:10px">CLOSE</button></div></div><div class="pop" id="oFamPop"><div class="card opc"><h2>🏆 Family record</h2><div id="oFam"></div><button class="oclose" data-close="1">CLOSE</button></div></div>
 <div class="pop" id="oOptPop"><div class="card opc"><h2>⚙️ Match options</h2><div class="ocol"><button class="bm-btn" id="oLad"></button><button class="bm-btn" id="oPwT"></button></div><small class="bm-note">Tap a button to switch it on or off.</small><button class="oclose" data-close="1">DONE</button></div></div>
-<div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="fx"></div><div id="oNet" role="alert" aria-live="assertive"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
+<div id="gate"><i class="gd gl"></i><i class="gd gr"></i></div><div id="atlGate" aria-hidden="true"><div class="ag-wash"></div><i class="ag-door agl"></i><i class="ag-door agr"></i><div class="ag-rays"></div><div class="ag-seal"><svg viewBox="0 0 120 120" width="100%" height="100%"><circle cx="60" cy="60" r="55" fill="#04184a" stroke="#6ccbf8" stroke-width="3"/><circle cx="60" cy="60" r="46" fill="none" stroke="#9fd8ff" stroke-width="1.5" stroke-dasharray="3 6" opacity=".8"/><g fill="none" stroke="#e4f6ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M60 24V98"/><path d="M40 40V54Q40 70 60 70T80 54V40"/><path d="M34 46l6-8 6 8M74 46l6-8 6 8M54 32l6-8 6 8"/></g></svg></div><div class="ag-bub"></div></div><div id="fx"></div><div id="oNet" role="alert" aria-live="assertive"></div><div id="toast"></div><div id="fl"></div><div id="bt"></div>
 <div id="bolt"><svg viewBox="0 0 100 160" preserveAspectRatio="none"><polyline points="58,0 44,38 56,40 38,82 52,84 30,130 40,132 28,160"/><polyline points="82,0 72,30 80,34 66,70 76,74 62,112 70,114 60,160"/><polyline points="20,0 28,26 20,30 30,64 22,68 34,100"/></svg></div>
 <div class="pop" id="wp" style="z-index:11"><h2>⚡ WEAK POINT!</h2><div id="wpb"><div id="wpz"></div><i id="wpm"></i></div><div id="wpt"></div></div><div class="pop" id="pause"><div class="bm-panel"><header class="bm-hero"><div class="bm-kicker">The arena holds its breath</div><h1>Paused</h1><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><button id="resume" class="bm-cta"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M8.5 5.2l10 6.8-10 6.8z" fill="currentColor"/></svg>RESUME</button><button id="restart" class="bm-btn"><span class="e">↻</span>Restart match</button><button id="pSet" class="bm-btn"><span class="e">⚙︎</span>Settings</button><button id="pHow" class="bm-btn"><span class="e">?</span>How to play</button><button id="quit" class="bm-btn bm-danger"><span class="e">🏛️</span>Quit to menu</button></div></div>
 <div class="pop" id="mgRvPop" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>💔 OUT OF LIVES</h2><div id="mgRvT" style="line-height:1.6;margin:8px 0"></div><button id="mgRvYes" style="width:100%"></button><button id="mgRvNo" style="width:100%;margin-top:8px">END RUN</button></div></div>
@@ -2363,9 +2395,30 @@ function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast
 function route(){if(R)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();MG=AC.createGain();SG=AC.createGain();MG.connect(AC.destination);SG.connect(AC.destination);
  Object.values(M).forEach(m=>AC.createMediaElementSource(m).connect(MG));Object.values(A).forEach(a=>AC.createMediaElementSource(a).connect(SG));R=1;applyVol()}catch(e){}}
 addEventListener('pointerdown',()=>{route();if(AC&&AC.state==='suspended')AC.resume()});
-let gating=0;function gate(next){if(gating)return;gating=1;const g=$('#gate'),d=[...g.children],mv=(a,b,t,e)=>d.forEach((x,i)=>x.animate([{transform:`translateX(${a(i)})`},{transform:`translateX(${b(i)})`}],{duration:t,easing:e,fill:'forwards'})),out=i=>i?'100%':'-100%';
+let gating=0;function gate(next){if(gating)return;if(document.documentElement.classList.contains('wd-atlantis')&&!RM){atlGate(next);return}gating=1;const g=$('#gate'),d=[...g.children],mv=(a,b,t,e)=>d.forEach((x,i)=>x.animate([{transform:`translateX(${a(i)})`},{transform:`translateX(${b(i)})`}],{duration:t,easing:e,fill:'forwards'})),out=i=>i?'100%':'-100%';
  if(RM){go(next);gating=0;return}g.classList.add('on');sfx('whoosh');mv(out,()=>'0',200,'ease-in');
  setTimeout(()=>{go(next);tone(70,.5,'sawtooth',.2);shake();vib([30,20,60]);mv(()=>'0',out,450,'cubic-bezier(.6,0,.2,1)');setTimeout(()=>{g.classList.remove('on');gating=0},480)},240)}
+
+// ---- v87: ATLANTIS SEA GATES. Two coral-trimmed bulkhead doors slide shut, the trident seal blazes, then the doors part on a surge of light, water and bubbles. ----
+function atlGate(next){gating=1;const g=document.getElementById('atlGate'),dl=g.querySelector('.agl'),dr=g.querySelector('.agr'),seal=g.querySelector('.ag-seal'),ray=g.querySelector('.ag-rays'),wash=g.querySelector('.ag-wash'),bub=g.querySelector('.ag-bub');
+ g.getAnimations({subtree:true}).forEach(a=>a.cancel());bub.innerHTML='';g.classList.add('on');
+ const an=(el,kf,o)=>el.animate(kf,Object.assign({fill:'forwards'},o)),T='translate(-50%,-50%)';
+ const bubbles=(n,y0,spread,dur)=>{for(let i=0;i<n;i++){const b=document.createElement('i'),z=6+Math.random()*18;b.style.cssText=`left:${50+(Math.random()-.5)*spread}%;top:${y0+Math.random()*12}%;width:${z}px;height:${z}px`;bub.appendChild(b);const rise=160+Math.random()*420,dx=(Math.random()-.5)*60;an(b,[{transform:'translate(0,0) scale(.5)',opacity:0},{opacity:.95,offset:.15},{transform:`translate(${dx}px,${-rise}px) scale(1)`,opacity:0}],{duration:dur*(.7+Math.random()*.7),delay:Math.random()*dur*.45,easing:'ease-out'})}};
+ sfx('whoosh');
+ an(wash,[{transform:'translateY(70%)',opacity:0},{opacity:1,offset:.3},{transform:'translateY(-10%)',opacity:.9}],{duration:520,easing:'ease-in'});
+ an(dl,[{transform:'translateX(-101%)'},{transform:'translateX(0)'}],{duration:480,easing:'cubic-bezier(.55,0,.25,1)'});
+ an(dr,[{transform:'translateX(101%)'},{transform:'translateX(0)'}],{duration:480,easing:'cubic-bezier(.55,0,.25,1)'});
+ an(seal,[{opacity:0,transform:T+' scale(.3) rotate(-120deg)'},{opacity:1,transform:T+' scale(1) rotate(0deg)'}],{duration:560,delay:330,easing:'cubic-bezier(.2,1.5,.4,1)'});
+ bubbles(14,70,90,1200);
+ setTimeout(()=>{go(next);tone(58,.7,'sine',.28);shake();vib([30,20,60]);tone(440,.25,'sine',.06)},560);
+ setTimeout(()=>{sfx('powerup');tone(660,.5,'triangle',.08);
+  an(wash,[{transform:'translateY(-10%)',opacity:.9},{transform:'translateY(-80%)',opacity:0}],{duration:1100,easing:'ease-out'});
+  an(seal,[{opacity:1,transform:T+' scale(1) rotate(0deg)'},{opacity:1,transform:T+' scale(1.25) rotate(60deg)',offset:.35},{opacity:0,transform:T+' scale(2.6) rotate(200deg)'}],{duration:760,easing:'ease-in'});
+  an(ray,[{opacity:0,transform:'translateX(-50%) scaleX(.15)'},{opacity:1,offset:.4,transform:'translateX(-50%) scaleX(1)'},{opacity:0,transform:'translateX(-50%) scaleX(2.1)'}],{duration:1150,delay:120,easing:'ease-out'});
+  an(dl,[{transform:'translateX(0)'},{transform:'translateX(-101%)'}],{duration:980,delay:200,easing:'cubic-bezier(.75,0,.2,1)'});
+  an(dr,[{transform:'translateX(0)'},{transform:'translateX(101%)'}],{duration:980,delay:200,easing:'cubic-bezier(.75,0,.2,1)'});
+  bubbles(30,60,60,1500)},1130);
+ setTimeout(()=>{g.classList.remove('on');g.getAnimations({subtree:true}).forEach(a=>a.cancel());bub.innerHTML='';gating=0},2500)}
 $('#kp').insertBefore($('#pows [data-p=RISK]'),$('#strike'));
 $('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick=()=>{if(confirm('Restart this match?')){if(G&&G.wager&&!G.done){PRO.gold+=G.wager+(G.wfee||0);G.wager=0}launch()}};
 // ---- render ----
