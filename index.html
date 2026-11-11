@@ -970,6 +970,32 @@ html.wd-atlantis #app :is(.bm-battle,.card,#prof,#inst,.bm-field){-webkit-backdr
 html.wd-atlantis #app:not(#z) .tiles button{background:radial-gradient(circle at 12% 40%,#3fb6ff33,#0000 55%),linear-gradient(100deg,#0b4a8a55,#05204a77);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 html.wd-atlantis #app:not(#z) :is(.bm-opt,.bm-btn,.sub2 button,.bm-cta){background:radial-gradient(ellipse at 50% -30%,#ffffff33,#0000 60%),linear-gradient(180deg,#0f4a8a77,#05204a99)}
 html.wd-atlantis #app:not(#z) .kp button{background:radial-gradient(ellipse at 50% -20%,#ffffff44,#0000 60%),linear-gradient(180deg,#0f4a8a88,#05204aaa)}
+/* v83: wildlife + gameplay details */
+.abed{position:absolute;left:0;right:0;bottom:0;height:15%;min-height:96px;pointer-events:none;opacity:.95}
+.abed svg{width:100%;height:100%;display:block;overflow:visible}
+.abed .kp{transform-origin:50% 100%;animation:atlKelp 6s ease-in-out infinite alternate}
+@keyframes atlKelp{from{transform:skewX(-3deg)}to{transform:skewX(3deg)}}
+.cr{position:absolute;left:0;top:0;pointer-events:none;will-change:transform;filter:drop-shadow(0 0 10px #6cc8ff88);opacity:.85}
+.cr svg{display:block;width:100%;height:auto;overflow:visible}
+.cr.hs svg{animation:atlBobS 3.4s ease-in-out infinite}.cr.hs .tl{transform-box:fill-box;transform-origin:100% 50%;animation:atlWag .5s ease-in-out infinite alternate}
+.cr .fl,.cr .fl2{transform-box:fill-box;transform-origin:50% 50%;animation:atlFlap 1.6s ease-in-out infinite alternate}.cr .fl2{animation-delay:-.8s}
+.cr .wg{transform-box:fill-box;transform-origin:50% 60%;animation:atlWing 2.4s ease-in-out infinite alternate}
+@keyframes atlBobS{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes atlWag{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+@keyframes atlFlap{from{transform:rotate(-14deg) scale(1,.9)}to{transform:rotate(14deg) scale(1,1.1)}}
+@keyframes atlWing{from{transform:scaleY(.82)}to{transform:scaleY(1.12)}}
+@keyframes atlCross{from{transform:translateX(0) scaleX(var(--dir))}to{transform:translateX(calc(var(--dir)*-1*130vw)) scaleX(var(--dir))}}
+.sch{position:absolute;left:var(--st,0);width:120px;height:44px;pointer-events:none;animation:atlCross var(--dur,34s) linear var(--del,0s) infinite;opacity:.9;filter:drop-shadow(0 0 6px #6cc8ff77)}
+.sch[style*="--dir:1"]{left:-30vw;animation-name:atlCrossR}.sch[style*="--dir:-1"]{left:105vw;animation-name:atlCrossL}
+@keyframes atlCrossR{from{transform:translateX(0)}to{transform:translateX(150vw)}}
+@keyframes atlCrossL{from{transform:translateX(0) scaleX(-1)}to{transform:translateX(-150vw) scaleX(-1)}}
+.sch i{position:absolute;display:block;animation:atlBobS 2s ease-in-out infinite}.sch .tl{transform-box:fill-box;transform-origin:0 50%;animation:atlWag .35s ease-in-out infinite alternate}
+@media(prefers-reduced-motion:reduce){.cr,.cr *,.sch,.sch *,.abed *{animation:none!important;transition:none!important}}
+/* gameplay screen details: waves around the number box, glowing round pause, glowing timer pill */
+html.wd-atlantis #app .plate::before,html.wd-atlantis #app .plate::after{content:'〰';font-size:1.5rem;color:#6cc8ff;text-shadow:0 0 10px #3fb6ff,0 0 20px #3fb6ff;transform:none;animation:atlBob 3s ease-in-out infinite}
+html.wd-atlantis #app .plate::after{animation-delay:-1.5s}
+html.wd-atlantis #app #pauseBtn{width:56px;height:56px;border-radius:50%;border:2px solid #6cc8ff;background:radial-gradient(circle at 35% 28%,#ffffff55,#1a6ac855 55%,#05204a99);color:#e4f5ff;box-shadow:0 0 18px #3fb6ffaa,0 0 40px #3fb6ff44,inset 0 0 12px #6cc8ff55;animation:atlGlow 3s ease-in-out infinite}
+html.wd-atlantis #app #hud .pl{border-radius:20px}
 /* the rising tide: the timer IS the sea. It climbs as your time drains. */
 #s-game.on~#atlTide{display:block;z-index:4}
 #atlTide{--tide:0}
@@ -1202,7 +1228,7 @@ html.wd-atlantis #app:not(#z) .kp button{background:radial-gradient(ellipse at 5
  <div class="vbt"><button id="share">📤 SHARE RESULT</button><button id="nextB" style="display:none">NEXT BATTLE ▶︎</button><button id="again">FIGHT AGAIN</button><button id="mapB" style="display:none">🗺️ CONQUEST MAP</button><button id="home">MAIN MENU</button></div>
 </section>
 
-<div id="atlSky" aria-hidden="true"><i class="ray r1"></i><i class="ray r2"></i><i class="ray r3"></i><i class="gl g1"></i><i class="gl g2"></i><i class="bub b1"></i><i class="bub b2"></i><i class="fish f1">🐠</i><i class="fish f2">🐟</i><i class="fish f3">🧜‍♀️</i><i class="fish f4">🐬</i><i class="fish f5">🐢</i><i class="fish f6">🦑</i><i class="flr"></i></div>
+<div id="atlSky" aria-hidden="true"><i class="ray r1"></i><i class="ray r2"></i><i class="ray r3"></i><i class="gl g1"></i><i class="gl g2"></i><i class="bub b1"></i><i class="bub b2"></i><i class="fish f3">🧜‍♀️</i><i class="fish f4">🐬</i><i class="flr"></i></div>
 <div id="atlTide" aria-hidden="true"><i class="wv w1"></i><i class="wv w2"></i><i class="whale">🐋</i></div>
 <div id="astSky" aria-hidden="true"><i class="neb n1"></i><i class="neb n2"></i><i class="aur"></i><i class="tw t1"></i><i class="tw t2"></i><i class="hor"></i></div>
 <div class="pop" id="shopPop"><div class="card shBox"><h2 id="shopPopT"></h2><div id="shopPopG"></div><div id="shopPopB"></div><button id="shopPopX" style="width:100%">CLOSE</button></div></div>
@@ -2903,6 +2929,32 @@ function place(j,first){const W=sky.clientWidth||innerWidth,Hh=sky.clientHeight|
  j.e.style.transform=`translate(${x.toFixed(0)}px,${y.toFixed(0)}px) rotate(${Math.max(-22,Math.min(22,dx/(dist||1)*22)).toFixed(0)}deg)`;j.x=x;j.y=y;
  if(!calm)setTimeout(()=>place(j),(first?R(500,2500):d*1000+R(300,2200)))}
 for(let i=0;i<8;i++){const c=PAL[i%PAL.length],e=document.createElement('div'),w=Math.round(i<5?R(54,112):R(130,175));e.className='jfx';e.style.width=w+'px';e.style.setProperty('--g',c[1]+'aa');e.style.opacity=(i<5?R(.6,.9):R(.3,.45)).toFixed(2);e.innerHTML=svg(c[0],c[1],++u);sky.appendChild(e);const j={e,w,x:R(0,300),y:R(0,600)};J.push(j);place(j,true)}
+})();
+</script>
+<script>
+/* v83: busy, detailed Atlantis wildlife: fish schools, seahorses, turtle, manta, seabed */
+(function(){const H=document.documentElement;if(!H.classList.contains('wd-atlantis'))return;const sky=document.getElementById('atlSky');if(!sky)return;
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches,R=(a,b)=>a+Math.random()*(b-a),P=a=>a[Math.floor(Math.random()*a.length)];
+const fish=(c1,c2)=>`<svg viewBox="0 0 40 20"><g class="tl"><path d="M30 10L39 2V18Z" fill="${c2}"/></g><path d="M2 10C8 0 25 0 32 10 25 20 8 20 2 10Z" fill="${c1}"/><path d="M5 12C12 18 24 18 30 11 24 16 10 16 5 12Z" fill="#fff" opacity=".35"/><path d="M13 3C16 8 16 12 13 17M19 2C22 8 22 12 19 18" stroke="${c2}" stroke-width="1.2" fill="none" opacity=".55"/><path d="M14 3Q20-2 24 4" fill="${c2}" opacity=".8"/><circle cx="8.5" cy="8" r="2" fill="#fff"/><circle cx="8.2" cy="8" r="1" fill="#012"/></svg>`;
+const horse=c=>`<svg viewBox="0 0 40 72"><path d="M22 20C10 24 10 36 20 44 28 50 24 60 14 62" stroke="${c}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M22 20C10 24 10 36 20 44 28 50 24 60 14 62" stroke="#fff" stroke-width="2" stroke-dasharray="2 5" fill="none" opacity=".5" stroke-linecap="round"/><ellipse cx="22" cy="14" rx="9" ry="8" fill="${c}"/><path d="M26 15L38 18 26 21Z" fill="${c}"/><circle cx="23" cy="11" r="2.4" fill="#fff"/><circle cx="23.3" cy="11" r="1.2" fill="#012"/><path d="M14 8Q10 2 15 1M17 6Q15 0 20 0" stroke="${c}" stroke-width="2" fill="none"/><path d="M12 30Q4 32 8 40Q14 36 12 30Z" fill="#fff" opacity=".5" class="tl"/></svg>`;
+const turtle=`<svg viewBox="0 0 90 64"><g class="fl"><ellipse cx="62" cy="14" rx="16" ry="6" fill="#4fb59a" transform="rotate(-25 62 14)"/><ellipse cx="62" cy="50" rx="16" ry="6" fill="#4fb59a" transform="rotate(25 62 50)"/></g><g class="fl2"><ellipse cx="24" cy="16" rx="10" ry="4.5" fill="#4fb59a" transform="rotate(-30 24 16)"/><ellipse cx="24" cy="48" rx="10" ry="4.5" fill="#4fb59a" transform="rotate(30 24 48)"/></g><ellipse cx="45" cy="32" rx="30" ry="22" fill="#2f8a63"/><ellipse cx="45" cy="32" rx="30" ry="22" fill="none" stroke="#a6f0c8" stroke-width="1.5" opacity=".7"/><path d="M45 16l12 8v14l-12 8-12-8V24Z M33 24L18 28M57 24l15 4M33 38L20 44M57 38l14 6M45 16V10M45 46v7" stroke="#a6f0c8" stroke-width="1.6" fill="#3da578" opacity=".85"/><ellipse cx="78" cy="30" rx="10" ry="8" fill="#5cc9a6"/><circle cx="82" cy="27" r="2" fill="#fff"/><circle cx="82.4" cy="27" r="1" fill="#012"/><path d="M80 35q4 2 7 0" stroke="#1e6b4d" stroke-width="1.2" fill="none"/></svg>`;
+const manta=`<svg viewBox="0 0 130 64"><g class="wg"><path d="M65 10C85 10 118 18 128 34 108 28 92 32 65 56 38 32 22 28 2 34 12 18 45 10 65 10Z" fill="#5a7fe0"/><path d="M65 12C80 14 100 22 114 30 96 28 84 34 65 48 46 34 34 28 16 30 30 22 50 14 65 12Z" fill="#9fc0ff" opacity=".35"/></g><path d="M65 56Q66 62 64 64" stroke="#5a7fe0" stroke-width="2" fill="none"/><circle cx="55" cy="22" r="2" fill="#fff"/><circle cx="75" cy="22" r="2" fill="#fff"/><path d="M56 30q9 5 18 0" stroke="#e4f0ff" stroke-width="1.6" fill="none" opacity=".7"/></svg>`;
+const sea=`<svg viewBox="0 0 390 120" preserveAspectRatio="none"><defs><linearGradient id="sd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a6aa8" stop-opacity=".0"/><stop offset="1" stop-color="#05204a"/></linearGradient></defs><path d="M0 120V92Q60 78 120 90T250 88T390 84V120Z" fill="url(#sd)"/><g class="kp"><path d="M18 120Q6 90 18 60Q28 36 14 14" stroke="#2fb59a" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/><path d="M34 120Q46 92 34 66" stroke="#4fd0a8" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/><path d="M360 120Q374 88 362 58Q352 34 366 12" stroke="#2fb59a" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/><path d="M344 120Q332 94 344 70" stroke="#4fd0a8" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g><g fill="none" stroke-linecap="round"><path d="M70 120V98M70 98l-8-12M70 98l9-10M70 106l-9-6M62 86l-3-8M79 88l4-8" stroke="#ff7aa8" stroke-width="4.5"/><path d="M290 120V100M290 100l-9-12M290 100l10-12M290 108l10-6M281 88l-4-9M300 88l5-9" stroke="#ff9f6a" stroke-width="4.5"/><path d="M120 120q10-26 22-30 8 10 2 30M146 120q4-18 14-22" stroke="#b58cff" stroke-width="5"/><path d="M230 120q-6-22-18-26-6 12 0 26" stroke="#ffb3d1" stroke-width="5"/></g><path d="M190 108l4-9 4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6Z" fill="#ff8f6a" stroke="#ffd0b0" stroke-width="1"/><path d="M318 112l2-6 3 6 6 1-5 4 1 6-5-3-5 3 1-6-5-4Z" fill="#ffb347"/><g><path d="M236 120q-2-14 12-14t14 14Z" fill="#e8d4f0"/><path d="M240 119q8-9 18 0M244 119q4-8 10 0" stroke="#b89ad0" fill="none"/><circle cx="249" cy="112" r="3.2" fill="#fff"/></g></svg>`;
+const bed=document.createElement('div');bed.className='abed';bed.innerHTML=sea;sky.appendChild(bed);
+function mk(html,w,cls){const e=document.createElement('div');e.className='cr '+(cls||'');e.style.width=w+'px';e.innerHTML=html;sky.appendChild(e);return e}
+function wander(e,w,sp,flipTo){let x=R(0,300),y=R(80,600);const step=first=>{const W=sky.clientWidth||innerWidth,Hh=sky.clientHeight||innerHeight,nx=R(-.1*W,W-w*.6),ny=R(.08*Hh,Hh*.82-w*.4),dx=nx-x,d=first?0:Math.max(8,Math.hypot(dx,ny-y)/sp);
+ e.style.transition=first||calm?'none':`transform ${d.toFixed(1)}s cubic-bezier(.4,0,.6,1)`;
+ e.style.transform=`translate(${nx.toFixed(0)}px,${ny.toFixed(0)}px) scaleX(${(flipTo?(dx>=0?1:-1):1)}) rotate(${((ny-y)/(Math.abs(dx)+80)*14).toFixed(0)}deg)`;x=nx;y=ny;if(!calm)setTimeout(()=>step(false),first?R(300,2000):d*1000+R(200,1800))};step(true)}
+/* schools: 8 fish each, crossing the screen at different depths and directions */
+const SC=[['#ffd45a','#ff9a3a'],['#7fe3ff','#2f8ae6'],['#ff9ec8','#e0589c'],['#b7a6ff','#6a44e0']];
+SC.forEach((c,i)=>{const s=document.createElement('div');s.className='sch';const dir=i%2?1:-1;s.style.cssText=`top:${14+i*19+R(0,6)}%;--dur:${R(26,46).toFixed(0)}s;--del:-${R(0,30).toFixed(0)}s;--dir:${dir}`;
+ for(let k=0;k<8;k++){const f=document.createElement('i');f.style.cssText=`left:${(k%4)*22+R(0,10)}px;top:${Math.floor(k/4)*16+(k%2)*6+R(0,8)}px;width:${R(22,32).toFixed(0)}px;animation-delay:-${R(0,2).toFixed(1)}s`;f.innerHTML=fish(c[0],c[1]);s.appendChild(f)}sky.appendChild(s)});
+/* wanderers */
+[['#ffb347',46],['#8ee8c8',40]].forEach(a=>{const e=mk(horse(a[0]),a[1],'hs');wander(e,a[1],14,false)});
+{const e=mk(turtle,96,'tt');wander(e,96,16,true)}
+{const e=mk(manta,128,'mt');wander(e,128,22,true)}
+{const e=mk(turtle,60,'tt');wander(e,60,12,true)}
+sky.querySelectorAll('.fish.f1,.fish.f2,.fish.f5,.fish.f6').forEach(x=>x.remove());
 })();
 </script>
 </body></html>
