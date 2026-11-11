@@ -730,7 +730,7 @@ html:not(.light):not([class*="wd-"]) #app .vt .cnt{color:#fff3c4}
 html:not(.light):not([class*="wd-"]) #app #s-end[data-k=vic] .vbt button:not(.pri){background:var(--rt),var(--rm),linear-gradient(#7a2036,#2e0f26)}
 html:not(.light):not([class*="wd-"]) #app :is(.pkt){background:linear-gradient(90deg,#e6b94a44,transparent)}
 html:not(.light):not([class*="wd-"]) #app .pks span{background:var(--rt),var(--rm),linear-gradient(180deg,#00000040,#0000006a)}
-html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#ff8a3d99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(2){border-color:#e6606099}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(3){border-color:#e6b94a99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(4){border-color:#5ac8f099}
+html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(1){border-color:#ff8a3d99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(2){border-color:#e6606099}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(3){border-color:#e6b94a99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(4){border-color:#5ac8f099}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(5){border-color:#6fd68a99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(6){border-color:#c28bf099}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(7){border-color:#8fd16a99}html:not(.light):not([class*="wd-"]) #app .pks span:nth-child(8){border-color:#9aa8d899}
 /* ======== v77: ASTRAL DOMINION · deep-space pass. Everything below is Astral-only; other worlds are untouched. ======== */
 @keyframes astFlow{from{background-position:0 50%}to{background-position:300% 50%}}
 @keyframes astBlink{0%,100%{opacity:.25}50%{opacity:1}}
@@ -1727,7 +1727,7 @@ if(LX){lexNode(document.body);document.title=lexStr(document.title);
 const worldsH=(card,h2,bt)=>'<div data-nx="1">'+h2('🌍 WORLDS · same game, new look')+Object.keys(WORLDS).map(id=>{const W=WORLDS[id],own=id==='roman'||PRO.own['wd:'+id],on=(WID||'roman')===id;
  return card(W.e,W.n,W.d,`<button data-wd="${id}" ${bt} ${on?'disabled':''}>${on?'✓ ON':own?'EQUIP':W.gem?(rk()>=W.rk?'💎 '+W.gem:'🔒 '+RANKS[W.rk][0]):'💰 '+PR(W.price)}</button>`)}).join('')+'</div>';
 shopOn(e=>{const b=e.target.closest('[data-wd]');if(!b||b.disabled)return;const id=b.dataset.wd,W=WORLDS[id];if(!W)return;
- if(W.gem&&!PRO.own['wd:'+id]){if(rk()<W.rk){tone(150,.2,'square');toast('🔒 <b>'+W.n+'</b><br><small>Reach rank '+RANKS[W.rk][0]+' first</small>');return}if((PRO.gems||0)<W.gem){tone(150,.2,'square');toast('Not enough gems 💎<br><small>'+W.gem+' needed · you have '+(PRO.gems||0)+'</small>');return}PRO.gems-=W.gem;PRO.own['wd:'+id]=1;if(id==='astral'){PRO.own['ks:astral']=1;PRO.ks='astral'}if(id==='atlantis'){PRO.own['ks:atlantis']=1;PRO.ks='atlantis'}qEv('buy');tone(660,.1,'triangle')}else if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
+ if(W.gem&&!PRO.own['wd:'+id]){if(rk()<W.rk){tone(150,.2,'square');toast('🔒 <b>'+W.n+'</b><br><small>Reach rank '+RANKS[W.rk][0]+' first</small>');return}if((PRO.gems||0)<W.gem){tone(150,.2,'square');toast('Not Enough Gems 💎<br><small>'+W.gem+' needed · you have '+(PRO.gems||0)+'</small>');return}PRO.gems-=W.gem;PRO.own['wd:'+id]=1;if(id==='astral'){PRO.own['ks:astral']=1;PRO.ks='astral'}if(id==='atlantis'){PRO.own['ks:atlantis']=1;PRO.ks='atlantis'}qEv('buy');tone(660,.1,'triangle')}else if(id!=='roman'&&!PRO.own['wd:'+id]){const pr=PR(W.price);if(PRO.gold<pr){tone(150,.2,'square');toast('Not Enough Gold');return}PRO.gold-=pr;PRO.own['wd:'+id]=1;qEv('buy');tone(660,.1,'triangle')}
  PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
 const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a',buganda:'#f2c94c',gold:'#ffb83a',astral:'#b48cff',atlantis:'#3df2e0',cyber:'#19f2ff',samurai:'#ff4a3a',ice:'#8fdcff',crystal:'#b48cff'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
 const SKC=k=>{const f=k.slice(0,2),v=k.slice(3);return f==='ps'?(PSK[v]||[])[1]:f==='ks'?KSC[v]:f==='th'?THC[v]:''};
@@ -1824,7 +1824,7 @@ function campEnd(win){const c=G.cf;let h=`<br><b>🗺️ ${c.rn} · ${c.nn}</b>`
  if(!win)return{html:h+`<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>`};
  qEv('conq');const cb=objCheck(G,c.ob,true),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=cx(gain*(15+10*c.ri)),note='';
  if(c.boss&&first){const b=cx(100+50*c.ri);coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
- const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
+ const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
  if(c.boss&&first){if(c.fin){unlock('conq');note+='<br>👑 <b>Kiraxo falls — Rome is yours!</b>'}else{const nr=c.ri+1;note+=rOpen(nr)?`<br>🔓 <b>${CAMP[nr].n} unlocked!</b>`:`<br>🔒 ${CAMP[nr].n} needs ⭐ ${CAMP[nr].need} in total (you have ${cTotal()})`}}
  return{html:h+`<br><span class="vstars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
 function campBtns(win){const c=G.cf;let nx=null;
@@ -2046,7 +2046,7 @@ $('#bkPick').onclick=()=>$('#bkFile').click();
 $('#bkFile').onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#bkTxt').value=String(r.result||'').slice(0,2e6)};r.readAsText(f);e.target.value=''};
 $('#bkGo').onclick=()=>{let o;try{o=bkRead($('#bkTxt').value)}catch(e){tone(150,.2,'square');return toast('That backup code looks wrong or incomplete.')}
  const p=JSON.parse(o.d.ms_pro);if(!confirm(`Replace the progress on this device with the backup (${p.xp||0} XP, 💰 ${p.gold||0})? You can undo this once.`))return;$('#bkPop').classList.remove('on');bkApply(o)};
-$('#bkUndo').onclick=()=>{let o;try{o=bkRead(localStorage.getItem('ms_undo'))}catch(e){return toast('Nothing to undo.')}if(!confirm('Go back to the progress you had before the last restore?'))return;bkApply(o)};
+$('#bkUndo').onclick=()=>{let o;try{o=bkRead(localStorage.getItem('ms_undo'))}catch(e){return toast('Nothing to Undo')}if(!confirm('Go back to the progress you had before the last restore?'))return;bkApply(o)};
 bkNote();
 
 
@@ -2164,7 +2164,7 @@ function cqS(){const c=PRO.cq||(PRO.cq={d:'',n:0,x:0,g:0});if(c.d!==today()){c.d
 const cqCap=()=>CQ_FREE+cqS().x,cqLeft=()=>Math.max(0,cqCap()-cqS().n);
 function cqUse(){cqS().n++;LS.set('ms_pro',PRO)}
 function buyGemCoins(){const c=cqS();if(c.g>=GEM_COIN_DAY){tone(150,.2,'square');toast('💎 Daily coin-to-gem limit reached ('+GEM_COIN_DAY+')');return false}
- if(PRO.gold<GEM_COIN){tone(150,.2,'square');toast('Not enough coins 💰<br><small>A gem costs '+GEM_COIN+' 💰</small>');return false}
+ if(PRO.gold<GEM_COIN){tone(150,.2,'square');toast('Not Enough Coins 💰<br><small>A gem costs '+GEM_COIN+' 💰</small>');return false}
  PRO.gold-=GEM_COIN;PRO.gems=(PRO.gems||0)+1;c.g++;LS.set('ms_pro',PRO);tone(660,.1,'triangle');toast('💎 <b>+1 GEM</b><br><small>−'+GEM_COIN+' 💰 · bought today '+c.g+'/'+GEM_COIN_DAY+'</small>');return true}
 let cqAfter=null;
 function cqPaint(){const c=cqS(),can=(PRO.gems||0)>=CQ_COST,gl=GEM_COIN_DAY-c.g;
@@ -2190,8 +2190,8 @@ $('#prof').addEventListener('click',e=>{const t=e.target.closest('.pkt,.pkm');if
 function profUI(){try{gemSync()}catch(e){}const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
  const skE=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️',skC=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a',tN=i+1,tp=!(tN<10||tN>12||trOk(tN)),tI=tp?TRI(tN):null,full=PRO.xp>=nx[1],ch=evBadgeTxt().replace(/^ · /,''),f=v=>Number(v).toLocaleString('en-US');
- $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}"><span class="skP">${skE}</span></div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>Streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>Wins</small></span><span><i>🏅</i><b>${ac}/${Object.keys(ACH).length}</b><small>Medals</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>Gems</small></span><span><i>👻</i><b>${(PRO.gh||{}).n||0}</b><small>Ghosts</small></span></div>${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
- try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ Daily done':'Daily ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`⭐ ${cTotal()} / ${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} unlocked`);
+ $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}"><span class="skP">${skE}</span></div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>Streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>Wins</small></span><span><i>💰</i><b>${f(PRO.gold||0)}</b><small>Coins</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>Gems</small></span><span><i>🗺️</i><b>${(()=>{try{return cTotal()+'/'+cMax()}catch(e){return '0'}})()}</b><small>Stars</small></span><span><i>🏅</i><b>${ac}/${Object.keys(ACH).length}</b><small>Medals</small></span><span><i>🌿</i><b>${(()=>{try{return Object.keys(PRO.hk||{}).length+'/'+KIDS.length}catch(e){return '0'}})()}</b><small>Laurels</small></span><span><i>👻</i><b>${(PRO.gh||{}).n||0}</b><small>Ghosts</small></span></div>${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
+ try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ Daily Done':'Daily Ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`🎟️ ${cqLeft()} left · ⭐ ${cTotal()}/${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} Unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
 const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tmul(m);
@@ -2226,7 +2226,7 @@ async function lbPut(sc,r){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await
 async function dayBoardShow(){let ov=document.getElementById('lbOv');if(!ov){ov=document.createElement('div');ov.id='lbOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='lbX')ov.remove()};document.body.appendChild(ov)}
 const card=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 TODAY’S BOARD</h2><div style="line-height:1.8;margin:8px 0">${h}</div><button id="lbX" style="width:100%">CLOSE</button></div>`};card('Loading…');
 try{const X=await msFb(),uid=X.uid;if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s,PRO.dres.r);const{D:Z,db}=X.F,r=await Z.get(Z.query(Z.ref(db,'daily/'+today()),Z.orderByChild('s'),Z.limitToLast(20))),a=[];r.forEach(c=>{a.push({...c.val(),me:c.key===uid})});a.reverse();const M=ghostMerge(a,'y|'+today(),PRO.dl===today()&&PRO.dres?PRO.dres.s:0,500);card((M.length?boardRows(M):'No scores yet today.')+ghostNote(M)+(PRO.dl===today()?'':'<br><small>Finish today’s Daily Strike to put your score on the board.</small>'))}catch(e){card('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.<br><small>'+String((window.msWhy||String)(e)).replace(/[<>&]/g,'')+'</small>')}}
-document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not enough coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
+document.addEventListener('click',e=>{const t=e.target.closest('#fzB,#lbB');if(!t)return;if(t.id==='lbB')return dayBoardShow();if((PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if(PRO.gold<cx(300))return toast('Not Enough Coins');PRO.gold-=cx(300);PRO.fz=(PRO.fz||0)+1;LS.set('ms_pro',PRO);t.innerHTML=fzLbl();toast('🧊 Freeze bought. It saves one missed day.')});
 
 /* v57: no quitting a started Daily/Weekly run. Leaving, closing or refreshing ends it with the score so far. */
 let QUIT=0;
@@ -2284,9 +2284,9 @@ const evDay=()=>{const E=evS(),k=evToday();return E.d[k]||(E.d[k]={p:0,b:0})},
  evLeft=()=>Math.max(0,evCap()-evDay().p),
  evTot=()=>Object.values(evS().d).reduce((a,x)=>a+(x.b||0),0);
 function evUse(){evDay().p++;LS.set('ms_pro',PRO)}
-function evPlay(){if(evLeft()<=0){toast('⏳ No runs left today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${evToday()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
+function evPlay(){if(evLeft()<=0){toast('⏳ No Runs Left Today');tone(150,.2,'square');return}dStart(`ev|${evWk()}|${evToday()}|${evDay().p+1}`,null,{ev:EVC(),k:evDay().p+1})}
 function evTile(){const left=evLeft(),dn=PRO.dl===today(),n=(dn?0:1)+(left>0?1:0),ev=EVC();
- $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>ARENA TRIALS</span><small>${n?[dn?'':'Daily',left>0?'Weekly':''].filter(Boolean).join(' + ')+' ready':'All done today'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
+ $('#dailyBtn').innerHTML=`<i class="ti">⚔️</i><span>ARENA TRIALS</span><small>${n?[dn?'':'Daily',left>0?'Weekly':''].filter(Boolean).join(' + ')+' Ready':'All Done Today'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
 async function evSync(E){E=E||evS();if(!E.dirty)return;try{const X=await msFb(),{D:Z,db}=X.F,uid=X.uid,n=evSafe(S.n1),w=E.w,pr=[];let tot=0;
  for(const k in E.d){const b=E.d[k].b||0;tot+=b;if(b>0)pr.push(Z.set(Z.ref(db,`events/${w}/day/${k}/${uid}`),{n,s:b,...(E.d[k].r?{r:E.d[k].r}:{})}))}
  if(tot>0)pr.push(Z.set(Z.ref(db,`events/${w}/total/${uid}`),{n,s:tot}));await Promise.all(pr);E.dirty=0;LS.set('ms_pro',PRO)}catch(e){}}
@@ -2303,11 +2303,10 @@ function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 function evHubOpen(){go('s-events')}
 function evChoose(){const E=evS(),left=evLeft(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,cl=E.pend.length;
- $('#evBody').innerHTML=`<div class="tiles one"><button data-ev="goDaily"><i class="ti">☀️</i><span>DAILY STRIKE</span><small>${dn?'✓ Done today':'New numbers today'}${ds?' · 🔥 '+ds+'-day streak':''}</small>${dn?'':'<em class="bd" style="font-style:normal">1</em>'}</button><button data-ev="goWeekly"><i class="ti">🏆</i><span>COLOSSEUM</span><small>${cl?'🎁 reward waiting · ':''}${left?left+' run left today':'done today'} · ${evShort()}</small>${left>0||cl?`<em class="bd" style="font-style:normal">${cl||left}</em>`:''}</button></div>
- <div class="evnote"><b>Daily Strike:</b> one short run a day, same numbers for everyone.<br><b>Colosseum:</b> a world contest that lasts all week, with a leaderboard and rewards.</div>`}
+ $('#evBody').innerHTML=`<div class="tiles one"><button data-ev="goDaily"><i class="ti">☀️</i><span>DAILY STRIKE</span><small>${dn?'✓ Done Today':'New Numbers Today'}${ds?' · 🔥 '+ds+'-day streak':''}</small>${dn?'':'<em class="bd" style="font-style:normal">1</em>'}</button><button data-ev="goWeekly"><i class="ti">🏆</i><span>COLOSSEUM</span><small>${cl?'🎁 Reward Waiting · ':''}${left?left+' Run Left Today':'Done Today'} · ${evShort()}</small>${left>0||cl?`<em class="bd" style="font-style:normal">${cl||left}</em>`:''}</button></div>`}
 function dsRender(){const dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  $('#dsBody').innerHTML=`<div class="card ev evx"><div class="evh"><span>☀️ DAILY STRIKE</span><b>${dn?'✓ DONE':'READY'}</b></div>
- <p>Five rounds with the same numbers for everyone, once a day. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
+ <p>5 rounds, same numbers for everyone. ${ds?`🔥 ${ds}-day streak.`:'Build a 🔥 streak for bonus coins.'}</p>
  <button data-ev="daily">${dn?'📜 VIEW TODAY’S RESULT':'☀️ PLAY DAILY STRIKE'}</button>${dn?'':'<button data-ev="dsRace">👤 RACE A REAL PLAYER</button>'}
  <button data-ev="dsBoard">🏆 TODAY’S BOARD</button></div>`}
 const evRew=(r,dy)=>r==null||r>100?(dy>=3?{c:cx(320),x:60}:{c:cx(200),x:40}):r===1?{c:cx(2500),x:300,inv:{tome:1,mag:1,'s:DIGIT':2}}:r<=3?{c:cx(1500),x:200,inv:{tome:1,'s:DIGIT':1}}:r<=10?{c:cx(800),x:140}:r<=25?{c:cx(500),x:90}:{c:cx(320),x:60};
@@ -2315,12 +2314,12 @@ function evHubRender(nc){const E=evS(),ev=EVC(),left=evLeft(),dd=evDay(),dn=PRO.
  pips=Array.from({length:evCap()},(_,i)=>`<i class="${i<dd.p?'u':''}"></i>`).join('');
  $('#wkBody').innerHTML=`<div id="evClaim"></div>
  <div class="card ev evx"><div class="evh"><span>${ev.e} THE COLOSSEUM · WEEK ${evWn(evNum())}</span><b>${evLeftTxt()}</b></div>
- <h3>${ev.n}</h3><p>${ev.d}</p>${(()=>{const dw=evDw();return `<div style="display:flex;gap:4px;margin:6px 0 4px">${EV_DIFF.map((x,i)=>{const k=evKey(new Date(evMon()+i*864e5)),b=(E.d[k]||{}).b,on=i===dw,fin=i===6;return `<div style="flex:1;text-align:center;padding:4px 0;border-radius:6px;border:1px solid ${on?'var(--gold)':'rgba(255,255,255,.18)'};background:${on?'rgba(255,200,58,.16)':'transparent'};opacity:${i<dw&&!b?.55:1};font-size:.62rem;line-height:1.25"><b>${fin?'👑':x[0][0]}</b><br>${b!=null&&i<=dw?b:'·'}</div>`}).join('')}</div><small class="evn" style="margin:0 0 6px">${dw===6?'👑 <b>FINALE DAY:</b> the hardest ranges of the week and every point counts ×2. Rankings can swing today.':`Today is <b>${EV_DIFF[dw][1]}</b> (${['Mon','Tue','Wed','Thu','Fri','Sat'][dw]}). The ranges get bigger every day, and Sunday’s 👑 Finale is worth ×2.`}<br>👻 <b>Race the ghosts:</b> beat their scores for bonus coins.</small>`})()}${evBadgeList()?`<small class="evn" style="margin:0 0 6px">🏅 ${evBadgeList()}</small>`:''}
+ <h3>${ev.n}</h3><p>${ev.d}</p>${(()=>{const dw=evDw();return `<div style="display:flex;gap:4px;margin:6px 0 4px">${EV_DIFF.map((x,i)=>{const k=evKey(new Date(evMon()+i*864e5)),b=(E.d[k]||{}).b,on=i===dw,fin=i===6;return `<div style="flex:1;text-align:center;padding:4px 0;border-radius:6px;border:1px solid ${on?'var(--gold)':'rgba(255,255,255,.18)'};background:${on?'rgba(255,200,58,.16)':'transparent'};opacity:${i<dw&&!b?.55:1};font-size:.62rem;line-height:1.25"><b>${fin?'👑':x[0][0]}</b><br>${b!=null&&i<=dw?b:'·'}</div>`}).join('')}</div>${dw===6?'<small class="evn" style="margin:0 0 6px">👑 <b>Finale:</b> hardest ranges, points ×2.</small>':''}`})()}${evBadgeList()?`<small class="evn" style="margin:0 0 6px">🏅 ${evBadgeList()}</small>`:''}
  <div class="evp"><span>RUNS TODAY</span><span class="evpips">${pips}</span><small>${left} left</small></div>
  <div class="evs"><div><small>TODAY’S BEST</small><b>${dd.b}</b><em id="evRd">rank …</em></div><div><small>WEEK TOTAL</small><b>${tot}</b><em id="evRw">rank …</em></div></div>
- ${left?`<button data-ev="play">⚔️ PLAY${evCap()>1?` · ${left} of ${evCap()} runs left`:''}</button><button data-ev="race">👤 RACE A REAL PLAYER</button>`:evCanBuy()?`<button data-ev="buy">💎 BUY A BONUS RUN · ${EV_SYM} ${evCost()}</button><small class="evn">Free runs used. Bonus runs bought today: ${evDay().x||0}/${EV_BUY.length}.</small>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
+ ${left?`<button data-ev="play">⚔️ PLAY</button><button data-ev="race">👤 RACE A REAL PLAYER</button>`:evCanBuy()?`<button data-ev="buy">BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled>⏳ NO RUNS LEFT · back tomorrow</button>'}
  <button data-ev="board">🏆 LEADERBOARDS</button>
- <small class="evn">Global challenge: everyone plays the same numbers. You get ${EV_PLAYS} free run a day, so make it count. Quitting mid-run ends it with the score you have. Extra runs (up to 2 a day) cost 💎 gems. Your best run each day counts, 7 days, highest week total wins (max 4,000: Sunday’s Finale is worth double). Weeks run Monday 00:00 to Sunday 24:00 East Africa Time for everyone. Rewards at the end of the week.</small></div>`;
+ <small class="evn" data-ev="rules" style="cursor:pointer;text-decoration:underline;opacity:.85">ℹ️ Rules</small><small class="evn" id="evRules" hidden>1 free run a day, up to ${EV_BUY.length} more for 💎. Your best run each day counts, and the highest week total wins (max 4,000). Quitting mid-run ends it with your score so far. Weeks run Mon–Sun, East Africa Time. Rewards at week’s end.</small></small></div>`;
  (async()=>{const set=(id,x)=>{const el=document.getElementById(id);if(el)el.textContent=x};
   if(!nc){const o=EVOFF;await evClock();if(Math.abs(EVOFF-o)>6e4&&document.querySelector('#s-weekly.on'))return evHubRender(1)}
   try{await evSync();const[b,a]=await Promise.all([evTop(`events/${E.w}/day/${evToday()}`),evTop(`events/${E.w}/total`)]);set('evRd',evRtxt(b,dd.b));set('evRw',evRtxt(a,tot))}catch(e){set('evRd','offline');set('evRw','offline')}
@@ -2345,7 +2344,7 @@ const gp=(g,k)=>g.rs.slice(0,k).reduce((a,t,i)=>a+(t>0?Math.round((D.dr[i][2]-t+
 async function raceFind(kind){const E=evS(),ev=kind==='ev',a=await evTop(ev?`events/${E.w}/day/${evToday()}`:'daily/'+today()),need=ev?EVC().r.length:DR.length,ref=ev?evDay().b:0,
  c=a.filter(v=>!v.me&&v.r).map(v=>({n:evName(v.n),s:v.s,rs:String(v.r).split(',').map(Number)})).filter(v=>v.rs.length===need&&v.rs.every(Number.isFinite)).sort((x,y)=>x.s-y.s);
  if(!c.length)return null;if(ref>0)return c.find(v=>v.s>=ref)||c[c.length-1];return c[Math.floor(c.length/2)]}
-async function raceStart(kind){if(kind==='ev'?evLeft()<=0:PRO.dl===today())return;toast('👤 Finding a rival…');let o=null;try{o=await raceFind(kind)}catch(e){}
+async function raceStart(kind){if(kind==='ev'?evLeft()<=0:PRO.dl===today())return;toast('👤 Finding a Rival…');let o=null;try{o=await raceFind(kind)}catch(e){}
  if(!o){tone(150,.2,'square');return toast('👤 No recorded runs to race yet<br><small>Play normally; yours will be raceable for others.</small>')}
  RACE=o;kind==='ev'?evPlay():dailyOpen()}
 function raceRes(){const g=D.gh,t=gp(g,99),w=D.score>t,c=w?cx(8):0;if(c)PRO.gold+=c;return`👤 ${w?'You beat':D.score===t?'You tied with':'You lost to'} <b>${g.n}</b> (${D.score} vs ${t})${c?` · 💰 +${c}`:''}`}
@@ -2366,9 +2365,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAga
  else if(k==='daily'){sfx('click');dailyOpen()}
  else if(k==='race'){sfx('click');raceStart('ev')}
  else if(k==='dsRace'){sfx('click');raceStart('ds')}
- else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('💎 Not enough gems');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('💎 Bonus run unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events','s-weekly'];evPlay()}else{evHubRender();profUI()}}
+ else if(k==='buy'){if(!evCanBuy())return;if(evBal()<evCost()){toast('💎 Not Enough Gems');tone(150,.2,'square');return}evSpend(evCost());evDay().x=(evDay().x||0)+1;LS.set('ms_pro',PRO);sfx('click');toast('💎 Bonus Run Unlocked');if(document.querySelector('#s-end').classList.contains('on')){stack=['s-home','s-events','s-weekly'];evPlay()}else{evHubRender();profUI()}}
  else if(k==='evAgain'){sfx('click');stack=['s-home','s-events','s-weekly'];evPlay()}
  else if(k==='evHub'){sfx('click');stack=['s-home','s-events','s-weekly'];show('s-weekly')}
+  else if(k==='rules'){sfx('click');const r=document.getElementById('evRules');if(r)r.hidden=!r.hidden}
   else if(k==='goDaily'){sfx('click');go('s-dstrike')}
   else if(k==='goWeekly'){sfx('click');go('s-weekly')}
   else if(k==='dsBoard'){sfx('click');dayBoardShow()}
@@ -2377,7 +2377,7 @@ addEventListener('online',()=>{try{evClock().then(()=>evSync())}catch(e){}});
 try{runRecover()}catch(e){}
 
 // ---- v7: boss UI, weak point, armory, weekly mutators ----
-const MUT=[['primes','🧮','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','🪶','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
+const MUT=[['primes','🧮','PRIME WEEK','Every secret is a prime number.'],['rush','⏱️','BLITZ WEEK','Guess timer −40%, points +25%.'],['lean','⏳','LEAN WEEK','One fewer attempt per round, points +50%.'],['jack','🎰','JACKPOT WEEK','Special rounds twice as common.'],['armor','🛡️','IRON WEEK','Kiraxo has an extra shield layer.']],
 CM=()=>MUT[Math.floor((Date.now()/864e5+3)/7)%MUT.length];
 function pickS(){const pr=[];if(G.mut==='primes')for(let i=G.lo;i<=G.hi;i++)if(isPrime(i)&&!/^(\d)\1+$/.test(''+i))pr.push(i);return pr.length?pick(pr):rndS(G.lo,G.hi)}
 function flash(){const e=$('#fl');e.classList.remove('on');void e.offsetWidth;e.classList.add('on')}
@@ -2411,15 +2411,15 @@ function shopOld(S){return SHOP.map(([k,e,n,d,c,t,gp])=>{const cons=t==='c',own=
  const col=cons?'':SKC(k),fx={ps:' · big glowing emblem on your HUD, arena aura &amp; victory bursts',ks:' · big emblem on Kiraxo + entrance splash',th:' · recolours the whole game'}[k.slice(0,2)]||'';
  return h+`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span ${col?`data-pv="${k}" title="Tap to preview" style="font-size:2.9rem;line-height:1;cursor:pointer;filter:drop-shadow(0 0 10px ${col}) drop-shadow(0 0 20px ${col})"`:'style="font-size:1.8rem"'}>${/^img\//.test(e)?`<img class="skTh" src="${e}" alt="">`:e}</span><div style="flex:1"><b>${n}</b><br><small>${d}${fx}${col?' · <u>Tap the icon to preview</u>':''}${cons?` · owned ${own}`:''}</small></div><button data-sk="${k}" style="min-width:84px;padding:8px">${cons||!own?(gp?'💎 '+gp:'💰 '+PR(c)):on?'✓ ON':'EQUIP'}</button></div>`}).join('')}
 shopOn(e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
- if(!had&&/^ps:(comet|nova|nebula|eclipse)$/.test(k)&&!PRO.own['wd:astral']){tone(150,.2,'square');toast('🌌 Astral Dominion owners only');return}
- if(!had&&/^ps:(tide|kraken|pearl|siren)$/.test(k)&&!PRO.own['wd:atlantis']){tone(150,.2,'square');toast('🌊 Atlantis owners only');return}
- if(cons||!had){if(it[6]){if((PRO.gems||0)<it[6]){tone(150,.2,'square');toast('Not enough gems 💎');return}PRO.gems-=it[6]}else{if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not enough gold');return}PRO.gold-=PR(it[4])}if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
+ if(!had&&/^ps:(comet|nova|nebula|eclipse)$/.test(k)&&!PRO.own['wd:astral']){tone(150,.2,'square');toast('🌌 Astral Dominion Owners Only');return}
+ if(!had&&/^ps:(tide|kraken|pearl|siren)$/.test(k)&&!PRO.own['wd:atlantis']){tone(150,.2,'square');toast('🌊 Atlantis Owners Only');return}
+ if(cons||!had){if(it[6]){if((PRO.gems||0)<it[6]){tone(150,.2,'square');toast('Not Enough Gems 💎');return}PRO.gems-=it[6]}else{if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not Enough Gold');return}PRO.gold-=PR(it[4])}if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
  if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KSE(v),KSC[v],it[2],'EQUIPPED')}}
  LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()});
 /* v56: Gem Vault */
 const GMI=[['fz','🧊','STREAK FREEZE','Saves your Daily Strike streak if you miss a day. Hold up to 3.',3],['phx','🕊️','PHOENIX TOKEN','Forgives your first failed round in your next match.',2,{inv:{phx:1}}],['pack','🎒','2× ARMORY PACK','+1 charge of every power, two matches.',3,{inv:{pack:2}}],['bane','☄️','2× BOSS BANE','+40 damage head start in the Boss Phase, two matches.',3,{inv:{bane:2}}],['boost','📚','DOUBLE BOOST','×1.5 XP and ×1.5 coins in your next match.',4,{inv:{tome:1,mag:1}}],['chestS','📚','SCHOLAR’S CHEST','×1.5 XP and ×1.5 coins, two matches.',7,{inv:{tome:2,mag:2}}],['chestW','👑','WARLORD’S CHEST','2 Armory Packs · 2 Boss Banes · Lucky Charm · Hourglass.',9,{inv:{pack:2,bane:2,att:1,time:1}}]];
 function gmH(card,bt){return `<div class="card" style="margin:0"><b>💎 ${PRO.gems||0} gems</b><br><small>Gems buy <b>Worlds</b>, the Imperial and Onyx arenas and the two big chests. Earn them with a 🎯 first-try hit on the secret number (1 gem, any mode except Easy), Daily Strike streaks (3, 7, 14, 30 days), ranking up, mini game mastery, three-starring a Conquest region, beating bosses, achievements, quest sweeps and your first Colosseum run each day.<br>You can also spend ${RVC} 💎 to <b>Continue</b> a mini game after you run out of lives, or ${CQ_COST} 💎 for one extra Conquest battle after your ${CQ_FREE} free ones each day.</small></div>`+card('💎','BUY A GEM','Bought today: '+cqS().g+'/'+GEM_COIN_DAY,`<button data-gc="1" ${bt}>💰 ${GEM_COIN}</button>`)+GMI.map((it,i)=>card(it[1],it[2],it[3]+(it[0]==='fz'?` · owned ${PRO.fz||0}/3`:''),`<button data-gm="${i}" ${bt}>💎 ${it[4]}</button>`)).join('')+shopOld('gm')}
-shopOn(e=>{if(e.target.closest('[data-gc]')){if(buyGemCoins()){shopUI();profUI()}return}const b=e.target.closest('[data-gm]');if(!b)return;const it=GMI[+b.dataset.gm];if(it[0]==='fz'&&(PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if((PRO.gems||0)<it[4]){tone(150,.2,'square');return toast('Not enough gems 💎')}
+shopOn(e=>{if(e.target.closest('[data-gc]')){if(buyGemCoins()){shopUI();profUI()}return}const b=e.target.closest('[data-gm]');if(!b)return;const it=GMI[+b.dataset.gm];if(it[0]==='fz'&&(PRO.fz||0)>=3)return toast('🧊 You can hold 3 freezes');if((PRO.gems||0)<it[4]){tone(150,.2,'square');return toast('Not Enough Gems 💎')}
  PRO.gems-=it[4];if(it[0]==='fz')PRO.fz=(PRO.fz||0)+1;else grant(it[5]);qEv('buy');tone(660,.1,'triangle');toast(`${it[1]} <b>${it[2]}</b><br><small>Added. 💎 ${PRO.gems} left</small>`);LS.set('ms_pro',PRO);shopUI();profUI()});
 $('#shopBtn').onclick=()=>{sfx('click');SHCAT='';shopUI();go('s-shop')};applyTheme();
 function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast(`${CM()[1]} <b>${CM()[2]}</b><br><small>${CM()[3]}</small>`),600)}if(G.mode!=='AI')return;const u=[];
@@ -2617,15 +2617,15 @@ function dsDay(){if(!PRO.dsh||PRO.dsh.d!==today())PRO.dsh={d:today(),b:[]};const
 const dPrice=(it,pct)=>PR(it[3]*(1-pct/100));
 function gearPrice(k,l){const b=GEAR[k][4][l],d=dsDay();return PR(d.gs===k?b*(1-d.gp/100):b)}
 let SHCAT='';
-const SHCATS=[['gm','💎','GEM VAULT','Earned gems'],['wd','🌍','WORLDS','New looks'],['mk','🏺','TODAY’S MARKET','Daily deals'],['fg','⚒️','THE FORGE','Upgrades'],['rl','📿','RELICS','One-time'],['bn','🎁','WAR CHESTS','Bundles'],['c','🎒','CONSUMABLES','For VS matches'],['ps','⚔️','PLAYER SKINS','Your look'],['ks','😈','KIRAXO SKINS','Foe looks'],['th','🏛️','ARENAS','Recolours'],['pm','⭐','PERMANENT','Pick one']];
+const SHCATS=[['gm','💎','GEM VAULT','Earned Gems'],['wd','🌍','WORLDS','New Looks'],['mk','🏺','TODAY’S MARKET','Daily Deals'],['fg','⚒️','THE FORGE','Upgrades'],['rl','📿','RELICS','One-Time'],['bn','🎁','WAR CHESTS','Bundles'],['c','🎒','CONSUMABLES','For VS Matches'],['ps','⚔️','PLAYER SKINS','Your Look'],['ks','😈','KIRAXO SKINS','Foe Looks'],['th','🏛️','ARENAS','Recolours'],['pm','⭐','PERMANENT','Pick One']];
 function shopUI(){$('#gold').textContent='💰 '+PRO.gold+' · 💎 '+(PRO.gems||0);const dd=dsDay(),m=new Date(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+1)-m,hh=Math.floor(ms/36e5),mm=Math.floor(ms%36e5/6e4);
  const card=(e,n,d,btn)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}</small></div>${btn}</div>`,h2=()=>'',bt='style="min-width:84px;padding:8px"';
- $('#shopList').innerHTML=SHCATS.map(c=>`<button class="shTile" data-cat="${c[0]}"><span class="e">${c[1]}</span><b>${c[2]}</b><small>${c[0]==='mk'?'refreshes in '+hh+'h '+mm+'m':c[3]}</small></button>`).join('');
+ $('#shopList').innerHTML=SHCATS.map(c=>`<button class="shTile" data-cat="${c[0]}"><span class="e">${c[1]}</span><b>${c[2]}</b><small>${c[0]==='mk'?'Refreshes in '+hh+'h '+mm+'m':c[3]}</small></button>`).join('');
  const P=$('#shopPop');if(!SHCAT){P.classList.remove('on');return}
  const C=SHCATS.find(x=>x[0]===SHCAT);let h='',g='';
  if(SHCAT==='gm'){g='💎 '+(PRO.gems||0);h=gmH(card,bt)}
  else if(SHCAT==='wd')h=worldsH(card,h2,bt);
- else if(SHCAT==='mk'){g='refreshes in '+hh+'h '+mm+'m';h=dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('')}
+ else if(SHCAT==='mk'){g='Refreshes in '+hh+'h '+mm+'m';h=dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('')}
  else if(SHCAT==='fg')h=['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<3;
   return card(g[0],`${g[1]} · ${g[2]} ${'■'.repeat(l)}${'□'.repeat(3-l)}`,(l?`NOW: ${g[3][l-1]}<br>`:'')+(l<3?`NEXT: ${g[3][l]}${sale?` · 🔥 −${dd.gp}% today`:''}`:'MAX LEVEL'),`<button data-gu="${k}" ${bt} ${l>=3?'disabled':''}>${l>=3?'MAX':'⬆ 💰 '+gearPrice(k,l)}</button>`)}).join('');
  else if(SHCAT==='rl')h=RELICS.map(r=>{const own=PRO.rel[r[0]];return card(r[1],r[2],r[3],`<button data-rl="${r[0]}" ${bt} ${own?'disabled':''}>${own?'OWNED':'💰 '+PR(r[4])}</button>`)}).join('');
@@ -2639,7 +2639,7 @@ function shopClose(){SHCAT='';shopUI()}
 $('#shopList').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;sfx('click');shopOpen(b.dataset.cat)});
 $('#shopPopX').onclick=()=>{sfx('click');shopClose()};
 $('#shopPop').addEventListener('click',e=>{if(e.target.id==='shopPop')shopClose()});
-shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[data-eq],[data-bn]');if(!b||b.disabled)return;let ok=0;const pay=p=>{if(PRO.gold<p){tone(150,.2,'square');toast('Not enough gold');return false}PRO.gold-=p;return true};
+shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[data-eq],[data-bn]');if(!b||b.disabled)return;let ok=0;const pay=p=>{if(PRO.gold<p){tone(150,.2,'square');toast('Not Enough Gold');return false}PRO.gold-=p;return true};
  if(b.dataset.dp!=null){const id=+b.dataset.dp,o=dsDay().offers.find(x=>x.id===id),it=DPOOL[id];if(o&&!PRO.dsh.b.includes(id)&&pay(dPrice(it,o.pct))){grant(it[4]);PRO.dsh.b.push(id);qEv('buy');toast(`${it[0]} <b>${it[1]}</b><br><small>Added to your pack</small>`);ok=1}}
  else if(b.dataset.gu){const k=b.dataset.gu,l=gl(k);if(l<3&&pay(gearPrice(k,l))){PRO.gear[k]=l+1;qEv('buy');toast(`${GEAR[k][0]} <b>${GEAR[k][1]} LEVEL ${l+1}</b><br><small>${GEAR[k][3][l]}</small>`);burst(['⚒️','✨','🪙'],18);ok=1}}
  else if(b.dataset.rl){const k=b.dataset.rl,r=RELICS.find(x=>x[0]===k);if(!PRO.rel[k]&&pay(PR(r[4]))){PRO.rel[k]=1;qEv('buy');toast(`${r[1]} <b>${r[2]}</b><br><small>${r[3]}</small>`);ok=1}}
@@ -2717,7 +2717,7 @@ function chalMenu(c,nj){const on=$('#chal');$('#chalJ').style.display=(c||nj)?'n
  on.classList.add('on')}
 $('#chalX').onclick=()=>$('#chal').classList.remove('on');
 $('#chalJoin').onclick=()=>{const c=chalParse($('#chalIn').value);if(!c){toast('Paste a challenge link or code');tone(150,.2,'square');return}$('#chalIn').value='';chalMenu(c)};
-$('#chalBtn').innerHTML='<i class="ti">🤝</i><span>BATTLE FRIENDS</span><small>Duel a friend</small>';$('#chalBtn').onclick=()=>{sfx('click');$('#fName').value=S.n1||'';$('#fIn').value='';go('s-friends')};
+$('#chalBtn').innerHTML='<i class="ti">🤝</i><span>BATTLE FRIENDS</span><small>Duel a Friend</small>';$('#chalBtn').onclick=()=>{sfx('click');$('#fName').value=S.n1||'';$('#fIn').value='';go('s-friends')};
 $('#fName').oninput=()=>{S.n1=$('#fName').value.trim().toUpperCase().slice(0,12);save()};
 $('#fLive').onclick=()=>{sfx('click');openOnline()};
 $('#fChal').onclick=()=>{sfx('click');chalMenu(null,1)};
@@ -2796,7 +2796,7 @@ function qEv(e,n=1){qEach(q=>{if(q.e===e){q.p=Math.min(q.t,q.p+n);qDone(q)}});LS
 var _qEv=qEv;qEv=function(e,n=1){_qEv(e,n);_qEv('w:'+TW+':'+e,n)};
 function qMax(e,v){qEach(q=>{if(q.e===e&&v>q.p){q.p=Math.min(q.t,v);qDone(q)}});LS.set('ms_pro',PRO)}
 function qCount(){qInit();return[...PRO.q.d,...PRO.q.w].filter(q=>q.p>=q.t&&!q.cl).length+Object.keys(RR).filter(i=>rk()>=i&&!PRO.rr[i]).length+(pr()>(PRO.pc||0)?1:0)+['d','w'].filter(k=>PRO.q[k].every(q=>q.cl)&&!PRO.q['s'+k]).length}
-function qBadge(){const b=$('#questBtn');if(!b)return;const n=qCount();b.innerHTML=`<i class="ti">📜</i><span>QUESTS</span><small>${n?n+' to claim':'Rewards'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
+function qBadge(){const b=$('#questBtn');if(!b)return;const n=qCount();b.innerHTML=`<i class="ti">📜</i><span>QUESTS</span><small>${n?n+' To Claim':'Rewards'}</small>`+(n?`<em class="bd" style="font-style:normal">${n}</em>`:'')}
 function qUI(){qInit();const row=(q,id)=>{const done=q.p>=q.t;return `<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><div style="flex:1"><b>${q.n}</b><br><small>💰 ${q.c} · ${q.x} XP${q.it?' · '+Object.entries(q.it).map(([k,n])=>n+'× '+nmOf(k)).join(', '):''}</small><div class="qb"><i style="width:${q.p/q.t*100}%"></i></div><small>${q.p}/${q.t}</small></div><button data-qc="${id}" style="min-width:84px;padding:8px" ${done&&!q.cl?'':'disabled'}>${q.cl?'✓':done?'CLAIM':'…'}</button></div>`};
  const rrow=i=>{const ok=rk()>=i,cl=PRO.rr[i],r=RR[i],t=[`💰 ${r.c}`,...Object.entries(r.inv||{}).map(([k,n])=>`${n}× ${nmOf(k)}`),...(r.own||[]).map(nmOf)].join(' · ');return `<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><div style="flex:1"><b>${RANKS[i][0]}</b><br><small>${t}</small>${i>=10&&!ok&&TRI(i)?`<br><small>🎖️ Trial: ${TRI(i).d} (${TRI(i).p})</small>`:''}</div><button data-rc="${i}" style="min-width:84px;padding:8px" ${ok&&!cl?'':'disabled'}>${cl?'✓':ok?'CLAIM':'🔒'}</button></div>`};
  const sweep=k=>{const ok=PRO.q[k].every(q=>q.cl),cl=PRO.q['s'+k],r=SW[k],t=[`💰 ${r.c}`,`${r.x} XP`,...Object.entries(r.inv).map(([a,n])=>`${n}× ${nmOf(a)}`)].join(' · ');return `<div class="card" style="margin:0;display:flex;align-items:center;gap:10px;border-color:var(--gold)"><div style="flex:1"><b>🌟 ${k==='d'?'DAILY':'WEEKLY'} SWEEP</b><br><small>Claim every ${k==='d'?'daily':'weekly'} quest · ${t}</small></div><button data-qs="${k}" style="min-width:84px;padding:8px" ${ok&&!cl?'':'disabled'}>${cl?'✓':ok?'CLAIM':'🔒'}</button></div>`};
@@ -2916,8 +2916,8 @@ async function remOn(){
   if('periodicSync'in reg)try{await reg.periodicSync.register('daily-numbers',{minInterval:12*36e5})}catch(e){}
   await syncMeta();
   reg.showNotification('MindStrike ⚔️',{body:'Reminders on! We’ll nudge you when new Daily Strike numbers arrive.',icon:'icons/icon-192.png',badge:'icons/icon-192.png',tag:'ms-on'})}catch(e){}
- toast('🔔 Daily reminders ON');setUI&&setUI();paint()}
-async function remOff(){LS.set('ms_rem',0);try{const reg=await navigator.serviceWorker.ready;'periodicSync'in reg&&await reg.periodicSync.unregister('daily-numbers')}catch(e){}toast('🔕 Daily reminders OFF');setUI&&setUI();paint()}
+ toast('🔔 Daily Reminders On');setUI&&setUI();paint()}
+async function remOff(){LS.set('ms_rem',0);try{const reg=await navigator.serviceWorker.ready;'periodicSync'in reg&&await reg.periodicSync.unregister('daily-numbers')}catch(e){}toast('🔕 Daily Reminders Off');setUI&&setUI();paint()}
 window.remLabel=()=>!canNotify?'REMINDERS: N/A':(LS.get('ms_rem',0)&&Notification.permission==='granted')?'DAILY REMINDER: ON':'DAILY REMINDER: OFF';
 $('#tRem').onclick=()=>{(LS.get('ms_rem',0)&&Notification.permission==='granted')?remOff():remOn()};
 $('#tRem').textContent=remLabel();
@@ -3004,7 +3004,7 @@ function syncRound(){const k=R.mid+':'+R.rd;if(k===rKey)return;rKey=k;hist=[];my
 function onRoom(){if(left)return;
  if(!R){leave('The room was closed.');return}
  syncRound();const opp=oppOf(),c=R.cfg,sw=c.mode==='swap';
- if(role==='h'&&R.st!=='lobby'&&!R.guest){clearTimeout(tt);clearTimeout(timer);clearTimeout(dt);ended=true;away=false;upd({st:'lobby',rd:0,res:null,in:null,gs:null,fin:null,log:null,turn:null,winner:null,relics:null,offer:null,pick:null,hint:null,rg:null,pt:null,pu:null,pq:null,sw:null,rv:null,scores:{h:0,g:0}});toast('👋 Your friend left');return}
+ if(role==='h'&&R.st!=='lobby'&&!R.guest){clearTimeout(tt);clearTimeout(timer);clearTimeout(dt);ended=true;away=false;upd({st:'lobby',rd:0,res:null,in:null,gs:null,fin:null,log:null,turn:null,winner:null,relics:null,offer:null,pick:null,hint:null,rg:null,pt:null,pu:null,pq:null,sw:null,rv:null,scores:{h:0,g:0}});toast('👋 Your Friend Left');return}
  if(role==='g'&&!R.guest){leave('You were removed from the room.');return}
  const na=(R.pres&&R.pres[opp])===0&&(role==='g'||!!R.guest);
  if(na&&!away){away=true;awayAt=Date.now();clearTimeout(tt);sfx('buzz');typeof vib==='function'&&vib([80,60,80])}
