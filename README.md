@@ -269,3 +269,6 @@ Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim
 ## v87 changes
 **Atlantis goes blue.** Hue shift moved from 130deg to 195deg so the green/teal tints (keypad panel, hearts, depth bar, pause menu, panel icons) become blues; power buttons now use distinct blues (Scan periwinkle, Focus bright cyan, Shield royal blue).
 **Sea Gates.** In Atlantis, ENTER THE ARENA now closes two coral-trimmed bulkhead doors with a rising wave, blazes a trident seal, then parts the doors on a burst of light, water and bubbles. Other worlds keep their own gate; reduced-motion skips it.
+
+## v88 changes
+**One opening per world** (tap ENTER THE ARENA). Roman keeps the wooden doors; Atlantis keeps the Sea Gates; new: Cyber (hazard-striped steel shutters, ACCESS GRANTED, laser flash), Samurai (shoji paper screens, crimson sun, blossom petals), Ice (frost floods out, a crack races down, the sheet shatters), Buganda (drums, woven reed gates swing shut on bark-cloth stripes, then open in dust and golden light), Gold (giant vault door, spinning wheel, bolts retract, door rolls away in a coin shower), Astral (nebula iris, galaxy arms, star-streak warp jump). Each is skipped with reduced-motion. Code: WG.<world> in index.html, drawn into #wGate.
