@@ -272,7 +272,7 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 #prof{font-size:.78rem;line-height:1.4;padding:7px 10px}#prof .st{opacity:.9}#prof .mt{font-size:.7rem;opacity:.8;margin-top:3px}
 
 /* v20 shared skin */
-#s-online,#s-friends,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
+#s-online,#s-friends,#s-name,#s-set,#s-hall,#s-mini,#s-quests,#s-house,#s-shop,#s-map,#s-season{justify-content:flex-start;gap:10px;--gd:hsl(calc(33.2deg + var(--hs)),calc(43.1% * var(--ss)),calc(38.6% + var(--lt) * 22.8%));--ln:hsla(calc(37.6deg + var(--hs)),calc(63.4% * var(--ss)),calc(63.5% + var(--lt) * -27.0%),0.380)}
 .bm-note{display:block;text-align:center;color:hsl(calc(35.7deg + var(--hs)),calc(22.3% * var(--ss)),calc(63.1% + var(--lt) * -26.2%));font-size:11px;line-height:1.5}.bm-note b{color:hsl(calc(39.8deg + var(--hs)),calc(79.9% * var(--ss)),calc(70.8% + var(--lt) * -41.6%))}
 .bm-panel{width:min(92%,380px);display:flex;flex-direction:column;gap:9px;align-items:stretch;text-align:center;padding:20px 16px 16px;border:1px solid hsl(calc(31.4deg + var(--hs)),calc(43.3% * var(--ss)),calc(38.0% + var(--lt) * 24.0%));border-radius:6px;background:linear-gradient(160deg,hsla(calc(23.1deg + var(--hs)),calc(36.1% * var(--ss)),calc(14.1% + var(--lt) * 71.8%),0.980),hsla(calc(22.5deg + var(--hs)),calc(33.3% * var(--ss)),calc(4.7% + var(--lt) * 90.6%),0.990) 75%);box-shadow:inset 0 1px 0 #fff1,0 14px 40px #000c}
 .bm-panel .bm-hero{border:0;padding:0 0 8px}
@@ -1193,12 +1193,18 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]){background:linear-gr
 html.wd-gold #app:not(#z) .kp button:nth-child(11):not(.st):not([data-p]){background:linear-gradient(135deg,#e6e6ee,#9a9aa6 55%,#e6e6ee);color:#2a2a33}
 html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 1px 0 #6b4a05,0 0 18px #ffd45a;filter:brightness(1.12)}
 </style>
+<style>#app .tiles #seasonBtn{grid-column:1/-1;display:flex!important;flex-direction:row!important;align-items:center;justify-content:flex-start;gap:12px;text-align:left;padding:10px 14px!important;min-height:64px;border-radius:14px!important;border:2px solid var(--sa,#ffd45a)!important;background:linear-gradient(100deg,var(--sb,#3a1a6b),#0b0a1af2 75%)!important;box-shadow:0 0 14px color-mix(in srgb,var(--sa,#ffd45a) 45%,transparent),inset 0 1px 0 #ffffff25!important;color:#fff!important;overflow:visible}
+#seasonBtn:before,#seasonBtn:after{display:none!important}#seasonBtn .sv-e{font-style:normal;font-size:2rem;line-height:1}#seasonBtn b{display:block;font-size:.92rem;letter-spacing:.1em;color:var(--sa,#ffd45a)}#seasonBtn small{display:block;font-size:.72rem;letter-spacing:.03em;opacity:.92;margin-top:2px;color:#fff!important}
+.svh{width:100%;border:2px solid var(--sa);border-radius:14px;padding:12px 12px 14px;text-align:center;background:linear-gradient(160deg,var(--sb),#0a0a14ee);box-shadow:0 0 18px color-mix(in srgb,var(--sa) 40%,transparent)}.svh .e{font-size:2.4rem;line-height:1}.svh h2{margin:4px 0 2px;color:var(--sa);letter-spacing:.12em;font-size:1.1rem}.svh p{margin:0 0 8px;font-size:.8rem;opacity:.92}
+.svh .cd{display:inline-block;padding:3px 12px;border-radius:999px;border:1px solid var(--sa);font-size:.78rem;margin-bottom:8px}.svh .cd.hot{background:#8e1b16;border-color:#ff9a8a}.svb{height:12px;border-radius:7px;border:1px solid var(--sa);background:#0008;overflow:hidden;margin-bottom:4px}.svb i{display:block;height:100%;background:linear-gradient(90deg,var(--sb),var(--sa))}
+#s-season .cn{--gold:var(--sa)}
+</style>
 </head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <div id="prof"></div>
- <div class="tiles"><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
+ <div class="tiles"><button id="seasonBtn"></button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="setRow" data-go="s-set">⚙️ SETTINGS</button></div>
  <div id="inst" hidden></div>
@@ -1408,6 +1414,12 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
  <small class="bm-note">⭐ win · ⭐ combo ×3 · ⭐ no powers — stars open new regions</small>
  <div id="grBox" style="width:100%"></div>
  <div id="mapList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
+</section>
+
+<section class="scr" id="s-season" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <header class="bm-hero"><div class="bm-kicker">Limited time · rotates monthly</div><h1>Seasonal Marathon</h1><div class="bm-sub">A new map, new quests and big rewards every month.</div></header>
+ <div id="svList" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
 </section>
 
 <section class="scr" id="s-end" style="--bg:url(img/menu_bg.webp)">
@@ -1890,7 +1902,7 @@ function mapUI(){$('#mapTot').innerHTML=`⭐ ${cTotal()} / ${cMax()}<div style="
   R.nodes.map((N,i)=>{const s=PRO.cp[ck(r,i)]||0,ok=nOpen(r,i),boss=i===R.nodes.length-1;return `<button class="cn ${ok?'':'lk'} ${boss?'bs':''} ${s?'dn':''}" data-cr="${r}" data-cn="${i}" ${ok?'':'disabled'} aria-label="${N[0]}"><span>${boss?(R.final?'👑':'👹'):i+1}</span><small>${s?'⭐'.repeat(s)+'☆'.repeat(3-s):ok?'☆☆☆':'🔒'}</small></button>`}).join('')+`</div></div>`}).join('');try{grUI()}catch(e){}}
 function mapOpen(){mapUI();go('s-map')}
 const toMap=()=>{home();mapOpen()};
-function cbrief(r,i){camp.gr=null;const R=CAMP[r],o=campOpts(r,i),D=o.D,c=o.cf,x=R.nodes[i][2]||{},mu=x.mut&&MUT.find(m=>m[0]===x.mut),old=PRO.cp[c.k]||0;camp.sel=[r,i];
+function cbrief(r,i){camp.gr=null;camp.ev=null;const R=CAMP[r],o=campOpts(r,i),D=o.D,c=o.cf,x=R.nodes[i][2]||{},mu=x.mut&&MUT.find(m=>m[0]===x.mut),old=PRO.cp[c.k]||0;camp.sel=[r,i];
  const L=[`🎯 First to <b>${R.nodes[i][1]}</b>${c.boss?` — then <b>${R.gen.s[0]+R.gen.s.slice(1).toLowerCase()}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(x.mut==='lean'?1:0))}</b> attempts`];
  if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);
  if(c.head)L.push(`🏁 ${o.names[1]} starts <b>${c.head}</b> points ahead`);
@@ -1913,8 +1925,8 @@ function campBtns(win){const c=G.cf;let nx=null;
  camp.next=nx;$('#nextB').style.display=nx?'':'none';$('#mapB').style.display=c?'':'none';$('#again').textContent=c&&win?'🔁 REPLAY FOR STARS':'FIGHT AGAIN';if(c&&c.gr)$('#again').style.display='none'}
 $('#mapBtn').onclick=()=>{sfx('click');play('theme');mapOpen()};
 $('#mapList').onclick=e=>{const b=e.target.closest('.cn');if(!b||b.disabled)return;sfx('click');cbrief(+b.dataset.cr,+b.dataset.cn)};
-$('#cbGo').onclick=()=>{if(camp.gr!=null){const r=camp.gr;camp.gr=null;grStart(r);return}const[r,i]=camp.sel;startCamp(r,i)};$('#cbX').onclick=()=>{camp.gr=null;$('#cbrief').classList.remove('on')};
-$('#nextB').onclick=()=>{if(camp.next){sfx('click');cbrief(camp.next[0],camp.next[1])}};$('#mapB').onclick=()=>{sfx('click');toMap()};
+$('#cbGo').onclick=()=>{if(camp.ev!=null){const i=camp.ev;camp.ev=null;evStart(i);return}if(camp.gr!=null){const r=camp.gr;camp.gr=null;grStart(r);return}const[r,i]=camp.sel;startCamp(r,i)};$('#cbX').onclick=()=>{camp.ev=null;camp.gr=null;$('#cbrief').classList.remove('on')};
+$('#nextB').onclick=()=>{if(camp.evNext!=null){sfx('click');evBrief(camp.evNext);return}if(camp.next){sfx('click');cbrief(camp.next[0],camp.next[1])}};$('#mapB').onclick=()=>{sfx('click');if(G&&G.cf&&G.cf.ev){home();svOpen();return}toMap()};
 
 /* v104: GARRISONS. Every territory you hold (region boss beaten) can be raided each day. Defend it with one quick battle for tribute. Raids roll from the date, 1-3 a day, free (no Conquest tickets), one attempt each. An ignored or lost raid just forfeits the tribute: stars and conquests are never touched. State: PRO.gr {d,z:{regionId:{a,n,f}},ds,dl,cl}; a: 0 quiet, 1 raided, 2 held, 3 plundered; f: battle started. */
 function grS(){return PRO.gr||(PRO.gr={d:'',z:{},ds:0,dl:'',cl:''})}
@@ -1930,7 +1942,7 @@ function grRoll(){const g=grS();if(g.d===today())return;const pre=g.d,lost=[];
  if(pre&&lost.length)g.ds=0;g.d=today();LS.set('ms_pro',PRO);
  if(at.length)setTimeout(()=>toast(`🛡️ ${at.length===1?'<b>'+CAMP[at[0]].n+'</b> is under attack!':'<b>'+at.length+' territories</b> are under attack!'}<br><small>${pre&&lost.length?lost.join(', ')+' plundered while you were away':'Defend them from the Conquest Map'}</small>`),2800)}
 function grOpts(r){const R=CAMP[r],z=grS().z[R.id],o=campOpts(r,z.n),N=R.nodes[z.n];o.M=Object.assign({},o.M,{t:Math.max(10,Math.round(N[1]*.6)),label:'RAID · '+R.n});Object.assign(o.cf,{gr:1,ob:null,k:'gr'+R.id,boss:false,bn:'',bs:'',ly:0});return o}
-function grBrief(r){const R=CAMP[r],z=grS().z[R.id],o=grOpts(r),D=o.D,x=R.nodes[z.n][2]||{},mu=x.mut&&MUT.find(m=>m[0]===x.mut);camp.gr=r;camp.sel=null;
+function grBrief(r){const R=CAMP[r],z=grS().z[R.id],o=grOpts(r),D=o.D,x=R.nodes[z.n][2]||{},mu=x.mut&&MUT.find(m=>m[0]===x.mut);camp.gr=r;camp.sel=null;camp.ev=null;
  const L=[`🎯 First to <b>${o.M.t}</b> points`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(x.mut==='lean'?1:0))}</b> attempts`];if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);
  L.push(`💰 Tribute <b>${cx(50+30*r)}</b> · one battle, no retry`);
  $('#cbT').innerHTML=`🛡️ Defend ${R.n}<br><small style="letter-spacing:.05em">vs ${o.names[1]}</small>`;$('#cbB').innerHTML=L.map(l=>`<div>${l}</div>`).join('');$('#cbrief').classList.add('on')}
@@ -3023,7 +3035,7 @@ $('#nameOk').onclick=()=>{wgUI();S.n1=$('#n1').value.trim().toUpperCase();S.n2=$
 $$('[data-d]').forEach(b=>b.onclick=()=>{setup.d=b.dataset.d;selIn('data-d',setup.d);sfx('click');rwPrev()});
 $$('[data-k]').forEach(b=>b.onclick=()=>{setup.k=b.dataset.k;selIn('data-k',setup.k);sfx('click')});
 selIn('data-d','Medium');selIn('data-k','Calculator');rwPrev();genUI();
-function launch(){const o=setup.lastOpts;if(o.cf&&!o.cf.gr){if(cqLeft()<=0){cqAsk(()=>launch());return false}cqUse()}if(o.w&&PRO.gold<o.w){o.w=wsList().slice().reverse().find(x=>x>0&&x<=PRO.gold)||0;if(!o.w){o.wb=[];o.wi=0}toast('🎲 Wager lowered to '+o.w+' 💰')}newGame(o);stack=stack.filter(x=>x!=='s-end'&&x!=='s-game');go('s-game')}
+function launch(){const o=setup.lastOpts;if(o.cf&&!o.cf.gr&&!o.cf.ev){if(cqLeft()<=0){cqAsk(()=>launch());return false}cqUse()}if(o.w&&PRO.gold<o.w){o.w=wsList().slice().reverse().find(x=>x>0&&x<=PRO.gold)||0;if(!o.w){o.wb=[];o.wi=0}toast('🎲 Wager lowered to '+o.w+' 💰')}newGame(o);stack=stack.filter(x=>x!=='s-end'&&x!=='s-game');go('s-game')}
 $$('[data-m]').forEach(b=>b.onclick=()=>{sfx('click');const pvp=setup.mode==='PVP';
  setup.lastOpts={mode:setup.mode,d:setup.d,m:b.dataset.m,pers:setup.k,names:[S.n1||(pvp?'PLAYER 1':'LEGIONARY'),pvp?(S.n2||'PLAYER 2'):GENS[setup.k].n],gen:pvp?'':setup.k,w:pvp?0:(setup.w||0),wb:pvp?[]:(setup.wb||[]).slice(),wi:pvp?0:(setup.wi?1:0)};launch()});
 $('#again').onclick=launch;$('#home').onclick=home;
@@ -3559,5 +3571,85 @@ for(let i=0;i<8;i++){const c=PAL[i%PAL.length],e=document.createElement('div'),w
 /* Kraken: shown only in AI matches; wakes (eyes flare) when the tide is high */
 (function(){const H=document.documentElement;if(!H.classList.contains('wd-atlantis'))return;const k=document.getElementById('atlKraken');if(!k)return;
 setInterval(()=>{try{const on=typeof G!=='undefined'&&G&&!G.done&&G.mode==='AI';k.classList.toggle('vs',!!on);const tl=parseFloat(document.getElementById('atlSky').style.getPropertyValue('--tl'))||.08;k.classList.toggle('wake',tl>.4)}catch(e){}},400)})();
+</script>
+<script>
+/* v105: SEASONAL MARATHON. One limited-time event per calendar month (local time): a 10-stage map, 6 quests and an 8-step reward track paid in event points. State: PRO.sev {id,mp,s:{stage:stars},ms:{claimed},q:[],dd:{d,n},seen}; trophies in PRO.str. Unclaimed rewards are auto-delivered when the month rolls over. Battles reuse the Conquest engine via cf.ev and are free of daily Conquest tickets. */
+(function(){
+const FOE=['RUNNER KIRABO','WARDEN SHANI','CAPT. IMRAN','SCOUT MARIAM','HUNTER ELIJAH','KEEPER NANA','PIPER CHRISTINE','RANGER ISA','BARD AMINA','SENTRY BILAL','MARSHAL ZAWADI','ACE NAKATO','TITAN OKELLO','WITCH AKELLO','KNIGHT MUGISHA','DASHER ATIM','JESTER OPIO','QUEEN NALWOGA','LORD SSEBU','SAGE NAMATA'];
+const TRK={ambush:'Ambush — he starts 10 points ahead and gets a full set of swings in the shield phase.',sand:'Sandstorm — your temperature hint vanishes every 3rd round, even inside the shield phase.',raid:'Raid — every round he wins steals 3 of your points, and every shield he breaks steals 30 of your damage.'};
+const A=(e,n,tag,a,b,boss,tr,st)=>({e,n,tag,a,b,boss,tr,st:st.split('|')});
+const SEA=[
+A('🎆','Midnight Marathon','Race the clock to the stroke of midnight.','#ffd45a','#3a1a6b','THE MIDNIGHT TITAN','ambush','Eve Gate|Confetti Alley|Sparkler Bridge|Champagne Cellar|Clocktower Climb|Ballroom Brawl|Rooftop Rush|Fireworks Field|Final Minute|Midnight Throne'),
+A('💘','Heartstrike Festival','Hearts are racing and so are the rivals.','#ff7aa8','#5a0f36','THE HEARTBREAKER','raid','Rose Garden|Love Letter Lane|Candy Bridge|Chocolate Fountain|Velvet Ballroom|Lantern Pier|Cupid’s Arcade|Sweetheart Summit|Crimson Gate|Heartbreak Keep'),
+A('🌸','Blossom Rush','Sprint through the orchard before the petals fall.','#ff9ccf','#3d1450','THE THORN QUEEN','sand','Petal Path|Orchard Gate|Dewdrop Bridge|Bee Meadow|Willow Falls|Lantern Grove|Kite Hill|Pollen Storm|Thorn Maze|Thorn Queen’s Court'),
+A('🌧️','Monsoon Run','Storm clouds gather. Keep your footing.','#6ed0ff','#0b2a55','THE STORM SERPENT','raid','Puddle Lane|Umbrella Market|River Bend|Thunder Bridge|Mudslide Pass|Rainforest Roots|Flood Gate|Lightning Ridge|Eye of the Storm|Serpent’s Lair'),
+A('☀️','Sunfire Trials','Cross the blazing sands to the Sun Tyrant.','#ffb23a','#5a1a06','THE SUN TYRANT','sand','Dawn Gate|Gold Dunes|Mirage Market|Oasis Raid|Furnace Road|Solar Temple|Glass Canyon|Heatwave Pass|Zenith Stair|Tyrant’s Throne'),
+A('🏖️','Tidal Rush','Ride the waves from shore to the deep.','#4fe3d6','#073a5a','THE TIDE KRAKEN','ambush','Shell Shore|Driftwood Dock|Coral Cove|Lighthouse Run|Smuggler’s Cave|Reef Race|Sunken Deck|Whirlpool Gate|Storm Surge|Kraken’s Maw'),
+A('🎇','Firework Frenzy','Light the fuse and outrun the blast.','#ff6a5a','#2a1060','THE BIG BANG','ambush','Fuse Lane|Rocket Alley|Sparkler Square|Cannon Hill|Smoke Bridge|Lantern Parade|Powder Vault|Skyburst Tower|Finale Gate|Grand Finale'),
+A('🌾','Harvest Moon','Reap the fields under a golden moon.','#f2c94c','#3a2a06','THE SCARECROW LORD','raid','Barley Gate|Windmill Road|Hay Maze|Cider Press|Moonlit Meadow|Granary Heist|Crow Hill|Lantern Barn|Pumpkin Patch|Scarecrow Throne'),
+A('🍂','Falling Leaves','Chase the wind through the autumn woods.','#ff8a3c','#3a1406','THE AUTUMN WRAITH','sand','Maple Gate|Acorn Alley|Leaf Pile Bridge|Misty Orchard|Foxfire Path|Cider Hollow|Rustwood Ridge|Gale Pass|Ember Glade|Wraith’s Hollow'),
+A('🎃','Haunted Hollows','Lanterns flicker. Something is counting.','#ff8a1f','#1d0a2e','THE HOLLOW KING','ambush','Cobweb Gate|Lantern Lane|Crooked Bridge|Bone Orchard|Whisper Crypt|Witch’s Kitchen|Graveyard Shift|Ghost Train|Moonlit Spire|Hollow King’s Keep'),
+A('🌨️','Frostfall Expedition','Climb the glacier to the Frost Wyrm’s nest.','#9fe3ff','#0a1e45','THE FROST WYRM','raid','Basecamp|Snowdrift Trail|Icicle Bridge|Aurora Ridge|Whiteout Pass|Frozen Falls|Glacier Cave|Blizzard Gate|Wyrm’s Nest|Wyrm’s Crown'),
+A('🎄','Starlit Solstice','The longest night, the biggest prizes.','#ff6b6b','#0b3a2a','THE SOLSTICE GIANT','sand','Tinsel Gate|Gingerbread Row|Bell Bridge|Candle Cellar|Snow Globe Square|Sleigh Run|Star Tower|Wreath Pass|Midwinter Eve|Giant’s Hall')];
+const MS=[[80,{c:250,inv:{pack:1}}],[200,{c:400,inv:{'x:SCAN':2}}],[380,{c:600,g:2}],[600,{c:800,inv:{tome:1,bane:1}}],[900,{c:1200,g:3}],[1300,{c:1600,inv:{mag:1,pack:2}}],[1800,{c:2200,g:5}],[2400,{c:3500,g:10,inv:{phx:2,tome:2},gp:1}]];
+const QP=[['win','Win {t} Marathon battles',8,120,300,0],['star','Earn {t} ⭐ on the Marathon Map',12,200,500,1],['clean','Win {t} Marathon battles without powers',4,180,450,0],['crit','Land {t} critical hits in Marathon battles',6,120,350,0],['ok','Crack {t} numbers in Marathon battles',25,150,400,0],['blaze','Hit {t} blazing-hot guesses in Marathon battles',12,130,350,0],['combo','Reach a {t}-win combo in a Marathon battle',4,140,380,0],['lead','Win a Marathon battle by {t}+ points',12,140,380,1],['boss','Defeat {boss}',1,250,700,2]];
+const curId=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)},byId=id=>SEA[+id.split('-')[1]-1],endAt=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth()+1,1).getTime()};
+function shuf(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function cfg(id){const E=byId(id),r=mul(seed('sev'+id)),foe=shuf(FOE,r),mp=['jack','rush','primes','lean',''],HI=[15,20,25,30,40,50,60,70,80,100],T=[20,25,25,30,35,35,40,45,50,60],PE=['Calculator','Calculator','Gambler','Psycho','Calculator','Gambler','Psycho','Prime','Psycho','Prime'];
+ const st=HI.map((hi,i)=>{const boss=i===9,t=T[i],g=i%3;return{n:E.st[i],hi,t,boss,d:i<5?'Medium':'Hard',pers:PE[i],foe:boss?E.boss:foe[i],mut:boss?'armor':i<2?'':mp[Math.floor(r()*mp.length)],a:i>=5&&i<9&&r()<.4?-1:0,head:i>=6&&i<9&&r()<.4?5:0,ob:g===0?['blaze',i<5?1:2]:g===1?['lead',Math.max(4,Math.floor(t*.25))]:['clean',0]}});
+ const q=shuf(QP.slice(0,8),r).slice(0,5).concat([QP[8]]).map(([k,n,t,m,c,g])=>({k,n:n.replace('{t}',t).replace('{boss}',E.boss),t,mp:m,c,g,p:0,cl:0}));
+ return{id,E,st,q}}
+let C=null;const cur=()=>{const id=curId();if(!C||C.id!==id)C=cfg(id);return C};
+function trophy(id){PRO.str=PRO.str||[];if(!PRO.str.some(x=>x.id===id)){const E=byId(id);PRO.str.push({id,e:E.e,n:E.n})}}
+function deliver(s){const E=byId(s.id);let n=0;MS.forEach((m,i)=>{if(!s.ms[i]&&s.mp>=m[0]){s.ms[i]=1;n++;grant({c:cx(m[1].c),inv:m[1].inv});if(m[1].g)gems(m[1].g,E.n);if(m[1].gp)trophy(s.id)}});
+ (s.q||[]).forEach(q=>{if(!q.cl&&q.p>=q.t){q.cl=1;n++;grant({c:cx(q.c)});if(q.g)gems(q.g,E.n)}});
+ if(n)setTimeout(()=>toast(`${E.e} <b>${E.n} ended</b><br><small>${n} unclaimed reward${n>1?'s were':' was'} delivered to you</small>`),3200)}
+function roll(){const id=curId();let s=PRO.sev;if(s&&s.id===id)return s;const first=!s;if(s&&s.id&&byId(s.id))deliver(s);const c=cfg(id);C=c;PRO.sev={id,mp:0,s:{},ms:{},q:c.q,dd:{d:'',n:0},seen:0};LS.set('ms_pro',PRO);
+ if(!first)setTimeout(()=>toast(`${c.E.e} <b>NEW MARATHON</b><br><small>${c.E.n} is live — fresh map and quests!</small>`),2600);return PRO.sev}
+function addMP(n){const s=roll(),b=s.mp;s.mp+=n;LS.set('ms_pro',PRO);const k=MS.filter(m=>b<m[0]&&s.mp>=m[0]).length;if(k)setTimeout(()=>toast(`${cur().E.e} <b>MILESTONE REACHED</b><br><small>${k>1?k+' rewards':'A reward'} waiting in the Marathon</small>`),2200)}
+function qv(k,n,mx){roll().q.forEach(q=>{if(q.k!==k||q.cl||q.p>=q.t)return;q.p=Math.min(q.t,mx?Math.max(q.p,n):q.p+n);if(q.p>=q.t)setTimeout(()=>toast(`📜 <b>MARATHON QUEST COMPLETE</b><br><small>${q.n} — claim it in the Marathon</small>`),1600)})}
+const fx=n=>{burst(['🪙','✨','🎁'],n);sfx('powerup')};
+function claimMs(i){const s=roll(),m=MS[i],E=cur().E;if(s.ms[i]||s.mp<m[0])return;s.ms[i]=1;const t=grant({c:cx(m[1].c),inv:m[1].inv});if(m[1].g)gems(m[1].g,E.n);if(m[1].gp)trophy(s.id);
+ toast(`${m[1].gp?'🏆':E.e} <b>${m[1].gp?'GRAND PRIZE':'MILESTONE'}</b><br><small>${t}${m[1].g?' · 💎 '+m[1].g:''}</small>`);fx(m[1].gp?40:22);svUI();profUI()}
+function claimQ(i){const s=roll(),q=s.q[i];if(!q||q.cl||q.p<q.t)return;q.cl=1;const t=grant({c:cx(q.c)});if(q.g)gems(q.g,'Marathon quest');addMP(q.mp);toast(`✅ <b>QUEST REWARD</b><br><small>${t}${q.g?' · 💎 '+q.g:''} · +${q.mp} ${cur().E.e}</small>`);fx(18);svUI();profUI()}
+function evOpts(i){const C=cur(),E=C.E,N=C.st[i],D=Object.assign({},DIFF[N.d],{name:E.n.toUpperCase()});D.hi=N.hi;if(N.a)D.att=Math.max(2,D.att+N.a);
+ return{mode:'AI',d:N.d,m:'Camp',D,M:{t:N.t,time:MATCH.Camp.time,label:N.boss?'BOSS · '+E.boss:'STAGE '+(i+1)},pers:N.pers,names:[S.n1||'LEGIONARY',N.foe],
+ cf:{k:'ev'+C.id+'_'+i,ev:1,eid:C.id,ri:0,ni:i,ob:N.ob,rn:E.n,nn:N.n,boss:N.boss,fin:0,bn:N.boss?E.boss:'',bs:N.boss?E.boss:'',ly:N.boss?1:0,mut:N.mut,head:N.head||(N.boss&&E.tr==='ambush'?10:0),tr:N.boss?E.tr:'',
+ win:[E.e+' The marathon is mine!',E.e+' Run faster, challenger!','🏁 Not even close…'],lose:[E.e+' Impressive… for now.','😤 You win this lap.',E.e+' I will be back.']}}}
+function evBrief(i){const C=cur(),E=C.E,N=C.st[i],o=evOpts(i),D=o.D,c=o.cf,mu=N.mut&&MUT.find(m=>m[0]===N.mut),old=roll().s[i]||0;camp.gr=null;camp.sel=null;camp.ev=i;
+ const L=[`🎯 First to <b>${N.t}</b>${N.boss?` — then <b>${E.boss}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(N.mut==='lean'?1:0))}</b> attempts`];
+ if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);if(c.head)L.push(`🏁 ${N.foe} starts <b>${c.head}</b> points ahead`);if(N.pers==='Gambler')L.push('🎲 Takes risky, reckless guesses');if(N.boss)L.push(`⚔️ <b>Signature:</b> ${TRK[E.tr]}`);
+ L.push(`⭐ <b>Star goal:</b> ${objDesc(c.ob)}`,`${E.e} Each new ⭐ pays <b>+${10+4*i}</b> points and <b>${cx(25+10*i)}</b> 💰${N.boss?' · first boss win: +60 points, +2 💎':''}`,`<small>⭐ win · ⭐ goal · ⭐ no powers${old?' — your best: '+'⭐'.repeat(old)+'☆'.repeat(3-old):''} · free of Conquest tickets</small>`);
+ $('#cbT').innerHTML=`${N.boss?'👹':E.e} ${N.n}<br><small style="letter-spacing:.05em">${E.n} · vs ${N.foe}</small>`;$('#cbB').innerHTML=L.map(l=>`<div>${l}</div>`).join('');$('#cbrief').classList.add('on')}
+function evStart(i){const o=evOpts(i),E=cur().E;setup.lastOpts=o;if(launch()===false)return;$('#cbrief').classList.remove('on');setTimeout(()=>{if(G&&G.cf&&G.cf.ev)toast(`${o.cf.boss?'👹':E.e} <b>${o.names[1]}</b><br><small>“${pick(o.cf.win)}”</small>`)},700)}
+function evEnd(win){const c=G.cf,s=roll(),C=cur(),E=C.E,i=c.ni;if(c.eid!==s.id)return{html:`<br><b>${E.e} Marathon</b><br><small>That marathon has ended, so no rewards this time.</small>`};
+ const N=C.st[i],t0=G.st[0];let h=`<br><b>${E.e} ${E.n} · ${N.n}</b>`;qv('crit',t0.crit||0);qv('ok',t0.ok||0);qv('blaze',t0.blz||0);qv('combo',t0.best||0,1);
+ if(!win){LS.set('ms_pro',PRO);return{html:h+`<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>`}}
+ const cb=objCheck(G,c.ob,true),np=!G.powUsed,stars=1+(cb?1:0)+(np?1:0),old=s.s[i]||0,first=!old,gain=Math.max(0,stars-old);let coins=cx(gain*(25+10*i)),mp=gain*(10+4*i),note='';
+ if(N.boss&&first){coins+=cx(400);mp+=60;gems(2,E.n+' boss');note+=`<br>🏴 ${E.boss} defeated · +${cx(400)} 💰 · +2 💎`}
+ const dd=s.dd;if(dd.d!==today()){dd.d=today();dd.n=0}if(dd.n<5){dd.n++;mp+=15;note+=`<br>🔥 Daily bonus +15 ${E.e} (${dd.n}/5 today)`}
+ if(stars>old)s.s[i]=stars;PRO.gold+=coins;qv('win',1);qv('star',gain);if(np)qv('clean',1);if(N.boss)qv('boss',1);qv('lead',G.score[0]-G.score[1],1);addMP(mp);LS.set('ms_pro',PRO);
+ return{html:h+`<br><span class="vstars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'} · <b>+${mp} ${E.e}</b><br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
+function left(){const ms=Math.max(0,endAt()-Date.now()),d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return{d,txt:d>0?`${d}d ${h}h`:`${h}h ${m}m`}}
+function cd(){const e=$('#svCd');if(!e)return;const l=left();e.textContent='⏳ Ends in '+l.txt;e.classList.toggle('hot',l.d<3)}
+const rt=r=>[`💰 ${cx(r.c)}`,r.g?`💎 ${r.g}`:'',...Object.entries(r.inv||{}).map(([k,n])=>`${n}× ${nmOf(k)}`)].filter(Boolean).join(' · ');
+function svUI(){const s=roll(),C=cur(),E=C.E,mp=s.mp,nx=MS.find(m=>mp<m[0]),pv=[0,...MS.map(m=>m[0])].filter(v=>v<=mp).pop(),pct=nx?(mp-pv)/(nx[0]-pv)*100:100,stars=Object.values(s.s).reduce((a,b)=>a+b,0),sc=$('#s-season');
+ sc.style.setProperty('--sa',E.a);sc.style.setProperty('--sb',E.b);s.seen=1;LS.set('ms_pro',PRO);
+ const row=(t,sb,btn,hl)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px${hl?';border-color:var(--sa)':''}"><div style="flex:1">${t}<br><small>${sb}</small></div>${btn}</div>`,bt=(a,i,ok,cl,w)=>`<button data-${a}="${i}" style="min-width:84px;padding:8px" ${ok&&!cl?'':'disabled'}>${cl?'✓':ok?'CLAIM':w}</button>`;
+ const ms=MS.map((m,i)=>row(`<b>${m[1].gp?'🏆 GRAND PRIZE':'🎁 Milestone '+(i+1)}</b> · ${m[0]} ${E.e}`,rt(m[1])+(m[1].gp?' · 🏆 Trophy':''),bt('svm',i,mp>=m[0],s.ms[i],'🔒'),m[1].gp)).join('');
+ const map=`<div class="mreg" style="align-self:center"><h3><span>${E.e} ${E.n.toUpperCase()}</span><span>⭐ ${stars}/30</span></h3><p>10 stages · ${E.boss} waits at the end. Every new ⭐ earns ${E.e} points.</p><div class="mrow">`+C.st.map((N,i)=>{const v=s.s[i]||0,ok=i===0||(s.s[i-1]||0)>0;return `<button class="cn ${ok?'':'lk'} ${N.boss?'bs':''} ${v?'dn':''}" data-svs="${i}" ${ok?'':'disabled'} aria-label="${N.n}"><span>${N.boss?'👹':i+1}</span><small>${v?'⭐'.repeat(v)+'☆'.repeat(3-v):ok?'☆☆☆':'🔒'}</small></button>`}).join('')+`</div></div>`;
+ const qs=s.q.map((q,i)=>row(`<b>${q.n}</b>`,`💰 ${cx(q.c)} · +${q.mp} ${E.e}${q.g?' · 💎 '+q.g:''}<div class="qb"><i style="width:${q.p/q.t*100}%"></i></div>${q.p}/${q.t}`,bt('svq',i,q.p>=q.t,q.cl,'…'))).join(''),tr=(PRO.str||[]).map(x=>`${x.e} ${x.n}`).join(' · ');
+ $('#svList').innerHTML=`<div class="svh"><div class="e">${E.e}</div><h2>${E.n.toUpperCase()}</h2><p>${E.tag}</p><div class="cd" id="svCd"></div><div class="svb"><i style="width:${pct}%"></i></div><small>${E.e} <b>${mp}</b> / ${nx?nx[0]:MS[7][0]} points${nx?' to the next reward':' · every reward unlocked'}</small></div><h2 class="qh">🗺️ LIMITED-TIME MAP</h2>${map}<h2 class="qh">🎁 MARATHON REWARDS</h2>${ms}<h2 class="qh">📜 SEASON QUESTS</h2>${qs}<h2 class="qh">🏆 TROPHY CASE</h2><div class="card" style="margin:0"><small>${tr||'Claim the Grand Prize to earn a permanent trophy.'}</small></div><small class="bm-note">A new marathon, map and quests start every month. Rewards you reached but forgot to claim are delivered automatically when it ends.</small>`;cd()}
+function svTile(){const b=$('#seasonBtn');if(!b)return;const s=roll(),E=cur().E,l=left(),n=MS.filter((m,i)=>s.mp>=m[0]&&!s.ms[i]).length+s.q.filter(q=>q.p>=q.t&&!q.cl).length;b.style.setProperty('--sa',E.a);b.style.setProperty('--sb',E.b);
+ b.innerHTML=`<i class="sv-e">${E.e}</i><div><b>${E.n.toUpperCase()}</b><small>⏳ ${l.txt} left · ${E.e} ${s.mp}/${MS[7][0]}</small></div>${n?`<em class="bd" style="font-style:normal">${n}</em>`:!s.seen?`<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>`:''}`}
+function svOpen(){svUI();go('s-season')}
+window.svOpen=svOpen;window.evBrief=evBrief;window.evStart=evStart;
+const _ce=campEnd;campEnd=function(w){return G&&G.cf&&G.cf.ev?evEnd(w):_ce.apply(this,arguments)};
+const _cb=campBtns;campBtns=function(w){camp.evNext=null;const m=$('#mapB'),c=G&&G.cf;if(c&&c.ev){camp.next=null;const nx=w&&c.ni+1<cur().st.length?c.ni+1:null;camp.evNext=nx;$('#nextB').style.display=nx!=null?'':'none';m.style.display='';m.textContent=cur().E.e+' MARATHON';$('#again').textContent=w?'🔁 REPLAY FOR STARS':'FIGHT AGAIN';return}m.textContent='🗺️ CONQUEST MAP';return _cb.apply(this,arguments)};
+const _pu=profUI;profUI=function(){const r=_pu.apply(this,arguments);try{svTile()}catch(e){}return r};
+$('#seasonBtn').onclick=()=>{sfx('click');play('theme');svOpen()};
+$('#svList').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const d=b.dataset;if(d.svs!=null){sfx('click');evBrief(+d.svs)}else if(d.svm!=null)claimMs(+d.svm);else if(d.svq!=null)claimQ(+d.svq)};
+setInterval(()=>{try{svTile();cd()}catch(e){}},30000);try{svTile()}catch(e){}
+})();
 </script>
 </body></html>
