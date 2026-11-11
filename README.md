@@ -262,3 +262,6 @@ Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim
 
 ## v85 changes (v79 base + v84 look)
 **Atlantis merge.** Built on v79 (tide, tiles, coral corners, effects) with v84's sea-blue water: the Atlantis colours, backdrop and boss backdrop are now blue (the old flat baked-in jellyfish were painted out of the backdrops). Jellyfish are v84's realistic SVG jellyfish (`atlJelly`-style `svg()` at the end of `index.html`), drifting behind see-through glass screens. **The Kraken** replaces Kiraxo/Leviathan in the Atlantis world: `kiraxo → kraken` in the world lexicon, new art in `img/ks_atlantis.webp` (splash "THE KRAKEN awaits you" and the opponent avatar, shown automatically in Atlantis unless another Kiraxo skin is equipped via `eKS()`), and an inline-SVG Kraken (`#atlKraken`) that lurks under the keypad in matches against the AI, blinks, sways, and flares its eyes as the tide rises. **Round timer**: the clock is a glowing pill that drains with the tide and pulses coral-red in the last 5 seconds. Bump `V` in `sw.js` after every change.
+
+## v86 changes
+**Atlantis round timer.** The round box now uses the benchmark teal-glass blue with a bright steel-blue pill that drains smoothly and turns coral-red in the last 5 seconds. When Settings > Round Timer is OFF the pill hides itself instead of showing an empty bar.

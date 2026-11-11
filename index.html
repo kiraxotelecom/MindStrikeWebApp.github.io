@@ -1042,6 +1042,15 @@ html.wd-atlantis #app:not(#z) .tiles button{background:radial-gradient(circle at
 html.wd-atlantis #app #clock{display:inline-block;min-width:48px;padding:2px 14px;border-radius:999px;border:1.5px solid #6cc8ffcc;color:#e8f6ff;font-weight:800;letter-spacing:.04em;text-align:center;text-shadow:0 0 8px #3fb2f0;background:linear-gradient(90deg,#1f78d877 calc(var(--tf,1) * 100%),#02101ccc 0);box-shadow:0 0 10px #3fb2f055,inset 0 0 8px #3fb2f033;transition:border-color .3s,color .3s,box-shadow .3s}
 html.wd-atlantis #app #clock.low{color:#ff9ab8;border-color:#ff5d8f;text-shadow:0 0 8px #ff5d8f;background:linear-gradient(90deg,#ff5d8f55 calc(var(--tf,1) * 100%),#2a0a18cc 0);box-shadow:0 0 14px #ff5d8faa,inset 0 0 8px #ff5d8f44;animation:atlClockLow 1s ease-in-out infinite}
 @keyframes atlClockLow{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+/* ======== v86: Atlantis round timer, benchmark blue. Teal-glass round box, a bright steel-blue pill that drains smoothly, coral-red when time is nearly gone. The pill hides itself when the Round Timer setting is OFF instead of showing an empty bar. ======== */
+html.wd-atlantis #app #mid{flex:.85;padding:5px 6px 6px;border:1px solid #5fd0eeaa;border-radius:12px;background:radial-gradient(ellipse at 50% 0,#4cc4e82e,#0000 70%),linear-gradient(180deg,#14607f,#0b3b57);box-shadow:0 0 14px #2fa8d655,inset 0 1px 0 #ffffff33,inset 0 0 16px #02203a66;color:#eaf8ff}
+html.wd-atlantis #app #mid small{color:#d3eef8}
+html.wd-atlantis #app #mid #clock{position:relative;isolation:isolate;overflow:hidden;display:block;box-sizing:border-box;width:100%;max-width:92px;min-width:64px;height:26px;line-height:23px;margin:4px auto 0;padding:0 8px;border-radius:999px;border:2px solid #5fd0ee;background:#072a3a;color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:.02em;text-align:center;text-shadow:0 1px 2px #02243a,0 0 6px #02243a;box-shadow:0 0 10px #3fb2e055,inset 0 0 8px #02203a88;animation:none;transform:none}
+html.wd-atlantis #app #mid #clock:empty{display:none}
+html.wd-atlantis #app #mid #clock:before{content:'';position:absolute;z-index:-1;left:0;top:0;bottom:0;width:calc(var(--tf,1) * 100%);border-radius:0 999px 999px 0;background:linear-gradient(180deg,#34a6d4,#1d7fb0 55%,#176f9c);box-shadow:inset 0 1px 0 #ffffff44;transition:width .28s linear,background .3s}
+html.wd-atlantis #app #mid #clock.low{color:#fff;border-color:#ff7aa0;text-shadow:0 1px 2px #3a0818,0 0 6px #3a0818;background:#3a1020;box-shadow:0 0 14px #ff5d8fb0,inset 0 0 8px #2a081844;animation:atlClockLow 1s ease-in-out infinite}
+html.wd-atlantis #app #mid #clock.low:before{background:linear-gradient(180deg,#ff7a9e,#e8446f 55%,#c9345c)}
+@media(prefers-reduced-motion:reduce){html.wd-atlantis #app #mid #clock,html.wd-atlantis #app #mid #clock:before{animation:none!important;transition:none!important}}
 @media(prefers-reduced-motion:reduce){#atlKraken *,#atlKraken,html.wd-atlantis #app #clock{animation:none!important}}
 </style></head><body><div id="app">
 
