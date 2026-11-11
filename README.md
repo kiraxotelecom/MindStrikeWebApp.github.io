@@ -281,3 +281,22 @@ Astral Dominion darkened: dark star-metal buttons, deep-indigo planet tiles, dim
 ## v93 changes
 **Projectile feedback.** Every guess in the main game now fires a themed projectile (arrow in Roman and Buganda, data bolt in Neon Grid, shuriken in Shogun's Realm, ice flake in Frostlands, coin in Golden Sands, star in Astral, bubble in Atlantis) in an arc from the STRIKE button to where the guess lands on the spectrum bar, then bursts in the hint's colour (bigger on a hit). Skipped with reduced-motion. Code: `shotFx`.
 **Boss tricks.** Neon Grid boss: every 3rd boss hint may be glitched one step. Atlantis boss (Kraken): only your last 2 hint chips stay readable. Both only in matches against the AI. Code: `bossGlitch`, `enterBoss` wrapper. Bump `V` in `sw.js` after every change.
+
+## v94 changes
+Neon Grid boss: a glitched hint chip now carries a ⚡ so you can tell afterwards which hint lied. Bump `V` in `sw.js` after every change.
+
+## v95 changes
+**Colourblind symbols** (Settings > Gameplay). Hint chips and spectrum pins drop the colour-only emoji for shapes plus border styles: blazing ▲▲ (double border), hot ▲ (solid), warm ● (dotted), cold ▼ (dashed), freezing ▼▼ (grooved). Code: `CBS`, `cbHist`.
+**Weather particles** (Settings > Gameplay, on by default, off with reduced-motion). A light canvas over the match screen per world: embers (Roman), golden fireflies (Buganda), neon rain (Neon Grid), sakura petals (Shogun's Realm), snow (Frostlands), gold dust (Golden Sands), drifting stars (Astral), bubbles (Atlantis). Code: `WXC` and the `#wx` canvas. Bump `V` in `sw.js` after every change.
+
+## v96 changes
+Weather particles now also drift over the home screen and the Conquest Map, not just matches (same Settings > WEATHER toggle). Bump `V` in `sw.js` after every change.
+
+## v97 changes
+**Boss victory burst.** Beating a boss in a match against the AI now triggers a per-world celebration: themed emoji shower, a coloured flash and a shockwave ring, a screen shake and a banner (VICTORIA! in Roman, THE KINGDOM IS VICTORIOUS in Buganda, SYSTEM BREACHED in Neon Grid, HONOUR EARNED in Shogun's Realm, VALHALLA AWAITS in Frostlands, GOLDEN TRIUMPH in Golden Sands, THE STARS ALIGN in Astral, THE KRAKEN SINKS in Atlantis). Flash and ring are skipped with reduced-motion. Code: `WINB`, `bossCelebrate`. Bump `V` in `sw.js` after every change.
+
+## v98 changes
+Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and each world has its own short victory sting (Roman brass-like triangle, Buganda warm sine, Neon Grid square-wave chiptune, Shogun pentatonic, Frostlands and Atlantis soft sines, Golden Sands bright triangle, Astral rising star chime). Code: `STG`, `bossCelebrate`. Bump `V` in `sw.js` after every change.
+
+## v99 changes
+**Per-world keypad keys** for the six worlds that had none (Astral and Atlantis already had theirs): Roman carved stone tablets with bronze edges, Buganda woven ochre reed with a red clear key, Neon Grid dark glowing cyan monospace keys, Shogun's Realm washi-paper keys with a red seal edge, Frostlands frosted-glass keys, Golden Sands polished gold plates with a silver clear key. Digits and the clear key only; the STRIKE button and power buttons keep their own styling. CSS only. Bump `V` in `sw.js` after every change.
