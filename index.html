@@ -1131,7 +1131,40 @@ html.wd-atlantis .pop{background:linear-gradient(rgba(2,14,40,.8),rgba(2,10,30,.
 #wGate .a-fl{inset:0;opacity:0;background:#f4eeff}
 @media(prefers-reduced-motion:reduce){#wGate,#wGate *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){#atlKraken *,#atlKraken,html.wd-atlantis #app #clock{animation:none!important}}
-</style></head><body><div id="app">
+</style><style>
+/* ======== v92: per-player hearts, themed shapes ======== */
+#pips{display:none!important}
+#hud .pl .hp{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;margin-top:3px;min-height:17px;transition:opacity .25s}
+#hud .pl .hp.off{opacity:.55}
+#hud .pl .hp .hrt{width:16px;height:16px}
+#app .hrt{stroke-width:1.5;overflow:visible;transition:transform .2s,opacity .2s,fill .2s}
+#app .hrt .hl{fill:#fff;stroke:none;opacity:.7}#app .hrt .fc{fill:none;stroke:#ffffffb0;stroke-width:.8}
+#app .hrt.u,#app .hrt.p0.u,#app .hrt.p1.u{fill:#2b2b31;stroke:#6d6d77;opacity:.45;transform:scale(.8);filter:none;animation:none}
+@keyframes hrBeat{0%,60%,100%{transform:scale(1)}30%{transform:scale(1.12)}}
+@keyframes hrFlick{0%,90%,100%{opacity:1}93%{opacity:.35}96%{opacity:1}98%{opacity:.55}}
+@keyframes hrSway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes hrShim{0%,100%{filter:brightness(1) drop-shadow(0 0 2px var(--g))}50%{filter:brightness(1.35) drop-shadow(0 0 5px var(--g))}}
+@keyframes hrTwink{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(18deg)}}
+@keyframes hrBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+html:not([class*="wd-"]) #app .hrt.p0{fill:#d0281c;stroke:#e6b86a;--g:#ff5a3c;filter:drop-shadow(0 0 3px #ff5a3c99)}html:not([class*="wd-"]) #app .hrt.p1{fill:#4f6fe0;stroke:#c3d0ff;--g:#7d93ff;filter:drop-shadow(0 0 3px #7d93ff99)}
+html:not([class*="wd-"]) #app .hp.on .hrt:not(.u):not(.pend){animation:hrBeat 1.6s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html:not([class*="wd-"]) #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-buganda #app .hrt.p0{fill:#f2b705;stroke:#3a2410;--g:#ffd84a;filter:drop-shadow(0 0 3px #ffd84a99)}html.wd-buganda #app .hrt.p1{fill:#c0392b;stroke:#f2b705;--g:#ff6a55;filter:drop-shadow(0 0 3px #ff6a5599)}
+html.wd-buganda #app .hp.on .hrt:not(.u):not(.pend){animation:hrBeat 1.4s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-buganda #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-cyber #app .hrt.p0{fill:#00e5ff;stroke:#b8fbff;--g:#00e5ff;filter:drop-shadow(0 0 3px #00e5ff99)}html.wd-cyber #app .hrt.p1{fill:#ff2bd6;stroke:#ffc2f4;--g:#ff2bd6;filter:drop-shadow(0 0 3px #ff2bd699)}
+html.wd-cyber #app .hp.on .hrt:not(.u):not(.pend){animation:hrFlick 3.2s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-cyber #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-samurai #app .hrt.p0{fill:#d4163a;stroke:#f3dfb0;--g:#ff4a68;filter:drop-shadow(0 0 3px #ff4a6899)}html.wd-samurai #app .hrt.p1{fill:#ffc2cf;stroke:#8a2a3a;--g:#ffc2cf;filter:drop-shadow(0 0 3px #ffc2cf99)}
+html.wd-samurai #app .hp.on .hrt:not(.u):not(.pend){animation:hrSway 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-samurai #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-ice #app .hrt.p0{fill:#5fc8ff;stroke:#eafaff;--g:#8fe0ff;filter:drop-shadow(0 0 3px #8fe0ff99)}html.wd-ice #app .hrt.p1{fill:#b9a8ff;stroke:#f3efff;--g:#c9bbff;filter:drop-shadow(0 0 3px #c9bbff99)}
+html.wd-ice #app .hp.on .hrt:not(.u):not(.pend){animation:hrShim 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-ice #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-gold #app .hrt.p0{fill:#f5c542;stroke:#fff2b8;--g:#ffd45a;filter:drop-shadow(0 0 3px #ffd45a99)}html.wd-gold #app .hrt.p1{fill:#c9ccd6;stroke:#ffffff;--g:#e7e9f2;filter:drop-shadow(0 0 3px #e7e9f299)}
+html.wd-gold #app .hp.on .hrt:not(.u):not(.pend){animation:hrShim 2.2s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-gold #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-astral #app .hrt.p0{fill:#b48cff;stroke:#f1e8ff;--g:#c9a8ff;filter:drop-shadow(0 0 3px #c9a8ff99)}html.wd-astral #app .hrt.p1{fill:#ff7ad9;stroke:#ffe0f6;--g:#ff9be6;filter:drop-shadow(0 0 3px #ff9be699)}
+html.wd-astral #app .hp.on .hrt:not(.u):not(.pend){animation:hrTwink 2s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-astral #app .hrt.pend{animation:hp .7s infinite alternate}
+html.wd-atlantis #app .hrt.p0{fill:#2fb8ff;stroke:#dff6ff;--g:#53d0ff;filter:drop-shadow(0 0 3px #53d0ff99)}html.wd-atlantis #app .hrt.p1{fill:#ff7a8a;stroke:#ffe0e4;--g:#ff9aa6;filter:drop-shadow(0 0 3px #ff9aa699)}
+html.wd-atlantis #app .hp.on .hrt:not(.u):not(.pend){animation:hrBob 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.18s)}html.wd-atlantis #app .hrt.pend{animation:hp .7s infinite alternate}
+@media (prefers-reduced-motion:reduce){#app .hrt{animation:none!important}}
+</style>
+</head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
@@ -1184,9 +1217,9 @@ html.wd-atlantis .pop{background:linear-gradient(rgba(2,14,40,.8),rgba(2,10,30,.
 
 <section class="scr" id="s-game" style="--bg:url(img/game_bg.webp)">
  <div class="bar"><button class="ib" id="pauseBtn" aria-label="Pause" data-ic="pause"></button><span></span></div>
- <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b></div>
+ <div id="hud"><div class="pl" id="h0"><small id="n0"></small><b id="s0">0</b><div class="hp p0" id="hp0"></div></div>
   <div id="mid"><span id="lvl"></span><small id="tgt"></small><span id="clock"></span></div>
-  <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b></div></div>
+  <div class="pl" id="h1"><small id="n1h"></small><b id="s1">0</b><div class="hp p1" id="hp1"></div></div></div>
  <div id="layers"></div><div id="shield"><i></i></div><div id="banner"></div><div id="objChip" style="display:none"></div><div id="range"></div><div id="pips"></div><div id="spec"></div><div id="hist"></div><div id="msg" aria-live="polite"></div>
  <div class="plate"><input id="num" type="text" readonly inputmode="none" placeholder="?"></div><div id="info"></div>
  <div class="kp" id="kp"></div>
@@ -2547,6 +2580,21 @@ function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?
  const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
  let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
  const kc=eKS()&&KSC[eKS()],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';const ki=on&&KSI[eKS()];e1.classList.toggle('im',!!ki);if(ki)e1.innerHTML=`<img src="${KSI[eKS()]}" alt=""><u>${mood()}</u>`;else e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
+/* ---- v92: hearts. One row per player, themed shape + colours per world ---- */
+const HSH={
+ roman:'<path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/><path class="hl" d="M6.2 7.2c.7-.8 1.7-.9 2.4-.4-.9-.1-1.8.4-2.4.4z"/>',
+ buganda:'<path fill-rule="evenodd" d="M12 2.5c-4.6 0-7.5 4-7.5 9.5s2.9 9.5 7.5 9.5 7.5-4 7.5-9.5S16.6 2.5 12 2.5zM11.2 6c.6-.5 1.4-.5 1.6 0 .4 3.2.4 8.8 0 12-.2.5-1 .5-1.6 0-.4-3.2-.4-8.8 0-12z"/>',
+ cyber:'<path d="M3 1.5h6v3h-6zM15 1.5h6v3h-6zM0 4.5h24v3h-24zM0 7.5h24v3h-24zM0 10.5h24v3h-24zM3 13.5h18v3h-18zM6 16.5h12v3h-12zM9 19.5h6v3h-6z"/>',
+ samurai:'<g><path d="M12 12C8.6 9.6 8.4 4.6 10.6 2.8 11.3 3.5 11.7 3.8 12 3.4 12.3 3.8 12.7 3.5 13.4 2.8 15.6 4.6 15.4 9.6 12 12z"/><path d="M12 12C8.6 9.6 8.4 4.6 10.6 2.8 11.3 3.5 11.7 3.8 12 3.4 12.3 3.8 12.7 3.5 13.4 2.8 15.6 4.6 15.4 9.6 12 12z" transform="rotate(72 12 12)"/><path d="M12 12C8.6 9.6 8.4 4.6 10.6 2.8 11.3 3.5 11.7 3.8 12 3.4 12.3 3.8 12.7 3.5 13.4 2.8 15.6 4.6 15.4 9.6 12 12z" transform="rotate(144 12 12)"/><path d="M12 12C8.6 9.6 8.4 4.6 10.6 2.8 11.3 3.5 11.7 3.8 12 3.4 12.3 3.8 12.7 3.5 13.4 2.8 15.6 4.6 15.4 9.6 12 12z" transform="rotate(216 12 12)"/><path d="M12 12C8.6 9.6 8.4 4.6 10.6 2.8 11.3 3.5 11.7 3.8 12 3.4 12.3 3.8 12.7 3.5 13.4 2.8 15.6 4.6 15.4 9.6 12 12z" transform="rotate(288 12 12)"/></g><circle class="hl" cx="12" cy="12" r="1.5"/>',
+ ice:'<path d="M12 21.5 2.5 10.5 5.5 4.5h4.2L12 7.5l2.3-3h4.2l3 6z"/><path class="fc" d="M2.5 10.5h19M9.7 4.5 12 10.5l2.3-6M12 10.5v11"/>',
+ gold:'<path d="M3 18.5 2 7l5.5 4.5L12 4l4.5 7.5L22 7l-1 11.5z"/><circle class="hl" cx="12" cy="14.5" r="1.7"/>',
+ astral:'<path d="M12 1.5c.8 5.6 3.2 8.4 10.5 10.5-7.3 2.1-9.7 4.9-10.5 10.5C11.2 16.9 8.8 14.1 1.5 12 8.8 9.9 11.2 7.1 12 1.5z"/>',
+ atlantis:'<path d="M12 2.2S4.5 10 4.5 15a7.5 7.5 0 0 0 15 0C19.5 10 12 2.2 12 2.2z"/><circle class="hl" cx="9" cy="14.5" r="1.7"/>'};
+function wdKey(){return(document.documentElement.className.match(/wd-(cyber|samurai|ice|buganda|gold|astral|atlantis)/)||[])[1]||'roman'}
+function hrtRow(n,u,p,risk){const s=HSH[wdKey()];return Array.from({length:n},(_,i)=>`<svg class="hrt p${p}${i<u?' u':risk&&i<u+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true" style="--i:${i}">${s}</svg>`).join('')}
+/* each player keeps their own record: the one on turn is live, the other shows how their last turn ended */
+function hpRender(){if(!G)return;if(G.hpB!==!!G.boss){G.hpB=!!G.boss;G.hp=[null,null]}G.hp=G.hp||[null,null];G.hp[G.cur]={m:G.maxAtt,u:G.att,r:G.rf&&G.rf.risk?1:0};
+ [0,1].forEach(p=>{const e=$('#hp'+p);if(!e)return;const s=G.hp[p]||{m:G.maxAtt,u:0,r:0},on=p===G.cur;e.className='hp p'+p+(on?' on':' off');e.innerHTML=hrtRow(s.m,s.u,p,on&&s.r);e.setAttribute('aria-label',nm(p)+': '+(s.m-s.u)+' attempts left')})}
 function render(msg){if(!G)return;const b=G.boss;
  $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
@@ -2557,8 +2605,7 @@ function render(msg){if(!G)return;const b=G.boss;
  const lv=Math.min(4,Math.floor(Math.max(0,G.score[0])/(G.M.t<9999?G.M.t:200)*4));
  $('#banner').textContent=(b?'👹 ':G.special?(EM[G.special]||'')+' ':'')+(b?bossFull():(G.special?(G.special==='KIRAXO_RAGE'&&G.mode==='PVP'?'OVERDRIVE':SPECIAL[G.special][0]):(G.mode==='PVP'?nm(G.cur):LEVELS[lv])));
  $('#range').textContent=RNG(G.kLo,G.kHi);
- $('#pips').innerHTML=Array.from({length:G.maxAtt},(_,i)=>`<svg class="hrt${i<G.att?' u':G.rf.risk&&i<G.att+2?' pend':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/></svg>`).join('');
- $('#pips').setAttribute('aria-label',(G.maxAtt-G.att)+' attempts left');
+ hpRender();
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
  const sp=Math.max(1,G.hi-G.lo),pc=x=>Math.min(100,Math.max(0,(x-G.lo)/sp*100));
  $('#spec').innerHTML=`<div class="win" style="left:${pc(G.kLo)}%;width:${Math.max(2,pc(G.kHi)-pc(G.kLo))}%"></div>`+G.hist.map(h=>`<i class="pin" style="left:${pc(h.g)}%;background:${h.t?TC[h.t]:'#fff'}"></i>`).join('');
@@ -2765,19 +2812,27 @@ $$('[data-m]').forEach(b=>b.onclick=()=>{sfx('click');const pvp=setup.mode==='PV
 $('#again').onclick=launch;$('#home').onclick=home;
 // ---- v11: quests, daily chest, rank rewards ----
 const QD=[['d19','Play a Colosseum run','evrun',1,40,25],['d1','Win 3 rounds','round',3,30,20],['d2','Hit the number on the first try','first',2,40,25,{'x:FOCUS':1}],['d3','Win a VS match','win',1,50,30],['d4','Play 2 VS matches','match',2,30,20],['d5','Land a critical hit','crit',1,35,20],['d6','Reach a 3-win combo','combo',3,45,25],['d7','Win a match without powers','clean',1,70,40,{head:1}],['d8','Break 2 shield layers','layer',2,50,30],
- ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}]];
+ ['d9','Win a Conquest Map battle','conq',1,60,35,{'x:SCAN':1}],['d10','Play a Mini Game','mini',1,35,20],['d11','Finish the Daily Strike','daily',1,45,25,{head:1}],['d12','Win a wagered match','wager',1,60,30],['d13','Hit 3 blazing-hot guesses','blaze',3,40,25],['d14','Win 5 rounds','round',5,55,30,{time:1}],['d15','Visit the market and buy something','buy',1,20,15],['d16','Break 4 shield layers','layer',4,70,40,{'x:SHIELD':1}],['d17','Win 2 VS matches','win',2,70,40,{time:1}],['d18','Reach a 4-win combo','combo',4,60,35,{'x:RISK':1}],
+ ['d20','Win 2 Conquest Map battles','conq',2,85,50,{'x:SCAN':1}],['d21','Play 3 Mini Games','mini',3,60,35,{'x:FOCUS':1}],['d22','Win 8 rounds','round',8,70,40,{head:1}],['d23','Hit the number on the first try 4 times','first',4,60,35,{'x:SHIELD':1}],
+ ['d24','Land 2 critical hits','crit',2,55,30],['d25','Hit 6 blazing-hot guesses','blaze',6,60,35,{time:1}],['d26','Win 2 matches without powers','clean',2,110,60,{head:1}],['d27','Win 2 wagered matches','wager',2,90,50],
+ ['d28','Defeat the Boss Phase','boss',1,80,45,{'x:RISK':1}],['d29','Score 150+ in one Colosseum run','evhi',150,70,40],['d30','Play 4 VS matches','match',4,55,30],['d31','Reach a 5-win combo','combo',5,80,45,{phx:1}],
+ ['d32','Break 6 shield layers','layer',6,90,50,{'x:SHIELD':1}],['d33','Play 2 Colosseum runs','evrun',2,60,35],['d34','Win 3 VS matches','win',3,100,55,{time:1}],['d35','Buy 2 things at the market','buy',2,40,25]];
 const QW=[['w17','Score 300+ in one Colosseum run','evhi',300,320,150,{tome:1}],['w1','Win 5 VS matches','win',5,200,100,{pack:1}],['w2','Win 25 rounds','round',25,180,90,{'x:FOCUS':1}],['w3','Defeat Kiraxo in the Boss Phase twice','boss',2,300,150,{bane:1}],['w4','Win an Imperator-difficulty match','hardwin',1,250,120,{tome:1}],['w5','Hit 10 numbers on the first try','first',10,220,110,{att:1}],
- ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}]];
+ ['w6','Win 6 Conquest Map battles','conq',6,350,160,{pack:1,'x:SCAN':1}],['w7','Play 8 Mini Games','mini',8,260,120,{'x:SCAN':2}],['w8','Finish 4 Daily Strikes','daily',4,300,140,{tome:1}],['w9','Win 3 wagered matches','wager',3,320,150,{mag:1}],['w10','Land 5 critical hits','crit',5,230,110,{bane:1}],['w11','Reach a 6-win combo','combo',6,280,130,{phx:1}],['w12','Win 3 matches without powers','clean',3,350,170,{att:1,head:1}],['w13','Break 12 shield layers','layer',12,330,150,{'x:SHIELD':2}],['w14','Win 40 rounds','round',40,300,140,{pack:1}],['w15','Buy 3 things in the market','buy',3,200,90,{head:2}],['w16','Hit 15 blazing-hot guesses','blaze',15,260,120,{'x:FOCUS':2}],
+ ['w18','Win 10 VS matches','win',10,380,180,{pack:1}],['w19','Win 60 rounds','round',60,400,190,{tome:1}],['w20','Win 10 Conquest Map battles','conq',10,500,230,{pack:1,'x:SCAN':2}],['w21','Defeat Kiraxo in the Boss Phase 4 times','boss',4,520,240,{bane:2}],
+ ['w22','Hit 20 numbers on the first try','first',20,400,190,{att:1}],['w23','Play 12 Mini Games','mini',12,380,170,{'x:FOCUS':2}],['w24','Finish 6 Daily Strikes','daily',6,420,200,{tome:1}],['w25','Win 5 wagered matches','wager',5,460,210,{mag:1}],
+ ['w26','Land 10 critical hits','crit',10,400,190,{bane:1}],['w27','Reach an 8-win combo','combo',8,450,210,{phx:1}],['w28','Win 5 matches without powers','clean',5,520,250,{att:1,head:2}],['w29','Break 20 shield layers','layer',20,480,220,{'x:SHIELD':3}],
+ ['w30','Score 500+ in one Colosseum run','evhi',500,480,230,{tome:1}],['w31','Win 2 Imperator-difficulty matches','hardwin',2,480,220,{mag:1}],['w32','Play 10 Colosseum runs','evrun',10,420,200,{pack:1}],['w33','Hit 25 blazing-hot guesses','blaze',25,400,190,{'x:FOCUS':3}]];
 
 // ---- v43: themed quests (one daily + one weekly per world, plus world-flavoured rewards) ----
 const TN={roman:'Rome',buganda:'Buganda',cyber:'the Neon Grid',samurai:"the Shogun's Realm",ice:'the Frostlands',gold:'Golden Sands',astral:'the Astral Dominion',atlantis:'the Deep'};
 function TQ(){const w=TW,N=TN[w],G=TG[w],E=x=>'w:'+w+':'+x,I=(...a)=>'T'+w+a[0];
- return{d:[[I('d1'),`${G.e} Win a Conquest Map battle in ${N}`,E('conq'),1,60,35,{'x:SCAN':1}],[I('d2'),`${G.e} Play ${G.n}`,E('tm'),1,45,25,{head:1}],[I('d3'),`${G.e} Win 3 rounds in ${N}`,E('round'),3,45,25,{'x:FOCUS':1}],[I('d4'),`${G.e} Score 80+ in ${G.n}`,E('tms'),80,55,30,{time:1}]],
- w:[[I('w1'),`${G.e} Win 4 Conquest Map battles in ${N}`,E('conq'),4,320,160,{pack:1,'x:SCAN':1}],[I('w2'),`${G.e} Score 200+ in ${G.n}`,E('tms'),200,360,170,{tome:1}],[I('w3'),`${G.e} Win 3 VS matches in ${N}`,E('win'),3,300,150,{mag:1}],[I('w4'),`${G.e} Play ${G.n} 5 times`,E('tm'),5,280,130,{bane:1,'x:SHIELD':1}]]}}
+ return{d:[[I('d1'),`${G.e} Win a Conquest Map battle in ${N}`,E('conq'),1,60,35,{'x:SCAN':1}],[I('d2'),`${G.e} Play ${G.n}`,E('tm'),1,45,25,{head:1}],[I('d3'),`${G.e} Win 3 rounds in ${N}`,E('round'),3,45,25,{'x:FOCUS':1}],[I('d4'),`${G.e} Score 80+ in ${G.n}`,E('tms'),80,55,30,{time:1}],[I('d5'),`${G.e} Hit the number first try in ${N}`,E('first'),2,50,28,{'x:FOCUS':1}],[I('d6'),`${G.e} Land a critical hit in ${N}`,E('crit'),1,45,25,{head:1}],[I('d7'),`${G.e} Win a VS match in ${N}`,E('win'),1,60,35,{'x:SHIELD':1}],[I('d8'),`${G.e} Hit 3 blazing-hot guesses in ${N}`,E('blaze'),3,45,25,{time:1}]],
+ w:[[I('w1'),`${G.e} Win 4 Conquest Map battles in ${N}`,E('conq'),4,320,160,{pack:1,'x:SCAN':1}],[I('w2'),`${G.e} Score 200+ in ${G.n}`,E('tms'),200,360,170,{tome:1}],[I('w3'),`${G.e} Win 3 VS matches in ${N}`,E('win'),3,300,150,{mag:1}],[I('w4'),`${G.e} Play ${G.n} 5 times`,E('tm'),5,280,130,{bane:1,'x:SHIELD':1}],[I('w5'),`${G.e} Win 20 rounds in ${N}`,E('round'),20,340,160,{pack:1}],[I('w6'),`${G.e} Hit 8 numbers first try in ${N}`,E('first'),8,300,150,{att:1}],[I('w7'),`${G.e} Break 8 shield layers in ${N}`,E('layer'),8,330,160,{'x:SHIELD':2}],[I('w8'),`${G.e} Win 2 matches without powers in ${N}`,E('clean'),2,360,170,{mag:1}]]}}
 function tqFix(){let c=0;const T=TQ(),swap=(arr,pool,sd)=>{if(arr.some(q=>q.id[0]==='T'&&q.id.startsWith('T'+TW)))return;const i=arr.map((q,k)=>k).reverse().find(k=>!arr[k].p&&!arr[k].cl);if(i==null)return;const[id,n,e,t,cc,x,it]=pool[Math.floor(mul(seed(sd))()*pool.length)];arr[i]={id,n,e,t,c:cc,x,it,p:0,cl:0};c=1};
  if(PRO.q.d&&!PRO.q.d.some(q=>q.id.startsWith('T')))swap(PRO.q.d,T.d,'tqd'+today());
  if(PRO.q.w&&!PRO.q.w.some(q=>q.id.startsWith('T')))swap(PRO.q.w,T.w,'tqw'+Math.floor((Date.now()/864e5+3)/7));return c}
-const SW={d:{c:100,x:60,inv:{pack:1,'s:DIRECTION':1}},w:{c:450,x:220,inv:{tome:1,mag:1,bane:1,'s:DIGIT':1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
+const SW={d:{c:130,x:80,inv:{pack:1,'s:DIRECTION':1}},w:{c:600,x:300,inv:{tome:1,mag:1,bane:1,'s:DIGIT':1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
 const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}].map(x=>({...x,c:cx(x.c)}));
 const RR={1:{c:60,inv:{'x:SCAN':1,'s:DIRECTION':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1,'s:RANGE':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
  6:{c:400,own:['ps:gladiator'],inv:{tome:1,'s:PROPERTY':1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ks:dragon'],inv:{tome:1,'x:SCAN':2,'s:DIGIT':1}},
@@ -2786,9 +2841,11 @@ const nmOf=k=>{const it=SHOP.find(x=>x[0]===k);return it?it[1]+' '+it[2]:k};
 function grant(r){PRO.gold+=r.c||0;const t=[`💰 ${r.c||0}`];for(const k in r.inv||{}){PRO.inv[k]=(PRO.inv[k]||0)+r.inv[k];t.push(`${r.inv[k]}× ${nmOf(k)}`)}(r.own||[]).forEach(k=>{PRO.own[k]=1;t.push('NEW: '+nmOf(k))});if(r.x)PRO.xp+=r.x;LS.set('ms_pro',PRO);return t.join(' · ')}
 function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now()/864e5+3)/7));let ch=0;
  const draw=(pool,n,sd)=>{const r=mul(seed(sd)),p=[...pool],o=[];while(o.length<n){const[id,nme,e,t,c,x,it]=p.splice(Math.floor(r()*p.length),1)[0];o.push({id,n:nme,e,t,c,x,it,p:0,cl:0})}return o};
- if(PRO.q.dk!==dk){PRO.q.d=draw(QD,3,'qd'+dk).concat(draw(TQ().d,1,'tqd'+dk));PRO.q.dk=dk;PRO.q.sd=0;ch=1}
- if(PRO.q.wk!==wk){PRO.q.w=draw(QW,2,'qw'+wk).concat(draw(TQ().w,1,'tqw'+wk));PRO.q.wk=wk;PRO.q.sw=0;ch=1}
+ if(PRO.q.dk!==dk){PRO.q.d=draw(QD,4,'qd'+dk).concat(draw(TQ().d,1,'tqd'+dk));PRO.q.dk=dk;PRO.q.sd=0;ch=1}
+ if(PRO.q.wk!==wk){PRO.q.w=draw(QW,3,'qw'+wk).concat(draw(TQ().w,1,'tqw'+wk));PRO.q.wk=wk;PRO.q.sw=0;ch=1}
  if(!PRO.q.w.some(q=>q.id==='wev')){PRO.q.w.push({id:'wev',n:'Play 6 Colosseum runs',e:'evrun',t:6,c:cx(300),x:140,it:{pack:1},p:0,cl:0});PRO.q.sw=PRO.q.sw&&PRO.q.w.every(q=>q.cl)?PRO.q.sw:0;ch=1}
+ const _ex=(a,pool,sd)=>{const ex=pool.filter(z=>!a.some(q=>q.id===z[0])),[id,nme,e,t,c,x,it]=ex[Math.floor(mul(seed(sd))()*ex.length)];a.push({id,n:nme,e,t,c,x,it,p:0,cl:0});ch=1};
+ if(PRO.q.d.length<5&&!PRO.q.sd)_ex(PRO.q.d,QD,'qx'+dk);if(PRO.q.w.length<5&&!PRO.q.sw)_ex(PRO.q.w,QW,'qxw'+wk);
  if(tqFix())ch=1;if(ch)LS.set('ms_pro',PRO)}
 function qEach(f){qInit();[...PRO.q.d,...PRO.q.w].forEach(q=>{if(!q.cl&&q.p<q.t)f(q)})}
 function qDone(q){if(q.p>=q.t){toast(`📜 <b>QUEST COMPLETE</b><br><small>${q.n} — claim it in Quests</small>`);qBadge()}}
@@ -3026,7 +3083,7 @@ function onRoom(){if(left)return;
 function lobby(){showP('oLobby');const g=R.guest,m=R.cfg.mode||'turn',extra=(R.cfg.lad?'<br>📈 Rising ranges: '+(LAD[m]||[]).map(e=>'1–'+e[0]).join(' → '):'')+(R.cfg.pw?'<br>⚡ Powers on: SCAN, FOCUS, MARK':'');$('#oCodeBig').textContent=code;$('#oModeNm').innerHTML='<b>'+MN[m]+'</b><br>'+MR[m]+extra;
  $('#oWait').textContent=role==='h'?(g?g.name+' has joined. Start when ready.':'Waiting for your friend to enter the code…'):'Joined '+R.host.name+'’s room. Waiting for the host to start…';
  $('#oStart').style.display=role==='h'&&g?'':'none';$('#oShare').style.display=role==='h'?'':'none'}
-const hearts=(n,u)=>Array.from({length:n},(_,i)=>`<svg class="hrt${i<u?' u':''}" viewBox="0 0 24 24" aria-hidden="true"><path d="${HP}"/></svg>`).join('');
+const hearts=(n,u,p)=>hrtRow(n,u,p||0);
 const nmOf=r=>r==='h'?R.host.name:(R.guest?R.guest.name:'?');
 const relStr=w=>(R.relics&&R.relics[w]||'').split(',').filter(Boolean).map(id=>`<span title="${RELICS[id][1]}: ${RELICS[id][2]}">${RELICS[id][0]}</span>`).join(' ');
 function logOf(){return R.log?Object.keys(R.log).sort().map(k=>R.log[k]):[]}
@@ -3053,7 +3110,7 @@ function render(){const c=R.cfg,md=c.mode,tm=md==='turn',sw=md==='swap',opp=oppO
  else{const mr=R.res&&R.res[role],or=R.res&&R.res[opp];if(mr&&mr.n===R.rd&&mr.k>hist.length)hist.push(mr);
   used=mr&&mr.n===R.rd?usedN(role,mr.k):0;oused=or&&or.n===R.rd?usedN(opp,or.k):0;busy=myK>(mr&&mr.n===R.rd?mr.k:0);
   chips=hist.map(h=>`<span style="border-color:${TC[h.tier]||'#fff'}">${h.g} ${h.dir} ${TE[h.tier]||''}</span>`).join('')}
- $('#oPips').innerHTML=hearts(attOf(role),used);$('#oOpPips').innerHTML=hearts(attOf(opp),oused);$('#oHist').innerHTML=chips;
+ $('#oPips').innerHTML=hearts(attOf(role),used,0);$('#oOpPips').innerHTML=hearts(attOf(opp),oused,1);$('#oHist').innerHTML=chips;
  $('#oFeed').innerHTML=sw&&sealed&&(se||pl)?`<div class="sc">🔏 YOUR SCROLL <b>${secret}</b></div>`+(feed.length?'<div class="oh" style="flex-wrap:wrap">'+feed.map(f=>`<span class="fd" style="border-color:${TC[f.tier]||'#fff'}">${nmOf(opp)[0]} ${f.g} ${f.dir} ${TE[f.tier]||''}</span>`).join('')+'</div>':''):'';
  const or2=R.res&&R.res[opp];
  $('#oOpp').textContent=tm?nmOf(opp)+' · '+(attOf(opp)-oused)+' attempts left':sw?nmOf(opp)+' · '+(attOf(opp)-oused)+' attempts left on your scroll':(or2&&or2.n===R.rd?nmOf(opp)+' · last hint '+(TE[or2.tier]||'🎯'):nmOf(opp)+' is thinking…');
