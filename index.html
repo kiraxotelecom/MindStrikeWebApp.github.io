@@ -1556,6 +1556,8 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Five fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by difficulty), a draw refunds you, a loss or quitting forfeits it. Bigger stakes unlock with rank: 250 at Centurion, 500 at Legatus, ALL-IN at Consul. <b>Side-bets</b> add a bonus multiplier (No Powers +0.5, Swift +0.5, Flawless +1) and only lose the bonus if you miss them. <b>Insurance</b> costs 10% of the stake and returns half of it if you lose. The arena keeps a 5% rake on your winnings. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
+<h2>RANK TRIALS</h2><p>XP is not enough to rise. From <b>Hastatus</b> up, every rank also needs a <b>trial</b>: win Conquest battles, defeat a region’s general, earn Conquest ⭐, play or master mini games, win matches in another world, finish a Daily Strike, or reach a floor in the ★ Endless Tower. The next trial is shown on your profile card.</p>
+<h2>★ ENDLESS TOWER</h2><p>A solo climb in Mini Games. Every floor has a <b>bigger range</b> and <b>fewer spare attempts</b>. Clear a floor, then <b>pick 1 of 3 relics</b> that last the whole climb. Fail a floor and the climb ends. Reach <b>milestone floors (5, 10, 15…)</b> for 💎 gems, each paid once. You are ranked by the <b>highest floor you reach</b>.</p>
 <h2>GEMS 💎 &amp; BACKUP</h2><p>Gems are a rare currency. You can buy a few a day with coins in the Gem Vault (350 💰 each), and every <b>First-try hit</b> on the secret number earns one in any mode except Easy. You also earn them from Daily Strike streaks, ranking up, mini game mastery, three-starring a Conquest region, boss wins, achievements, quest sweeps and your first Colosseum run each day. Spend them in the <b>Gem Vault</b> (Armory) on streak freezes, boosts and gem-only skins, to <b>Continue</b> a mini game after you run out of lives, or on extra Conquest battles once your 5 free ones for the day are used. In Settings, <b>Backup</b> saves your progress as a file or code so you can restore it on a new phone or browser.</p><h2>RANKS, TRIALS &amp; PRESTIGE</h2><p>There are 13 ranks; Imperator needs 15,000 XP, and early ranks come quickly. To earn <b>Proconsul, Consul and Imperator</b> you need the XP <i>and</i> a trial: three-star a whole Conquest region, reach mastery 3 on three mini games, then three-star two regions and reach mastery 5 on one. Past Imperator, every extra stretch of XP earns <b>Prestige</b> (Imperator I, II, III…) with a reward to claim. Rank follows your XP: if your XP is below a rank, you hold the rank your XP has earned, and the mini games above it stay locked until you get there.</p><h2>WORLD GAME &amp; WORLD QUESTS</h2><p>Every world has its own mini game in <b>Mini Games</b> (Forum Trader, Cowrie Count, Binary Breach, Haiku Blade, Rune Stones, Caravan Ledger), open from the start in whichever world you wear. Each day and week also brings one quest for your current world, paying extra coins, XP and gear.</p><h2>BATTLE FRIENDS</h2><p>Tap 🤝 <b>Battle Friends</b> on the home screen. <b>Live Duel</b> opens Clash Online: make a room, share the code or link and play from any network. <b>Send a Challenge</b> plays 5 seeded rounds, then you share your link: your friend plays the exact same numbers and sees your score. Beating a friend's link pays bonus coins (3 rewarded links per day). To join, paste a link or code into <b>Join a friend</b>. A full link opens the right place by itself; for a bare code, pick <i>Live room</i> or <i>Challenge</i>.</p><h2>COINS &amp; GEMS</h2><p><b>Coins</b> buy gear, scrolls, skins and kits. <b>Gems</b> buy the big things: worlds, the Imperial and Onyx arenas, the Scholar’s and Warlord’s chests and special skins. Earn gems from first-try hits, Daily Strike streaks, ranking up, achievements, quest sweeps and more. Your gem count is on the home screen.</p>
 <button class="bm-cta" onclick="this.closest('.pop').classList.remove('on')" style="margin-top:12px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
@@ -1744,21 +1746,31 @@ addEventListener('keydown',e=>{const d=$('#s-daily').classList.contains('on'),g=
  if(/^\d$/.test(e.key)&&i.value.length<3)i.value+=e.key;else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')(d?dStrike:strike)()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){openPause();curM&&curM.pause()}else if(!S.mute&&curM)curM.play().catch(()=>{})});
 // progression
-const PRO=Object.assign({wd:'',gems:0,gm:{},xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{},gear:{h:0,s:0,b:0},rel:{},dsh:{d:'',b:[]},ch:{},cd:{d:'',n:0},hk:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['VELITE',100],['LEGIONARY',300],['HASTATUS',600],['CENTURION',1000],['SIGNIFER',1600],['OPTIO',2400],['TRIBUNE',3400],['LEGATUS',4700],['PRAEFECT',6400],['PROCONSUL',8500],['CONSUL',11000],['IMPERATOR',15000]],rk=()=>{const x=RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);let c=x;for(let i=10;i<=x;i++)if(!trOk(i)){c=i-1;break}return c};
+const PRO=Object.assign({wd:'',gems:0,gm:{},xp:0,w:0,m:0,ds:0,dl:'',dres:null,gold:0,inv:{},own:{},th:'',ks:'',ps:'',pm:'',hs:{},q:null,lc:{last:'',s:0},rr:{},cp:{},mg:{},gear:{h:0,s:0,b:0},rel:{},dsh:{d:'',b:[]},ch:{},cd:{d:'',n:0},hk:{}},LS.get('ms_pro',{})),RANKS=[['RECRUIT',0],['VELITE',100],['LEGIONARY',300],['HASTATUS',600],['CENTURION',1000],['SIGNIFER',1600],['OPTIO',2400],['TRIBUNE',3400],['LEGATUS',4700],['PRAEFECT',6400],['PROCONSUL',8500],['CONSUL',11000],['IMPERATOR',15000]],rk=()=>{const x=RANKS.reduce((a,r,i)=>PRO.xp>=r[1]?i:a,0);let c=x;for(let i=3;i<=x;i++)if(!trOk(i)){c=i-1;break}return c};
 /* v27: ranks went from 6 to 13. Old rank-reward claims move to the new index of the same rank. */
 if((PRO.rv||0)<2){const mv={0:0,1:2,2:4,3:6,4:8,5:12},nr={};Object.keys(PRO.rr||{}).forEach(k=>{if(PRO.rr[k]&&mv[k]!=null)nr[mv[k]]=1});PRO.rr=nr;PRO.rv=2;LS.set('ms_pro',PRO)}
 /* v44: stretched XP curve (Imperator 15,000). Everyone keeps the highest rank they had already reached (PRO.hr). */
 if((PRO.rv||0)<3){const old=[0,40,100,200,300,450,650,900,1200,1600,2000,2250,2500];PRO.hr=Math.max(PRO.hr||0,old.reduce((a,v,i)=>PRO.xp>=v?i:a,0));PRO.rv=3;LS.set('ms_pro',PRO)}
 /* v45: no more grandfathered ranks. Rank follows XP (and trials) again, so players who were kept at a high rank drop to the rank their XP earns, and mini games above it lock. Claimed rank rewards stay claimed (no double payouts). */
 if((PRO.rv||0)<4){delete PRO.hr;PRO.rv=4;LS.set('ms_pro',PRO)}
+if((PRO.rv||0)<5){delete PRO.rkh;PRO.rv=5;LS.set('ms_pro',PRO)}
 /* v44: rank trials (Proconsul, Consul, Imperator) and Prestige (Imperator I, II, III...) */
 function rom(n){const t=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];let o='';t.forEach(([v,c])=>{while(n>=v){o+=c;n-=v}});return o}
 function trSt(){const f=CAMP.map((R,r)=>cStars(r)),full=CAMP.filter((R,r)=>f[r]>=R.nodes.length*3).length,bi=f.reduce((a,v,i)=>v/CAMP[i].nodes.length>f[a]/CAMP[a].nodes.length?i:a,0),ml=Object.values(PRO.mg||{}).map(m=>mlv(m.t));return{full,bi,f,m3:ml.filter(l=>l>=3).length,mx:Math.max(0,...ml)}}
-function TRI(i){const a=trSt(),b=CAMP[a.bi];return{10:{d:'Three-star every battle in one Conquest region',ok:a.full>=1,p:`best region ⭐ ${a.f[a.bi]}/${b.nodes.length*3}`},11:{d:'Reach mastery level 3 on 3 different mini games',ok:a.m3>=3,p:`${Math.min(3,a.m3)}/3 games`},12:{d:'Three-star every battle in 2 regions and reach mastery level 5 on a mini game',ok:a.full>=2&&a.mx>=5,p:`${Math.min(2,a.full)}/2 regions · best mastery L${a.mx}/5`}}[i]}
-function trOk(i){if(i<10||i>12)return true;try{return TRI(i).ok}catch(e){return false}}
+/* v101: a rank needs more than XP. Ranks 3-12 each have a trial mixing Conquest, mini games, other worlds and the Endless Tower. No grandfathering: players drop to the rank their trials allow. Conquest checks are counts and region numbers, so new regions just work. */
+const trN=()=>Object.values(PRO.cp||{}).filter(v=>v>0).length,trMg=()=>Object.keys(PRO.mg||{}).filter(k=>(PRO.mg[k].p||0)>0).length,trMl=l=>Object.values(PRO.mg||{}).filter(m=>mlv(m.t)>=l).length,trWw=()=>Object.keys(PRO.ww||{}).filter(w=>w!=='roman').reduce((a,w)=>a+PRO.ww[w],0),trTw=()=>(PRO.mg&&PRO.mg.tower&&PRO.mg.tower.f)||0;
+function TRI(i){const a=trSt(),b=CAMP[a.bi],pt=(ok,d,p)=>({ok,d,p}),cap=(v,n)=>Math.min(n,v),bs=r=>pt(bossDone(r),'Defeat the general of '+CAMP[r].n+' in Conquest',bossDone(r)?'done':'not yet'),
+ bt=n=>pt(trN()>=n,'Win '+n+' Conquest battles',cap(trN(),n)+'/'+n),st=n=>pt(cTotal()>=n,'Earn '+n+' ⭐ in Conquest',cap(cTotal(),n)+'/'+n),mg=n=>pt(trMg()>=n,'Play '+n+' different mini games',cap(trMg(),n)+'/'+n),ml=(n,l)=>pt(trMl(l)>=n,'Reach mastery level '+l+' on '+n+' different mini games',cap(trMl(l),n)+'/'+n+' games'),
+ wd=n=>pt(trWw()>=n,'Win '+n+' matches while another world (not Roman) is on',cap(trWw(),n)+'/'+n),tw=n=>pt(trTw()>=n,'Reach floor '+n+' in the ★ Endless Tower','best floor '+trTw()+'/'+n),dl=pt(!!PRO.dl,'Finish a Daily Strike',PRO.dl?'done':'not yet');
+ const T={3:[bt(2),mg(2)],4:[bs(0),mg(3)],5:[st(10),dl],6:[bs(1),mg(5)],7:[ml(3,1),st(20)],8:[bs(2),tw(5)],9:[wd(3),ml(2,2)],
+ 10:[pt(a.full>=1,'Three-star every battle in one Conquest region',`best region ⭐ ${a.f[a.bi]}/${b.nodes.length*3}`)],
+ 11:[pt(a.m3>=3,'Reach mastery level 3 on 3 different mini games',`${Math.min(3,a.m3)}/3 games`),tw(10)],
+ 12:[pt(a.full>=2&&a.mx>=5,'Three-star every battle in 2 regions and reach mastery level 5 on a mini game',`${Math.min(2,a.full)}/2 regions · best mastery L${a.mx}/5`),tw(15)]}[i];
+ return T?{ok:T.every(x=>x.ok),d:T.map(x=>x.d).join(' · '),p:T.map(x=>x.p).join(' · ')}:undefined}
+function trOk(i){if(i<3||i>12)return true;try{return TRI(i).ok}catch(e){return false}}
 const PXP=n=>15000+4000*n+500*n*(n+1);
 function pr(){if(rk()<12)return 0;let n=0;while(PRO.xp>=PXP(n+1))n++;return n}
-function trLine(i){const n=i+1;if(n<10||n>12||trOk(n))return'';const t=TRI(n);return`<div class="st">🎖️ TRIAL for ${RANKS[n][0]}: ${t.d} (${t.p})</div>`}
+function trLine(i){const n=i+1;if(n<3||n>12||trOk(n))return'';const t=TRI(n);return`<div class="st">🎖️ TRIAL for ${RANKS[n][0]}: ${t.d} (${t.p})</div>`}
 function prow(){const c=PRO.pc||0,n=c+1,ok=pr()>=n,r={c:cx(1000+250*n),inv:{tome:1,pack:1}},t=[`💰 ${r.c}`,`1× ${nmOf('tome')}`,`1× ${nmOf('pack')}`].join(' · ');return `<div class="card" style="margin:0;display:flex;align-items:center;gap:10px;border-color:var(--gold)"><div style="flex:1"><b>👑 IMPERATOR ${rom(n)}</b> · prestige<br><small>${PXP(n)} XP · ${t}</small></div><button data-pc="1" style="min-width:84px;padding:8px" ${ok?'':'disabled'}>${ok?'CLAIM':'🔒'}</button></div>`}
 /* v27: prices are per item — bigger upgrades and stronger power-ups cost more, rank does not matter */
 const PR=n=>Math.max(5,Math.round(n/5)*5);const COINX=.8,cx=n=>Math.max(1,Math.round(n*COINX));
@@ -1891,6 +1903,7 @@ $('#nextB').onclick=()=>{if(camp.next){sfx('click');cbrief(camp.next[0],camp.nex
 
 // ---- v12: mini games ----
 const BRD=['hunt','echo','cards','tm_astral','tm_cons','tm_atlantis','tm_roman','tm_buganda','tm_cyber','tm_samurai','tm_ice','tm_gold'],MINI=[
+ {k:'tower',n:'★ ENDLESS TOWER',e:'🗼',rk:3,d:'Climb floor after floor. The range grows every floor. Clear one, draft a relic. Lose, and the climb ends. Ranked by floor.'},
  {k:'light',n:'LIGHTNING ROUND',e:'⚡',rk:1,d:'The timer shrinks after every correct guess. Play until you fail.'},
  {k:'code',n:'CODEBREAKER',e:'🔐',rk:2,d:'Crack a secret 3-digit vault code. 🎯 right digit, right place · 🔸 right digit, wrong place. 5 vaults.'},
  {k:'sniper',n:'SNIPER RANGE',e:'🎯',rk:3,d:'Only 2 shots at a huge range (1–999). Hit the zone — streaks multiply the payout.'},
@@ -1904,9 +1917,9 @@ const mlv=t=>Math.min(10,Math.floor(Math.sqrt(t/60))),mgOpen=i=>MINI[i].wd?MINI[
 const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮 New mini game: '+n.map(m=>m.e+' '+m.n).join(', '):''};
 const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. NANAIA',.7],['GEN. SHANITARI',.8],['GEN. ELIJAHOS',.9],['KIRAXO',.97]];
 let X=null;
-const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){X.abandon=1;X.done=1}try{if(id!=='s-daily'&&id!=='s-end'&&D&&D.used&&!D.fin&&!D.ch&&!QUIT)dQuit()}catch(e){}_show(id)};
+const _show=show;show=function(id){if(id!=='s-mg'&&X&&!X.fin){if(X.k==='tower')try{twBank()}catch(e){}X.abandon=1;X.done=1}try{if(id!=='s-daily'&&id!=='s-end'&&D&&D.used&&!D.fin&&!D.ch&&!QUIT)dQuit()}catch(e){}_show(id)};
 function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{if(M.wd&&M.wd!==TW)return'';const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
- return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' ('+RANKS[M.rk][1]+' XP) to unlock'}</small>${open?`<small>🏆 best ${m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
+ return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' ('+RANKS[M.rk][1]+' XP) to unlock'}</small>${open?`<small>${M.k==='tower'?'🗼 best floor '+(m.f||0)+' · 🏆 best score '+m.b:'🏆 best '+m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
 const mgSet=t=>{$('#mgMsg').textContent=t};
 function mgChips(){$('#mgChips').innerHTML=X.hist.map(h=>`<span style="border-color:${h.txt?h.c:TC[h.t]};color:${h.txt?h.c:TC[h.t]}">${h.txt||h.d+h.g+TE[h.t]}</span>`).join('')}
@@ -1922,12 +1935,13 @@ function mgUpd(){if(!X)return;const k=X.k,set=(a,b,c,d)=>{$('#mgMt').textContent
  else if(k==='oracle')set('RIDDLE',X.r,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
  else if(k==='echo')set('LENGTH',X.seq.length,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(2-X.lives));
  else if(k==='cards')set('STREAK',X.st,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
+ else if(k==='tower')set('FLOOR',X.f||'—','TRIES',X.f?(X.maxA-X.att)+' left':'—');
  else if(k.startsWith('tm_'))set('ROUND',X.r,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));else set('HUNT',`${X.n}/5`,'DIGS',X.digs)}
 function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({g,t,d:up?'↑':'↓'});tone(250+Math.max(0,c)*700,.1,'triangle');mgChips();mgRangeUI();
  mgSet(foc?`EXACT FOCUS: ${Math.round(c*100)}% close — ${t.toUpperCase()}! ${up?'Higher':'Lower'}`:`${TE[t]} ${up?'Higher':'Lower'} — ${LBL[t]}`)}
 function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
 function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
-function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;const l1=mlv(m.t);
+function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;if(k==='tower')twEnd(m);const l1=mlv(m.t);
  const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=xpg(X.score/4+3),r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
  const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
@@ -1937,13 +1951,13 @@ function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;cons
 function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))return;const M=MINI[i];
  X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};
  $('#mgRes').classList.remove('on');$('#mgTitle').textContent=M.e+' '+M.n;$('#mgNum').value='';$('#mgChips').innerHTML='';$('#mgBoard').innerHTML='';$('#mgRange').textContent='';
- $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'?'grid':'none';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
+ $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'||k==='tower'?'grid':'none';$('#mgPw').style.gridTemplateColumns='repeat(3,1fr)';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
  if(k==='gaunt')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
  if(!$('#s-mg').classList.contains('on'))go('s-mg');
- (({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,cards:cdInit,hunt:huInit,tm_astral:olInit,tm_cons:ccInit,tm_atlantis:tdInit,gwell:gwInit,sonar:snrInit})[k]||tmInit)();mgUpd()}
+ (({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,tower:twInit,cards:cdInit,hunt:huInit,tm_astral:olInit,tm_cons:ccInit,tm_atlantis:tdInit,gwell:gwInit,sonar:snrInit})[k]||tmInit)();mgUpd()}
 function mgFire(){if(!X||X.done||X.busy||BRD.includes(X.k))return;const el=$('#mgNum'),g=parseInt(el.value,10);
  if(isNaN(g)||g<X.lo||g>X.hi){mgSet(`Enter a number from ${X.lo} to ${X.hi}.`);sfx('buzz');return}
- el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({gwell:gwFire,sonar:snrFire,light:lgFire,code:cbFire,sniper:snFire,oracle:orFire,duel:duFire,gaunt:gtFire})[X.k](g);mgUpd()}
+ el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({gwell:gwFire,sonar:snrFire,light:lgFire,code:cbFire,sniper:snFire,oracle:orFire,duel:duFire,gaunt:gtFire,tower:twFire})[X.k](g);mgUpd()}
 // -- Lightning Round --
 function lgInit(){X.r=0;lgRound(true)}
 function lgRound(first){X.r++;const r=X.r;X.lo=1;X.hi=Math.min(100,30+5*(r-1));X.secret=rndS(X.lo,X.hi);X.tl=X.tLeft=Math.max(4,20*Math.pow(.92,r-1));X.ls=0;X.att=0;X.kLo=X.lo;X.kHi=X.hi;X.hist=[];mgChips();mgRangeUI();
@@ -1991,6 +2005,55 @@ function gtFire(g){X.att++;const foc=X.focus;X.focus=0;
    setTimeout(()=>{if(X.done)return;if(X.r>=GT.length)return mgOver('Challenge survived');gtRound()},900);return}
   return mgFail(`Fallen in round ${X.r}. It was ${X.secret}.`)}
  mgHint(g,foc);gtPw()}
+// ---- v100: ★ Endless Tower (solo roguelike: ranges grow every floor, draft a relic between floors, ranked by floor reached) ----
+const TWR={wind:['❤️','Extra Attempt','+1 attempt on every floor',3],free:['🎁','Free Guess','Every 3rd guess on a floor is free',1],oracle:['🔮','Odd or Even','Every floor, you learn if the secret is odd or even',1],halve:['🧭','Which Half?','Every floor starts by showing which half the secret is in',1],head:['🔦','Head Start','Every floor starts with a fifth of the range ruled out',2],scan:['🔍','Scan Pack','+2 SCANs: each one shows which half the secret is in',5],focus:['🎯','Focus Pack','+2 FOCUS: your next guess shows how close you are, in %',5],gold:['💰','Bonus Points','+50% points for every floor you clear',1],lucky:['⚡','Lucky Shot','Win a floor on your first guess for triple points',1],net:['🛡️','Safety Net','Lose a floor and get one more try, with a new secret',2]};
+const twHi=f=>{const v=Math.round(10*Math.pow(1.4,f-1));return Math.min(999,v>=50?Math.round(v/5)*5:v)},twAtt=f=>Math.max(2,Math.ceil(Math.log2(twHi(f)+1))+3-Math.floor((f-1)/4)),twShuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function twInit(){X.f=0;X.sc=1;X.fo=1;X.net=0;X.rel={};X.focus=0;X.busy=true;X.intro=1;X.drafting=0;X.maxA=0;X.att=0;$('#mgIn').style.display='none';
+ $('#mgPw').style.gridTemplateColumns='repeat(2,1fr)';$('#mgPw').innerHTML=['SCAN','FOCUS'].map(n=>`<button data-mp=\"${n}\">${ic(n)}<span>${n}</span><i></i></button>`).join('');twPw();
+ const m=mgm('tower');$('#mgBoard').innerHTML=`<div class=\"card\" style=\"width:min(94%,360px);text-align:center\"><b>★ ENDLESS TOWER</b><p style=\"margin:8px 0\"><small>Climb as high as you can. Each floor has a bigger range and fewer spare attempts. Clear a floor, then pick 1 of 3 relics to keep for the whole climb. Fail a floor and the climb ends. Reach milestone floors to win 💎 gems (once each). You start with 1 SCAN and 1 FOCUS.</small></p><div>🗼 Best floor <b>${m.f||0}</b><br><small id=\"twRank\">${m.f?'…':'Climb to get ranked'}</small><br><small>💎 Next gem: floor ${twNextGem()[0]} (+${twNextGem()[1]})</small></div><button data-tw=\"go\" style=\"width:100%;margin-top:10px\">▶ START CLIMB</button><button data-tw=\"board\" style=\"width:100%;margin-top:8px\">🏆 RANKINGS</button></div>`;mgSet('');
+ if(m.f)evTop('tower').then(a=>{const el=document.getElementById('twRank');if(el&&X&&X.k==='tower'&&X.intro)el.textContent=evRtxt(a,m.f)}).catch(()=>{const el=document.getElementById('twRank');if(el)el.textContent=''});twSync()}
+function twAct(a){if(!X||X.k!=='tower')return;sfx('click');if(a==='go'&&X.intro)twBegin();else if(a==='board')twBoard()}
+function twBegin(){if(!X||X.k!=='tower'||!X.intro)return;X.intro=0;$('#mgIn').style.display='flex';twFloor()}
+function twRelBar(){const e=Object.keys(X.rel);$('#mgBoard').innerHTML=e.length?`<div style=\"display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:1.3rem\">${e.map(id=>`<span data-ri=\"${id}\" style=\"cursor:pointer\">${TWR[id][0]}${X.rel[id]>1?'<sup style=\"font-size:.6em\">×'+X.rel[id]+'</sup>':''}</span>`).join('')}</div><small>Your relics · tap one to read it</small>`:''}
+function twInfo(id){if(!X||X.k!=='tower'||!X.rel[id])return;sfx('click');mgSet(`${TWR[id][0]} ${TWR[id][1]}${X.rel[id]>1?' ×'+X.rel[id]:''}: ${TWR[id][2]}`)}
+const twGemAt=f=>f%5?0:f<=10?1:f<=20?2:3,twNextGem=()=>{const m=(Math.floor(((PRO.gm&&PRO.gm.tw)||0)/5)+1)*5;return[m,twGemAt(m)]};
+function twFloor(retry){if(!retry)X.f++;const f=X.f,hi=twHi(f);
+ if(!retry&&twGemAt(f)&&f>((PRO.gm&&PRO.gm.tw)||0)){PRO.gm=PRO.gm||{};PRO.gm.tw=f;gems(twGemAt(f),'🗼 Endless Tower floor '+f);ft('💎 +'+twGemAt(f))}X.lo=1;X.hi=hi;X.secret=rndS(1,hi);X.maxA=twAtt(f)+(X.rel.wind||0);X.att=0;X.gc=0;X.focus=0;X.hist=[];X.busy=false;X.drafting=0;
+ let a=1,b=hi;const n=X.rel.head||0;if(n){const sz=Math.max(3,Math.ceil(hi*Math.pow(.8,n))),st=Math.min(hi-sz+1,Math.max(1,X.secret-rnd(0,sz-1)));a=st;b=st+sz-1}
+ const notes=[];if(X.rel.oracle)notes.push(`🔮 ${X.secret%2?'ODD':'EVEN'}`);
+ if(X.rel.halve&&b-a>1){const mid=(a+b)>>1,up=X.secret>mid;up?a=mid+1:b=mid;notes.push(`🧭 ${up?'UPPER':'LOWER'} half`)}
+ X.kLo=a;X.kHi=b;mgChips();mgRangeUI();twRelBar();twPw();mgUpd();mgSet(`🗼 Floor ${f} · ${X.maxA} attempts${notes.length?' · '+notes.join(' · '):''}`);
+ if(f>1&&f%5===0){burst(['🗼','✨'],16);ft('FLOOR '+f)}}
+function twPw(){const b=n=>$(`#mgPw [data-mp=${n}]`);if(!b('SCAN'))return;b('SCAN').querySelector('i').textContent=X.sc;b('FOCUS').querySelector('i').textContent=X.fo;
+ b('SCAN').disabled=X.sc<=0||X.busy||!X.f||X.kHi-X.kLo<1;b('FOCUS').disabled=X.fo<=0||X.busy||!X.f||!!X.focus}
+function twPow(n){if(!X||X.k!=='tower'||X.busy||!X.f)return;
+ if(n==='SCAN'&&X.sc>0&&X.kHi-X.kLo>=1){X.sc--;const mid=(X.kLo+X.kHi)>>1,up=X.secret>mid;up?X.kLo=Math.max(X.kLo,mid+1):X.kHi=Math.min(X.kHi,mid);mgRangeUI();mgSet(`🔍 SCAN: the secret is in the ${up?'UPPER':'LOWER'} half${PAR(X.kLo,X.kHi)}.`)}
+ else if(n==='FOCUS'&&X.fo>0&&!X.focus){X.fo--;X.focus=1;mgSet('🎯 FOCUS on — your next guess shows how close you are!')}else return;
+ sfx('powerup');twPw()}
+function twFire(g){X.gc++;const free=!!X.rel.free&&X.gc%3===0,foc=X.focus;X.focus=0;if(!free)X.att++;
+ if(g===X.secret){const left=X.maxA-X.att;let pts=8+2*X.f+2*left;if(X.rel.gold)pts=Math.round(pts*1.5);if(X.rel.lucky&&X.gc===1)pts*=3;X.score+=pts;sfx('ding');ft('+'+pts);X.busy=true;twPw();mgUpd();mgSet(`✅ Floor ${X.f} cleared! +${pts}`);setTimeout(()=>{if(!X.done&&X.k==='tower')twDraft()},700);return}
+ if(!free&&X.att>=X.maxA){if(X.net>0){X.net--;X.busy=true;sfx('powerup');twPw();mgUpd();mgSet(`🛡️ Safety Net! It was ${X.secret}. Same floor, new secret…`);setTimeout(()=>{if(!X.done&&X.k==='tower')twFloor(true)},1100);return}
+  return mgFail(`The tower stops you on floor ${X.f}. It was ${X.secret}.`)}
+ mgHint(g,foc);if(free)mgSet($('#mgMsg').textContent+' 🎁 Free guess!');twPw()}
+function twDraft(){const pool=Object.keys(TWR).filter(id=>(X.rel[id]||0)<TWR[id][3]);if(!pool.length)return twFloor();
+ X.offer=twShuf(pool).slice(0,3);X.busy=true;X.drafting=1;$('#mgIn').style.display='none';$('#mgRange').textContent='';twPw();
+ $('#mgBoard').innerHTML=`<div style=\"width:min(94%,360px);display:flex;flex-direction:column;gap:8px\"><div class=\"bm-head\"><h2>Choose a relic</h2></div>${X.offer.map(id=>`<button class=\"bm-btn oRelic\" data-tr=\"${id}\"><span class=\"e\">${TWR[id][0]}</span><span><b>${TWR[id][1]}${X.rel[id]?' ('+(X.rel[id]+1)+')':''}</b><br><small>${TWR[id][2]}</small></span></button>`).join('')}<small class=\"bm-note\">Pick one. It lasts the whole climb.</small></div>`;
+ mgSet(`✅ Floor ${X.f} cleared! Next: floor ${X.f+1}${twGemAt(X.f+1)&&X.f+1>((PRO.gm&&PRO.gm.tw)||0)?' · 💎 +'+twGemAt(X.f+1)+' gem waiting':''}`)}
+function twPick(id){if(!X||X.k!=='tower'||!X.drafting||!X.offer.includes(id))return;X.drafting=0;X.rel[id]=(X.rel[id]||0)+1;if(id==='scan')X.sc+=2;else if(id==='focus')X.fo+=2;else if(id==='net')X.net++;
+ sfx('powerup');burst([TWR[id][0],'✨'],12);$('#mgIn').style.display='flex';twFloor()}
+function twBank(){const m=mgm('tower');if(X&&X.f>(m.f||0)){m.f=X.f;LS.set('ms_pro',PRO);twSync()}}
+function twEnd(m){const nb=X.f>(m.f||0);m.f=Math.max(m.f||0,X.f);const rc=Object.values(X.rel||{}).reduce((a,b)=>a+b,0);
+ X.stat=`🗼 <b>Floor reached: ${X.f}</b>${nb&&X.f>1?' · NEW BEST!':''}<br>Best floor: ${m.f} · Relics: ${rc}<br><small id=\"twRk\"></small>`;
+ twSync().then(()=>evTop('tower')).then(a=>{const el=document.getElementById('twRk');if(el)el.textContent=evRtxt(a,m.f)}).catch(()=>{})}
+async function twSync(force){const m=mgm('tower');if(!m.f||(!force&&m.f<=(m.fs||0)))return;try{const fx=await msFb(),{D:Z,db}=fx.F;await Z.set(Z.ref(db,'tower/'+fx.uid),{n:evSafe(S.n1),s:m.f});m.fs=m.f;LS.set('ms_pro',PRO)}catch(e){}}
+async function twBoard(){let ov=document.getElementById('twOv');
+ if(!ov){ov=document.createElement('div');ov.id='twOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='twX')ov.remove()};document.body.appendChild(ov)}
+ const paint=h=>{ov.innerHTML=`<div class=\"card\" style=\"width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto\"><h2>🗼 TOWER RANKINGS</h2><div style=\"line-height:1.8;margin:8px 0\">${h}</div><button id=\"twX\" style=\"width:100%\">CLOSE</button></div>`};
+ paint('Loading…');
+ try{await twSync(true);const a=await evTop('tower'),rk=v=>1+a.filter(y=>y.s>v.s).length,row=v=>{const r=rk(v);return `${['🥇','🥈','🥉'][r-1]||r+'.'} ${evName(v.n)} — Floor <b>${v.s}</b>${v.me?' ← you':''}`},mi=a.findIndex(x=>x.me);
+  let h=a.length?a.slice(0,20).map(row).join('<br>'):'No climbers yet. Be the first!';
+  if(mi>=20)h+='<br>⋯<br>'+row(a[mi]);else if(mi<0)h+=`<br><small>${(mgm('tower').f||0)>0?(a.length>=100?'You are outside the top 100.':'Your floor is syncing…'):'Reach a floor to join the board.'}</small>`;
+  paint(h)}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
 // -- Treasure Hunt --
 function huInit(){X.base=Math.min(6,4+(mlv(mgm('hunt').t)>>1));X.n=0;X.found=0;huNext()}
 function huNext(){X.n++;const s=X.size=Math.min(8,X.base+((X.n-1)>>1));X.digs=s+1;X.tr=[rnd(0,s-1),rnd(0,s-1)];X.dug={};X.dugT={};X.busy=false;huGrid();mgUpd();mgSet(`💎 Hunt ${X.n}/5 — grid ${s}×${s}. Dig up the treasure! ${X.digs} digs.`)}
@@ -2073,8 +2136,8 @@ function cdGo(a){if(!X||X.k!=='cards'||X.done||X.busy)return;
  if(!end&&!X.deck.length){X.score+=X.pot+20*X.lives;X.pot=0;end='🏆 Deck cleared! +'+20*X.lives+' for lives left'}
  mgUpd();cdUI();if(end){X.busy=true;mgOver(end)}}
 keypad($('#mgKp'),$('#mgNum'),()=>mgFire(),'mgStrike');
-$('#mgBoard').onclick=e=>{const b=e.target.closest('[data-hc]');if(b)return huDig(+b.dataset.hc);const c=e.target.closest('[data-ec]');if(c)return ecTap(+c.dataset.ec);const d=e.target.closest('[data-cd]');if(d&&!d.disabled)cdGo(d.dataset.cd)};
-$('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||!X||X.done||X.busy)return;gtPow(b.dataset.mp)};
+$('#mgBoard').onclick=e=>{const tr=e.target.closest('[data-tr]');if(tr)return twPick(tr.dataset.tr);const tw=e.target.closest('[data-tw]');if(tw)return twAct(tw.dataset.tw);const ri=e.target.closest('[data-ri]');if(ri)return twInfo(ri.dataset.ri);const b=e.target.closest('[data-hc]');if(b)return huDig(+b.dataset.hc);const c=e.target.closest('[data-ec]');if(c)return ecTap(+c.dataset.ec);const d=e.target.closest('[data-cd]');if(d&&!d.disabled)cdGo(d.dataset.cd)};
+$('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||!X||X.done||X.busy)return;X.k==='tower'?twPow(b.dataset.mp):gtPow(b.dataset.mp)};
 addEventListener('keydown',e=>{if(!$('#s-mg').classList.contains('on')||!X||X.done||X.busy||BRD.includes(X.k))return;const i=$('#mgNum');
  if(/^\d$/.test(e.key)){if(i.value.length<3)i.value+=e.key}else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')mgFire()});
 $('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
@@ -2207,7 +2270,7 @@ function snrFire(g){const x=X;x.att++;x.pings.push(g);if(g===x.secret){const pts
  if(x.att>=7)return mgFail(`Your sonar went silent. The wreck lay at ${x.secret}.`);mgHint(g);snrDraw()}
 $('#mgBoard').addEventListener('click',e=>{const b=e.target.closest('[data-tm]');if(b&&!b.disabled)tmAns(+b.dataset.tm)});
 $('#miniList').onclick=e=>{const b=e.target.closest('[data-mg]');if(!b||b.disabled)return;sfx('click');startMini(b.dataset.mg)};
-$('#mgAgain').onclick=()=>{sfx('click');startMini(X.k)};$('#mgHub').onclick=()=>{sfx('click');$('#mgRes').classList.remove('on');miniUI();back()};$('#mgHome').onclick=()=>{$('#mgRes').classList.remove('on');home()};
+$('#mgAgain').onclick=()=>{sfx('click');const k=X.k;startMini(k);if(k==='tower'&&X&&X.k==='tower')twBegin()};$('#mgHub').onclick=()=>{sfx('click');$('#mgRes').classList.remove('on');miniUI();back()};$('#mgHome').onclick=()=>{$('#mgRes').classList.remove('on');home()};
 function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800);tone(784,.12,'triangle')}
 function unlock(k){const a=LS.get('ms_ach',{});if(a[k])return;a[k]=1;LS.set('ms_ach',a);gems(GACH[k]||1,ACH[k][1]);toast(`${ACH[k][0]} <b>${ACH[k][1]}</b><br><small>${ACH[k][2]}</small>`)}
 const dk=d=>`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`,today=()=>dk(new Date()),ydy=()=>dk(new Date(Date.now()-864e5));
@@ -2243,7 +2306,7 @@ function gemSync(){const g=PRO.gm||(PRO.gm={});g.rg=g.rg||{};g.bd=g.bd||{};g.ml=
 $('#prof').addEventListener('click',e=>{const t=e.target.closest('.pkt,.pkm');if(t)t.classList.toggle('open')});
 function profUI(){try{gemSync()}catch(e){}const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):15000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span><small>${sb}</small>`,md=MINI.filter((_,i)=>mgOpen(i)).length;
- const skE=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️',skC=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a',tN=i+1,tp=!(tN<10||tN>12||trOk(tN)),tI=tp?TRI(tN):null,full=PRO.xp>=nx[1],ch=evBadgeTxt().replace(/^ · /,''),f=v=>Number(v).toLocaleString('en-US');
+ const skE=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️',skC=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a',tN=i+1,tp=!(tN<3||tN>12||trOk(tN)),tI=tp?TRI(tN):null,full=PRO.xp>=nx[1],ch=evBadgeTxt().replace(/^ · /,''),f=v=>Number(v).toLocaleString('en-US');
  $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}"><span class="skP">${skE}</span></div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>Streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>Wins</small></span><span><i>💰</i><b>${f(PRO.gold||0)}</b><small>Coins</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>Gems</small></span><span><i>🗺️</i><b>${(()=>{try{return cTotal()+'/'+cMax()}catch(e){return '0'}})()}</b><small>Stars</small></span><span><i>🏅</i><b>${ac}/${Object.keys(ACH).length}</b><small>Medals</small></span><span><i>🌿</i><b>${(()=>{try{return Object.keys(PRO.hk||{}).length+'/'+KIDS.length}catch(e){return '0'}})()}</b><small>Laurels</small></span><span><i>👻</i><b>${(PRO.gh||{}).n||0}</b><small>Ghosts</small></span></div>${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
  try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ Daily Done':'Daily Ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','💰 '+PRO.gold);$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`🎟️ ${cqLeft()} left · ⭐ ${cTotal()}/${cMax()}`);$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} Unlocked`);
  qBadge()}
@@ -2252,7 +2315,7 @@ const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tm
 function hsCheck(w){if(G.cf){G.hs={old:0,sc:0,isNew:false};return}const key=`${G.mode}|${G.d}|${G.m}`,sc=G.mode==='PVP'?(w>=0?G.score[w]:0):G.score[0];PRO.hs=PRO.hs||{};const old=PRO.hs[key]||0;G.hs={old,sc,isNew:sc>old&&sc>0};if(G.hs.isNew){PRO.hs[key]=sc;LS.set('ms_pro',PRO)}}
 function xpEnd(win){if(G.mode!=='AI')return 0;const k=rwx(G.d,G.m),r0=rk();
  const xp=xpg((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=cx(Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0));
- PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return xp}
+ PRO.xp+=xp;G.gg=gd;G.rwk=k;PRO.gold+=gd;PRO.m++;if(win){PRO.w++;PRO.ww=PRO.ww||{};PRO.ww[WID||'roman']=(PRO.ww[WID||'roman']||0)+1;unlock('first');if(G.boss)unlock('boss')}LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return xp}
 const rwHtml=xg=>xg?`<br><b>+${xg} XP · 💰 +${G.gg}</b><br><small>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${G.hs&&G.hs.isNew?' · +25 high-score bonus':''}${G.tome||G.mag?'<br>📜🧲 boosts applied':''}</small>`:'';
 const hsHtml=()=>G.hs&&!G.cf?(G.hs.isNew?`<div class="hs">🏆 NEW HIGH SCORE! ${G.hs.sc}<br><small>${G.D.name} · ${G.M.label}${G.hs.old?' · previous best '+G.hs.old:''}</small></div>`:`<br><small>Best here: ${G.hs.old}</small>`):'';
 function shareIt(){if(navigator.share)navigator.share({text:shareText}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(shareText).then(()=>toast('📋 Copied!'))}
