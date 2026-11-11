@@ -309,3 +309,6 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v102 changes
 **No grandfathered ranks for the new trials.** Existing players drop to the rank their XP and trials allow (same approach as v45); mini games and worlds above that rank lock again, and claimed rank rewards stay claimed. The profile card already caps the shown XP at the next rank's threshold while a trial is pending, so XP stays hidden until the trial is passed. A one-time migration (`PRO.rv` 5) removes any `PRO.rkh` saved by v101. Bump `V` in `sw.js` after every change.
+
+## v103 changes
+**Riddle Scrolls** (Arena Trials → 📜 Riddle Scroll). One logic puzzle a day, the same clues for every player, generated from the date (`rdMake`). Every clue is true and exactly one number in the range fits them all (verified over 400 days). Difficulty follows the weekday: Easy 10–99, Medium 50–299, Hard 100–999. 3 answers; a wrong answer shows how many clues it satisfies. Progress is stored in `ms_pro.rd` (attempts survive a reload). Solving pays coins and XP, a first-try solve pays 1 💎, and a riddle streak pays the usual streak gems. New daily quest "Solve the Riddle Scroll" and a share result (🟩🟨🟥). The Arena Trials home badge now counts the riddle. Bump `V` in `sw.js` after every change.
