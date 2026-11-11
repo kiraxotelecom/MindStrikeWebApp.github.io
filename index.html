@@ -1600,10 +1600,10 @@ function strike(){if(!canAct())return;const el=$('#num'),g=parseInt(el.value,10)
  if(isNaN(g)||g<G.lo||g>G.hi){$('#msg').textContent=`Enter a number from ${G.lo} to ${G.hi}.`;sfx('buzz');return}
  const risky=!!rf.risk;if(risky&&G.att+2>G.maxAtt){$('#msg').textContent='Not enough attempts left for RISK.';sfx('buzz');return}
  el.value='';sfx('click');rf.us=[];G.att+=risky?2:1;G.guesses++;if(w===0)G.pg.push(g);if(risky){rf.riskUsed=1;rf.risk=0}
- const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);if(w===0&&G.mode==='AI'&&tier==='blazing'&&!exact&&!G.jam)qEv('blaze');if(w===0&&tier==='blazing'&&!exact&&!G.jam)G.st[0].blz=(G.st[0].blz||0)+1;
+ const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);tier=bossGlitch(tier,g===G.secret);if(w===0&&G.mode==='AI'&&tier==='blazing'&&!exact&&!G.jam)qEv('blaze');if(w===0&&tier==='blazing'&&!exact&&!G.jam)G.st[0].blz=(G.st[0].blz||0)+1;
  if(rf.focus){rf.focus=0;text=`EXACT FOCUS: ${Math.round(c*100)}% close — ${tier.toUpperCase()}!`}
  let stole=0;if(!exact&&rf.steal&&Math.abs(g-G.secret)<=2){stole=Math.min(5,G.score[1-w]);G.score[w]+=stole;G.score[1-w]-=stole;rf.steal=0}
- G.hist.push({g,t:G.jam?null:tier,d:g<G.secret?'↑':g>G.secret?'↓':'✓'});let broke=false;
+ G.hist.push({g,t:G.jam?null:tier,d:g<G.secret?'↑':g>G.secret?'↓':'✓'});shotFx(g,G.jam?null:tier,exact);let broke=false;
  if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg[w]+=CHIP[tier];broke=G.armor<=0;if(!broke)hitFx(CHIP[tier])}
  if(exact||bull||broke){let r={pts:0,c:0},dm='';
   if(exact||bull){r=award(w,G.guesses,risky);if(exact&&G.guesses===1&&G.d!=='Easy')gems(1,'🎯 First-try hit');if(bull){G.score[w]+=12;r.pts+=12}
@@ -2580,6 +2580,18 @@ function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?
  const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
  let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
  const kc=eKS()&&KSC[eKS()],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';const ki=on&&KSI[eKS()];e1.classList.toggle('im',!!ki);if(ki)e1.innerHTML=`<img src="${KSI[eKS()]}" alt=""><u>${mood()}</u>`;else e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
+/* ---- v93: projectile feedback + boss tricks ---- */
+const SHOT={roman:['\u27B6','#e6b86a'],buganda:['\u27B6','#f2b705'],cyber:['\u25B0','#00e5ff'],samurai:['\u2734','#f3dfb0'],ice:['\u2744','#cfefff'],gold:['\U0001FA99','#ffd45a'],astral:['\u2726','#d9c2ff'],atlantis:['\U0001FAE7','#9fe3ff']};
+function shotFx(g,tier,exact){if(RM||!G)return;const sp=$('#spec'),sb=$('#strike');if(!sp||!sb)return;const a=sb.getBoundingClientRect(),b=sp.getBoundingClientRect(),s=Math.max(1,G.hi-G.lo),
+ x=b.left+b.width*Math.min(1,Math.max(0,(g-G.lo)/s)),y=b.top+b.height/2,sx=a.left+a.width/2,sy=a.top,[ch,col]=SHOT[wdKey()],c=tier?TC[tier]:'#fff',
+ e=document.createElement('div');e.textContent=ch;e.style.cssText=`position:fixed;left:0;top:0;z-index:70;pointer-events:none;font-size:26px;line-height:1;color:${col};text-shadow:0 0 8px ${col}`;document.body.appendChild(e);
+ const ang=Math.atan2(y-sy,x-sx)*180/Math.PI+(ch==='\u27B6'?-35:0),spin=['\u2734','\u2744','\u2726'].includes(ch),mx=(sx+x)/2,my=Math.min(sy,y)-70;
+ e.animate([{transform:`translate(${sx-13}px,${sy-13}px) rotate(${spin?0:ang}deg) scale(.7)`},{transform:`translate(${mx-13}px,${my-13}px) rotate(${spin?360:ang}deg) scale(1.15)`,offset:.5},{transform:`translate(${x-13}px,${y-13}px) rotate(${spin?720:ang}deg) scale(.9)`}],{duration:420,easing:'cubic-bezier(.3,.1,.7,1)'}).onfinish=()=>{e.remove();
+  const r=document.createElement('div');r.style.cssText=`position:fixed;left:${x-6}px;top:${y-6}px;width:12px;height:12px;border-radius:50%;border:3px solid ${c};box-shadow:0 0 12px ${c};z-index:70;pointer-events:none`;document.body.appendChild(r);
+  r.animate([{transform:'scale(.4)',opacity:1},{transform:`scale(${exact?5:3})`,opacity:0}],{duration:450,easing:'ease-out'}).onfinish=()=>r.remove()}}
+const TIERS=['freezing','cold','warm','hot','blazing'];
+function bossGlitch(tier,exact){if(exact||!G||!G.boss||G.mode!=='AI'||G.cur!==0||wdKey()!=='cyber'||G.guesses%3)return tier;const i=TIERS.indexOf(tier);if(i<0)return tier;const n=Math.min(4,Math.max(0,i+(Math.random()<.5?-1:1)));setTimeout(()=>toast('\u26A1 <b>GLITCH</b><br><small>That hint may be corrupted!</small>'),150);return TIERS[n]}
+var _eb=enterBoss;enterBoss=function(t){_eb(t);const k=wdKey();if(G&&G.mode==='AI'&&(k==='cyber'||k==='atlantis'))setTimeout(()=>toast(k==='cyber'?'\u26A1 <b>FIREWALL GLITCH</b><br><small>Every 3rd boss hint may lie.</small>':'\U0001F991 <b>KRAKEN INK</b><br><small>Only your last 2 hints stay clear.</small>'),900)};
 /* ---- v92: hearts. One row per player, themed shape + colours per world ---- */
 const HSH={
  roman:'<path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/><path class="hl" d="M6.2 7.2c.7-.8 1.7-.9 2.4-.4-.9-.1-1.8.4-2.4.4z"/>',
@@ -2607,6 +2619,7 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#range').textContent=RNG(G.kLo,G.kHi);
  hpRender();
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
+ if(b&&G.mode==='AI'&&wdKey()==='atlantis')$$('#hist span').forEach((e,i,a)=>{if(i<a.length-2){e.style.color=e.style.borderColor='#5b7894';e.textContent=e.textContent.replace(/[^\d\u2191\u2193\u2713]+$/u,'')+'\U0001F991'}});
  const sp=Math.max(1,G.hi-G.lo),pc=x=>Math.min(100,Math.max(0,(x-G.lo)/sp*100));
  $('#spec').innerHTML=`<div class="win" style="left:${pc(G.kLo)}%;width:${Math.max(2,pc(G.kHi)-pc(G.kLo))}%"></div>`+G.hist.map(h=>`<i class="pin" style="left:${pc(h.g)}%;background:${h.t?TC[h.t]:'#fff'}"></i>`).join('');
  if(msg!==undefined)$('#msg').textContent=msg;
