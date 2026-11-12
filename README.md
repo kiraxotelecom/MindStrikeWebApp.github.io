@@ -331,3 +331,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v112 changes
 **Garrisons are now Rebellions** (rebels rise in conquered regions; tap Crush). **World map energy:** 6 ❤️ bars per world map, 1 per battle (charged in `launch()`, so Replay costs one too); all refill 2 hours after the first was spent, or 3 💎 refills at once. Retune `HP_MAX`, `HP_MS`, `HP_GEMS` in the world map block. Bump `V` in `sw.js` after every change.
+
+
+## v113 changes
+**Rank trials use the world maps.** Ranks 5-12 each gain a world-map goal: clear 3 / 8 battles (ranks 5, 6), defeat a route general (7), earn 15 ⭐ (8), clear battles on 2 maps (9), defeat 3 route generals (10), conquer a map (11), conquer 2 maps (12). Edit the `TRI` table. No grandfathering, as before: ranks follow the trials. Bump `V` in `sw.js` after every change.
