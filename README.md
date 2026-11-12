@@ -343,3 +343,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v115 changes
 **Riddle Scroll** no longer has a Share Result button or share text. **Names:** every name outside the ghost rivals is now a variation of the house (the kids): Marathon rivals (`FOE`), world-map rivals (`NAMES`) and all world-map generals. Girl names use Nanozi and Namuddu (`GIRL`, and the female generals). **Buganda map:** Admiral Muwanguzi, Omutaka Nalumoso, Lady Namaganda and The Drum King Kibuuka (place names follow). Bump `V` in `sw.js` after every change.
+
+
+## v116 changes
+**Marathon banner window.** The Seasonal Marathon banner now appears 2 days before a marathon starts (countdown), stays all through it, and disappears 1 day after it ends (it shows 🏁 ENDED for that day). Rewards you reached but did not claim are still delivered automatically; they are recorded in `PRO.svh` and a 📬 **Marathon rewards delivered** notice stays on the home screen until the player taps it, so someone who was away at the end still sees what they received. The intermission screen also shows the last marathon's delivered rewards. Tune `PRE` and `POST` in the Marathon block. Bump `V` in `sw.js` after every change.
