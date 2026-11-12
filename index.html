@@ -1202,8 +1202,10 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 <style>.tgcv{width:min(94%,380px);height:auto;border:2px solid var(--gold);border-radius:10px;background:linear-gradient(#1c2a44,#0e1626 62%,#2a3a1c 63%,#1a2610)}#tgTop,#tgInfo{text-align:center;line-height:1.4;width:min(94%,380px)}#tgNum{width:170px;font:inherit;font-size:2.7rem;text-align:center;background:rgb(var(--k) / 0.73);color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}</style>
 <style>#s-home .tiles{order:5}#s-home #play{order:6;margin-top:6px}#s-home .sub2{order:7}#s-home #inst{order:8}</style>
 <style>
-#app .tiles #wmBtn{border-color:var(--wa,#7fe0c8)!important;--b1:color-mix(in srgb,var(--wa,#7fe0c8) 42%,#000);--b2:color-mix(in srgb,var(--wb,#0b3a3a) 85%,#000)}
-#app .tiles #questBtn{grid-column:1/-1}#app .tiles button{justify-content:center}
+#app .tiles #wmBtn{grid-column:1/-1;display:flex!important;flex-direction:row!important;align-items:center;justify-content:flex-start;gap:14px;text-align:left;padding:14px 18px!important;min-height:92px;border-radius:16px!important;border:2px solid var(--wa,#7fe0c8)!important;background:linear-gradient(100deg,var(--wb,#0b3a3a),#0b0a1af2 80%)!important;box-shadow:0 0 22px color-mix(in srgb,var(--wa,#7fe0c8) 50%,transparent),inset 0 1px 0 #ffffff30!important;color:#fff!important;overflow:visible}
+#wmBtn:before{display:none!important}#wmBtn:after{content:'›'!important;display:block!important;position:absolute;right:16px;top:50%;left:auto;bottom:auto;inset:auto 16px auto auto;transform:translateY(-52%);font-size:2rem;line-height:1;color:var(--wa,#7fe0c8);background:none!important;animation:none!important;width:auto;height:auto}
+#wmBtn .wm-e{font-style:normal;font-size:2.9rem;line-height:1;flex:none;filter:drop-shadow(0 2px 6px #000a)}#wmBtn>div{padding-right:22px}#wmBtn b{display:block;font-size:1.08rem;letter-spacing:.14em;color:var(--wa,#7fe0c8)}#wmBtn small{display:block;font-size:.74rem;letter-spacing:.03em;opacity:.95;margin-top:3px;color:#fff!important}
+#app .tiles button{justify-content:center}
 
 #s-wmap{justify-content:flex-start;gap:10px;--gold:var(--wa,#ffd45a)}
 .wmSum{display:flex;gap:8px;width:min(94%,390px)}.wmS{flex:1;text-align:center;border:1.5px solid var(--wa);border-radius:10px;padding:6px 4px;background:rgb(var(--k) / .6)}.wmS b{display:block;color:var(--wa);letter-spacing:.06em;font-size:.95rem}.wmS small{font-size:.66rem;opacity:.9}
@@ -3899,8 +3901,8 @@ const _cb=campBtns;campBtns=function(w){const c=G&&G.cf;if(c&&c.wm){camp.evNext=
 const _mb=$('#mapB').onclick;$('#mapB').onclick=function(){if(G&&G.cf&&G.cf.wm){sfx('click');home();wmOpen();return}return _mb&&_mb.apply(this,arguments)};
 const _cg=$('#cbGo').onclick;$('#cbGo').onclick=function(){if(camp.wmN&&camp.ev==null&&camp.gr==null&&!camp.sel){const id=camp.wmN;camp.wmN=null;wmStart(id);return}camp.wmN=null;return _cg&&_cg.apply(this,arguments)};
 const _cx=$('#cbX').onclick;$('#cbX').onclick=function(){camp.wmN=null;return _cx&&_cx.apply(this,arguments)};
-const wb=document.createElement('button');wb.id='wmBtn';$('#mapBtn').insertAdjacentElement('afterend',wb);
-function wmTile(){const W=M.W,s=sums();wb.style.setProperty('--wa',W.a);wb.style.setProperty('--wb',W.b);wb.innerHTML=`<i class="ti">${W.e}</i><span>${esc(W.title)}</span><small>${st().d?'👑 Conquered':s.ex+'/'+s.tot+' cleared'} · ⭐ ${s.stars}/${s.mx}</small>${st().seen?'':'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>'}`}
+const wb=document.createElement('button');wb.id='wmBtn';$('#mapBtn').insertAdjacentElement('beforebegin',wb);
+function wmTile(){const W=M.W,s=sums();wb.style.setProperty('--wa',W.a);wb.style.setProperty('--wb',W.b);wb.innerHTML=`<i class="wm-e">${W.e}</i><div><b>${esc(W.title)}</b><small>${st().d?'👑 Conquered':s.ex+'/'+s.tot+' cleared'} · ⭐ ${s.stars}/${s.mx}</small></div>${st().seen?'':'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>'}`}
 wb.onclick=()=>{sfx('click');play('theme');wmOpen()};
 $('#wmBox').onclick=e=>{const g=e.target.closest('[data-wn]');if(!g)return;sfx('click');wmBrief(g.dataset.wn)};
 const _pu=profUI;profUI=function(){const r=_pu.apply(this,arguments);try{wmTile()}catch(e){}return r};
