@@ -356,3 +356,9 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v119 changes
 **Region medals** 🥉🥈🥇 (50% / 80% / all stars of a region; one-time coins, gems from silver; `MED*` tables). Shown on the region chips and a progress line on the map. The home world tile now shows energy once: the red ⚡ FULL badge when full, or `❤️ 3/6 · refills in 1h 20m` when not. Bump `V` in `sw.js` after every change.
+
+## v120 changes
+**Fairer Heat-Seeker star goal.** An exact hit now counts as a heat hit (it used to be ignored, so strong players lost out), and blazing guesses during a jammed round count too. World-map targets raised to 2 / 3 / 4 (by depth) so the goal stays a goal. Bump `V` in `sw.js` after every change.
+
+## v121 changes
+**Tug of War rebuilt.** Play vs the computer (Easy / Medium / Hard) or a friend; a setup card sets names, level and an optional 25s timer, so Player 2's name is set in the game itself. Fixes: heat is measured against the current range, a one-number range is no longer a free bullseye, a slip over the line no longer gives the win to the slipper, the loser starts rematches, and the rope is heavier near your own edge. New: one 💥 SURGE per player. Tune in `play()` (tiers), `aiGo()` (AI), `TIME`. Bump `V` in `sw.js` after every change.
