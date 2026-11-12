@@ -1201,6 +1201,23 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 </style>
 <style>.tgcv{width:min(94%,380px);height:auto;border:2px solid var(--gold);border-radius:10px;background:linear-gradient(#1c2a44,#0e1626 62%,#2a3a1c 63%,#1a2610)}#tgTop,#tgInfo{text-align:center;line-height:1.4;width:min(94%,380px)}#tgNum{width:170px;font:inherit;font-size:2.7rem;text-align:center;background:rgb(var(--k) / 0.73);color:var(--sand);border:2px solid var(--gold);border-radius:8px;padding:4px}</style>
 <style>#s-home .tiles{order:5}#s-home #play{order:6;margin-top:6px}#s-home .sub2{order:7}#s-home #inst{order:8}</style>
+<style>
+#app .tiles #wmBtn{grid-column:1/-1;display:flex!important;flex-direction:row!important;align-items:center;justify-content:flex-start;gap:12px;text-align:left;padding:10px 14px!important;min-height:64px;border-radius:14px!important;border:2px solid var(--wa,#7fe0c8)!important;background:linear-gradient(100deg,var(--wb,#0b3a3a),#0b0a1af2 75%)!important;box-shadow:0 0 14px color-mix(in srgb,var(--wa,#7fe0c8) 40%,transparent),inset 0 1px 0 #ffffff25!important;color:#fff!important;overflow:visible}
+#wmBtn:before,#wmBtn:after{display:none!important}#wmBtn .wm-e{font-style:normal;font-size:2rem;line-height:1}#wmBtn b{display:block;font-size:.9rem;letter-spacing:.1em;color:var(--wa,#7fe0c8)}#wmBtn small{display:block;font-size:.72rem;letter-spacing:.03em;opacity:.92;margin-top:2px;color:#fff!important}
+#s-wmap{justify-content:flex-start;gap:10px;--gold:var(--wa,#ffd45a)}
+.wmSum{display:flex;gap:8px;width:min(94%,390px)}.wmS{flex:1;text-align:center;border:1.5px solid var(--wa);border-radius:10px;padding:6px 4px;background:rgb(var(--k) / .6)}.wmS b{display:block;color:var(--wa);letter-spacing:.06em;font-size:.95rem}.wmS small{font-size:.66rem;opacity:.9}
+.wmGens{display:flex;flex-direction:column;gap:6px;width:min(94%,390px)}.wmG{display:flex;gap:10px;align-items:center;border:1px solid color-mix(in srgb,var(--wa) 55%,transparent);border-radius:10px;padding:6px 10px;background:rgb(var(--k) / .55)}.wmG>span{font-size:1.4rem}.wmG b{display:block;font-size:.8rem;letter-spacing:.06em;color:var(--wa)}.wmG small{font-size:.68rem;opacity:.9}.wmG.dn{opacity:.75}.wmG.dn b:after{content:' ✓'}
+#wmBox{width:min(96%,400px);border:2px solid var(--wa);border-radius:14px;background:linear-gradient(180deg,var(--wb),#07060fee);box-shadow:0 0 18px color-mix(in srgb,var(--wa) 35%,transparent);overflow:hidden;flex:none}
+.wmsvg{width:100%;height:auto;display:block}
+.wmE{stroke:var(--wa);stroke-width:2.4;fill:none;opacity:.55}.wmE.hot{opacity:1;stroke-width:3}.wmE.dim{stroke-dasharray:4 6;opacity:.3}
+.wmN{cursor:pointer}.wmN circle.b{fill:#0c0a18;stroke:var(--wa);stroke-width:2.5}.wm-c circle.b{fill:var(--wb);stroke:#fff;stroke-width:3}.wm-a circle.b{animation:wmP 1.8s ease-in-out infinite}.wm-s{opacity:.6}.wm-s circle.b{stroke-dasharray:3 4}
+.wmN.k-z circle.b,.wmN.k-g circle.b{stroke-width:3.5}.wmN.k-x circle.b{stroke:#ffd45a}
+.wmN text{text-anchor:middle;fill:#fff;pointer-events:none}.wmN .lb{font-size:9.5px;letter-spacing:.02em;paint-order:stroke;stroke:#000;stroke-width:2.6px;stroke-linejoin:round}.wmN .st{font-size:9px}
+.wmQ{font-size:11px;text-anchor:middle;fill:#fff;opacity:.7;letter-spacing:.1em}
+.wmFog{animation:wmD 12s ease-in-out infinite alternate}
+@keyframes wmP{50%{stroke-width:6;filter:brightness(1.4)}}@keyframes wmD{from{transform:translateX(-16px)}to{transform:translateX(16px)}}
+@media(prefers-reduced-motion:reduce){.wm-a circle.b,.wmFog{animation:none}}
+</style>
 </head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -1417,6 +1434,14 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
  <small class="bm-note">⭐ win · ⭐ combo ×3 · ⭐ no powers — stars open new regions</small>
  <div id="grBox" style="width:100%"></div>
  <div id="mapList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
+</section>
+
+<section class="scr" id="s-wmap" style="--bg:url(img/menu_bg.webp)">
+ <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
+ <header class="bm-hero"><div class="bm-kicker" id="wmKick"></div><h1 id="wmTitle"></h1><div class="bm-sub" id="wmSub"></div></header>
+ <div id="wmSum" class="wmSum"></div><div id="wmGen" class="wmGens"></div>
+ <div id="wmBox"></div>
+ <small class="bm-note">🚩 start · ⚔️ battle · 🔥 elite · 🎖️ route general · 🚪 gate · 👑 supreme general · 💎 hidden vault (earn ⭐⭐⭐ next to it to reveal it) · ❓ scouted, not yet open</small>
 </section>
 
 <section class="scr" id="s-season" style="--bg:url(img/menu_bg.webp)">
@@ -3750,6 +3775,136 @@ function loop(){raf=requestAnimationFrame(loop);if(document.hidden||!$('#s-tug')
 keypad($('#tgKp'),inp,fire,'tgGo');
 $('#tgBtn').onclick=()=>{sfx('click');wins=[0,0];newGame();go('s-tug');if(!raf)loop()};
 $('#tgAgain').onclick=()=>{sfx('click');newGame()};$('#tgHome').onclick=()=>{$('#tgEnd').classList.remove('on');home()};
+})();
+</script>
+<script>
+/* v108: WORLD CAMPAIGN MAPS. Every world has its own route map: a graph of battles with its own generals, branching routes, shortcuts, a hidden vault and FOG OF WAR. Fog rules: the start node is open; a node is OPEN once a neighbour is cleared; the ring beyond that shows as "?" (scouted, not playable); everything further stays hidden. A hidden vault only appears when you earn 3 stars on a node next to it. The Gate needs ANY neighbouring route general (or shortcut) cleared; the Supreme General needs the Gate. Battles reuse the Conquest engine through cf.ev (free of Conquest tickets). State: PRO.wm[worldId] = {s:{nodeId:stars}, d:1 when conquered, seen}. Retune: WMAPS data, TIER/base, rewards in wmEnd. */
+(function(){
+const NAMES=['KIRABO','SHANI','IMRAN','MARIAM','ELIJAH','NANA','CHRISTINE','ISA','AMINA','BILAL','ZAWADI','NAKATO','OKELLO','AKELLO','MUGISHA','ATIM','OPIO','NALWOGA','SSEBU','NAMATA'];
+const TRD={ambush:f=>`${f} — starts 10 points ahead and gets a full set of swings in the shield phase.`,sand:f=>`${f} — your temperature hint vanishes every 3rd round, even inside the shield phase.`,raid:f=>`${f} — every round won steals 3 of your points, and every shield broken steals 30 of your damage.`};
+const G_=(name,short,tr,fl,pers)=>({name,short,tr,trd:TRD[tr](fl),pers});
+const WMAPS={
+roman:{e:'🏛️',title:'THE IMPERIAL FRONTIER',tag:'Two roads, one river and a palace at the end of both.',a:'#ffd27a',b:'#4a1410',base:0,pe:['Calculator','Psycho'],tt:['SCOUT','LEGIONARY','RAIDER','SENTRY','CENTURION'],
+ w:['🏛️ The frontier holds.','🏛️ Back to your camp!','🏛️ Rome does not bend.'],l:['🏛️ A skirmish lost, nothing more.','🏛️ You will not pass twice.','🏛️ Impressive, soldier.'],
+ gen:{A:G_('WARLORD BRENNIX','BRENNIX','ambush','Northern ambush','Calculator'),B:G_('QUEEN TANITH','TANITH','raid','Corsair raid','Gambler'),Z:G_('EMPEROR DOMITRAX','DOMITRAX','sand','Palace dust','Prime')},
+ n:'s:Castra Prima:2:0:s;n1:Northern Road:.5:1:b;n2:Pine Forest:.5:2:b;n3:Frost Palisade:.5:3:e;ng:Brennix’s Hold:.5:4:gA;s1:Coast Road:3.5:1:b;s2:Harbor Quarter:3.5:2:b;s3:Smuggler’s Cove:3.5:3:e;sg:Tanith’s Port:3.5:4:gB;ford:River Ford:2:2:b;hoard:Buried Hoard:2:4:x;gate:Triumphal Arch:2:5:k;boss:Imperial Palace:2:6:z',
+ g:'s-n1 s-s1 s-ford n1-n2 n2-n3 n3-ng s1-s2 s2-s3 s3-sg n2-ford s2-ford n3-hoard s3-hoard ng-gate sg-gate gate-boss'},
+cyber:{e:'🌃',title:'THE DATA SPIRE',tag:'Rooftops above, tunnels below. Jack in and climb.',a:'#19f2ff',b:'#0a1a3a',base:0,pe:['Prime','Calculator'],tt:['RUNNER','HACKER','OPERATOR','DECKER','SPECIALIST'],
+ w:['🌃 Access denied.','🌃 Connection lost, runner.','🌃 The grid always wins.'],l:['🌃 Firewall breached…','🌃 Rebooting… you got lucky.','🌃 Error 404: my pride.'],
+ gen:{A:G_('DIRECTOR VANTA-9','VANTA','ambush','Zero-day ambush','Calculator'),B:G_('ROGUE AI MIRAGE','MIRAGE','sand','Signal jammer','Psycho'),Z:G_('OVERLORD SYSKRAX','SYSKRAX','raid','Data siphon','Prime')},
+ n:'s:Login Plaza:2:0:s;jack:Jack-in Node:2:1:b;r1:Neon Rooftops:.5:1:b;u1:Subway Hub:3.5:1:b;r2:Skybridge:.5:2:b;u2:Black Market:3.5:2:b;r3:Antenna Farm:.5:3:e;u3:Server Cellar:3.5:3:e;vault:Cold Storage:2:3:x;rg:Vanta’s Penthouse:.5:4:gA;ug:Mirage’s Core:3.5:4:gB;gate:The Firewall:2:5:k;boss:Spire Core:2:6:z',
+ g:'s-r1 s-u1 s-jack jack-r2 jack-u2 r1-r2 u1-u2 r2-r3 u2-u3 r3-vault u3-vault r3-rg u3-ug rg-gate ug-gate gate-boss'},
+samurai:{e:'⛩️',title:'THE TOKAIDO ROAD',tag:'Mountain, bamboo or river. Every road ends at the Shogun’s keep.',a:'#ff5a6a',b:'#3a0a14',base:1,pe:['Psycho','Calculator'],tt:['ASHIGARU','RONIN','ARCHER','MONK','SAMURAI'],
+ w:['⛩️ Your blade is too slow.','⛩️ Dishonour upon you.','⛩️ The road ends here.'],l:['⛩️ A worthy strike…','⛩️ I yield, for now.','⛩️ Well fought, traveller.'],
+ gen:{A:G_('KUROMARU THE IRON HAND','KUROMARU','ambush','Mountain ambush','Calculator'),B:G_('LADY HANAKO OF THE RIVER','HANAKO','sand','River mist','Psycho'),Z:G_('SHOGUN TAKEDORA','TAKEDORA','raid','Tyrant’s tax','Prime')},
+ n:'s:Edo Gate:2:0:s;mp1:Cedar Steps:.4:1:b;mp2:Mist Shrine:.4:2:b;mp3:Cliff Fortress:.4:3:e;mg:Kuromaru’s Dojo:.4:4:gA;bf1:Bamboo Maze:2:1:b;bf2:Lantern Clearing:2:2:e;vault:Hidden Dojo:2:3:x;rv1:Fisher’s Landing:3.6:1:b;rv2:Stone Bridge:3.6:2:b;rv3:Tea House Raid:3.6:3:e;rg:Hanako’s Pagoda:3.6:4:gB;gate:Castle Moat:2:5:k;keep:Inner Keep:2:6:b;boss:Shogun’s Throne:2:7:z',
+ g:'s-mp1 s-bf1 s-rv1 mp1-mp2 mp2-mp3 mp3-mg bf1-bf2 bf2-mp2 bf2-rv2 rv1-rv2 rv2-rv3 rv3-rg bf2-vault mg-gate rg-gate gate-keep keep-boss'},
+ice:{e:'🏔️',title:'THE FROZEN FJORDS',tag:'The glacier is long. The longships are fast. Neither is safe.',a:'#8fe0ff',b:'#0a2a4a',base:0,pe:['Gambler','Calculator'],tt:['RAIDER','SHIELD-MAIDEN','BERSERKER','SKALD','HUSCARL'],
+ w:['🏔️ The cold takes you.','🏔️ Skål, weakling!','🏔️ Valhalla is not for you.'],l:['🏔️ A good fight, outlander.','🏔️ The frost spares you.','🏔️ Odin watches.'],
+ gen:{A:G_('JARL SKJOLDRUN','SKJOLDRUN','ambush','Shieldwall ambush','Calculator'),B:G_('SEA-WITCH HELGARD','HELGARD','raid','Tidal plunder','Gambler'),Z:G_('FROST KING YMIRTHOR','YMIRTHOR','sand','Blizzard','Prime')},
+ n:'s:Harbor of Ice:2:0:s;g1:Snowline Camp:.5:1:b;g2:Crevasse Trail:.5:2:b;g3:Frozen Falls:.5:3:e;g4:Giant’s Ladder:.5:4:e;gg:Skjoldrun’s Hall:.5:5:gA;ib:Frost Bridge:2:1:b;l1:Longship Dock:3.5:1:b;l2:Floe Run:3.5:2:e;lg:Helgard’s Ice Keep:3.5:3:gB:5;cave:Rune Cave:2:3:x;gate:The Frozen Gate:2:6:k;boss:Ymirthor’s Throne:2:7:z',
+ g:'s-g1 s-ib s-l1 g1-g2 g2-g3 g3-g4 g4-gg ib-g2 ib-l2 l1-l2 l2-lg g3-cave l2-cave gg-gate lg-gate gate-boss'},
+buganda:{e:'🥁',title:'THE ROAD TO MENGO',tag:'Lake, hills or forest. Three generals guard the royal hill.',a:'#f2c94c',b:'#3a2a06',base:0,pe:['Calculator','Gambler'],tt:['SCOUT','SPEARMAN','DRUMMER','ARCHER','WARRIOR'],
+ w:['🥁 The drums are against you.','🥁 Go home, stranger.','🥁 Mengo stands tall.'],l:['🥁 The drums fall silent…','🥁 A strong arm, stranger.','🥁 You may pass, this time.'],
+ gen:{A:G_('ADMIRAL SSALONGO','SSALONGO','raid','Lake plunder','Gambler'),B:G_('CHIEF MUKWENDA','MUKWENDA','ambush','Hillside ambush','Calculator'),C:G_('LADY NAKAZI','NAKAZI','sand','Canopy shade','Psycho'),Z:G_('THE DRUM KING MWESIGWA','MWESIGWA','raid','Royal tribute','Prime')},
+ n:'s:Kampala Crossroads:2:0:s;l1:Lakeshore Market:.3:1:b;l2:Ssese Ferry:.3:2:b;lg:Ssalongo’s Fleet:.3:3:gA;h1:Banana Terraces:2:1:b;h2:Drum Hill:2:2:e;hg:Mukwenda’s Fort:2:3:gB;f1:Mabira Edge:3.7:1:b;f2:Canopy Trail:3.7:2:b;fg:Nakazi’s Thicket:3.7:3:gC;vault:Hidden Shrine:3.9:4:x;gate:Mengo Gate:2:5:k;court:Lubiri Courtyard:2:6:b;boss:The Drum Throne:2:7:z',
+ g:'s-l1 s-h1 s-f1 l1-l2 h1-h2 f1-f2 l2-h2 h2-f2 l2-lg h2-hg f2-fg fg-vault hg-vault lg-gate hg-gate fg-gate gate-court court-boss'},
+gold:{e:'🐪',title:'THE SPICE ROAD',tag:'Circle the hidden oasis east or west, then storm the golden palace.',a:'#ffc83a',b:'#3a2300',base:1,pe:['Gambler','Psycho'],tt:['NOMAD','CARAVANEER','BANDIT','SCRIBE','GUARD'],
+ w:['🐪 The desert buries you.','🐪 The sands are cruel.','🐪 Turn back, traveller.'],l:['🐪 A fair wind, friend.','🐪 The dunes favour you today.','🐪 Even the sun yields.'],
+ gen:{A:G_('EMIR KHALDUN','KHALDUN','sand','Dune storm','Psycho'),B:G_('CARAVAN-MASTER JAHIZ','JAHIZ','raid','Toll collector','Gambler'),Z:G_('SULTAN SHAMSUDDIN','SHAMSUDDIN','ambush','Palace guard','Prime')},
+ n:'s:Port of Dhows:2:0:s;w1:Dune Sea Edge:.3:1:b;w2:Mirage Wells:.3:2:b;w3:Scorpion Pass:.3:3:e;wg:Khaldun’s Tent:.9:4:gA;e1:Spice Bazaar:3.7:1:b;e2:Caravanserai:3.7:2:b;e3:Bandit Canyon:3.7:3:e;eg:Jahiz’s Oasis Fort:3.1:4:gB;oasis:The Hidden Oasis:2:3:x;gate:The Golden Gate:2:5:k;court:Palace Court:2:6:b;boss:The Golden Palace:2:7:z',
+ g:'s-w1 s-e1 w1-e1 w1-w2 e1-e2 w2-w3 e2-e3 w3-wg e3-eg w2-oasis e2-oasis w3-oasis e3-oasis wg-gate eg-gate gate-court court-boss'},
+astral:{e:'🌌',title:'THE STARWAY',tag:'Chart a route through moons and storms to the Zenith.',a:'#b9a6ff',b:'#1a1450',base:2,pe:['Prime','Psycho'],tt:['CADET','PILOT','NAVIGATOR','CORSAIR','WARDEN'],
+ w:['🌌 Lost in the void, groundling.','🌌 Your orbit decays.','🌌 The stars look away.'],l:['🌌 A bright trajectory…','🌌 Your star rises, for now.','🌌 Gravity favours you.'],
+ gen:{A:G_('COMMODORE VESPERA','VESPERA','ambush','Moonshade','Calculator'),B:G_('QUASAR-LORD ORIONIX','ORIONIX','raid','Solar flare','Psycho'),Z:G_('ASTRARCH NOVAKHET','NOVAKHET','sand','Event horizon','Prime')},
+ n:'dock:Launch Dock:2:0:s;ag:Asteroid Gate:2:1:b;m1:Moonrise Quay:.6:1:b;c1:Comet Tail:3.4:1:b;drift:Drifting Station:2:2:e;m2:Crater Fields:0:2:b;c2:Ice Belt:4:2:b;m3:Lunar Relay:.6:3:e;c3:Ion Storm:3.4:3:e;vault:Singularity Vault:2:3:x;mg:Vespera’s Observatory:.6:4:gA;cg:Orionix’s Flagship:3.4:4:gB;gate:Zenith Gate:2:5:k;court:Starlit Court:2:6:b;boss:The Zenith Throne:2:7:z',
+ g:'dock-ag dock-m1 dock-c1 ag-drift m1-m2 c1-c2 drift-m2 drift-c2 drift-vault m2-m3 c2-c3 m3-mg c3-cg m3-vault c3-vault mg-gate cg-gate gate-court court-boss'},
+atlantis:{e:'🔱',title:'THE DESCENT',tag:'Three currents sink toward the Deep. The trench is fastest, and deadliest.',a:'#6ccbf8',b:'#062a52',base:2,pe:['Psycho','Prime'],tt:['MINNOW','DIVER','REEF GUARD','TIDECALLER','TRIDENT KNIGHT'],
+ w:['🔱 The deep claims you.','🔱 Sink, landwalker.','🔱 The tide turns on you.'],l:['🔱 A strong current…','🔱 The sea lets you pass.','🔱 Even the deep yields.'],
+ gen:{A:G_('TIDECALLER NERIS','NERIS','ambush','Riptide ambush','Calculator'),B:G_('REEF-LORD KORALIX','KORALIX','raid','Coral plunder','Gambler'),Z:G_('ABYSSAL REGENT LEVIATHOS','LEVIATHOS','sand','Crushing dark','Prime')},
+ n:'s0:Surface Gate:2:0:s;k1:Kelp Shallows:.5:1:b;t1:Trench Mouth:2:1:b;w1:Wreck Shallows:3.5:1:b;k2:Glow Grove:0:2:b;t2:Brine Chasm:2:2:b;w2:Sunken Galleon:4:2:b;k3:Reef Maze:.5:3:e;t3:Pressure Vent:2:3:e;w3:Bone Reef:3.5:3:e;t4:Abyssal Rift:2:4:e:6;kg:Neris’s Pearl Court:.5:4:gA;wg:Koralix’s Citadel:3.5:4:gB;vault:Lost Treasury:3.3:5.2:x;deep:The Deep Gate:2:6:k;boss:The Sunken Throne:2:7:z',
+ g:'s0-k1 s0-t1 s0-w1 k1-k2 t1-t2 w1-w2 k2-t2 t2-w2 k2-k3 t2-t3 w2-w3 k3-t3 t3-w3 t3-t4 k3-kg w3-wg t4-vault wg-vault kg-deep wg-deep t4-deep deep-boss'}};
+/* ---- build ---- */
+const wid=(typeof WID!=='undefined'&&WID&&WMAPS[WID])?WID:'roman',D0=WMAPS[wid];
+const KIND={s:['🚩','Landing'],b:['⚔️','Battle'],e:['🔥','Elite'],g:['🎖️','Route general'],x:['💎','Hidden vault'],k:['🚪','Gate'],z:['👑','Supreme general']};
+function build(id){const W=WMAPS[id],N=W.n.split(';').map((s,i)=>{const p=s.split(':'),k=p[4];return{id:p[0],name:p[1],lane:+p[2],d:+p[3],kind:k[0]==='g'?'g':k,gen:k.length>1?k[1]:k==='z'?'Z':'',ed:p[5]?+p[5]:Math.floor(+p[3]),idx:i,adj:[]}}),by={};N.forEach(n=>by[n.id]=n);
+ W.g.split(' ').forEach(e=>{const[a,b]=e.split('-');by[a].adj.push(b);by[b].adj.push(a)});
+ const maxD=Math.max(...N.map(n=>n.d)),H=Math.round(maxD*84+150);N.forEach(n=>{n.x=Math.round(45+n.lane*67.5);n.y=Math.round(H-70-n.d*84)});
+ const wi=Object.keys(WMAPS).indexOf(id);N.forEach(n=>{if(n.kind==='b'||n.kind==='e'||n.kind==='k'){const t=W.tt[(n.idx+wi)%5];n.foe=t+' '+NAMES[(n.idx*7+wi*3)%20]}else if(n.kind==='s'){n.foe='GATEKEEPER '+NAMES[(wi*3+1)%20]}else if(n.kind==='x'){n.foe='VAULT WARDEN '+NAMES[(wi*5+2)%20]}else n.foe=W.gen[n.gen].name});
+ return{id,W,N,by,H,maxD}}
+const M=build(wid);
+const st=()=>{PRO.wm=PRO.wm||{};return PRO.wm[wid]||(PRO.wm[wid]={s:{},d:0,seen:0})};
+const cl=id=>(st().s[id]||0)>0;
+function vis(){const S=st().s,v={};M.N.forEach(n=>{if((S[n.id]||0)>0)v[n.id]='c'});
+ M.N.forEach(n=>{if(v[n.id])return;if(n.kind==='x'){if(n.adj.some(a=>(S[a]||0)>=3))v[n.id]='a';return}if(n.kind==='s'||n.adj.some(a=>(S[a]||0)>0))v[n.id]='a'});
+ M.N.forEach(n=>{if(v[n.id]||n.kind==='x')return;if(n.adj.some(a=>v[a]==='a'))v[n.id]='s'});return v}
+/* ---- node parameters ---- */
+const TIERS=['Easy','Medium','Hard'],MUTS=['jack','rush','primes','lean'];
+function par(n){const W=M.W,base=W.base,d=n.ed,ti=Math.min(2,base+(d>=2?1:0)+(d>=5?1:0)),k=n.kind,boss=k==='g'||k==='z',gn=boss?W.gen[n.gen]:null;
+ const t=Math.round(18+5*d+4*base+(k==='e'?6:k==='g'?12:k==='z'?30:k==='k'?8:k==='x'?14:0)),hi=Math.min(100,k==='z'?100:10+12*d+8*base+(boss?10:0));
+ const mut=k==='z'?'armor':k==='e'||k==='g'||k==='x'?MUTS[(n.idx+wid.length)%4]:k==='k'?'lean':'';
+ const head=k==='z'&&gn.tr==='ambush'?20:boss&&gn.tr==='ambush'?10:k==='e'?5:k==='x'?8:0,a=k==='x'||k==='z'||(boss&&d>=4)?-1:0;
+ const g=n.idx%3,ob=g===0?['blaze',d<3?1:d<6?2:3]:g===1?['lead',Math.max(5,Math.floor(t*.28))]:['clean',0];
+ return{tier:TIERS[ti],t,hi,mut,head,a,ob,boss,gn,pers:boss?gn.pers:W.pe[n.idx%2],d}}
+function wOpts(id){const n=M.by[id],p=par(n),W=M.W,D=Object.assign({},DIFF[p.tier],{name:W.title});D.hi=p.hi;if(p.a)D.att=Math.max(2,D.att+p.a);const z=n.kind==='z';
+ return{mode:'AI',d:p.tier,m:'Camp',D,M:{t:p.t,time:MATCH.Camp.time,label:z?'SUPREME · '+p.gn.name:n.kind==='g'?'GENERAL · '+p.gn.name:n.name.toUpperCase()},pers:p.pers,names:[S.n1||'LEGIONARY',n.foe],
+ cf:{k:'wm_'+wid+'_'+id,ev:1,eid:'wm',ri:0,ni:n.idx,ob:p.ob,rn:W.title,nn:n.name,boss:p.boss,fin:0,bn:p.boss?p.gn.name:'',bs:p.boss?p.gn.short:'',ly:z?1:0,mut:p.mut,head:p.head,tr:p.boss?p.gn.tr:'',win:W.w,lose:W.l,wm:id}}}
+/* ---- rendering ---- */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const wrap=s=>{if(s.length<=13)return[s];const w=s.split(' '),a=[];let c='';w.forEach(x=>{if((c+' '+x).trim().length>13&&c){a.push(c);c=x}else c=(c+' '+x).trim()});a.push(c);return a.slice(0,2)};
+function mapSVG(){const v=vis(),S=st().s,H=M.H;let e='',n='',topY=H;
+ M.N.forEach(x=>{if(v[x.id]&&x.y<topY)topY=x.y});topY=Math.max(0,topY-52);
+ M.W.g.split(' ').forEach(ed=>{const[a,b]=ed.split('-'),A=M.by[a],B=M.by[b],sa=v[a],sb=v[b];if(!sa||!sb||(sa==='s'&&sb==='s'))return;const dim=sa==='s'||sb==='s',hot=sa==='c'&&sb==='c';
+  e+=`<line class="wmE ${dim?'dim':''} ${hot?'hot':''}" x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}"/>`});
+ M.N.forEach(x=>{const s=v[x.id];if(!s)return;const ic=s==='s'?'❓':KIND[x.kind][0],so=S[x.id]||0,lab=s==='s'?[]:wrap(x.name),big=x.kind==='z'||x.kind==='g';
+  n+=`<g class="wmN wm-${s} k-${x.kind}" data-wn="${x.id}" transform="translate(${x.x},${x.y})"><circle class="b" r="${big?28:24}"/><text class="ic" y="7" style="font-size:${big?24:20}px">${ic}</text>`+
+  lab.map((t,i)=>`<text class="lb" y="${(big?44:40)+i*11}">${esc(t)}</text>`).join('')+(so?`<text class="st" y="-${big?32:28}">${'⭐'.repeat(so)}</text>`:'')+`</g>`});
+ const cloud=[[40,.3],[130,.55],[230,.2],[320,.6],[80,.8],[190,.9],[290,1.05]].map(([x,f],i)=>`<ellipse cx="${x}" cy="${Math.max(10,topY*f)}" rx="${62+i%3*10}" ry="${30+i%2*10}"/>`).join('');
+ const fog=topY>20?`<defs><filter id="wmB" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter><linearGradient id="wmG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--wb);stop-opacity:.97"/><stop offset=".78" style="stop-color:var(--wb);stop-opacity:.9"/><stop offset="1" style="stop-color:var(--wb);stop-opacity:0"/></linearGradient></defs><rect x="0" y="0" width="360" height="${topY+34}" fill="url(#wmG)"/><g class="wmFog" filter="url(#wmB)" fill="#dfe6f2" fill-opacity=".34">${cloud}</g><text class="wmQ" x="180" y="${Math.max(24,topY-8)}">🌫️ unexplored</text>`:'';
+ return `<svg class="wmsvg" viewBox="0 0 360 ${H}" role="img" aria-label="${esc(M.W.title)} map">${e}${n}${fog}</svg>`}
+function sums(){const S=st().s,v=vis(),tot=M.N.length,ex=M.N.filter(n=>(S[n.id]||0)>0).length,stars=Object.values(S).reduce((a,b)=>a+b,0),mx=tot*3;
+ const gens=['A','B','C','Z'].filter(k=>M.W.gen[k]).map(k=>{const n=M.N.find(x=>x.gen===k);return{k,g:M.W.gen[k],done:n&&cl(n.id)}});return{tot,ex,stars,mx,gens,v}}
+function wmUI(){const W=M.W,sc=$('#s-wmap'),s=sums(),WN=(WORLDS[wid]&&WORLDS[wid].n)||'';sc.style.setProperty('--wa',W.a);sc.style.setProperty('--wb',W.b);{const art=WORLDS[wid]&&WORLDS[wid].art;sc.style.setProperty('--bg',`url(img/${art?art+'_menu':'menu_bg'}.webp)`)}
+ $('#wmKick').textContent=WN.split(' · ')[0].replace(/\s+/g,' ');$('#wmTitle').textContent=W.title;$('#wmSub').textContent=W.tag;
+ $('#wmSum').innerHTML=`<div class="wmS"><b>🧭 ${s.ex}/${s.tot}</b><small>cleared</small></div><div class="wmS"><b>⭐ ${s.stars}/${s.mx}</b><small>stars</small></div><div class="wmS"><b>${st().d?'👑 YES':'🌫️ NO'}</b><small>conquered</small></div>`;
+ $('#wmGen').innerHTML=s.gens.map(x=>`<div class="wmG ${x.done?'dn':''}"><span>${x.k==='Z'?'👑':'🎖️'}</span><div><b>${esc(x.g.name)}</b><small>${x.done?'defeated':x.k==='Z'?'Supreme general — waits beyond the Gate':'Route general'}</small></div></div>`).join('');
+ $('#wmBox').innerHTML=mapSVG();st().seen=1;LS.set('ms_pro',PRO);
+ setTimeout(()=>{const a=$('#wmBox .wm-a');if(a&&a.scrollIntoView&&$('#s-wmap').classList.contains('on'))try{a.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}},160)}
+function wmOpen(){wmUI();go('s-wmap')}
+/* ---- brief / battle ---- */
+function wmBrief(id){const n=M.by[id],v=vis()[id];if(v==='s'||!v){toast('🌫️ <b>Fog</b><br><small>Clear a neighbouring node to reveal what hides here.</small>');return}
+ const p=par(n),o=wOpts(id),D=o.D,c=o.cf,mu=p.mut&&MUT.find(m=>m[0]===p.mut),old=st().s[id]||0,W=M.W;camp.gr=null;camp.sel=null;camp.ev=null;camp.wmN=id;
+ const L=[`${KIND[n.kind][0]} <b>${KIND[n.kind][1]}</b>${n.kind==='x'?' — a hidden stash':''}`,`🎯 First to <b>${p.t}</b>${p.boss?` — then <b>${esc(p.gn.short)}’s</b> shield phase`:''}`,`🔢 Range <b>1–${D.hi}</b> · <b>${Math.max(2,D.att-(p.mut==='lean'?1:0))}</b> attempts`];
+ if(mu)L.push(`${mu[1]} <b>${mu[2].replace(' WEEK','')}</b> — ${mu[3]}`);if(c.head)L.push(`🏁 ${o.names[1]} starts <b>${c.head}</b> points ahead`);if(p.pers==='Gambler')L.push('🎲 Takes risky, reckless guesses');if(p.boss)L.push(`⚔️ <b>Signature:</b> ${p.gn.trd}`);
+ L.push(`⭐ <b>Star goal:</b> ${objDesc(c.ob)}`,`<small>⭐ win · ⭐ goal · ⭐ no powers${old?' — your best: '+'⭐'.repeat(old)+'☆'.repeat(3-old):''} · ⭐⭐⭐ can reveal hidden paths · free of Conquest tickets</small>`);
+ $('#cbT').innerHTML=`${KIND[n.kind][0]} ${esc(n.name)}<br><small style="letter-spacing:.05em">${W.e} ${esc(W.title)} · vs ${esc(o.names[1])}</small>`;$('#cbB').innerHTML=L.map(l=>`<div>${l}</div>`).join('');$('#cbrief').classList.add('on')}
+function wmStart(id){const o=wOpts(id);setup.lastOpts=o;if(launch()===false)return;$('#cbrief').classList.remove('on');setTimeout(()=>{if(G&&G.cf&&G.cf.wm){const p=par(M.by[id]);toast(`${p.boss?'👹':M.W.e} <b>${o.names[1]}</b><br><small>“${pick(M.W.w)}”</small>`)}},700)}
+function wmEnd(win){const c=G.cf,id=c.wm,n=M.by[id],p=par(n),s=st(),old=s.s[id]||0,W=M.W;let h=`<br><b>🗺️ ${esc(c.rn)} · ${esc(c.nn)}</b>`;
+ if(!win)return{html:h+`<br><small>Defeated — the fog keeps its secrets a little longer.<br>Goal: ${objDesc(c.ob)}</small>`};
+ try{qEv('conq')}catch(e){}
+ const cb=objCheck(G,c.ob,true),np=!G.powUsed,stars=1+(cb?1:0)+(np?1:0),first=!old,gain=Math.max(0,stars-old),d=p.d;let coins=cx(gain*(25+14*d)),note='',xp=gain*d+(first?3+d:0);
+ if(first){const k=n.kind;
+  if(k==='e'){coins+=cx(300)}else if(k==='k'){coins+=cx(400)}
+  else if(k==='g'){coins+=cx(1200);gems(5,c.bs);note+=`<br>🎖️ ${esc(c.bn)} defeated · +${cx(1200)} 💰 · +5 💎`;xp+=12}
+  else if(k==='x'){coins+=cx(2500);gems(10,'Hidden vault');grant({inv:{phx:1,tome:1}});note+=`<br>💎 Hidden vault looted · +${cx(2500)} 💰 · +10 💎 · Phoenix + Tome`;xp+=10}
+  else if(k==='z'){coins+=cx(6000);gems(30,c.bs);grant({inv:{pack:3}});s.d=1;note+=`<br>👑 <b>${esc(c.bn)} falls — ${esc(W.title)} is conquered!</b><br>+${cx(6000)} 💰 · +30 💎 · 3× Armory Pack`;xp+=30}}
+ const before=vis();s.s[id]=Math.max(old,stars);const after=vis(),nw=M.N.filter(x=>after[x.id]&&after[x.id]!==before[x.id]&&after[x.id]!=='c'),sec=nw.some(x=>x.kind==='x'&&!before[x.id]);
+ if(gain&&nw.length)note+=`<br>🌫️ The fog lifts: <b>${nw.length}</b> new place${nw.length>1?'s':''} revealed`;if(sec)note+='<br>✨ <b>You spot a hidden path…</b>';
+ const rb=rk();PRO.gold+=coins;if(typeof xpg==='function'&&xp>0)PRO.xp+=xpg(xp);if(rk()>rb)setTimeout(()=>toast(`🎖️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
+ return{html:h+`<br><span class="vstars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
+/* ---- wiring (outermost wrappers, installed after the Seasonal Marathon) ---- */
+const _ce=campEnd;campEnd=function(w){return G&&G.cf&&G.cf.wm?wmEnd(w):_ce.apply(this,arguments)};
+const _cb=campBtns;campBtns=function(w){const c=G&&G.cf;if(c&&c.wm){camp.evNext=null;camp.next=null;$('#nextB').style.display='none';const m=$('#mapB');m.style.display='';m.textContent=M.W.e+' WORLD MAP';$('#again').textContent=w?'🔁 REPLAY FOR STARS':'FIGHT AGAIN';return}return _cb.apply(this,arguments)};
+const _mb=$('#mapB').onclick;$('#mapB').onclick=function(){if(G&&G.cf&&G.cf.wm){sfx('click');home();wmOpen();return}return _mb&&_mb.apply(this,arguments)};
+const _cg=$('#cbGo').onclick;$('#cbGo').onclick=function(){if(camp.wmN&&camp.ev==null&&camp.gr==null&&!camp.sel){const id=camp.wmN;camp.wmN=null;wmStart(id);return}camp.wmN=null;return _cg&&_cg.apply(this,arguments)};
+const _cx=$('#cbX').onclick;$('#cbX').onclick=function(){camp.wmN=null;return _cx&&_cx.apply(this,arguments)};
+const wb=document.createElement('button');wb.id='wmBtn';$('#mapBtn').insertAdjacentElement('afterend',wb);
+function wmTile(){const W=M.W,s=sums();wb.style.setProperty('--wa',W.a);wb.style.setProperty('--wb',W.b);wb.innerHTML=`<i class="wm-e">${W.e}</i><div><b>${esc(W.title)}</b><small>${s.ex}/${s.tot} cleared · ⭐ ${s.stars}/${s.mx}${st().d?' · 👑 conquered':''}</small></div>${st().seen?'':'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>'}`}
+wb.onclick=()=>{sfx('click');play('theme');wmOpen()};
+$('#wmBox').onclick=e=>{const g=e.target.closest('[data-wn]');if(!g)return;sfx('click');wmBrief(g.dataset.wn)};
+const _pu=profUI;profUI=function(){const r=_pu.apply(this,arguments);try{wmTile()}catch(e){}return r};
+try{wmTile()}catch(e){}
+window.__wm={WMAPS,build,vis,par,wmUI,sums};
 })();
 </script>
 </body></html>
