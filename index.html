@@ -1212,7 +1212,7 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 .wmGens{display:flex;flex-direction:column;gap:6px;width:min(94%,390px)}.wmG{display:flex;gap:10px;align-items:center;border:1px solid color-mix(in srgb,var(--wa) 55%,transparent);border-radius:10px;padding:6px 10px;background:rgb(var(--k) / .55)}.wmG>span{font-size:1.4rem}.wmG b{display:block;font-size:.8rem;letter-spacing:.06em;color:var(--wa)}.wmG small{font-size:.68rem;opacity:.9}.wmG.dn{opacity:.75}.wmG.dn b:after{content:' ✓'}
 #wmBox{width:min(96%,400px);border:2px solid var(--wa);border-radius:14px;background:linear-gradient(180deg,var(--wb),#07060fee);box-shadow:0 0 18px color-mix(in srgb,var(--wa) 35%,transparent);overflow:hidden;flex:none}
 .wmsvg{width:100%;height:auto;display:block}
-.wmN.wm-l{opacity:.85}.wmN.wm-l circle.b{stroke:#ffd45a;stroke-dasharray:2 3}.wmN .tw{font-size:14px;text-anchor:middle}.wmE.sec{stroke:#ffd45a;stroke-dasharray:2 5;opacity:.95}.wmTw b{color:#ffd45a!important}.hpb{display:flex;gap:4px;margin:4px 0 3px}.hpb i{flex:1;height:10px;border-radius:3px;background:#0009;border:1px solid var(--wa)}.hpb i.on{background:linear-gradient(#ff8a8a,#c0261c);border-color:#ffb0b0}.wmHp b{color:#ff9a9a!important}#wmBtn .wmbar{display:block;height:5px;border-radius:3px;background:#0009;margin-top:6px;overflow:hidden}#wmBtn .wmbar i{display:block;height:100%;background:var(--wa)}
+.wmN.wm-l{opacity:.85}.wmN.wm-l circle.b{stroke:#ffd45a;stroke-dasharray:2 3}.wmN .tw{font-size:14px;text-anchor:middle}.wmE.sec{stroke:#ffd45a;stroke-dasharray:2 5;opacity:.95}.wmTw b{color:#ffd45a!important}.hpb{display:flex;gap:4px;margin:4px 0 3px}.hpb i{flex:1;height:10px;border-radius:3px;background:#0009;border:1px solid var(--wa)}.hpb i.on{background:linear-gradient(#ff8a8a,#c0261c);border-color:#ffb0b0}.wmHp b{color:#ff9a9a!important}@keyframes wmFull{50%{filter:drop-shadow(0 0 10px var(--wa))}}#wmBtn.full{animation:wmFull 2.2s ease-in-out infinite}@media(prefers-reduced-motion:reduce){#wmBtn.full{animation:none}}.tutd{display:flex;gap:6px;justify-content:center;margin:6px 0 10px}.tutd i{width:8px;height:8px;border-radius:50%;background:#ffffff33}.tutd i.on{background:var(--gold)}#wmBtn .wmbar{display:block;height:5px;border-radius:3px;background:#0009;margin-top:6px;overflow:hidden}#wmBtn .wmbar i{display:block;height:100%;background:var(--wa)}
 .wmE{stroke:var(--wa);stroke-width:2.4;fill:none;opacity:.55}.wmE.hot{opacity:1;stroke-width:3}.wmE.dim{stroke-dasharray:4 6;opacity:.3}
 .wmN{cursor:pointer}.wmN circle.b{fill:#0c0a18;stroke:var(--wa);stroke-width:2.5}.wm-c circle.b{fill:var(--wb);stroke:#fff;stroke-width:3}.wm-a circle.b{animation:wmP 1.8s ease-in-out infinite}.wm-s{opacity:.6}.wm-s circle.b{stroke-dasharray:3 4}
 .wmN.k-z circle.b,.wmN.k-g circle.b{stroke-width:3.5}.wmN.k-x circle.b{stroke:#ffd45a}
@@ -1620,7 +1620,7 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>TIMER</h2><p>You have limited time per guess; if it runs out the round is forfeited (a SHIELD still absorbs it). Turn it off in Settings.</p>
 <h2>SPECIAL BATTLES</h2><p>Golden Spoils ×2 · Gladius Trial (1 attempt) · Killing Ground (tight range) · Imperator's Wrath (sharper Kiraxo; Overdrive in 2-player) · Bullseye (within 2 counts) · Shield.</p>
 <h2>CONQUEST MAP</h2><p>You get <b>5 battles a day</b> on the map (they refill at midnight); after that, one extra battle costs 2 💎 gems. Fight through Gaul, Egypt, Carthage, Britannia, Germania, Parthia, Dacia and finally Rome. Every battle has its own rules; the last battle of each region is a <b>Boss fight</b>: win the scoreboard, then break the general’s shield layers, with a signature trick all of his own. Earn ⭐ for a win, for the battle’s own star goal (a “win N rounds in a row” goal also counts if you win the whole match with no failed round in fewer than N rounds; shown on the briefing and above the board while you play — each one is set to fit that battle’s score target), and for a win with no powers. Stars (and the general) unlock the next region, and the gates are tight: each region needs roughly four out of every five ⭐ you could have earned before it, so winning alone is not enough. Go back and earn the star goals.</p>\n<h2>MINI GAMES</h2><p>Nine ranks open one each: <b>Lightning Round</b>, <b>Codebreaker</b>, <b>Sniper Range</b>, <b>Oracle’s Sequence</b>, <b>Number Duel</b>, <b>Echo Scroll</b>, <b>Arena Gauntlet</b>, <b>Fate’s Cards</b>, <b>Treasure Hunt</b>. Every game keeps its own best score, plays and mastery level; mastery level-ups pay bonus coins.</p>\n<h2>BOSS PHASE</h2><p>Break Imperator Kiraxo Prime's shield layers by hitting the secret, or wear them down with hot/blazing near-misses. Breaking a layer gives you another swing. Whoever breaks more shields wins when the last layer falls (gold = yours, red = theirs); if it's a tie, total damage decides. After each shield breaks, stop the marker in the green WEAK POINT zone for bonus damage.</p>
-<h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 3. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
+<h2>GEAR &amp; THE FORGE</h2><p>In the Armory, forge your <b>Galea</b> (extra SCAN/FOCUS), <b>Scutum</b> (extra SHIELDS, more Boss attempts) and <b>Gladius</b> (bonus points, wider weak point) up to level 5; levels 4 and 5 are the big late-game coin sinks. Relics are one-time buys: <b>Spy Glass</b> (free odd/even omen in your first 3 rounds), <b>Second Wind</b> (one extra attempt per match), <b>Battle Standard</b> (combo bonuses). Gear works against Kiraxo and on the Conquest Map.</p>
 <h2>TODAY'S MARKET</h2><p>Five fresh discounted bundles every day, the same for everyone, plus one gear slot on sale. Each offer can be bought once per day.</p>
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by difficulty), a draw refunds you, a loss or quitting forfeits it. Bigger stakes unlock with rank: 250 at Centurion, 500 at Legatus, ALL-IN at Consul. <b>Side-bets</b> add a bonus multiplier (No Powers +0.5, Swift +0.5, Flawless +1) and only lose the bonus if you miss them. <b>Insurance</b> costs 10% of the stake and returns half of it if you lose. The arena keeps a 5% rake on your winnings. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
 <h2>RANK TRIALS</h2><p>XP is not enough to rise. From <b>Hastatus</b> up, every rank also needs a <b>trial</b>: win Conquest battles, defeat a region’s general, earn Conquest ⭐, play or master mini games, win matches in another world, clear world-map battles, defeat route generals, conquer world maps, finish a Daily Strike, or reach a floor in the ★ Endless Tower. The next trial is shown on your profile card.</p>
@@ -1673,7 +1673,7 @@ function afterTurn(){if(G.done)return;const t=G.M.t,w=G.cur;
 function award(who,tries,risky){let pts=Math.round((PTS[tries]||3)*G.D.mult)*(risky?3:1),crit=tries===1;if(crit)pts*=2;
  const c=++G.combo[who];G.st[who].best=Math.max(G.st[who].best,c);G.st[who].ok++;if(crit)G.st[who].crit++;if(who===0)G.st[0].mt=Math.min(G.st[0].mt||99,tries);
  if(c>=2)pts+=4*(c-1);if(c===5)pts+=15;if(G.special==='DOUBLE')pts*=2;if(G.mut==='rush')pts=Math.round(pts*1.25);if(G.mut==='lean')pts=Math.round(pts*1.5);if(Math.random()<.05)pts+=10;
- if(who===0&&G.mode==='AI'){pts+=gl('b');if(PRO.rel.std){if(c===3)pts+=8;if(c===5)pts+=15}}
+ if(who===0&&G.mode==='AI'){pts+=[0,1,2,3,4,6][gl('b')];if(PRO.rel.std){if(c===3)pts+=8;if(c===5)pts+=15}}
  G.score[who]+=pts;G.wins[who]++;fxWin(who,pts,c,crit);if(who===0&&G.mode==='AI'){qEv('round');if(tries===1)qEv('first');if(crit)qEv('crit');qMax('combo',c)}return{pts,crit,c}}
 function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
  const t=c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing';
@@ -1748,7 +1748,7 @@ function useIntel(t){if(!canAct())return;if(G.rf.intelUsed.includes(t)){const ix
  if(t==='PROPERTY'){const p=[];if(isPrime(G.secret))p.push('prime');if(G.secret%3===0)p.push('multiple of 3');if(G.secret%5===0)p.push('multiple of 5');p.push(G.secret>mid?'high':'low');r=`SECRET TRAIT: ${pick(p).toUpperCase()}.`}
  G.rf.info.push(r);sn.r=r;$('#secPop').classList.remove('on');render(r)}
 // ---- boss ----
-function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]++;
+function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G.vit=[0,0];G.vit[trig]=4;G.vit[o]=3;if(G.mode==='AI'&&gl('s')>=3)G.vit[0]+=gl('s')>=5?2:1;
  Object.assign(G,{lo,hi,kLo:lo,kHi:hi,secret:rndS(lo,hi),layers:G.D.layers+(G.mut==='armor'?1:0)+(G.cf?G.cf.ly:0),total:G.D.layers+(G.mut==='armor'?1:0)+(G.cf?G.cf.ly:0),armor:ARMOR,broken:0,bk:[0,0],own:[],dmg:[0,0]});
  if(G.mode==='PVP'){G.dmg[o]=40;G.pow[o].SCAN++}
  if(G.mode==='AI'){if(!G.cf)G.names[1]='KIRAXO';if(tkh('ambush')){G.vit[1]=Math.max(G.vit[1],G.vit[0]);G.dmg[1]+=30}if(G.bane){G.dmg[0]+=40;setTimeout(()=>toast('☄️ <b>BOSS BANE</b><br><small>+40 damage head start</small>'),1800)}}
@@ -2677,7 +2677,7 @@ function shatter(i){const el=$('#layers').children[i];if(!el)return;flash();ft('
  for(let k=0;k<18;k++){const e=document.createElement('i');e.className='sh';e.style.left=x+'px';e.style.top=y+'px';$('#fx').appendChild(e);
   e.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:`translate(${(Math.random()-.5)*320}px,${(Math.random()-.3)*320}px) rotate(${Math.random()*720}deg) scale(.2)`,opacity:0}],{duration:700+Math.random()*500,easing:'cubic-bezier(.1,.7,.3,1)'}).onfinish=()=>e.remove()}
  el.animate([{transform:'scale(1)'},{transform:'scale(1.5)'},{transform:'scale(.1) rotate(60deg)',opacity:0}],{duration:320})}
-function weakPoint(who){const g=G;g.busy=true;render0();setTimeout(()=>{if(G!==g||g.done)return;const w=$('#wp'),z=$('#wpz'),m=$('#wpm'),zw=Math.max(10,24-4*g.broken)+(who===0&&g.mode==='AI'?gl('b')*4:0),zl=10+Math.random()*(80-zw),sp=1+.35*g.broken,t0=performance.now();let fin=0,raf;
+function weakPoint(who){const g=G;g.busy=true;render0();setTimeout(()=>{if(G!==g||g.done)return;const w=$('#wp'),z=$('#wpz'),m=$('#wpm'),zw=Math.max(10,24-4*g.broken)+(who===0&&g.mode==='AI'?[0,4,8,12,15,18][gl('b')]:0),zl=10+Math.random()*(80-zw),sp=1+.35*g.broken,t0=performance.now();let fin=0,raf;
  z.style.left=zl+'%';z.style.width=zw+'%';w.classList.add('on');$('#wpt').textContent='TAP TO STRIKE THE WEAK POINT';
  const pos=()=>{const t=((performance.now()-t0)/1000*sp)%2;return(t<1?t:2-t)*100},tick=()=>{m.style.left=pos()+'%';raf=requestAnimationFrame(tick)};tick();
  const stop=()=>{if(fin)return;fin=1;cancelAnimationFrame(raf);removeEventListener('keydown',kd);const d=Math.abs(pos()-(zl+zw/2)),v=d<=zw*.15?40:d<=zw/2?20:0;g.dmg[who]+=v;
@@ -2720,8 +2720,8 @@ function useInv(){if(G.cf)G.mut=G.cf.mut;else{G.mut=CM()[0];setTimeout(()=>toast
  if(PRO.pm==='ring')G.bonusT=(G.bonusT||0)+2;
  if(PRO.pm==='vigil'){G.pow[0].SCAN++;u.push('🧿')}if(PRO.pm==='eagle'){G.pow[0].FOCUS++;u.push('🦅')}if(PRO.pm==='bulwark'){G.pow[0].SHIELD++;u.push('🧱')}
  const gh=gl('h'),gs=gl('s'),gb=gl('b');
- if(gh){G.pow[0].SCAN+=[0,1,2,3][gh];if(gh>=3)G.pow[0].FOCUS++;u.push('🪖')}
- if(gs){G.pow[0].SHIELD+=[0,1,2,2][gs];u.push('🛡️')}
+ if(gh){G.pow[0].SCAN+=[0,1,2,3,4,5][gh];if(gh>=3)G.pow[0].FOCUS+=gh>=5?2:1;u.push('🪖')}
+ if(gs){G.pow[0].SHIELD+=[0,1,2,2,3,4][gs];u.push('🛡️')}
  if(gb)u.push('🗡️');
  if(PRO.rel.spy){G.spyLeft=3;u.push('🔭')}if(PRO.rel.wind){G.wind=1;u.push('💨')}if(PRO.rel.std)u.push('🚩');
  
@@ -2943,9 +2943,9 @@ const ptxt=n=>Math.round(n/5)*5;
 Object.assign(PSK,{legion:['🛡️','#b22222','LEGIONARY'],centurion:['🪖','#cd7f32','CENTURION'],senator:['📜','#f5eedc','SENATOR'],vestal:['🔥','#ff8a3d','VESTAL FLAME']});
 ACH.rival=['🤝','RIVAL SLAIN','Beat a friend’s challenge score'];
 // -- gear
-const GEAR={h:['🪖','GALEA','Helmet',['+1 SCAN each match','+2 SCAN each match','+3 SCAN & +1 FOCUS each match'],[120,240,420]],
- s:['🛡️','SCUTUM','Shield',['+1 SHIELD charge each match','+2 SHIELD charges each match','+2 SHIELD charges · +1 Boss Phase attempt'],[120,240,420]],
- b:['🗡️','GLADIUS','Blade',['+1 pt per round won · weak point +4% wider','+2 pts per round won · weak point +8% wider','+3 pts per round won · weak point +12% wider'],[150,300,500]]};
+const GEAR={h:['🪖','GALEA','Helmet',['+1 SCAN each match','+2 SCAN each match','+3 SCAN & +1 FOCUS each match','+4 SCAN & +1 FOCUS each match','+5 SCAN & +2 FOCUS each match'],[120,240,420,700,1100]],
+ s:['🛡️','SCUTUM','Shield',['+1 SHIELD charge each match','+2 SHIELD charges each match','+2 SHIELD charges · +1 Boss Phase attempt','+3 SHIELD charges · +1 Boss Phase attempt','+4 SHIELD charges · +2 Boss Phase attempts'],[120,240,420,700,1100]],
+ b:['🗡️','GLADIUS','Blade',['+1 pt per round won · weak point +4% wider','+2 pts per round won · weak point +8% wider','+3 pts per round won · weak point +12% wider','+4 pts per round won · weak point +15% wider','+6 pts per round won · weak point +18% wider'],[150,300,500,800,1250]]};
 const RELICS=[['spy','🔭','SPY GLASS','Your first 3 rounds each match start with a free odd/even omen',180],['wind','💨','SECOND WIND','Once per match: one extra attempt when you run out',220],['std','🚩','BATTLE STANDARD','Combo ×3 = +8 pts, combo ×5 = +15 more',260],['seal','🪙','MERCHANT’S SEAL','+10% coins from every match',240],['quill','🪶','SCRIBE’S QUILL','+10% XP from every match',240]];
 const BUNDLES=[['🧰','SCOUT’S KIT','+4 SCAN · +2 FOCUS',130,{inv:{'x:SCAN':2,'x:FOCUS':1}}],['🏰','FORTRESS KIT','+4 SHIELD · a Phoenix Token',170,{inv:{'x:SHIELD':2,phx:1}}],['🎲','GAMBLER’S KIT','+4 RISK · +2 STEAL · +15 pts start',160,{inv:{'x:RISK':2,'x:STEAL':1,head:1}}]];
 const SETK=['legion','centurion','senator','vestal'],SETP=450;
@@ -2969,8 +2969,8 @@ function shopUI(){$('#gold').textContent='💰 '+PRO.gold+' · 💎 '+(PRO.gems|
  if(SHCAT==='gm'){g='💎 '+(PRO.gems||0);h=gmH(card,bt)}
  else if(SHCAT==='wd')h=worldsH(card,h2,bt);
  else if(SHCAT==='mk'){g='Refreshes in '+hh+'h '+mm+'m';h=dd.offers.map(o=>{const it=DPOOL[o.id],got=PRO.dsh.b.includes(o.id);return card(it[0],it[1],`${it[2]}<br><s>${PR(it[3])}</s> −${o.pct}%`,`<button data-dp="${o.id}" ${bt} ${got?'disabled':''}>${got?'SOLD':'💰 '+dPrice(it,o.pct)}</button>`)}).join('')}
- else if(SHCAT==='fg')h=['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<3;
-  return card(g[0],`${g[1]} · ${g[2]} ${'■'.repeat(l)}${'□'.repeat(3-l)}`,(l?`NOW: ${g[3][l-1]}<br>`:'')+(l<3?`NEXT: ${g[3][l]}${sale?` · 🔥 −${dd.gp}% today`:''}`:'MAX LEVEL'),`<button data-gu="${k}" ${bt} ${l>=3?'disabled':''}>${l>=3?'MAX':'⬆ 💰 '+gearPrice(k,l)}</button>`)}).join('');
+ else if(SHCAT==='fg')h=['h','s','b'].map(k=>{const g=GEAR[k],l=gl(k),sale=dd.gs===k&&l<5;
+  return card(g[0],`${g[1]} · ${g[2]} ${'■'.repeat(l)}${'□'.repeat(5-l)}`,(l?`NOW: ${g[3][l-1]}<br>`:'')+(l<5?`NEXT: ${g[3][l]}${sale?` · 🔥 −${dd.gp}% today`:''}`:'MAX LEVEL'),`<button data-gu="${k}" ${bt} ${l>=5?'disabled':''}>${l>=5?'MAX':'⬆ 💰 '+gearPrice(k,l)}</button>`)}).join('');
  else if(SHCAT==='rl')h=RELICS.map(r=>{const own=PRO.rel[r[0]];return card(r[1],r[2],r[3],`<button data-rl="${r[0]}" ${bt} ${own?'disabled':''}>${own?'OWNED':'💰 '+PR(r[4])}</button>`)}).join('');
  else if(SHCAT==='bn')h=BUNDLES.map((bn,i)=>card(bn[0],bn[1],bn[2],`<button data-bn="${i}" ${bt}>💰 ${PR(bn[3])}</button>`)).join('');
  else{if(SHCAT==='ps'){const so=PRO.own.romanset;h=card('🏛️','ROMAN LEGION SET','Four player skins: Legionary, Centurion, Senator, Vestal Flame',`<button data-set="1" ${bt} ${so?'disabled':''}>${so?'OWNED':'💰 '+PR(SETP)}</button>`);
@@ -2984,7 +2984,7 @@ $('#shopPopX').onclick=()=>{sfx('click');shopClose()};
 $('#shopPop').addEventListener('click',e=>{if(e.target.id==='shopPop')shopClose()});
 shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[data-eq],[data-bn]');if(!b||b.disabled)return;let ok=0;const pay=p=>{if(PRO.gold<p){tone(150,.2,'square');toast('Not Enough Gold');return false}PRO.gold-=p;return true};
  if(b.dataset.dp!=null){const id=+b.dataset.dp,o=dsDay().offers.find(x=>x.id===id),it=DPOOL[id];if(o&&!PRO.dsh.b.includes(id)&&pay(dPrice(it,o.pct))){grant(it[4]);PRO.dsh.b.push(id);qEv('buy');toast(`${it[0]} <b>${it[1]}</b><br><small>Added to your pack</small>`);ok=1}}
- else if(b.dataset.gu){const k=b.dataset.gu,l=gl(k);if(l<3&&pay(gearPrice(k,l))){PRO.gear[k]=l+1;qEv('buy');toast(`${GEAR[k][0]} <b>${GEAR[k][1]} LEVEL ${l+1}</b><br><small>${GEAR[k][3][l]}</small>`);burst(['⚒️','✨','🪙'],18);ok=1}}
+ else if(b.dataset.gu){const k=b.dataset.gu,l=gl(k);if(l<5&&pay(gearPrice(k,l))){PRO.gear[k]=l+1;qEv('buy');toast(`${GEAR[k][0]} <b>${GEAR[k][1]} LEVEL ${l+1}</b><br><small>${GEAR[k][3][l]}</small>`);burst(['⚒️','✨','🪙'],18);ok=1}}
  else if(b.dataset.rl){const k=b.dataset.rl,r=RELICS.find(x=>x[0]===k);if(!PRO.rel[k]&&pay(PR(r[4]))){PRO.rel[k]=1;qEv('buy');toast(`${r[1]} <b>${r[2]}</b><br><small>${r[3]}</small>`);ok=1}}
  else if(b.dataset.set){if(!PRO.own.romanset&&pay(PR(SETP))){PRO.own.romanset=1;qEv('buy');toast('🏛️ <b>ROMAN LEGION SET</b><br><small>Equip a skin below</small>');ok=1}}
  else if(b.dataset.bn!=null){const bn=BUNDLES[+b.dataset.bn];if(pay(PR(bn[3]))){grant(bn[4]);qEv('buy');toast(`${bn[0]} <b>${bn[1]}</b><br><small>${bn[2]} — added to your pack</small>`);ok=1}}
@@ -3870,7 +3870,7 @@ const cl=id=>(st().s[id]||0)>0;
 /* v111: UNPREDICTABLE MAPS. (1) The Gate needs stars on this map (half of the stars on offer before it), so winning alone stalls. (2) DAILY TWISTS: each day ~1 battle in 5 gets a twist, same for every player, rolled from the date. (3) SURPRISES: a strong clear can drop a treasure chest or open a SECRET PATH (a new edge, kept in PRO.wm[w].xe) that links to a battle further along. Max 3 surprises a day (PRO.wm[w].sd). */
 /* v112: ENERGY. Every world map has 6 energy bars (PRO.wm[w].hp = {u: bars used, t: when the first was spent}). A battle costs 1 bar; 2 hours after the first bar was spent all 6 are back. Out of bars: wait, or pay HP_GEMS gems to refill. Charged in launch(), so Replay and Fight Again cost a bar too. */
 const HP_MAX=6,HP_MS=72e5,HP_GEMS=3;
-function hpS(){const q=st();q.hp=q.hp||{u:0,t:0};if(q.hp.u>0&&Date.now()-q.hp.t>=HP_MS){q.hp.u=0;q.hp.t=0}return q.hp}
+function hpS(){const q=st();q.hp=q.hp||{u:0,t:0};if(q.hp.u>0&&Date.now()-q.hp.t>=HP_MS){q.hp.u=0;q.hp.t=0;q.hp.rf=1}return q.hp}
 const hpLeft=()=>HP_MAX-hpS().u,hpWait=()=>{const h=hpS();return h.u?Math.max(0,h.t+HP_MS-Date.now()):0};
 function hpTxt(){const m=Math.max(1,Math.ceil(hpWait()/6e4));return m>=60?Math.floor(m/60)+'h '+(m%60)+'m':m+'m'}
 function hpUse(){const h=hpS();if(!h.u)h.t=Date.now();h.u++;LS.set('ms_pro',PRO);try{hpPaint()}catch(e){}}
@@ -3879,7 +3879,8 @@ const hpBars=()=>'<div class="hpb">'+Array.from({length:HP_MAX},(_,i)=>`<i class
 const hpInner=()=>`<span>❤️</span><div><b>ENERGY · ${hpLeft()}/${HP_MAX}</b>${hpBars()}<small>${hpWait()?'All bars refill in '+hpTxt():'Full · each battle costs 1 bar'}</small></div>`;
 const hpCard=()=>`<div class="wmG wmHp" id="wmHpC">${hpInner()}</div>`;
 function hpPaint(){const c=$('#wmHpC');if(c)c.innerHTML=hpInner();wmTile()}
-setInterval(()=>{try{hpPaint()}catch(e){}},20000);
+function hpNote(){const h=hpS();if(h.rf){h.rf=0;LS.set('ms_pro',PRO);toast(`❤️ <b>Energy refilled!</b><br><small>${HP_MAX} bars ready on ${esc(M.W.title)}</small>`)}}
+setInterval(()=>{try{hpPaint();hpNote()}catch(e){}},20000);setTimeout(()=>{try{hpNote()}catch(e){}},5800);
 window.__hp={left:hpLeft,use:hpUse,ask:hpAsk};
 const TW={bounty:['💰','BOUNTY','Coins ×2 for stars won here today',2],storm:['⛈️','STORM','Guess timer −40%, points +25% · coins ×1.5',1.5],ambush:['🐺','AMBUSH','Foe starts 8 points ahead · coins ×1.75',1.75],curse:['☠️','CURSE','One fewer attempt · coins ×1.5 and +1 💎 on a win',1.5]};
 function twOf(id){const r=mul(seed('wt'+today()+wid+id));if(r()>=.2)return'';const q=r();return q<.35?'bounty':q<.6?'storm':q<.85?'ambush':'curse'}
@@ -3931,7 +3932,14 @@ function wmUI(){const W=M.W,sc=$('#s-wmap'),s=sums(),WN=(WORLDS[wid]&&WORLDS[wid
   $('#wmGen').innerHTML=hpCard()+$('#wmGen').innerHTML+`<div class="wmG wmTw"><span>🎲</span><div><b>TODAY’S TWISTS</b><small>${tl.length?tl.map(x=>TW[twOf(x.id)][0]+' '+esc(x.name)).join(' · '):'Quiet day on your map'}</small></div></div>`+(gl?`<div class="wmG wmTw"><span>🔒</span><div><b>THE GATE NEEDS ⭐ ${gNeed()}</b><small>You have ${tStars()}. Earn stars on any route.</small></div></div>`:'')}
  $('#wmBox').innerHTML=mapSVG();st().seen=1;LS.set('ms_pro',PRO);
  setTimeout(()=>{const a=$('#wmBox .wm-a');if(a&&a.scrollIntoView&&$('#s-wmap').classList.contains('on'))try{a.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}},160)}
-function wmOpen(){wmUI();go('s-wmap')}
+const TUT=[['🌫️','FOG OF WAR','Tap a glowing battle to fight it. Every win lights up the places next to it. ❓ spots are only scouted: clear a neighbour to open them. Earn ⭐⭐⭐ on a node to reveal hidden vaults, and the 🚪 Gate needs ⭐ stars.'],['🎲','TWISTS & SURPRISES','About 1 battle in 5 has a twist today: 💰 Bounty, ⛈️ Storm, 🐺 Ambush or ☠️ Curse. A strong clear can drop a 🎁 treasure chest or open a 🧭 secret path to a battle further along.'],['❤️','ENERGY','Every battle costs 1 of your '+HP_MAX+' energy bars. All of them refill 2 hours after the first one was spent, or pay '+HP_GEMS+' 💎 to refill at once. Pick your fights.']];
+let tutI=0;const tut=document.createElement('div');tut.className='pop';tut.id='wmTut';tut.style.zIndex=13;
+tut.innerHTML='<div class="card" style="text-align:center;width:min(92%,340px)"><div id="wmTutE" style="font-size:3rem"></div><h2 id="wmTutH"></h2><div id="wmTutT" style="line-height:1.55;margin:6px 0 8px"></div><div class="tutd" id="wmTutD"></div><button id="wmTutN" style="width:100%"></button><button id="wmTutS" style="width:100%;margin-top:8px">SKIP</button></div>';
+$('#app').appendChild(tut);
+function tutPaint(){const t=TUT[tutI];$('#wmTutE').textContent=t[0];$('#wmTutH').textContent=t[1];$('#wmTutT').textContent=t[2];$('#wmTutD').innerHTML=TUT.map((_,i)=>`<i class="${i===tutI?'on':''}"></i>`).join('');$('#wmTutN').textContent=tutI<TUT.length-1?'NEXT ▶':'GOT IT'}
+function tutEnd(){PRO.wmTut=1;LS.set('ms_pro',PRO);tut.classList.remove('on')}
+$('#wmTutN').onclick=()=>{sfx('click');if(tutI<TUT.length-1){tutI++;tutPaint()}else tutEnd()};$('#wmTutS').onclick=()=>{sfx('click');tutEnd()};
+function wmOpen(){wmUI();go('s-wmap');if(!PRO.wmTut)setTimeout(()=>{tutI=0;tutPaint();tut.classList.add('on')},450)}
 /* ---- brief / battle ---- */
 function wmBrief(id){const n=M.by[id],n0=n,v=vis()[id];if(v==='l'){toast(`🔒 <b>${esc(n0.name)}</b><br><small>The Gate needs ⭐ ${gNeed()} on this map (you have ${tStars()}). Replay battles for more stars or clear another route.</small>`);return}
  if(v==='s'||!v){toast('🌫️ <b>Fog</b><br><small>Clear a neighbouring node to reveal what hides here.</small>');return}
@@ -3964,7 +3972,7 @@ const _cg=$('#cbGo').onclick;$('#cbGo').onclick=function(){if(camp.wmN&&camp.ev=
 const _cx=$('#cbX').onclick;$('#cbX').onclick=function(){camp.wmN=null;return _cx&&_cx.apply(this,arguments)};
 const wb=document.createElement('button');wb.id='wmBtn';$('#mapBtn').insertAdjacentElement('beforebegin',wb);
 function wmTile(){const W=M.W,q=sums(),v=q.v,nx=M.N.filter(x=>v[x.id]==='a').sort((a,b)=>a.d-b.d||a.idx-b.idx)[0],tn=M.N.filter(x=>v[x.id]&&v[x.id]!=='s'&&v[x.id]!=='l'&&twOf(x.id)&&(x.kind==='b'||x.kind==='e')).length;wb.style.setProperty('--wa',W.a);wb.style.setProperty('--wb',W.b);
- wb.innerHTML=`<i class="wm-e">${W.e}</i><div><b>${esc(W.title)}</b><small>${st().d?'👑 Conquered':q.ex+'/'+q.tot+' cleared'} · ⭐ ${q.stars}/${q.mx}</small><small>❤️ ${hpLeft()}/${HP_MAX} · ${nx?'▶ Next: '+esc(nx.name):'🔒 The Gate needs ⭐ '+gNeed()}${tn?' · 🎲 '+tn+' twist'+(tn>1?'s':''):''}</small><span class="wmbar"><i style="width:${Math.round(100*q.ex/q.tot)}%"></i></span></div>${st().seen?'':'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>'}`}
+ wb.innerHTML=`<i class="wm-e">${W.e}</i><div><b>${esc(W.title)}</b><small>${st().d?'👑 Conquered':q.ex+'/'+q.tot+' cleared'} · ⭐ ${q.stars}/${q.mx}</small><small>${hpLeft()===HP_MAX?'⚡ ENERGY FULL':'❤️ '+hpLeft()+'/'+HP_MAX} · ${nx?'▶ Next: '+esc(nx.name):'🔒 The Gate needs ⭐ '+gNeed()}${tn?' · 🎲 '+tn+' twist'+(tn>1?'s':''):''}</small><span class="wmbar"><i style="width:${Math.round(100*q.ex/q.tot)}%"></i></span></div>${!st().seen?'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">NEW</em>':hpLeft()===HP_MAX&&!st().d?'<em class="bd" style="font-style:normal;width:auto;padding:0 7px">⚡ FULL</em>':''}`;wb.classList.toggle('full',hpLeft()===HP_MAX&&!st().d)}
 wb.onclick=()=>{sfx('click');play('theme');wmOpen()};
 $('#wmBox').onclick=e=>{const g=e.target.closest('[data-wn]');if(!g)return;sfx('click');wmBrief(g.dataset.wn)};
 const _pu=profUI;profUI=function(){const r=_pu.apply(this,arguments);try{wmTile()}catch(e){}return r};

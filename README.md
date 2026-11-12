@@ -335,3 +335,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v113 changes
 **Rank trials use the world maps.** Ranks 5-12 each gain a world-map goal: clear 3 / 8 battles (ranks 5, 6), defeat a route general (7), earn 15 ⭐ (8), clear battles on 2 maps (9), defeat 3 route generals (10), conquer a map (11), conquer 2 maps (12). Edit the `TRI` table. No grandfathering, as before: ranks follow the trials. Bump `V` in `sw.js` after every change.
+
+
+## v114 changes
+**Energy signal:** the home banner glows and shows ⚡ FULL when all bars are ready, and a toast announces a refill when you open the app (or while it is open). **First-time world-map tutorial:** a 3-step overlay (fog, twists, energy), shown once (`PRO.wmTut`). **Forge levels 4 and 5** for Galea, Scutum and Gladius (700/1100/800/1250 💰 etc.): edit the `GEAR` table; the effects are the arrays near `gl('h')`, `gl('s')`, `gl('b')`. Bump `V` in `sw.js` after every change.
