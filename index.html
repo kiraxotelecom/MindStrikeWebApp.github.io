@@ -4077,4 +4077,15 @@ window.__wm={WMAPS,WREG,build,vis,par,wmUI,sums};
 })();
 </script>
 <style>#app .tiles #svMail{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;text-align:left;padding:10px 14px;min-height:56px}#svMail:before,#svMail:after{display:none!important}#svMail .sv-e{font-style:normal;font-size:1.8rem;line-height:1}#svMail b{display:block;font-size:.85rem;letter-spacing:.08em;color:#ffd45a}#svMail small{display:block;opacity:.85}#wmGen .rgrow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.rgb{min-width:44px;padding:7px 11px;border-radius:12px;font-weight:800;border:1px solid color-mix(in srgb,var(--wa) 60%,transparent);background:color-mix(in srgb,var(--wb) 80%,#000);color:#fff}.rgb.on{background:var(--wa);color:#111;box-shadow:0 0 10px var(--wa)}.rgb:disabled{opacity:.55}.wmRg b{color:var(--wa)}#s-tug .tgtm{width:min(94%,340px);height:6px;border-radius:4px;background:#0007;overflow:hidden}#s-tug .tgtm i{display:block;height:100%;width:100%;background:var(--gold,#f0c565);transition:width .25s linear}#tgSurge{width:min(94%,340px);padding:8px;font-size:.85rem;opacity:.9}#tgSurge.on{outline:2px solid #ffd45a;box-shadow:0 0 12px #ffd45a;opacity:1}#tgSurge:disabled{opacity:.4}.tgoff{pointer-events:none;opacity:.5}.tgs .tgseg{display:flex;gap:6px;margin:8px 0}.tgs .tgseg button{flex:1;padding:9px 6px;opacity:.6;font-size:.8rem}.tgs .tgseg button.on{opacity:1;outline:2px solid var(--gold,#ffd45a)}.tgs label.bm-field{margin:6px 0}</style>
+<style>/* v123: Tug setup buttons must fit the card (no sideways scroll); home stat labels centered */
+#app .tgs,#tgSetup .tgs{box-sizing:border-box;overflow-x:hidden}
+#tgSetup .tgs .tgseg{display:flex;flex-wrap:nowrap;gap:6px;width:100%;box-sizing:border-box}
+#tgSetup .tgs .tgseg button{flex:1 1 0;min-width:0;width:auto;max-width:100%;box-sizing:border-box;padding:9px 4px;font-size:.74rem;letter-spacing:.02em;white-space:normal;line-height:1.15;overflow-wrap:anywhere}
+#tgSetup .tgs .tgseg#tgT,#tgSetup .tgs .tgseg:has(#tgT){display:block}
+#tgSetup .tgs #tgT{width:100%;box-sizing:border-box;white-space:normal}
+#tgSetup .tgs #tgStart,#tgSetup .tgs #tgCancel{box-sizing:border-box;max-width:100%}
+#app .pks span{text-align:center;min-width:0}
+#app .pks small{display:block;width:100%;text-align:center;line-height:1.15;letter-spacing:.06em}
+#app .pks b{display:block;width:100%;text-align:center}
+</style>
 </body></html>
