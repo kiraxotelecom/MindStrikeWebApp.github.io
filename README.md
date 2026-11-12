@@ -350,3 +350,9 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v117 changes
 **Regions & road styles on every world map.** Each world now has several regions; the original map is Region 1 (old saves untouched) and each world gets a second region now (Britannia March, Neon Underground, Snow Province, Ember Isles, Source of the Nile, Salt Road, Nebula Reach, Sunken Archive). A region picker sits on top of the world map; conquering a region's supreme general opens the next. Each region has a **road style** (Sprint, Siege, Prime, Iron, Jackpot; table `STY`) that changes battle rules and multiplies coins; later regions are a little tougher and pay more coins but fewer gems. **Monthly drops:** add one object to `WREG[world]` in `index.html` with `rel:'YYYY-MM'`; it shows as a 🗓️ teaser until that month. Progress: region k = `ms_pro.wm[world+'~'+k]`; energy bars are shared per world. Bump `V` in `sw.js` after every change.
+
+## v118 changes
+**Battle formats** on the new regions: rules that change as a match goes on. 📈 Rising Tide (range grows each round, extra attempt every 3rd), 🧱 Closing Walls (one fewer attempt every 3rd round), 🥁 Rhythm (odd rounds prime, even rounds blitz), 🌊 Surge (double-points round every 3rd, narrow range every 5th). Set `fm:'key'` on a region in `WREG`; add new formats to `FMT` (a function of the round number). Shown on the region card and on each battle briefing. Bump `V` in `sw.js` after every change.
+
+## v119 changes
+**Region medals** 🥉🥈🥇 (50% / 80% / all stars of a region; one-time coins, gems from silver; `MED*` tables). Shown on the region chips and a progress line on the map. The home world tile now shows energy once: the red ⚡ FULL badge when full, or `❤️ 3/6 · refills in 1h 20m` when not. Bump `V` in `sw.js` after every change.
