@@ -323,3 +323,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v110 changes
 **Tighter Conquest, eight regions.** Added Britannia, Germania, Parthia and Dacia between Carthage and Rome (Rome stays last; Kiraxo is still the final boss). Star gates now need about 80% of the stars available in earlier regions (Egypt 12, Carthage 26, Britannia 41, Germania 55, Parthia 72, Dacia 89, Rome 106), so winning with 2 stars a battle stalls; players must earn the star goals. Score targets are higher, star goals harder, new regions have narrower ranges and fewer attempts. Players who already started a region keep it open. Generals can combine tricks (`tr:'ambush+raid'`). Coin and XP rewards use each region's `rw` tier, not its index. Edit regions in the `CAMP` table; goals in `OBJS`. Bump `V` in `sw.js` after every change.
+
+
+## v111 changes
+**World maps become the heart of the game.** Home banner shows the next battle, a progress bar and today's twists. Daily twists (Bounty, Storm, Ambush, Curse; seeded from the date, ~1 battle in 5). Surprises after a strong clear: treasure chests and secret paths (extra edges stored in `PRO.wm[world].xe`, max 3 a day). The Gate now needs stars on the map (half of the stars on offer before it, `gNeed()`), shown as a locked 🔒 node. Retune in `TW`, `twOf`, `wmSurprise`, `gNeed`. Bump `V` in `sw.js` after every change.
