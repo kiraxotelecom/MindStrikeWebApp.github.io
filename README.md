@@ -339,3 +339,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v114 changes
 **Energy signal:** the home banner glows and shows ⚡ FULL when all bars are ready, and a toast announces a refill when you open the app (or while it is open). **First-time world-map tutorial:** a 3-step overlay (fog, twists, energy), shown once (`PRO.wmTut`). **Forge levels 4 and 5** for Galea, Scutum and Gladius (700/1100/800/1250 💰 etc.): edit the `GEAR` table; the effects are the arrays near `gl('h')`, `gl('s')`, `gl('b')`. Bump `V` in `sw.js` after every change.
+
+
+## v115 changes
+**Riddle Scroll** no longer has a Share Result button or share text. **Names:** every name outside the ghost rivals is now a variation of the house (the kids): Marathon rivals (`FOE`), world-map rivals (`NAMES`) and all world-map generals. Girl names use Nanozi and Namuddu (`GIRL`, and the female generals). **Buganda map:** Admiral Muwanguzi, Omutaka Nalumoso, Lady Namaganda and The Drum King Kibuuka (place names follow). Bump `V` in `sw.js` after every change.
