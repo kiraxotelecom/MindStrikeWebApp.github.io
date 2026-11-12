@@ -327,3 +327,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v111 changes
 **World maps become the heart of the game.** Home banner shows the next battle, a progress bar and today's twists. Daily twists (Bounty, Storm, Ambush, Curse; seeded from the date, ~1 battle in 5). Surprises after a strong clear: treasure chests and secret paths (extra edges stored in `PRO.wm[world].xe`, max 3 a day). The Gate now needs stars on the map (half of the stars on offer before it, `gNeed()`), shown as a locked 🔒 node. Retune in `TW`, `twOf`, `wmSurprise`, `gNeed`. Bump `V` in `sw.js` after every change.
+
+
+## v112 changes
+**Garrisons are now Rebellions** (rebels rise in conquered regions; tap Crush). **World map energy:** 6 ❤️ bars per world map, 1 per battle (charged in `launch()`, so Replay costs one too); all refill 2 hours after the first was spent, or 3 💎 refills at once. Retune `HP_MAX`, `HP_MS`, `HP_GEMS` in the world map block. Bump `V` in `sw.js` after every change.
