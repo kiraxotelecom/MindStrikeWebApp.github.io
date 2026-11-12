@@ -362,3 +362,6 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v121 changes
 **Tug of War rebuilt.** Play vs the computer (Easy / Medium / Hard) or a friend; a setup card sets names, level and an optional 25s timer, so Player 2's name is set in the game itself. Fixes: heat is measured against the current range, a one-number range is no longer a free bullseye, a slip over the line no longer gives the win to the slipper, the loser starts rematches, and the rope is heavier near your own edge. New: one 💥 SURGE per player. Tune in `play()` (tiers), `aiGo()` (AI), `TIME`. Bump `V` in `sw.js` after every change.
+
+## v122 changes
+**Tug of War rewards**: vs the computer every match pays (win: Easy 10 / Medium 25 / Hard 50 coins plus small XP; a loss on Medium/Hard pays 5 coins), capped at 5 rewarded matches a day (`TGCAP`); first Hard win pays 2 gems once; 2-player games pay nothing. State in `ms_pro.tgs`. **Home stats board** (still 2 x 4): Streak, Wins, Coins, Gems, Map stars, Region medals, Endless Tower floor, Tug wins. Replaced Conquest stars (already on the Conquest tile), achievements, Laurels and Ghosts. Bump `V` in `sw.js` after every change.
