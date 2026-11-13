@@ -1232,8 +1232,7 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <div id="prof"></div>
- <button id="fcBtn" aria-live="off"></button>
-  <div class="tiles"><button id="seasonBtn"></button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
+ <div class="tiles"><button id="seasonBtn"></button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
  <button id="play">ENTER THE ARENA</button>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="setRow" data-go="s-set">⚙️ SETTINGS</button></div>
  <div id="inst" hidden></div>
@@ -1340,7 +1339,7 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><div id="shopList" class="shHub"></div>
+ <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><button id="fcBtn" aria-live="off"></button><div id="shopList" class="shHub"></div>
 </section>
 
 <section class="scr" id="s-set" style="--bg:url(img/menu_bg.webp)">
@@ -4257,8 +4256,8 @@ html.wd-elementa #app #gold{animation:none}
 </style>
 <style>.pvl{text-align:center;font-size:.7rem;letter-spacing:.08em;opacity:.85;margin:2px 0 8px}</style>
 <style>
-/* v130: free chest strip on the home screen */
-#app #fcBtn{width:min(92%,370px);box-sizing:border-box;order:4;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;padding:6px 12px;min-height:46px;margin:0}
+/* v131: free chest strip at the top of the Armory (home only gets a badge on the Armory tile) */
+#app #fcBtn{width:min(92%,370px);box-sizing:border-box;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;padding:6px 12px;min-height:46px;margin:0}
 #fcBtn:before,#fcBtn:after{display:none!important}
 #fcBtn>i{font-style:normal;font-size:1.7rem;line-height:1}
 #fcBtn>div{flex:1;min-width:0}
@@ -4272,7 +4271,7 @@ html.wd-elementa #app #gold{animation:none}
 @keyframes fcP{50%{box-shadow:0 0 22px rgb(255 200 58 / .8)}}
 </style>
 <script>
-/* v130: FREE CHEST. Opens every 4-6 hours (timer starts when you open it; a ready chest waits, it never stacks). Pays coins every time, plus sometimes an item, a skin (cheap shop cosmetics), a double-coin boost (2h; rarely a 24h double-coin day), a quick refill (next chest in 1h) and, rarely, 1 gem (at most once per 3 days). State: PRO.fc = {n: next ready time, t0: timer start, c: opened count, hi: latest clock seen (guards against setting the clock back), gl: last gem time, dbl: double-coin end time}. cx() in the main script doubles rewards while PRO.fc.dbl is in the future. Tune MN/MX, the weights in open(), SK and IT. */
+/* v131: FREE CHEST (lives in the Armory; the home Armory tile shows a FREE / 2× badge and a one-time toast when it is ready). Opens every 4-6 hours (timer starts when you open it; a ready chest waits, it never stacks). Pays coins every time, plus sometimes an item, a skin (cheap shop cosmetics), a double-coin boost (2h; rarely a 24h double-coin day), a quick refill (next chest in 1h) and, rarely, 1 gem (at most once per 3 days). State: PRO.fc = {n: next ready time, t0: timer start, c: opened count, hi: latest clock seen (guards against setting the clock back), gl: last gem time, dbl: double-coin end time}. cx() in the main script doubles rewards while PRO.fc.dbl is in the future. Tune MN/MX, the weights in open(), SK and IT. */
 (function(){
 const H=36e5,MN=4*H,MX=6*H,SK=['th:azure','th:emerald','th:tyrian','th:crimson','th:sunset','ps:gladiator','ps:hoplite','ps:spartan','ps:praetorian','ps:pharaoh','ks:robot','ks:skull','ks:dragon','ks:alien'],IT=['x:SCAN','time','pack','head','tome','mag','x:FOCUS','x:SHIELD','s:DIRECTION','s:RANGE'];
 const fc=()=>PRO.fc||(PRO.fc={n:0,t0:0,c:0,hi:0,gl:0,dbl:0}),now=()=>Math.max(Date.now(),fc().hi||0),
@@ -4296,13 +4295,19 @@ function roll(){const f=fc(),t=now(),r=Math.random(),base=Math.round((40+rk()*14
 function show(){const f=fc(),t=now();if(t<f.n){return toast(`📦 <b>FREE CHEST</b><br><small>Your next one is ready in ${fmt(f.n-t)}</small>`)}
  isOpen=0;$('#fcBox').textContent='🎁';$('#fcTxt').innerHTML='Tap the chest to open it!';$('#fcGo').textContent='OPEN';$('#fcPop').classList.add('on')}
 function act(){if(isOpen){$('#fcPop').classList.remove('on');profUI();return}
- const f=fc();if(now()<f.n)return;isOpen=1;const x=roll();$('#fcBox').textContent='✨';$('#fcBox').classList.add('pop2');setTimeout(()=>$('#fcBox').classList.remove('pop2'),300);
+ const f=fc();if(now()<f.n)return;isOpen=1;told=0;const x=roll();$('#fcBox').textContent='✨';$('#fcBox').classList.add('pop2');setTimeout(()=>$('#fcBox').classList.remove('pop2'),300);
  $('#fcTxt').innerHTML=`<b>${x.txt}</b>${x.tag.length?'<br>'+x.tag.join('<br>'):''}<br><small>Next free chest in ${fmt(f.n-now())}</small>`;$('#fcGo').textContent='COLLECT';burst(['🪙','✨','🎁'],x.rare?44:28);sfx('powerup');fcUI();profUI()}
 $('#fcBtn').onclick=()=>{sfx('click');show()};$('#fcBox').onclick=$('#fcGo').onclick=act;
-const _pf=profUI;profUI=function(){const r=_pf.apply(this,arguments);try{fcUI()}catch(e){}return r};
-setInterval(()=>{if(document.hidden)return;const f=fc(),d=Date.now();if(d>(f.hi||0)+6e4){f.hi=d;LS.set('ms_pro',PRO)}fcUI()},5000);
-FCON=1;fcUI();
-window.__fc={fc,roll,fcUI};
+let told=0;
+function fcBadge(){const b=$('#shopBtn');if(!b)return;const f=fc(),t=now(),rd=t>=f.n,dbl=f.dbl>t,txt=rd?'FREE':dbl?'⚡ 2×':'';let e=b.querySelector('.bd.fcn');
+ if(!txt){if(e)e.remove();return}
+ if(!e){e=document.createElement('em');e.className='bd fcn';e.style.cssText='font-style:normal;width:auto;padding:0 7px';b.appendChild(e)}
+ if(e.textContent!==txt)e.textContent=txt;
+ if(rd&&!told&&$('#s-home').classList.contains('on')){told=1;setTimeout(()=>{if(now()>=fc().n&&$('#s-home').classList.contains('on'))toast('🎁 <b>FREE CHEST READY</b><br><small>Open The Armory to collect it</small>')},3800)}}
+const _pf=profUI;profUI=function(){const r=_pf.apply(this,arguments);try{fcUI();fcBadge()}catch(e){}return r};
+setInterval(()=>{if(document.hidden)return;const f=fc(),d=Date.now();if(d>(f.hi||0)+6e4){f.hi=d;LS.set('ms_pro',PRO)}fcUI();fcBadge()},5000);$('#shopBtn').addEventListener('click',()=>{fcUI()});
+FCON=1;fcUI();fcBadge();
+window.__fc={fc,roll,fcUI,fcBadge};
 })();
 </script>
 </body></html>
