@@ -392,3 +392,6 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v135 changes
 **Endless Tower is now one permanent climb** (`PRO.twc`). It saves your floor, relics and stock, so you resume where you stopped. Relics only every 5th floor (was every floor); 👹 Guardian every 10th, 🗿 Titan every 50th, random twists (TIGHT / FROZEN / BLESSED) from floor 12. A failed floor burns a 🔥 torch (5 max, 1 relights per hour, 3 💎 refills). Gems at floors 10, 20, 30… (3 at 50s, 5 at 100s). Rankings show the 🔥 day streak. The seasonal marathon keeps the old fresh-run tower. **Republish `firebase-rules.json`** (floor limit raised from 300 to 10000, new `d` field). Bump `V` in `sw.js`.
+
+## v136 changes
+**FLAWLESS star goal** now forgives one slip ("Lose at most 1 round") on Conquest and world-map battles. **World map vault hints**: a 🗝️ appears on any battle that sits next to a still-hidden vault, the battle briefing says so, the map summary shows a "Vault hints" card, and the first-time tour has a new slide. **Skin prices**: world skins (player skins and the old Kiraxo looks) now cost a fraction of their world in gems (about 15–28% of the world's price; Diamond Guard 20, Crystal 25) and coin skins are about 40% cheaper. Already-owned skins are untouched. Bump `V` in `sw.js` after every change.
