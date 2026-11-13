@@ -378,3 +378,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v130 changes
 **Free Chest on a timer.** (Moved in v131: it now lives in the 🛒 Armory, at the top under the coin line; the home screen is unchanged except a `FREE` badge on the Armory tile, or `⚡ 2×` while a coin boost runs, and a one-time toast when a chest is ready.) A slim strip opens a free chest every 4 to 6 hours. The timer starts when you open it; a ready chest waits (it never stacks). Every chest pays coins; on top it can give an item, a skin (cheap shop cosmetics you do not own yet), a ⚡ double-coin boost (2h, and rarely a 🌞 24h double-coin day), a ⏱️ quick refill (next chest in 1 hour) and, rarely, 1 gem (about 2%, and at most once per 3 days). `cx()` doubles rewards while `PRO.fc.dbl` is in the future (it is switched on only after load, so baked tables such as the daily chest stay fixed); the Streak Freeze price now uses `FZC` so a boost never makes it dearer. Setting the clock back does not help (`PRO.fc.hi`). State: `PRO.fc`. Tune `MN`/`MX`, the weights in `roll()`, `SK`, `IT`. Bump `V` in `sw.js` after every change.
+
+
+## v132 changes
+**Free Chest timer is now 2 hours** (was 4 to 6). Change `MN`/`MX` in the Free Chest script (set them different for a random range). Quick refill still gives the next chest in 1 hour. Bump `V` in `sw.js` after every change.
