@@ -382,3 +382,6 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v132 changes
 **Free Chest timer is now 2 hours** (was 4 to 6). Change `MN`/`MX` in the Free Chest script (set them different for a random range). Quick refill still gives the next chest in 1 hour. Bump `V` in `sw.js` after every change.
+
+## v133 changes
+**Armory premium look** for the default Roman theme: the category plates now match the home tiles (parchment texture, one colour per category, gold frame and Greek-key edge); balance pill and Free Chest match too. **World skins**: Neon Grid, Shogun’s Realm, Frostlands, Buganda and Golden Sands each get 4 player skins and 2 Kiraxo skins (gems, owners of that world only, like the Astral and Atlantis ones). World skins now live in PLAYER SKINS / KIRAXO SKINS (they used to sit in the Gem Vault). Add more skins in the `W` data of the v133 block (PSK, KS, KSC, SHOP, SKW). Bump `V` in `sw.js` after every change.
