@@ -395,3 +395,9 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v136 changes
 **FLAWLESS star goal** now forgives one slip ("Lose at most 1 round") on Conquest and world-map battles. **World map vault hints**: a 🗝️ appears on any battle that sits next to a still-hidden vault, the battle briefing says so, the map summary shows a "Vault hints" card, and the first-time tour has a new slide. **Skin prices**: world skins (player skins and the old Kiraxo looks) now cost a fraction of their world in gems (about 15–28% of the world's price; Diamond Guard 20, Crystal 25) and coin skins are about 40% cheaper. Already-owned skins are untouched. Bump `V` in `sw.js` after every change.
+
+## v137 changes
+**Winning keeps your heart.** A world-map energy bar (❤️) or a Conquest battle ticket (🎟️) is now handed back when the battle ends if you win the battle **or win at least one round of it**. Only a fight where you win no round at all keeps the cost. The end-of-battle card says whether the bar or ticket was kept. Garrison raids and seasonal marathon battles are unchanged (they were already free). Tune: the `keep` rule in the v137 block after the world-map `campEnd` wiring. Bump `V` in `sw.js` after every change.
+
+## v138 changes
+**Endless Tower pacing and bragging.** The main tower was already one saved climb (v135, relic every 5th floor); the *seasonal marathon* tower still offered a relic after every floor, which made it repetitive. It now drafts one every 5th floor (`EV_REL`). **Tower titles** at floors 10, 25, 50, 100, 250, 500 and 1000 (`TW_T`) show on the tower screen and next to names in the rankings, and a new 📤 BRAG button shares your floor and climbing streak. Tidy: pending relic drafts are cleared once every relic is maxed. Bump `V` in `sw.js` after every change.
