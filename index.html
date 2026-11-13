@@ -841,7 +841,7 @@ html.wd-astral #app:not(#z) #shopPopB .card button:hover{transform:translateY(-2
 html.wd-astral #app:not(#z) #shopPopB .card button:active{transform:scale(.96)}
 html.wd-astral #app:not(#z) #shopPopB .card button:disabled{opacity:1;color:#7ff0d0;text-shadow:0 0 8px #4fd0c088;background:linear-gradient(180deg,#0c2a30,#05141a) padding-box,linear-gradient(120deg,#4fd0c0aa,#2a6a60) border-box;box-shadow:0 0 12px #4fd0c044;animation:none}
 /* Astral exclusives (the Astral world, its Void Eater and star skins) glow like a rare find */
-@supports selector(:has(a)){html.wd-astral #app:not(#z) #shopPopB .card:has(:is([data-wd=astral],[data-sk="ks:astral"],[data-sk="ps:comet"],[data-sk="ps:nova"],[data-sk="ps:nebula"],[data-sk="ps:eclipse"])){background:linear-gradient(100deg,#241a6cf2,#0d0a38ee 60%,#06061ef5) padding-box,conic-gradient(from 0deg,#e8c66a,#6a4ad0,#4fd0c0,#e8c66a,#ffe9a8,#e8c66a) border-box;box-shadow:0 0 20px #e8c66a55,0 0 34px #6a4ad044,inset 0 1px 0 #ffffff25}}
+@supports selector(:has(a)){html.wd-astral #app:not(#z) #shopPopB .card:has(:is([data-wd=astral],[data-sk="ps:k_astral"],[data-sk="ps:comet"],[data-sk="ps:nova"],[data-sk="ps:nebula"],[data-sk="ps:eclipse"])){background:linear-gradient(100deg,#241a6cf2,#0d0a38ee 60%,#06061ef5) padding-box,conic-gradient(from 0deg,#e8c66a,#6a4ad0,#4fd0c0,#e8c66a,#ffe9a8,#e8c66a) border-box;box-shadow:0 0 20px #e8c66a55,0 0 34px #6a4ad044,inset 0 1px 0 #ffffff25}}
 @media(prefers-reduced-motion:reduce){html.wd-astral #shopList .shTile,html.wd-astral #shopList .shTile .e,html.wd-astral #shopList .shTile .e:before,html.wd-astral #app #gold,html.wd-astral #shopPop .shBox,html.wd-astral #shopPop .shBox h2,html.wd-astral #shopPopB .card,html.wd-astral #shopPopB .card button{animation:none!important}}
 /* ======== v78: THE ARMORY in every world (Roman, Neon Grid, Shogun, Frostlands, Buganda, Golden Sands). Astral keeps its own v77b look. ======== */
 @keyframes armIn{from{opacity:0;transform:translateY(12px) scale(.95)}to{opacity:1;transform:none}}
@@ -1018,7 +1018,7 @@ html.wd-atlantis #atlTide.surge{animation:atlSurge .5s ease-in-out infinite alte
 html.wd-atlantis{--ar:22px 8px 22px 8px;--tb:1px solid #6ccbf855;--tbg:radial-gradient(ellipse at 50% 0,#6ccbf824,#0000 60%),radial-gradient(circle at 20% 92%,#ff8fd818,#0000 40%),linear-gradient(170deg,#061f51e6,#021326f2);--tsh:0 0 14px #1b70c633,inset 0 1px 0 #ffffff22,inset 0 -12px 18px #0005;--mrad:50%;--mbg:radial-gradient(circle at 30% 24%,#ffffffcc 0 5%,#ffffff33 6% 14%,#0000 30%),conic-gradient(from 200deg,#ff8fd866,#6ccbf877,#8f9bff77,#ff8fd866),radial-gradient(circle,#082b68,#021326);--mring:inset 0 0 12px #6ccbf877,0 0 14px #1b70c688;--mspin:atlBreath 4s ease-in-out infinite;--bra:16px 6px 16px 6px;--bbd:1px solid #6ccbf8aa;--pat:radial-gradient(1.5px 1.5px at 20px 30px,#bfe0ff55,#0000) 0 0/120px 90px}
 html.wd-atlantis #shopPop:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,#0000 5px,#bfe0ff55 6px,#0000 7px) 0 0/90px 130px,radial-gradient(circle,#0000 3px,#bfe0ff44 4px,#0000 5px) 40px 60px/70px 110px;animation:atlSnow 18s linear infinite reverse}
 html.wd-atlantis #app #gold{animation:none}
-@supports selector(:has(a)){html.wd-atlantis #app #shopPopB .card:has(:is([data-wd=atlantis],[data-sk="ks:atlantis"],[data-sk="ps:tide"],[data-sk="ps:kraken"],[data-sk="ps:pearl"],[data-sk="ps:siren"])){border:1px solid transparent;background:linear-gradient(100deg,#082b68f2,#03113bf0 60%,#021326f5) padding-box,conic-gradient(from 0deg,#6ccbf8,#ff8fd8,#8f9bff,#6ccbf8,#bfe0ff,#6ccbf8) border-box;box-shadow:0 0 20px #6ccbf855,0 0 34px #ff8fd833,inset 0 1px 0 #ffffff33}}
+@supports selector(:has(a)){html.wd-atlantis #app #shopPopB .card:has(:is([data-wd=atlantis],[data-sk="ps:k_atlantis"],[data-sk="ps:tide"],[data-sk="ps:kraken"],[data-sk="ps:pearl"],[data-sk="ps:siren"])){border:1px solid transparent;background:linear-gradient(100deg,#082b68f2,#03113bf0 60%,#021326f5) padding-box,conic-gradient(from 0deg,#6ccbf8,#ff8fd8,#8f9bff,#6ccbf8,#bfe0ff,#6ccbf8) border-box;box-shadow:0 0 20px #6ccbf855,0 0 34px #ff8fd833,inset 0 1px 0 #ffffff33}}
 @media(prefers-reduced-motion:reduce){#atlSky,#atlSky *,#atlTide,#atlTide *,html.wd-atlantis #app h1,html.wd-atlantis #app h2,html.wd-atlantis .scr.on>*,html.wd-atlantis .logo,html.wd-atlantis .pkav:before,html.wd-atlantis .pkav:after,html.wd-atlantis #xp i,html.wd-atlantis #xp i:after,html.wd-atlantis #app #play,html.wd-atlantis #app .tiles button,html.wd-atlantis #app .tiles button:after,html.wd-atlantis #app .tiles .ti,html.wd-atlantis #app .tiles .ti:before,html.wd-atlantis #app .tiles .ti:after,html.wd-atlantis #app .plate::before,html.wd-atlantis #app .plate::after,html.wd-atlantis #app #num,html.wd-atlantis #app #spec:after,html.wd-atlantis #app #hist span,html.wd-atlantis #shopPop:before{animation:none!important}}
 /* ======== v85 MERGE: sea-blue deep, realistic jellyfish drifting behind the glass, the Kraken, and the tide timer pill ======== */
 /* realistic jellyfish (drawn by atlJelly() in SVG, swimming between random spots) */
@@ -1334,8 +1334,9 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 
 <section class="scr" id="s-hall" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">Remembered forever</div><h1>Hall of Glory</h1><div class="bm-sub">The five finest victories in the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="lb"></div><button id="houseBtn" class="bm-btn bm-center">👑 THE HOUSE</button>
+ <header class="bm-hero"><div class="bm-kicker">Remembered forever</div><h1>Hall of Glory</h1><div class="bm-sub">The five finest victories in the arena.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="lb"></div><button id="houseBtn" class="bm-btn bm-center">👑 THE HOUSE</button><button id="kxBtn" class="bm-btn bm-center">😈 KIRAXO GALLERY</button>
 </section>
+<div class="pop" id="kxPop" style="z-index:13"><div class="card" style="width:min(94%,400px);max-height:84%;overflow-y:auto;text-align:left"><h2 style="text-align:center;margin:0 0 4px">😈 KIRAXO GALLERY</h2><small>Kiraxo changes his look by himself as you conquer regions in each world. Tap a look to make him wear it.</small><div id="kxBody"></div><button id="kxX" style="width:100%;margin-top:10px">CLOSE</button></div></div>
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
@@ -1803,7 +1804,7 @@ function aiBoss(){const acc=Math.min(.95,G.D.acc+PERS[G.pers].mod+.07*G.broken),
 // ---- v6: juice, keypad, progression, daily ----
 const TC={blazing:'#ff4d1a',hot:'#ff9a3c',warm:'#e6c45a',cold:'#6fb3e0',freezing:'#a8e0ff'},TE={blazing:'🔥',hot:'🌶️',warm:'☀️',cold:'🌬️',freezing:'🧊'},
 EM={DOUBLE:'💰',ONE_SHOT:'🗡️',HOT_ZONE:'🎯',KIRAXO_RAGE:'😡',BULLSEYE:'🎯',SHIELD:'🛡️'};
-const KS={'':['😐','😈','😤','🤬','👹'],robot:['🤖','🦾','🥴','💢','👾'],skull:['💀','☠️','😵','👻','🧟'],dragon:['🐲','🔥','😤','💥','🐉'],alien:['👽','🛸','😵','💢','👾'],buganda:['👑','🦁','😤','💢','🔥'],gold:['🕌','🐪','😤','💢','🔥'],astral:['🌌','🌠','😤','💢','🕳️'],atlantis:['🐋','🦈','😤','💢','🐙'],cyber:['🤖','🦾','🥴','💢','⚡'],samurai:['⛩️','🗡️','😤','💢','🔥'],ice:['🏔️','🪓','😤','💢','❄️'],crystal:['🔮','💎','😤','💢','✨']},KSI={buganda:'img/ks_buganda.webp',gold:'img/ks_gold.webp',astral:'img/ks_astral.webp',atlantis:'img/ks_atlantis.webp',cyber:'img/ks_cyber.webp',samurai:'img/ks_samurai.webp',ice:'img/ks_ice.webp'},KSE=v=>KSI[v]||KS[v][4],eKS=()=>PRO.ks||(document.documentElement.classList.contains('wd-atlantis')?'atlantis':''),mood=()=>KS[eKS()][G.boss?4:G.special==='KIRAXO_RAGE'?3:G.score[1]-G.score[0]>15?1:G.score[0]-G.score[1]>15?2:0];
+const KS={'':['😐','😈','😤','🤬','👹'],robot:['🤖','🦾','🥴','💢','👾'],skull:['💀','☠️','😵','👻','🧟'],dragon:['🐲','🔥','😤','💥','🐉'],alien:['👽','🛸','😵','💢','👾'],buganda:['👑','🦁','😤','💢','🔥'],gold:['🕌','🐪','😤','💢','🔥'],astral:['🌌','🌠','😤','💢','🕳️'],atlantis:['🐋','🦈','😤','💢','🐙'],cyber:['🤖','🦾','🥴','💢','⚡'],samurai:['⛩️','🗡️','😤','💢','🔥'],ice:['🏔️','🪓','😤','💢','❄️'],crystal:['🔮','💎','😤','💢','✨']},KSI={buganda:'img/ks_buganda.webp',gold:'img/ks_gold.webp',astral:'img/ks_astral.webp',atlantis:'img/ks_atlantis.webp',cyber:'img/ks_cyber.webp',samurai:'img/ks_samurai.webp',ice:'img/ks_ice.webp'},KSE=v=>KSI[v]||KS[v][4],eKS=()=>{try{return kxAuto()}catch(e){return''}},mood=()=>KS[eKS()][G.boss?4:G.special==='KIRAXO_RAGE'?3:G.score[1]-G.score[0]>15?1:G.score[0]-G.score[1]>15?2:0];
 Object.assign(KS,{"virus":["🦠","👁️","🥴","💢","☣️"],"mainframe":["🖥️","🦾","📉","💢","💥"],"oni":["👹","🗡️","😵","💢","🔥"],"tengu":["👺","🪭","🥴","💢","🌪️"],"yeti":["🦍","🧊","🥶","💢","🏔️"],"frostgiant":["🧊","🪓","🥶","💢","❄️"],"elephant":["🐘","🦷","😵","💢","🌍"],"drumlord":["🥁","👑","😵","💢","🔥"],"djinn":["🧞","🔮","😵","💢","🔥"],"scorpion":["🦂","🏜️","😵","💢","☠️"]});
 let AC,shareText='',tt;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function tone(f,d=.08,ty='sine',v=.15){if(S.mute||!S.sfx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v*S.sfx,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(t+d)}catch(e){}}
@@ -3016,7 +3017,7 @@ function dsDay(){if(!PRO.dsh||PRO.dsh.d!==today())PRO.dsh={d:today(),b:[]};const
 const dPrice=(it,pct)=>PR(it[3]*(1-pct/100));
 function gearPrice(k,l){const b=GEAR[k][4][l],d=dsDay();return PR(d.gs===k?b*(1-d.gp/100):b)}
 let SHCAT='';
-const SHCATS=[['gm','💎','GEM VAULT','Earned Gems'],['wd','🌍','WORLDS','New Looks'],['mk','🏺','TODAY’S MARKET','Daily Deals'],['fg','⚒️','THE FORGE','Upgrades'],['rl','📿','RELICS','One-Time'],['bn','🎁','WAR CHESTS','Bundles'],['c','🎒','CONSUMABLES','For VS Matches'],['ps','⚔️','PLAYER SKINS','Your Look'],['ks','😈','KIRAXO SKINS','Foe Looks'],['th','🏛️','ARENAS','Recolours'],['pm','⭐','PERMANENT','Pick One']];
+const SHCATS=[['gm','💎','GEM VAULT','Earned Gems'],['wd','🌍','WORLDS','New Looks'],['mk','🏺','TODAY’S MARKET','Daily Deals'],['fg','⚒️','THE FORGE','Upgrades'],['rl','📿','RELICS','One-Time'],['bn','🎁','WAR CHESTS','Bundles'],['c','🎒','CONSUMABLES','For VS Matches'],['ps','⚔️','PLAYER SKINS','Your Look'],['th','🏛️','ARENAS','Recolours'],['pm','⭐','PERMANENT','Pick One']];
 function shopUI(){$('#gold').textContent='💰 '+PRO.gold+' · 💎 '+(PRO.gems||0);const dd=dsDay(),m=new Date(),ms=new Date(m.getFullYear(),m.getMonth(),m.getDate()+1)-m,hh=Math.floor(ms/36e5),mm=Math.floor(ms%36e5/6e4);
  const card=(e,n,d,btn)=>`<div class="card" style="margin:0;display:flex;align-items:center;gap:10px"><span style="font-size:1.8rem">${e}</span><div style="flex:1"><b>${n}</b><br><small>${d}</small></div>${btn}</div>`,h2=()=>'',bt='style="min-width:84px;padding:8px"';
  $('#shopList').innerHTML=SHCATS.map(c=>`<button class="shTile" data-cat="${c[0]}"><span class="e">${c[1]}</span><b>${c[2]}</b><small>${c[0]==='mk'?'Refreshes in '+hh+'h '+mm+'m':c[3]}</small></button>`).join('');
@@ -3187,7 +3188,7 @@ function tqFix(){let c=0;const T=TQ(),swap=(arr,pool,sd)=>{if(arr.some(q=>q.id[0
 const SW={d:{c:130,x:80,inv:{pack:1,'s:DIRECTION':1}},w:{c:600,x:300,inv:{tome:1,mag:1,bane:1,'s:DIGIT':1}}};SW.d.c=cx(SW.d.c);SW.w.c=cx(SW.w.c);
 const CHEST=[{c:25},{c:35},{c:50,inv:{'x:SCAN':1}},{c:60},{c:80,inv:{time:1}},{c:100,inv:{pack:1}},{c:150,inv:{phx:1,bane:1}}].map(x=>({...x,c:cx(x.c)}));
 const RR={1:{c:60,inv:{'x:SCAN':1,'s:DIRECTION':1}},2:{c:100,inv:{pack:1}},3:{c:160,inv:{head:1,'x:FOCUS':1,'s:RANGE':1}},4:{c:220,inv:{phx:1,'x:SHIELD':1}},5:{c:300,own:['ps:hoplite'],inv:{time:1}},
- 6:{c:400,own:['ps:gladiator'],inv:{tome:1,'s:PROPERTY':1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ks:dragon'],inv:{tome:1,'x:SCAN':2,'s:DIGIT':1}},
+ 6:{c:400,own:['ps:gladiator'],inv:{tome:1,'s:PROPERTY':1}},7:{c:500,inv:{att:1,time:2,mag:1}},8:{c:650,own:['ps:praetorian'],inv:{bane:2}},9:{c:800,own:['ps:k_dragon'],inv:{tome:1,'x:SCAN':2,'s:DIGIT':1}},
  10:{c:1000,own:['ps:pharaoh'],inv:{mag:1,bane:2,'x:SHIELD':2}},11:{c:1300,own:['th:imperial','ps:titan'],inv:{phx:2,pack:2}},12:{c:2000,own:['ps:imperator','ps:laurel','th:tyrian'],inv:{mag:2,tome:2,bane:2,pack:2}}};Object.values(RR).forEach(x=>x.c=cx(x.c));
 const nmOf=k=>{const it=SHOP.find(x=>x[0]===k);return it?it[1]+' '+it[2]:k};
 function grant(r){PRO.gold+=r.c||0;const t=[`💰 ${r.c||0}`];for(const k in r.inv||{}){PRO.inv[k]=(PRO.inv[k]||0)+r.inv[k];t.push(`${r.inv[k]}× ${nmOf(k)}`)}(r.own||[]).forEach(k=>{PRO.own[k]=1;t.push('NEW: '+nmOf(k))});if(r.x)PRO.xp+=r.x;LS.set('ms_pro',PRO);return t.join(' · ')}
@@ -3729,7 +3730,7 @@ const TRIAL=[.40,.48,.56,.64,.72,.80,.88,.96,1.04,1.14];
 /* ---- rewards: 8 milestones, last one is the Grand Prize ---- */
 const MS=[[150,{c:1500,inv:{pack:1}}],[400,{c:3000,g:3,inv:{'x:SCAN':3}}],[800,{c:5000,g:5}],[1300,{c:8000,g:8,inv:{tome:1,bane:1}}],[1900,{c:12000,g:12,inv:{mag:1,pack:3}}],[2600,{c:18000,g:20,inv:{phx:3}}],[3200,{c:28000,g:35,inv:{tome:2,bane:2}}],[3800,{c:60000,g:100,inv:{phx:5,tome:5,pack:5},gp:1}]];
 const OLD_MS=[[80,{c:250,inv:{pack:1}}],[200,{c:400,inv:{'x:SCAN':2}}],[380,{c:600,g:2}],[600,{c:800,inv:{tome:1,bane:1}}],[900,{c:1200,g:3}],[1300,{c:1600,inv:{mag:1,pack:2}}],[1800,{c:2200,g:5}],[2400,{c:3500,g:10,inv:{phx:2,tome:2},gp:1}]];
-const PREM=['ps:diamond','ks:crystal','pm:ring','pm:vigil','pm:eagle'],prem=()=>PREM.find(k=>!(PRO.own&&PRO.own[k]));
+const PREM=['ps:diamond','ps:k_crystal','pm:ring','pm:vigil','pm:eagle'],prem=()=>PREM.find(k=>!(PRO.own&&PRO.own[k]));
 const QP=[['win','Clear {t} Marathon trials',10,200,2500,3],['star','Earn {t} ⭐ on the Marathon Map',20,350,5000,6],['two','Earn ⭐⭐ or better on {t} trials',6,300,4000,5],['three','Earn a perfect ⭐⭐⭐ on {t} trials',3,450,7000,8],['streak','Clear {t} trials in a row without a defeat',5,300,4500,5],['days','Compete on {t} different days',10,350,5000,6],['runs','Finish {t} trial attempts',40,250,3000,3],['boss','Defeat {boss}',1,500,9000,15]];
 function shuf(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function cfg(id){const E=evOf(id),ty=tyOf(id),r=mul(seed('sev'+id)),foe=shuf(FOE,r);let st;
@@ -4332,4 +4333,38 @@ html:not(.light):not([class*="wd-"]) #app #shopList .shTile[data-cat="pm"]{--b1:
 html:not(.light):not([class*="wd-"]) #app #gold{border:1px solid #e6b94a99;border-radius:10px;background:var(--rt),var(--rm),linear-gradient(160deg,#7a2036,#2e0f26 70%);box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,0 0 14px #e6b94a33;outline:1px solid #e6b94a55;outline-offset:-4px;clip-path:none}
 html:not(.light):not([class*="wd-"]) #app #fcBtn{background:var(--rt),var(--rm),linear-gradient(165deg,#8a2420,#380a0b);border:2px solid var(--gold);border-radius:12px;outline:1px solid #e6b94a88;outline-offset:-5px;box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,inset 0 -18px 26px #0005}
 </style>
+<script>
+/* v134: KIRAXO LOOKS ARE EARNED, SKINS ARE FOR PLAYERS. Kiraxo now wears the look of the world you play, chosen by progress (KLAD: conquering region n of a world gives look n, shown with a splash). Players no longer buy Kiraxo looks: every old Kiraxo skin is now a PLAYER skin (ps:k_<name>, same price), and anything already owned or equipped is converted once (PRO.kmig). Gallery in Hall of Glory; override per world in PRO.kx. To add a look for a future region, push its key onto KLAD[world] and add KS / KSC / KNAME entries. */
+(function(){
+Object.assign(KS,{caesar:['🏛️','🗡️','😵','💢','👑'],warlord:['🪖','🛡️','😵','💢','⚔️'],starmaw:['🔭','☄️','😵','💢','🌠'],leviathan:['🐳','🦑','😵','💢','🌊']});
+Object.assign(KSC,{caesar:'#e6c15a',warlord:'#d35b3a',starmaw:'#ffd45a',leviathan:'#3df2e0'});
+const KLAD={roman:['caesar','warlord'],cyber:['cyber','virus','mainframe'],samurai:['samurai','oni','tengu'],ice:['ice','yeti','frostgiant'],buganda:['buganda','elephant','drumlord'],gold:['gold','djinn','scorpion'],astral:['astral','starmaw'],atlantis:['atlantis','leviathan']},
+KORD=['roman','cyber','samurai','ice','buganda','gold','astral','atlantis'],
+KNAME={caesar:'CAESAR KIRAXO',warlord:'WARLORD KIRAXO',cyber:'CYBER-GOD KIRAXO',virus:'VIRUS KIRAXO',mainframe:'MAINFRAME KIRAXO',samurai:'SHOGUN KIRAXO',oni:'ONI KIRAXO',tengu:'TENGU KIRAXO',ice:'VIKING KIRAXO',yeti:'YETI KIRAXO',frostgiant:'FROST GIANT KIRAXO',buganda:'KABAKA KIRAXO',elephant:'ELEPHANT KIRAXO',drumlord:'DRUM LORD KIRAXO',gold:'SULTAN KIRAXO',djinn:'DJINN KIRAXO',scorpion:'SCORPION KIRAXO',astral:'VOID EATER KIRAXO',starmaw:'STAR MAW KIRAXO',atlantis:'THE KRAKEN',leviathan:'LEVIATHAN KIRAXO'};
+const curW=()=>PRO.wd||'roman';
+function kxN(w){let n=0;const wm=PRO.wm||{};for(;;){const q=wm[n?w+'~'+n:w];if(q&&q.d)n++;else break}return n}
+const kxAuto=window.kxAuto=function(w){w=w||curW();const L=KLAD[w]||[],n=Math.min(kxN(w),L.length);if(!n)return'';const o=(PRO.kx||{})[w],i=L.indexOf(o);return o&&i>=0&&i<n?o:L[n-1]};
+/* old Kiraxo skins become player skins */
+const ND={};
+SHOP.forEach(it=>{if(it[0].slice(0,3)!=='ks:')return;const k=it[0].slice(3),face=KSI[k]?KS[k][0]:it[1];it[0]='ps:k_'+k;it[2]=it[2].replace(/ KIRAXO$/,'').replace(/^THE /,'');it[3]=it[3].replace(/^Gem-only Kiraxo skin/,'Gem-only player skin').replace(/^Kiraxo skin/,'Player skin').replace(/^Boss skin/,'Player skin').replace(/ boss skin/,' skin');PSK['k_'+k]=[face,KSC[k]||'#ffd45a',it[2]];ND[k]=1});
+Object.keys(SKW).forEach(k=>{if(k.slice(0,3)==='ks:'){SKW['ps:k_'+k.slice(3)]=SKW[k];delete SKW[k]}});
+const ix=SHCATS.findIndex(c=>c[0]==='ks');if(ix>=0)SHCATS.splice(ix,1);
+function kxMig(){let ch=0;const o=PRO.own||(PRO.own={});Object.keys(o).forEach(k=>{if(k.slice(0,3)==='ks:'){const v=k.slice(3);if(ND[v])o['ps:k_'+v]=1;delete o[k];ch=1}});
+ if(PRO.ks){if(ND[PRO.ks]&&!PRO.ps)PRO.ps='k_'+PRO.ks;PRO.ks='';ch=1}
+ if(!PRO.kmig){PRO.kmig=1;PRO.kxs=PRO.kxs||{};KORD.forEach(w=>{PRO.kxs[w]=Math.min(kxN(w),KLAD[w].length)});ch=1}
+ if(ch)LS.set('ms_pro',PRO)}
+function kxCheck(){kxMig();const w=curW(),n=Math.min(kxN(w),KLAD[w].length),q=PRO.kxs=PRO.kxs||{};if(q[w]===undefined)q[w]=0;
+ if(n>q[w]){q[w]=n;LS.set('ms_pro',PRO);const k=KLAD[w][n-1];setTimeout(()=>{try{skSplash(KSE(k),KSC[k],KNAME[k],'KIRAXO HAS CHANGED')}catch(e){}},900)}}
+/* gallery */
+function kxOpen(){const cur=curW(),M=window.__wm||{},WM=M.WMAPS||{},WR=M.WREG||{};
+ $('#kxBody').innerHTML=KORD.map(w=>{const L=KLAD[w],n=Math.min(kxN(w),L.length),V=WORLDS[w],now=kxAuto(w);
+  return `<div class="kxh">${V.e} <b>${V.n}</b>${w===cur?' · <em>this world</em>':''}</div>`+L.map((k,i)=>{const ok=i<n,img=KSI[k],f=img?`<img src="${img}" alt="">`:KS[k][4],t=i===0?(WM[w]||{}).title:((WR[w]||[])[i-1]||{}).t,need=t?'Conquer '+t:'Arrives with a future region';
+   return `<div class="kxr ${ok?'':'lk'}"><span class="f">${f}</span><div style="flex:1"><b>${ok?KNAME[k]:'???'}</b><br><small>${ok?(i===L.length-1&&n===L.length?'Final look so far':'Earned in '+V.n):'🔒 '+need}</small></div>${ok?`<button data-kx="${w}|${k}" ${now===k?'disabled':''}>${now===k?'✓ WORN':'WEAR'}</button>`:''}</div>`}).join('')}).join('')}
+$('#kxBody').onclick=e=>{const b=e.target.closest('[data-kx]');if(!b)return;const [w,k]=b.dataset.kx.split('|'),L=KLAD[w],n=Math.min(kxN(w),L.length);PRO.kx=PRO.kx||{};if(L.indexOf(k)===n-1)delete PRO.kx[w];else PRO.kx[w]=k;LS.set('ms_pro',PRO);sfx('click');kxOpen()};
+$('#kxBtn').onclick=()=>{sfx('click');kxOpen();$('#kxPop').classList.add('on')};$('#kxX').onclick=()=>$('#kxPop').classList.remove('on');
+const _pk=profUI;profUI=function(){const r=_pk.apply(this,arguments);try{kxCheck()}catch(e){}return r};
+kxMig();window.__kx={KLAD,kxN,kxOpen};
+})();
+</script>
+<style>.kxh{margin:12px 0 2px;font-size:.88rem;letter-spacing:.08em;color:var(--gold)}.kxr{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #ffffff14}.kxr .f{font-size:2.2rem;width:50px;text-align:center;line-height:1}.kxr .f img{width:46px;height:46px;border-radius:50%;object-fit:cover}.kxr.lk .f{filter:brightness(0) opacity(.45)}.kxr b{font-size:.8rem}.kxr button{min-width:76px;padding:6px;font-size:.74rem}</style>
 </body></html>
