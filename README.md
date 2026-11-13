@@ -388,3 +388,7 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 
 ## v134 changes
 **Kiraxo looks are earned, not bought.** Kiraxo now wears the look of the world you play, set by progress: conquering region n of a world gives look n (`KLAD`), with a "Kiraxo has changed" splash. A **Kiraxo Gallery** (Hall of Glory) shows every look, silhouettes for the locked ones, and lets players wear any earned look. The Kiraxo skins section is gone from the Armory: every Kiraxo design is now a **player skin** (`ps:k_<name>`, same price; world ones stay owners-only). Anything players already owned or had equipped is converted once. Add a look for a future region: push its key onto `KLAD[world]` and add `KS`, `KSC`, `KNAME` entries. Bump `V` in `sw.js` after every change.
+
+
+## v135 changes
+**Endless Tower is now one permanent climb** (`PRO.twc`). It saves your floor, relics and stock, so you resume where you stopped. Relics only every 5th floor (was every floor); 👹 Guardian every 10th, 🗿 Titan every 50th, random twists (TIGHT / FROZEN / BLESSED) from floor 12. A failed floor burns a 🔥 torch (5 max, 1 relights per hour, 3 💎 refills). Gems at floors 10, 20, 30… (3 at 50s, 5 at 100s). Rankings show the 🔥 day streak. The seasonal marathon keeps the old fresh-run tower. **Republish `firebase-rules.json`** (floor limit raised from 300 to 10000, new `d` field). Bump `V` in `sw.js`.

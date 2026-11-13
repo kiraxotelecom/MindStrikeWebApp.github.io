@@ -62,7 +62,10 @@
       ],
       "$uid": {
         ".write": "auth != null && auth.uid === $uid",
-        ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() >= 1 && newData.child('s').val() <= 300 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12"
+        ".validate": "newData.hasChildren(['n','s']) && newData.child('s').isNumber() && newData.child('s').val() >= 1 && newData.child('s').val() <= 10000 && (!data.exists() || newData.child('s').val() >= data.child('s').val()) && newData.child('n').isString() && newData.child('n').val().length <= 12",
+        "d": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000"
+        }
       }
     }
   }
