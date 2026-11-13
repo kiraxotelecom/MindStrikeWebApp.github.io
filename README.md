@@ -416,3 +416,12 @@ Boss victory burst now also plays in 2-player (Clash of Legions) boss wins, and 
 **Send a Challenge is gone.** The button, the Challenge join button and its popup entry points are removed; an old `#ch=` link or a pasted challenge link now shows a friendly "Challenges are retired" message. The Rival Slain achievement now unlocks for winning a live online match. The old seeded-challenge code is left in place but unreachable.
 
 Bump `V` in `sw.js` after every change.
+
+
+## v142 + v143 changes
+**Stamps:** every world except Roman now needs at least one 🛂 stamp to buy (`st:1` on Neon, Shogun, Frostlands, Buganda and Golden Sands; Elementa 3, Astral 4, Atlantis 5 as before). A stamp is a conquered **World Map** region (its Supreme General defeated) in any world you own, Roman included. Rank and gem prices are unchanged, and worlds you already own stay owned. Bump `V` in `sw.js` after every change.
+**Less tile text (v142).** Subtitles that only restated the title are gone (Armory tiles, Battle Friends, Quests, Arena Trials, Daily Strike, Riddle Scroll, the coin count on the Armory tile). Kept: the Market refresh timer, "Pick One", Conquest tickets, Colosseum runs, streaks and "All done today". `tl()` skips an empty subtitle. Bump `V` in `sw.js` after every change.
+
+
+## v144 changes
+**No Desperation against Kiraxo.** The DESPERATE button/option is hidden and refused in the final-boss battles and in the Boss Phase (`vsKirx()` in `despOK`); the Desperation line in How to Play says so. **HEAT-SEEKER star goal:** a first-try exact hit (a round finished in one guess) now counts as 2 hits toward the goal instead of 1, and the goal text says so. This was why players finishing a round in one guess still missed the star on World Map and Conquest battles that asked for 2 to 4 blazing hits. Bump `V` in `sw.js` after every change.
