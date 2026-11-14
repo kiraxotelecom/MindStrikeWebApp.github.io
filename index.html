@@ -1373,6 +1373,40 @@ html.noaris .arTip{display:none!important}
 /* ===== v154: wardrobe ===== */
 .arWrap .shd{transition:transform .2s}
 .arWrap:not([data-m=idle]):not([data-m=think]):not([data-m=sleep]) .shd{transform:translateY(-17px)}
+
+/* ===== v156: ARIS tower brag cards (floors 25, 50, 100, 200, 500, 1000) ===== */
+#arBrag{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--bc) 38%,#0b0716),#05030c 78%);overflow:hidden}
+#arBrag.on{display:flex;animation:bgIn .5s ease-out}
+@keyframes bgIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+html.noaris #arBrag .arWrap{display:block!important}
+#arBrag .bgCard{position:relative;width:min(92vw,380px);max-height:100%;padding:18px 16px 16px;border-radius:20px;text-align:center;color:#fff7e0;background:linear-gradient(170deg,#1a1230ee,#0c0818ee);border:2px solid var(--bc);box-shadow:0 0 0 4px #0008,0 0 38px color-mix(in srgb,var(--bc) 70%,transparent),inset 0 0 40px #0007;overflow:hidden;z-index:2}
+#arBrag .bgRays{position:absolute;left:50%;top:150px;width:560px;height:560px;margin:-280px 0 0 -280px;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--bc) 34%,transparent) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(circle,#000 8%,transparent 66%);mask:radial-gradient(circle,#000 8%,transparent 66%);animation:bgSpin 26s linear infinite;pointer-events:none}
+@keyframes bgSpin{to{transform:rotate(360deg)}}
+#arBrag .bgTop{position:relative;font:800 11px/1 system-ui,sans-serif;letter-spacing:.28em;opacity:.8}
+#arBrag .bgFloor{position:relative;margin-top:6px}
+#arBrag .bgFloor small{display:block;font:800 13px/1 system-ui,sans-serif;letter-spacing:.4em;color:var(--bc)}
+#arBrag .bgFloor b{display:block;font:900 76px/1 Georgia,'Times New Roman',serif;color:#fff;text-shadow:0 0 18px var(--bc),0 4px 0 #0009}
+#arBrag .bgTitle{position:relative;display:inline-block;margin-top:4px;padding:5px 16px;border-radius:99px;font:900 15px/1.1 system-ui,sans-serif;letter-spacing:.14em;color:#1a1024;background:linear-gradient(180deg,#fff3c4,var(--bc))}
+#arBrag .bgStage{position:relative;width:240px;height:256px;margin:6px auto 0;--arW:150px}
+#arBrag .bgStage .arWrap{position:absolute;left:45px;top:52px;width:150px;z-index:2}
+#arBrag .bgBack,#arBrag .bgFront{position:absolute;inset:0;pointer-events:none}
+#arBrag .bgBack{z-index:1}#arBrag .bgFront{z-index:3}
+#arBrag .bgBack svg,#arBrag .bgFront svg{width:100%;height:100%;overflow:visible}
+#arBrag .bgLine{position:relative;min-height:54px;margin:12px 6px 0;padding:10px 12px;border-radius:14px;background:#ffffff14;border:1px solid #ffffff30;font:700 15px/1.35 system-ui,sans-serif}
+#arBrag .bgMeta{position:relative;margin-top:9px;font:700 11px/1.3 system-ui,sans-serif;opacity:.78;letter-spacing:.04em}
+#arBrag .bgBtns{position:relative;display:flex;gap:8px;margin-top:12px}
+#arBrag .bgBtns button{flex:1 1 0;min-width:0;width:auto;margin:0;box-sizing:border-box;padding:11px 8px;border-radius:12px;border:2px solid var(--bc);font:900 14px/1 system-ui,sans-serif;letter-spacing:.06em;cursor:pointer;color:#fff7e0;background:#ffffff14}
+#arBrag .bgBtns button.go{color:#1a1024;background:linear-gradient(180deg,#fff3c4,var(--bc))}
+#arBrag .bgConf{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#arBrag .bgConf i{position:absolute;top:-8%;font-style:normal;animation:bgFall linear infinite}
+@keyframes bgFall{to{transform:translateY(118vh) rotate(360deg)}}
+#arBrag .tw{animation:bgTw 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes bgTw{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
+#arBrag .fl2{animation:bgFl 2.6s ease-in-out infinite alternate;transform-box:fill-box}
+#arBrag .wg{transform-origin:0% 60%;animation-name:bgWR}
+@keyframes bgWR{from{transform:rotate(7deg)}to{transform:rotate(-9deg)}}
+@keyframes bgFl{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+@media (prefers-reduced-motion:reduce){#arBrag .bgRays,#arBrag .bgConf i,#arBrag .tw,#arBrag .fl2{animation:none!important}}
 </style>
 </head><body><div id="app">
 
@@ -2345,7 +2379,7 @@ function twInit(){X.f=0;X.sc=1;X.fo=1;X.net=0;X.cm=0;X.rel={};X.focus=0;X.busy=t
 
 /* v138: the seasonal marathon tower now drafts a relic every EV_REL (5) floors instead of every floor; tower titles (TW_T) show on the intro and rankings, and 📤 BRAG shares your floor. */
 /* v135: PERMANENT CLIMB. The tower is now one saved climb (PRO.twc: f floor, rel relics, sc/fo/net stock, pd pending drafts, tq torches, sd streak). Relics only every 5th floor; Guardian every 10th, Titan every 50th, random twists from floor 12. Falls burn torches. The seasonal marathon (X.ev) keeps the old fresh-run rules. Tune: TQ_N/TQ_MS/TQ_G, twHiP, twAttP, twTw. */
-const EV_REL=5,TW_T=[[1000,'👑','Eternal'],[500,'🌌','Cloud Breaker'],[250,'🦅','Sky Sovereign'],[100,'🏛️','Tower Warden'],[50,'⚔️','Spire Walker'],[25,'🧗','Climber'],[10,'🪜','Apprentice']],twTitle=f=>TW_T.find(t=>f>=t[0])||null,TQ_N=5,TQ_MS=36e5,TQ_G=3,twDn=d=>Date.UTC(Math.floor(d/1e4),Math.floor(d/100)%100-1,d%100)/864e5,twDay=()=>{const d=new Date();return d.getFullYear()*1e4+(d.getMonth()+1)*100+d.getDate()};
+const EV_REL=5,TW_T=[[1000,'👑','Eternal'],[500,'🌌','Cloud Breaker'],[250,'🦅','Sky Sovereign'],[200,'🌠','Sky Rider'],[100,'🏛️','Tower Warden'],[50,'⚔️','Spire Walker'],[25,'🧗','Climber'],[10,'🪜','Apprentice']],twTitle=f=>TW_T.find(t=>f>=t[0])||null,TQ_N=5,TQ_MS=36e5,TQ_G=3,twDn=d=>Date.UTC(Math.floor(d/1e4),Math.floor(d/100)%100-1,d%100)/864e5,twDay=()=>{const d=new Date();return d.getFullYear()*1e4+(d.getMonth()+1)*100+d.getDate()};
 function twc(){if(!PRO.twc){const b=(PRO.mg&&PRO.mg.tower&&PRO.mg.tower.f)||0;PRO.twc={f:Math.max(1,b),rel:{},sc:1,fo:1,net:0,pd:b>1?Math.min(6,Math.floor(b/5)):0,tq:{n:TQ_N,t:0},sd:0,ld:0}}return PRO.twc}
 function twTq(){const q=twc().tq,now=Date.now();if(q.n<TQ_N){const k=Math.floor((now-q.t)/TQ_MS);if(k>0){q.n=Math.min(TQ_N,q.n+k);q.t=q.n>=TQ_N?now:q.t+k*TQ_MS}}else q.t=now;return q}
 const twTqTxt=()=>{const q=twTq();if(q.n>=TQ_N)return'';const m=Math.max(1,Math.ceil((q.t+TQ_MS-Date.now())/6e4));return m>=60?Math.floor(m/60)+'h '+(m%60)+'m':m+'m'};
@@ -2367,7 +2401,10 @@ function twFall(){X.busy=true;sfx('buzz');shake();vib([70,40,70]);X.cm=0;twc().c
 function twNext(){if(X.ev)return X.f%EV_REL===0?twDraft():twFloor();const c=twc(),m=mgm('tower'),f=X.f,r0=rk(),l0=mlv(m.t);c.f=f+1;twStreak(c);if(f%5===0)c.pd=(c.pd||0)+1;
  m.t+=X.lp||0;if(X.score>m.b)m.b=X.score;let co=f%5?0:8+Math.min(42,Math.floor(f/10));if(X.tw&&X.tw.g)co+=30*X.tw.g;if(co){PRO.gold+=cx(co);ft('+'+co+' 💰')}if(f%5===0)PRO.xp+=xpg(4);
  const l1=mlv(m.t);if(l1>l0)PRO.gold+=cx(25*l1);if(rk()>r0)toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b>`);
- twSave();if(f%5===0)twSync();if(c.pd>0)twDraft();else twFloor()}
+ twSave();if(f%5===0)twSync();try{twMile(f,c)}catch(e){}if(c.pd>0)twDraft();else twFloor()}
+/* v156: milestone floors show Aris's brag card once each (c.bg remembers which). Floors: BGS in the Aris script. */
+const TW_MS=[25,50,100,200,500,1000];
+function twMile(f,c){if(!TW_MS.includes(f)||!window.ARIS||!ARIS.brag)return;c.bg=c.bg||{};if(c.bg[f])return;c.bg[f]=1;twSave();setTimeout(()=>ARIS.brag(f,{share:twShare}),450)}
 function twAct(a){if(!X||X.k!=='tower')return;sfx('click');if(a==='go'&&X.intro)twBegin();else if(a==='board')twBoard();else if(a==='brag')twBrag();else if(a==='again'){if(twTq().n>0)twResume();else{toast('🕯️ <b>No torch yet</b><br><small>Next one in '+twTqTxt()+'</small>')}}else if(a==='refill'){if((PRO.gems||0)>=TQ_G&&confirm('Spend '+TQ_G+' 💎 to relight all '+TQ_N+' torches?')){PRO.gems-=TQ_G;const q=twc().tq;q.n=TQ_N;q.t=Date.now();LS.set('ms_pro',PRO);twResume()}else if((PRO.gems||0)<TQ_G)toast('💎 You need '+TQ_G+' gems')}}
 function twBegin(){if(!X||X.k!=='tower'||!X.intro)return;X.intro=0;if(X.ev){$('#mgIn').style.display='flex';return twFloor()}
  const c=twc(),m=mgm('tower');X.rel=c.rel;X.sc=c.sc;X.fo=c.fo;X.net=c.net;X.cm=c.cm||0;X.f=c.f-1;m.p++;qEv('mini');twPw();
@@ -2412,7 +2449,8 @@ function twEnd(m){const nb=X.f>(m.f||0);m.f=Math.max(m.f||0,X.f);const rc=Object
  X.stat=`🗼 <b>Floor reached: ${X.f}</b>${nb&&X.f>1?' · NEW BEST!':''}<br>Best floor: ${m.f} · Relics: ${rc}<br><small id=\"twRk\"></small>`;
  twSync().then(()=>evTop('tower')).then(a=>{const el=document.getElementById('twRk');if(el)el.textContent=evRtxt(a,m.f)}).catch(()=>{})}
 async function twSync(force){const m=mgm('tower');if(!m.f||(!force&&m.f<=(m.fs||0)))return;try{const fx=await msFb(),{D:Z,db}=fx.F;await Z.set(Z.ref(db,'tower/'+fx.uid),{n:evSafe(S.n1),s:m.f,d:(PRO.twc&&PRO.twc.sd)||0});m.fs=m.f;LS.set('ms_pro',PRO)}catch(e){}}
-function twBrag(){const c=twc(),m=mgm('tower'),f=Math.max(c.f,m.f||0),t=twTitle(f),text=`🗼 I'm on floor ${f} of the MindStrike Endless Tower${t?' ('+t[1]+' '+t[2]+')':''}${c.sd>1?' · 🔥 '+c.sd+'-day climbing streak':''}. Can you climb higher?`,url=location.href.split('#')[0].split('?')[0];try{if(navigator.share)navigator.share({text,url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text+' '+url).then(()=>toast('📋 <b>Copied</b><br><small>Paste it anywhere to brag</small>'))}catch(e){}}
+function twShare(){const c=twc(),m=mgm('tower'),f=Math.max(c.f,m.f||0),t=twTitle(f),text=`🗼 I'm on floor ${f} of the MindStrike Endless Tower${t?' ('+t[1]+' '+t[2]+')':''}${c.sd>1?' · 🔥 '+c.sd+'-day climbing streak':''}. Can you climb higher?`,url=location.href.split('#')[0].split('?')[0];try{if(navigator.share)navigator.share({text,url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text+' '+url).then(()=>toast('📋 <b>Copied</b><br><small>Paste it anywhere to brag</small>'))}catch(e){}}
+function twBrag(){try{const c=twc(),m=mgm('tower'),f=Math.max(c.f,m.f||0),ms=TW_MS.filter(x=>x<=f).pop();if(ms&&window.ARIS&&ARIS.brag)return ARIS.brag(ms,{share:twShare})}catch(e){}twShare()}
 async function twBoard(){let ov=document.getElementById('twOv');
  if(!ov){ov=document.createElement('div');ov.id='twOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='twX')ov.remove()};document.body.appendChild(ov)}
  const paint=h=>{ov.innerHTML=`<div class=\"card\" style=\"width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto\"><h2>🗼 TOWER RANKINGS</h2><div style=\"line-height:1.8;margin:8px 0\">${h}</div><button id=\"twX\" style=\"width:100%\">CLOSE</button></div>`};
@@ -5327,7 +5365,7 @@ function setMood(a,m){a.m=m;a.el.dataset.m=m;
  const look=m==='think'?[3,-3]:m==='sad'?[0,2.5]:m==='cheer'||m==='happy'?[0,0]:a.look||[0,0];
  a.el.querySelectorAll('.pup').forEach(p=>{p.style.transform=`translate(${look[0]}px,${look[1]}px)`})}
 function say(a,t,ms){if(!t)return;clearTimeout(a.bt);a.b.textContent=t;a.b.classList.add('on');lastSay=Date.now();a.bt=setTimeout(()=>a.b.classList.remove('on'),ms||2800)}
-function mood(m,ms,t,sms){inst.forEach(a=>{if(a.kind==='tour'||a.kind==='end'||a.kind==='brief')return;clearTimeout(a.mt);setMood(a,m);say(a,t,sms);
+function mood(m,ms,t,sms){inst.forEach(a=>{if(a.kind==='tour'||a.kind==='end'||a.kind==='brief'||a.kind==='brag')return;clearTimeout(a.mt);setMood(a,m);say(a,t,sms);
   if(a.kind==='game'){a.el.classList.add('show');clearTimeout(a.st);a.st=setTimeout(()=>a.el.classList.remove('show'),Math.max(ms||1800,t?(sms||2800):0)+500)}if(m!=='sleep')a.mt=setTimeout(()=>setMood(a,'idle'),ms||1800)})}
 function mk(cls,parent,before,kind){const w=D.createElement('div');w.className='arWrap '+cls;
  w.innerHTML='<div class="arB" role="status"></div>'+SVG2.replace(/\$/g,'_'+(++uid));
@@ -5388,7 +5426,57 @@ function tugEnd(o){if(!on)return;lastAct=Date.now();clearTimeout(tugTm);
 /* world map */
 function mapSay(r,ms){if(!r||!r.t)return false;mood(r.m||'happy',2400,r.t,ms||5200);if(r.id)glow('#wmBox [data-wn="'+r.id+'"]','arPick',7000);return true}
 function mapArrive(){if(!on||!isOn('s-wmap')||isOn('wmTut')||isOn('cbrief'))return;const W=window.__wmAris;if(!W)return;mapSay(W.energy())||mapSay(W.plan())}
+
+/* v156: TOWER BRAG CARDS. A full-screen, screenshot-ready card when the player clears floor 25, 50, 100, 200, 500 or 1000 of the permanent Endless Tower
+   (also reopened from the tower's 📤 BRAG button). Each milestone has its own colour, title, props (drawn SVG: back layer behind Aris, front layer over her),
+   confetti and lines. Retune everything in BGM. Aris wears her current world outfit and wardrobe style, so every screenshot is different. */
+const BGM={
+ 25:{ti:'CLIMBER',em:'🧗',c:'#3fd0c0',cf:['🧗','⭐','✨','🪢'],m:'happy',L:["Floor 25! The Climber badge is MINE. I mean yours. Okay, ours!","Twenty-five floors and I only complained twice. Screenshot me!"]},
+ 50:{ti:'SPIRE WALKER',em:'⚔️',c:'#c9d4e8',cf:['⚔️','⭐','✨','🛡️'],m:'cheer',L:["FIFTY floors! Spire Walker! My legs hurt but my heart sings!","Halfway to a hundred and I'm already unstoppable. Show your friends!"]},
+ 100:{ti:'TOWER WARDEN',em:'🏛️',c:'#ffd45a',cf:['🏛️','🏆','✨','🪙','🔑'],m:'cheer',L:["ONE HUNDRED! Tower Warden! Put this on the fridge!","Floor 100! The tower gave you the keys. I'm holding them very proudly."]},
+ 200:{ti:'SKY RIDER',em:'🌠',c:'#7fe0ff',cf:['🌠','🪽','✨','☁️'],m:'wow',L:["Floor 200! Sky Rider! I can see my house from here! Well, a cloud.","TWO HUNDRED! I grew wings for this. Screenshot them before they fly off!"]},
+ 500:{ti:'CLOUD BREAKER',em:'🌌',c:'#c79bff',cf:['🌌','👼','✨','☁️','💫'],m:'wow',L:["FIVE HUNDRED?! Nobody climbs this high. Nobody! Except you.","Floor 500! You broke the clouds! Even the {top} would bow."]},
+ 1000:{ti:'ETERNAL',em:'👑',c:'#ff9d2e',cf:['👑','🏆','🎆','✨','💎','🔥'],m:'cheer',L:["FLOOR 1000. ETERNAL. I'm speechless. (I'm never speechless.) Show everyone!","ONE THOUSAND FLOORS! Legends will whisper your name. The {top} just fainted."]}
+};
+const BGS=[25,50,100,200,500,1000];
+const bgProp=(f)=>{const T=(x,y,r,d)=>`<path class="tw" style="animation-delay:${d||0}s" d="M${x} ${y-r}L${x+r*.3} ${y-r*.3}L${x+r} ${y}L${x+r*.3} ${y+r*.3}L${x} ${y+r}L${x-r*.3} ${y+r*.3}L${x-r} ${y}L${x-r*.3} ${y-r*.3}Z" fill="#fff6c8"/>`;
+ let b='',fr='';
+ if(f===25){b=`<path d="M20 252Q60 190 120 240Q180 190 220 252Z" fill="#0f6b66" opacity=".55"/><path d="M0 256Q70 210 120 250Q170 214 240 256Z" fill="#168a83" opacity=".6"/>`+T(34,70,7)+T(208,110,6,.5);
+  fr=`<g class="fl2" style="transform-origin:196px 250px"><rect x="193" y="70" width="5" height="182" rx="2.5" fill="#d9c7a0"/><path d="M198 76L238 90L198 106Z" fill="#3fd0c0" stroke="#0a403d" stroke-width="2"/><text x="209" y="95" font-size="12" font-weight="900" fill="#08302e" font-family="Georgia,serif">25</text></g><path d="M30 238c14-18 28 18 42 0s28 18 42 0" fill="none" stroke="#d9a441" stroke-width="5" stroke-linecap="round"/>`}
+ else if(f===50){b=`<g transform="rotate(-38 120 150)"><rect x="112" y="6" width="16" height="250" rx="4" fill="#dfe6f3" stroke="#6f7c93" stroke-width="2"/><rect x="92" y="196" width="56" height="9" rx="3" fill="#b8860b"/></g><g transform="rotate(38 120 150)"><rect x="112" y="6" width="16" height="250" rx="4" fill="#dfe6f3" stroke="#6f7c93" stroke-width="2"/><rect x="92" y="196" width="56" height="9" rx="3" fill="#b8860b"/></g>`+T(24,60,7)+T(214,70,6,.6);
+  fr=`<g class="fl2" style="transform-origin:50px 214px"><path d="M12 168h76v44q0 30-38 44q-38-14-38-44Z" fill="#c9d4e8" stroke="#4a5670" stroke-width="3"/><path d="M50 172v82" stroke="#8b97b0" stroke-width="2"/><text x="50" y="222" text-anchor="middle" font-size="30" font-weight="900" fill="#27304a" font-family="Georgia,serif">50</text></g>`}
+ else if(f===100){let lv='';for(let k=0;k<9;k++){const a=(k/8)*Math.PI*0.95+Math.PI*0.62,r=104;const x=120+Math.cos(a)*r,y=150+Math.sin(a)*r*1.05,x2=120-Math.cos(a)*r;lv+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="13" ry="6" fill="#e8b93c" stroke="#8a6410" stroke-width="1.4" transform="rotate(${(a*57.3+90).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/><ellipse cx="${x2.toFixed(1)}" cy="${y.toFixed(1)}" rx="13" ry="6" fill="#e8b93c" stroke="#8a6410" stroke-width="1.4" transform="rotate(${(-a*57.3-90).toFixed(0)} ${x2.toFixed(1)} ${y.toFixed(1)})"/>`}
+  b=lv+T(22,56,7)+T(220,86,6,.5)+T(30,200,5,1);
+  fr=`<g class="fl2" style="transform-origin:200px 200px"><circle cx="200" cy="192" r="13" fill="none" stroke="#ffd45a" stroke-width="6"/><rect x="196" y="204" width="8" height="46" rx="3" fill="#ffd45a"/><path d="M204 230h14v7h-14ZM204 242h10v6h-10Z" fill="#ffd45a"/><circle cx="200" cy="192" r="13" fill="none" stroke="#fff3c4" stroke-width="1.6" opacity=".7"/></g><text x="120" y="258" text-anchor="middle" font-size="16" font-weight="900" fill="#ffd45a" font-family="Georgia,serif" letter-spacing="3">100</text>`}
+ else if(f===200){const w=(sx)=>`<g transform="translate(120 150) scale(${sx} 1)"><g class="fl2 wg"><path d="M18 0C70-30 112-18 118 30C96 18 82 22 70 36C80 12 58-6 18 8Z" fill="#fff" stroke="#7fb8d8" stroke-width="2.4"/><path d="M26 20C62 8 96 14 106 40C88 34 70 38 60 48C66 34 48 22 26 28Z" fill="#e9f7ff" stroke="#7fb8d8" stroke-width="2"/><path d="M32 40C58 34 82 44 88 62C74 56 62 58 54 66C56 56 44 46 32 48Z" fill="#cfeeff" stroke="#7fb8d8" stroke-width="1.8"/></g></g>`;
+  b=w(-1)+w(1)+T(18,50,7)+T(222,60,6,.4)+T(30,214,5,.9)+T(212,222,6,1.1);
+  fr=`<g transform="translate(0 4)"><circle cx="97" cy="111" r="13" fill="#2a3a52" stroke="#c9d4e8" stroke-width="3"/><circle cx="143" cy="111" r="13" fill="#2a3a52" stroke="#c9d4e8" stroke-width="3"/><circle cx="97" cy="111" r="8" fill="#7fe0ff" opacity=".8"/><circle cx="143" cy="111" r="8" fill="#7fe0ff" opacity=".8"/><path d="M110 112h20" stroke="#c9d4e8" stroke-width="4"/></g>`}
+ else if(f===500){let r='';for(let k=0;k<14;k++){const a=k*Math.PI/7;r+=`<path d="M120 150L${(120+Math.cos(a-.09)*170).toFixed(0)} ${(150+Math.sin(a-.09)*170).toFixed(0)}L${(120+Math.cos(a+.09)*170).toFixed(0)} ${(150+Math.sin(a+.09)*170).toFixed(0)}Z" fill="#e8d4ff" opacity=".22"/>`}
+  b=r+T(22,60,8)+T(216,50,7,.5)+T(206,196,6,1)+T(28,176,6,.2);
+  fr=`<ellipse class="fl2" style="transform-origin:120px 40px" cx="120" cy="52" rx="38" ry="10" fill="none" stroke="#ffe27a" stroke-width="6"/><ellipse cx="120" cy="52" rx="38" ry="10" fill="none" stroke="#fff6c8" stroke-width="2" opacity=".8"/><g fill="#fff" stroke="#b9a4e8" stroke-width="2"><ellipse cx="62" cy="240" rx="44" ry="18"/><ellipse cx="108" cy="246" rx="40" ry="16"/><ellipse cx="156" cy="244" rx="44" ry="18"/><ellipse cx="196" cy="240" rx="34" ry="14"/><ellipse cx="86" cy="228" rx="26" ry="13"/><ellipse cx="146" cy="228" rx="28" ry="13"/></g>`}
+ else{let r='';for(let k=0;k<18;k++){const a=k*Math.PI/9;r+=`<path d="M120 150L${(120+Math.cos(a-.07)*190).toFixed(0)} ${(150+Math.sin(a-.07)*190).toFixed(0)}L${(120+Math.cos(a+.07)*190).toFixed(0)} ${(150+Math.sin(a+.07)*190).toFixed(0)}Z" fill="#ffd45a" opacity=".28"/>`}
+  b=r+`<circle cx="120" cy="150" r="112" fill="none" stroke="#ffd45a" stroke-width="3" opacity=".6"/><circle cx="120" cy="150" r="128" fill="none" stroke="#ff9d2e" stroke-width="2" opacity=".5"/>`+T(18,40,9)+T(224,48,8,.3)+T(14,200,7,.7)+T(228,206,8,1)+T(120,6,7,.5);
+  fr=`<g class="fl2" style="transform-origin:120px 70px"><path d="M64 78L74 22L96 52L120 8L144 52L166 22L176 78Z" fill="#ffd45a" stroke="#9a6a08" stroke-width="3" stroke-linejoin="round"/><rect x="64" y="74" width="112" height="14" rx="4" fill="#e8a91c" stroke="#9a6a08" stroke-width="3"/><circle cx="120" cy="18" r="6" fill="#ff4d6a" stroke="#fff" stroke-width="1.5"/><circle cx="74" cy="22" r="5" fill="#5ad1ff" stroke="#fff" stroke-width="1.5"/><circle cx="166" cy="22" r="5" fill="#5ad1ff" stroke="#fff" stroke-width="1.5"/><circle cx="120" cy="81" r="4" fill="#ff4d6a"/><circle cx="92" cy="81" r="3" fill="#fff"/><circle cx="148" cy="81" r="3" fill="#fff"/></g><path d="M30 252L120 238L210 252L120 262Z" fill="#c1272d" stroke="#fff3c4" stroke-width="2"/><text x="120" y="254" text-anchor="middle" font-size="13" font-weight="900" fill="#fff3c4" font-family="Georgia,serif" letter-spacing="4">ETERNAL</text>`}
+ return[`<svg viewBox="0 0 240 262">${b}</svg>`,`<svg viewBox="0 0 240 262">${fr}</svg>`]};
+let bgEl=null,bgA=null,bgShare=null;
+function bragShow(ms,opt){try{const M=BGM[ms];if(!M)return;opt=opt||{};bgShare=opt.share||null;
+ if(!bgEl){bgEl=D.createElement('div');bgEl.id='arBrag';bgEl.setAttribute('role','dialog');bgEl.setAttribute('aria-label','Endless Tower milestone');
+  bgEl.innerHTML='<div class="bgCard"><div class="bgRays"></div><div class="bgConf"></div><div class="bgTop">🗼 ENDLESS TOWER · MINDSTRIKE</div><div class="bgFloor"><small>FLOOR</small><b></b></div><div class="bgTitle"></div><div class="bgStage"><div class="bgBack"></div><div class="bgFront"></div></div><div class="bgLine"></div><div class="bgMeta"></div><div class="bgBtns"><button type="button" data-k="share">📤 SHARE</button><button type="button" class="go" data-k="go">CONTINUE</button></div></div>';
+  D.body.appendChild(bgEl);
+  bgEl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;try{sfx('click')}catch(x){}if(b.dataset.k==='go')bgEl.classList.remove('on');else if(b.dataset.k==='share'&&bgShare)try{bgShare()}catch(x){}});
+  bgA=mk('arBgA',bgEl.querySelector('.bgStage'),bgEl.querySelector('.bgFront'),'brag');
+  bgA.el.addEventListener('click',()=>{clearTimeout(bgA.mt);setMood(bgA,'cheer');bgA.mt=setTimeout(()=>setMood(bgA,BGM[bgEl.dataset.ms].m),1600)})}
+ const q=(x)=>bgEl.querySelector(x),pr=bgProp(ms);bgEl.dataset.ms=ms;bgEl.style.setProperty('--bc',M.c);
+ q('.bgFloor b').textContent=ms;q('.bgTitle').textContent=M.em+' '+M.ti;q('.bgBack').innerHTML=pr[0];q('.bgFront').innerHTML=pr[1];
+ q('.bgLine').textContent=M.L[Math.floor(Math.random()*M.L.length)].replace(/\{top\}/g,topN());
+ let st=0;try{st=twc().sd||0}catch(e){}
+ q('.bgMeta').textContent=(st>1?'🔥 '+st+'-day climbing streak · ':'')+'Can you climb higher?';
+ q('[data-k=share]').style.display=bgShare?'':'none';
+ const cf=q('.bgConf');cf.innerHTML='';for(let k=0;k<16;k++){const i=D.createElement('i');i.textContent=M.cf[k%M.cf.length];i.style.cssText='left:'+(Math.random()*96).toFixed(0)+'%;font-size:'+(14+Math.random()*16).toFixed(0)+'px;animation-duration:'+(4+Math.random()*5).toFixed(1)+'s;animation-delay:-'+(Math.random()*8).toFixed(1)+'s';cf.appendChild(i)}
+ dr(bgA);clearTimeout(bgA.mt);setMood(bgA,M.m==='wow'?'wow':'cheer');bgA.mt=setTimeout(()=>setMood(bgA,'happy'),2600);
+ bgEl.classList.add('on');try{sfx('fanfare')}catch(e){}try{vib([60,40,60,40,120])}catch(e){}}catch(e){}}
 window.ARIS={
+ brag:bragShow,
  screen(id){if(!on)return;lastAct=touchAct=Date.now();clearTimeout(tugTm);
   if(id==='s-wmap'){mapTips=0;mapStep=0;setTimeout(mapArrive,1200)}
   if(id==='s-home')setTimeout(greet,350);
