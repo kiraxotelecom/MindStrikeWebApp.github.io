@@ -431,3 +431,9 @@ Bump `V` in `sw.js` after every change.
 
 ## v146 changes
 **Number Omens card fix.** On the World Map, the NUMBER OMENS info card showed ODD, EVEN, PRIME, ×3 / ×5, n² and TOP / LOW each on its own line. The `.wmG b{display:block}` rule (meant only for the card title) also hit the bold words inside the description. It is now `.wmG>div>b{display:block}` (title only), and `.wmG small b` is inline, so the clue words flow in the sentence. Bump `V` in `sw.js` after every change.
+
+## v147 changes
+**Jungle Quest now unlocks with 50 map stars.** The free JUNGLE QUEST world used to unlock by beating a Region 1 general. Now it unlocks (still free) the moment your total ⭐ across all world maps reaches 50 (`JGL_NEED` and `jglStars()` next to `jglCheck()`). Stars from every map count, including worlds you no longer own. The check runs at start and after every battle (`ppCheck`). The Armory → Worlds card shows live progress (e.g. "Earn ⭐ 12/50 map stars to unlock · free"), and tapping the locked button shows your current star count. Players who already unlocked it keep it. Bump `V` in `sw.js` after every change.
+
+## v148 changes
+**Jungle Quest: old unlocks are reset.** One-time migration (flag `PRO.jgl50`, runs just before `const WID`): anyone who unlocked Jungle Quest under the old rule (beating a Region 1 general) loses it unless they already have 50 total map stars. If it was equipped, the player goes back to the Roman world. They get it back for free the moment they reach 50 map stars (`jglCheck`). Players who unlock it after this update are never affected. Bump `V` in `sw.js` after every change.
