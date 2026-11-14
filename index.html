@@ -1232,6 +1232,80 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
 @keyframes wmP{50%{stroke-width:6;filter:brightness(1.4)}}@keyframes wmD{from{transform:translateX(-16px)}to{transform:translateX(16px)}}
 @media(prefers-reduced-motion:reduce){.wm-a circle.b,.wmFog{animation:none}}
 </style>
+<style id="arisCss">
+/* ===== v149: ARIS, the Mindstrike companion ===== */
+.arWrap{position:relative;display:block;width:var(--arW,104px);flex:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer;z-index:4}
+.arWrap svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+html.noaris .arWrap{display:none!important}
+.arWrap .bod{animation:arBob 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes arBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+.arWrap .eye{transform-box:fill-box;transform-origin:50% 50%;animation:arBlink 4.6s infinite}
+.arWrap .eye.r{animation-delay:.02s}
+@keyframes arBlink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.arWrap .pup{transition:transform .25s ease}
+.arWrap .armL,.arWrap .armR{transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.arWrap .armL{transform-origin:40px 108px}
+.arWrap .armR{transform-origin:80px 108px}
+.arWrap[data-m=cheer] .armL{animation:arCL .45s ease-in-out infinite}
+.arWrap[data-m=cheer] .armR{animation:arCR .45s ease-in-out infinite}
+@keyframes arCL{0%,100%{transform:rotate(104deg)}50%{transform:rotate(126deg)}}
+@keyframes arCR{0%,100%{transform:rotate(-104deg)}50%{transform:rotate(-126deg)}}
+.arWrap[data-m=cheer] .bod{animation:arJump .55s ease-in-out infinite}
+@keyframes arJump{0%,100%{transform:translateY(0)}45%{transform:translateY(-14px)}}
+.arWrap[data-m=happy] .armL{transform:rotate(28deg)}
+.arWrap[data-m=happy] .armR{transform:rotate(-28deg)}
+.arWrap[data-m=wow] .armL{transform:rotate(60deg)}
+.arWrap[data-m=wow] .armR{transform:rotate(-60deg)}
+.arWrap[data-m=wow] .bod{animation:arJump 1s ease-in-out 1}
+.arWrap[data-m=wave] .armR{animation:arWave .5s ease-in-out infinite}
+@keyframes arWave{0%,100%{transform:rotate(-100deg)}50%{transform:rotate(-128deg)}}
+.arWrap[data-m=sad] .armL{transform:rotate(-8deg)}
+.arWrap[data-m=sad] .armR{transform:rotate(8deg)}
+.arWrap[data-m=sad] .bod{animation:arSad 3.6s ease-in-out infinite}
+@keyframes arSad{0%,100%{transform:translateY(2px) rotate(-2deg)}50%{transform:translateY(4px) rotate(-1deg)}}
+.arWrap[data-m=think] .armR{transform:rotate(-100deg)}
+.arWrap[data-m=think] .bod{animation:arThink 2.6s ease-in-out infinite}
+@keyframes arThink{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.arWrap[data-m=hot] .armL{animation:arFanL .28s ease-in-out infinite}
+.arWrap[data-m=hot] .armR{animation:arFanR .28s ease-in-out infinite}
+@keyframes arFanL{0%,100%{transform:rotate(95deg)}50%{transform:rotate(125deg)}}
+@keyframes arFanR{0%,100%{transform:rotate(-95deg)}50%{transform:rotate(-125deg)}}
+.arWrap[data-m=cold] .bod{animation:arShiver .12s linear infinite}
+@keyframes arShiver{0%,100%{transform:translateX(-1.6px)}50%{transform:translateX(1.6px)}}
+.arWrap[data-m=cold] .armL{transform:rotate(-30deg)}
+.arWrap[data-m=cold] .armR{transform:rotate(30deg)}
+.arWrap[data-m=sleep] .bod{animation:arSleep 3.4s ease-in-out infinite}
+@keyframes arSleep{0%,100%{transform:translateY(3px) rotate(-3deg) scaleY(.985)}50%{transform:translateY(4px) rotate(-3deg) scaleY(1)}}
+.arWrap[data-m=sleep] .eye{animation:none}
+.arWrap .zz text,.arWrap .spk path,.arWrap .sw,.arWrap .snow{transform-box:fill-box;transform-origin:center}
+.arWrap .zz text{animation:arZ 2s ease-in infinite}
+.arWrap .zz text:nth-child(2){animation-delay:.7s}
+@keyframes arZ{0%{opacity:0;transform:translate(0,6px) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(8px,-14px) scale(1.1)}}
+.arWrap .spk path{animation:arSpk .6s ease-in-out infinite alternate}
+.arWrap .spk path:nth-child(2){animation-delay:.2s}.arWrap .spk path:nth-child(3){animation-delay:.4s}
+@keyframes arSpk{from{opacity:.3;transform:scale(.5)}to{opacity:1;transform:scale(1.15)}}
+.arWrap .sw{animation:arDrip 1.1s ease-in infinite}
+@keyframes arDrip{0%{opacity:0;transform:translateY(-6px)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+.arWrap .snow{animation:arSnow 2.4s linear infinite}
+@keyframes arSnow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.arWrap .tear{animation:arDrip 1.6s ease-in infinite}
+.arWrap .qm{animation:arQ 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes arQ{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* speech bubble */
+.arB{position:absolute;left:50%;bottom:calc(100% - 4px);transform:translate(-50%,6px) scale(.9);transform-origin:50% 100%;min-width:92px;max-width:min(230px,62vw);width:max-content;background:#fff7e0;color:#2a1a0c;border:2px solid #d9a441;border-radius:14px;padding:6px 10px;font:600 .74rem/1.25 Georgia,'Times New Roman',serif;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:9;letter-spacing:0;text-transform:none}
+.arB.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.arB::after{content:"";position:absolute;left:50%;top:100%;margin-left:-7px;border:7px solid transparent;border-top-color:#d9a441}
+.arB::before{content:"";position:absolute;left:50%;top:100%;margin:-3px 0 0 -5px;border:5px solid transparent;border-top-color:#fff7e0;z-index:1}
+@media (prefers-reduced-motion:reduce){.arWrap *{animation:none!important;transition:none!important}}
+/* placement */
+#s-home .arWrap.arHome{--arW:clamp(78px,15.5vh,120px);margin:-2px auto -4px}
+#s-game .arWrap.arGame{--arW:58px;position:fixed;left:4px;bottom:calc(6px + env(safe-area-inset-bottom));pointer-events:none;z-index:6;transition:opacity .25s,transform .25s}
+#s-game .arWrap.arGame .arB{left:calc(100% + 2px);bottom:34%;transform:translate(-6px,0) scale(.9);transform-origin:0 100%;max-width:min(185px,60vw);min-width:0;text-align:left;font-size:.7rem;padding:5px 9px}
+#s-game .arWrap.arGame .arB.on{transform:translate(0,0) scale(1)}
+#s-game .arWrap.arGame .arB::before,#s-game .arWrap.arGame .arB::after{left:-12px;top:auto;bottom:10px;margin:0;border-top-color:transparent;border-right-color:#d9a441}
+#s-game .arWrap.arGame .arB::before{left:-8px;bottom:12px;margin:0;border-width:5px;border-top-color:transparent;border-right-color:#fff7e0}
+@media (max-height:779px){#s-game .arWrap.arGame{opacity:0;transform:translateY(24px)}#s-game .arWrap.arGame.show{opacity:1;transform:none}}
+</style>
 </head><body><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
@@ -1357,7 +1431,7 @@ html.wd-gold #app:not(#z) .kp button:not(.st):not([data-p]):active{box-shadow:0 
   <div class="vrow"><div class="vh"><span class="vi">🔊</span><span class="vt">Sound effects</span><b class="vp" id="vsv"></b></div><input type="range" id="vs" min="0" max="1" step=".05" aria-label="Sound effects volume"></div>
  </div>
  <div class="bm-head"><h2>Gameplay</h2></div>
- <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tCb"></button><button class="bm-btn" id="tWx"></button><button class="bm-btn" id="tRem"></button></div>
+ <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tCb"></button><button class="bm-btn" id="tWx"></button><button class="bm-btn" id="tRem"></button><button class="bm-btn" id="tAris"></button></div>
  <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
  <div class="bm-head"><h2>Help</h2></div>
  <button id="tutBtn" class="bm-btn bm-center">📖 REPLAY THE TUTORIAL</button>
@@ -1612,7 +1686,7 @@ const play=n=>{const m=M[n]||null;if(curM&&curM!==m)curM.pause();curM=m;if(curM&
 applyVol();
 // ---- navigation ----
 let G=null,stack=['s-home'];
-function show(id){$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id));try{if(id==='s-events')evChoose();else if(id==='s-dstrike')dsRender();else if(id==='s-weekly')evHubRender();else if(id==='s-riddle')rdRender()}catch(e){}$('#pause').classList.toggle('on',id==='s-game'&&!!G&&G.paused&&!G.done)}
+function show(id){try{window.ARIS&&ARIS.screen(id)}catch(e){}$$('.scr').forEach(s=>s.classList.toggle('on',s.id===id));try{if(id==='s-events')evChoose();else if(id==='s-dstrike')dsRender();else if(id==='s-weekly')evHubRender();else if(id==='s-riddle')rdRender()}catch(e){}$('#pause').classList.toggle('on',id==='s-game'&&!!G&&G.paused&&!G.done)}
 function go(id){stack.push(id);show(id)}
 function home(){if(PRO.pv&&PRO.pv.done){pvEnd();return}stack=['s-home'];const fw=G&&G.wager&&!G.done?G.wager:0;if(fw)setTimeout(()=>toast('🎲 Wager of '+fw+' 💰 forfeited'),300);if(G)G.done=true;G=null;$('#app').classList.remove('bossm');play('theme');lbShow();show('s-home')}
 function back(){const c=stack[stack.length-1];
@@ -1631,7 +1705,7 @@ const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classLi
 // timers that respect pause and a quit game
 function later(fn,ms){const g=G;setTimeout(function w(){if(G!==g||!g||g.done&&!g.finishing)return;if(g.paused)return setTimeout(w,200);fn()},ms)}
 // ---- settings ----
-function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON');$('#tCb').textContent='COLOURBLIND SYMBOLS: '+(S.cb?'ON':'OFF');$('#tWx').textContent='WEATHER: '+(S.wx===false?'OFF':'ON')}
+function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON');$('#tCb').textContent='COLOURBLIND SYMBOLS: '+(S.cb?'ON':'OFF');$('#tWx').textContent='WEATHER: '+(S.wx===false?'OFF':'ON');try{$('#tAris').textContent=ARIS.label()}catch(e){}}
 $('#vm').oninput=e=>{S.music=+e.target.value;applyVol();save();setUI()};$('#vs').oninput=e=>{S.sfx=+e.target.value;applyVol();save();setUI();sfx('ding')};
 $('#tMute').onclick=()=>{S.mute=!S.mute;save();setUI();S.mute?curM&&curM.pause():curM&&curM.play().catch(()=>{})};
 $('#tTimer').onclick=()=>{S.timer=!S.timer;rwPrev();save();setUI();if(G){timerReset();render()}};
@@ -1716,11 +1790,11 @@ function strike(){if(!canAct())return;const el=$('#num'),g=parseInt(el.value,10)
  if(isNaN(g)||g<G.lo||g>G.hi){$('#msg').textContent=`Enter a number from ${G.lo} to ${G.hi}.`;sfx('buzz');return}
  const risky=!!rf.risk;if(risky&&G.att+2>G.maxAtt){$('#msg').textContent='Not enough attempts left for RISK.';sfx('buzz');return}
  el.value='';sfx('click');rf.us=[];G.att+=risky?2:1;G.guesses++;if(w===0)G.pg.push(g);if(risky){rf.riskUsed=1;rf.risk=0}
- const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);tier=bossGlitch(tier,g===G.secret);if(w===0&&G.mode==='AI'&&tier==='blazing'&&!exact&&!G.jam)qEv('blaze');if(w===0&&G.mode==='AI'&&(exact||tier==='blazing'))G.st[0].blz=(G.st[0].blz||0)+(exact&&G.guesses===1?2:1);
+ const exact=g===G.secret,bull=!exact&&G.special==='BULLSEYE'&&Math.abs(g-G.secret)<=2;let[tier,text,c]=temp(g);tier=bossGlitch(tier,g===G.secret);if(w===0&&G.mode==='AI'&&window.ARIS)ARIS.guess(G.jam?'':tier,exact,G.guesses===1);if(w===0&&G.mode==='AI'&&tier==='blazing'&&!exact&&!G.jam)qEv('blaze');if(w===0&&G.mode==='AI'&&(exact||tier==='blazing'))G.st[0].blz=(G.st[0].blz||0)+(exact&&G.guesses===1?2:1);
  if(rf.focus){rf.focus=0;text=`EXACT FOCUS: ${Math.round(c*100)}% close — ${tier.toUpperCase()}!`}
  let stole=0;if(!exact&&rf.steal&&Math.abs(g-G.secret)<=2){stole=Math.min(5,G.score[1-w]);G.score[w]+=stole;G.score[1-w]-=stole;rf.steal=0}
  G.hist.push({g,t:G.jam?null:tier,d:g<G.secret?'↑':g>G.secret?'↓':'✓'});shotFx(g,G.jam?null:tier,exact);if(G._gl){G.hist[G.hist.length-1].gl=1;G._gl=0}let broke=false;
- if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg[w]+=CHIP[tier];broke=G.armor<=0;if(!broke)hitFx(CHIP[tier])}
+ if(G.boss&&!exact&&!bull&&CHIP[tier]){G.armor-=CHIP[tier];G.dmg[w]+=CHIP[tier];broke=G.armor<=0;if(broke&&w===0&&window.ARIS)ARIS.shield();if(!broke)hitFx(CHIP[tier])}
  if(exact||bull||broke){let r={pts:0,c:0},dm='';
   if(exact||bull){r=award(w,G.guesses,risky);if(exact&&G.guesses===1&&G.d!=='Easy')gems(1,'🎯 First-try hit');if(bull){G.score[w]+=12;r.pts+=12}
    if(G.desp[w].active){G.desp[w].active=0;G.score[w]+=25;r.pts+=25;dm=' · DESPERATION +25';if(w===0)unlock('comeback')}}
@@ -1737,7 +1811,7 @@ function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secr
  if(rf.riskUsed&&!timeout){G.score[w]=Math.max(0,G.score[w]-3);pen=' (-3 RISK PENALTY)'}
  if(rf.shield){rf.shield=0;msg=`${timeout?"Time's up — but your ":'Your '}SHIELD absorbed the loss!${rev}${pen}`}
  else{let dp='';if(G.desp[w].active){G.desp[w].active=0;G.score[w]=Math.max(0,G.score[w]-10);dp=' (-10 DESPERATION)'}
-  G.combo[w]=0;if(w===0&&!G.boss)G.st[0].fail=(G.st[0].fail||0)+1;sfx('buzz');shake();vib([70,40,70]);if(G.mode==='AI'&&w===0)ft('😈 HA!');
+  G.combo[w]=0;if(w===0&&!G.boss)G.st[0].fail=(G.st[0].fail||0)+1;sfx('buzz');shake();vib([70,40,70]);if(w===0&&G.mode==='AI'&&window.ARIS)ARIS.fail();if(G.mode==='AI'&&w===0)ft('😈 HA!');
   msg=(timeout?`TIME'S UP! Round forfeited.${rev}`:`Out of attempts!${rev}`)+pen+dp}
  render(msg);later(afterTurn,1500)}
 function snapPow(n){const w=G.cur,rf=G.rf,sn={n,w,kLo:G.kLo,kHi:G.kHi,pu:G.powUsed};if(!rf.us||!rf.us.length)rf.p0=G.powUsed;(rf.us||(rf.us=[])).push(sn);return sn}
@@ -4895,5 +4969,122 @@ function spAsk(x){x.ph='ask';const ans=x.ans,set=new Set([ans]);while(set.size<4
   else{b.style.background='#a8322a';x.lives--;sfx('buzz');shake();mgUpd();A.querySelectorAll('button').forEach(o=>{if(+o.dataset.v===x.ans)o.style.background='#2fa35a'});
    if(x.lives<=0)return mgFail(`It was ${x.ans}! The herd got away.`);mgSet(`💔 It was ${x.ans}`);setTimeout(()=>{if(X===x)spRound()},1300)}})}
 
+</script>
+<script id="arisJs">
+/* ===== v149: ARIS, the Mindstrike companion (SVG + CSS, no image files) ===== */
+(function(){
+let uid=0;
+const SVGT=`<svg viewBox="0 0 120 150" aria-hidden="true" focusable="false">
+<defs>
+<radialGradient id="aS$" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#c58a60"/><stop offset="1" stop-color="#8c5636"/></radialGradient>
+<linearGradient id="aT$" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46d6c8"/><stop offset="1" stop-color="#1b8a90"/></linearGradient>
+<radialGradient id="aG$"><stop offset="0" stop-color="#fff6bd"/><stop offset="1" stop-color="#fff6bd" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="60" cy="146" rx="28" ry="4.5" fill="#000" opacity=".3"/>
+<g class="bod">
+<ellipse cx="47" cy="142" rx="11" ry="6" fill="#4a2a1a"/><ellipse cx="73" cy="142" rx="11" ry="6" fill="#4a2a1a"/>
+<g class="armL"><path d="M40 108 L31 127" stroke="#9c6641" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="30" cy="129" r="6" fill="#b17549"/></g>
+<g class="armR"><path d="M80 108 L89 127" stroke="#9c6641" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="90" cy="129" r="6" fill="#b17549"/></g>
+<path d="M37 104 Q60 97 83 104 L88 137 Q60 144 32 137 Z" fill="url(#aT$)"/>
+<path d="M34 129 Q60 136 86 129" stroke="#f2c14e" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M50 102 Q60 110 70 102" stroke="#f2c14e" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="60" cy="117" r="13" fill="url(#aG$)"/>
+<text x="60" y="123.5" text-anchor="middle" font-size="17" font-weight="800" font-family="Georgia,'Times New Roman',serif" fill="#7a4b00">7</text>
+<circle cx="29" cy="36" r="13" fill="#1d1530"/><circle cx="91" cy="36" r="13" fill="#1d1530"/>
+<circle cx="29" cy="36" r="3.6" fill="#f2c14e"/><circle cx="91" cy="36" r="3.6" fill="#f2c14e"/>
+<circle cx="22" cy="70" r="6" fill="#94603c"/><circle cx="98" cy="70" r="6" fill="#94603c"/>
+<circle cx="60" cy="68" r="38" fill="url(#aS$)"/>
+<path d="M22 64 C17 26 40 14 60 14 C80 14 103 26 98 64 C92 47 80 41 60 41 C40 41 28 47 22 64Z" fill="#1d1530"/>
+<path d="M25 52 Q60 28 95 52" stroke="#f2c14e" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+<g fill="#f2c14e"><ellipse cx="36" cy="43" rx="4" ry="2.2" transform="rotate(-35 36 43)"/><ellipse cx="48" cy="36" rx="4" ry="2.2" transform="rotate(-15 48 36)"/><ellipse cx="72" cy="36" rx="4" ry="2.2" transform="rotate(15 72 36)"/><ellipse cx="84" cy="43" rx="4" ry="2.2" transform="rotate(35 84 43)"/></g>
+<circle class="chk" cx="36" cy="84" r="6.5" fill="#ff7a8a" opacity=".42"/><circle class="chk" cx="84" cy="84" r="6.5" fill="#ff7a8a" opacity=".42"/>
+<g data-s="idle wave think hot wow sad"><g class="eye l"><ellipse cx="46" cy="72" rx="9" ry="11" fill="#fff"/><g class="pup"><circle cx="46" cy="73" r="6.2" fill="#2a1850"/><circle cx="48.6" cy="69.6" r="2.3" fill="#fff"/></g></g><g class="eye r"><ellipse cx="74" cy="72" rx="9" ry="11" fill="#fff"/><g class="pup"><circle cx="74" cy="73" r="6.2" fill="#2a1850"/><circle cx="76.6" cy="69.6" r="2.3" fill="#fff"/></g></g></g>
+<g data-s="happy cheer" fill="none" stroke="#2a1850" stroke-width="3.4" stroke-linecap="round"><path d="M37 74 Q46 62 55 74"/><path d="M65 74 Q74 62 83 74"/></g>
+<g data-s="cold" fill="none" stroke="#2a1850" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M38 65 L53 72 L38 79"/><path d="M82 65 L67 72 L82 79"/></g>
+<g data-s="sleep" fill="none" stroke="#2a1850" stroke-width="3.2" stroke-linecap="round"><path d="M37 72 Q46 80 55 72"/><path d="M65 72 Q74 80 83 72"/></g>
+<g data-s="sad" stroke="#1d1530" stroke-width="3" stroke-linecap="round"><path d="M35 62 L54 55"/><path d="M85 62 L66 55"/></g>
+<g data-s="wow hot" fill="none" stroke="#1d1530" stroke-width="3" stroke-linecap="round"><path d="M37 55 Q46 48 55 55"/><path d="M65 55 Q74 48 83 55"/></g>
+<path data-s="idle" d="M52 88 Q60 95 68 88" stroke="#4a1f1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g data-s="happy cheer wave"><path d="M49 84 Q60 103 71 84 Z" fill="#5a1620"/><ellipse cx="60" cy="94" rx="5.5" ry="3" fill="#e0607a"/></g>
+<path data-s="sad" d="M52 95 Q60 86 68 95" stroke="#4a1f1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g data-s="hot wow"><ellipse cx="60" cy="91" rx="5" ry="6" fill="#5a1620"/></g>
+<ellipse data-s="sleep" cx="60" cy="91" rx="3.4" ry="4" fill="#5a1620"/>
+<path data-s="think" d="M52 91 Q56 86 60 91 T68 90" stroke="#4a1f1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path data-s="cold" d="M51 90 L55 86 L59 91 L63 86 L67 91 L70 87" stroke="#4a1f1a" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="sw" data-s="hot" d="M96 46 q-6 9 0 14 q6 -5 0 -14z" fill="#7fd6ff"/>
+<path class="tear" data-s="sad" d="M41 88 q-4 7 0 10 q4 -3 0 -10z" fill="#7fd6ff"/>
+<g data-s="cold" stroke="#d6f2ff" stroke-width="2.2" stroke-linecap="round" fill="none"><g class="snow"><path d="M104 34 v14 M97 41 h14 M99 36 l10 10 M109 36 l-10 10"/></g><g class="snow"><path d="M14 52 v10 M9 57 h10 M10.5 53.5 l7 7 M17.5 53.5 l-7 7"/></g></g>
+<g class="spk" data-s="cheer happy" fill="#ffe27a"><path d="M10 40 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/><path d="M108 28 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/><path d="M104 8 l1.5 4.5 4.5 1.5 -4.5 1.5 -1.5 4.5 -1.5 -4.5 -4.5 -1.5 4.5 -1.5z"/></g>
+<g class="zz" data-s="sleep" fill="#cfe8ff" font-family="Georgia,serif" font-weight="700"><text x="92" y="30" font-size="15">z</text><text x="102" y="18" font-size="11">z</text></g>
+<text class="qm" data-s="think" x="94" y="30" font-size="24" font-weight="800" font-family="Georgia,serif" fill="#ffe27a">?</text>
+</g></svg>`;
+const L={
+ home:["Emperor Kirabitrax once lost to a riddle. Don't tell him I told you!","I counted every star on the map. Twice. Then I got dizzy.","Pick a number from 1 to 100... wait, that's MY job!","Psst... the secret number is NOT 42. Okay, maybe it is.","I trained all night. Mostly I trained my snacking.","Hot or cold? I'm always warm. I stand near the arena torches.","Kirabitrax snores louder than the whole Colosseum. I measured.","Tap me again. I dare you. Okay, I like it.","A true champion drinks water and guesses the middle!","If I had a coin for every number I guessed... I'd have a LOT of coins."],
+ tip:["Pro tip: guess the middle of the range. I invented that. (I didn't.)","The range shrinks every guess. Use it like a map!","Stuck? Halve the range. Boom, instant genius.","Hot means close. Blazing means GO GO GO!","Breathe. Numbers can smell fear."],
+ freezing:["Brrr! Even penguins say that's too far!","My teeth are chattering! Far, far away!","Freezing! The number is somewhere else entirely."],
+ cold:["Chilly... I'm reaching for a scarf.","Cold! It's hiding on the other side.","Brr, not even close. Try another direction!"],
+ warm:["Warm! Like tea you forgot about.","Getting warmer... follow the warmth!","Mmm, lukewarm. Almost cozy."],
+ hot:["Hot! I can smell it burning!","So close I'm sweating!","Hot hot hot! Fan me, quick!"],
+ blazing:["BLAZING! One tiny step away!!","It's RIGHT there! I can feel it!","Careful now... the number is right next door!"],
+ exact:["YES! You found it!!","That's the one! You're a legend!","BOOM! Number conquered!"],
+ first:["FIRST TRY?! Are you a wizard?!","One guess?! I need to sit down!"],
+ fail:["Oof. It happens to emperors too.","Shake it off! The next round is yours.","Even Kirabitrax misses. He just blames the dice."],
+ shield:["Shield down! Go go go!","Crack! That's how it's done!"],
+ wake:["Huh?! I'm awake! ...mostly.","Five more minutes... okay, I'm up!"],
+ sleepy:["Zzz... hot dogs... zzz... prime numbers..."]
+};
+const last={};
+const pick=(k)=>{const a=L[k];let i;do{i=Math.floor(Math.random()*a.length)}while(a.length>1&&i===last[k]);last[k]=i;return a[i]};
+const D=document;let on=true;try{on=localStorage.getItem('ms_aris')!=='0'}catch(e){}
+D.documentElement.classList.toggle('noaris',!on);
+const inst=[];let lastAct=Date.now(),lastSay=0;
+function setMood(a,m){a.m=m;a.el.dataset.m=m;
+ a.el.querySelectorAll('[data-s]').forEach(e=>{e.style.display=e.getAttribute('data-s').split(' ').indexOf(m)>=0?'':'none'});
+ const chk=m==='hot'?'.85':m==='cold'?'.15':'.42';a.el.querySelectorAll('.chk').forEach(c=>c.setAttribute('opacity',chk));
+ const look=m==='think'?[3,-3]:m==='sad'?[0,2.5]:m==='cheer'||m==='happy'?[0,0]:a.look||[0,0];
+ a.el.querySelectorAll('.pup').forEach(p=>{p.style.transform=`translate(${look[0]}px,${look[1]}px)`})}
+function say(a,t,ms){if(!t)return;clearTimeout(a.bt);a.b.textContent=t;a.b.classList.add('on');lastSay=Date.now();a.bt=setTimeout(()=>a.b.classList.remove('on'),ms||2800)}
+function mood(m,ms,t,sms){inst.forEach(a=>{clearTimeout(a.mt);setMood(a,m);say(a,t,sms);
+  if(a.kind==='game'){a.el.classList.add('show');clearTimeout(a.st);a.st=setTimeout(()=>a.el.classList.remove('show'),Math.max(ms||1800,t?(sms||2800):0)+500)}if(m!=='sleep')a.mt=setTimeout(()=>setMood(a,'idle'),ms||1800)})}
+function mk(cls,parent,before,kind){const w=D.createElement('div');w.className='arWrap '+cls;
+ w.innerHTML='<div class="arB" role="status"></div>'+SVGT.replace(/\$/g,'_'+(++uid));
+ const a={el:w,b:w.firstChild,kind,m:'idle',look:[0,0]};
+ if(before)parent.insertBefore(w,before);else parent.appendChild(w);
+ w.addEventListener('click',()=>tap(a));inst.push(a);setMood(a,'idle');return a}
+function blip(){try{if(typeof tone==='function'){tone(720,.07,'triangle',.12);setTimeout(()=>tone(960,.09,'triangle',.12),70)}}catch(e){}}
+function tap(a){lastAct=Date.now();blip();
+ if(a.m==='sleep'){mood('wow',1500,pick('wake'));return}
+ mood(Math.random()<.5?'cheer':'happy',1700,pick(a.kind==='game'?'tip':'home'),3400)}
+function greet(){const h=new Date().getHours(),g=h<5?"Up so late? Night owls rule!":h<12?"Good morning, challenger!":h<17?"Good afternoon, challenger!":h<21?"Good evening, challenger!":"Late-night strike? I'm in!";
+ inst.forEach(a=>{if(a.kind!=='home')return;clearTimeout(a.mt);setMood(a,'wave');say(a,g,2800);a.mt=setTimeout(()=>setMood(a,'idle'),2600)})}
+const isOn=id=>{const e=D.getElementById(id);return !!(e&&e.classList.contains('on'))};
+window.ARIS={
+ screen(id){if(!on)return;lastAct=Date.now();
+  if(id==='s-home')setTimeout(greet,350);
+  else if(id==='s-game'&&Date.now()-lastSay>20000)setTimeout(()=>mood('happy',1800,"Let's go! Guess the middle!",2600),500)},
+ guess(tier,exact,first){if(!on)return;lastAct=Date.now();
+  if(exact){mood('cheer',2600,pick(first?'first':'exact'),3000);return}
+  if(!tier)return;
+  const strong=tier==='blazing',cool=Date.now()-lastSay>2200;
+  if(!strong&&(!cool||Math.random()>.5)){mood(tier==='freezing'||tier==='cold'?'cold':tier==='hot'?'hot':'think',1400);return}
+  const m={blazing:'wow',hot:'hot',warm:'think',cold:'cold',freezing:'cold'}[tier]||'think';
+  mood(m,strong?1800:1500,pick(tier),2600)},
+ fail(){if(!on)return;lastAct=Date.now();mood('sad',2600,pick('fail'),3000)},
+ shield(){if(!on)return;mood('cheer',1800,pick('shield'),2200)},
+ toggle(){on=!on;try{localStorage.setItem('ms_aris',on?'1':'0')}catch(e){}D.documentElement.classList.toggle('noaris',!on);if(on)setTimeout(greet,200);return on},
+ label(){return 'ARIS COMPANION: '+(on?'ON':'OFF')},
+ mood(m,ms,t){mood(m,ms,t)}
+};
+function init(){
+ const play=D.getElementById('play'),sg=D.getElementById('s-game');
+ if(play&&play.parentNode)mk('arHome',play.parentNode,play,'home');
+ if(sg)mk('arGame',sg,null,'game');
+ const t=D.getElementById('tAris');if(t){t.textContent=ARIS.label();t.onclick=()=>{ARIS.toggle();t.textContent=ARIS.label()}}
+ setTimeout(()=>{if(on&&isOn('s-home'))greet()},1400);
+ setInterval(()=>{if(!on)return;const home=inst[0];if(!home||!isOn('s-home'))return;const idle=Date.now()-lastAct;
+  if(idle>40000&&home.m!=='sleep'){mood('sleep',0,pick('sleepy'),3200)}
+  else if(home.m==='idle'&&Math.random()<.45){home.look=[(Math.random()*6-3),(Math.random()*4-2)];setMood(home,'idle')}},1800)}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',init);else init()
+})();
 </script>
 </body></html>

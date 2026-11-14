@@ -437,3 +437,11 @@ Bump `V` in `sw.js` after every change.
 
 ## v148 changes
 **Jungle Quest: old unlocks are reset.** One-time migration (flag `PRO.jgl50`, runs just before `const WID`): anyone who unlocked Jungle Quest under the old rule (beating a Region 1 general) loses it unless they already have 50 total map stars. If it was equipped, the player goes back to the Roman world. They get it back for free the moment they reach 50 map stars (`jglCheck`). Players who unlock it after this update are never affected. Bump `V` in `sw.js` after every change.
+
+## v149 changes
+**Aris, the Mindstrike companion (first pass).** An original 2D animated character, drawn entirely in SVG + CSS (no image files). Code: `<style id="arisCss">` and `<script id="arisJs">` at the end of `index.html`.
+- **Moods:** idle, happy, cheer, sad, think, hot, cold, wow, wave, sleep. Blinking and eye look-around are automatic.
+- **Home:** sits above the event cards, greets by time of day, tap for a funny line, falls asleep after 40s idle.
+- **Game (AI modes):** reacts to hot/cold feedback, blazing near-misses, exact hits (special line for first try), failed rounds and boss shield breaks (hooks: `ARIS.guess/fail/shield` in `strike()`/`failTurn()`; `ARIS.screen` in `show()`). On phones shorter than 780px she only pops in while reacting; on taller phones she stays in the bottom-left corner. She never blocks touches in-game.
+- **Settings:** new "ARIS COMPANION: ON/OFF" toggle (saved as `ms_aris`). Respects reduced-motion.
+- Lines live in the `L` object in the script; add or edit them there. Bump `V` in `sw.js` after every change.
