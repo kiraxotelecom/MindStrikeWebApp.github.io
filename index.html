@@ -4424,12 +4424,14 @@ function arCel(stars,gain,zone,med){if(!arOn())return;const L=regList(wid),last=
  if(zone)ARIS.celebrate(last?'mapWorld':'mapRegion',last?'wow':'cheer');
  else if(med)ARIS.celebrate('mapMedal');
  else if(gain)ARIS.celebrate(stars>=3?'mapStar3':stars===2?'mapStar2':'mapStar1')}
+/* v155: the Supreme General of the map Aris is standing on (changes with world and region) */
+const bossN=()=>{try{const n=M.W.gen.Z&&M.W.gen.Z.name;return n?n.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase()).replace(/ (Of|The|To|And|A)\b/g,m=>m.toLowerCase()):''}catch(e){return ''}};
 function arEnergy(){const h=hpLeft();if(h<=0)return{t:`Out of energy! Bars refill in ${hpTxt()}, or spend ${HP_GEMS} 💎 to refill.`,m:'sad'};if(h===1)return{t:'Last energy bar! Make it count.',m:'think'};return null}
 function arPlan(){try{if(hpLeft()<=0)return arEnergy();const v=vis(),S=st().s,open=M.N.filter(x=>v[x.id]==='a'),pen={s:0,b:0,e:1.5,g:2.5,k:2,z:4,x:-1},
  tw=x=>(x.kind==='b'||x.kind==='e')?twOf(x.id):'',sc=x=>TIERS.indexOf(par(x).tier)*2+(pen[x.kind]||0)+(tw(x)==='bounty'?-1.5:0)+(vHint(x)?-1:0)+x.d*.15,
  fresh=open.filter(x=>!((S[x.id]||0)>0)).sort((a,b)=>sc(a)-sc(b));
  if(fresh.length){const x=fresh[0],p=par(x);
-  return{id:x.id,m:'happy',t:tw(x)==='bounty'?`Try ${x.name}: a Bounty is on today, coins ×2 for stars!`:x.kind==='x'?`The vault at ${x.name} is open! Big loot inside.`:x.kind==='z'?`${x.name}: the Supreme General waits there. Ready?`:x.kind==='k'?`The Gate is open! Try ${x.name}.`:vHint(x)?`Try ${x.name}: win it with ⭐⭐⭐ and a vault appears!`:p.tier==='Easy'?`Try ${x.name}, there are easy stars there.`:`Try ${x.name} next. Every win lifts the fog.`}}
+  return{id:x.id,m:'happy',t:tw(x)==='bounty'?`Try ${x.name}: a Bounty is on today, coins ×2 for stars!`:x.kind==='x'?`The vault at ${x.name} is open! Big loot inside.`:x.kind==='z'?`${x.name}: ${bossN()||'the Supreme General'} waits there. Ready?`:x.kind==='k'?`The Gate is open! Try ${x.name}.`:vHint(x)?`Try ${x.name}: win it with ⭐⭐⭐ and a vault appears!`:p.tier==='Easy'?`Try ${x.name}, there are easy stars there.`:`Try ${x.name} next. Every win lifts the fog.`}}
  const gl=M.N.find(x=>x.kind==='k'&&v[x.id]==='l'),rp=M.N.filter(x=>(S[x.id]||0)>0&&S[x.id]<3&&x.kind!=='x').sort((a,b)=>(S[a.id]||0)-(S[b.id]||0)||a.d-b.d)[0];
  if(gl&&rp)return{id:rp.id,m:'think',t:`The Gate needs ⭐ ${gNeed()}. Replay ${rp.name} for more stars!`};
  if(rp)return{id:rp.id,m:'think',t:`Replay ${rp.name} for more stars. I believe in ⭐⭐⭐!`};
@@ -4438,6 +4440,7 @@ function arTip(step){try{const v=vis(),k=((step%4)+4)%4;
  if(k===0)return arPlan();
  if(k===1){const x=M.N.find(y=>v[y.id]&&v[y.id]!=='s'&&v[y.id]!=='l'&&(y.kind==='b'||y.kind==='e')&&twOf(y.id));return x?{m:'wow',id:x.id,t:twLine(twOf(x.id),x.name)}:null}
  if(k===2){const nv=M.N.filter(y=>y.kind==='x'&&!v[y.id]).length;return nv?{m:'think',t:'A vault is sleeping on this map. Look for a 🗝️ and earn ⭐⭐⭐ next to it!'}:null}
+ if(Math.floor(step/4)%2===1&&bossN()){const z=M.N.find(y=>y.kind==='z'),cl=z&&v[z.id]&&v[z.id]!=='s'&&v[z.id]!=='l';return{m:'think',t:cl?`${bossN()} is waiting at the end of this road. Clear the Gate first!`:`${bossN()} rules this map. Beat the route generals and open the Gate!`}}
  return arOn()?{m:'happy',t:'Tap any battle and I’ll explain its omen chip in plain words.'}:null}catch(e){return null}}
 window.__wmAris={plan:arPlan,tip:arTip,energy:arEnergy};
 window.__wm={WMAPS,WREG,build,vis,par,wmUI,sums};
