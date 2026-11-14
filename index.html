@@ -1353,6 +1353,23 @@ html.noaris .arTip{display:none!important}
 .arWrap .pf{transform-box:fill-box;transform-origin:center;animation:arPf 2.2s ease-in infinite}
 .arWrap .pf:nth-child(2){animation-delay:.7s}.arWrap .pf:nth-child(3){animation-delay:1.4s}
 @keyframes arPf{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-18px)}}
+/* ===== v153: costume-change spin, idle tricks ===== */
+.arWrap.arSpin svg{transform-origin:50% 60%;animation:arSpin .9s cubic-bezier(.3,1.2,.5,1)}
+@keyframes arSpin{0%{transform:rotate(0) scale(1)}45%{transform:rotate(200deg) scale(1.3)}100%{transform:rotate(360deg) scale(1)}}
+.arWrap .tk{display:none;transform-box:view-box}
+.arWrap.arT .tk{display:block}
+.arWrap.arT[data-w=samurai] .tk{transform-origin:92px 126px;animation:arSlash .45s ease-in-out 4 alternate}
+@keyframes arSlash{from{transform:rotate(-70deg)}to{transform:rotate(45deg)}}
+.arWrap.arT[data-w=elementa] .tk{transform-origin:90px 136px;animation:arRock .5s ease-in-out 4 alternate}
+@keyframes arRock{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.arWrap.arT[data-w=atlantis] .bod,.arWrap.arT[data-w=astral] .bod{animation:arFloat 2.3s ease-in-out}
+@keyframes arFloat{0%,100%{transform:translateY(0)}35%,65%{transform:translateY(-14px)}}
+.arWrap.arT[data-w=cyber] .bod{animation:arGlitch .8s steps(2) 2}
+@keyframes arGlitch{0%,100%{transform:none;filter:none}25%{transform:translateX(-4px) skewX(10deg);filter:hue-rotate(90deg)}50%{transform:translateX(4px);filter:hue-rotate(-90deg)}75%{transform:translateX(-2px) skewX(-8deg)}}
+.arWrap.arT[data-w=ice] .bod{animation:arShiver .12s linear 14}
+.arWrap.arT[data-w=buganda] .bod,.arWrap.arT[data-w=roman] .bod{animation:arJump .45s ease-in-out 4}
+.arWrap.arT[data-w=gold] .bod,.arWrap.arT[data-w=jungle] .bod{animation:arSway .7s ease-in-out 3 alternate}
+@keyframes arSway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 </style>
 </head><body><div id="app">
 
@@ -5120,7 +5137,7 @@ const OUT={
   tx:'<path d="M46 106L41 134M74 106L79 134" stroke="#ff3df0" stroke-width="2.4" fill="none"/>',
   hd:'<path d="M24 52Q60 34 96 52L94 60Q60 44 26 60Z" fill="#150a30" stroke="#37f3ff" stroke-width="1.6"/><path class="gl" d="M32 53Q60 40 88 53" stroke="#37f3ff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="21" cy="70" r="5" fill="#150a30" stroke="#ff3df0" stroke-width="2"/><circle cx="99" cy="70" r="5" fill="#150a30" stroke="#ff3df0" stroke-width="2"/>',
   fx:'<g data-s="wow cheer panic hot" fill="#37f3ff"><rect class="pf" x="12" y="40" width="9" height="2.4"/><rect class="pf" x="98" y="50" width="11" height="2.4" fill="#ff3df0"/><rect class="pf" x="16" y="86" width="7" height="2.4" fill="#ff3df0"/></g>'},
- samurai:{tb:'#9b1c2a',ta:'#d9b25a',sh:'#2a2320',sl:'#7e1522',em:'侍',ec:'#f3ece0',
+ samurai:{tk:'<path d="M92 128L114 66" stroke="#dfe6ee" stroke-width="3" stroke-linecap="round"/><path d="M88 129h8" stroke="#d9b25a" stroke-width="3.4" stroke-linecap="round"/><path d="M92 128v6" stroke="#1b1320" stroke-width="4"/>',tb:'#9b1c2a',ta:'#d9b25a',sh:'#2a2320',sl:'#7e1522',em:'侍',ec:'#f3ece0',
   tx:'<path d="M50 102L60 119L70 102" stroke="#f3ece0" stroke-width="4" fill="none"/><path d="M34 124Q60 131 86 124L87 131Q60 138 33 131Z" fill="#1b1320"/>',
   hd:'<path d="M23 52Q60 34 97 52" stroke="#f3ece0" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="41" r="4.4" fill="#c8202e"/><path class="fl" d="M96 50q10 2 12 12M96 52q12-2 16 6" stroke="#f3ece0" stroke-width="3" fill="none" stroke-linecap="round"/>',
   fx:'<g data-s="idle happy cheer" fill="#ffb7c9"><path class="sw" d="M16 28q5-5 9 0q-4 7-9 0z"/><path class="sw" style="animation-delay:.6s" d="M100 18q5-5 9 0q-4 7-9 0z"/><path class="sw" style="animation-delay:1.1s" d="M104 62q5-5 9 0q-4 7-9 0z"/></g>'},
@@ -5144,7 +5161,7 @@ const OUT={
   tx:'<path d="M40 109q5 5 10 0M50 109q5 5 10 0M60 109q5 5 10 0M70 109q5 5 10 0M45 135q5 5 10 0M65 135q5 5 10 0" stroke="#6ccbf8" stroke-width="1.3" fill="none" opacity=".75"/>',
   hd:'<path d="M25 52Q60 28 95 52" stroke="#ff8fd8" stroke-width="3.6" fill="none" stroke-linecap="round"/><path d="M50 36Q60 14 70 36Z" fill="#ff8fd8" stroke="#ffd3f0" stroke-width="1.2"/><circle cx="60" cy="39" r="4.4" fill="#fff"/><path class="fl" d="M19 68Q4 66 6 50Q18 54 22 62Z" fill="#6ccbf8" opacity=".9"/><path class="fl" d="M101 68Q116 66 114 50Q102 54 98 62Z" fill="#6ccbf8" opacity=".9"/>',
   fx:'<g data-s="idle happy cheer think" fill="none" stroke="#bfefff" stroke-width="1.6"><circle class="pf" cx="100" cy="70" r="3"/><circle class="pf" cx="108" cy="58" r="2"/><circle class="pf" cx="14" cy="64" r="2.4"/></g>'},
- elementa:{tb:'#f3eaff',ta:'#c04bd8',sh:'#2a0f33',em:'N',ec:'#8a1fa6',ep:[68,127],
+ elementa:{tk:'<path d="M84 124h12l-2.5 13h-7z" fill="#c04bd8" fill-opacity=".6" stroke="#8a1fa6" stroke-width="1.5"/><path d="M83 124h14" stroke="#8a1fa6" stroke-width="2"/><circle cx="90" cy="118" r="2" fill="#c04bd8" opacity=".7"/><circle cx="94" cy="113" r="1.4" fill="#ff9a3c"/>',tb:'#f3eaff',ta:'#c04bd8',sh:'#2a0f33',em:'N',ec:'#8a1fa6',ep:[68,127],
   tx:'<path d="M50 102L60 120L70 102" stroke="#c04bd8" stroke-width="3" fill="none" stroke-linejoin="round"/><rect x="40" y="116" width="11" height="12" rx="2" fill="none" stroke="#c04bd8" stroke-width="1.6"/><path d="M44 116v-5M47 116v-4" stroke="#ff9a3c" stroke-width="2" stroke-linecap="round"/>',
   hd:'<path d="M25 52Q60 28 95 52" stroke="#2a0f33" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse class="gl" cx="46" cy="42" rx="9" ry="6.5" fill="#ff9a3c" fill-opacity=".35" stroke="#c04bd8" stroke-width="2.5"/><ellipse class="gl" cx="74" cy="42" rx="9" ry="6.5" fill="#ff9a3c" fill-opacity=".35" stroke="#c04bd8" stroke-width="2.5"/>',
   fx:`<g class="spk" data-s="cheer wow hot" fill="#ff9a3c"><path d="${SP(10,40)}"/><path d="${SP(104,28)}"/></g><g data-s="think idle" fill="#c04bd8" fill-opacity=".7"><circle class="pf" cx="102" cy="64" r="3"/><circle class="pf" cx="108" cy="52" r="2"/><circle class="pf" cx="100" cy="46" r="1.5"/></g>`},
@@ -5172,14 +5189,34 @@ const SL=(()=>{const S={SH:'',AL:'',AR:'',TO:'',HD:'',FR:''};
   S.AL+=g(`<path d="M40 108L34.6 119.4" stroke="${sl}" stroke-width="11" stroke-linecap="round"/><path d="M30.1 117.3L39.1 121.5" stroke="${o.ta}" stroke-width="3.4"/>`);
   S.AR+=g(`<path d="M80 108L85.4 119.4" stroke="${sl}" stroke-width="11" stroke-linecap="round"/><path d="M80.9 121.5L89.9 117.3" stroke="${o.ta}" stroke-width="3.4"/>`);
   S.TO+=g(`<path d="M37 104Q60 97 83 104L88 137Q60 144 32 137Z" fill="${o.tb}"/>${o.tx||''}<path d="M34 129Q60 136 86 129M50 102Q60 110 70 102" stroke="${o.ta}" stroke-width="3" fill="none" stroke-linecap="round"/>${o.em?`<text x="${e[0]}" y="${e[1]}" text-anchor="middle" font-size="15" font-weight="800" font-family="Georgia,'Times New Roman',serif" fill="${o.ec}">${o.em}</text>`:''}`);
-  S.HD+=g(o.hd||'');S.FR+=g(o.fx||'')}
+  S.HD+=g(o.hd||'');S.FR+=g((o.fx||'')+(o.tk?`<g class="tk">${o.tk}</g>`:''))}
  return S})();
 const SVG2=['SH','AL','AR','TO','HD','FR'].reduce((t,k)=>t.replace('<!--'+k+'-->',()=>SL[k]),SVGT);
 const curW=()=>{const c=[...document.documentElement.classList].find(x=>/^wd-./.test(x));return c&&OUT[c.slice(3)]?c.slice(3):'roman'};
 let OID=curW();
 const dr=a=>{a.el.dataset.w=OID;a.el.querySelectorAll('[data-o]').forEach(e=>{e.style.display=e.dataset.o===OID?'':'none'})};
-function dress(){const n=curW();if(n===OID)return;OID=n;inst.forEach(dr)}
+function dress(){const n=curW();if(n===OID)return;OID=n;inst.forEach(dr);try{localStorage.setItem('ms_arout',OID)}catch(e){}spin()}
 try{new MutationObserver(dress).observe(document.documentElement,{attributes:true,attributeFilter:['class']})}catch(e){}
+
+/* v153: costume-change spin, per-world idle tricks, per-world tap sounds */
+const BL={roman:[[720,.07,'triangle',.12,0],[960,.09,'triangle',.12,70]],
+ cyber:[[880,.05,'square',.06,0],[1320,.05,'square',.06,60],[660,.07,'square',.06,120]],
+ samurai:[[523,.18,'triangle',.12,0],[784,.22,'triangle',.1,110]],
+ ice:[[1318,.25,'sine',.1,0],[1760,.35,'sine',.09,90],[2093,.4,'sine',.07,180]],
+ buganda:[[140,.12,'sine',.25,0],[200,.08,'triangle',.18,110],[140,.1,'sine',.2,200]],
+ gold:[[392,.15,'sawtooth',.04,0],[466,.15,'sawtooth',.04,90],[523,.25,'sawtooth',.04,180]],
+ astral:[[1568,.2,'sine',.08,0],[2093,.2,'sine',.07,70],[2637,.3,'sine',.06,140]],
+ atlantis:[[400,.08,'sine',.12,0],[700,.1,'sine',.12,70],[550,.12,'sine',.1,150]],
+ elementa:[[1000,.04,'square',.04,0],[1400,.04,'square',.04,45],[900,.05,'square',.04,90],[1800,.06,'square',.04,135]],
+ jungle:[[330,.1,'triangle',.18,0],[440,.1,'triangle',.18,90],[330,.12,'triangle',.15,180]]};
+const TK={roman:"Hup! Training time!",cyber:"Glitch! ...I'm fine.",samurai:"Hyah! Watch this cut!",ice:"Brr-brr-brrr!",buganda:"Feel the beat!",gold:"Dancing in the dunes!",astral:"Weee! Zero gravity!",atlantis:"Floating up! Blub!",elementa:"Careful... it's bubbling!",jungle:"Swinging on vines!"};
+let trickT=0,pendSpin=false;
+try{const p=localStorage.getItem('ms_arout');if(p!==OID){localStorage.setItem('ms_arout',OID);pendSpin=p!==null}}catch(e){}
+function trick(a){trickT=Date.now();a.el.classList.add('arT');say(a,TK[OID],2400);setTimeout(()=>a.el.classList.remove('arT'),2500)}
+function spin(){if(!isOn('s-home'))return;const h=inst.find(a=>a.kind==='home');if(!h)return;clearTimeout(h.mt);setMood(h,'cheer');say(h,'Ta-da! New world, new look!',2800);
+ h.el.classList.add('arSpin');setTimeout(()=>h.el.classList.remove('arSpin'),950);
+ try{sfx('whoosh');burst(['✨',(WORLDS[OID]||{}).e||'✨'],14)}catch(e){}
+ h.mt=setTimeout(()=>setMood(h,'idle'),2400)}
 
 const L={
  home:["Emperor Kirabitrax once lost to a riddle. Don't tell him I told you!","I counted every star on the map. Twice. Then I got dizzy.","Pick a number from 1 to 100... wait, that's MY job!","Psst... the secret number is NOT 42. Okay, maybe it is.","I trained all night. Mostly I trained my snacking.","Hot or cold? I'm always warm. I stand near the arena torches.","Kirabitrax snores louder than the whole Colosseum. I measured.","Tap me again. I dare you. Okay, I like it.","A true champion drinks water and guesses the middle!","If I had a coin for every number I guessed... I'd have a LOT of coins."],
@@ -5256,7 +5293,7 @@ function mk(cls,parent,before,kind){const w=D.createElement('div');w.className='
  const a={el:w,b:w.firstChild,kind,m:'idle',look:[0,0]};
  if(before)parent.insertBefore(w,before);else parent.appendChild(w);
  w.addEventListener('click',()=>tap(a));inst.push(a);dr(a);setMood(a,'idle');return a}
-function blip(){try{if(typeof tone==='function'){tone(720,.07,'triangle',.12);setTimeout(()=>tone(960,.09,'triangle',.12),70)}}catch(e){}}
+function blip(){try{if(typeof tone==='function')(BL[OID]||BL.roman).forEach(n=>setTimeout(()=>tone(n[0],n[1],n[2],n[3]),n[4]))}catch(e){}}
 function tap(a){lastAct=Date.now();blip();
  if(a.m==='sleep'){mood('wow',1500,pick('wake'));return}
  mood(Math.random()<.5?'cheer':'happy',1700,pick(a.kind==='game'?'tip':'home'),3400)}
@@ -5359,10 +5396,10 @@ function init(){
   if(cbr&&window.MutationObserver)new MutationObserver(()=>{if(!cbr.classList.contains('on'))tp.hidden=true}).observe(cbr,{attributes:true,attributeFilter:['class']})}}
  try{if(typeof toast==='function'){const _t=toast;window.toast=function(h){const r=_t.apply(this,arguments);try{ARIS.onToast(h)}catch(e){}return r}}}catch(e){}
  const t=D.getElementById('tAris');if(t){t.textContent=ARIS.label();t.onclick=()=>{ARIS.toggle();t.textContent=ARIS.label()}}
- setTimeout(()=>{if(on&&isOn('s-home'))greet()},1400);
+ setTimeout(()=>{if(on&&isOn('s-home'))greet()},1400);if(pendSpin)setTimeout(()=>{if(on&&isOn('s-home'))spin()},2000);
  setInterval(()=>{if(!on)return;const idle=Date.now()-lastAct,home=inst[0];
   if(home&&isOn('s-home')){if(idle>40000&&home.m!=='sleep'){mood('sleep',0,pick('sleepy'),3200)}
-   else if(home.m==='idle'&&Math.random()<.45){home.look=[(Math.random()*6-3),(Math.random()*4-2)];setMood(home,'idle')}return}
+   else if(home.m==='idle'&&idle>8000&&Date.now()-trickT>12000&&Math.random()<.5)trick(home);else if(home.m==='idle'&&Math.random()<.45){home.look=[(Math.random()*6-3),(Math.random()*4-2)];setMood(home,'idle')}return}
   try{if(isOn('s-wmap')){const q=window.__wmAris;if(q&&!isOn('cbrief')&&!isOn('wmTut')&&mapTips<5&&Date.now()-touchAct>7000&&Date.now()-lastSay>12000){mapTips++;for(let k=0;k<4;k++){const r=q.tip(mapStep++);if(r){mapSay(r);break}}}return}}catch(e){}
   try{if(isOn('s-game')&&typeof G!=='undefined'&&G&&!G.done&&!G.busy&&!G.paused&&G.mode==='AI'&&G.cur===0&&idle>((typeof S!=='undefined'&&S.timer)?8000:20000)){const k=G.round+':'+G.att+':'+G.kLo+':'+G.kHi;if(k!==stuckKey){stuckKey=k;const mid=Math.floor((G.kLo+G.kHi)/2);lastAct=Date.now();mood('think',3200,'Stuck? The middle of '+G.kLo+'\u2013'+G.kHi+' is '+mid+'. Just saying.',4400)}}}catch(e){}
  },1800)}

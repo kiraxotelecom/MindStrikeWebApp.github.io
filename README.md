@@ -469,3 +469,10 @@ Bump `V` in `sw.js` after every change.
 - **Matching reactions:** `.fl` pieces (scarf tail, feathers, cloth, cape, fins) flutter slowly when idle, fast when she cheers or is hot, and shake when she panics or is cold. `.gl` pieces (visor, halo, goggle lenses) pulse faster on cheer, wow and panic. Each world also has its own mood particles (glitch bars, sakura petals, breath puffs, drum notes, sand glints, star twinkles, bubbles, sodium sparks, falling leaves).
 - **Lines:** each world has themed `home`, `hot`, `exact`, `fail` and `win` lines in the `OL` table (Ice also has `cold`). About 3 in 4 reactions of those kinds use the world's line, the rest use the normal one. Edit or add lines in `OL`.
 - **Switching:** the outfit follows the `wd-<world>` class on `<html>`, so it also changes during a world preview. To add an outfit for a new world, add an entry to `OUT` and `OL`. Bump `V` in `sw.js` after every change.
+
+## v153 changes
+**Aris extras (all in the Aris script/style).**
+- **Costume-change moment:** when the equipped world changes (the page remembers the last outfit in `ms_arout`), the home Aris spins with a whoosh, a burst of sparkles plus the world's emoji, and says "Ta-da! New world, new look!" (`spin()`). First ever load does not spin.
+- **Idle tricks (home screen):** after 8s idle (and at most every 12s, before she falls asleep) she does a world-specific trick with a short line (`trick()`, lines in `TK`, animations are the `.arT[data-w=...]` CSS rules). Samurai swings a katana, Elementa rocks a bubbling beaker (props are the `tk` entries in `OUT`), Atlantis and Astral float up, Neon Grid glitches, Ice shivers, Buganda and Roman jump, Golden Sands and Jungle sway.
+- **Tap sounds:** her tap blip is now per world (`BL` table of `[freq, seconds, wave, volume, delay ms]`): Ice chime, Neon Grid bleeps, Buganda drum, Shogun koto-style pluck, Golden Sands oud-style notes, Astral sparkle, Atlantis bubbles, Elementa fizz, Jungle wood block.
+Bump `V` in `sw.js` after every change.
