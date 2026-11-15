@@ -524,3 +524,7 @@ Bump `V` in `sw.js` after every change.
 
 ## v163 changes
 **Boss costumes per world, smaller boss.** The floating boss is about 40% smaller and sits higher, clear of the title and bars. Each world now has its own costume, not just colours: Roman legion armour, robes and scimitar (Sultan, Kabaka), smoke-tailed djinn, kimono and katana (Shogun, oni, tengu), fur mantle and axe (Viking), glowing bodysuit and energy blade (Cyber), scale armour, fins and trident (Atlantis), bark cloth, beads and spear (Jungle), starry robe and star staff (Astral). Torsos have a soft highlight and shadow edge. Costume per look lives in `ST`, drawn in the `B` and `WPN` tables inside `<script id="bzJs">`.
+
+## v164 changes
+**Every world shows its own boss.** Before, a world's boss stayed the default Roman look until you conquered a region there. Now each world starts with its own character, route generals pick from their world's looks by name, and Elementa has its own alchemist boss (goggles, lab coat, bubbling flask).
+**Unlock swap.** Elementa (the educational world) is now free: earn 50 ⭐ across your world maps. Jungle Quest now needs rank Signifer, 3 passport stamps and 70 💎 (what Elementa used to need). Players who already own either world keep it.
