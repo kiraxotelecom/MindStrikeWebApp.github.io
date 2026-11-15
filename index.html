@@ -2164,15 +2164,15 @@ const trN=()=>Object.values(PRO.cp||{}).filter(v=>v>0).length,trMg=()=>Object.ke
 const trWn=()=>wmO().reduce((a,m)=>a+Object.values((m&&m.s)||{}).filter(v=>v>0).length,0),trWs=()=>wmO().reduce((a,m)=>a+Object.values((m&&m.s)||{}).reduce((x,y)=>x+y,0),0),trWx=()=>wmO().filter(m=>m&&Object.values(m.s||{}).some(v=>v>0)).length,trWd=()=>wmO().filter(m=>m&&m.d).length;
 function trWg(){try{const W=window.__wm;return Object.keys(PRO.wm||{}).reduce((a,w)=>{if(!W.WMAPS[w]||!ownW(w))return a;const S=PRO.wm[w].s||{};return a+W.build(w).N.filter(n=>n.kind==='g'&&(S[n.id]||0)>0).length},0)}catch(e){return 0}}
 
-/* v177: PASSPORT RESET (one time). Every stamp earned under an older rule is gone: conquered-region marks and mastery baselines start fresh from here. Owned worlds, coins, gems and XP stay. */
-if((PRO.sv||0)<177){const had=Object.keys(PRO.wm||{}).some(k=>PRO.wm[k]&&PRO.wm[k].d);PRO.sr={};PRO.sb={};Object.keys(PRO.mg||{}).forEach(k=>{if(/^tm_/.test(k))PRO.sb[k.slice(3)]=(PRO.mg[k]&&PRO.mg[k].t)||0});PRO.sv=177;if(had)PRO.wn177=1;LS.set('ms_pro',PRO)}
+/* v179: PASSPORT RESTORED. The v177 reset is undone: nothing earned is ever lost. Conquered regions are rebuilt from the world maps (PRO.wm[key].d, key = world or world~n) and the mastery baseline (PRO.sb) is cleared, so a player's whole history counts. The rule is the same for everyone: conquered region + STAMP_PTS lifetime mastery points in that world's game. No free stamps. */
+if((PRO.sv||0)<179){PRO.sr=PRO.sr||{};PRO.sb={};delete PRO.wn177;let back=0;Object.keys(PRO.wm||{}).forEach(k=>{if(PRO.wm[k]&&PRO.wm[k].d){const w=k.split('~')[0];if(!PRO.sr[w]){PRO.sr[w]=1;back++}}});PRO.sv=179;if(back||Object.keys(PRO.mg||{}).some(k=>/^tm_/.test(k)&&PRO.mg[k]&&PRO.mg[k].t>0))PRO.wn179=1;LS.set('ms_pro',PRO)}
 /* v125: PASSPORT. A stamp = a conquered region in that world (Roman included; v128). Premium worlds and the top two ranks need stamps. World-map trial progress only counts for worlds you currently own. */
 function ownW(w){return w==='roman'||!!(PRO.own&&PRO.own['wd:'+w])}
 function WALL(){return Object.keys(WORLDS)}
 /* v177: PASSPORT RESET. A stamp needs BOTH (1) a region conquered on that world's map SINCE the reset (PRO.sr[world]=1, set when its Supreme General falls; replay the general to earn it again) AND (2) STAMP_PTS mastery points earned in that world's own game SINCE the reset (key tm_<world> in PRO.mg, minus the baseline saved in PRO.sb). Mastery level = floor(sqrt(points/60)): L2 starts at 240, L3 at 540, so 400 points sits inside L2. Old stamps (earned under any earlier rule) are gone for everyone. Retune STAMP_PTS to change the requirement. */
 const STAMP_PTS=400,GAMEN={roman:['🛒','MARKET CHANGE'],buganda:['🐚','COWRIE COUNT'],cyber:['💾','BINARY BREACH'],samurai:['🗡️','HAIKU BLADE'],ice:['🪨','STONE SUMS'],astral:['🪐','ORBIT LOCK'],atlantis:['🌊','TIDE TURN'],gold:['🐪','CARAVAN LEDGER'],jungle:['🐒','VINE SWING'],elementa:['⚛️','PROTON COUNT']};
-function themePts(w){const m=(PRO.mg||{})['tm_'+w],t=(m&&m.t)||0,b=(PRO.sb&&PRO.sb[w])||0;return Math.max(0,t-b)}
-function regionDone(w){return !!(PRO.sr&&PRO.sr[w])}
+function themePts(w){const m=(PRO.mg||{})['tm_'+w];return (m&&m.t)||0}
+function regionDone(w){if(PRO.sr&&PRO.sr[w])return true;try{const wm=PRO.wm||{};for(const k in wm){if(wm[k]&&wm[k].d&&k.split('~')[0]===w)return true}}catch(e){}return false}
 function stampHas(w){return regionDone(w)&&themePts(w)>=STAMP_PTS}
 function stampNote(w){const g=GAMEN[w],W=WORLDS[w];if(!g||!W)return'';const r=regionDone(w),t=themePts(w),ok=t>=STAMP_PTS;
  if(r&&ok)return'<br>🛂 <b>'+W.n+' stamp earned!</b>';
@@ -2214,7 +2214,7 @@ try{if(!PRO.jgl50){PRO.jgl50=1;const _js=Object.values(PRO.wm||{}).reduce((t,m)=
 const WID=PRO.wd&&WORLDS[PRO.wd]&&(PRO.own['wd:'+PRO.wd]||(PRO.pv&&PRO.pv.w===PRO.wd))?PRO.wd:'';
 {const hc=document.documentElement;[...hc.classList].filter(x=>/^wd-/.test(x)&&x!=='wd-'+WID).forEach(x=>hc.classList.remove(x));if(WID)hc.classList.add('wd-'+WID)}
 if(PRO.pv&&!PRO.pv.done){const c=document.createElement('button');c.id='pvChip';c.textContent='👁 PREVIEW · win or lose one solo match · tap to leave';c.onclick=()=>{PRO.wd=PRO.pv.back||'';delete PRO.pv;LS.set('ms_pro',PRO);location.reload()};document.body.appendChild(c)}
-if(PRO.wn177){delete PRO.wn177;LS.set('ms_pro',PRO);setTimeout(()=>{const o=document.createElement('div');o.id='wnPop';o.innerHTML=`<div class="card"><h2>🛂 New Passport rules</h2><p>Stamps now mean more. Each one needs a <b>conquered region</b> and <b>${STAMP_PTS} points</b> in that world’s own mini game, both earned from now on.</p><p>Stamps from older versions were <b>reset</b> for everyone. Your worlds, coins, gems and XP are safe. Beat a world’s Supreme General again to earn its region back.</p><button id="wnOk" style="width:100%">GOT IT</button></div>`;document.body.appendChild(o);o.querySelector('#wnOk').onclick=()=>o.remove()},1200)}
+if(PRO.wn179){delete PRO.wn179;LS.set('ms_pro',PRO);setTimeout(()=>{const o=document.createElement('div');o.id='wnPop';o.innerHTML=`<div class=\"card\"><h2>🛂 Passport Restored</h2><p>Nothing you earned is lost. Your conquered regions and mini game mastery all count toward your stamps.</p><p>A stamp needs a <b>conquered region</b> plus <b>${STAMP_PTS} mastery points</b> in that world’s own game. Tap your Passport to see what each stamp still needs.</p><button id=\"wnOk\" style=\"width:100%\">GOT IT</button></div>`;document.body.appendChild(o);o.querySelector('#wnOk').onclick=()=>o.remove()},1200)}
 if(PRO.wn7){const w7=PRO.wn7;delete PRO.wn7;LS.set('ms_pro',PRO);setTimeout(()=>{const o=document.createElement('div');o.id='wnPop';const ls=(w7.lost||[]).map(w=>WORLDS[w]?WORLDS[w].e+' '+WORLDS[w].n:'').filter(Boolean);
  o.innerHTML=`<div class="card"><h2>💎 Preventing inflation</h2><p>To stop gems losing their value, every player's gems were <b>cut in half</b>${w7.from?`: <b>${w7.from} → ${w7.to} 💎</b>`:''}. Your coins and XP are safe.</p><p>Every world except Roman now needs a <b>rank</b>, and your 🛂 <b>Passport</b> grows when you <b>conquer a region</b> in a world.${ls.length?` The worlds you had bought were removed: <b>${ls.join(', ')}</b>.`:''}</p><button id="wnOk" style="width:100%">GOT IT</button></div>`;document.body.appendChild(o);o.querySelector('#wnOk').onclick=()=>o.remove()},900)}
 {const wm=WORLDS[WID]&&WORLDS[WID].mus;if(wm){const a=new Audio(`audio/theme_${wm}.mp3`);a.loop=true;M.theme=a;applyVol()}}
@@ -6703,7 +6703,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175: APP_VER is shown in the launch animation and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='v178';
+window.APP_VER='v179';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
