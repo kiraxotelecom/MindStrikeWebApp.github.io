@@ -1442,7 +1442,7 @@ html.noaris #arBrag .arWrap{display:block!important}
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
  <div id="prof"></div>
  <div class="tiles"><button id="seasonBtn"></button><button id="mapBtn"></button><button id="miniBtn"></button><button id="dailyBtn"></button><button id="chalBtn"></button><button id="shopBtn"></button><button id="questBtn"></button></div>
- <button id="play">ENTER THE ARENA</button>
+ <button id="fcAlt" hidden aria-live="off"></button><button id="amCard" aria-live="off"></button><button id="play">ENTER THE ARENA</button>
  <div class="sub2"><button data-go="s-hall">🏆 HALL OF GLORY</button><button id="how">❓ HOW TO PLAY</button><button id="setRow" data-go="s-set">⚙️ SETTINGS</button></div>
  <div id="inst" hidden></div>
 </section>
@@ -1549,7 +1549,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 
 <section class="scr" id="s-shop" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><button id="fcBtn" aria-live="off"></button><div id="shopList" class="shHub"></div>
+ <header class="bm-hero"><div class="bm-kicker">Spend your spoils</div><h1>The Armory</h1><div class="bm-sub">Gear, relics and today’s market.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header><div id="gold" class="big"></div><div id="shopList" class="shHub"></div>
 </section>
 
 <section class="scr" id="s-set" style="--bg:url(img/menu_bg.webp)">
@@ -1764,7 +1764,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 <div class="pop" id="cbrief" style="z-index:11"><div class="card" style="text-align:center;width:min(92%,360px)"><h2 id="cbT"></h2><div id="cbB" style="text-align:left;line-height:1.55;margin:8px 0"></div><button id="cbGo" style="width:100%">⚔️ FIGHT</button><button id="cbX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="svMailPop" style="z-index:12"><div class="card" data-nx="1" style="text-align:center;width:min(92%,380px)"><h2>📬 MARATHON REWARDS</h2><small>These were delivered to you automatically.</small><div id="svMailB" style="text-align:left;line-height:1.5;margin:10px 0;max-height:55vh;overflow:auto"></div><button id="svMailOk" style="width:100%">✓ GOT IT</button></div></div>
 <div class="pop" id="cqPop" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>🦅 OUT OF BATTLES</h2><div id="cqT" style="line-height:1.6;margin:8px 0"></div><button id="cqBuy" style="width:100%"></button><button id="cqGem" style="width:100%;margin-top:8px"></button><button id="cqNo" style="width:100%;margin-top:8px">NOT NOW</button></div></div>
-<div class="pop" id="fcPop" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 FREE CHEST</h2><div id="fcBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="fcTxt">Tap the chest to open it!</p><button id="fcGo" style="width:100%">OPEN</button></div></div>
+<div class="pop" id="fcPop" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 ARIS’S FREE GIFT</h2><div id="fcBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="fcTxt">Tap the gift to open it!</p><button id="fcGo" style="width:100%">OPEN</button></div></div>
 <div class="pop" id="chest" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 DAILY CHEST</h2><div id="chestDays" class="row" style="margin:6px 0"></div><div id="chestBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="chestTxt">Tap the chest to open it!</p><button id="chestBtn" style="width:100%">OPEN</button></div></div>
 <div class="pop" id="chal" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>⚔️ FRIEND CHALLENGE</h2><div id="chalB" style="line-height:1.55;margin:8px 0"></div><button id="chalGo" style="width:100%"></button><div id="chalJ" style="margin-top:10px"><input type="text" id="chalIn" placeholder="PASTE LINK OR CODE" autocomplete="off" autocapitalize="off" style="width:100%"><button id="chalJoin" style="width:100%;margin-top:6px">JOIN CHALLENGE</button></div><button id="chalX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
@@ -1853,7 +1853,7 @@ const HELP=`<header class="bm-hero"><div class="bm-kicker">Know the rules</div><
 <h2>WAGERS &amp; GENERALS</h2><p>Before a VS match, stake coins: win to be paid ×1.5 / ×2 / ×2.5 (by difficulty), a draw refunds you, a loss or quitting forfeits it. Bigger stakes unlock with rank: 250 at Centurion, 500 at Legatus, ALL-IN at Consul. <b>Side-bets</b> add a bonus multiplier (No Powers +0.5, Swift +0.5, Flawless +1) and only lose the bonus if you miss them. <b>Insurance</b> costs 10% of the stake and returns half of it if you lose. The arena keeps a 5% rake on your winnings. Each general has a doctrine and a signature trick — Mariamne, Imrandros, Asantius and Christinea.</p>
 <h2>RANK TRIALS</h2><p>XP is not enough to rise. From <b>Hastatus</b> up, every rank also needs a <b>trial</b>: win Conquest battles, defeat a region’s general, earn Conquest ⭐, play or master mini games, win matches in another world, clear world-map battles, defeat route generals, conquer world maps, finish a Daily Strike, or reach a floor in the ★ Endless Tower. The next trial is shown on your profile card.</p>
 <h2>★ ENDLESS TOWER</h2><p>One <b>permanent climb</b> in Mini Games. It is saved, so you carry on from the floor you stopped on, with your relics, every day. Floors get harder and spare attempts shrink. Every <b>5th floor</b> you pick 1 of 3 relics; every <b>10th floor</b> is a 👹 Guardian (−1 attempt, bonus 💰), every <b>50th</b> a 🗿 Titan, and every <b>100th</b> a named 👑 boss (a Titan with a name). The backdrop changes every <b>25 floors</b>: 🧱 stone, ☁️ clouds, 🌌 stars, 🏆 gold. Some floors carry a twist (🎯 TIGHT, 🧊 FROZEN, 🍀 BLESSED). A failed floor burns a <b>🔥 torch</b> (5 max, one relights each hour, or 3 💎 refills all): climb a little every day. Leaving mid-floor after guessing also burns one. Gems come at floors 10, 20, 30… (bigger at 50 and 100). You are ranked by the <b>highest floor you reach</b>, with your 🔥 day streak beside it.</p>
-<h2>GEMS 💎 &amp; BACKUP</h2><p>Gems are a rare currency. You can buy a few a day with coins in the Gem Vault (350 💰 each), and every <b>First-try hit</b> on the secret number earns one in any mode except Easy. You also earn them from Daily Strike streaks, ranking up, mini game mastery, three-starring a Conquest region, boss wins, achievements, quest sweeps and your first Colosseum run each day. Spend them in the <b>Gem Vault</b> (Armory) on streak freezes, boosts and gem-only skins, to <b>Continue</b> a mini game after you run out of lives, or on extra Conquest battles once your 5 free ones for the day are used. In Settings, <b>Backup</b> saves your progress as a file or code so you can restore it on a new phone or browser.</p><h2>REBELLIONS</h2><p>Territories you have conquered can rise in rebellion while you are away. Each day up to 3 have <b>Rebels Rising</b>: on the Conquest Map, tap <b>Crush</b> and win one quick battle (free, no retries) to collect your reward. Crush every rebellion for a 🔥 streak bonus. If the rebels win, you only lose the reward; your stars stay.</p><h2>RIDDLE SCROLL</h2><p>One logic puzzle a day in <b>Arena Trials</b>, the same clues for every player. Every clue is true and only one number fits them all. You get 3 answers; a wrong one tells you how many clues it satisfies. Solve it for coins and XP, and keep a 🔥 streak.</p><h2>RANKS, TRIALS &amp; PRESTIGE</h2><p>There are 13 ranks; Imperator needs 15,000 XP, and early ranks come quickly. To earn <b>Proconsul, Consul and Imperator</b> you need the XP <i>and</i> a trial: three-star a whole Conquest region and defeat 3 world-map route generals, reach mastery 3 on three mini games and conquer a world map, then three-star two regions, reach mastery 5 on one game and conquer two world maps. Past Imperator, every extra stretch of XP earns <b>Prestige</b> (Imperator I, II, III…) with a reward to claim. Rank follows your XP: if your XP is below a rank, you hold the rank your XP has earned, and the mini games above it stay locked until you get there.</p><h2>WORLD MAP</h2><p>Your world’s <b>route map</b> is the heart of the game. Choose your road through the fog. Each day some battles carry a <b>twist</b> (💰 Bounty, ⛈️ Storm, 🐺 Ambush, ☠️ Curse), the same for every player. A strong clear can drop a 🎁 <b>treasure chest</b> or open a 🧭 <b>secret path</b> to a battle further along (3 surprises a day at most). Every battle costs one of your <b>6 energy bars</b> (❤️), but <b>win the battle, or at least one round of it, and the bar is given back</b> (a fight where you win no round at all keeps it spent); all six refill 2 hours after the first one was spent, or pay 3 💎 to refill at once. Every battle (except the Supreme General) shows a <b>🔎 number omen</b> chip, a true clue about its secrets: <b>ODD</b>, <b>EVEN</b>, <b>PRIME</b>, a multiple of 3 or 5, a perfect square, or the top or lower half of the range. Three stars on a node can reveal a hidden vault. The 🚪 <b>Gate</b> needs ⭐ stars on the map, so replay battles for the star goals. Each world has several <b>regions</b>, with a new one added every month: conquer a region to open the next. Every region has a <b>road style</b> (⚡ Sprint, 🏰 Siege, 🧮 Prime, 🛡️ Iron, 🎰 Jackpot) that changes how its battles play and pays better coins. Earn ⭐ in a region for 🥉 bronze (50%), 🥈 silver (80%) and 🥇 gold (all stars) medals, each paying a one-time reward. Some regions also have a <b>battle format</b> whose rules change as the match goes on (📈 Rising Tide, 🧱 Closing Walls, 🥁 Rhythm, 🌊 Surge), so read the briefing before you fight.</p><h2>WORLD GAME &amp; WORLD QUESTS</h2><p>Every world has its own mini game in <b>Mini Games</b> (Forum Trader, Cowrie Count, Binary Breach, Haiku Blade, Rune Stones, Caravan Ledger), open from the start in whichever world you wear. Each day and week also brings one quest for your current world, paying extra coins, XP and gear.</p><h2>WORLDS &amp; PASSPORT</h2><p>A world changes the look, the words and the mini game, never the rules. <b>Roman is free.</b> Every other world needs a <b>rank</b> (previews too) and some 💎 gems, bought in the 🌍 <b>Worlds</b> tab of the Armory. The cheaper worlds open at lower ranks.</p><p>Not sure about a world? Tap <b>👁 TRY</b> for a free <b>one-match preview</b>. Rewards are off in a preview, and you only get <b>3 previews in total</b>, so choose them wisely.</p><p>Your 🛂 <b>Passport</b> (on the home screen) has one stamp for every world. You earn a stamp by <b>conquering a region</b> in that world (defeat the Supreme General of any region on its map), so you must own the world first. <b>Every world except Roman needs at least one stamp</b> to unlock (conquer a World Map region; Roman counts). <b>Elementa</b> needs 3 stamps, <b>Astral</b> needs 4 and <b>Atlantis</b> needs 5. The top ranks, <b>Consul</b> and <b>Imperator</b>, need <b>every stamp</b>. Fill the whole Passport for 25 💎 and the <b>World Walker</b> title. In Elementa each win also unlocks a real ⚛️ <b>element card</b> in your Element Table.</p><h2>BATTLE FRIENDS</h2><p>Tap 🤝 <b>Battle Friends</b> on the home screen. <b>Live Duel</b> opens Clash Online: make a room, share the code or link and play from any network. Pick <b>Duel of Legions</b>, <b>Race for the War Code</b>, <b>Sealed Scrolls</b> or <b>🪢 Tug of War</b>. To join, paste an invite link or the 5-letter room code into <b>Join a friend</b>. Winning a live match unlocks the Rival Slain achievement.</p><h2>COINS &amp; GEMS</h2><p><b>Coins</b> buy gear, scrolls, skins, kits and Aris wardrobe outfits. <b>Gems</b> buy the big things: worlds, the Scholar’s and Warlord’s chests and special skins. Aris wardrobe outfits are cheap and cost coins. Earn gems from first-try hits, Daily Strike streaks, ranking up, achievements, quest sweeps and more. Your gem count is on the home screen.</p>
+<h2>ARIS’S GIFT &amp; MISSION 🎁</h2><p>When a 🎁 floats beside Aris on the home screen, tap her for a free gift: coins most times, sometimes an item, a skin or a boost. A new one is ready every 2 hours. Under her, Aris sets <b>one small mission a day</b>. Finish it for a coin or gem bonus and keep your daily habit going. (If you switch Aris off, the gift gets its own button on the home screen.)</p><h2>GEMS 💎 &amp; BACKUP</h2><p>Gems are a rare currency. You can buy a few a day with coins in the Gem Vault (350 💰 each), and every <b>First-try hit</b> on the secret number earns one in any mode except Easy. You also earn them from Daily Strike streaks, ranking up, mini game mastery, three-starring a Conquest region, boss wins, achievements, quest sweeps and your first Colosseum run each day. Spend them in the <b>Gem Vault</b> (Armory) on streak freezes, boosts and gem-only skins, to <b>Continue</b> a mini game after you run out of lives, or on extra Conquest battles once your 5 free ones for the day are used. In Settings, <b>Backup</b> saves your progress as a file or code so you can restore it on a new phone or browser.</p><h2>REBELLIONS</h2><p>Territories you have conquered can rise in rebellion while you are away. Each day up to 3 have <b>Rebels Rising</b>: on the Conquest Map, tap <b>Crush</b> and win one quick battle (free, no retries) to collect your reward. Crush every rebellion for a 🔥 streak bonus. If the rebels win, you only lose the reward; your stars stay.</p><h2>RIDDLE SCROLL</h2><p>One logic puzzle a day in <b>Arena Trials</b>, the same clues for every player. Every clue is true and only one number fits them all. You get 3 answers; a wrong one tells you how many clues it satisfies. Solve it for coins and XP, and keep a 🔥 streak.</p><h2>RANKS, TRIALS &amp; PRESTIGE</h2><p>There are 13 ranks; Imperator needs 15,000 XP, and early ranks come quickly. To earn <b>Proconsul, Consul and Imperator</b> you need the XP <i>and</i> a trial: three-star a whole Conquest region and defeat 3 world-map route generals, reach mastery 3 on three mini games and conquer a world map, then three-star two regions, reach mastery 5 on one game and conquer two world maps. Past Imperator, every extra stretch of XP earns <b>Prestige</b> (Imperator I, II, III…) with a reward to claim. Rank follows your XP: if your XP is below a rank, you hold the rank your XP has earned, and the mini games above it stay locked until you get there.</p><h2>WORLD MAP</h2><p>Your world’s <b>route map</b> is the heart of the game. Choose your road through the fog. Each day some battles carry a <b>twist</b> (💰 Bounty, ⛈️ Storm, 🐺 Ambush, ☠️ Curse), the same for every player. A strong clear can drop a 🎁 <b>treasure chest</b> or open a 🧭 <b>secret path</b> to a battle further along (3 surprises a day at most). Every battle costs one of your <b>6 energy bars</b> (❤️), but <b>win the battle, or at least one round of it, and the bar is given back</b> (a fight where you win no round at all keeps it spent); all six refill 2 hours after the first one was spent, or pay 3 💎 to refill at once. Every battle (except the Supreme General) shows a <b>🔎 number omen</b> chip, a true clue about its secrets: <b>ODD</b>, <b>EVEN</b>, <b>PRIME</b>, a multiple of 3 or 5, a perfect square, or the top or lower half of the range. Three stars on a node can reveal a hidden vault. The 🚪 <b>Gate</b> needs ⭐ stars on the map, so replay battles for the star goals. Each world has several <b>regions</b>, with a new one added every month: conquer a region to open the next. Every region has a <b>road style</b> (⚡ Sprint, 🏰 Siege, 🧮 Prime, 🛡️ Iron, 🎰 Jackpot) that changes how its battles play and pays better coins. Earn ⭐ in a region for 🥉 bronze (50%), 🥈 silver (80%) and 🥇 gold (all stars) medals, each paying a one-time reward. Some regions also have a <b>battle format</b> whose rules change as the match goes on (📈 Rising Tide, 🧱 Closing Walls, 🥁 Rhythm, 🌊 Surge), so read the briefing before you fight.</p><h2>WORLD GAME &amp; WORLD QUESTS</h2><p>Every world has its own mini game in <b>Mini Games</b> (Forum Trader, Cowrie Count, Binary Breach, Haiku Blade, Rune Stones, Caravan Ledger), open from the start in whichever world you wear. Each day and week also brings one quest for your current world, paying extra coins, XP and gear.</p><h2>WORLDS &amp; PASSPORT</h2><p>A world changes the look, the words and the mini game, never the rules. <b>Roman is free.</b> Every other world needs a <b>rank</b> (previews too) and some 💎 gems, bought in the 🌍 <b>Worlds</b> tab of the Armory. The cheaper worlds open at lower ranks.</p><p>Not sure about a world? Tap <b>👁 TRY</b> for a free <b>one-match preview</b>. Rewards are off in a preview, and you only get <b>3 previews in total</b>, so choose them wisely.</p><p>Your 🛂 <b>Passport</b> (on the home screen) has one stamp for every world. You earn a stamp by <b>conquering a region</b> in that world (defeat the Supreme General of any region on its map), so you must own the world first. <b>Every world except Roman needs at least one stamp</b> to unlock (conquer a World Map region; Roman counts). <b>Elementa</b> needs 3 stamps, <b>Astral</b> needs 4 and <b>Atlantis</b> needs 5. The top ranks, <b>Consul</b> and <b>Imperator</b>, need <b>every stamp</b>. Fill the whole Passport for 25 💎 and the <b>World Walker</b> title. In Elementa each win also unlocks a real ⚛️ <b>element card</b> in your Element Table.</p><h2>BATTLE FRIENDS</h2><p>Tap 🤝 <b>Battle Friends</b> on the home screen. <b>Live Duel</b> opens Clash Online: make a room, share the code or link and play from any network. Pick <b>Duel of Legions</b>, <b>Race for the War Code</b>, <b>Sealed Scrolls</b> or <b>🪢 Tug of War</b>. To join, paste an invite link or the 5-letter room code into <b>Join a friend</b>. Winning a live match unlocks the Rival Slain achievement.</p><h2>COINS &amp; GEMS</h2><p><b>Coins</b> buy gear, scrolls, skins, kits and Aris wardrobe outfits. <b>Gems</b> buy the big things: worlds, the Scholar’s and Warlord’s chests and special skins. Aris wardrobe outfits are cheap and cost coins. Earn gems from first-try hits, Daily Strike streaks, ranking up, achievements, quest sweeps and more. Your gem count is on the home screen.</p>
 <button class="bm-cta" onclick="this.closest('.pop').classList.remove('on')" style="margin-top:12px">CLOSE</button>`;
 $('#helpBody').innerHTML=HELP;const showHelp=()=>$('#help').classList.add('on');$('#how').onclick=showHelp;$('#pHow').onclick=showHelp;
 // ---- engine ----
@@ -1904,7 +1904,7 @@ function award(who,tries,risky){let pts=Math.round((PTS[tries]||3)*G.D.mult)*(ri
  const c=++G.combo[who];G.st[who].best=Math.max(G.st[who].best,c);G.st[who].ok++;if(crit)G.st[who].crit++;if(who===0)G.st[0].mt=Math.min(G.st[0].mt||99,tries);
  if(c>=2)pts+=4*(c-1);if(c===5)pts+=15;if(G.special==='DOUBLE')pts*=2;if(G.mut==='rush')pts=Math.round(pts*1.25);if(G.mut==='lean')pts=Math.round(pts*1.5);if(Math.random()<.05)pts+=10;
  if(who===0&&G.mode==='AI'){pts+=[0,1,2,3,4,6][gl('b')];if(PRO.rel.std){if(c===3)pts+=8;if(c===5)pts+=15}}
- G.score[who]+=pts;G.wins[who]++;fxWin(who,pts,c,crit);if(who===0&&G.mode==='AI'){qEv('round');if(tries===1)qEv('first');if(crit)qEv('crit');qMax('combo',c)}return{pts,crit,c}}
+ G.score[who]+=pts;G.wins[who]++;fxWin(who,pts,c,crit);if(who===0&&G.mode==='AI'){qEv('round');if(tries===1)qEv('first');if(crit)qEv('crit');qMax('combo',c);try{window.__am&&__am.ev({k:'hit',t:tries,d:G.d,c},1)}catch(e){}}return{pts,crit,c}}
 function temp(g){const span=Math.max(1,G.hi-G.lo),c=1-Math.abs(g-G.secret)/span;
  const t=c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing';
  const L={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'};
@@ -4818,57 +4818,102 @@ html.wd-jungle #app:not(#z) .tiles .ti,html.wd-jungle #app #layers .ly{clip-path
 <style>.pvl{text-align:center;font-size:.7rem;letter-spacing:.08em;opacity:.85;margin:2px 0 8px}</style>
 <style>
 /* v131: free chest strip at the top of the Armory (home only gets a badge on the Armory tile) */
-#app #fcBtn{width:min(92%,370px);box-sizing:border-box;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;padding:6px 12px;min-height:46px;margin:0}
-#fcBtn:before,#fcBtn:after{display:none!important}
-#fcBtn>i{font-style:normal;font-size:1.7rem;line-height:1}
-#fcBtn>div{flex:1;min-width:0}
-#fcBtn b{display:block;font-size:.8rem;letter-spacing:.1em;color:var(--gold)}
-#fcBtn small{display:block;opacity:.85;font-size:.72rem}
-#fcBtn .fcb{display:block;height:3px;border-radius:2px;background:rgb(255 255 255 / .12);margin-top:3px;overflow:hidden}
-#fcBtn .fcb u{display:block;height:100%;background:var(--gold);text-decoration:none}
-#fcBtn em{font-style:normal;font-size:.68rem;font-weight:700;text-align:right;color:#ffd45a;line-height:1.2;white-space:nowrap}
-#fcBtn.rdy{border-color:var(--gold);box-shadow:0 0 14px rgb(255 200 58 / .45)}
-@media (prefers-reduced-motion:no-preference){#fcBtn.rdy{animation:fcP 1.8s ease-in-out infinite}}
+#app #fcAlt{width:min(92%,370px);box-sizing:border-box;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;padding:6px 12px;min-height:46px;margin:0}
+#fcAlt:before,#fcAlt:after{display:none!important}
+#fcAlt>i{font-style:normal;font-size:1.7rem;line-height:1}
+#fcAlt>div{flex:1;min-width:0}
+#fcAlt b{display:block;font-size:.8rem;letter-spacing:.1em;color:var(--gold)}
+#fcAlt small{display:block;opacity:.85;font-size:.72rem}
+#fcAlt .fcb{display:block;height:3px;border-radius:2px;background:rgb(255 255 255 / .12);margin-top:3px;overflow:hidden}
+#fcAlt .fcb u{display:block;height:100%;background:var(--gold);text-decoration:none}
+#fcAlt em{font-style:normal;font-size:.68rem;font-weight:700;text-align:right;color:#ffd45a;line-height:1.2;white-space:nowrap}
+#fcAlt.rdy{border-color:var(--gold);box-shadow:0 0 14px rgb(255 200 58 / .45)}
+@media (prefers-reduced-motion:no-preference){#fcAlt.rdy{animation:fcP 1.8s ease-in-out infinite}}
 @keyframes fcP{50%{box-shadow:0 0 22px rgb(255 200 58 / .8)}}
 </style>
+<style>/* v158: ARIS'S GIFT (the chest moved from the Armory) and ARIS'S DAILY MISSION card. #fcAlt is only for players who switched Aris off. */
+html:not(.noaris) #fcAlt{display:none!important}
+.arWrap.arHome.gift::after{content:"🎁";position:absolute;right:-6px;top:0;font-size:clamp(1.15rem,3.8vh,1.7rem);line-height:1;pointer-events:none;filter:drop-shadow(0 2px 3px #0009);animation:giftBob 1.5s ease-in-out infinite}
+@keyframes giftBob{50%{transform:translateY(-4px) rotate(8deg)}}
+@media (prefers-reduced-motion:reduce){.arWrap.arHome.gift::after{animation:none}}
+#app #amCard{width:min(92%,370px);box-sizing:border-box;display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left;padding:6px 12px;min-height:44px;margin:4px 0 6px}
+#amCard:before,#amCard:after{display:none!important}
+#amCard>i{font-style:normal;font-size:1.5rem;line-height:1}
+#amCard>div{flex:1;min-width:0}
+#amCard b{display:block;font-size:.68rem;letter-spacing:.1em;color:var(--gold)}
+#amCard small{display:block;font-size:.76rem;line-height:1.2;opacity:.95}
+#amCard .amb{display:block;height:3px;border-radius:2px;background:rgb(255 255 255 / .12);margin-top:3px;overflow:hidden}
+#amCard .amb u{display:block;height:100%;background:var(--gold);text-decoration:none}
+#amCard em{font-style:normal;font-size:.72rem;font-weight:700;text-align:right;color:#ffd45a;line-height:1.2;white-space:nowrap}
+#amCard.dn{border-color:#6fd18a}
+</style>
 <script>
-/* v131: FREE CHEST (lives in the Armory; the home Armory tile shows a FREE / 2× badge and a one-time toast when it is ready). Opens every 2 hours (timer starts when you open it; a ready chest waits, it never stacks). Pays coins every time, plus sometimes an item, a skin (cheap shop cosmetics), a double-coin boost (2h; rarely a 24h double-coin day), a quick refill (next chest in 1h) and, rarely, 1 gem (at most once per 3 days). State: PRO.fc = {n: next ready time, t0: timer start, c: opened count, hi: latest clock seen (guards against setting the clock back), gl: last gem time, dbl: double-coin end time}. cx() in the main script doubles rewards while PRO.fc.dbl is in the future. Tune MN/MX, the weights in open(), SK and IT. */
+/* v158: the chest MOVED from the Armory to Aris. Aris floats a 🎁 and hints 'tap me for a free gift' when it is ready; tapping her claims it (claim() below), and while it is cooling down she says when to come back. The Armory strip and the Armory FREE badge are gone; #fcAlt is a home button shown only when Aris is switched off. Timer, rewards and state are unchanged. */
+/* v131: FREE CHEST (lived in the Armory; the home Armory tile shows a FREE / 2× badge and a one-time toast when it is ready). Opens every 2 hours (timer starts when you open it; a ready chest waits, it never stacks). Pays coins every time, plus sometimes an item, a skin (cheap shop cosmetics), a double-coin boost (2h; rarely a 24h double-coin day), a quick refill (next chest in 1h) and, rarely, 1 gem (at most once per 3 days). State: PRO.fc = {n: next ready time, t0: timer start, c: opened count, hi: latest clock seen (guards against setting the clock back), gl: last gem time, dbl: double-coin end time}. cx() in the main script doubles rewards while PRO.fc.dbl is in the future. Tune MN/MX, the weights in open(), SK and IT. */
 (function(){
 const H=36e5,MN=2*H,MX=2*H,SK=['th:azure','th:emerald','th:tyrian','th:crimson','th:sunset','ps:gladiator','ps:hoplite','ps:spartan','ps:praetorian','ps:pharaoh','ks:robot','ks:skull','ks:dragon','ks:alien'],IT=['x:SCAN','time','pack','head','tome','mag','x:FOCUS','x:SHIELD','s:DIRECTION','s:RANGE'];
 const fc=()=>PRO.fc||(PRO.fc={n:0,t0:0,c:0,hi:0,gl:0,dbl:0}),now=()=>Math.max(Date.now(),fc().hi||0),
  fmt=ms=>{const m=Math.max(1,Math.ceil(ms/6e4)),h=Math.floor(m/60);return h?h+'h '+String(m%60).padStart(2,'0')+'m':m+'m'},pk=a=>a[Math.floor(Math.random()*a.length)];
 let isOpen=0;
-function fcUI(){const b=$('#fcBtn');if(!b)return;const f=fc(),t=now(),rd=t>=f.n,dbl=f.dbl>t,bar=rd?100:Math.max(0,Math.min(100,(t-f.t0)/Math.max(1,f.n-f.t0)*100)),
- h=`<i>${rd?'🎁':'📦'}</i><div><b>${rd?'FREE CHEST READY':'FREE CHEST'}</b><small>${rd?'Tap to open it':'Next one in '+fmt(f.n-t)}</small><span class="fcb"><u style="width:${bar.toFixed(0)}%"></u></span></div>${dbl?`<em>⚡ 2× COINS<br>${fmt(f.dbl-t)}</em>`:''}`;
- if(b.dataset.h!==h){b.dataset.h=h;b.innerHTML=h}b.classList.toggle('rdy',rd);b.setAttribute('aria-label',rd?'Free chest ready, tap to open':'Free chest, next one in '+fmt(f.n-t))}
+function fcUI(){const b=$('#fcAlt');if(!b)return;const f=fc(),t=now(),rd=t>=f.n,dbl=f.dbl>t,bar=rd?100:Math.max(0,Math.min(100,(t-f.t0)/Math.max(1,f.n-f.t0)*100)),
+ h=`<i>${rd?'🎁':'📦'}</i><div><b>${rd?'FREE GIFT READY':'FREE GIFT'}</b><small>${rd?'Tap to open it':'Next one in '+fmt(f.n-t)}</small><span class="fcb"><u style="width:${bar.toFixed(0)}%"></u></span></div>${dbl?`<em>⚡ 2× COINS<br>${fmt(f.dbl-t)}</em>`:''}`;
+ if(b.dataset.h!==h){b.dataset.h=h;b.innerHTML=h}b.classList.toggle('rdy',rd);b.setAttribute('aria-label',rd?'Free gift ready, tap to open':'Free gift, next one in '+fmt(f.n-t))}
 function roll(){const f=fc(),t=now(),r=Math.random(),base=Math.round((40+rk()*14)*(.8+Math.random()*.6)),o={c:cx(base)},tag=[];let dur=0,quick=0,gem=0;
  const gemOK=t-(f.gl||0)>3*24*H,fresh=SK.filter(k=>!(PRO.own&&PRO.own[k])),sk=fresh.length?pk(fresh):null;
  if(gemOK&&r<.02){gem=1;tag.push('💎 RARE FIND: +1 gem')}
  else if(r<.03){dur=24*H;tag.push('🌞 DOUBLE-COIN DAY: 2× coins for 24 hours!')}
  else if(r<.09){dur=2*H;tag.push('⚡ DOUBLE COINS for 2 hours')}
- else if(r<.14){quick=1;tag.push('⏱️ QUICK REFILL: your next chest is ready in 1 hour')}
+ else if(r<.14){quick=1;tag.push('⏱️ QUICK REFILL: your next gift is ready in 1 hour')}
  else if(r<.22&&sk){o.own=[sk]}
  else if(r<.46){o.inv={[pk(IT)]:1}}
  else o.c=cx(Math.round(base*1.5));
- const txt=grant(o);if(gem){gems(1,'Free chest');f.gl=t}
+ const txt=grant(o);if(gem){gems(1,'Aris’s gift');f.gl=t}
  if(dur)f.dbl=Math.min(Math.max(f.dbl||0,t)+dur,t+24*H);
  f.t0=t;f.n=t+(quick?H:MN+Math.random()*(MX-MN));f.c=(f.c||0)+1;f.hi=Math.max(f.hi||0,Date.now());LS.set('ms_pro',PRO);return{txt,tag,rare:gem||dur>2*H}}
-function show(){const f=fc(),t=now();if(t<f.n){return toast(`📦 <b>FREE CHEST</b><br><small>Your next one is ready in ${fmt(f.n-t)}</small>`)}
- isOpen=0;$('#fcBox').textContent='🎁';$('#fcTxt').innerHTML='Tap the chest to open it!';$('#fcGo').textContent='OPEN';$('#fcPop').classList.add('on')}
+function show(){const f=fc(),t=now();if(t<f.n){return toast(`📦 <b>FREE GIFT</b><br><small>Your next one is ready in ${fmt(f.n-t)}</small>`)}
+ isOpen=0;$('#fcBox').textContent='🎁';$('#fcTxt').innerHTML='Tap the gift to open it!';$('#fcGo').textContent='OPEN';$('#fcPop').classList.add('on')}
 function act(){if(isOpen){$('#fcPop').classList.remove('on');profUI();return}
  const f=fc();if(now()<f.n)return;isOpen=1;told=0;const x=roll();$('#fcBox').textContent='✨';$('#fcBox').classList.add('pop2');setTimeout(()=>$('#fcBox').classList.remove('pop2'),300);
- $('#fcTxt').innerHTML=`<b>${x.txt}</b>${x.tag.length?'<br>'+x.tag.join('<br>'):''}<br><small>Next free chest in ${fmt(f.n-now())}</small>`;$('#fcGo').textContent='COLLECT';burst(['🪙','✨','🎁'],x.rare?44:28);sfx('powerup');fcUI();profUI()}
-$('#fcBtn').onclick=()=>{sfx('click');show()};$('#fcBox').onclick=$('#fcGo').onclick=act;
+ $('#fcTxt').innerHTML=`<b>${x.txt}</b>${x.tag.length?'<br>'+x.tag.join('<br>'):''}<br><small>Next free gift in ${fmt(f.n-now())}</small>`;$('#fcGo').textContent='COLLECT';burst(['🪙','✨','🎁'],x.rare?44:28);sfx('powerup');fcUI();profUI()}
+$('#fcAlt').onclick=()=>{sfx('click');show()};$('#fcBox').onclick=$('#fcGo').onclick=act;
 let told=0;
-function fcBadge(){const b=$('#shopBtn');if(!b)return;const f=fc(),t=now(),rd=t>=f.n,dbl=f.dbl>t,txt=rd?'FREE':dbl?'⚡ 2×':'';let e=b.querySelector('.bd.fcn');
- if(!txt){if(e)e.remove();return}
- if(!e){e=document.createElement('em');e.className='bd fcn';e.style.cssText='font-style:normal;width:auto;padding:0 7px';b.appendChild(e)}
- if(e.textContent!==txt)e.textContent=txt;
- if(rd&&!told&&$('#s-home').classList.contains('on')){told=1;setTimeout(()=>{if(now()>=fc().n&&$('#s-home').classList.contains('on'))toast('🎁 <b>FREE CHEST READY</b><br><small>Open The Armory to collect it</small>')},3800)}}
-const _pf=profUI;profUI=function(){const r=_pf.apply(this,arguments);try{fcUI();fcBadge()}catch(e){}return r};
-setInterval(()=>{if(document.hidden)return;const f=fc(),d=Date.now();if(d>(f.hi||0)+6e4){f.hi=d;LS.set('ms_pro',PRO)}fcUI();fcBadge()},5000);$('#shopBtn').addEventListener('click',()=>{fcUI()});
-FCON=1;fcUI();fcBadge();
-window.__fc={fc,roll,fcUI,fcBadge};
+const _pf=profUI;profUI=function(){const r=_pf.apply(this,arguments);try{fcUI()}catch(e){}return r};
+setInterval(()=>{if(document.hidden)return;const f=fc(),d=Date.now();if(d>(f.hi||0)+6e4){f.hi=d;LS.set('ms_pro',PRO)}fcUI()},5000);
+FCON=1;fcUI();
+window.__fc={fc,roll,fcUI,ready:()=>now()>=fc().n,left:()=>Math.max(0,fc().n-now()),claim:()=>{if(now()<fc().n)return false;show();act();return true}};
+})();
+</script>
+<script>
+/* v158: ARIS'S DAILY MISSION. One small, specific task from Aris each day (same one for every player, picked by the date, never the same as yesterday). Done = a coin bonus, or on about 1 day in 5 a gem (the reward is shown on the card, so it is never a surprise). Paid automatically when the task is done. A habit streak counts days in a row you finished it. State: PRO.am = {d: day, id, p: progress, t: target, b: base coins, g: gem reward (0/1), ok: done, hs: habit streak, ld: last day done, li: last mission id}. Events: round hits come from award() (tries, difficulty, combo) and everything else rides on qEv (win, clean, hardwin, blaze, daily). Add a mission = one row in AM: [id, text, target, test(event), reward weight]. */
+(function(){
+const AM=[
+ ['h3','Hit a number in 3 guesses or fewer on Medium or Hard',1,e=>e.k==='hit'&&e.d!=='Easy'&&e.t<=3,1],
+ ['h4','Hit a number in 4 guesses or fewer on Hard',1,e=>e.k==='hit'&&e.d==='Hard'&&e.t<=4,1.3],
+ ['cb3','Win 3 rounds in a row (a ×3 combo)',1,e=>e.k==='hit'&&e.c>=3,.9],
+ ['bl','Make 2 blazing-hot guesses',2,e=>e.k==='blaze',1],
+ ['cl','Win a match without using a power-up',1,e=>e.k==='clean',1],
+ ['hw','Win a match on Hard',1,e=>e.k==='hardwin',1.1],
+ ['m2','Win 2 matches against Kiraxo',2,e=>e.k==='win',1],
+ ['ds','Play today’s Daily Strike',1,e=>e.k==='daily',.8]];
+function amInit(){const dk=today();let a=PRO.am;if(a&&a.d===dk&&AM.some(x=>x[0]===a.id))return a;
+ const r=mul(seed('am'+dk)),pool=AM.filter(x=>x[0]!==(a&&a.id)),m=pool[Math.floor(r()*pool.length)],g=r()<.2?1:0;
+ a=PRO.am={d:dk,id:m[0],p:0,t:m[2],b:Math.round((60+rk()*12)*m[4]/5)*5,g,ok:0,hs:(a&&a.hs)||0,ld:(a&&a.ld)||'',li:a&&a.id||''};LS.set('ms_pro',PRO);return a}
+const hab=a=>(a.ld===today()||a.ld===ydy())?(a.hs||0):0;
+function amUI(){const b=$('#amCard');if(!b)return;const a=amInit(),m=AM.find(x=>x[0]===a.id),hs=hab(a),hb=hs>1?' · 🔥 '+hs+'-DAY HABIT':'',rw=a.g?'💎 1 gem':'💰 '+a.b,
+ h=a.ok?`<i>✅</i><div><b>ARIS’S MISSION · DONE${hb}</b><small>${m[1]}</small><span class="amb"><u style="width:100%"></u></span></div><em>Back<br>tomorrow</em>`
+ :`<i>🏛️</i><div><b>ARIS’S MISSION${hb}</b><small>${m[1]}${a.t>1?' · '+a.p+'/'+a.t:''}</small><span class="amb"><u style="width:${(a.p/a.t*100).toFixed(0)}%"></u></span></div><em>${rw}</em>`;
+ if(b.dataset.h!==h){b.dataset.h=h;b.innerHTML=h}b.classList.toggle('dn',!!a.ok);b.setAttribute('aria-label','Aris’s mission: '+m[1]+(a.ok?', done':', reward '+rw))}
+function done(){const a=amInit();if(a.ok)return;a.ok=1;a.p=a.t;a.hs=(a.ld===ydy()?(a.hs||0):0)+1;a.ld=today();
+ if(a.g)gems(1,'Aris’s mission');else grant({c:cx(a.b)});LS.set('ms_pro',PRO);
+ try{if(!a.g)toast(`🏛️ <b>ARIS’S MISSION COMPLETE</b><br><small>💰 +${cx(a.b)}${a.hs>1?' · 🔥 '+a.hs+'-day habit':''}</small>`);burst(['🪙','✨','🏛️'],30);sfx('powerup')}catch(e){}
+ try{ARIS.amDone()}catch(e){}amUI();try{profUI()}catch(e){}}
+function amEv(ev,n){const a=amInit();if(a.ok)return;const m=AM.find(x=>x[0]===a.id);if(!m||!m[3](ev))return;a.p=Math.min(a.t,a.p+(n||1));LS.set('ms_pro',PRO);if(a.p>=a.t)done();else amUI()}
+const _q=qEv;qEv=function(e,n){const r=_q.apply(this,arguments);try{amEv({k:e},n===undefined?1:n)}catch(x){}return r};
+const _pf2=profUI;profUI=function(){const r=_pf2.apply(this,arguments);try{amUI()}catch(e){}return r};
+$('#amCard').onclick=()=>{sfx('click');const a=amInit(),m=AM.find(x=>x[0]===a.id),t=a.ok?'Today’s mission is done! Come back tomorrow for a new one.':'Today’s mission: '+m[1]+'. Reward: '+(a.g?'1 gem':a.b+' coins')+'.';
+ if(!document.documentElement.classList.contains('noaris')&&window.ARIS&&ARIS.homeSay)ARIS.homeSay(t,'think');else toast('🏛️ <b>ARIS’S MISSION</b><br><small>'+t+'</small>')};
+setInterval(()=>{if(!document.hidden)amUI()},30000);
+amUI();window.__am={ev:amEv,ui:amUI};
 })();
 </script>
 <style>/* v133: Armory premium look for the default Roman theme (it matches the home tiles: textured, coloured, gold-keyed). Other worlds keep their own Armory pass. */
@@ -4887,7 +4932,8 @@ html:not(.light):not([class*="wd-"]) #app #shopList .shTile[data-cat="ks"]{--b1:
 html:not(.light):not([class*="wd-"]) #app #shopList .shTile[data-cat="th"]{--b1:#1f6a66;--b2:#0a2a2a}
 html:not(.light):not([class*="wd-"]) #app #shopList .shTile[data-cat="pm"]{--b1:#8a6a1a;--b2:#3a2a08}
 html:not(.light):not([class*="wd-"]) #app #gold{border:1px solid #e6b94a99;border-radius:10px;background:var(--rt),var(--rm),linear-gradient(160deg,#7a2036,#2e0f26 70%);box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,0 0 14px #e6b94a33;outline:1px solid #e6b94a55;outline-offset:-4px;clip-path:none}
-html:not(.light):not([class*="wd-"]) #app #fcBtn{background:var(--rt),var(--rm),linear-gradient(165deg,#8a2420,#380a0b);border:2px solid var(--gold);border-radius:12px;outline:1px solid #e6b94a88;outline-offset:-5px;box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,inset 0 -18px 26px #0005}
+html:not(.light):not([class*="wd-"]) #app #fcAlt{background:var(--rt),var(--rm),linear-gradient(165deg,#8a2420,#380a0b);border:2px solid var(--gold);border-radius:12px;outline:1px solid #e6b94a88;outline-offset:-5px;box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,inset 0 -18px 26px #0005}
+html:not(.light):not([class*="wd-"]) #app #amCard{background:var(--rt),var(--rm),linear-gradient(165deg,#1f3a6e,#0c1630);border:2px solid var(--gold);border-radius:12px;outline:1px solid #e6b94a88;outline-offset:-5px;box-shadow:0 3px 0 #000a,inset 0 1px 0 #ffffff33,inset 0 -18px 26px #0005}
 </style>
 <script>
 /* v134: KIRAXO LOOKS ARE EARNED, SKINS ARE FOR PLAYERS. Kiraxo now wears the look of the world you play, chosen by progress (KLAD: conquering region n of a world gives look n, shown with a splash). Players no longer buy Kiraxo looks: every old Kiraxo skin is now a PLAYER skin (ps:k_<name>, same price), and anything already owned or equipped is converted once (PRO.kmig). Gallery in Hall of Glory; override per world in PRO.kx. To add a look for a future region, push its key onto KLAD[world] and add KS / KSC / KNAME entries. */
@@ -5343,6 +5389,10 @@ function spin(){if(!isOn('s-home'))return;const h=inst.find(a=>a.kind==='home');
  h.mt=setTimeout(()=>setMood(h,'idle'),2400)}
 
 const L={
+ gift:["Psst! Tap me for a free gift!","I have a little something for you. Tap me!","A free gift is ready! Tap me, tap me!"],
+ giftWait:["Come check again in {t}. I'm wrapping the next one!","The next gift needs {t}. Come check again then!","All out for now! Come check again in {t}."],
+ giftGive:["Here you go! A little gift, just for you!","Ta-da! Fresh from my gift bag!","For you! I hope it's a good one!"],
+ amDone:["Mission complete! I knew you could do it!","That was today's mission! Look at you go!","Mission done! Come back tomorrow for a new one!"],
  home:["I read the rulebook. Page one says: have fun. Page two says: snacks.","Guess the middle, win the day. That's my whole motto.","Tired? Drink some water, then come back and win.","Every champion started with a very bad first guess.","Ask me for a tip. Or just tap me again. I'm easy.","The {top} once lost to a riddle. Don't tell anyone I told you!","I counted every star on the map. Twice. Then I got dizzy.","Pick a number from 1 to 100... wait, that's MY job!","Psst... the secret number is NOT 42. Okay, maybe it is.","I trained all night. Mostly I trained my snacking.","Hot or cold? I'm always warm. I stand near the torches.","The {top} snores louder than the whole arena. I measured.","Tap me again. I dare you. Okay, I like it.","A true champion drinks water and guesses the middle!","If I had a coin for every number I guessed... I'd have a LOT of coins."],
  tip:["Look at the hint before you guess. The hint is your friend.","If the range is odd-sized, the middle is one number. Easy!","Never guess a number you already crossed out. I've seen it happen. Sad.","A good guess shrinks the range the most. Think MIDDLE.","Pro tip: guess the middle of the range. I invented that. (I didn't.)","The range shrinks every guess. Use it like a map!","Stuck? Halve the range. Boom, instant genius.","Hot means close. Blazing means GO GO GO!","Breathe. Numbers can smell fear."],
  freezing:["Cold enough to freeze my snacks!","So far away I need a map to find it!","Brrr! Take a BIG jump the other way!","Brrr! Even penguins say that's too far!","My teeth are chattering! Far, far away!","Freezing! The number is somewhere else entirely."],
@@ -5422,9 +5472,15 @@ function mk(cls,parent,before,kind){const w=D.createElement('div');w.className='
  if(before)parent.insertBefore(w,before);else parent.appendChild(w);
  w.addEventListener('click',()=>tap(a));inst.push(a);dr(a);setMood(a,'idle');return a}
 function blip(){try{if(typeof tone==='function')(BL[OID]||BL.roman).forEach(n=>setTimeout(()=>tone(n[0],n[1],n[2],n[3]),n[4]))}catch(e){}}
+let giftSayT=0,giftHintT=0;
+const giftLeft=ms=>{const m=Math.max(1,Math.ceil(ms/6e4));return m>=115?'2 hours':m>=60?Math.floor(m/60)+'h '+String(m%60).padStart(2,'0')+'m':m+' min'};
 function tap(a){lastAct=Date.now();blip();
+ if(a.kind==='home'&&window.__fc){const f=window.__fc;if(f.ready()){if(f.claim())mood('cheer',2200,pick('giftGive'),3200);return}
+  if(Date.now()-giftSayT>15000){giftSayT=Date.now();mood('happy',1800,pick('giftWait').replace(/\{t\}/g,giftLeft(f.left())),3400);return}}
  if(a.m==='sleep'){mood('wow',1500,pick('wake'));return}
  const r=Math.random(),k=a.kind==='game'?(r<.55?'tip':'fact'):(r<.4?'home':r<.8?'fact':'top');mood(r<.5?'cheer':'happy',1700,pick(k),k==='fact'||k==='top'?4600:3400)}
+function giftTick(){const h=inst.find(a=>a.kind==='home');if(!h||!window.__fc)return;const rd=on&&window.__fc.ready();h.el.classList.toggle('gift',rd);
+ if(rd&&isOn('s-home')&&!D.hidden&&h.m!=='sleep'&&Date.now()-giftHintT>50000&&Date.now()-lastSay>3500){giftHintT=Date.now();mood('wave',2200,pick('gift'),3600)}}
 function greet(){const h=new Date().getHours(),g=h<5?"Up so late? Night owls rule!":h<12?"Good morning, challenger!":h<17?"Good afternoon, challenger!":h<21?"Good evening, challenger!":"Late-night strike? I'm in!";
  inst.forEach(a=>{if(a.kind!=='home')return;clearTimeout(a.mt);setMood(a,'wave');say(a,g,2800);a.mt=setTimeout(()=>setMood(a,'idle'),2600)})}
 const isOn=id=>{const e=D.getElementById(id);return !!(e&&e.classList.contains('on'))};
@@ -5588,6 +5644,8 @@ window.ARIS={
  tugStart(){if(!on)return;clearTimeout(tugTm);warnS='';warnT=0;nudgeN=0;nudgeT=0;tmrKey=0;setTimeout(()=>{if(on&&isOn('s-tug'))mood('wave',2200,pick('tugGo'),3200)},700)},
  tugMove,tugTurn,tugTimer,tugEnd,
  tugWin(w,l){if(!on)return;clearTimeout(tugTm);mood('cheer',4200,tl('tugWinN','',w,l),5600)},
+ homeSay(t,m){if(!on)return;const h=inst.find(a=>a.kind==='home');if(!h)return;clearTimeout(h.mt);setMood(h,m||'think');say(h,t,4800);h.mt=setTimeout(()=>setMood(h,'idle'),4200)},
+ amDone(){if(on)mood('cheer',2600,pick('amDone'),3600)},
  celebrate(k,m){if(!on)return;inst.forEach(a=>{if(a.kind!=='end')return;clearTimeout(a.mt);setMood(a,m||'cheer');say(a,pick(k),8000);a.mt=setTimeout(()=>setMood(a,'happy'),8500)})},
  brief(t){const c=D.getElementById('cbAris');if(!c)return;if(!on||!t||!t.length){c.hidden=true;return}
   D.getElementById('cbAt').innerHTML=t.map(x=>'<div>'+x+'</div>').join('');c.hidden=false;
@@ -5609,7 +5667,7 @@ function init(){
   if(cbr&&window.MutationObserver)new MutationObserver(()=>{if(!cbr.classList.contains('on'))tp.hidden=true}).observe(cbr,{attributes:true,attributeFilter:['class']})}}
  try{if(typeof toast==='function'){const _t=toast;window.toast=function(h){const r=_t.apply(this,arguments);try{ARIS.onToast(h)}catch(e){}return r}}}catch(e){}
  const t=D.getElementById('tAris');if(t){t.textContent=ARIS.label();t.onclick=()=>{ARIS.toggle();t.textContent=ARIS.label()}}
- setTimeout(()=>{if(on&&isOn('s-home'))greet()},1400);if(pendSpin)setTimeout(()=>{if(on&&isOn('s-home'))spin()},2000);
+ {const mc=D.getElementById('amCard'),pl=D.getElementById('play');if(mc&&pl&&pl.parentNode)pl.parentNode.insertBefore(mc,pl)}setInterval(giftTick,2500);giftTick();setTimeout(()=>{if(on&&isOn('s-home'))greet()},1400);if(pendSpin)setTimeout(()=>{if(on&&isOn('s-home'))spin()},2000);
  setInterval(()=>{if(!on)return;const idle=Date.now()-lastAct,home=inst[0];
   if(home&&isOn('s-home')){if(idle>40000&&home.m!=='sleep'){mood('sleep',0,pick('sleepy'),3200)}
    else if(idle>18000&&idle<40000&&home.m==='idle'&&Date.now()-lastSay>22000&&Math.random()<.3){mood('happy',2200,pick(Math.random()<.6?'fact':'top'),5200)}
