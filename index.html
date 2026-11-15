@@ -4960,7 +4960,7 @@ function kxCheck(){kxMig();const w=curW(),n=Math.min(kxN(w),KLAD[w].length),q=PR
 /* gallery */
 function kxOpen(){const cur=curW(),M=window.__wm||{},WM=M.WMAPS||{},WR=M.WREG||{};
  $('#kxBody').innerHTML=KORD.map(w=>{const L=KLAD[w],n=Math.min(kxN(w),L.length),V=WORLDS[w],now=kxAuto(w);
-  return `<div class="kxh">${V.e} <b>${V.n}</b>${w===cur?' · <em>this world</em>':''}</div>`+L.map((k,i)=>{const ok=i<n,img=KSI[k],f=img?`<img src="${img}" alt="">`:KS[k][4],t=i===0?(WM[w]||{}).title:((WR[w]||[])[i-1]||{}).t,need=t?'Conquer '+t:'Arrives with a future region';
+  return `<div class="kxh">${V.e} <b>${V.n}</b>${w===cur?' · <em>this world</em>':''}</div>`+L.map((k,i)=>{const ok=i<n,img=KSI[k],f=window.BZ&&BZ.has(k)?BZ.svg(k,'emperor',k):img?`<img src="${img}" alt="">`:KS[k][4],t=i===0?(WM[w]||{}).title:((WR[w]||[])[i-1]||{}).t,need=t?'Conquer '+t:'Arrives with a future region';
    return `<div class="kxr ${ok?'':'lk'}"><span class="f">${f}</span><div style="flex:1"><b>${ok?KNAME[k]:'???'}</b><br><small>${ok?(i===L.length-1&&n===L.length?'Final look so far':'Earned in '+V.n):'🔒 '+need}</small></div>${ok?`<button data-kx="${w}|${k}" ${now===k?'disabled':''}>${now===k?'✓ WORN':'WEAR'}</button>`:''}</div>`}).join('')}).join('')}
 $('#kxBody').onclick=e=>{const b=e.target.closest('[data-kx]');if(!b)return;const [w,k]=b.dataset.kx.split('|'),L=KLAD[w],n=Math.min(kxN(w),L.length);PRO.kx=PRO.kx||{};if(L.indexOf(k)===n-1)delete PRO.kx[w];else PRO.kx[w]=k;LS.set('ms_pro',PRO);sfx('click');kxOpen()};
 $('#kxBtn').onclick=()=>{sfx('click');kxOpen();$('#kxPop').classList.add('on')};$('#kxX').onclick=()=>$('#kxPop').classList.remove('on');
@@ -5856,21 +5856,85 @@ setTimeout(go,900);
 .kxFall .kxC svg{position:absolute;inset:0;width:100%;height:100%}
 .kxFall .kxT{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);padding:6px 14px;border-radius:14px;background:#1a0508f2;color:#ffe9e0;border:2px solid var(--sk);font:900 1rem/1.2 system-ui,sans-serif;white-space:nowrap}
 .kxShard{position:fixed;z-index:74;width:12px;height:16px;pointer-events:none;background:linear-gradient(var(--sk),#2a0508);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.bz{display:block;width:100%;height:100%;overflow:visible}
+.bz [data-s]{display:none}
+.bz[data-m=idle] [data-s~=idle],.bz[data-m=smug] [data-s~=smug],.bz[data-m=hurt] [data-s~=hurt],.bz[data-m=rage] [data-s~=rage],.bz[data-m=dead] [data-s~=dead]{display:inline}
+.bz .gl{animation:bzGl 1.8s ease-in-out infinite}
+.bz[data-m=rage] .gl{animation-duration:.4s}
+@keyframes bzGl{50%{opacity:.55}}
+.kxr .f .bz{width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){.bz .gl{animation:none!important}}
 @media (prefers-reduced-motion:reduce){#s-game.kxb #kxB,#kxB .kxF,#kxB.hit .kxF,#kxB.tap .kxF,#kxB.smug .kxF,#kxB.rage .kxF{animation:none!important}#kxB .kxT{transition:none}}
 </style>
+<script id="bzJs">
+/* v161: BOSS CHARACTERS (SVG, like Aris, no image files). BZ.svg(key,role,seed) draws a head-and-shoulders bust. key = the world's Kiraxo look (KLAD ladder), role 'general' (helmet, pauldron spikes) or 'emperor' (cape, laurel/crown, glow), seed = the boss name (picks skin tone, scar, beard so every general looks different). Moods via data-m on the svg: idle smug hurt rage dead. Add a look = one row in SP: [armour, accent, headgear, skin override]. Headgear: plume horns visor kabuto crown turban halo mane tusks spore. */
+(function(){
+const SK=['#c58a60','#8c5636','#e0b090','#6b4026','#a8714a','#f0c8a0'];
+const SP={'':['#7a1218','#f2c14e','plume'],caesar:['#7a1218','#f2c14e','plume'],warlord:['#2b2a30','#c9a24a','horns'],
+cyber:['#141a3a','#19f2ff','visor','#9fb4c8'],virus:['#1d3a1d','#7dff3a','spore','#79b85a'],mainframe:['#111a2a','#19f2ff','visor','#7f93a8'],
+samurai:['#8e1b1b','#d9b25a','kabuto'],oni:['#4a0f0f','#ff6a3a','horns','#c8352a'],tengu:['#3a1a1a','#d94a3a','kabuto','#c0463a'],
+ice:['#2d4f7a','#dfeefa','horns'],yeti:['#5b7a98','#bfe8ff','mane','#dfeefa'],frostgiant:['#1f3b5c','#7fc8ff','crown','#9ccbe8'],
+buganda:['#f1e2c0','#b5532a','crown'],elephant:['#5a4a3a','#e8b04a','tusks','#9a8a7a'],drumlord:['#3a1a08','#e8b04a','crown'],
+gold:['#f1e2b8','#d4a017','turban'],djinn:['#2a1a6a','#9a82ff','turban','#6f63d8'],scorpion:['#4a2a10','#ff9a3c','horns','#a8672e'],
+astral:['#1a1040','#b48cff','halo','#5a4a9a'],starmaw:['#0c0a24','#b48cff','crown','#4a3a8a'],
+atlantis:['#0e4a6a','#3df2e0','crown','#2f8f9a'],leviathan:['#0a2a4a','#3df2e0','tusks','#2a7a8a'],
+jungle:['#2a4a1a','#8be04a','mane','#d89a3a'],stampede:['#5a3a1a','#d8a040','tusks','#b88a4a']};
+const hs=s=>{let h=7;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h};
+const HG={
+ plume:a=>`<path d="M27 50Q28 22 60 21Q92 22 93 50L86 52Q60 36 34 52Z" fill="#2a2630" stroke="${a}" stroke-width="2.5"/><path d="M60 20Q38 -2 24 22Q46 12 60 30Q74 12 96 22Q82 -2 60 20Z" fill="#c0262d"/>`,
+ horns:a=>`<path d="M27 50Q28 24 60 23Q92 24 93 50L86 52Q60 38 34 52Z" fill="#2a2630" stroke="${a}" stroke-width="2.5"/><path d="M30 40Q8 36 8 8Q26 18 36 34ZM90 40Q112 36 112 8Q94 18 84 34Z" fill="#efe6d2" stroke="#8a7a5a" stroke-width="1.6"/>`,
+ visor:a=>`<path d="M27 50Q28 22 60 21Q92 22 93 50L86 54Q60 44 34 54Z" fill="#1a2238" stroke="${a}" stroke-width="2"/><path class="gl" d="M36 47Q60 38 84 47" stroke="${a}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="25" cy="62" r="5" fill="#1a2238" stroke="${a}" stroke-width="2"/><circle cx="95" cy="62" r="5" fill="#1a2238" stroke="${a}" stroke-width="2"/>`,
+ kabuto:a=>`<path d="M26 52Q28 22 60 22Q92 22 94 52L88 56Q60 40 32 56Z" fill="#2a1a1a" stroke="${a}" stroke-width="2.5"/><path d="M60 38Q40 26 24 4Q50 10 60 32Q70 10 96 4Q80 26 60 38Z" fill="${a}"/><path d="M28 56L20 82M92 56L100 82" stroke="#2a1a1a" stroke-width="9" stroke-linecap="round"/>`,
+ crown:a=>`<path d="M30 46L32 14L46 30L60 8L74 30L88 14L90 46Q60 36 30 46Z" fill="${a}" stroke="#fff6" stroke-width="1.4"/><circle cx="60" cy="24" r="4" fill="#ff3b4a"/><circle cx="40" cy="34" r="2.6" fill="#fff"/><circle cx="80" cy="34" r="2.6" fill="#fff"/>`,
+ turban:a=>`<path d="M28 50Q26 16 60 14Q94 16 92 50Q60 38 28 50Z" fill="#f4f0e6" stroke="${a}" stroke-width="2"/><path d="M32 40Q60 26 88 40M34 32Q60 20 86 32" stroke="${a}" stroke-width="2" fill="none" opacity=".7"/><path d="M60 14L54 28L60 40L66 28Z" fill="${a}"/><circle cx="60" cy="28" r="3.4" fill="#ff3b4a"/>`,
+ halo:a=>`<ellipse class="gl" cx="60" cy="14" rx="28" ry="7" fill="none" stroke="${a}" stroke-width="3.4"/><path d="M60 22l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffe27a"/><path d="M28 50Q30 26 60 26Q90 26 92 50Q60 38 28 50Z" fill="#14102e" stroke="${a}" stroke-width="2"/>`,
+ mane:a=>`<path d="M24 52Q16 30 30 18Q34 30 42 26Q46 12 60 12Q74 12 78 26Q86 30 90 18Q104 30 96 52Q60 34 24 52Z" fill="${a}" stroke="#0004" stroke-width="1.5"/><path d="M30 24L26 8L40 18ZM90 24L94 8L80 18Z" fill="${a}"/>`,
+ tusks:a=>`<path d="M27 50Q28 24 60 23Q92 24 93 50L86 52Q60 38 34 52Z" fill="#2a2630" stroke="${a}" stroke-width="2.5"/><path d="M60 24L52 8L60 14L68 8Z" fill="${a}"/>`,
+ spore:a=>`<circle cx="36" cy="30" r="8" fill="${a}"/><circle cx="60" cy="20" r="10" fill="${a}"/><circle cx="84" cy="30" r="8" fill="${a}"/><circle cx="48" cy="26" r="3" fill="#fff6"/><circle cx="72" cy="26" r="3" fill="#fff6"/>`};
+const FR={tusks:`<path d="M44 82Q38 96 46 104Q48 94 52 86ZM76 82Q82 96 74 104Q72 94 68 86Z" fill="#f6eed8" stroke="#8a7a5a" stroke-width="1.4"/>`,oni:''};
+function svg(k,role,seed){const s=SP[k]||SP[''],[ar,ac,hg]=s,h=hs(String(seed||k)),skin=s[3]||SK[h%6],em=role==='emperor',gl=ac;
+ const scar=(h>>3)%3===0?`<path d="M70 44L80 66" stroke="#2a0a0a" stroke-width="2.4" stroke-linecap="round" opacity=".7"/><path d="M68 52L74 50M72 60L78 58" stroke="#2a0a0a" stroke-width="1.4" opacity=".6"/>`:'',
+ beard=(h>>5)%3===1&&!/tusks|visor/.test(hg)?`<path d="M38 74Q40 98 60 104Q80 98 82 74Q74 88 60 88Q46 88 38 74Z" fill="#1d1530" opacity=".85"/>`:'';
+ return `<svg class="bz" data-m="idle" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><g>
+${em?`<circle class="gl" cx="60" cy="60" r="58" fill="${gl}" opacity=".16"/><path d="M4 120Q6 70 36 74L84 74Q114 70 116 120Z" fill="#12060a"/><path d="M4 120Q8 84 30 80L36 120ZM116 120Q112 84 90 80L84 120Z" fill="${ar}" opacity=".55"/>`:''}
+<path d="M8 120Q10 92 38 86L82 86Q110 92 112 120Z" fill="${ar}" stroke="${ac}" stroke-width="2.2"/>
+<path d="M44 88L60 108L76 88" fill="none" stroke="${ac}" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="22" cy="98" r="13" fill="${ar}" stroke="${ac}" stroke-width="2.6"/><circle cx="98" cy="98" r="13" fill="${ar}" stroke="${ac}" stroke-width="2.6"/>
+${em?'':`<path d="M14 90L8 74L24 86ZM106 90L112 74L96 86Z" fill="${ac}"/>`}
+<rect x="50" y="76" width="20" height="16" rx="4" fill="${skin}" style="filter:brightness(.78)"/>
+<path d="M32 50Q32 26 60 26Q88 26 88 50L86 70Q80 90 60 95Q40 90 34 70Z" fill="${skin}"/>
+<path d="M32 50Q32 26 60 26Q88 26 88 50Q74 40 60 42Q46 40 32 50Z" fill="#0003"/>
+${scar}${beard}
+<g data-s="idle rage hurt dead smug"><path d="M31 60Q22 64 24 74Q30 72 33 66Z M89 60Q98 64 96 74Q90 72 87 66Z" fill="${skin}"/></g>
+<g data-s="idle"><path d="M37 58Q47 52 57 60Q47 65 37 58Z M83 58Q73 52 63 60Q73 65 83 58Z" fill="#fff"/><circle class="gl" cx="48" cy="59" r="3.4" fill="${gl}"/><circle class="gl" cx="72" cy="59" r="3.4" fill="${gl}"/><path d="M35 50L58 58M85 50L62 58" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M49 80Q60 77 71 80" stroke="#2a0a0f" stroke-width="3.4" fill="none" stroke-linecap="round"/></g>
+<g data-s="smug"><path d="M37 58Q47 52 57 60Q47 65 37 58Z M83 58Q73 52 63 60Q73 65 83 58Z" fill="#fff"/><circle class="gl" cx="48" cy="60" r="3.4" fill="${gl}"/><circle class="gl" cx="72" cy="60" r="3.4" fill="${gl}"/><path d="M36 56Q47 49 58 57L56 52Q46 46 36 52ZM84 56Q73 49 62 57L64 52Q74 46 84 52Z" fill="${skin}" style="filter:brightness(.82)"/><path d="M35 49L58 55M85 45L62 55" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M46 77Q62 92 76 74" stroke="#2a0a0f" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M58 83L61 88L65 83Z" fill="#fff"/></g>
+<g data-s="hurt"><path d="M38 53L54 60L38 67M82 53L66 60L82 67" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 46L56 51M86 46L64 51" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M47 77h26v9H47z" fill="#2a0a0f"/><path d="M47 81.5h26M53 77v9M60 77v9M67 77v9" stroke="#f2ead8" stroke-width="2"/><path d="M92 38q-5 8 0 12q5-4 0-12z" fill="#7fd6ff"/></g>
+<g data-s="rage"><path d="M36 58Q47 50 58 60Q47 66 36 58Z M84 58Q73 50 62 60Q73 66 84 58Z" fill="#ff3b2a"/><circle class="gl" cx="48" cy="60" r="3" fill="#fff"/><circle class="gl" cx="72" cy="60" r="3" fill="#fff"/><path d="M33 47L58 60M87 47L62 60" stroke="#12060a" stroke-width="5.4" stroke-linecap="round"/><path d="M46 75Q60 68 74 75L72 91Q60 97 48 91Z" fill="#5a0a14"/><path d="M50 76v6M57 75v7M63 75v7M70 76v6" stroke="#f2ead8" stroke-width="3"/><path d="M54 40Q58 46 56 50M66 38Q62 44 64 48" stroke="#ff3b2a" stroke-width="2" fill="none"/></g>
+<g data-s="dead" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round"><path d="M39 53L55 66M55 53L39 66M65 53L81 66M81 53L65 66"/><path d="M48 82Q60 76 72 82" stroke-width="3.4"/><path d="M60 82q0 8 5 9q4-1 3-9z" fill="#e0607a" stroke="none"/></g>
+${FR[hg]||''}${HG[hg](ac)}
+${em&&!/crown|turban|halo/.test(hg)?`<path d="M30 40Q60 14 90 40" fill="none" stroke="${ac}" stroke-width="3" stroke-dasharray="7 4" stroke-linecap="round"/>`:''}
+</g></svg>`}
+const MOOD={idle:1,smug:1,hurt:1,rage:1,dead:1};
+window.BZ={has:k=>k in SP,svg,mood(root,m){const z=root&&(root.matches&&root.matches('.bz')?root:root.querySelector('.bz'));if(z&&MOOD[m])z.dataset.m=m}};
+})();
+</script>
 <script>
 /* v160: the boss portrait. Only in boss phase vs the computer (G.boss && G.mode==='AI'). Hooks in the main script: render() -> KXB.sync(), layerHit() -> KXB.layer(who), hitFx() -> KXB.chip(), failTurn() -> KXB.mock(), finish() -> KXB.end(w). Taunts live in KXL (retune freely; keep them 2-3 words so they never cover the timer). Next pass: one fall + taunt set per world. */
 (function(){
 const KXL={start:['Kneel.','Come, then.','Show me.'],hurt:['Argh!','My armour!','Impossible!','You dare?!','Gah!'],smug:['Mine!','Ha!','Cracked.','Kneel!'],ahead:['I lead now.','Feel that?','Struggling?'],behind:['Lucky…','Not yet…','Hm.'],last:['ENOUGH!','No more!','Last layer…'],mock:['Too slow.','Hah.','Weak.'],fall:['Not… like this…','Impossible…'],win:['Kneel.','Bow.']};
+const KXW={roman:{start:['Kneel, boy.','Rome rules.'],smug:['Ave me!','Fall back!'],fall:['Rome… falls…','My eagle…']},cyber:{start:['Jacked in.','Hack me.'],smug:['Packet loss.','Rekt.'],fall:['Shutting down…','Error… 404…']},samurai:{start:['Draw.','Honour me.'],smug:['Too slow.','My blade.'],fall:['Well cut…','I yield…']},ice:{start:['Skål!','Freeze, fool.'],smug:['Cold, eh?','Ha! Frost!'],fall:['Valhalla…','The ice breaks…']},buganda:{start:['Bow, child.','The drums!'],smug:['Yee! Mine!','Hear that?'],fall:['The drums… stop…','Pole… sana…']},gold:{start:['Kneel, dust.','Sands obey.'],smug:['A mirage.','Dust to you.'],fall:['Sands… settle…','My throne…']},astral:{start:['Void waits.','Dim, mortal.'],smug:['Stars fall.','Gone dark.'],fall:['Light…','Dying star…']},atlantis:{start:['Drown.','The deep.'],smug:['Sink!','Tide turns.'],fall:['Back… to the deep…','Surface…']},jungle:{start:['Hunt begins.','Prey.'],smug:['Roar!','Caught.'],fall:['Beaten… cat…','The king… falls…']}};
+const wid=()=>{try{return curW()}catch(e){return''}},L=k=>pk((KXW[wid()]&&KXW[wid()][k])||KXL[k]);
+const role=()=>{const c=G&&G.cf;return(!c||c.fin||c.ly===1||/^(boss|z)/.test(c.wm||''))?'emperor':'general'},seed=()=>{const c=G&&G.cf;return(c&&(c.bs||c.bn))||'KIRAXO'};
 const pk=a=>a[Math.floor(Math.random()*a.length)],on=()=>typeof G!=='undefined'&&G&&G.boss&&G.mode==='AI'&&!G.done;
 const CR=['<svg class="c1" viewBox="0 0 54 54"><path d="M30 2l-4 11 6 7-5 9" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 2l-4 11 6 7-5 9" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c2" viewBox="0 0 54 54"><path d="M2 34l12-3 6 8 10-2" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 34l12-3 6 8 10-2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c3" viewBox="0 0 54 54"><path d="M52 18l-12 6 3 9-9 6 4 13" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 18l-12 6 3 9-9 6 4 13" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c4" viewBox="0 0 54 54"><path d="M14 8l8 10-7 8M24 52l3-10 10-3M44 4l-3 10" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8l8 10-7 8M24 52l3-10 10-3M44 4l-3 10" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'];
 let el=null,tTm=0,lastSay=0,mockT=0,key='',lvl=0,lastLayers=0;
 const faceOf=()=>{let k='';try{k=eKS()}catch(e){}const im=KSI&&KSI[k];return{k,img:im||'',em:im?'':((KS[k]||KS[''])[4]),col:(KSC&&KSC[k])||'#ff3b2a'}};
-const faceHTML=f=>f.img?'<img src="'+f.img+'" alt="">':f.em;
+const faceHTML=f=>(window.BZ&&BZ.has(f.k))?BZ.svg(f.k,role(),seed()):f.img?'<img src="'+f.img+'" alt="">':f.em;
 function build(){const h=document.getElementById('h1');if(!h)return null;if(el&&h.contains(el))return el;
  el=document.createElement('div');el.id='kxB';el.setAttribute('aria-hidden','true');el.innerHTML='<div class="kxF"></div><div class="kxC">'+CR.join('')+'</div><div class="kxT" role="status"></div>';h.appendChild(el);key='';return el}
-function say(kind,force){if(!el)return;const n=Date.now();if(!force&&n-lastSay<1100)return;lastSay=n;const t=el.querySelector('.kxT');t.textContent=pk(KXL[kind]);t.classList.add('on');clearTimeout(tTm);tTm=setTimeout(()=>t.classList.remove('on'),1700)}
-function pulse(c,ms){if(!el)return;el.classList.remove('hit','tap','smug');void el.offsetWidth;el.classList.add(c);setTimeout(()=>el&&el.classList.remove(c),ms)}
+function say(kind,force){if(!el)return;const n=Date.now();if(!force&&n-lastSay<1100)return;lastSay=n;const t=el.querySelector('.kxT');t.textContent=L(kind);t.classList.add('on');clearTimeout(tTm);tTm=setTimeout(()=>t.classList.remove('on'),1700)}
+let mT=0;const base=()=>el&&el.classList.contains('rage')?'rage':'idle',setM=(m,ms)=>{if(!el)return;BZ.mood(el,m);clearTimeout(mT);mT=0;if(ms)mT=setTimeout(()=>{mT=0;BZ.mood(el,base())},ms)};
+function pulse(c,ms){if(!el)return;setM(c==='smug'?'smug':'hurt',ms);el.classList.remove('hit','tap','smug');void el.offsetWidth;el.classList.add(c);setTimeout(()=>el&&el.classList.remove(c),ms)}
 function level(){if(!on()||!G.bk)return 0;const t=Math.max(1,G.total||1),b=G.bk[0]||0;return b?Math.min(4,Math.max(1,Math.round(4*b/t))):0}
 function shards(){if(!el||RM)return;const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,col=getComputedStyle(el).getPropertyValue('--sk')||'#ff3b2a';
  for(let i=0;i<5;i++){const s=document.createElement('i');s.className='kxShard';s.style.setProperty('--sk',col);s.style.left=cx+'px';s.style.top=cy+'px';document.body.appendChild(s);
@@ -5878,11 +5942,11 @@ function shards(){if(!el||RM)return;const r=el.getBoundingClientRect(),cx=r.left
   s.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+(dx*.6)+'px,'+up+'px) rotate('+(rot*.5)+'deg)',opacity:1,offset:.35},{transform:'translate('+dx+'px,'+dn+'px) rotate('+rot+'deg)',opacity:0}],{duration:900+Math.random()*300,easing:'ease-in'}).onfinish=()=>s.remove()}}
 function sync(){const g=document.getElementById('s-game');if(!g)return;
  if(!on()){g.classList.remove('kxb');if(el){el.classList.remove('rage','hit','smug','tap','d1','d2','d3','d4')}key='';lvl=0;lastLayers=0;return}
- if(!build())return;const wasOn=g.classList.contains('kxb'),f=faceOf(),k=f.k+'|'+(f.img||f.em);
+ if(!build())return;const wasOn=g.classList.contains('kxb'),f=faceOf(),k=f.k+'|'+(f.img||f.em)+'|'+role()+seed();
  if(k!==key){key=k;el.querySelector('.kxF').innerHTML=faceHTML(f);el.style.setProperty('--sk',f.col);el.dataset.sk=f.col}
  g.classList.add('kxb');const L=level();if(L!==lvl){lvl=L;el.className=el.className.replace(/\bd[0-4]\b/g,'').trim();if(L)el.classList.add('d'+L)}
  el.style.setProperty('--kd',(L/4).toFixed(2));
- const rg=G.layers===1&&G.total>1;el.classList.toggle('rage',rg);
+ const rg=G.layers===1&&G.total>1;el.classList.toggle('rage',rg);if(!mT)BZ.mood(el,base());
  if(!wasOn){lastSay=0;setTimeout(()=>{if(on())say('start',true)},1900)}}
 window.KXB={sync,
  layer(who){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI')return;sync();if(!el)return;
@@ -5891,8 +5955,8 @@ window.KXB={sync,
  chip(){try{if(on()&&el)pulse('tap',300)}catch(e){}},
  mock(){try{const n=Date.now();if(on()&&el&&n-mockT>6000&&Math.random()<.6){mockT=n;pulse('smug',950);say('mock')}}catch(e){}},
  end(w){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI'||w<0||G.kxEnd)return;G.kxEnd=1;const win=w===0,f=faceOf(),d=document.createElement('div');d.className='kxFall';d.style.setProperty('--sk',f.col);
-  d.innerHTML='<div class="kxF">'+faceHTML(f)+'</div><div class="kxC">'+CR.join('')+'</div><div class="kxT">'+pk(win?KXL.fall:KXL.win)+'</div>';
-  if(win){d.querySelectorAll('.kxC svg').forEach(s=>s.style.display='block')}else{d.querySelectorAll('.kxC').forEach(c=>c.remove())}
+  d.innerHTML='<div class="kxF">'+faceHTML(f)+'</div><div class="kxC">'+CR.join('')+'</div><div class="kxT">'+(win?L('fall'):L('win'))+'</div>';
+  BZ.mood(d,win?'dead':'smug');if(win){d.querySelectorAll('.kxC svg').forEach(s=>s.style.display='block')}else{d.querySelectorAll('.kxC').forEach(c=>c.remove())}
   document.body.appendChild(d);if(el){el.classList.remove('rage')}
   if(RM||!d.animate){setTimeout(()=>d.remove(),1400);return}
   const A=win?[{transform:'scale(.5) translateY(30px)',opacity:0,filter:'brightness(1)',offset:0},{transform:'scale(1)',opacity:1,offset:.12},{transform:'translate(-8px,0) rotate(-4deg)',filter:'brightness(2.4)',offset:.22},{transform:'translate(8px,0) rotate(4deg)',filter:'brightness(1)',offset:.32},{transform:'translate(-5px,0) rotate(-3deg)',offset:.42},{transform:'translate(0,10px) rotate(8deg) scale(.96)',opacity:1,filter:'grayscale(.6) brightness(.8)',offset:.55},{transform:'translate(10px,260px) rotate(50deg) scale(.5)',opacity:0,filter:'grayscale(1) brightness(.4)',offset:1}]

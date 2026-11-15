@@ -514,3 +514,7 @@ Bump `V` in `sw.js` after every change.
 
 ## v160 changes
 **The boss reacts.** In boss phase against the computer, Kiraxo (or the world's boss) gets a portrait medallion above his score card (his Kiraxo skin image, or his mood emoji when the skin has none). When you break a shield he flinches, flashes and drops an armour shard; cracks build up on his face as your damage adds up; when he breaks one he smirks; on the last layer he turns red and shakes; when you beat him the portrait cracks, tips over and falls across the result screen. Tiny 2-3 word taunts (lines in `KXL`) float to the left of the portrait, never over the timer. Hooks: `render()`, `layerHit()`, `hitFx()`, `failTurn()` and `finish()` call `KXB` (end of the file). Next: one fall and taunt set per world, the same reactions for Endless Tower Guardians and region generals. Bump `V` in `sw.js` after every change.
+
+
+## v161 changes
+**Boss characters.** The boss portrait is no longer an emoji: every world's Kiraxo look is now a drawn SVG character (head and shoulders, like Aris, no image files). Route generals get a helmet and spiked pauldrons; supreme generals and emperors get a cape, glow and crown or laurel. Each boss name picks its own skin tone, scar and beard, so Asantikos and Nanozi look different. Moods: stare, smug grin, hurt wince, rage (last shield layer) and defeated (X eyes on the fall screen). Each world has its own taunts. The Kiraxo gallery shows the new faces. Add or retune a look in `SP` inside `<script id="bzJs">`. Bump `V` in `sw.js` after every change.
