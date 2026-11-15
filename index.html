@@ -1511,6 +1511,17 @@ html.noaris #arBrag .arWrap{display:block!important}
 .pp{cursor:pointer}
 .mgog{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px}.mgot{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;background:rgb(var(--k) / .55);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);min-width:0;opacity:.62}.mgot.own{opacity:1;border-color:color-mix(in srgb,var(--gold) 70%,transparent)}.mgoe{font-size:1.25rem;flex:none}.mgot strong{display:block;font:700 .66rem Cinzel,Georgia,serif;letter-spacing:.04em;line-height:1.15;color:var(--gold);overflow-wrap:anywhere}.mgot em{display:block;font-style:normal;font-size:.62rem;opacity:.75;margin-top:1px}
 </style>
+<style>/* 1.8.0: Elementa arena gate */
+#wGate .e-bg{inset:0;background:radial-gradient(circle at 50% 50%,#5a0f56,#12020f 75%)}
+#wGate .e-g{inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(10,1fr);gap:2px;padding:2px}
+#wGate .e-t{position:relative;display:flex;align-items:center;justify-content:center;border-radius:6px;background:linear-gradient(145deg,#a817a4,#370b34);border:1px solid #f78fff88;box-shadow:inset 0 0 12px #f78fff33,0 0 8px #e42ee844}
+#wGate .e-t b{font:700 1.15rem Cinzel,Georgia,serif;color:#f8d4f9;text-shadow:0 0 8px #f78fff}#wGate .e-t small{position:absolute;top:3px;left:5px;font-size:.5rem;color:#f78fffcc}
+#wGate .e-at{left:50%;top:50%;width:min(70%,260px);transform:translate(-50%,-50%);text-align:center;filter:drop-shadow(0 0 14px #e42ee8)}
+#wGate .e-at svg{display:block;width:100%;overflow:visible}#wGate .e-at ellipse{fill:none;stroke:#f8d4f9;stroke-width:1.4;opacity:.9}#wGate .e-el{fill:#fff}#wGate .e-nu{fill:#f78fff;stroke:#fff;stroke-width:1.5;transform-origin:50px 50px;transform-box:view-box}
+#wGate .e-tx{position:relative;margin-top:10px;font:700 .8rem Cinzel,Georgia,serif;letter-spacing:.22em;color:#fff;text-shadow:0 0 10px #e42ee8,0 2px 0 #12020f;background:#12020fcc;padding:6px 10px;border-radius:8px;display:inline-block}
+#wGate .e-fl{inset:0;background:radial-gradient(circle,#fff,#f78fff88 40%,#0000 75%);opacity:0}
+#wGate .e-sp{color:#f78fff;text-shadow:0 0 8px #e42ee8;opacity:0}
+</style>
 </head><body><div id="spl" aria-hidden="true"><style>
 /* v175 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour follows the current world (html.wd-*). */
 #spl{--sa:#f2c14e;--sb:#2a1a08;position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 40%,var(--sb) 0,#06040a 72%);color:var(--sa);font-family:system-ui,sans-serif;overflow:hidden;animation:sOut .5s ease 2.35s forwards}
@@ -5239,6 +5250,27 @@ WG.jungle=next=>wRun('jungle',next,{
   for(let i=0;i<34;i++){const l=document.createElement('i');l.className='j-lf';l.textContent=['🍃','🌿','🍃','🍂'][i%4];const x=wR(-5,105),y=wR(40,110);l.style.cssText=`left:${x}%;top:${y}%;font-size:${16+wR(0,22)}px`;g.appendChild(l);
    an(l,[{transform:'translate(0,0) rotate(0deg) scale(.4)',opacity:0},{opacity:1,offset:.2},{transform:`translate(${wR(-160,160)}px,${-wR(260,720)}px) rotate(${wR(-540,540)}deg) scale(1)`,opacity:0}],{duration:1000+wR(0,900),delay:wR(0,420),easing:'cubic-bezier(.2,.7,.3,1)'})}}});
 
+// ELEMENTA: a periodic table of glowing crystal tiles flips in from the centre, an atom spins up, then the table flips away outward in a burst of crystal sparks
+WG.elementa=next=>{const SY='H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd'.split(' '),C=6,R=10;
+ const tiles=SY.slice(0,C*R).map((x,i)=>`<i class="e-t"><small>${i+1}</small><b>${x}</b></i>`).join('');
+ const ring=a=>`<ellipse cx="50" cy="50" rx="44" ry="16" transform="rotate(${a} 50 50)"/>`;
+ wRun('elementa',next,{html:`<div class="e-bg"></div><div class="e-g">${tiles}</div><div class="e-at"><svg viewBox="0 0 100 100"><g class="e-rg">${ring(0)}${ring(60)}${ring(120)}<circle class="e-el" cx="94" cy="50" r="3.4"/><circle class="e-el" cx="28" cy="35.6" r="3.4" transform="rotate(0)"/><circle class="e-el" cx="28" cy="64.4" r="3.4"/></g><circle class="e-nu" cx="50" cy="50" r="8"/></svg><div class="e-tx">FUSING THE ELEMENTS</div></div><div class="e-fl"></div>`,
+ t1:1000,t2:1700,t3:3000,
+ cover:(q,qa,an,g)=>{sfx('whoosh');const ts=qa('.e-t'),dist=i=>Math.hypot((i%C)-(C-1)/2,Math.floor(i/C)-(R-1)/2);
+  an(q('.e-bg'),[{opacity:0},{opacity:1}],{duration:300,fill:'both'});
+  ts.forEach((t,i)=>an(t,[{transform:'perspective(320px) rotateY(90deg) scale(.5)',opacity:0},{transform:'perspective(320px) rotateY(0deg) scale(1)',opacity:1}],{duration:340,delay:dist(i)*95,easing:'cubic-bezier(.3,1.3,.4,1)',fill:'both'}));
+  ts.forEach((t,i)=>{if(i%7===0)setTimeout(()=>tone(520+(i%5)*130,.07,'sine',.05),dist(i)*95+120)});
+  an(q('.e-at'),[{opacity:0,transform:'translate(-50%,-50%) scale(.3)'},{opacity:1,transform:'translate(-50%,-50%) scale(1)'}],{duration:520,delay:520,easing:'cubic-bezier(.2,1.4,.4,1)',fill:'both'});
+  an(q('.e-rg'),[{transform:'rotate(0deg)'},{transform:'rotate(540deg)'}],{duration:1600,easing:'ease-in-out',fill:'both'});
+  an(q('.e-nu'),[{transform:'scale(1)'},{transform:'scale(1.5)'},{transform:'scale(1)'},{transform:'scale(1.7)'}],{duration:1100,delay:500,fill:'both'})},
+ mid:(q,qa,an)=>{tone(98,.5,'sine',.26);tone(880,.3,'triangle',.07);shake();vib([30,20,60]);const x=q('.e-tx');if(x)x.textContent='ELEMENTA ONLINE';an(q('.e-fl'),[{opacity:0},{opacity:.85},{opacity:0}],{duration:520})},
+ open:(q,qa,an,g)=>{sfx('powerup');tone(1320,.25,'triangle',.07);const ts=qa('.e-t'),dist=i=>Math.hypot((i%C)-(C-1)/2,Math.floor(i/C)-(R-1)/2);
+  an(q('.e-at'),[{opacity:1,transform:'translate(-50%,-50%) scale(1)'},{opacity:0,transform:'translate(-50%,-50%) scale(2.6)'}],{duration:520,easing:'ease-in',fill:'both'});
+  ts.forEach((t,i)=>an(t,[{transform:'perspective(320px) rotateY(0deg) scale(1)',opacity:1},{transform:`perspective(320px) rotateY(${i%2?-90:90}deg) scale(.5)`,opacity:0}],{duration:420,delay:dist(i)*70,easing:'ease-in',fill:'both'}));
+  an(q('.e-bg'),[{opacity:1},{opacity:0}],{duration:520,delay:420,fill:'both'});
+  for(let i=0;i<32;i++){const e=document.createElement('i'),z=wR(8,20);e.className='e-sp';e.textContent='◆';e.style.cssText=`left:${wR(10,90)}%;top:${wR(30,80)}%;font-size:${z}px`;g.appendChild(e);
+   an(e,[{transform:'translate(0,0) rotate(0deg) scale(.4)',opacity:0},{opacity:1,offset:.2},{transform:`translate(${wR(-120,120)}px,${-wR(240,640)}px) rotate(${wR(-360,360)}deg) scale(1)`,opacity:0}],{duration:wR(900,1700),delay:wR(0,420),easing:'cubic-bezier(.2,.7,.3,1)'})}}})};
+
 /* ---------- THE LIVING JUNGLE (sky layer): rope-physics vines, falling leaves, fireflies, quicksand timer, jaguar lurker ---------- */
 (()=>{try{
 const H=document.documentElement;if(!H.classList.contains('wd-jungle'))return;
@@ -6712,7 +6744,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175: APP_VER is shown in the launch animation and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='v179';
+window.APP_VER='1.8.0';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
