@@ -1495,7 +1495,31 @@ html.noaris #arBrag .arWrap{display:block!important}
 .lbr.g{opacity:.62;border-style:dashed}.lbr.g .lbn{font-weight:500;font-style:italic}
 .lbd{text-align:center;opacity:.6;letter-spacing:.3em;margin:4px 0}.lbg{margin:10px 0 2px;font-size:.85rem;color:#ffe08a;text-align:center}
 </style>
-</head><body><div id="app">
+</head><body><div id="spl" aria-hidden="true"><style>
+/* v175 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour follows the current world (html.wd-*). */
+#spl{--sa:#f2c14e;--sb:#2a1a08;position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 40%,var(--sb) 0,#06040a 72%);color:var(--sa);font-family:system-ui,sans-serif;overflow:hidden;animation:sOut .5s ease 2.35s forwards}
+html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;--sb:#2a0a10}html.wd-ice #spl{--sa:#bfe8ff;--sb:#0c2238}html.wd-buganda #spl{--sa:#e8b04a;--sb:#2e1604}html.wd-gold #spl{--sa:#e3b53a;--sb:#2e2206}html.wd-astral #spl{--sa:#b48cff;--sb:#180e38}html.wd-atlantis #spl{--sa:#3df2e0;--sb:#06303e}html.wd-jungle #spl{--sa:#8be04a;--sb:#0e2408}html.wd-elementa #spl{--sa:#c04bd8;--sb:#240a30}
+@keyframes sOut{to{opacity:0;visibility:hidden}}
+#spl .sg{position:absolute;left:50%;top:40%;width:min(86vw,420px);aspect-ratio:1;margin:calc(min(86vw,420px)/-2) 0 0 calc(min(86vw,420px)/-2);opacity:0;animation:sRing 1.1s cubic-bezier(.2,.8,.2,1) .05s forwards}
+#spl .sg svg{width:100%;height:100%;overflow:visible;animation:sSpin 9s linear infinite}
+@keyframes sRing{from{transform:scale(2.6);opacity:0}30%{opacity:.9}to{transform:scale(1);opacity:.55}}@keyframes sSpin{to{transform:rotate(360deg)}}
+#spl .sd{display:flex;gap:10px;position:relative;z-index:2}
+#spl .sd b{width:clamp(48px,15vw,70px);height:clamp(64px,20vw,92px);display:flex;align-items:center;justify-content:center;font:900 clamp(2.2rem,11vw,3.6rem)/1 system-ui,sans-serif;border:2.5px solid var(--sa);border-radius:12px;background:#0008;box-shadow:0 0 18px color-mix(in srgb,var(--sa) 55%,transparent),inset 0 0 14px #0009;text-shadow:0 0 14px var(--sa);animation:sIn .4s ease both}
+#spl .sd b:nth-child(2){animation-delay:.08s}#spl .sd b:nth-child(3){animation-delay:.16s}
+#spl .sd b.lk{animation:sLock .35s ease-out 1;background:color-mix(in srgb,var(--sa) 22%,#000)}
+@keyframes sIn{from{opacity:0;transform:translateY(-30px) scale(.7)}}@keyframes sLock{40%{transform:scale(1.22);box-shadow:0 0 40px var(--sa)}}
+#spl .st{position:relative;z-index:2;display:flex;gap:2px;font:900 clamp(1.5rem,8.4vw,2.7rem)/1 system-ui,sans-serif;letter-spacing:.06em;text-shadow:0 0 16px var(--sa),0 3px 0 #000}
+#spl .st i{font-style:normal;opacity:0;animation:sSlam .35s cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:calc(1s + var(--i)*.045s)}
+@keyframes sSlam{from{opacity:0;transform:translateY(-38px) scale(1.7)}to{opacity:1}}
+#spl .ss{position:relative;z-index:2;font:800 .78rem/1 system-ui,sans-serif;letter-spacing:.5em;color:#fff;opacity:0;animation:sFade .5s ease 1.55s forwards}
+#spl .sv{position:absolute;bottom:calc(22px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:700 .7rem/1 system-ui,sans-serif;letter-spacing:.2em;color:var(--sa);opacity:0;animation:sFade .5s ease 1.2s forwards}
+#spl .sb{position:absolute;bottom:calc(50px + env(safe-area-inset-bottom));left:50%;width:min(48vw,200px);height:3px;margin-left:calc(min(48vw,200px)/-2);border-radius:3px;background:#fff2;overflow:hidden}
+#spl .sb::after{content:"";display:block;height:100%;background:var(--sa);box-shadow:0 0 8px var(--sa);transform:scaleX(0);transform-origin:0 50%;animation:sBar 2s ease-out .1s forwards}
+@keyframes sFade{to{opacity:.85}}@keyframes sBar{to{transform:scaleX(1)}}
+#spl .sf{position:absolute;inset:0;background:#fff;opacity:0;animation:sFlash .5s ease-out 1.0s 1}
+@keyframes sFlash{15%{opacity:.35}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){#spl{animation-duration:.2s;animation-delay:.8s}#spl .sg,#spl .sd b,#spl .st i,#spl .ss,#spl .sv,#spl .sf{animation:none!important;opacity:1}#spl .sg{opacity:.5}#spl .sf{opacity:0}#spl .sg svg{animation:none}#spl .sb::after{animation:none;transform:none}}
+</style><div class="sg"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor"><circle cx="100" cy="100" r="92" stroke-width="2" stroke-dasharray="6 8"/><circle cx="100" cy="100" r="68" stroke-width="3"/><circle cx="100" cy="100" r="42" stroke-width="2" stroke-dasharray="3 5"/><path d="M100 0v34M100 166v34M0 100h34M166 100h34" stroke-width="3" stroke-linecap="round"/></svg></div><div class="sd"><b>?</b><b>?</b><b>?</b></div><div class="st"><i style="--i:0">M</i><i style="--i:1">I</i><i style="--i:2">N</i><i style="--i:3">D</i><i style="--i:4">S</i><i style="--i:5">T</i><i style="--i:6">R</i><i style="--i:7">I</i><i style="--i:8">K</i><i style="--i:9">E</i></div><div class="ss">NUMBER WARS</div><div class="sb"></div><div class="sv" id="splV"></div><div class="sf"></div></div><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
@@ -1630,7 +1654,7 @@ html.noaris #arBrag .arWrap{display:block!important}
   <button id="bkUndo" class="bm-btn bm-center" hidden>↩ UNDO LAST RESTORE</button>
   <div class="bm-head"><h2>Records</h2></div>
  <button id="clrLb" class="bm-btn bm-danger">CLEAR HALL OF GLORY</button>
- <small class="bm-note" style="margin-top:12px">MindStrike: Number Wars<br>Developed by <b>Kirabo Isa Bilal</b></small>
+ <small class="bm-note" style="margin-top:12px">MindStrike: Number Wars<br>Developed by <b>Kirabo Isa Bilal</b><br><span id="verTx"></span></small>
 </section>
 
 <section class="scr" id="s-mini" style="--bg:url(img/menu_bg.webp)">
@@ -6135,11 +6159,12 @@ function svg(k,role,seed){const s=SP[k]||SP[''],[ar,ac,hg]=s,h=hs(String(seed||k
 <path d="M32 50Q32 26 60 26Q88 26 88 50L86 70Q80 90 60 95Q40 90 34 70Z" fill="${skin}"/>
 <path d="M32 50Q32 26 60 26Q88 26 88 50Q74 40 60 42Q46 40 32 50Z" fill="#0003"/>
 ${scar}${beard}
-<g data-s="idle rage hurt dead smug"><path d="M31 60Q22 64 24 74Q30 72 33 66Z M89 60Q98 64 96 74Q90 72 87 66Z" fill="${skin}"/></g>
+<g data-s="idle rage hurt dead smug kneel triumph"><path d="M31 60Q22 64 24 74Q30 72 33 66Z M89 60Q98 64 96 74Q90 72 87 66Z" fill="${skin}"/></g>
 <g data-s="idle"><path d="M37 58Q47 52 57 60Q47 65 37 58Z M83 58Q73 52 63 60Q73 65 83 58Z" fill="#fff"/><circle class="gl" cx="48" cy="59" r="3.4" fill="${gl}"/><circle class="gl" cx="72" cy="59" r="3.4" fill="${gl}"/><path d="M35 50L58 58M85 50L62 58" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M49 80Q60 77 71 80" stroke="#2a0a0f" stroke-width="3.4" fill="none" stroke-linecap="round"/></g>
-<g data-s="smug"><path d="M37 58Q47 52 57 60Q47 65 37 58Z M83 58Q73 52 63 60Q73 65 83 58Z" fill="#fff"/><circle class="gl" cx="48" cy="60" r="3.4" fill="${gl}"/><circle class="gl" cx="72" cy="60" r="3.4" fill="${gl}"/><path d="M36 56Q47 49 58 57L56 52Q46 46 36 52ZM84 56Q73 49 62 57L64 52Q74 46 84 52Z" fill="${skin}" style="filter:brightness(.82)"/><path d="M35 49L58 55M85 45L62 55" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M46 77Q62 92 76 74" stroke="#2a0a0f" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M58 83L61 88L65 83Z" fill="#fff"/></g>
+<g data-s="smug triumph"><path d="M37 58Q47 52 57 60Q47 65 37 58Z M83 58Q73 52 63 60Q73 65 83 58Z" fill="#fff"/><circle class="gl" cx="48" cy="60" r="3.4" fill="${gl}"/><circle class="gl" cx="72" cy="60" r="3.4" fill="${gl}"/><path d="M36 56Q47 49 58 57L56 52Q46 46 36 52ZM84 56Q73 49 62 57L64 52Q74 46 84 52Z" fill="${skin}" style="filter:brightness(.82)"/><path d="M35 49L58 55M85 45L62 55" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M46 77Q62 92 76 74" stroke="#2a0a0f" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M58 83L61 88L65 83Z" fill="#fff"/></g>
 <g data-s="hurt"><path d="M38 53L54 60L38 67M82 53L66 60L82 67" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 46L56 51M86 46L64 51" stroke="#12060a" stroke-width="4.6" stroke-linecap="round"/><path d="M47 77h26v9H47z" fill="#2a0a0f"/><path d="M47 81.5h26M53 77v9M60 77v9M67 77v9" stroke="#f2ead8" stroke-width="2"/><path d="M92 38q-5 8 0 12q5-4 0-12z" fill="#7fd6ff"/></g>
 <g data-s="rage"><path d="M36 58Q47 50 58 60Q47 66 36 58Z M84 58Q73 50 62 60Q73 66 84 58Z" fill="#ff3b2a"/><circle class="gl" cx="48" cy="60" r="3" fill="#fff"/><circle class="gl" cx="72" cy="60" r="3" fill="#fff"/><path d="M33 47L58 60M87 47L62 60" stroke="#12060a" stroke-width="5.4" stroke-linecap="round"/><path d="M46 75Q60 68 74 75L72 91Q60 97 48 91Z" fill="#5a0a14"/><path d="M50 76v6M57 75v7M63 75v7M70 76v6" stroke="#f2ead8" stroke-width="3"/><path d="M54 40Q58 46 56 50M66 38Q62 44 64 48" stroke="#ff3b2a" stroke-width="2" fill="none"/></g>
+<g data-s="kneel" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round"><path d="M37 59Q47 66 57 59M63 59Q73 66 83 59"/><path d="M35 51L57 55M85 51L63 55"/><path d="M50 81Q60 78 70 81" stroke-width="3.4"/></g>
 <g data-s="dead" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round"><path d="M39 53L55 66M55 53L39 66M65 53L81 66M81 53L65 66"/><path d="M48 82Q60 76 72 82" stroke-width="3.4"/><path d="M60 82q0 8 5 9q4-1 3-9z" fill="#e0607a" stroke="none"/></g>
 ${FR[hg]||''}${HG[hg](ac)}
 ${em&&!/crown|turban|halo/.test(hg)?`<path d="M30 40Q60 14 90 40" fill="none" stroke="${ac}" stroke-width="3" stroke-dasharray="7 4" stroke-linecap="round"/>`:''}
@@ -6173,13 +6198,13 @@ ${em&&!/crown|turban|halo/.test(hg)?`<path d="M30 40Q60 14 90 40" fill="none" st
  cosmic:`<path d="M92 116L100 58" stroke="${ac}" stroke-width="3.2" stroke-linecap="round"/><path class="gl" d="M101 40l3.4 8 8.4 1-6.4 5.6 2 8.4-7.4-4.6-7.4 4.6 2-8.4-6.4-5.6 8.4-1z" fill="#ffe27a"/>`},
  wp=WPN[st]||WPN.legion,
  sl=st==='kimono'?[`<path d="M30 80L10 114L32 120Z" fill="${ar}" stroke="${ac}" stroke-width="1.8"/>`,`<path d="M90 80L110 114L88 120Z" fill="${ar}" stroke="${ac}" stroke-width="1.8"/>`]:st==='fur'?[`<ellipse cx="22" cy="104" rx="8" ry="5" fill="#efe6d6" stroke="#b9a88a" stroke-width="1.4"/>`,`<ellipse cx="98" cy="104" rx="8" ry="5" fill="#efe6d6" stroke="#b9a88a" stroke-width="1.4"/>`]:['',''];
- return `<svg class="bz" data-m="idle" viewBox="0 0 120 168" aria-hidden="true" focusable="false"><ellipse cx="60" cy="163" rx="30" ry="4.5" fill="#000" opacity=".3"/><g class="bod">${cape}${B[st]}${st==='legion'||st==='kimono'||st==='robe'||st==='smoke'||st==='cosmic'?'':''}${shade}
+ return `<svg class="bz" data-m="idle" viewBox="0 0 120 168" aria-hidden="true" focusable="false"><defs><clipPath id="bzK"><rect x="-40" y="-40" width="200" height="166"/></clipPath><clipPath id="bzC"><rect x="-40" y="-40" width="200" height="184"/></clipPath></defs><ellipse cx="60" cy="163" rx="30" ry="4.5" fill="#000" opacity=".3"/><g class="bod"><g class="cpG">${cape}</g><g class="lgs">${B[st]}</g><g data-s="kneel"><path d="M54 124L40 140L16 142" stroke="${ac}" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M54 124L40 140L16 142" stroke="${ar}" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 124L90 128L88 142" stroke="${ac}" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 124L90 128L88 142" stroke="${ar}" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="88" cy="144" rx="11" ry="5" fill="${D}"/><ellipse cx="14" cy="143" rx="9" ry="4.5" fill="${D}"/><path d="M32 114L88 114L93 128Q60 136 27 128Z" fill="${ar}" stroke="${ac}" stroke-width="2"/><path d="M42 120L40 130M60 122V132M78 120L80 130" stroke="${ac}" stroke-width="1.4" opacity=".6"/></g>${shade}
 <g class="zL"><path d="M32 78L21 106" stroke="${arm}" stroke-width="11" stroke-linecap="round"/><path d="M26 96L22 104" stroke="${ac}" stroke-width="4"/>${sl[0]}<circle cx="20" cy="110" r="6" fill="${skin}"/></g>
-<g class="zR"><path d="M88 78L99 106" stroke="${arm}" stroke-width="11" stroke-linecap="round"/><path d="M94 96L98 104" stroke="${ac}" stroke-width="4"/>${wp}${sl[1]}<circle cx="100" cy="110" r="6" fill="${skin}"/></g>
+<g class="zR"><path d="M88 78L99 106" stroke="${arm}" stroke-width="11" stroke-linecap="round"/><path d="M94 96L98 104" stroke="${ac}" stroke-width="4"/><g class="wpn">${wp}</g>${sl[1]}<circle cx="100" cy="110" r="6" fill="${skin}"/></g>
 <circle cx="32" cy="77" r="10" fill="${st==='tribal'?skin:ar}" stroke="${ac}" stroke-width="2.4"/><circle cx="88" cy="77" r="10" fill="${st==='tribal'?skin:ar}" stroke="${ac}" stroke-width="2.4"/>${em||st==='tribal'?'':`<path d="M26 70L20 56L34 66ZM94 70L100 56L86 66Z" fill="${ac}"/>`}
-<g transform="translate(18,3) scale(.7)">${hd}</g></g></svg>`}
+<g class="hdW"><g transform="translate(18,3) scale(.7)">${hd}</g></g></g></svg>`}
 const ST={alchemist:'lab','':'legion',caesar:'legion',warlord:'legion',cyber:'tech',virus:'tech',mainframe:'tech',samurai:'kimono',oni:'kimono',tengu:'kimono',ice:'fur',yeti:'fur',frostgiant:'fur',buganda:'robe',drumlord:'robe',elephant:'tribal',gold:'robe',djinn:'smoke',scorpion:'robe',astral:'cosmic',starmaw:'cosmic',atlantis:'scale',leviathan:'scale',jungle:'tribal',stampede:'tribal'};
-const MOOD={idle:1,smug:1,hurt:1,rage:1,dead:1};
+const MOOD={idle:1,smug:1,hurt:1,rage:1,dead:1,kneel:1,triumph:1};
 window.BZ={hs,has:k=>k in SP,svg,mood(root,m){const z=root&&(root.matches&&root.matches('.bz')?root:root.querySelector('.bz'));if(z&&MOOD[m])z.dataset.m=m}};
 })();
 </script>
@@ -6243,6 +6268,16 @@ window.KXB={sync,
 .kxK{position:absolute;left:0;right:0;bottom:12%;text-align:center;font:900 clamp(1.05rem,5.4vw,1.8rem)/1.1 system-ui,sans-serif;letter-spacing:.22em;color:var(--sk);text-shadow:0 0 14px var(--sk),0 2px 0 #000;opacity:0;z-index:5;padding:0 8px}
 .kxP{position:fixed;pointer-events:none;font-style:normal;line-height:1;z-index:4}
 .kxO{position:absolute;pointer-events:none;z-index:1}
+.bz[data-m=kneel] [data-s~=kneel],.bz[data-m=triumph] [data-s~=triumph]{display:inline}
+.bz[data-m=kneel] .wpn{display:none}
+.bz[data-m=kneel] .lgs{clip-path:url(#bzK)}.bz[data-m=kneel] .cpG{clip-path:url(#bzC)}
+.bz .hdW{transform-origin:60px 80px;transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
+.bz .bod{transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
+.bz[data-m=kneel] .hdW{transform:translate(5px,7px) rotate(21deg)}
+.bz[data-m=kneel] .bod{animation:none;transform:translateY(16px)}
+.bz[data-m=kneel] .zL{transform:rotate(16deg)}.bz[data-m=kneel] .zR{transform:rotate(36deg)}
+.bz[data-m=triumph] .zR{transform:rotate(-148deg)}.bz[data-m=triumph] .zL{transform:rotate(38deg)}
+.bz[data-m=triumph] .hdW{transform:translateY(-3px) rotate(-5deg)}
 </style>
 <script id="kxEnd">
 /* v174: PER-WORLD BOSS ENDINGS. Replaces KXB.end. Each world has two recipes in W: f = the boss FALLS (you win), v = the boss stands VICTORIOUS (you lose).
@@ -6269,30 +6304,30 @@ fade:[[{opacity:1},{opacity:1,offset:.5},{opacity:.12}],1],
 sheath:[[{transform:'translate(-30%,-60%) rotate(-70deg)',opacity:0},{transform:'translate(-30%,-60%) rotate(-70deg)',opacity:1,offset:.2},{transform:'none',opacity:1,offset:.5},{transform:'none',opacity:1}],1],
 crack:[[{opacity:1},{transform:'translateX(-3px)',offset:.3},{transform:'translateX(3px)',offset:.5},{transform:'scale(1.35)',opacity:0}],1]};
 const D={opacity:1,clipPath:'inset(0% 0% 0% 0%)',filter:'none'},F=a=>a.map(([o,t,x])=>Object.assign({offset:o,transform:t},D,x||{}));
-const kn=(r,y,f)=>[[0,'scale(.6) translateY(30px)',{opacity:0}],[.08,'none'],[.14,'translateY(2%) rotate(-3deg)'],[.3,'translateY('+y+'%) rotate('+r+'deg) scale(.96)',{filter:f||'brightness(.85)'}],[.55,'translateY('+(y+2)+'%) rotate('+(r+3)+'deg) scale(.95)',{filter:f||'brightness(.8)'}]];
+const kn=f=>[[0,'scale(.6) translateY(30px)',{opacity:0}],[.08,'none'],[.15,'translateX(-7px) rotate(-3deg)',{filter:'brightness(2.2)'}],[.22,'translateX(5px)'],[.3,'none'],[.55,'none',{filter:f||'brightness(.9)'}]];
 const AN={
-crumble:[3200,[...kn(13,16),[.7,'translateY(20%) rotate(15deg) scale(.95)',{filter:'grayscale(1) brightness(.7)'}],[1,'translateY(30%) rotate(18deg) scale(.9)',{filter:'grayscale(1) brightness(.5)',clipPath:'inset(100% 0% 0% 0%)'}]]],
+crumble:[3200,[...kn(),[.7,'translateY(4%)',{filter:'grayscale(1) brightness(.7)'}],[1,'translateY(14%) scaleY(.88)',{filter:'grayscale(1) brightness(.5)',clipPath:'inset(100% 0% 0% 0%)'}]]],
 crt:[2600,[[0,'scale(.6)',{opacity:0}],[.08,'none'],[.15,'translateX(-6px)',{filter:'hue-rotate(90deg) brightness(1.6)'}],[.22,'translateX(8px) skewX(8deg)',{filter:'hue-rotate(-90deg)'}],[.3,'none'],[.4,'translateX(-10px) skewX(-10deg)',{filter:'hue-rotate(160deg) saturate(3)'}],[.55,'none',{filter:'brightness(1.4)'}],[.7,'scaleY(.03) scaleX(1.15)',{filter:'brightness(4)'}],[.85,'scaleY(.03) scaleX(.03)',{filter:'brightness(6)'}],[1,'scaleY(.01) scaleX(0)',{opacity:0,filter:'brightness(6)'}]]],
-bow:[3200,[...kn(22,18),[.85,'translateY(20%) rotate(24deg) scale(.95)',{filter:'brightness(.75)'}],[1,'translateY(22%) rotate(25deg) scale(.95)',{opacity:0,filter:'brightness(.6)'}]]],
-bowlow:[3200,[...kn(28,22),[.85,'translateY(24%) rotate(30deg) scale(.95)',{filter:'brightness(.7)'}],[1,'translateY(26%) rotate(31deg) scale(.95)',{opacity:0,filter:'brightness(.5)'}]]],
-shatter:[3200,[...kn(10,14,'saturate(.3) hue-rotate(170deg) brightness(1.3)'),[.78,'translateY(16%) rotate(12deg)',{filter:'saturate(.2) hue-rotate(170deg) brightness(2.2)'}],[1,'translateY(16%) scale(1.2)',{opacity:0,filter:'brightness(3)'}]]],
-sand:[3200,[...kn(14,16),[.62,'translateY(18%) rotate(16deg) scale(.95)',{filter:'sepia(1) brightness(1.1)'}],[1,'translateY(20%) rotate(18deg) scale(.95)',{filter:'sepia(1) brightness(1.1)',clipPath:'inset(0% 0% 0% 100%)'}]]],
+bow:[3200,[...kn(),[.85,'translateY(2%)',{filter:'brightness(.75)'}],[1,'translateY(2%)',{opacity:0,filter:'brightness(.6)'}]]],
+bowlow:[3200,[...kn(),[.85,'translateY(3%)',{filter:'brightness(.7)'}],[1,'translateY(3%)',{opacity:0,filter:'brightness(.5)'}]]],
+shatter:[3200,[...kn('saturate(.3) hue-rotate(170deg) brightness(1.3)'),[.78,'none',{filter:'saturate(.2) hue-rotate(170deg) brightness(2.2)'}],[1,'scale(1.2)',{opacity:0,filter:'brightness(3)'}]]],
+sand:[3200,[...kn(),[.62,'none',{filter:'sepia(1) brightness(1.1)'}],[1,'none',{filter:'sepia(1) brightness(1.1)',clipPath:'inset(0% 0% 0% 100%)'}]]],
 nova:[2600,[[0,'scale(.6)',{opacity:0}],[.1,'none'],[.3,'scale(1.05)'],[.55,'scale(.25)',{filter:'brightness(3)'}],[.64,'scale(.03)',{filter:'brightness(8)'}],[.66,'scale(.03)',{opacity:0}],[1,'scale(0)',{opacity:0}]]],
-sink:[3200,[[0,'scale(.6)',{opacity:0}],[.1,'none'],[.25,'translateY(6%) rotate(-3deg)'],[1,'translateY(150%) rotate(-10deg) scale(.85)',{opacity:0,filter:'hue-rotate(150deg) saturate(.6) brightness(.5)'}]]],
-lie:[3200,[[0,'scale(.6)',{opacity:0}],[.1,'none'],[.2,'scale(1.14)'],[.32,'scale(1.16) rotate(-3deg)'],[.58,'translateY(34%) scaleY(.7) rotate(-6deg)',{filter:'brightness(.6)'}],[.86,'translateY(34%) scaleY(.7) rotate(-6deg)',{filter:'brightness(.55)'}],[1,'translateY(34%) scaleY(.7) rotate(-6deg)',{opacity:0,filter:'brightness(.4)'}]]],
+sink:[3200,[...kn(),[1,'translateY(110%) scale(.9)',{opacity:0,filter:'hue-rotate(150deg) saturate(.6) brightness(.5)'}]]],
+lie:[3200,[...kn(),[.8,'translateY(10%) scaleY(.85)',{filter:'brightness(.6)'}],[1,'translateY(10%) scaleY(.85)',{opacity:0,filter:'brightness(.4)'}]]],
 flask:[3000,[[0,'scale(.6)',{opacity:0}],[.1,'none'],[.4,'translateX(-3px)'],[.5,'translateX(3px)'],[.62,'scale(1.05)',{filter:'brightness(2)'}],[1,'scale(.6)',{opacity:0,filter:'blur(6px) brightness(3)'}]]],
 stand:[2400,[[0,'scale(.6) translateY(30px)',{opacity:0}],[.15,'scale(1.28) translateY(-3%)'],[.85,'scale(1.34) translateY(-5%)'],[1,'scale(1.34) translateY(-5%)',{opacity:0}]]]};
 const FN=[[196,0,.5,'sawtooth'],[147,.3,.8,'sawtooth']],FA=[[262,0,.25,'square'],[330,.15,.25,'square'],[392,.3,.25,'square'],[523,.45,.6,'square']];
 const W={
-roman:{f:{a:'crumble',k:1,p:'eagle',pa:'drift',fx:[['dust',14,.55],['dust',10,.75]],s:[...FN,[98,.6,1,'triangle']],t:['Rome… falls…','My eagle…'],cap:'THE EAGLE FALLS',m:'hurt'},v:{a:'stand',p:'eagle',pa:'raise',fx:[['conf',16,.3]],s:FA,t:['Ave Kiraxo!','Rome endures.'],cap:'ROME ENDURES'}},
+roman:{f:{a:'crumble',kn:1,k:1,p:'eagle',pa:'drift',fx:[['dust',14,.55],['dust',10,.75]],s:[...FN,[98,.6,1,'triangle']],t:['Rome… falls…','My eagle…'],cap:'THE EAGLE FALLS',m:'hurt'},v:{a:'stand',p:'eagle',pa:'raise',fx:[['conf',16,.3]],s:FA,t:['Ave Kiraxo!','Rome endures.'],cap:'ROME ENDURES'}},
 cyber:{f:{a:'crt',fx:[['code',14,.1]],s:[[880,0,.08,'square'],[220,.15,.1,'square'],[1200,.3,.06,'square'],[110,.7,.5,'sawtooth']],t:['Shutting down…','Error… 404…'],cap:'ERROR 404',m:'hurt'},v:{a:'stand',fx:[['code',26,0]],s:[[1400,0,.06,'square'],[90,.1,.7,'sawtooth'],[700,.5,.08,'square']],t:['Deleted.','Packet dropped.'],cap:'YOU HAVE BEEN DELETED'}},
-samurai:{f:{a:'bow',p:'blade',pa:'drop',fx:[['petal',12,.3],['petal',8,.6]],s:[[330,0,.3,'triangle'],[247,.4,.5,'triangle'],[165,.7,.8,'sine']],t:['Well cut…','I yield…'],cap:'HE YIELDS',m:'hurt'},v:{a:'stand',p:'blade',pa:'sheath',fx:[['petal',20,.35]],s:[[1200,.3,.04,'square'],[660,.33,.1,'triangle']],t:['Sheathed.','Too slow.'],cap:'THE BLADE RESTS'}},
-ice:{f:{a:'shatter',k:1,p:'axe',pa:'drop',fx:[['snow',10,.3],['shard',16,.78]],s:[[392,0,.3,'triangle'],[1760,.78,.05,'square'],[1318,.8,.1,'square']],t:['Valhalla…','The ice breaks…'],cap:'THE ICE BREAKS',m:'hurt'},v:{a:'stand',p:'horn',pa:'raise',fx:[['snow',24,.2]],s:[[110,.2,.9,'sawtooth'],[165,.25,.9,'sawtooth']],t:['Skål!','Winter wins.'],cap:'THE HORN SOUNDS'}},
-buganda:{f:{a:'bowlow',p:'drum',pa:'fade',fx:[['glint',8,.5]],s:[[110,0,.3,'sine'],[110,.25,.3,'sine'],[110,.5,.6,'sine']],t:['The drums… stop…','Pole… sana…'],cap:'THE DRUM FALLS SILENT',m:'hurt'},v:{a:'stand',p:'drum',pa:'beat',ov:['rings',.1],s:[[110,.1,.25,'sine'],[110,.3,.25,'sine'],[110,.5,.25,'sine'],[147,.7,.4,'sine']],t:['Hear the drum!','Yee! Mine!'],cap:'THE DRUMS HAVE SPOKEN'}},
-gold:{f:{a:'sand',fx:[['sand',24,.5]],s:[[220,0,.5,'triangle'],[165,.5,1,'sine']],t:['Sands… settle…','My throne…'],cap:'BLOWN TO DUST',m:'hurt'},v:{a:'stand',fx:[['glint',16,.2]],s:[[523,.2,.5,'sine'],[784,.4,.7,'sine']],t:['A mirage…','Dust to you.'],cap:'THE SANDS CLAIM YOU'}},
+samurai:{f:{a:'bow',kn:1,p:'blade',pa:'drop',fx:[['petal',12,.3],['petal',8,.6]],s:[[330,0,.3,'triangle'],[247,.4,.5,'triangle'],[165,.7,.8,'sine']],t:['Well cut…','I yield…'],cap:'HE YIELDS',m:'hurt'},v:{a:'stand',p:'blade',pa:'sheath',fx:[['petal',20,.35]],s:[[1200,.3,.04,'square'],[660,.33,.1,'triangle']],t:['Sheathed.','Too slow.'],cap:'THE BLADE RESTS'}},
+ice:{f:{a:'shatter',kn:1,k:1,p:'axe',pa:'drop',fx:[['snow',10,.3],['shard',16,.78]],s:[[392,0,.3,'triangle'],[1760,.78,.05,'square'],[1318,.8,.1,'square']],t:['Valhalla…','The ice breaks…'],cap:'THE ICE BREAKS',m:'hurt'},v:{a:'stand',p:'horn',pa:'raise',fx:[['snow',24,.2]],s:[[110,.2,.9,'sawtooth'],[165,.25,.9,'sawtooth']],t:['Skål!','Winter wins.'],cap:'THE HORN SOUNDS'}},
+buganda:{f:{a:'bowlow',kn:1,p:'drum',pa:'fade',fx:[['glint',8,.5]],s:[[110,0,.3,'sine'],[110,.25,.3,'sine'],[110,.5,.6,'sine']],t:['The drums… stop…','Pole… sana…'],cap:'THE DRUM FALLS SILENT',m:'hurt'},v:{a:'stand',p:'drum',pa:'beat',ov:['rings',.1],s:[[110,.1,.25,'sine'],[110,.3,.25,'sine'],[110,.5,.25,'sine'],[147,.7,.4,'sine']],t:['Hear the drum!','Yee! Mine!'],cap:'THE DRUMS HAVE SPOKEN'}},
+gold:{f:{a:'sand',kn:1,fx:[['sand',24,.5]],s:[[220,0,.5,'triangle'],[165,.5,1,'sine']],t:['Sands… settle…','My throne…'],cap:'BLOWN TO DUST',m:'hurt'},v:{a:'stand',fx:[['glint',16,.2]],s:[[523,.2,.5,'sine'],[784,.4,.7,'sine']],t:['A mirage…','Dust to you.'],cap:'THE SANDS CLAIM YOU'}},
 astral:{f:{a:'nova',ov:['ring',.62],fx:[['star',14,.62]],s:[[880,0,.5,'sine'],[1760,.6,.6,'sine']],t:['Light…','Dying star…'],cap:'A STAR GOES OUT',m:'hurt'},v:{a:'stand',ov:['eclipse',0],s:[[82,0,1.2,'sine']],t:['Gone dark.','Stars fall.'],cap:'ECLIPSE'}},
-atlantis:{f:{a:'sink',p:'trident',pa:'drift',fx:[['bubble',22,.1]],s:[[330,0,.6,'sine'],[220,.3,.7,'sine'],[147,.6,.9,'sine']],t:['Back… to the deep…','Surface…'],cap:'BACK TO THE DEEP',m:'hurt'},v:{a:'stand',p:'trident',pa:'raise',ov:['wave',0],fx:[['bubble',16,.3]],s:[[110,0,1,'sine'],[165,.3,.8,'sine']],t:['Drown.','The tide turns.'],cap:'THE DEEP CLAIMS YOU'}},
-jungle:{f:{a:'lie',fx:[['leaf',10,.4]],s:[[130,0,.8,'sawtooth'],[98,.3,.9,'sawtooth'],[65,.6,1,'sine']],t:['Beaten… cat…','The king… falls…'],cap:'THE KING LIES DOWN',m:'hurt'},v:{a:'stand',fx:[['leaf',22,.15]],sh:.15,s:[[98,.1,.6,'sawtooth'],[73,.12,.8,'sawtooth']],t:['ROAR!','Hunted.'],cap:'THE HUNT IS OVER'}},
+atlantis:{f:{a:'sink',kn:1,p:'trident',pa:'drift',fx:[['bubble',22,.1]],s:[[330,0,.6,'sine'],[220,.3,.7,'sine'],[147,.6,.9,'sine']],t:['Back… to the deep…','Surface…'],cap:'BACK TO THE DEEP',m:'hurt'},v:{a:'stand',p:'trident',pa:'raise',ov:['wave',0],fx:[['bubble',16,.3]],s:[[110,0,1,'sine'],[165,.3,.8,'sine']],t:['Drown.','The tide turns.'],cap:'THE DEEP CLAIMS YOU'}},
+jungle:{f:{a:'lie',kn:1,fx:[['leaf',10,.4]],s:[[130,0,.8,'sawtooth'],[98,.3,.9,'sawtooth'],[65,.6,1,'sine']],t:['Beaten… cat…','The king… falls…'],cap:'THE KING LIES DOWN',m:'hurt'},v:{a:'stand',fx:[['leaf',22,.15]],sh:.15,s:[[98,.1,.6,'sawtooth'],[73,.12,.8,'sawtooth']],t:['ROAR!','Hunted.'],cap:'THE HUNT IS OVER'}},
 elementa:{f:{a:'flask',k:1,p:'flask',pa:'crack',fx:[['sym',18,.62]],s:[[523,0,.1,'square'],[392,.3,.1,'square'],[1047,.62,.2,'sawtooth']],t:['Unstable…','Reaction… failed…'],cap:'REACTION FAILED',m:'hurt'},v:{a:'stand',p:'flask',pa:'beat',fx:[['bubble',14,.1],['spark',12,.4]],s:[[220,0,.2,'triangle'],[330,.2,.2,'triangle'],[440,.4,.4,'triangle']],t:['Fascinating.','Catalysed.'],cap:'REACTION COMPLETE'}}};
 const CK='<svg class="kxCk" viewBox="0 0 54 70"><path d="M30 2l-4 14 7 9-6 12 5 10M8 30l12 4 6 10-8 8M46 24l-11 7 3 10-10 8M20 62l6-10" fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 2l-4 14 7 9-6 12 5 10M8 30l12 4 6 10-8 8M46 24l-11 7 3 10-10 8M20 62l6-10" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const pk=a=>a[Math.floor(Math.random()*a.length)],lowEnd=(navigator.hardwareConcurrency||4)<=4;
@@ -6320,11 +6355,11 @@ function run(win){
  const ho=st.querySelector('.kxA'),fg=st.querySelector('.kxF'),tx=st.querySelector('.kxT'),cp=st.querySelector('.kxK'),ck=st.querySelector('.kxCk'),pr=st.querySelector('.kxR'),T=[];
  let done=0;const end=()=>{if(done)return;done=1;T.forEach(clearTimeout);st.remove()};st.onclick=end;
  tx.textContent=pk(S.t);cp.textContent=S.cap;
- BZ.mood(ho,win?(S.m||'hurt'):'smug');
+ BZ.mood(ho,win?(S.m||'hurt'):'triumph');
  if(RM||!st.animate){tx.style.opacity=1;cp.style.opacity=1;if(!win)fg.style.transform='scale(1.25)';T.push(setTimeout(end,gen?700:1600));return}
  fg.animate(F(an[1]),{duration:ms,fill:'forwards',easing:'ease-in-out'});
  if(!win)ho.style.filter='drop-shadow(0 0 18px '+col+')';
- if(win&&S.m&&!gen)T.push(setTimeout(()=>BZ.mood(ho,'dead'),ms*.6));
+ if(win&&S.kn)T.push(setTimeout(()=>BZ.mood(ho,'kneel'),ms*.22));else if(win&&S.m&&!gen)T.push(setTimeout(()=>BZ.mood(ho,'dead'),ms*.6));
  if(ck){ck.animate([{opacity:0},{opacity:.9,offset:.5},{opacity:.9}],{duration:ms,fill:'forwards'})}
  if(pr&&PA[S.pa]){const[k,it]=PA[S.pa];pr.animate(k,{duration:S.pa==='beat'?ms/6:ms,iterations:it,fill:'forwards',easing:'ease-out'})}
  tx.animate([{opacity:0},{opacity:1,offset:.2},{opacity:1,offset:.8},{opacity:0}],{duration:ms,fill:'both'});
@@ -6339,4 +6374,26 @@ K.end=function(w){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI'||w<0
 })();
 </script>
 
+<script id="splJs">
+/* v175: APP_VER is shown in the launch animation and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
+(function(){
+window.APP_VER='v175';
+const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let tpl='',tm=[];
+function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
+function kill(){tm.forEach(clearTimeout);tm=[];const e=document.getElementById('spl');if(e){e.style.transition='opacity .25s';e.style.opacity=0;setTimeout(()=>e.remove(),260)}}
+function play(){const e=document.getElementById('spl');if(!e)return;setVer();e.onclick=kill;
+ const d=[...e.querySelectorAll('.sd b')],fin=(APP_VER.replace(/\D/g,'')+'777').slice(0,3).split('');
+ const lock=i=>{d[i].textContent=fin[i];d[i].classList.add('lk');try{tone(520+i*180,.12,'square',.07)}catch(x){}};
+ if(RMq){d.forEach((b,i)=>b.textContent=fin[i])}else{
+  const iv=setInterval(()=>{d.forEach(b=>{if(!b.classList.contains('lk'))b.textContent=Math.floor(Math.random()*10)})},70);
+  tm.push(iv);[650,850,1050].forEach((t,i)=>tm.push(setTimeout(()=>lock(i),t)));tm.push(setTimeout(()=>clearInterval(iv),1100))}
+ tm.push(setTimeout(kill,RMq?1000:2700))}
+function boot(){tpl=(document.getElementById('spl')||{}).outerHTML||'';play();setVer()}
+let hid=0;document.addEventListener('visibilitychange',()=>{if(document.hidden){hid=Date.now();return}
+ if(!hid||Date.now()-hid<6e5||!tpl||document.getElementById('spl'))return;hid=0;try{if(typeof G!=='undefined'&&G&&!G.done)return}catch(x){}
+ const w=document.createElement('div');w.innerHTML=tpl;document.body.prepend(w.firstChild);play()});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
+</script>
 </body></html>
