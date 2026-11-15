@@ -518,3 +518,6 @@ Bump `V` in `sw.js` after every change.
 
 ## v161 changes
 **Boss characters.** The boss portrait is no longer an emoji: every world's Kiraxo look is now a drawn SVG character (head and shoulders, like Aris, no image files). Route generals get a helmet and spiked pauldrons; supreme generals and emperors get a cape, glow and crown or laurel. Each boss name picks its own skin tone, scar and beard, so Asantikos and Nanozi look different. Moods: stare, smug grin, hurt wince, rage (last shield layer) and defeated (X eyes on the fall screen). Each world has its own taunts. The Kiraxo gallery shows the new faces. Add or retune a look in `SP` inside `<script id="bzJs">`. Bump `V` in `sw.js` after every change.
+
+## v162 changes
+**Standing boss characters.** The boss is now a full-body character like Aris: head, armour, arms, legs, cape and a weapon (sword for generals, scepter for emperors). He floats beside the arena in boss phase, bobbing and drifting. Arms react to the fight: sway when idle, hand on hip and weapon up when smug, arms thrown up when hurt, raised and shaking in rage, slumped when defeated. The fall screen shows him full size. Armour damage now dims and desaturates him instead of drawing cracks. Retune looks in `SP` and the pose CSS (`.bz[data-m=...]`).

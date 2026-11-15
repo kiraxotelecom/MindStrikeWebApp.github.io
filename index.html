@@ -5864,6 +5864,33 @@ setTimeout(go,900);
 @keyframes bzGl{50%{opacity:.55}}
 .kxr .f .bz{width:100%;height:100%}
 @media (prefers-reduced-motion:reduce){.bz .gl{animation:none!important}}
+.bz .bod{transform-box:fill-box;transform-origin:50% 100%;animation:bzBob 3s ease-in-out infinite}
+.bz .zL{transform-origin:32px 78px;transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.bz .zR{transform-origin:88px 78px;transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.bz[data-m=idle] .zL{animation:bzSwL 3.4s ease-in-out infinite}
+.bz[data-m=idle] .zR{animation:bzSwR 3.4s ease-in-out infinite}
+.bz[data-m=smug] .zL{transform:rotate(34deg)}.bz[data-m=smug] .zR{transform:rotate(-16deg)}
+.bz[data-m=hurt] .zL{transform:rotate(78deg)}.bz[data-m=hurt] .zR{transform:rotate(-78deg)}
+.bz[data-m=hurt] .bod{animation:none;transform:rotate(7deg) translateX(3px)}
+.bz[data-m=rage] .zL{animation:bzRgL .22s ease-in-out infinite alternate}
+.bz[data-m=rage] .zR{animation:bzRgR .22s ease-in-out infinite alternate}
+.bz[data-m=rage] .bod{animation:bzBob .35s ease-in-out infinite}
+.bz[data-m=dead] .zL{transform:rotate(58deg)}.bz[data-m=dead] .zR{transform:rotate(-58deg)}
+.bz[data-m=dead] .bod{animation:none;transform:rotate(-12deg) translateY(6px)}
+@keyframes bzBob{50%{transform:translateY(-4px)}}
+@keyframes bzSwL{50%{transform:rotate(6deg)}}@keyframes bzSwR{50%{transform:rotate(-6deg)}}
+@keyframes bzRgL{from{transform:rotate(108deg)}to{transform:rotate(134deg)}}@keyframes bzRgR{from{transform:rotate(-108deg)}to{transform:rotate(-134deg)}}
+@keyframes bzDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-7px,-9px)}}
+#s-game.kxb #hud{margin-top:0}
+#kxB{left:auto;right:2px;bottom:auto;top:calc(118px + env(safe-area-inset-top));width:clamp(70px,12.5vh,100px);height:auto;aspect-ratio:120/168;margin:0}
+#kxB .kxF{border:0;background:none;box-shadow:none;border-radius:0;overflow:visible;display:block;animation:bzDrift 4.4s ease-in-out infinite;filter:saturate(calc(1 - var(--kd,0)*.5)) brightness(calc(1 - var(--kd,0)*.2)) drop-shadow(0 4px 6px #0009)}
+#kxB .kxC{display:none}
+#kxB .kxT{bottom:64%}
+.kxFall{width:min(58vw,230px);aspect-ratio:120/168;margin:calc(min(58vw,230px)*-.7) 0 0 calc(min(58vw,230px)/-2)}
+.kxFall .kxF{border:0;background:none;box-shadow:none;border-radius:0;overflow:visible;display:block;filter:drop-shadow(0 6px 10px #000a)}
+.kxFall .kxC{display:none}
+.kxr .f:has(.bz){width:46px;height:64px;flex:none}
+@media (prefers-reduced-motion:reduce){.bz .bod,.bz .zL,.bz .zR{animation:none!important}}
 @media (prefers-reduced-motion:reduce){#s-game.kxb #kxB,#kxB .kxF,#kxB.hit .kxF,#kxB.tap .kxF,#kxB.smug .kxF,#kxB.rage .kxF{animation:none!important}#kxB .kxT{transition:none}}
 </style>
 <script id="bzJs">
@@ -5895,13 +5922,7 @@ const FR={tusks:`<path d="M44 82Q38 96 46 104Q48 94 52 86ZM76 82Q82 96 74 104Q72
 function svg(k,role,seed){const s=SP[k]||SP[''],[ar,ac,hg]=s,h=hs(String(seed||k)),skin=s[3]||SK[h%6],em=role==='emperor',gl=ac;
  const scar=(h>>3)%3===0?`<path d="M70 44L80 66" stroke="#2a0a0a" stroke-width="2.4" stroke-linecap="round" opacity=".7"/><path d="M68 52L74 50M72 60L78 58" stroke="#2a0a0a" stroke-width="1.4" opacity=".6"/>`:'',
  beard=(h>>5)%3===1&&!/tusks|visor/.test(hg)?`<path d="M38 74Q40 98 60 104Q80 98 82 74Q74 88 60 88Q46 88 38 74Z" fill="#1d1530" opacity=".85"/>`:'';
- return `<svg class="bz" data-m="idle" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><g>
-${em?`<circle class="gl" cx="60" cy="60" r="58" fill="${gl}" opacity=".16"/><path d="M4 120Q6 70 36 74L84 74Q114 70 116 120Z" fill="#12060a"/><path d="M4 120Q8 84 30 80L36 120ZM116 120Q112 84 90 80L84 120Z" fill="${ar}" opacity=".55"/>`:''}
-<path d="M8 120Q10 92 38 86L82 86Q110 92 112 120Z" fill="${ar}" stroke="${ac}" stroke-width="2.2"/>
-<path d="M44 88L60 108L76 88" fill="none" stroke="${ac}" stroke-width="3" stroke-linejoin="round"/>
-<circle cx="22" cy="98" r="13" fill="${ar}" stroke="${ac}" stroke-width="2.6"/><circle cx="98" cy="98" r="13" fill="${ar}" stroke="${ac}" stroke-width="2.6"/>
-${em?'':`<path d="M14 90L8 74L24 86ZM106 90L112 74L96 86Z" fill="${ac}"/>`}
-<rect x="50" y="76" width="20" height="16" rx="4" fill="${skin}" style="filter:brightness(.78)"/>
+ const D='#1c1420',hd=`<rect x="50" y="76" width="20" height="16" rx="4" fill="${skin}" style="filter:brightness(.78)"/>
 <path d="M32 50Q32 26 60 26Q88 26 88 50L86 70Q80 90 60 95Q40 90 34 70Z" fill="${skin}"/>
 <path d="M32 50Q32 26 60 26Q88 26 88 50Q74 40 60 42Q46 40 32 50Z" fill="#0003"/>
 ${scar}${beard}
@@ -5913,7 +5934,18 @@ ${scar}${beard}
 <g data-s="dead" fill="none" stroke="#12060a" stroke-width="4" stroke-linecap="round"><path d="M39 53L55 66M55 53L39 66M65 53L81 66M81 53L65 66"/><path d="M48 82Q60 76 72 82" stroke-width="3.4"/><path d="M60 82q0 8 5 9q4-1 3-9z" fill="#e0607a" stroke="none"/></g>
 ${FR[hg]||''}${HG[hg](ac)}
 ${em&&!/crown|turban|halo/.test(hg)?`<path d="M30 40Q60 14 90 40" fill="none" stroke="${ac}" stroke-width="3" stroke-dasharray="7 4" stroke-linecap="round"/>`:''}
-</g></svg>`}
+`,
+ cape=em?`<circle class="gl" cx="60" cy="92" r="64" fill="${ac}" opacity=".13"/><path d="M34 72Q8 112 14 158L106 158Q112 112 86 72Z" fill="#12060a"/><path d="M34 72Q14 114 20 154L42 154ZM86 72Q106 114 100 154L78 154Z" fill="${ar}" opacity=".55"/>`:'',
+ wp=em?`<path d="M91 114L99 58" stroke="${ac}" stroke-width="3.4" stroke-linecap="round"/><circle cx="100" cy="53" r="6.5" fill="#ff3b4a" stroke="${ac}" stroke-width="2.4"/>`:`<path d="M90 112L104 48" stroke="#dfe6ee" stroke-width="3.6" stroke-linecap="round"/><path d="M83 112h14" stroke="${ac}" stroke-width="4.4" stroke-linecap="round"/>`;
+ return `<svg class="bz" data-m="idle" viewBox="0 0 120 168" aria-hidden="true" focusable="false"><ellipse cx="60" cy="163" rx="30" ry="4.5" fill="#000" opacity=".3"/><g class="bod">${cape}
+<path d="M47 120L45 152M73 120L75 152" stroke="${D}" stroke-width="13" stroke-linecap="round"/><path d="M40 138h11M69 138h11" stroke="${ac}" stroke-width="3"/>
+<ellipse cx="44" cy="156" rx="12" ry="6" fill="${ar}" stroke="${ac}" stroke-width="2"/><ellipse cx="76" cy="156" rx="12" ry="6" fill="${ar}" stroke="${ac}" stroke-width="2"/>
+<path d="M30 116L22 142Q60 154 98 142L90 116Z" fill="${ar}" stroke="${ac}" stroke-width="2"/><path d="M42 124L38 146M60 126V150M78 124L82 146" stroke="${ac}" stroke-width="1.4" opacity=".6"/>
+<path d="M36 72Q60 66 84 72L90 120Q60 128 30 120Z" fill="${ar}" stroke="${ac}" stroke-width="2.2"/><path d="M31 114Q60 122 89 114" stroke="${ac}" stroke-width="5" fill="none"/><circle cx="60" cy="100" r="8" fill="${ac}"/><circle cx="60" cy="100" r="3.6" fill="${ar}"/>
+<g class="zL"><path d="M32 78L21 106" stroke="${ar}" stroke-width="11" stroke-linecap="round"/><path d="M26 96L22 104" stroke="${ac}" stroke-width="4"/><circle cx="20" cy="110" r="6" fill="${skin}"/></g>
+<g class="zR"><path d="M88 78L99 106" stroke="${ar}" stroke-width="11" stroke-linecap="round"/><path d="M94 96L98 104" stroke="${ac}" stroke-width="4"/>${wp}<circle cx="100" cy="110" r="6" fill="${skin}"/></g>
+<circle cx="32" cy="77" r="10" fill="${ar}" stroke="${ac}" stroke-width="2.4"/><circle cx="88" cy="77" r="10" fill="${ar}" stroke="${ac}" stroke-width="2.4"/>${em?'':`<path d="M26 70L20 56L34 66ZM94 70L100 56L86 66Z" fill="${ac}"/>`}
+<g transform="translate(18,3) scale(.7)">${hd}</g></g></svg>`}
 const MOOD={idle:1,smug:1,hurt:1,rage:1,dead:1};
 window.BZ={has:k=>k in SP,svg,mood(root,m){const z=root&&(root.matches&&root.matches('.bz')?root:root.querySelector('.bz'));if(z&&MOOD[m])z.dataset.m=m}};
 })();
@@ -5930,7 +5962,7 @@ const CR=['<svg class="c1" viewBox="0 0 54 54"><path d="M30 2l-4 11 6 7-5 9" fil
 let el=null,tTm=0,lastSay=0,mockT=0,key='',lvl=0,lastLayers=0;
 const faceOf=()=>{let k='';try{k=eKS()}catch(e){}const im=KSI&&KSI[k];return{k,img:im||'',em:im?'':((KS[k]||KS[''])[4]),col:(KSC&&KSC[k])||'#ff3b2a'}};
 const faceHTML=f=>(window.BZ&&BZ.has(f.k))?BZ.svg(f.k,role(),seed()):f.img?'<img src="'+f.img+'" alt="">':f.em;
-function build(){const h=document.getElementById('h1');if(!h)return null;if(el&&h.contains(el))return el;
+function build(){const h=document.getElementById('s-game');if(!h)return null;if(el&&h.contains(el))return el;
  el=document.createElement('div');el.id='kxB';el.setAttribute('aria-hidden','true');el.innerHTML='<div class="kxF"></div><div class="kxC">'+CR.join('')+'</div><div class="kxT" role="status"></div>';h.appendChild(el);key='';return el}
 function say(kind,force){if(!el)return;const n=Date.now();if(!force&&n-lastSay<1100)return;lastSay=n;const t=el.querySelector('.kxT');t.textContent=L(kind);t.classList.add('on');clearTimeout(tTm);tTm=setTimeout(()=>t.classList.remove('on'),1700)}
 let mT=0;const base=()=>el&&el.classList.contains('rage')?'rage':'idle',setM=(m,ms)=>{if(!el)return;BZ.mood(el,m);clearTimeout(mT);mT=0;if(ms)mT=setTimeout(()=>{mT=0;BZ.mood(el,base())},ms)};
