@@ -1523,30 +1523,48 @@ html.noaris #arBrag .arWrap{display:block!important}
 #wGate .e-sp{color:#f78fff;text-shadow:0 0 8px #e42ee8;opacity:0}
 </style>
 </head><body><div id="spl" aria-hidden="true"><style>
-/* v175 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour follows the current world (html.wd-*). */
-#spl{--sa:#f2c14e;--sb:#2a1a08;position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 40%,var(--sb) 0,#06040a 72%);color:var(--sa);font-family:system-ui,sans-serif;overflow:hidden;animation:sOut .5s ease 2.35s forwards}
+/* 1.8.1 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour and ember glyph follow the current world (html.wd-*). Timeline: 0s rings converge + digits drop, 0.65-1.05s digits lock, 1.05s shockwave + strike slash + flash, 1.05-1.8s title slams, 1.55s shake, 1.95s metal shine sweeps the title, 2.5s zoom-out exit. */
+#spl{--sa:#f2c14e;--sb:#2a1a08;position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,var(--sb) 0,#06040a 74%);color:var(--sa);font-family:system-ui,sans-serif;overflow:hidden;animation:sOut .5s ease 2.5s forwards}
+#spl::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#0000 45%,#000c 100%)}
 html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;--sb:#2a0a10}html.wd-ice #spl{--sa:#bfe8ff;--sb:#0c2238}html.wd-buganda #spl{--sa:#e8b04a;--sb:#2e1604}html.wd-gold #spl{--sa:#e3b53a;--sb:#2e2206}html.wd-astral #spl{--sa:#b48cff;--sb:#180e38}html.wd-atlantis #spl{--sa:#3df2e0;--sb:#06303e}html.wd-jungle #spl{--sa:#8be04a;--sb:#0e2408}html.wd-elementa #spl{--sa:#c04bd8;--sb:#240a30}
-@keyframes sOut{to{opacity:0;visibility:hidden}}
+#spl{--sg:"⚔"}html.wd-cyber #spl{--sg:"01"}html.wd-samurai #spl{--sg:"🌸"}html.wd-ice #spl{--sg:"❄"}html.wd-buganda #spl{--sg:"🥁"}html.wd-gold #spl{--sg:"✧"}html.wd-astral #spl{--sg:"✦"}html.wd-atlantis #spl{--sg:"🫧"}html.wd-jungle #spl{--sg:"🍃"}html.wd-elementa #spl{--sg:"⚛"}
+@keyframes sOut{to{opacity:0;visibility:hidden;transform:scale(1.07)}}
+#spl .sr{position:absolute;left:50%;top:40%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;opacity:0;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--sa) 13%,transparent) 0 4deg,transparent 4deg 14deg);-webkit-mask-image:radial-gradient(circle,#000 0,#0000 38%);mask-image:radial-gradient(circle,#000 0,#0000 38%);animation:sFi .9s ease .15s forwards,sSpin 40s linear infinite}
+@keyframes sFi{to{opacity:1}}
 #spl .sg{position:absolute;left:50%;top:40%;width:min(86vw,420px);aspect-ratio:1;margin:calc(min(86vw,420px)/-2) 0 0 calc(min(86vw,420px)/-2);opacity:0;animation:sRing 1.1s cubic-bezier(.2,.8,.2,1) .05s forwards}
 #spl .sg svg{width:100%;height:100%;overflow:visible;animation:sSpin 9s linear infinite}
-@keyframes sRing{from{transform:scale(2.6);opacity:0}30%{opacity:.9}to{transform:scale(1);opacity:.55}}@keyframes sSpin{to{transform:rotate(360deg)}}
-#spl .sd{display:flex;gap:10px;position:relative;z-index:2}
-#spl .sd b{width:clamp(48px,15vw,70px);height:clamp(64px,20vw,92px);display:flex;align-items:center;justify-content:center;font:900 clamp(2.2rem,11vw,3.6rem)/1 system-ui,sans-serif;border:2.5px solid var(--sa);border-radius:12px;background:#0008;box-shadow:0 0 18px color-mix(in srgb,var(--sa) 55%,transparent),inset 0 0 14px #0009;text-shadow:0 0 14px var(--sa);animation:sIn .4s ease both}
+#spl .sg .r2{transform-origin:100px 100px;animation:sSpinR 6s linear infinite}
+@keyframes sRing{from{transform:scale(2.6);opacity:0}30%{opacity:.9}to{transform:scale(1);opacity:.55}}@keyframes sSpin{to{transform:rotate(360deg)}}@keyframes sSpinR{to{transform:rotate(-360deg)}}
+#spl .sw{position:absolute;left:50%;top:40%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:3px solid var(--sa);box-shadow:0 0 22px var(--sa),inset 0 0 14px var(--sa);opacity:0;animation:sWave .75s cubic-bezier(.1,.7,.3,1) 1.05s forwards}
+@keyframes sWave{from{transform:scale(.3);opacity:.95}to{transform:scale(15);opacity:0}}
+#spl .sl{position:absolute;left:-15%;top:38%;width:130%;height:3px;border-radius:3px;background:linear-gradient(90deg,#0000,var(--sa) 25%,#fff 50%,var(--sa) 75%,#0000);box-shadow:0 0 16px var(--sa),0 0 40px var(--sa);transform:rotate(-14deg) scaleX(0);transform-origin:0 50%;opacity:0;animation:sSlash .5s cubic-bezier(.2,.9,.2,1) 1.0s forwards}
+@keyframes sSlash{0%{transform:rotate(-14deg) scaleX(0);opacity:1}55%{transform:rotate(-14deg) scaleX(1);opacity:1}100%{transform:rotate(-14deg) scaleX(1);opacity:0}}
+#spl .sp{position:absolute;left:var(--x);bottom:-30px;font-style:normal;font-size:var(--s);line-height:1;color:var(--sa);opacity:0;text-shadow:0 0 10px var(--sa);animation:sRise var(--d) ease-out var(--dl) forwards}
+#spl .sp::before{content:var(--sg)}
+@keyframes sRise{0%{transform:translate(0,0) rotate(0deg) scale(.5);opacity:0}15%{opacity:.85}100%{transform:translate(var(--dx),-112vh) rotate(200deg) scale(1);opacity:0}}
+#spl .sm{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:18px;animation:sShake .38s ease-out 1.55s 1}
+@keyframes sShake{20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-3px)}60%{transform:translate(-3px,2px)}80%{transform:translate(2px,-1px)}}
+#spl .sd{display:flex;gap:10px}
+#spl .sd b{width:clamp(48px,15vw,70px);height:clamp(64px,20vw,92px);display:flex;align-items:center;justify-content:center;font:900 clamp(2.2rem,11vw,3.6rem)/1 system-ui,sans-serif;border:2.5px solid var(--sa);border-radius:12px;background:linear-gradient(180deg,#000b,#0007);box-shadow:0 0 18px color-mix(in srgb,var(--sa) 55%,transparent),inset 0 0 14px #0009;text-shadow:0 0 14px var(--sa);animation:sIn .4s ease both}
+#spl .sd b:not(.lk){filter:blur(.9px);color:#fffb}
 #spl .sd b:nth-child(2){animation-delay:.08s}#spl .sd b:nth-child(3){animation-delay:.16s}
-#spl .sd b.lk{animation:sLock .35s ease-out 1;background:color-mix(in srgb,var(--sa) 22%,#000)}
-@keyframes sIn{from{opacity:0;transform:translateY(-30px) scale(.7)}}@keyframes sLock{40%{transform:scale(1.22);box-shadow:0 0 40px var(--sa)}}
-#spl .st{position:relative;z-index:2;display:flex;gap:2px;font:900 clamp(1.5rem,8.4vw,2.7rem)/1 system-ui,sans-serif;letter-spacing:.06em;text-shadow:0 0 16px var(--sa),0 3px 0 #000}
-#spl .st i{font-style:normal;opacity:0;animation:sSlam .35s cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:calc(1s + var(--i)*.045s)}
-@keyframes sSlam{from{opacity:0;transform:translateY(-38px) scale(1.7)}to{opacity:1}}
-#spl .ss{position:relative;z-index:2;font:800 .78rem/1 system-ui,sans-serif;letter-spacing:.5em;color:#fff;opacity:0;animation:sFade .5s ease 1.55s forwards}
+#spl .sd b.lk{animation:sLock .4s ease-out 1;background:color-mix(in srgb,var(--sa) 24%,#000)}
+@keyframes sIn{from{opacity:0;transform:translateY(-30px) scale(.7)}}@keyframes sLock{40%{transform:scale(1.24);box-shadow:0 0 44px var(--sa)}}
+#spl .st{display:flex;gap:2px;font:900 clamp(1.5rem,8.4vw,2.7rem)/1 system-ui,sans-serif;letter-spacing:.06em;filter:drop-shadow(0 0 12px var(--sa)) drop-shadow(0 3px 0 #000)}
+#spl .st i{font-style:normal;color:var(--sa);background:linear-gradient(105deg,#0000 38%,#fffd 50%,#0000 62%) 160% 0/300% 100% no-repeat,linear-gradient(180deg,#fff 0,var(--sa) 52%,color-mix(in srgb,var(--sa) 55%,#000) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:0;animation:sSlam .35s cubic-bezier(.2,1.6,.4,1) forwards,sShine .7s ease-in-out forwards;animation-delay:calc(1.05s + var(--i)*.045s),calc(1.95s + var(--i)*.05s)}
+@keyframes sSlam{from{opacity:0;transform:translateY(-38px) scale(1.7)}to{opacity:1}}@keyframes sShine{to{background-position:-60% 0,0 0}}
+#spl .ss{display:flex;align-items:center;gap:12px;font:800 .78rem/1 system-ui,sans-serif;letter-spacing:.5em;color:#fff;opacity:0;animation:sFade .5s ease 1.6s forwards}
+#spl .ss::before,#spl .ss::after{content:"";width:0;height:1.5px;background:linear-gradient(90deg,#0000,var(--sa));animation:sLine .6s ease-out 1.7s forwards}
+#spl .ss::after{transform:scaleX(-1)}
+@keyframes sLine{to{width:clamp(22px,9vw,44px)}}
 #spl .sv{position:absolute;bottom:calc(22px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:700 .7rem/1 system-ui,sans-serif;letter-spacing:.2em;color:var(--sa);opacity:0;animation:sFade .5s ease 1.2s forwards}
 #spl .sb{position:absolute;bottom:calc(50px + env(safe-area-inset-bottom));left:50%;width:min(48vw,200px);height:3px;margin-left:calc(min(48vw,200px)/-2);border-radius:3px;background:#fff2;overflow:hidden}
-#spl .sb::after{content:"";display:block;height:100%;background:var(--sa);box-shadow:0 0 8px var(--sa);transform:scaleX(0);transform-origin:0 50%;animation:sBar 2s ease-out .1s forwards}
+#spl .sb::after{content:"";display:block;height:100%;background:linear-gradient(90deg,var(--sa),#fff);box-shadow:0 0 8px var(--sa);transform:scaleX(0);transform-origin:0 50%;animation:sBar 2.3s cubic-bezier(.3,.6,.2,1) .1s forwards}
 @keyframes sFade{to{opacity:.85}}@keyframes sBar{to{transform:scaleX(1)}}
 #spl .sf{position:absolute;inset:0;background:#fff;opacity:0;animation:sFlash .5s ease-out 1.0s 1}
-@keyframes sFlash{15%{opacity:.35}to{opacity:0}}
-@media (prefers-reduced-motion:reduce){#spl{animation-duration:.2s;animation-delay:.8s}#spl .sg,#spl .sd b,#spl .st i,#spl .ss,#spl .sv,#spl .sf{animation:none!important;opacity:1}#spl .sg{opacity:.5}#spl .sf{opacity:0}#spl .sg svg{animation:none}#spl .sb::after{animation:none;transform:none}}
-</style><div class="sg"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor"><circle cx="100" cy="100" r="92" stroke-width="2" stroke-dasharray="6 8"/><circle cx="100" cy="100" r="68" stroke-width="3"/><circle cx="100" cy="100" r="42" stroke-width="2" stroke-dasharray="3 5"/><path d="M100 0v34M100 166v34M0 100h34M166 100h34" stroke-width="3" stroke-linecap="round"/></svg></div><div class="sd"><b>?</b><b>?</b><b>?</b></div><div class="st"><i style="--i:0">M</i><i style="--i:1">I</i><i style="--i:2">N</i><i style="--i:3">D</i><i style="--i:4">S</i><i style="--i:5">T</i><i style="--i:6">R</i><i style="--i:7">I</i><i style="--i:8">K</i><i style="--i:9">E</i></div><div class="ss">NUMBER WARS</div><div class="sb"></div><div class="sv" id="splV"></div><div class="sf"></div></div><div id="app">
+@keyframes sFlash{15%{opacity:.4}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){#spl{animation-duration:.2s;animation-delay:.8s}#spl .sg,#spl .sd b,#spl .st i,#spl .ss,#spl .sv,#spl .sf,#spl .sm{animation:none!important;opacity:1}#spl .st i{background-position:-60% 0,0 0}#spl .sg{opacity:.5}#spl .sf,#spl .sr,#spl .sl,#spl .sw,#spl .sp{display:none}#spl .sg svg,#spl .sg .r2{animation:none}#spl .sb::after{animation:none;transform:none}#spl .ss::before,#spl .ss::after{animation:none;width:28px}}
+</style><div class="sr"></div><div class="sg"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor"><circle cx="100" cy="100" r="92" stroke-width="2" stroke-dasharray="6 8"/><circle cx="100" cy="100" r="68" stroke-width="3"/><g class="r2"><circle cx="100" cy="100" r="42" stroke-width="2" stroke-dasharray="3 5"/></g><path d="M100 0v34M100 166v34M0 100h34M166 100h34" stroke-width="3" stroke-linecap="round"/></svg></div><div class="sw"></div><div class="sl"></div><i class="sp" style="--x:3.3%;--s:14px;--d:2.8s;--dl:0.05s;--dx:45px"></i><i class="sp" style="--x:10.2%;--s:16px;--d:3.0s;--dl:1.0s;--dx:-33px"></i><i class="sp" style="--x:14.3%;--s:18px;--d:2.8s;--dl:0.26s;--dx:10px"></i><i class="sp" style="--x:22.0%;--s:22px;--d:2.5s;--dl:0.25s;--dx:20px"></i><i class="sp" style="--x:28.7%;--s:12px;--d:3.0s;--dl:0.44s;--dx:-32px"></i><i class="sp" style="--x:32.7%;--s:14px;--d:2.7s;--dl:0.16s;--dx:-45px"></i><i class="sp" style="--x:40.9%;--s:22px;--d:3.2s;--dl:0.2s;--dx:14px"></i><i class="sp" style="--x:47.0%;--s:14px;--d:2.8s;--dl:0.6s;--dx:-52px"></i><i class="sp" style="--x:53.1%;--s:22px;--d:2.6s;--dl:0.75s;--dx:-6px"></i><i class="sp" style="--x:60.0%;--s:18px;--d:3.0s;--dl:0.5s;--dx:-22px"></i><i class="sp" style="--x:64.0%;--s:14px;--d:3.1s;--dl:0.27s;--dx:13px"></i><i class="sp" style="--x:70.3%;--s:18px;--d:3.3s;--dl:0.8s;--dx:-24px"></i><i class="sp" style="--x:77.6%;--s:12px;--d:2.5s;--dl:0.46s;--dx:36px"></i><i class="sp" style="--x:82.7%;--s:18px;--d:2.8s;--dl:1.06s;--dx:-51px"></i><i class="sp" style="--x:90.5%;--s:22px;--d:3.2s;--dl:0.9s;--dx:-17px"></i><i class="sp" style="--x:96.3%;--s:22px;--d:2.9s;--dl:0.88s;--dx:-52px"></i><div class="sm"><div class="sd"><b>?</b><b>?</b><b>?</b></div><div class="st"><i style="--i:0">M</i><i style="--i:1">I</i><i style="--i:2">N</i><i style="--i:3">D</i><i style="--i:4">S</i><i style="--i:5">T</i><i style="--i:6">R</i><i style="--i:7">I</i><i style="--i:8">K</i><i style="--i:9">E</i></div><div class="ss">NUMBER WARS</div></div><div class="sb"></div><div class="sv" id="splV"></div><div class="sf"></div></div><div id="app">
 
 <section class="scr on" id="s-home" style="--bg:url(img/menu_bg.webp)">
  <img class="logo" src="img/title.webp" alt="MindStrike Number Wars">
@@ -6742,9 +6760,9 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 </script>
 
 <script id="splJs">
-/* v175: APP_VER is shown in the launch animation and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
+/* v175 (reworked 1.8.1): APP_VER is shown in the launch animation and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.8.0';
+window.APP_VER='1.8.1';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
@@ -6755,7 +6773,8 @@ function play(){const e=document.getElementById('spl');if(!e)return;setVer();e.o
  if(RMq){d.forEach((b,i)=>b.textContent=fin[i])}else{
   const iv=setInterval(()=>{d.forEach(b=>{if(!b.classList.contains('lk'))b.textContent=Math.floor(Math.random()*10)})},70);
   tm.push(iv);[650,850,1050].forEach((t,i)=>tm.push(setTimeout(()=>lock(i),t)));tm.push(setTimeout(()=>clearInterval(iv),1100))}
- tm.push(setTimeout(kill,RMq?1000:2700))}
+ if(!RMq){tm.push(setTimeout(()=>{try{tone(70,.4,'sine',.22);tone(140,.2,'triangle',.08)}catch(x){}},1050));tm.push(setTimeout(()=>{try{tone(110,.3,'sawtooth',.1);tone(880,.18,'triangle',.05)}catch(x){}},1600))}
+ tm.push(setTimeout(kill,RMq?1000:3100))}
 function boot(){tpl=(document.getElementById('spl')||{}).outerHTML||'';play();setVer()}
 let hid=0;document.addEventListener('visibilitychange',()=>{if(document.hidden){hid=Date.now();return}
  if(!hid||Date.now()-hid<6e5||!tpl||document.getElementById('spl'))return;hid=0;try{if(typeof G!=='undefined'&&G&&!G.done)return}catch(x){}
