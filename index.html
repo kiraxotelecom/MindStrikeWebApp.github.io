@@ -1724,6 +1724,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 </section>
 <div class="pop" id="tgEnd" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>🪢 TUG OF WAR</h2><div id="tgEndT" style="line-height:1.6;margin:8px 0"></div><button id="tgAgain" style="width:100%">🔁 REMATCH</button><button id="tgSet" style="width:100%;margin-top:8px">👥 CHANGE PLAYERS / LEVEL</button><button id="tgHome" style="width:100%;margin-top:8px">MAIN MENU</button></div></div>
 <div class="pop" id="tgSetup" style="z-index:13"><div class="card tgs" style="text-align:center;width:min(92%,340px)"><h2>🪢 TUG OF WAR</h2><div class="tgseg" id="tgM"><button data-m="ai">🤖 VS COMPUTER</button><button data-m="2p">👥 2 PLAYERS</button><button data-m="on">🌐 ONLINE</button></div>
+<p style="font-size:.82rem;opacity:.9;margin:8px 0 2px;line-height:1.4">Guess the secret number (1–100). The closer you are, the harder you pull the flag. Pull it over your line to win!</p>
 <label class="bm-field"><span id="tgN1t">⚔️ Your name</span><input type="text" id="tgN1" maxlength="12" placeholder="PLAYER 1" autocomplete="off"></label>
 <label class="bm-field" id="tgN2w"><span>⚔️ Player 2 name</span><input type="text" id="tgN2" maxlength="12" placeholder="PLAYER 2" autocomplete="off"></label>
 <div id="tgLw"><small>Computer level</small><div class="tgseg" id="tgL"><button data-l="Easy">EASY</button><button data-l="Medium">MEDIUM</button><button data-l="Hard">HARD</button></div></div>
@@ -4008,7 +4009,7 @@ function endRound(w,k,extra){if(ended)return;ended=true;clearTimeout(tt);const c
  clearTimeout(timer);timer=setTimeout(()=>{if(left||!R||R.rd!==rd)return;if(rd>=c.rounds){if(sc.h!==sc.g)upd({st:'over',winner:sc.h>sc.g?'h':'g'});else startRound(rd+1)}else startDraft(rd)},3800)}
 // ---- v141: TUG OF WAR online. Host keeps the secret and judges, like Duel of Legions. Rope state lives in R.tg: p rope position (-1 host wins .. +1 guest wins), lo/hi the range still open, s surges left {h,g}, w ropes won, l last guesses, m last move text, k move counter, ov winner of the rope just finished. R.scores = ropes won. R.rd = rope number. Retune: TGW, tgPull(), tl in MODES.tug. ----
 const TGW=2,tgCl=(v,a,b)=>Math.max(a,Math.min(b,v));let tgArm=0,tgSeenK=-1;
-function tgPull(d,span){const f=d/span;if(!d)return[.5,'🎯 BULLSEYE!'];if(f<=.08)return[.22,'🔥 Blazing'];if(f<=.2)return[.14,'♨️ Hot'];if(f<=.4)return[.08,'🌡️ Warm'];if(f<=.65)return[.035,'❄️ Cold'];return[-.04,'🧊 Freezing, you slip!']}
+function tgPull(d,span){const f=d/span;if(!d)return[.5,'🎯 BULLSEYE!'];if(f<=.12)return[.22,'🔥 Blazing'];if(f<=.28)return[.14,'♨️ Hot'];if(f<=.5)return[.08,'🌡️ Warm'];if(f<=.75)return[.04,'❄️ Cold'];return[0,'🧊 Freezing, no pull']}
 function tgArisOn(T,ov,my,sg,moved){if(!window.ARIS||ov)return;const l=T.l||[],e=l[l.length-1];
  if(moved&&e){const c=e.t||'',tier=e.to?'slow':c.includes('\u{1F3AF}')?'bull':c.includes('\u{1F525}')?'blazing':c.includes('\u2668')?'hot':c.includes('\u{1F321}')?'warm':c.includes('\u2744')?'cold':c.includes('\u{1F9CA}')?'freezing':'';
   ARIS.tugMove({neutral:true,tier,n:nmOf(e.w),d:T.p||0,surge:(T.m||'').includes('\u{1F4A5}')})}
@@ -4025,14 +4026,14 @@ function tugApply(who,T,p,lo,hi,sg,l,msg){const w=p<=-1?'h':p>=1?'g':null,k=(T.k
  upd({tg:{p,lo,hi,s:sg,w:{h:(T.w&&T.w.h)||0,g:(T.w&&T.w.g)||0},l,k,m:msg},turn:o,tk:++tk});armTimer()}
 function tugPlay(who,g,sur){const T=R.tg;if(!T||T.ov||ended||R.turn!==who||!Number.isInteger(g)||g<T.lo||g>T.hi)return;
  const dir=who==='g'?1:-1,span=Math.max(1,T.hi-T.lo),d=Math.abs(g-secret),pl=tgPull(d,span),pull=pl[0],txt=pl[1],pr=dir*(T.p||0);
- let e=(pull>0?pull*(1-.3*pr):pull)*1.4,sg={h:(T.s&&T.s.h)||0,g:(T.s&&T.s.g)||0},sx='';if(sur&&sg[who]>0){e*=2;sg[who]--;sx=' 💥×2'}
+ let e=(pull>0?pull*(1-.15*pr):pull)*1.7,sg={h:(T.s&&T.s.h)||0,g:(T.s&&T.s.g)||0},sx='';if(sur&&sg[who]>0){e*=2;sg[who]--;sx=' 💥×2'}
  let p=tgCl((T.p||0)+dir*e,-1,1),lo=T.lo,hi=T.hi,hint='';
  if(!d){hint='The secret was '+g+'. A new secret appears!';secret=rndS(1,100);lo=1;hi=100}
  else{hint=g<secret?'⬆️ Higher':'⬇️ Lower';if(g<secret)lo=g+1;else hi=g-1;if(lo===hi){p=tgCl(p+dir*.15,-1,1);hint='🔒 Only '+lo+' was left: '+nmOf(who)+' cornered it, +15% pull. New secret!';secret=rndS(1,100);lo=1;hi=100}}
  const l=(T.l||[]).concat([{w:who,g,t:txt.split(' ')[0]}]).slice(-8);
  tugApply(who,T,p,lo,hi,sg,l,nmOf(who)+': '+g+' → '+txt+sx+' ('+(e>0?'+':'')+Math.round(e*100)+'%) '+hint)}
-function tugSlow(who){const T=R.tg;if(!T||T.ov||ended||R.turn!==who||!who)return;const dir=who==='g'?1:-1,p=tgCl((T.p||0)-dir*.04,-1,1),l=(T.l||[]).concat([{w:who,g:0,to:1,t:''}]).slice(-8);
- tugApply(who,T,p,T.lo,T.hi,{h:(T.s&&T.s.h)||0,g:(T.s&&T.s.g)||0},l,'⏱️ '+nmOf(who)+' was too slow and slips!')}
+function tugSlow(who){const T=R.tg;if(!T||T.ov||ended||R.turn!==who||!who)return;const dir=who==='g'?1:-1,p=tgCl(T.p||0,-1,1),l=(T.l||[]).concat([{w:who,g:0,to:1,t:''}]).slice(-8);
+ tugApply(who,T,p,T.lo,T.hi,{h:(T.s&&T.s.h)||0,g:(T.s&&T.s.g)||0},l,'⏱️ '+nmOf(who)+' was too slow, the turn passes.')}
 function renderTug(){const c=R.cfg,opp=oppOf(),T=R.tg||{p:0,lo:1,hi:100,s:{h:1,g:1},w:{h:0,g:0},l:[],k:0,m:''},sc=R.scores||{h:0,g:0},over=R.st==='over',ov=T.ov,mine=R.turn===role,pl=R.st==='play'&&!ov,sg=(T.s&&T.s[role])||0,fl=role==='h'?(T.p||0):-(T.p||0);
  $('#oN0').textContent=nmOf(role);$('#oN1').textContent=nmOf(opp);$('#oS0').textContent=sc[role]||0;$('#oS1').textContent=sc[opp]||0;
  $('#oRd').textContent=over?'FINAL':'ROPE '+R.rd+' · FIRST TO '+TGW;$('#oRg').textContent='Secret: '+T.lo+'–'+T.hi;{const sp=T.hi-T.lo+1;$('#oTugRg').innerHTML=over?'':'🔢 Secret is between <b>'+T.lo+'</b> and <b>'+T.hi+'</b><small>'+(sp<=1?'Only one number left':sp+' numbers still possible')+'</small>';$('#oNum').placeholder=T.lo+'–'+T.hi}
@@ -4231,8 +4232,8 @@ const evOf=id=>id[0]==='c'?SEA[new Date(EPOCH+(+id.slice(1))*CYC+EAT).getUTCMont
 const ROT=['light','duel','code','tower','oracle','gaunt'],tyOf=id=>ROT[mod(+id.slice(1),ROT.length)];
 const TL={duel:['⚔️','BATTLE MARATHON','Beat a fresh rival in every trial'],light:['⚡','LIGHTNING SPRINT','Chain right guesses while the clock shrinks'],code:['🔐','VAULT HEIST','Crack the 3-digit vault codes'],tower:['🗼','TOWER CLIMB','Climb floors and draft relics'],oracle:['🔮','ORACLE TRIALS','Solve the number patterns'],gaunt:['🏃','NON-STOP GAUNTLET','12 rounds, no breaks, powers never refill']};
 /* bm = a very strong run, mx = practical ceiling (0 = no ceiling). Estimates: retune here after play-testing. */
-const GM={light:{bm:520,mx:0},code:{bm:420,mx:560},tower:{bm:450,mx:0},oracle:{bm:450,mx:700},gaunt:{bm:520,mx:670}};
-const TRIAL=[.40,.48,.56,.64,.72,.80,.88,.96,1.04,1.14];
+const GM={light:{bm:420,mx:0},code:{bm:340,mx:560},tower:{bm:360,mx:0},oracle:{bm:360,mx:700},gaunt:{bm:420,mx:670}};
+const TRIAL=[.18,.26,.34,.43,.52,.62,.72,.84,.96,1.10];
 /* ---- rewards: 8 milestones, last one is the Grand Prize ---- */
 const MS=[[150,{c:1500,inv:{pack:1}}],[400,{c:3000,g:3,inv:{'x:SCAN':3}}],[800,{c:5000,g:5}],[1300,{c:8000,g:8,inv:{tome:1,bane:1}}],[1900,{c:12000,g:12,inv:{mag:1,pack:3}}],[2600,{c:18000,g:20,inv:{phx:3}}],[3200,{c:28000,g:35,inv:{tome:2,bane:2}}],[3800,{c:60000,g:100,inv:{phx:5,tome:5,pack:5},gp:1}]];
 const OLD_MS=[[80,{c:250,inv:{pack:1}}],[200,{c:400,inv:{'x:SCAN':2}}],[380,{c:600,g:2}],[600,{c:800,inv:{tome:1,bane:1}}],[900,{c:1200,g:3}],[1300,{c:1600,inv:{mag:1,pack:2}}],[1800,{c:2200,g:5}],[2400,{c:3500,g:10,inv:{phx:2,tome:2},gp:1}]];
@@ -4241,7 +4242,7 @@ const QP=[['win','Clear {t} Marathon trials',10,200,2500,3],['star','Earn {t} �
 function shuf(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function cfg(id){const E=evOf(id),ty=tyOf(id),r=mul(seed('sev'+id)),foe=shuf(FOE,r);let st;
  if(ty==='duel'){const HI=[30,40,50,60,70,80,90,100,100,100],T=[30,35,40,45,50,55,60,70,80,100],PE=['Calculator','Psycho','Gambler','Calculator','Psycho','Prime','Psycho','Prime','Psycho','Prime'],MP=['jack','rush','primes','lean'];
-  st=HI.map((hi,i)=>{const boss=i===9,t=T[i],g=i%3,hd=i<3?0:i<5?5:i<8?10:15;return{n:E.st[i],hi,t,boss,d:i<2?'Medium':'Hard',pers:PE[i],foe:boss?E.boss:foe[i],mut:boss?'armor':i<1?'':MP[Math.floor(r()*MP.length)],a:i>=7?-1:(i>=4&&r()<.5?-1:0),head:boss&&E.tr==='ambush'?20:hd,ob:g===0?['blaze',i<3?2:i<7?3:4]:g===1?['lead',Math.max(8,Math.floor(t*.4))]:['clean',0]}})}
+  st=HI.map((hi,i)=>{const boss=i===9,t=T[i],g=i%3,hd=i<3?0:i<5?5:i<8?10:15;return{n:E.st[i],hi,t,boss,d:i<4?'Medium':'Hard',pers:PE[i],foe:boss?E.boss:foe[i],mut:boss?'armor':i<1?'':MP[Math.floor(r()*MP.length)],a:i>=7?-1:(i>=4&&r()<.5?-1:0),head:boss&&E.tr==='ambush'?20:hd,ob:g===0?['blaze',i<3?2:i<7?3:4]:g===1?['lead',Math.max(8,Math.floor(t*.4))]:['clean',0]}})}
  else{const M=GM[ty],r5=v=>Math.round(v/5)*5;
   st=TRIAL.map((f,i)=>{const t=r5(M.bm*f);let s2=r5(t*1.15),s3=r5(t*1.3);if(M.mx){s2=Math.min(s2,Math.max(t+5,r5(M.mx*.9)));s3=Math.min(s3,Math.max(s2+5,r5(M.mx*.97)))}return{n:E.st[i],boss:i===9,k:ty,t,s2,s3,foe:i===9?E.boss:E.st[i]}})}
  const q=shuf(QP.slice(0,7),r).slice(0,5).concat([QP[7]]).map(([k,n,t,m,c,g])=>({k,n:n.replace('{t}',t).replace('{boss}',E.boss),t,mp:m,c,g,p:0,cl:0}));
@@ -4350,13 +4351,13 @@ setInterval(()=>{try{svTile();cd()}catch(e){}},30000);try{svTile()}catch(e){}
 <script>
 /* v121: TUG OF WAR rebuilt. Play vs the computer (Easy/Medium/Hard) or a friend on one device, set names on a setup card (no more trip to Clash). Both chase the same secret (1-100) and take turns; closer guesses pull the rope harder, freezing guesses slip. v121 fixes: heat is measured against the CURRENT range (it used to be absolute, so late guesses were all "blazing" luck); a range that collapses to one number is no longer a free bullseye for the next player (the player who cornered it gets a pull and a new secret starts); a slip that dragged the flag over the line used to award the win to the player who slipped (now decided by which side the flag crossed); the rope gets heavier near your own edge and lighter when you are behind; each player has one 💥 SURGE (double the next pull or slip); optional 25s turn timer. Tune: tiers in play(), AI noise in aiGo(), TIME. State: S.tg = {m:'ai'|'2p', l:level, t:timer}. */
 (function(){
-const W=360,N=16,TIME=25,TGCAP=5,cv=$('#tgCv'),x=cv.getContext('2d'),inp=$('#tgNum'),COL=['#f0c565','#ff6b5e'],ICO=['🛡️','⚔️'],E=q=>String(q).replace(/&/g,'&amp;').replace(/</g,'&lt;');
-let T,P,fx=W/2,fv=0,raf=0,wins=[0,0],lastLoser=-1,CF=Object.assign({m:'ai',l:'Medium',t:1},S.tg||{});
+const W=360,N=16,TIME=40,TGCAP=5,cv=$('#tgCv'),x=cv.getContext('2d'),inp=$('#tgNum'),COL=['#f0c565','#ff6b5e'],ICO=['🛡️','⚔️'],E=q=>String(q).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+let T,P,fx=W/2,fv=0,raf=0,wins=[0,0],lastLoser=-1,CF=Object.assign({m:'ai',l:'Easy',t:0},S.tg||{});if(!S.tgE){S.tgE=1;CF.l='Easy';CF.t=0;S.tg=CF;try{save()}catch(e){}}
 const ai=()=>CF.m==='ai',nm=i=>i?(ai()?'KIRAXO':(S.n2||'PLAYER 2')):(S.n1||'PLAYER 1'),onScr=()=>$('#s-tug').classList.contains('on'),cl=(v,a,b)=>Math.max(a,Math.min(b,v)),aiTurn=()=>ai()&&T&&T.turn===1;
 function ropeInit(){P=[];for(let i=0;i<N;i++){const px=36+(W-72)*i/(N-1);P.push({x:px,y:118,ox:px,oy:118})}}
 function round(){T.sec=rndS(1,100);T.lo=1;T.hi=100}
 function newGame(){ICO[1]=ai()?'👹':'⚔️';T={id:Date.now(),pos:0,turn:lastLoser>=0?lastLoser:(Math.random()<.5?0:1),over:0,sg:[1,1],arm:0,tEnd:Date.now()+TIME*1e3};round();ropeInit();fx=W/2;fv=0;inp.value='';$('#tgEnd').classList.remove('on');ui('Pull the rope! The closer your guess, the harder you pull.');try{ARIS.tugStart()}catch(e){}tgArisTurn();if(aiTurn())aiGo()}
-const tgTier=(d,f)=>!d?'bull':f<=.08?'blazing':f<=.2?'hot':f<=.4?'warm':f<=.65?'cold':'freezing';
+const tgTier=(d,f)=>!d?'bull':f<=.12?'blazing':f<=.28?'hot':f<=.5?'warm':f<=.75?'cold':'freezing';
 function tgArisTurn(){try{if(!window.ARIS||T.over)return;const t=T.turn;ARIS.tugTurn({human:!aiTurn(),key:T.tEnd,n:nm(t),neutral:!ai(),sg:T.sg[t],armed:()=>!!T.arm,pr:(t?1:-1)*T.pos,span:T.hi-T.lo,btn:'#tgSurge'})}catch(e){}}
 function ui(msg){const t=T.turn,h=aiTurn(),sg=T.sg[t];
  $('#tgTop').innerHTML=`<b style="color:${COL[t]}">${ICO[t]} ${E(nm(t))}</b>${h?' is thinking…':', your pull!'}<br><small>🏆 ${E(nm(0))} ${wins[0]} – ${wins[1]} ${E(nm(1))}</small>`;
@@ -4366,8 +4367,8 @@ function ui(msg){const t=T.turn,h=aiTurn(),sg=T.sg[t];
 function settle(who){const w=T.pos<=-1?0:T.pos>=1?1:-1;if(w<0)return false;T.over=1;wins[w]++;lastLoser=1-w;setTimeout(()=>end(w),1100);return true}
 function ripple(e){const amp=Math.abs(e)*30*(RM?0:1);P.forEach((p,i)=>{p.oy+=amp*Math.sin(i/(N-1)*Math.PI)})}
 function play(v){if(T.over)return;const who=T.turn,dir=who?1:-1,span=Math.max(1,T.hi-T.lo),d=Math.abs(v-T.sec),f=d/span;let pull,txt;
- if(!d){pull=.5;txt='🎯 BULLSEYE!'}else if(f<=.08){pull=.22;txt='🔥 Blazing'}else if(f<=.2){pull=.14;txt='♨️ Hot'}else if(f<=.4){pull=.08;txt='🌡️ Warm'}else if(f<=.65){pull=.035;txt='❄️ Cold'}else{pull=-.04;txt='🧊 Freezing, you slip!'}
- const pr=dir*T.pos;let e=(pull>0?pull*(1-.3*pr):pull)*1.4,sg='';if(T.arm){e*=2;T.sg[who]--;T.arm=0;sg=' 💥×2'}
+ if(!d){pull=.5;txt='🎯 BULLSEYE!'}else if(f<=.12){pull=.22;txt='🔥 Blazing'}else if(f<=.28){pull=.14;txt='♨️ Hot'}else if(f<=.5){pull=.08;txt='🌡️ Warm'}else if(f<=.75){pull=.04;txt='❄️ Cold'}else{pull=0;txt='🧊 Freezing, no pull'}
+ const pr=dir*T.pos;let e=(pull>0?pull*(1-.15*pr):pull)*(who===0||!ai()?1.7:({Easy:.8,Medium:1.1,Hard:1.5}[CF.l]||1.4)),sg='';if(T.arm){e*=2;T.sg[who]--;T.arm=0;sg=' 💥×2'}
  T.pos=cl(T.pos+dir*e,-1,1);ripple(e);
  let hint;if(!d){hint=`The secret was <b>${T.sec}</b>. A new secret appears!`;round()}else{const s0=T.sec;if(v<T.sec)T.lo=v+1;else T.hi=v-1;hint=v<s0?'⬆️ Higher':'⬇️ Lower';
   if(T.lo===T.hi){T.pos=cl(T.pos+dir*.15,-1,1);ripple(.15);hint=`🔒 Only <b>${T.lo}</b> was left: ${E(nm(who))} cornered it, +15% pull. New secret!`;round()}}
@@ -4375,10 +4376,10 @@ function play(v){if(T.over)return;const who=T.turn,dir=who?1:-1,span=Math.max(1,
  if(settle(who)){ui(`${txt}${sg} The flag crosses the line!`);return}
  T.turn=1-who;T.tEnd=Date.now()+TIME*1e3;ui(`${E(nm(who))}: <b>${v}</b> → ${txt}${sg} (${e>0?'+':''}${Math.round(e*100)}%) ${hint}`);try{ARIS.tugMove({tier:tgTier(d,f),neutral:!ai(),mine:who===0,n:nm(who),d:T.pos,surge:!!sg})}catch(e){}tgArisTurn();if(aiTurn())aiGo()}
 function fire(){if(!T||T.over||aiTurn())return;const v=parseInt(inp.value,10);inp.value='';if(!v||v<T.lo||v>T.hi){tone(150,.2,'square');toast(`Pick a number from ${T.lo} to ${T.hi}`);return}play(v)}
-function slow(){if(T.over)return;const who=T.turn,dir=who?1:-1;T.arm=0;T.pos=cl(T.pos-dir*.04,-1,1);ripple(-.04);sfx('buzz');inp.value='';
- if(settle(who)){ui('⏱️ Too slow! The flag crosses the line!');return}T.turn=1-who;T.tEnd=Date.now()+TIME*1e3;ui(`⏱️ ${E(nm(who))} was too slow and slips!`);try{ARIS.tugMove({tier:'slow',neutral:!ai(),mine:who===0,n:nm(who),d:T.pos})}catch(e){}tgArisTurn();if(aiTurn())aiGo()}
-function aiGo(){const id=T.id;setTimeout(()=>{if(!T||T.id!==id||T.over||!onScr()||T.turn!==1)return;const L=CF.l,span=T.hi-T.lo,nz=L==='Easy'?.35:L==='Medium'?.14:.04;
- const v=cl(Math.round((T.lo+T.hi)/2+(Math.random()*2-1)*nz*span),T.lo,T.hi);
+function slow(){if(T.over)return;const who=T.turn,dir=who?1:-1;T.arm=0;sfx('buzz');inp.value='';
+ if(settle(who)){ui('⏱️ Too slow! The flag crosses the line!');return}T.turn=1-who;T.tEnd=Date.now()+TIME*1e3;ui(`⏱️ ${E(nm(who))} was too slow, the turn passes.`);try{ARIS.tugMove({tier:'slow',neutral:!ai(),mine:who===0,n:nm(who),d:T.pos})}catch(e){}tgArisTurn();if(aiTurn())aiGo()}
+function aiGo(){const id=T.id;setTimeout(()=>{if(!T||T.id!==id||T.over||!onScr()||T.turn!==1)return;const L=CF.l,span=T.hi-T.lo,nz=L==='Easy'?.7:L==='Medium'?.3:.1;
+ const v=(L==='Easy'&&Math.random()<.35)?T.lo+Math.floor(Math.random()*(T.hi-T.lo+1)):cl(Math.round((T.lo+T.hi)/2+(Math.random()*2-1)*nz*span),T.lo,T.hi);
  if(T.sg[1]>0&&L!=='Easy'&&span<=(L==='Hard'?14:8)&&(L==='Hard'?T.pos<.2:Math.random()<.3))T.arm=1;play(v)},800+Math.random()*700)}
 function tgPay(w){if(!ai())return'';const q=PRO.tgs=PRO.tgs||{d:'',n:0,w:0,h:0},t=today(),L=CF.l;if(q.d!==t){q.d=t;q.n=0}if(w===0)q.w=(q.w||0)+1;
  let h='';if(q.n>=TGCAP){h=`<br><small>🎁 Daily Tug rewards done (${TGCAP}/${TGCAP}). Wins still count on your profile!</small>`}
