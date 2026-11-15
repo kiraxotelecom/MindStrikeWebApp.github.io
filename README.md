@@ -528,3 +528,8 @@ Bump `V` in `sw.js` after every change.
 ## v164 changes
 **Every world shows its own boss.** Before, a world's boss stayed the default Roman look until you conquered a region there. Now each world starts with its own character, route generals pick from their world's looks by name, and Elementa has its own alchemist boss (goggles, lab coat, bubbling flask).
 **Unlock swap.** Elementa (the educational world) is now free: earn 50 ⭐ across your world maps. Jungle Quest now needs rank Signifer, 3 passport stamps and 70 💎 (what Elementa used to need). Players who already own either world keep it.
+
+## v165 changes
+**Endless Tower: 3 relic slots.** You can carry 3 relics (SCAN/FOCUS packs are supplies, not slots). Once full, a draft offers one ⬆ AMPLIFY (a relic you own that can still stack) plus new relics marked 🔁 REPLACES ONE; picking one asks which relic to swap out, with ← BACK and KEEP MY RELICS. Older saves with more than 3 keep theirs until they swap.
+**Less text on the floor screen.** The line under the relics no longer repeats the floor, attempts or torch count (they are in the header); it shows only clues and twists, and warns when 2 or fewer torches are left. SCAN/FOCUS packs no longer show in the relic row (their counts are on the buttons). Shorter intro and draft text.
+**Region medals by share.** 🥉 77% · 🥈 90% · 🥇 97% (30/35/38 of a 39-star region), scaled to every region size via `MEDP`, `medNeed()` and `medOf()`. Medals already earned are kept. Bump `V` in `sw.js` after every change.
