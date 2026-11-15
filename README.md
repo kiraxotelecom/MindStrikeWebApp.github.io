@@ -521,3 +521,6 @@ Bump `V` in `sw.js` after every change.
 
 ## v162 changes
 **Standing boss characters.** The boss is now a full-body character like Aris: head, armour, arms, legs, cape and a weapon (sword for generals, scepter for emperors). He floats beside the arena in boss phase, bobbing and drifting. Arms react to the fight: sway when idle, hand on hip and weapon up when smug, arms thrown up when hurt, raised and shaking in rage, slumped when defeated. The fall screen shows him full size. Armour damage now dims and desaturates him instead of drawing cracks. Retune looks in `SP` and the pose CSS (`.bz[data-m=...]`).
+
+## v163 changes
+**Boss costumes per world, smaller boss.** The floating boss is about 40% smaller and sits higher, clear of the title and bars. Each world now has its own costume, not just colours: Roman legion armour, robes and scimitar (Sultan, Kabaka), smoke-tailed djinn, kimono and katana (Shogun, oni, tengu), fur mantle and axe (Viking), glowing bodysuit and energy blade (Cyber), scale armour, fins and trident (Atlantis), bark cloth, beads and spear (Jungle), starry robe and star staff (Astral). Torsos have a soft highlight and shadow edge. Costume per look lives in `ST`, drawn in the `B` and `WPN` tables inside `<script id="bzJs">`.
