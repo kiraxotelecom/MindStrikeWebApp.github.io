@@ -262,6 +262,29 @@ button.mgc{width:min(94%,390px);min-width:0;display:flex;align-items:center;gap:
 .mgc small{display:block;font-weight:normal;letter-spacing:0;font-size:.72rem;color:hsl(calc(36.7deg + var(--hs)),calc(37.4% * var(--ss)),calc(74.3% + var(--lt) * -48.6%));line-height:1.3}.mgc.lk{filter:grayscale(1);opacity:.7}
 .mgh{display:flex;gap:8px;width:100%}.mgh>div{background:rgb(var(--k) / 0.67);border:1px solid var(--gold);border-radius:8px;padding:5px 8px;text-align:center;flex:1;font-size:.9rem;min-width:0}
 .mgh small{display:block;font-size:.6rem;letter-spacing:.08em;opacity:.8}
+/* v167 mini games sections */
+.mgsec{width:min(94%,390px);display:flex;flex-direction:column;align-items:center;gap:9px;margin:0 0 6px}
+.mgsec button.mgc{width:100%}
+.mgcap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:-4px 0 0}
+.mgcap span{font-size:.72rem;line-height:1.3;opacity:.85;flex:1;text-align:left}
+.mgcap em{font-style:normal;font:700 10px Cinzel,Georgia,serif;letter-spacing:1px;white-space:nowrap;color:var(--gold);border:1px solid var(--gold);border-radius:99px;padding:3px 9px;background:rgb(var(--k) / 0.67)}
+.mgchips2{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.mgchips2 span{font-size:.66rem;line-height:1;padding:3px 7px;border-radius:99px;border:1px solid rgb(var(--k) / 0.5);background:rgb(var(--k) / 0.45)}
+.mgchips2 span.mgl{border-color:var(--gold);color:var(--gold)}
+.mgc small.mglock{margin-top:3px;opacity:.85}
+button.mgc.nx{box-shadow:0 0 0 1px var(--gold),0 0 14px #ffd36a55;opacity:.92;filter:none}
+button.mgc.nx .mge{filter:grayscale(.6)}
+.mgoth{width:100%;border:1px dashed var(--gold);border-radius:8px;padding:9px 11px;background:rgb(var(--k) / 0.45);text-align:left;line-height:1.5}
+.mgoth b{display:block;color:var(--gold);font:700 11px Cinzel,Georgia,serif;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.mgoth span{font-size:.72rem;opacity:.9}.mgoth i{font-style:normal;opacity:.65;font-size:.65rem}
+.mgoth small{display:block;margin-top:4px;font-size:.66rem;opacity:.7}
+.mgov{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mgov>div{background:rgb(var(--k) / 0.67);border:1px solid var(--gold);border-radius:8px;padding:8px 2px;text-align:center;min-width:0}
+.mgov b{display:block;color:var(--gold);font:700 1.1rem Cinzel,Georgia,serif}
+.mgov small{display:block;font-size:.58rem;letter-spacing:.04em;opacity:.8;margin-top:2px}
+.mgtr{width:100%;text-align:center;line-height:1.5}.mgtr small{font-size:.68rem;opacity:.85}
+@media(max-width:360px){.mgov{grid-template-columns:repeat(2,1fr)}}
+
 #mgBar{width:80%;height:10px;background:rgb(var(--k) / 0.67);border:1px solid var(--gold);border-radius:6px;overflow:hidden;display:none;flex:none}
 #mgBar i{display:block;height:100%;background:linear-gradient(90deg,hsl(calc(38.5deg + var(--hs)),calc(78.2% * var(--ss)),calc(55.1% + var(--lt) * -10.2%)),hsl(calc(40.5deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%)))}
 .mgchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px}.mgchips span{border:1px solid;border-radius:8px;padding:2px 8px;font-size:.85rem;background:rgb(var(--k) / 0.67)}
@@ -1576,7 +1599,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 
 <section class="scr" id="s-mini" style="--bg:url(img/menu_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
- <header class="bm-hero"><div class="bm-kicker">Sharpen your mind</div><h1>Mini Games</h1><div class="bm-sub">Every rank-up unlocks a new game, each with its own best score and mastery.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
+ <header class="bm-hero"><div class="bm-kicker">Sharpen your mind</div><h1>Mini Games</h1><div class="bm-sub">Rank games that lift your rank, themed world games, and your totals.</div><div class="bm-laurel">✦ &nbsp; SPQR &nbsp; ✦</div></header>
  <div id="miniList" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px"></div>
 </section>
 
@@ -2310,8 +2333,26 @@ const miniNew=()=>{const n=MINI.filter(m=>m.rk===rk());return n.length?'<br>🎮
 const LBL={blazing:'blazing hot!',hot:'hot',warm:'warm',cold:'cold',freezing:'freezing'},GT=[10,15,20,30,40,50,70,100,150,200,300,500],DUEL=[['GEN. NANAIA',.7],['GEN. SHANITARI',.8],['GEN. ELIJAHOS',.9],['KIRAXO',.97]];
 let X=null;
 const _show=show;show=function(id){if(id!=='s-mg'){try{twThOff()}catch(e){}}if(id!=='s-mg'&&X&&!X.fin){if(X.k==='tower')try{twBank()}catch(e){}X.abandon=1;X.done=1}try{if(id!=='s-daily'&&id!=='s-end'&&D&&D.used&&!D.fin&&!D.ch&&!QUIT)dQuit()}catch(e){}_show(id)};
-function miniUI(){$('#miniList').innerHTML=MINI.map((M,i)=>{if(M.wd&&M.wd!==TW)return'';const open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
- return `<button class="mgc ${open?'':'lk'}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d:'🔒 Reach rank '+RANKS[M.rk][0]+' ('+RANKS[M.rk][1]+' XP) to unlock'}</small>${open?`<small>${M.k==='tower'?'🗼 best floor '+(m.f||0)+' · 🏆 best score '+m.b:'🏆 best '+m.b} · ▶︎ ${m.p} plays · ⭐ mastery L${l}</small><div class="qb"><i style="width:${pc}%"></i></div>`:''}</div></button>`}).join('')}
+/* v167: MINI GAMES, organised in three sections. 1) RANK GAMES: the ladder that unlocks by rank (Tower first); every run pays XP and feeds the rank trials (games tried, mastery levels, Tower floors). 2) WORLD GAMES: the themed games of the world you wear, plus a teaser of the other worlds. 3) OVERALL: totals across every game. To move a game between sections, change its entry in MINI (a game with a wd field is a world game). */
+const WNM={roman:'Roman',buganda:'Buganda',cyber:'Cyber',samurai:'Samurai',ice:'Norse Ice',astral:'Astral',atlantis:'Atlantis',gold:'Golden Sands',jungle:'Jungle Quest',elementa:'Elementa'};
+function mgCard(M){const i=MINI.indexOf(M),open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
+ const nextUp=!open&&M.rk===rk()+1;
+ const meta=open?`<div class="mgchips2">${M.k==='tower'?`<span>🗼 Floor ${m.f||0}</span>`:''}<span>🏆 Best ${m.b}</span><span>▶︎ ${m.p} ${m.p===1?'play':'plays'}</span><span class="mgl">⭐ Mastery L${l}${l>=10?' MAX':''}</span></div><div class="qb"><i style="width:${pc}%"></i></div>`:'';
+ const lock=open?'':`<small class="mglock">🔒 Reach rank ${RANKS[M.rk][0]} (${RANKS[M.rk][1]} XP) to unlock${nextUp?' · <b>next up!</b>':''}</small>`;
+ return `<button class="mgc ${open?'':'lk'} ${nextUp?'nx':''}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d.replace(/^⭐ WORLD GAME · /,''):''}</small>${lock}${meta}</div></button>`}
+function mgSec(ic,title,cap,pill,body){return `<section class="mgsec"><div class="bm-head"><h2>${ic} ${title}</h2></div><div class="mgcap"><span>${cap}</span><em>${pill}</em></div>${body}</section>`}
+function miniUI(){
+ const rankG=MINI.filter(M=>!M.wd),worldG=MINI.filter(M=>M.wd&&M.wd===TW);
+ const rOpen=rankG.filter(M=>mgOpen(MINI.indexOf(M))).length,wTried=worldG.filter(M=>(PRO.mg[M.k]||{}).p>0).length;
+ const all=[...rankG,...worldG],tried=all.filter(M=>(PRO.mg[M.k]||{}).p>0).length;
+ const plays=Object.values(PRO.mg||{}).reduce((a,x)=>a+(x.p||0),0),mast=Object.values(PRO.mg||{}).reduce((a,x)=>a+mlv(x.t||0),0);
+ const other=[];Object.keys(TG).forEach(w=>{if(w!==TW)other.push([w,TG[w].e,TG[w].n.split(' · ')[0]])});MINI.forEach(M=>{if(M.wd&&M.wd!==TW)other.push([M.wd,M.e,M.n])});
+ const wn=WNM[TW]||TW;
+ const tw=(PRO.mg.tower&&PRO.mg.tower.f)||0,m3=Object.values(PRO.mg||{}).filter(x=>mlv(x.t||0)>=3).length,m5=Object.values(PRO.mg||{}).filter(x=>mlv(x.t||0)>=5).length;
+ const R=mgSec('🏅','Rank Games','Climb the ranks: every run pays XP and counts toward your rank trials.',`${rOpen}/${rankG.length} unlocked`,rankG.map(mgCard).join(''));
+ const W=mgSec('🌍',wn+' World Games','Themed games of the world you are wearing. Open from the start.',`${wTried}/${worldG.length} played`,worldG.map(mgCard).join('')+(other.length?`<div class="mgoth"><b>Other worlds</b><span>${other.map(o=>`${o[1]} ${o[2]} <i>${WNM[o[0]]||o[0]}</i>`).join(' · ')}</span><small>Wear a world to play its games.</small></div>`:''));
+ const O=mgSec('📊','Overall','Your totals across every mini game.',`${tried}/${all.length} tried`,`<div class="mgov"><div><b>${tried}</b><small>Games tried</small></div><div><b>${plays}</b><small>Total plays</small></div><div><b>${mast}</b><small>Mastery levels</small></div><div><b>${tw}</b><small>Tower floor</small></div></div><div class="mgtr"><small>Rank trials look at: <b>games tried ${trMg()}</b> · <b>mastery L3+ on ${m3}</b> · <b>mastery L5+ on ${m5}</b> · <b>Tower floor ${tw}</b></small></div>`);
+ $('#miniList').innerHTML=R+W+O}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
 const mgSet=t=>{$('#mgMsg').textContent=t};
 function mgChips(){$('#mgChips').innerHTML=X.hist.map(h=>`<span style="border-color:${h.txt?h.c:TC[h.t]};color:${h.txt?h.c:TC[h.t]}">${h.txt||h.d+h.g+TE[h.t]}</span>`).join('')}
