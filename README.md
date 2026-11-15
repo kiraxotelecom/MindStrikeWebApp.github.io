@@ -576,3 +576,5 @@ Bump `V` in `sw.js` after every change.
 
 ## v179 changes
 **Passport restored (v177 reset undone).** Nothing earned is lost: `regionDone(w)` is true if `PRO.sr[w]` is set OR any region of that world is conquered in `PRO.wm` (keys `world` / `world~n`), and `themePts(w)` is now the lifetime mastery total (`PRO.mg.tm_<w>.t`); the baseline `PRO.sb` is cleared by a one-time migration (`PRO.sv<179`). Rule unchanged for everyone: conquered region + 400 lifetime points in that world's game, no free stamps. The old reset popup is replaced by a one-time "Passport Restored" notice. Bump `V` in `sw.js` after every change.
+
+**v179 also:** the home Passport card is a tappable button (the rule line is gone); `ppOpen()` shows a per-world panel (region check, points bar toward 400). Mini Games > Other Worlds is now a 2-column tile grid (`.mgog/.mgot`, owned worlds full brightness). Boss endings linger on the final frame (+2.6 s emperor, +1.8 s general, 650 ms fade) before the score card; tap still skips.

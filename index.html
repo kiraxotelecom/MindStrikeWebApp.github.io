@@ -1504,6 +1504,13 @@ html.noaris #arBrag .arWrap{display:block!important}
 .lbr.g{opacity:.62;border-style:dashed}.lbr.g .lbn{font-weight:500;font-style:italic}
 .lbd{text-align:center;opacity:.6;letter-spacing:.3em;margin:4px 0}.lbg{margin:10px 0 2px;font-size:.85rem;color:#ffe08a;text-align:center}
 </style>
+<style>/* v179: passport panel, other-worlds tiles */
+#ppPop{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:#000a;padding:16px}#ppPop .card{width:min(94%,380px);max-height:86vh;overflow:auto;text-align:left}#ppPop h2{text-align:center;margin:0 0 4px}#ppPop .ppn{font-size:.74rem;opacity:.8;text-align:center;margin:0 0 8px}
+.ppr{display:flex;gap:10px;align-items:center;padding:8px 6px;border-bottom:1px solid color-mix(in srgb,var(--gold) 22%,transparent)}.ppe{width:36px;height:36px;flex:none;display:grid;place-items:center;font-size:1.2rem;border-radius:10px;background:rgb(var(--k) / .5);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);filter:grayscale(1);opacity:.5}.ppr.on .ppe{filter:none;opacity:1;box-shadow:0 0 10px color-mix(in srgb,var(--gold) 55%,transparent)}
+.ppr>div{flex:1;min-width:0}.ppr b{font-size:.8rem;color:var(--gold)}.ppc{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.68rem;opacity:.7;margin:2px 0 4px}.ppc .ok{color:#7dff9a;opacity:1}
+.pp{cursor:pointer}
+.mgog{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px}.mgot{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:9px;background:rgb(var(--k) / .55);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);min-width:0;opacity:.62}.mgot.own{opacity:1;border-color:color-mix(in srgb,var(--gold) 70%,transparent)}.mgoe{font-size:1.25rem;flex:none}.mgot strong{display:block;font:700 .66rem Cinzel,Georgia,serif;letter-spacing:.04em;line-height:1.15;color:var(--gold);overflow-wrap:anywhere}.mgot em{display:block;font-style:normal;font-size:.62rem;opacity:.75;margin-top:1px}
+</style>
 </head><body><div id="spl" aria-hidden="true"><style>
 /* v175 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour follows the current world (html.wd-*). */
 #spl{--sa:#f2c14e;--sb:#2a1a08;position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 40%,var(--sb) 0,#06040a 72%);color:var(--sa);font-family:system-ui,sans-serif;overflow:hidden;animation:sOut .5s ease 2.35s forwards}
@@ -2181,7 +2188,9 @@ function stampNote(w){const g=GAMEN[w],W=WORLDS[w];if(!g||!W)return'';const r=re
 function stampN(){return WALL().filter(stampHas).length}
 function wmO(){return Object.entries(PRO.wm||{}).filter(([w])=>ownW(w)).map(x=>x[1])}
 function ppCheck(){setTimeout(()=>{try{jglCheck()}catch(e){}},2500);if(!PRO.ppd&&stampN()>=WALL().length){PRO.ppd=1;PRO.gems=(PRO.gems||0)+25;setTimeout(()=>toast('🛂 <b>PASSPORT COMPLETE</b><br><small>World Walker · +25 💎</small>'),2200)}}
-function ppHtml(){const n=stampN(),all=WALL();return`<div class="pp"><b>🛂 PASSPORT ${n}/${all.length}</b><div>${all.map(w=>{const W=WORLDS[w],on=stampHas(w),rd=regionDone(w),g=GAMEN[w]||['',''],pt=Math.min(STAMP_PTS,themePts(w)),hf=!on&&(rd||pt>=STAMP_PTS);return`<span class="pps${on?' on':hf?' half':''}" ${hf?'style="outline:2px dashed #f2c14e;outline-offset:-2px" ':''}title="${W.n}: region ${rd?'✓':'✗'} · ${g[1]} ${pt}/${STAMP_PTS} pts">${W.e}</span>`}).join('')}</div><small>Each stamp = conquer a World Map region + ${STAMP_PTS} points in that world’s game${PRO.ppd?' · ✨ World Walker':''}</small></div>`}
+function ppHtml(){const n=stampN(),all=WALL();return`<div class="pp" role="button" tabindex="0"><b>🛂 PASSPORT ${n}/${all.length} ›</b><div>${all.map(w=>{const W=WORLDS[w],on=stampHas(w),rd=regionDone(w),g=GAMEN[w]||['',''],pt=Math.min(STAMP_PTS,themePts(w)),hf=!on&&(rd||pt>=STAMP_PTS);return`<span class="pps${on?' on':hf?' half':''}" ${hf?'style="outline:2px dashed #f2c14e;outline-offset:-2px" ':''}title="${W.n}: region ${rd?'✓':'✗'} · ${g[1]} ${pt}/${STAMP_PTS} pts">${W.e}</span>`}).join('')}</div>${PRO.ppd?'<small>✨ World Walker</small>':''}</div>`}
+function ppOpen(){const old=document.getElementById('ppPop');if(old)old.remove();const all=WALL(),n=stampN();const rows=all.map(w=>{const W=WORLDS[w],g=GAMEN[w]||['',''],rd=regionDone(w),t=Math.min(STAMP_PTS,themePts(w)),on=stampHas(w),pc=Math.round(t/STAMP_PTS*100);return`<div class="ppr${on?' on':''}"><span class="ppe">${W.e}</span><div><b>${W.n}${on?' ✓':''}</b><div class="ppc"><span class="${rd?'ok':''}">${rd?'✓':'○'} Region</span><span class="${t>=STAMP_PTS?'ok':''}">${t>=STAMP_PTS?'✓':'○'} ${g[1]} ${t}/${STAMP_PTS}</span></div><div class="qb"><i style="width:${pc}%"></i></div></div></div>`}).join('');const o=document.createElement('div');o.id='ppPop';o.innerHTML=`<div class="card"><h2>🛂 Passport ${n}/${all.length}</h2><p class="ppn">A stamp needs a conquered region and ${STAMP_PTS} points in that world’s game.</p>${rows}<button id="ppOk" style="width:100%;margin-top:8px">CLOSE</button></div>`;document.body.appendChild(o);o.onclick=e=>{if(e.target===o||e.target.id==='ppOk')o.remove()}}
+document.addEventListener('click',e=>{const p=e.target.closest&&e.target.closest('.pp');if(p){try{ppOpen()}catch(x){}}});
 function pvLeft(){return Math.max(0,3-Object.keys(PRO.pvd||{}).length)}
 function pvEnd(){if(!PRO.pv)return;PRO.wd=PRO.pv.back||'';delete PRO.pv;LS.set('ms_pro',PRO);toast('👁 Preview over<br><small>Back to your world…</small>');setTimeout(()=>location.reload(),600)}
 
@@ -2430,7 +2439,7 @@ function miniUI(){
  const wn=WNM[TW]||TW;
  const tw=(PRO.mg.tower&&PRO.mg.tower.f)||0,m3=Object.values(PRO.mg||{}).filter(x=>mlv(x.t||0)>=3).length,m5=Object.values(PRO.mg||{}).filter(x=>mlv(x.t||0)>=5).length;
  const R=mgSec('🏅','Rank Games','Climb the ranks: every run pays XP and counts toward your rank trials.',`${rOpen}/${rankG.length} unlocked`,rankG.map(mgCard).join(''));
- const W=mgSec('🌍',wn+' World Games','Themed games of the world you are wearing. Open from the start.',`${wTried}/${worldG.length} played`,worldG.map(mgCard).join('')+(other.length?`<div class="mgoth"><b>Other worlds</b><span>${other.map(o=>`${o[1]} ${o[2]} <i>${WNM[o[0]]||o[0]}</i>`).join(' · ')}</span><small>Wear a world to play its games.</small></div>`:''));
+ const W=mgSec('🌍',wn+' World Games','Themed games of the world you are wearing. Open from the start.',`${wTried}/${worldG.length} played`,worldG.map(mgCard).join('')+(other.length?`<div class="mgoth"><b>Other Worlds</b><div class="mgog">${other.map(o=>`<div class="mgot${ownW(o[0])?' own':''}"><span class="mgoe">${o[1]}</span><div><strong>${o[2]}</strong><em>${WNM[o[0]]||o[0]}</em></div></div>`).join('')}</div></div>`:''));
  const O=mgSec('📊','Overall','Your totals across every mini game.',`${tried}/${all.length} tried`,`<div class="mgov"><div><b>${tried}</b><small>Games tried</small></div><div><b>${plays}</b><small>Total plays</small></div><div><b>${mast}</b><small>Mastery levels</small></div><div><b>${tw}</b><small>Tower floor</small></div></div><div class="mgtr"><small>Rank trials look at: <b>games tried ${trMg()}</b> · <b>mastery L3+ on ${m3}</b> · <b>mastery L5+ on ${m5}</b> · <b>Tower floor ${tw}</b></small></div>`);
  $('#miniList').innerHTML=R+W+O}
 const mtemp=(g,s,lo,hi)=>{const c=1-Math.abs(g-s)/Math.max(1,hi-lo);return[c>.85?'blazing':c>.6?'hot':c>.35?'warm':c>.15?'cold':'freezing',c]};
@@ -6493,7 +6502,7 @@ function make(o){
  return c}
 function end(c,quick){if(c.dead)return;c.dead=1;c.T.forEach(clearTimeout);const el=c.el;Pt.stop();
  const fin=()=>{try{c.A.forEach(a=>a.cancel())}catch(e){}el.remove();const app=document.getElementById('app');if(app)app.classList.remove('kxEon');if(cur===c)cur=null;c.hold.fire()};
- try{el.animate([{opacity:1},{opacity:0}],{duration:quick?140:420,fill:'forwards'}).onfinish=fin}catch(e){fin()}}
+ try{el.animate([{opacity:1},{opacity:0}],{duration:quick?140:650,fill:'forwards'}).onfinish=fin}catch(e){fin()}}
 function play(o){
  try{if(cur)end(cur,1)}catch(e){}
  o=Object.assign({world:'roman',win:true,role:'emperor',seed:'KIRAXO',k:''},o);
@@ -6506,7 +6515,7 @@ function play(o){
  const skip=c.el.querySelector('.kSkip');c.at(2200,()=>skip&&skip.classList.add('off'));
  try{if(R.setup)R.setup(c,o.win)}catch(e){console.error('kxE setup',e)}
  (rec.s||[]).forEach(([t,f,fl])=>{if(fl==='e'&&!c.emp)return;c.at(t,f)});
- c.at(c.rm?1400/c.tf:rec.dur+(c.emp?0:-300),()=>end(c));
+ c.at(c.rm?1400/c.tf:rec.dur+(c.emp?0:-300)+(c.emp?2600:1800),()=>end(c));
  return hold}
 window.KXE={play,ENDS,end:()=>{if(cur)end(cur,1)},demo(world,win,emp,slow,k){TEST=slow||1;const L=(window.__klad||{})[world]||[];return play({world,win:win!==false,role:emp===false?'general':'emperor',seed:'DEMO',k:k||(world==='elementa'?'alchemist':L[emp===false?L.length-1:0])})},lastCtx:()=>cur};
 })();
