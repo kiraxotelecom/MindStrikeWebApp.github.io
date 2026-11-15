@@ -1941,7 +1941,7 @@ function failTurn(timeout){const w=G.cur,rf=G.rf,rev=G.boss?'':` It was ${G.secr
  if(rf.riskUsed&&!timeout){G.score[w]=Math.max(0,G.score[w]-3);pen=' (-3 RISK PENALTY)'}
  if(rf.shield){rf.shield=0;msg=`${timeout?"Time's up — but your ":'Your '}SHIELD absorbed the loss!${rev}${pen}`}
  else{let dp='';if(G.desp[w].active){G.desp[w].active=0;G.score[w]=Math.max(0,G.score[w]-10);dp=' (-10 DESPERATION)'}
-  G.combo[w]=0;if(w===0&&!G.boss)G.st[0].fail=(G.st[0].fail||0)+1;sfx('buzz');shake();vib([70,40,70]);if(w===0&&G.mode==='AI'&&window.ARIS)ARIS.fail();if(G.mode==='AI'&&w===0)ft('😈 HA!');
+  G.combo[w]=0;if(w===0&&!G.boss)G.st[0].fail=(G.st[0].fail||0)+1;sfx('buzz');shake();vib([70,40,70]);if(w===0&&G.mode==='AI'&&window.ARIS)ARIS.fail();try{if(G.boss&&w===0)KXB.mock()}catch(e){}if(G.mode==='AI'&&w===0)ft('😈 HA!');
   msg=(timeout?`TIME'S UP! Round forfeited.${rev}`:`Out of attempts!${rev}`)+pen+dp}
  render(msg);later(afterTurn,1500)}
 function snapPow(n){const w=G.cur,rf=G.rf,sn={n,w,kLo:G.kLo,kHi:G.kHi,pu:G.powUsed};if(!rf.us||!rf.us.length)rf.p0=G.powUsed;(rf.us||(rf.us=[])).push(sn);return sn}
@@ -1986,7 +1986,7 @@ function enterBoss(trig){const[lo,hi]=G.D.boss,o=1-trig;G.boss=true;G.cur=trig;G
  later(()=>{G.busy=false;G.round=G.round;startBossFirst()},1600)}
 function startBossFirst(){const first=G.cur;G.cur=first;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=0;G.special='BOSS';const v=G.vit[G.cur];G.maxAtt=G.mode==='PVP'?Math.max(2,v-G.broken):v;timerReset();
  render(`${nm(G.cur)}, shatter his shields!`);if(G.mode==='AI'&&G.cur===1)later(aiPlay,700)}
-function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===1&&tkh('raid')&&G.mode==='AI'){const s=Math.min(30,G.dmg[0]);G.dmg[0]-=s;G.dmg[1]+=s;if(s)setTimeout(()=>toast('🗡️ <b>RAID</b><br><small>He steals '+s+' of your damage!</small>'),300)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
+function layerHit(who){if(G.bk){G.bk[who]++;G.own.push(who)}if(who===1&&tkh('raid')&&G.mode==='AI'){const s=Math.min(30,G.dmg[0]);G.dmg[0]-=s;G.dmg[1]+=s;if(s)setTimeout(()=>toast('🗡️ <b>RAID</b><br><small>He steals '+s+' of your damage!</small>'),300)}if(who===0&&G.mode==='AI')qEv('layer');shatter(G.broken);G.layers--;G.broken++;try{KXB.layer(who)}catch(e){}burst(['💥','🛡','✨','⚡'],26);shake();vib([60,40,100]);tone(110,.35,'sawtooth',.2);
  if(G.layers<=0){const k=G.bk,d=G.dmg;return finish(k[0]!==k[1]?(k[0]>k[1]?0:1):d[0]===d[1]?who:(d[0]>d[1]?0:1))}
  const w=Math.max(MINW,Math.floor((G.hi-G.lo)*SHRINK)),h=w>>1;let lo=Math.max(G.lo,Math.min(G.secret-h,G.hi-w)),hi=Math.min(G.hi,lo+w);lo=Math.max(G.lo,hi-w);
  G.lo=lo;G.hi=hi;G.kLo=lo;G.kHi=hi;G.secret=rndS(lo,hi);G.armor=ARMOR;G.att=0;G.guesses=0;G.hist=[];G.rf=newRF();timerReset();sfx('powerup');
@@ -3010,7 +3010,7 @@ function flash(){const e=$('#fl');e.classList.remove('on');void e.offsetWidth;e.
 const bossFull=()=>G&&G.cf&&G.cf.bn?G.cf.bn:'IMPERATOR KIRAXO PRIME',bossShort=()=>{const x=G&&G.cf&&G.cf.bs?G.cf.bs:'KIRAXO';return x[0]+x.slice(1).toLowerCase()};
 function bossIntro(nmv){shake(true);sfx('glitch');const re=i=>{const e=$(i);e.classList.remove('on');void e.offsetWidth;e.classList.add('on');return e};re('#bolt');const b=re('#bt');b.innerHTML=(nmv||'IMPERATOR KIRAXO PRIME').replace(' ','<br>');setTimeout(()=>b.classList.remove('on'),2100);
  vib([200,80,200,80,400]);tone(55,1.2,'sawtooth',.3);setTimeout(()=>tone(48,.8,'square',.2),400);burst(['⚡','🔥','💀'],30)}
-function hitFx(v){ft('🛡️ −'+v);vib(30);tone(200,.12,'square',.12);const e=$('#shield');e.classList.remove('hit');void e.offsetWidth;e.classList.add('hit')}
+function hitFx(v){try{KXB.chip(v)}catch(e){}ft('🛡️ −'+v);vib(30);tone(200,.12,'square',.12);const e=$('#shield');e.classList.remove('hit');void e.offsetWidth;e.classList.add('hit')}
 function shatter(i){const el=$('#layers').children[i];if(!el)return;flash();ft('💥 SHIELD SHATTERED!');if(RM)return;const f=$('#fx').getBoundingClientRect(),r=el.getBoundingClientRect(),x=r.left-f.left+r.width/2,y=r.top-f.top+r.height/2;
  for(let k=0;k<18;k++){const e=document.createElement('i');e.className='sh';e.style.left=x+'px';e.style.top=y+'px';$('#fx').appendChild(e);
   e.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:`translate(${(Math.random()-.5)*320}px,${(Math.random()-.3)*320}px) rotate(${Math.random()*720}deg) scale(.2)`,opacity:0}],{duration:700+Math.random()*500,easing:'cubic-bezier(.1,.7,.3,1)'}).onfinish=()=>e.remove()}
@@ -3236,7 +3236,7 @@ function hrtRow(n,u,p,risk){const s=HSH[wdKey()];return Array.from({length:n},(_
 function hpRender(){if(!G)return;if(G.hpB!==!!G.boss){G.hpB=!!G.boss;G.hp=[null,null]}G.hp=G.hp||[null,null];G.hp[G.cur]={m:G.maxAtt,u:G.att,r:G.rf&&G.rf.risk?1:0};
  [0,1].forEach(p=>{const e=$('#hp'+p);if(!e)return;const s=G.hp[p]||{m:G.maxAtt,u:0,r:0},on=p===G.cur;e.className='hp p'+p+(on?' on':' off');e.innerHTML=hrtRow(s.m,s.u,p,on&&s.r);e.setAttribute('aria-label',nm(p)+': '+(s.m-s.u)+' attempts left')})}
 function render(msg){if(!G)return;const b=G.boss;
- $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();$('#s1').textContent=G.score[1];
+ $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();try{KXB.sync()}catch(e){}$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
  $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round}`;
  $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
@@ -3268,7 +3268,7 @@ $('#strike').onclick=strike;$('#num').addEventListener('keydown',e=>{if(e.key===
 // ---- end & leaderboard ----
 const lbGet=()=>LS.get('ms_lb',[]);
 function lbShow(){profUI();const l=lbGet();$('#lb').innerHTML=l.length?l.map((e,i)=>`<div class="card" style="margin:0"><b>${['🥇','🥈','🥉','IV','V'][i]} ${e.n||'UNKNOWN'}</b> · ${e.s} pts<br><small>${e.d}</small></div>`).join(''):'<p style="text-align:center">No champions yet. Enter the arena!</p>'}
-function finish(w){G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
+function finish(w){try{KXB.end(w)}catch(e){}G.finishing=true;G.done=true;G.busy=true;resume();$('#pass').classList.remove('on');
  const draw=w<0,win=!draw&&(G.mode==='PVP'||w===0);play('theme');sfx(win?'fanfare':'buzz');try{window.ARIS&&ARIS.end(win,draw,!!G.boss)}catch(e){}if(win&&PRO.ps&&PSK[PRO.ps])setTimeout(()=>burst([PSK[PRO.ps][0],'✨','🪙'],32),300);hsCheck(w);const xg=xpEnd(win),cr=G.cf?campEnd(win):null;wagerEnd(win,draw);houseMark(win);if(win&&G.boss&&G.mode==='PVP')bossCelebrate();if(G.mode==='AI'){qEv('match');if(win){qEv('win');if(G.boss){qEv('boss');bossCelebrate()}if(!G.powUsed)qEv('clean');if(G.d==='Hard')qEv('hardwin')}}if(G.hs.isNew){const hs=G.hs,tl=`${G.D.name} · ${G.M.label}`;setTimeout(()=>{burst(['🏆','⭐','✨','🪙'],50);sfx('fanfare')},700)}$('#again').style.display='';if(win)burst(['🎉','🏆','✨','🪙'],40);shareText=`MindStrike ⚔️ ${draw?'DRAW':win?'VICTORY':'DEFEAT'} · ${G.D.name} · ${G.M.label}\n${G.score[0]}–${G.score[1]} · 🔥 best combo ${G.st[0].best}\n${location.href.split('#')[0]}`;
  if(!draw&&(G.mode==='PVP'||w===0)){const l=lbGet();l.push({n:nm(w),s:G.score[w],d:G.D.name+' · '+G.M.label});l.sort((a,b)=>b.s-a.s);LS.set('ms_lb',l.slice(0,5))}
  $('#endt').textContent=draw?'DRAW':(G.mode==='PVP'?`${nm(w)} WINS`:win?'VICTORY':'DEFEAT');
@@ -5823,6 +5823,85 @@ setInterval(()=>{if(pop&&pop.classList.contains('on')&&(!el||!el.getClientRects(
 function go(){build();try{window.__am.ui()}catch(e){}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(go,0));else go();
 setTimeout(go,900);
+})();
+</script>
+<style>/* v160: THE BOSS REACTS. In boss phase against the computer, Kiraxo (or the world's boss) gets a portrait medallion above his score card. It flinches and drops an armour shard when YOU break a shield, grows cracks as the damage adds up, smirks when HE breaks one, turns red and shakes on the last layer, and falls over the result screen when you beat him. Tiny taunts (2-3 words) float to the left of it, never over the timer. The face is his Kiraxo skin image, or his mood emoji when the skin has no picture. */
+#kxB{position:absolute;left:50%;bottom:100%;width:54px;height:54px;margin:0 0 -2px -27px;z-index:3;pointer-events:none;display:none;--sk:#ff3b2a}
+#s-game.kxb #kxB{display:block;animation:kxIn .5s cubic-bezier(.3,1.5,.5,1) both}
+#s-game.kxb #hud{margin-top:48px}
+#s-game.kxb #skE1{display:none!important}
+#kxB .kxF{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 28%,#3a1018,#12060a);border:2.5px solid var(--sk);box-shadow:0 0 12px var(--sk),0 0 26px color-mix(in srgb,var(--sk) 55%,transparent);display:flex;align-items:center;justify-content:center;font-size:32px;line-height:1;filter:saturate(calc(1 - var(--kd,0)*.5)) brightness(calc(1 - var(--kd,0)*.2));animation:kxBreath 2.6s ease-in-out infinite}
+#kxB .kxF img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+#kxB .kxC{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+#kxB .kxC svg{position:absolute;inset:0;width:100%;height:100%;display:none}
+#kxB.d1 .kxC .c1,#kxB.d2 .kxC .c1,#kxB.d2 .kxC .c2,#kxB.d3 .kxC .c1,#kxB.d3 .kxC .c2,#kxB.d3 .kxC .c3,#kxB.d4 .kxC svg{display:block}
+#kxB .kxT{position:absolute;right:calc(100% + 8px);bottom:12px;max-width:min(44vw,170px);box-sizing:border-box;padding:3px 9px;border-radius:12px;background:#1a0508ee;color:#ffe9e0;border:1.5px solid var(--sk);font:800 .74rem/1.25 system-ui,sans-serif;white-space:nowrap;overflow:visible;opacity:0;transform:translateX(6px) scale(.9);transform-origin:100% 100%;transition:opacity .15s,transform .15s}
+#kxB .kxT.on{opacity:1;transform:none}
+#kxB .kxT::after{content:"";position:absolute;left:100%;bottom:6px;border:5px solid transparent;border-left-color:var(--sk)}
+#kxB.hit .kxF{animation:kxFlinch .55s ease-out 1}
+#kxB.tap .kxF{animation:kxTap .28s ease-out 1}
+#kxB.smug .kxF{animation:kxSmug .9s ease-in-out 1}
+#kxB.rage{--sk:#ff2a1a}
+#kxB.rage .kxF{animation:kxRage .22s linear infinite alternate}
+@keyframes kxIn{from{transform:scale(.2) translateY(20px);opacity:0}to{transform:none;opacity:1}}
+@keyframes kxBreath{50%{transform:scale(1.05)}}
+@keyframes kxFlinch{0%{transform:none;filter:brightness(1)}12%{transform:translate(7px,4px) rotate(14deg) scale(.88);filter:brightness(2.6) saturate(0)}30%{transform:translate(-6px,0) rotate(-10deg) scale(.95);filter:brightness(1.5)}55%{transform:translate(3px,1px) rotate(5deg)}100%{transform:none}}
+@keyframes kxTap{30%{transform:translate(3px,2px) rotate(5deg) scale(.95)}100%{transform:none}}
+@keyframes kxSmug{0%{transform:none}35%{transform:scale(1.22) rotate(-8deg) translateY(-3px)}65%{transform:scale(1.18) rotate(5deg) translateY(-2px)}100%{transform:none}}
+@keyframes kxRage{from{transform:translate(-1.5px,0) rotate(-2deg) scale(1.04)}to{transform:translate(1.5px,-1px) rotate(2deg) scale(1.1)}}
+.kxFall{position:fixed;left:50%;top:40%;width:min(46vw,190px);aspect-ratio:1;margin:calc(min(46vw,190px)/-2) 0 0 calc(min(46vw,190px)/-2);z-index:74;pointer-events:none;--sk:#ff3b2a}
+.kxFall .kxF{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 28%,#3a1018,#12060a);border:5px solid var(--sk);box-shadow:0 0 30px var(--sk),0 0 70px color-mix(in srgb,var(--sk) 55%,transparent);display:flex;align-items:center;justify-content:center;font-size:min(22vw,92px);line-height:1}
+.kxFall .kxF img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.kxFall .kxC{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+.kxFall .kxC svg{position:absolute;inset:0;width:100%;height:100%}
+.kxFall .kxT{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);padding:6px 14px;border-radius:14px;background:#1a0508f2;color:#ffe9e0;border:2px solid var(--sk);font:900 1rem/1.2 system-ui,sans-serif;white-space:nowrap}
+.kxShard{position:fixed;z-index:74;width:12px;height:16px;pointer-events:none;background:linear-gradient(var(--sk),#2a0508);clip-path:polygon(50% 0,100% 100%,0 100%)}
+@media (prefers-reduced-motion:reduce){#s-game.kxb #kxB,#kxB .kxF,#kxB.hit .kxF,#kxB.tap .kxF,#kxB.smug .kxF,#kxB.rage .kxF{animation:none!important}#kxB .kxT{transition:none}}
+</style>
+<script>
+/* v160: the boss portrait. Only in boss phase vs the computer (G.boss && G.mode==='AI'). Hooks in the main script: render() -> KXB.sync(), layerHit() -> KXB.layer(who), hitFx() -> KXB.chip(), failTurn() -> KXB.mock(), finish() -> KXB.end(w). Taunts live in KXL (retune freely; keep them 2-3 words so they never cover the timer). Next pass: one fall + taunt set per world. */
+(function(){
+const KXL={start:['Kneel.','Come, then.','Show me.'],hurt:['Argh!','My armour!','Impossible!','You dare?!','Gah!'],smug:['Mine!','Ha!','Cracked.','Kneel!'],ahead:['I lead now.','Feel that?','Struggling?'],behind:['Lucky…','Not yet…','Hm.'],last:['ENOUGH!','No more!','Last layer…'],mock:['Too slow.','Hah.','Weak.'],fall:['Not… like this…','Impossible…'],win:['Kneel.','Bow.']};
+const pk=a=>a[Math.floor(Math.random()*a.length)],on=()=>typeof G!=='undefined'&&G&&G.boss&&G.mode==='AI'&&!G.done;
+const CR=['<svg class="c1" viewBox="0 0 54 54"><path d="M30 2l-4 11 6 7-5 9" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 2l-4 11 6 7-5 9" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c2" viewBox="0 0 54 54"><path d="M2 34l12-3 6 8 10-2" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 34l12-3 6 8 10-2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c3" viewBox="0 0 54 54"><path d="M52 18l-12 6 3 9-9 6 4 13" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 18l-12 6 3 9-9 6 4 13" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>','<svg class="c4" viewBox="0 0 54 54"><path d="M14 8l8 10-7 8M24 52l3-10 10-3M44 4l-3 10" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8l8 10-7 8M24 52l3-10 10-3M44 4l-3 10" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'];
+let el=null,tTm=0,lastSay=0,mockT=0,key='',lvl=0,lastLayers=0;
+const faceOf=()=>{let k='';try{k=eKS()}catch(e){}const im=KSI&&KSI[k];return{k,img:im||'',em:im?'':((KS[k]||KS[''])[4]),col:(KSC&&KSC[k])||'#ff3b2a'}};
+const faceHTML=f=>f.img?'<img src="'+f.img+'" alt="">':f.em;
+function build(){const h=document.getElementById('h1');if(!h)return null;if(el&&h.contains(el))return el;
+ el=document.createElement('div');el.id='kxB';el.setAttribute('aria-hidden','true');el.innerHTML='<div class="kxF"></div><div class="kxC">'+CR.join('')+'</div><div class="kxT" role="status"></div>';h.appendChild(el);key='';return el}
+function say(kind,force){if(!el)return;const n=Date.now();if(!force&&n-lastSay<1100)return;lastSay=n;const t=el.querySelector('.kxT');t.textContent=pk(KXL[kind]);t.classList.add('on');clearTimeout(tTm);tTm=setTimeout(()=>t.classList.remove('on'),1700)}
+function pulse(c,ms){if(!el)return;el.classList.remove('hit','tap','smug');void el.offsetWidth;el.classList.add(c);setTimeout(()=>el&&el.classList.remove(c),ms)}
+function level(){if(!on()||!G.bk)return 0;const t=Math.max(1,G.total||1),b=G.bk[0]||0;return b?Math.min(4,Math.max(1,Math.round(4*b/t))):0}
+function shards(){if(!el||RM)return;const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,col=getComputedStyle(el).getPropertyValue('--sk')||'#ff3b2a';
+ for(let i=0;i<5;i++){const s=document.createElement('i');s.className='kxShard';s.style.setProperty('--sk',col);s.style.left=cx+'px';s.style.top=cy+'px';document.body.appendChild(s);
+  const dx=(Math.random()-.5)*130,up=-30-Math.random()*50,dn=120+Math.random()*80,rot=(Math.random()-.5)*540;
+  s.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+(dx*.6)+'px,'+up+'px) rotate('+(rot*.5)+'deg)',opacity:1,offset:.35},{transform:'translate('+dx+'px,'+dn+'px) rotate('+rot+'deg)',opacity:0}],{duration:900+Math.random()*300,easing:'ease-in'}).onfinish=()=>s.remove()}}
+function sync(){const g=document.getElementById('s-game');if(!g)return;
+ if(!on()){g.classList.remove('kxb');if(el){el.classList.remove('rage','hit','smug','tap','d1','d2','d3','d4')}key='';lvl=0;lastLayers=0;return}
+ if(!build())return;const wasOn=g.classList.contains('kxb'),f=faceOf(),k=f.k+'|'+(f.img||f.em);
+ if(k!==key){key=k;el.querySelector('.kxF').innerHTML=faceHTML(f);el.style.setProperty('--sk',f.col);el.dataset.sk=f.col}
+ g.classList.add('kxb');const L=level();if(L!==lvl){lvl=L;el.className=el.className.replace(/\bd[0-4]\b/g,'').trim();if(L)el.classList.add('d'+L)}
+ el.style.setProperty('--kd',(L/4).toFixed(2));
+ const rg=G.layers===1&&G.total>1;el.classList.toggle('rage',rg);
+ if(!wasOn){lastSay=0;setTimeout(()=>{if(on())say('start',true)},1900)}}
+window.KXB={sync,
+ layer(who){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI')return;sync();if(!el)return;
+  if(who===0){pulse('hit',600);shards();const lead=G.bk[0]>G.bk[1];say(G.layers===1?'last':(lead&&G.bk[0]>=2?'behind':'hurt'),true)}
+  else{pulse('smug',950);say(G.bk[1]>G.bk[0]?'ahead':'smug',true)}}catch(e){}},
+ chip(){try{if(on()&&el)pulse('tap',300)}catch(e){}},
+ mock(){try{const n=Date.now();if(on()&&el&&n-mockT>6000&&Math.random()<.6){mockT=n;pulse('smug',950);say('mock')}}catch(e){}},
+ end(w){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI'||w<0||G.kxEnd)return;G.kxEnd=1;const win=w===0,f=faceOf(),d=document.createElement('div');d.className='kxFall';d.style.setProperty('--sk',f.col);
+  d.innerHTML='<div class="kxF">'+faceHTML(f)+'</div><div class="kxC">'+CR.join('')+'</div><div class="kxT">'+pk(win?KXL.fall:KXL.win)+'</div>';
+  if(win){d.querySelectorAll('.kxC svg').forEach(s=>s.style.display='block')}else{d.querySelectorAll('.kxC').forEach(c=>c.remove())}
+  document.body.appendChild(d);if(el){el.classList.remove('rage')}
+  if(RM||!d.animate){setTimeout(()=>d.remove(),1400);return}
+  const A=win?[{transform:'scale(.5) translateY(30px)',opacity:0,filter:'brightness(1)',offset:0},{transform:'scale(1)',opacity:1,offset:.12},{transform:'translate(-8px,0) rotate(-4deg)',filter:'brightness(2.4)',offset:.22},{transform:'translate(8px,0) rotate(4deg)',filter:'brightness(1)',offset:.32},{transform:'translate(-5px,0) rotate(-3deg)',offset:.42},{transform:'translate(0,10px) rotate(8deg) scale(.96)',opacity:1,filter:'grayscale(.6) brightness(.8)',offset:.55},{transform:'translate(10px,260px) rotate(50deg) scale(.5)',opacity:0,filter:'grayscale(1) brightness(.4)',offset:1}]
+  :[{transform:'scale(.6)',opacity:0,offset:0},{transform:'scale(1.18)',opacity:1,offset:.2},{transform:'scale(1.08) rotate(-3deg)',opacity:1,offset:.6},{transform:'scale(1.12)',opacity:0,offset:1}];
+  d.animate(A,{duration:win?2100:1500,easing:'ease-in-out'}).onfinish=()=>d.remove();
+  if(win){const r=d.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;setTimeout(()=>{for(let i=0;i<10;i++){const s=document.createElement('i');s.className='kxShard';s.style.setProperty('--sk',f.col);s.style.left=cx+'px';s.style.top=cy+'px';document.body.appendChild(s);
+   const a=Math.random()*6.283,sp=70+Math.random()*120,dx=Math.cos(a)*sp,dy=Math.sin(a)*sp,rot=(Math.random()-.5)*720;
+   s.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+dx+'px,'+(dy-30)+'px) rotate('+rot*.5+'deg)',opacity:1,offset:.4},{transform:'translate('+dx*1.2+'px,'+(dy+170)+'px) rotate('+rot+'deg)',opacity:0}],{duration:1100+Math.random()*400,easing:'ease-in'}).onfinish=()=>s.remove()}},470)}
+ }catch(e){}}};
 })();
 </script>
 </body></html>
