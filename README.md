@@ -540,3 +540,6 @@ Bump `V` in `sw.js` after every change.
 
 ## v167 changes
 **Mini Games screen organised in three sections.** 🏅 **Rank Games** (the rank ladder, Tower first: every run pays XP and feeds rank trials), 🌍 **World Games** (the themed games of the world you wear, with a teaser of the other worlds), and 📊 **Overall** (games tried, total plays, mastery levels, Tower floor, and the numbers the rank trials look at). Cards now show best score, plays and mastery as chips; the next game to unlock glows. A game with a `wd` field in `MINI` is a world game, everything else is a rank game. Bump `V` in `sw.js` after every change.
+
+## v168 changes
+**Quests & Rewards**: a summary strip (ready to claim, daily, weekly), sections with progress pills, ready quests sorted first and glowing, claimed ones dimmed; rank rewards show ready and next-up ones, with later ranks and claimed ones folded into drop-downs. **Armory** hub grouped into Deals, Spend gems, Power up and Looks, with live sub-labels (gems, forge levels, relics owned). **Mini game result popup**: big score, best, stat line, reward chips, mastery bar and a mastery-up banner; Play Again on top, Mini Games and Main Menu side by side. The battle end screen is unchanged. Bump `V` in `sw.js` after every change.
