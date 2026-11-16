@@ -405,6 +405,23 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 #app .ecg button.lit{background:radial-gradient(circle at 50% 35%,#fff7c8,#ffd45a 55%,#e8a91c)!important;color:#2a1700!important;border-color:#fff3c4!important;text-shadow:none;transform:scale(1.06);box-shadow:0 0 0 3px #ffd45a66,0 0 26px #ffd45acc,0 0 60px #ffb34788,inset 0 2px 0 #fff!important}
 #app .ecg button.bad{background:radial-gradient(circle at 50% 35%,#ffb0a0,#ff4d3a 60%,#9a1408)!important;color:#fff!important;border-color:#ffd0c8!important;box-shadow:0 0 24px #ff4d3acc,inset 0 2px 0 #fff6!important}
 
+/* 1.9.18: MEMORY ECHO themed background (the Oracle's Echo Chamber): deep indigo hall, breathing sound-rings, drifting motes, and a coloured ripple for every note. Accent follows the world theme via --gold. */
+#ecoFx{display:none}
+#s-mg.ecoBg{isolation:isolate;background:radial-gradient(circle at 50% 46%,#ffd45a24,#0000 52%),radial-gradient(ellipse at 50% 115%,#4a1d7a99,#0000 62%),radial-gradient(ellipse at 50% -10%,#1b3a8a55,#0000 55%),linear-gradient(180deg,#0a0620,#150b36 55%,#04020f)}
+@supports(background:color-mix(in srgb,red,blue)){#s-mg.ecoBg{background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--gold) 16%,transparent),#0000 52%),radial-gradient(ellipse at 50% 115%,#4a1d7a99,#0000 62%),radial-gradient(ellipse at 50% -10%,#1b3a8a55,#0000 55%),linear-gradient(180deg,#0a0620,#150b36 55%,#04020f)}}
+#s-mg.ecoBg #ecoFx{display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;animation:none!important}
+#ecoFx::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000b,#0000 20%,#0000 80%,#000b),linear-gradient(180deg,#0000 60%,#000a);box-shadow:inset 0 0 120px 20px #000c}
+#ecoFx .ew{position:absolute;left:50%;top:46%;width:min(130%,760px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:repeating-radial-gradient(circle,#0000 0 30px,#ffd45a1f 30px 31px);-webkit-mask:radial-gradient(circle,#000 15%,#0000 68%);mask:radial-gradient(circle,#000 15%,#0000 68%);animation:ecoBr 7s ease-in-out infinite}
+@supports(background:color-mix(in srgb,red,blue)){#ecoFx .ew{background:repeating-radial-gradient(circle,#0000 0 30px,color-mix(in srgb,var(--gold) 14%,transparent) 30px 31px)}}
+@keyframes ecoBr{50%{transform:translate(-50%,-50%) scale(1.07);opacity:.65}}
+#ecoFx i{position:absolute;bottom:-8px;width:var(--s);height:var(--s);border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);opacity:0;animation:ecoUp var(--d) linear var(--w) infinite}
+@keyframes ecoUp{0%{transform:translate(0,0);opacity:0}10%{opacity:.8}90%{opacity:.45}100%{transform:translate(22px,-105vh);opacity:0}}
+#ecoFx .rp{position:absolute;width:44px;height:44px;margin:-22px;border-radius:50%;border:3px solid hsl(var(--h) 95% 68%);box-shadow:0 0 22px hsl(var(--h) 95% 60%),inset 0 0 16px hsl(var(--h) 95% 60%);animation:ecoRp 1s ease-out forwards}
+#ecoFx .rp::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid hsl(var(--h) 95% 75%);animation:ecoRp 1s ease-out .14s forwards;opacity:0}
+#ecoFx .rp.bad{border-color:#ff4d3a;box-shadow:0 0 22px #ff4d3a,inset 0 0 16px #ff4d3a}
+@keyframes ecoRp{0%{transform:scale(.4);opacity:.95}100%{transform:scale(9);opacity:0}}
+@media(prefers-reduced-motion:reduce){#ecoFx i{display:none}#ecoFx .ew{animation:none}#ecoFx .rp,#ecoFx .rp::after{animation-duration:.01s}}
+
 /* ---- v32: Worlds. A world = one block like this (variables only) + one entry in WORLDS in the script. ---- */
 html.wd-cyber{--hs:150deg;--ss:1.15;--gold:#19f2ff;--sand:#d7fbff;--red:#ff2a8a;--ink:#04050d;--wtint:linear-gradient(150deg,#00e5ff,#6b2cff 55%,#ff2a8a);--wblend:color;--wimg:hue-rotate(150deg) saturate(1.15);--wfont:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace}
 html[class*="wd-"] #app img{filter:var(--wimg)}
@@ -2920,7 +2937,7 @@ function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;cons
  try{const bb=$('#mgBrag');MGB=null;if(bb){bb.style.display='none';if(k!=='tower'&&X.score>0&&l1>l0){MGB={kind:'mini',o:{name:M.n,em:M.e,title:l1>l0?'MASTERY LEVEL '+l1:M.n.toUpperCase(),big:X.score,lab:nb?'NEW BEST':'SCORE',meta:M.e+' '+M.n+' · best '+m.b+' · mastery L'+l1+' · '+m.p+' plays',share:M.e+' New best of '+X.score+' in '+M.n+' on MindStrike! Can you beat it?'}};bb.style.display=''}}}catch(e){}
  $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
 function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))return;const M=MINI[i];try{twThOff()}catch(e){}
- X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};$('#s-mg').style.setProperty('--bg','url(img/game_bg.webp)');
+ X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};$('#s-mg').style.setProperty('--bg','url(img/game_bg.webp)');try{ecTheme(k==='echo')}catch(e){}
  $('#mgRes').classList.remove('on');$('#mgTitle').textContent=M.e+' '+M.n;$('#mgNum').value='';$('#mgChips').innerHTML='';$('#mgBoard').innerHTML='';$('#mgRange').textContent='';
  $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'||k==='tower'||k==='rush'?'grid':'none';$('#mgPw').style.gridTemplateColumns='repeat(3,1fr)';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
  if(k==='gaunt'||k==='rush')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
@@ -3247,14 +3264,37 @@ function orFire(g){X.tr++;
  if(X.tr>=2){X.lives--;X.busy=true;orShow(true);if(X.lives<=0)return mgFail(`Out of lives — it was ${X.ans} (${X.rule}).`);
   sfx('buzz');shake();mgSet(`💔 It was ${X.ans} — ${X.rule}.`);setTimeout(()=>{if(!X.done)orRound()},2200);return}
  sfx('buzz');mgSet('Not quite — one more try!')}
+// -- Memory Echo (1.9.18): themed background + one instrument per key --
+const EC_HZ=[261.63,293.66,329.63,392,440,523.25,587.33,659.25,783.99],EC_HUE=[350,24,46,128,172,202,232,272,314];
+function ecTheme(on){const m=$('#s-mg');if(!m)return;m.classList.toggle('ecoBg',!!on);let f=$('#ecoFx');if(on&&!f){f=document.createElement('div');f.id='ecoFx';f.setAttribute('aria-hidden','true');f.innerHTML='<span class="ew"></span>'+Array.from({length:14},(_,i)=>`<i style="left:${(i*37+11)%100}%;--d:${9+(i*5)%8}s;--w:${(-1.3*((i*53)%7)).toFixed(1)}s;--s:${2+i%3}px"></i>`).join('');m.insertBefore(f,m.firstChild)}}
+function ecPulse(n,bad){try{const m=document.getElementById('s-mg'),fx=document.getElementById('ecoFx'),b=document.querySelector('#mgBoard [data-ec="'+n+'"]');if(!m||!fx||!b||!m.classList.contains('ecoBg'))return;const r=b.getBoundingClientRect(),q=m.getBoundingClientRect(),e=document.createElement('b');e.className='rp'+(bad?' bad':'');e.style.cssText=`left:${r.left+r.width/2-q.left+m.scrollLeft}px;top:${r.top+r.height/2-q.top+m.scrollTop}px;--h:${EC_HUE[n-1]}`;fx.appendChild(e);setTimeout(()=>e.remove(),1200)}catch(x){}}
+// 1 kalimba · 2 marimba · 3 bell · 4 harp · 5 flute · 6 glass chime · 7 steel drum · 8 synth pluck · 9 horn pad
+function ecVoice(n,gain=1){if(S.mute||!S.sfx||!EC_HZ[n-1])return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+ const t=AC.currentTime,f=EC_HZ[n-1],out=AC.createGain();out.gain.value=.2*S.sfx*gain;out.connect(AC.destination);
+ const o=(ty,fr,pk,at,dc,dest=out,dt=0)=>{const s=AC.createOscillator(),g=AC.createGain();s.type=ty;s.frequency.value=fr;if(dt)s.detune.value=dt;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(pk,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+at+dc);s.connect(g);g.connect(dest);s.start(t);s.stop(t+at+dc+.05);return s},
+ lp=(a,b,dc,q=1)=>{const F=AC.createBiquadFilter();F.type='lowpass';F.Q.value=q;F.frequency.setValueAtTime(a,t);F.frequency.exponentialRampToValueAtTime(b,t+dc);F.connect(out);return F},
+ fm=(ratio,idx,pk,dc)=>{const c=o('sine',f,pk,.004,dc),m=AC.createOscillator(),g=AC.createGain();m.frequency.value=f*ratio;g.gain.setValueAtTime(f*idx,t);g.gain.exponentialRampToValueAtTime(1,t+dc);m.connect(g);g.connect(c.frequency);m.start(t);m.stop(t+dc+.1)};
+ switch(n){
+  case 1:o('sine',f,.9,.003,.75);o('sine',f*6.3,.22,.002,.09);break;
+  case 2:o('sine',f,.9,.004,.45);o('sine',f*4,.35,.002,.12);break;
+  case 3:fm(3.5,2.2,.8,1.3);break;
+  case 4:{const F=lp(f*10,f*2,.5);o('triangle',f,.9,.003,.9,F);o('sine',f*2,.25,.003,.4,F);break}
+  case 5:{const s=o('sine',f,.8,.07,.5),l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=5.5;lg.gain.value=f*.012;l.connect(lg);lg.connect(s.frequency);l.start(t);l.stop(t+.7);
+   const nb=AC.createBuffer(1,AC.sampleRate*.25,AC.sampleRate),d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const ns=AC.createBufferSource(),bp=AC.createBiquadFilter(),ng=AC.createGain();ns.buffer=nb;bp.type='bandpass';bp.frequency.value=f*2;bp.Q.value=6;ng.gain.setValueAtTime(.0001,t);ng.gain.linearRampToValueAtTime(.35,t+.04);ng.gain.exponentialRampToValueAtTime(.0001,t+.22);ns.connect(bp);bp.connect(ng);ng.connect(out);ns.start(t);break}
+  case 6:o('sine',f,.6,.002,1.1);o('sine',f*2.76,.3,.002,.7);o('sine',f*5.4,.15,.002,.35);break;
+  case 7:fm(2,1.4,.85,.6);break;
+  case 8:{const F=lp(f*7,f*1.2,.3,5);o('sawtooth',f,.5,.004,.36,F);o('square',f/2,.25,.004,.3,F);break}
+  case 9:{const F=AC.createBiquadFilter();F.type='lowpass';F.frequency.setValueAtTime(f*1.5,t);F.frequency.linearRampToValueAtTime(f*4,t+.14);F.connect(out);o('sawtooth',f,.4,.07,.55,F,-7);o('sawtooth',f,.4,.07,.55,F,7);break}
+ }}catch(e){}}
 // -- Echo Scroll (v31) --
 function ecInit(){X.seq=[];X.lives=2;X.cl=0;X.run=0;ecPlay(true)}
 function ecGrid(n){const x=X,len=x&&x.seq?x.seq.length:0,pos=x&&x.ph==='in'?(x.pos||0):0,sh=!x||x.ph!=='in';$('#mgBoard').innerHTML=`<div class="ecp"><b>${sh?'👀 WATCH':'👆 YOUR TURN'}</b><span>${Array.from({length:len},(_,i)=>`<i class="${i<pos?'on':''}"></i>`).join('')}</span></div><div class="mgg ecg">`+[1,2,3,4,5,6,7,8,9].map(i=>`<button data-ec="${i}" class="${n===i?'lit':''}">${i}</button>`).join('')+'</div>'}
 function ecPlay(add){const x=X;if(add)x.seq.push(rnd(1,9));x.ph='show';x.busy=true;x.pos=0;x.run++;const run=x.run,sp=Math.max(280,650-30*x.seq.length),ok=()=>X===x&&!x.done&&x.run===run;
  ecGrid();mgUpd();mgSet(add?`🧠 Echo ${x.seq.length} — watch closely…`:'🧠 Watch again…');
- x.seq.forEach((n,i)=>setTimeout(()=>{if(!ok())return;ecGrid(n);tone(260+n*55,.18,'triangle');setTimeout(()=>{if(ok())ecGrid()},sp*.7)},800+i*sp));
+ x.seq.forEach((n,i)=>setTimeout(()=>{if(!ok())return;ecGrid(n);ecVoice(n);ecPulse(n);setTimeout(()=>{if(ok())ecGrid()},sp*.7)},800+i*sp));
  setTimeout(()=>{if(!ok())return;x.ph='in';x.busy=false;ecGrid();mgSet('Your turn — repeat the sequence!')},800+x.seq.length*sp)}
-function ecTap(n){if(!X||X.k!=='echo'||X.done||X.busy||X.ph!=='in')return;const x=X;tone(260+n*55,.12,'triangle');const tb=document.querySelector('#mgBoard [data-ec="'+n+'"]');if(tb){tb.classList.add('tap');setTimeout(()=>tb.classList.remove('tap'),170)}
+function ecTap(n){if(!X||X.k!=='echo'||X.done||X.busy||X.ph!=='in')return;const x=X;ecVoice(n,1.1);const tb=document.querySelector('#mgBoard [data-ec="'+n+'"]');if(tb){tb.classList.add('tap');setTimeout(()=>tb.classList.remove('tap'),170)}
+ ecPulse(n,n!==x.seq[x.pos]);
  if(n===x.seq[x.pos]){x.pos++;{const dd=document.querySelectorAll('#mgBoard .ecp i')[x.pos-1];if(dd)dd.classList.add('on')}if(x.pos>=x.seq.length){const pts=6*x.seq.length;x.score+=pts;x.cl=x.seq.length;x.busy=true;sfx('ding');ft('+'+pts);mgUpd();
    if(x.seq.length>=20){x.score+=100;mgSet('🧠 Perfect memory! +100');return mgOver('🏆 Echo mastered!')}
    mgSet(`✅ +${pts}`);setTimeout(()=>{if(X===x&&!x.done)ecPlay(true)},900)}return}
@@ -7599,7 +7639,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.17';
+window.APP_VER='1.9.18';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}

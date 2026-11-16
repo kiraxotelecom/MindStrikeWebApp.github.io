@@ -682,3 +682,6 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.17 changes
 **Fix: Memory Echo buttons stacked in one column** and ran off the screen, so the game could not be played. `.mgg.ecg` had no column definition; it now has `grid-template-columns:repeat(3,minmax(0,1fr))`, giving a 3×3 pad. Bump `V` in `sw.js` and `APP_VER` after every change.
+
+## 1.9.18 changes
+**Memory Echo gets a theme and a voice.** The game now plays in the *Echo Chamber*: a deep indigo hall with breathing sound-rings and drifting motes (accent colour follows the world theme through `--gold`), and every note sends a coloured ripple across the screen from the key that played. Each of the 9 keys has its own synthesized instrument on a C-major pentatonic scale, so any sequence sounds musical: 1 kalimba, 2 marimba, 3 bell, 4 harp, 5 flute, 6 glass chime, 7 steel drum, 8 synth pluck, 9 horn pad. The same voice plays when the game shows the sequence and when you press the key. No new files: everything is CSS and WebAudio (`ecTheme`, `ecPulse`, `ecVoice`), it respects Mute and the SFX volume, and motion is switched off for reduced-motion users. Bump `V` in `sw.js` and `APP_VER` after every change.
