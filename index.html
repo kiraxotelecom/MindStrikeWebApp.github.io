@@ -6933,6 +6933,8 @@ gold:['#f1e2b8','#d4a017','turban'],djinn:['#2a1a6a','#9a82ff','turban','#6f63d8
 astral:['#1a1040','#b48cff','halo','#5a4a9a'],starmaw:['#0c0a24','#b48cff','crown','#4a3a8a'],
 atlantis:['#0e4a6a','#3df2e0','crown','#2f8f9a'],leviathan:['#0a2a4a','#3df2e0','tusks','#2a7a8a'],
 alchemist:['#f6f1ff','#c04bd8','goggles'],jungle:['#2a4a1a','#8be04a','mane','#d89a3a'],stampede:['#5a3a1a','#d8a040','tusks','#b88a4a']};
+/* v1.9.15: DAMAGE THAT BUILDS. In the boss fight #kxB carries --kd (0 to 1, from the shield layers you have broken). Torso damage (.bzDb) fades in first, head damage (.bzDh) after it. Outside the fight --kd is unset, so the Gallery and the endings show full damage. */
+{const st=document.createElement('style');st.textContent='.bzDb{opacity:calc(var(--kd,1)*1.5 - .1);transition:opacity .7s}.bzDh{opacity:calc(var(--kd,1)*1.4 - .3);transition:opacity .7s}';document.head.appendChild(st)}
 let UID=0;const hs=s=>{let h=7;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h};
 const HG={
  plume:a=>`<path d="M27 50Q28 22 60 21Q92 22 93 50L86 52Q60 36 34 52Z" fill="#2a2630" stroke="${a}" stroke-width="2.5"/><path d="M60 20Q38 -2 24 22Q46 12 60 30Q74 12 96 22Q82 -2 60 20Z" fill="#c0262d"/>`,
@@ -6997,14 +6999,14 @@ ${scar}${beard}
 <g data-s="hurt"><path d="M39 55L55 61L39 67M81 55L65 61L81 67" fill="none" stroke="#12060a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 49L57 55M85 49L63 55" stroke="#12060a" stroke-width="3.8" stroke-linecap="round"/><path d="M48 79h24v9H48z" fill="#2a0a0f"/><path d="M48 83.5h24M54 79v9M60 79v9M66 79v9" stroke="#f2ead8" stroke-width="1.8"/><path d="M90 40q-4 7 0 11q4-4 0-11z" fill="#7fd6ff"/></g>
 <g data-s="rage"><path d="M37 60Q47 52 58 62Q47 67 37 60Z M83 60Q73 52 62 62Q73 67 83 60Z" fill="#ff3b2a"/><circle class="gl" cx="48" cy="61" r="2.4" fill="#fff"/><circle class="gl" cx="72" cy="61" r="2.4" fill="#fff"/><path d="M33 47L58 62M87 47L62 62" stroke="#12060a" stroke-width="4.4" stroke-linecap="round"/><path d="M46 78Q60 72 74 78L72 91Q60 96 48 91Z" fill="#5a0a14"/><path d="M50 78v6M56 76v8M64 76v8M70 78v6" stroke="#f2ead8" stroke-width="2.4"/><path d="M54 38Q58 44 56 49M66 36Q62 42 64 47" stroke="#ff3b2a" stroke-width="1.8" fill="none"/></g>
 <g data-s="dead" fill="none" stroke="#12060a" stroke-width="3.4" stroke-linecap="round"><path d="M40 55L54 67M54 55L40 67M66 55L80 67M80 55L66 67"/><path d="M49 84Q60 79 71 84" stroke-width="3"/><path d="M60 84q0 7 4.5 8q3.5-1 2.5-8z" fill="#e0607a" stroke="none"/></g>
-${FR[hg]||''}${HG[hg](ac)}${dm.h}
+${FR[hg]||''}${HG[hg](ac)}<g class="bzDh">${dm.h}</g>
 ${em&&!/crown|turban|halo/.test(hg)?`<path d="M30 40Q60 14 90 40" fill="none" stroke="${ac}" stroke-width="3" stroke-dasharray="7 4" stroke-linecap="round"/>`:''}
 `,
  st=ST[k]||'legion',arm=st==='tribal'?skin:ar,
  pad=st==='tribal'?`<ellipse cx="31" cy="77" rx="11" ry="9" fill="${skin}" stroke="${ac}" stroke-width="2"/><ellipse cx="89" cy="77" rx="11" ry="9" fill="${skin}" stroke="${ac}" stroke-width="2"/>`:`<path d="M15 85Q14 66 32 62L51 67L47 89Q30 95 15 85Z" fill="${ar}" stroke="${ac}" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 79Q32 70 46 75" stroke="${ac}" stroke-width="2" fill="none" opacity=".85" stroke-linecap="round"/><path d="M105 85Q106 66 88 62L69 67L73 89Q90 95 105 85Z" fill="${ar}" stroke="${ac}" stroke-width="2.4" stroke-linejoin="round"/><path d="M100 79Q88 70 74 75" stroke="${ac}" stroke-width="2" fill="none" opacity=".85" stroke-linecap="round"/>`,
  cape=dm.s+(em?`<circle class="gl" cx="60" cy="92" r="64" fill="${ac}" opacity=".13"/><path d="M34 72Q8 112 14 158L106 158Q112 112 86 72Z" fill="#12060a"/><path d="M34 72Q14 114 20 154L42 154ZM86 72Q106 114 100 154L78 154Z" fill="${ar}" opacity=".55"/>`:''),
  T=`<path d="M30 74Q60 66 90 74L87 120Q60 127 33 120Z"`,
- shade=`<path d="M39 78Q37 100 34 116" stroke="#fff" stroke-width="4" opacity=".16" fill="none" stroke-linecap="round"/><path d="M82 78Q85 100 88 116" stroke="#000" stroke-width="5" opacity=".18" fill="none" stroke-linecap="round"/>`+dm.b,
+ shade=`<path d="M39 78Q37 100 34 116" stroke="#fff" stroke-width="4" opacity=".16" fill="none" stroke-linecap="round"/><path d="M82 78Q85 100 88 116" stroke="#000" stroke-width="5" opacity=".18" fill="none" stroke-linecap="round"/>`+'<g class="bzDb">'+dm.b+'</g>',
  legs=(c,w)=>`<path d="M47 120L45 152M73 120L75 152" stroke="${c}" stroke-width="${w||13}" stroke-linecap="round"/>`,
  boots=`<ellipse cx="44" cy="156" rx="12" ry="6" fill="${ar}" stroke="${ac}" stroke-width="2"/><ellipse cx="76" cy="156" rx="12" ry="6" fill="${ar}" stroke="${ac}" stroke-width="2"/>`,
  B={
@@ -7516,7 +7518,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.14';
+window.APP_VER='1.9.15';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
