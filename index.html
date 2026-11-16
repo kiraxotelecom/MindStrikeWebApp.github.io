@@ -399,7 +399,7 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 .cdr{display:flex;gap:8px;width:min(94%,360px)}.cdr button{min-width:0;flex:1 1 0;padding:14px 6px;font-size:.95rem;letter-spacing:.04em;white-space:nowrap}
 /* 1.9.1: MEMORY ECHO board. Bigger tiles in a framed panel, a WATCH / YOUR TURN pill with progress dots, press and wrong-tap feedback. Resting colour still follows the world theme. */
 .ecp{display:flex;align-items:center;justify-content:space-between;gap:10px;width:min(94%,372px,52vh);margin-bottom:8px}.ecp b{font:700 .72rem Cinzel,Georgia,serif;letter-spacing:.14em;padding:5px 11px;border-radius:99px;background:rgb(var(--k) / .6);border:1px solid var(--gold);color:var(--sand);white-space:nowrap}.ecp span{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}.ecp i{width:9px;height:9px;border-radius:50%;background:#ffffff26;border:1px solid #ffffff40}.ecp i.on{background:var(--gold);border-color:#fff;box-shadow:0 0 6px var(--gold)}
-.mgg.ecg{gap:12px;width:min(94%,372px,52vh);padding:12px;border-radius:24px;background:rgb(var(--k) / .45);border:1px solid var(--gold);box-shadow:inset 0 0 30px #000a,0 10px 30px #000a;box-sizing:border-box}
+.mgg.ecg{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(94%,372px,52vh);padding:12px;border-radius:24px;background:rgb(var(--k) / .45);border:1px solid var(--gold);box-shadow:inset 0 0 30px #000a,0 10px 30px #000a;box-sizing:border-box}
 #app .ecg button{border-radius:18px;border-width:2px;font:700 2.2rem Cinzel,Georgia,serif;box-shadow:0 5px 0 #000b,inset 0 2px 0 #ffffff33,inset 0 -18px 26px #0006;text-shadow:0 2px 0 #000a;transition:transform .09s,box-shadow .09s,filter .12s,background .12s}
 #app .ecg button:active,#app .ecg button.tap{transform:translateY(3px) scale(.97);box-shadow:0 2px 0 #000b,inset 0 2px 0 #ffffff22,inset 0 -18px 26px #0006;filter:brightness(1.3)}
 #app .ecg button.lit{background:radial-gradient(circle at 50% 35%,#fff7c8,#ffd45a 55%,#e8a91c)!important;color:#2a1700!important;border-color:#fff3c4!important;text-shadow:none;transform:scale(1.06);box-shadow:0 0 0 3px #ffd45a66,0 0 26px #ffd45acc,0 0 60px #ffb34788,inset 0 2px 0 #fff!important}
@@ -7599,7 +7599,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.16';
+window.APP_VER='1.9.17';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
