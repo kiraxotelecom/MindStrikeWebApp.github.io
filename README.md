@@ -608,3 +608,8 @@ Bump `V` in `sw.js` after every change.
 
 ## 1.8.8 changes
 - **Launch animation simplified.** The long cinematic launch (1.8.3 and 1.8.4: storm, orbs, molten 711, world storms) is removed because players did not like it. The simple 1.8.1 launch is back, with the big number fixed at **711**.
+
+## 1.8.9 changes
+- **Boss endings breathe.** The ending animation now holds longer before the score screen: emperors about 3.6 s after the last beat (was 2.6 s), route generals about 2.8 s (was about 1.3 s). Taps in the first 1.2 s no longer skip it, so a last keypad tap cannot cut the fall short; after that, tap to skip still works. Tune the two numbers in `play()` of the boss-endings script.
+- **Brag cards are rewards.** The 📸 BRAG CARD on the end screen now appears only for a boss, a region general or a region medal. Removed for 3-star clears, Hard wins and high scores. Mini games show it only on a mastery level-up (not every new best). Online and tug-of-war wins show it only at a rivalry milestone (your 5th, 10th, 25th, 50th, 100th win over the same opponent; `onBragOK`). Tower, streak and conquest cards are unchanged.
+

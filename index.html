@@ -2505,7 +2505,7 @@ function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;cons
  const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
  $('#mgRT').innerHTML=`${M.e} ${M.n}`;
  {const lo=60*l1*l1,pc=l1>=10?100:Math.round((m.t-lo)/(60*(l1+1)*(l1+1)-lo)*100);$('#mgRB').innerHTML=`<div class="rsHero"><small>${nb&&X.score>0?'🏆 NEW BEST':'SCORE'}</small><b>${X.score}</b><span>Best ${m.b}</span></div><div class="rsStat">${X.sum&&X.sum!==stat?X.sum+'<br>':''}${stat}</div><div class="rsRew"><span>+${coins} 💰</span><span>+${xp} XP</span></div>${l1>l0?`<div class="rsUp">⭐ MASTERY LEVEL ${l1}!<small>+${25*l1} 💰 bonus included</small></div>`:''}${(()=>{try{if(!/^tm_/.test(k))return'';const w=k.slice(3),t1=themePts(w),t0=Math.max(0,t1-X.score);return(t1>=STAMP_PTS&&t0<STAMP_PTS||(X.score>0&&t1<STAMP_PTS&&regionDone(w)))&&stampNote(w)?'<div class="rsStat"><small>'+stampNote(w).replace(/^<br>/,'')+'</small></div>':''}catch(e){return''}})()}<div class="rsMast"><small>⭐ Mastery L${l1}${l1>=10?' MAX':''} · ${m.p} ${m.p===1?'play':'plays'}</small><div class="qb"><i style="width:${pc}%"></i></div></div>`}
- try{const bb=$('#mgBrag');MGB=null;if(bb){bb.style.display='none';if(k!=='tower'&&X.score>0&&(nb||l1>l0)){MGB={kind:'mini',o:{name:M.n,em:M.e,title:l1>l0?'MASTERY LEVEL '+l1:M.n.toUpperCase(),big:X.score,lab:nb?'NEW BEST':'SCORE',meta:M.e+' '+M.n+' · best '+m.b+' · mastery L'+l1+' · '+m.p+' plays',share:M.e+' New best of '+X.score+' in '+M.n+' on MindStrike! Can you beat it?'}};bb.style.display=''}}}catch(e){}
+ try{const bb=$('#mgBrag');MGB=null;if(bb){bb.style.display='none';if(k!=='tower'&&X.score>0&&l1>l0){MGB={kind:'mini',o:{name:M.n,em:M.e,title:l1>l0?'MASTERY LEVEL '+l1:M.n.toUpperCase(),big:X.score,lab:nb?'NEW BEST':'SCORE',meta:M.e+' '+M.n+' · best '+m.b+' · mastery L'+l1+' · '+m.p+' plays',share:M.e+' New best of '+X.score+' in '+M.n+' on MindStrike! Can you beat it?'}};bb.style.display=''}}}catch(e){}
  $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
 function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))return;const M=MINI[i];try{twThOff()}catch(e){}
  X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};
@@ -3490,7 +3490,7 @@ function finish(w){let kxH=null;try{kxH=KXB.end(w)||null}catch(e){}const g0=G,kx
  render0();campBtns(win);try{endBrag(win,draw,cr)}catch(e){}{const nb=$('#nextB');$$('#s-end .vbt button').forEach(b=>b.classList.remove('pri'));(G.cf&&G.cf.gr?$('#mapB'):nb.style.display==='none'?$('#again'):nb).classList.add('pri')}kxL(()=>{stack.push('s-end');show('s-end');vCount();if(win&&!RM){setTimeout(()=>burst(['🎉','✨','🪙','⭐'],26),900);setTimeout(()=>burst(['✨','🏆','🎊'],20),1700)}})}
 function vCount(){$$('#ends .cnt').forEach(e=>{const to=+e.dataset.to,pre=e.dataset.pre||'';if(RM||to<2){e.textContent=pre+to;return}const t0=performance.now(),d=Math.min(1400,500+to*1.2);e.textContent=pre+'0';const f=n=>{const q=Math.min(1,Math.max(0,(n-t0-350)/d));e.textContent=pre+Math.round(to*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 
-/* v166: end-of-battle brag. 📸 BRAG CARD shows on every important win (boss, region general, region medal, 3-star clear, Hard win, new high score); the first win over each boss or general (and each new medal) also opens the card by itself, unless a Conquest card is already coming. Tune what counts in endBrag. */
+/* v166 (narrowed in 1.8.9): end-of-battle brag. The 📸 BRAG CARD is a reward, so it shows only for a boss, a region general or a region medal (not 3-star clears, Hard wins or high scores any more); the first win over each boss or general (and each new medal) also opens the card by itself, unless a Conquest card is already coming. Tune what counts in endBrag. */
 let ENDB=null,MGB=null;
 function endBrag(win,draw,cr){ENDB=null;const b=$('#bragB');if(b)b.classList.remove('on');
  if(!win||draw||!window.ARIS||!ARIS.bragWin||!G||!(G.mode==='AI'||(G.mode==='PVP'&&G.boss)))return;
@@ -3502,8 +3502,6 @@ function endBrag(win,draw,cr){ENDB=null;const b=$('#bragB');if(b)b.classList.rem
  else if(G.boss){const W=WINB[wdKey()]||WINB.roman,gen=!!(cfg.bs&&!cfg.fin);kind=gen?'gen':'boss';auto=true;
   o={tc:1,name:foe,big:G.score[0],meta:'👹 '+foe+' · '+base,share:(gen?'🏴 I defeated ':'👑 I defeated ')+foe+' in MindStrike! Can you?'};
   if(!gen){o.ban=W[1];o.c=W[2];o.cf=W[0].concat(['✨'])}}
- else if(cfg&&stars>=3){kind='win';o={tc:1,name:cfg.nn||foe,title:'3-STAR CLEAR',em:'⭐',big:G.score[0],ban:'3 STARS',meta:'⭐⭐⭐ '+(cfg.rn?cfg.rn+' · ':'')+base,share:'⭐⭐⭐ Three-star clear in MindStrike! Can you match it?'}}
- else if(G.mode==='AI'&&(G.d==='Hard'||(G.hs&&!G.cf&&G.hs.isNew))){const hs=!!(G.hs&&!G.cf&&G.hs.isNew);kind='win';o={tc:1,name:foe,title:hs?'NEW HIGH SCORE':'HARD MODE WIN',em:hs?'🏆':'🔥',big:G.score[0],ban:hs?'HIGH SCORE':'HARD WIN',meta:base,share:(hs?'🏆 New high score ':'🔥 Hard mode win ')+'in MindStrike! Can you beat it?'}}
  if(!kind)return;ENDB={kind,o};if(b)b.classList.add('on');
  if(auto&&!G.bq){PRO.bgw=PRO.bgw||{};const bk=kind+'|'+(o.name||'')+(md?'|'+md[1]:'');if(!PRO.bgw[bk]){PRO.bgw[bk]=1;LS.set('ms_pro',PRO);const me=ENDB,fire=()=>setTimeout(()=>{if(ENDB===me)try{ARIS.bragWin(kind,o)}catch(e){}},2600);window.__kxH?window.__kxH.then(fire):fire()}}}
 $('#bragB').onclick=()=>{sfx('click');if(ENDB)try{ARIS.bragWin(ENDB.kind,ENDB.o)}catch(e){}};
@@ -3934,6 +3932,8 @@ async function hash(s){const b=await crypto.subtle.digest('SHA-256',new TextEnco
 // ---- family record (stored on this phone) ----
 function famGet(){return LS.get('ms_fam',{})}
 function famRecord(a,b,win){if(!a||!b||a===b)return;const f=famGet(),k=[a,b].sort(),key=k.join('|'),e=f[key]||{a:k[0],b:k[1],aw:0,bw:0};if((win?a:b)===e.a)e.aw++;else e.bw++;f[key]=e;LS.set('ms_fam',f)}
+/* 1.8.9: an online win only earns a brag card at a rivalry milestone: your 5th, 10th, 25th, 50th or 100th win over the same opponent. Call after famRecord. */
+function onBragOK(a,b){try{const e=famGet()[[a,b].sort().join('|')];if(!e)return false;const w=e.a===a?e.aw:e.bw;return [5,10,25,50,100].includes(w)}catch(x){return false}}
 function famLine(a,b){const e=famGet()[[a,b].sort().join('|')];return e?e.a+' '+e.aw+' – '+e.bw+' '+e.b:''}
 function famUI(){const rows=Object.values(famGet()).sort((x,y)=>(y.aw+y.bw)-(x.aw+x.bw)).slice(0,5);
  $('#oFam').innerHTML=rows.length?rows.map(e=>`<div class="card famr"><span>${e.a}</span><b>${e.aw} – ${e.bw}</b><span>${e.b}</span></div>`).join(''):'<small class="bm-note">Play a match to start your family record.</small>'}
@@ -4032,7 +4032,7 @@ function render(){if(R.cfg.mode==='tug'){renderTug();return}$('#oTug').hidden=tr
  let msg='';
  if(fin&&lastFin!==rKey){lastFin=rKey;if(fin.w===role){sfx('fanfare');burst(['🎉','✨','🏆'],24)}else{sfx('buzz');shake()}}
  if(sw&&fin)verify();
- if(R.st==='over'){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;famRecord(nmOf(role),nmOf(opp),win);if(win&&typeof unlock==='function')try{unlock('rival')}catch(e){}if(win)try{const o1={name:nmOf(opp),tc:0,big:(sc[role]||0)+'–'+(sc[opp]||0),meta:(MN[R.cfg.mode]||'Clash Online')+' · vs '+nmOf(opp)+' · '+famLine(nmOf(role),nmOf(opp)),share:'🌐 I won a Clash Online match against '+nmOf(opp)+' in MindStrike! Rematch?'};setTimeout(()=>{try{ARIS.bragWin('online',o1)}catch(e){}},1800)}catch(e){}}
+ if(R.st==='over'){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;famRecord(nmOf(role),nmOf(opp),win);if(win&&typeof unlock==='function')try{unlock('rival')}catch(e){}if(win&&onBragOK(nmOf(role),nmOf(opp)))try{const o1={name:nmOf(opp),tc:0,big:(sc[role]||0)+'–'+(sc[opp]||0),meta:(MN[R.cfg.mode]||'Clash Online')+' · vs '+nmOf(opp)+' · '+famLine(nmOf(role),nmOf(opp)),share:'🌐 I won a Clash Online match against '+nmOf(opp)+' in MindStrike! Rematch?'};setTimeout(()=>{try{ARIS.bragWin('online',o1)}catch(e){}},1800)}catch(e){}}
   msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>'+(sc[role]||0)+' – '+(sc[opp]||0)+'</small><br><small>Family record: '+famLine(nmOf(role),nmOf(opp))+'</small>'}
  else if(dr)msg='🎴 Pick a boost';
  else if(se)msg=sealed?'🔏 Scroll sealed. '+nmOf(opp)+' is still sealing…':'Pick a secret number for '+nmOf(opp)+'. Make it tricky!';
@@ -4147,7 +4147,7 @@ function renderTug(){const c=R.cfg,opp=oppOf(),T=R.tg||{p:0,lo:1,hi:100,s:{h:1,g
  if(T.k!==tgSeenK){const wasK=tgSeenK;if(wasK>=0&&T.k>0)sfx('click');tgSeenK=T.k;try{tgArisOn(T,ov,mine&&pl,sg,wasK>=0&&T.k>0)}catch(e){}}
  if(ov&&lastFin!==rKey){lastFin=rKey;try{ARIS.tugMove({neutral:true,tier:'blazing',n:nmOf(ov),d:0})}catch(e){}if(ov===role){sfx('fanfare');burst(['🪢','🏆','✨'],24)}else{sfx('buzz');shake()}}
  let msg='';
- if(over){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;try{ARIS.tugWin(nmOf(R.winner),nmOf(R.winner===role?opp:role))}catch(e){}famRecord(nmOf(role),nmOf(opp),win);if(win&&typeof unlock==='function')try{unlock('rival')}catch(e){}if(win)try{const o1={name:nmOf(opp),tc:0,big:(sc[role]||0)+'–'+(sc[opp]||0),meta:(MN[R.cfg.mode]||'Clash Online')+' · vs '+nmOf(opp)+' · '+famLine(nmOf(role),nmOf(opp)),share:'🌐 I won a Clash Online match against '+nmOf(opp)+' in MindStrike! Rematch?'};setTimeout(()=>{try{ARIS.bragWin('online',o1)}catch(e){}},1800)}catch(e){}}
+ if(over){const win=R.winner===role,id=code+'_'+R.ts+'_'+(R.mid||0);if(recId!==id){recId=id;try{ARIS.tugWin(nmOf(R.winner),nmOf(R.winner===role?opp:role))}catch(e){}famRecord(nmOf(role),nmOf(opp),win);if(win&&typeof unlock==='function')try{unlock('rival')}catch(e){}if(win&&onBragOK(nmOf(role),nmOf(opp)))try{const o1={name:nmOf(opp),tc:0,big:(sc[role]||0)+'–'+(sc[opp]||0),meta:(MN[R.cfg.mode]||'Clash Online')+' · vs '+nmOf(opp)+' · '+famLine(nmOf(role),nmOf(opp)),share:'🌐 I won a Clash Online match against '+nmOf(opp)+' in MindStrike! Rematch?'};setTimeout(()=>{try{ARIS.bragWin('online',o1)}catch(e){}},1800)}catch(e){}}
   msg=(win?'🏆 VICTORY':'💀 DEFEAT')+'<br><small>Ropes '+(sc[role]||0)+' – '+(sc[opp]||0)+'</small><br><small>Family record: '+famLine(nmOf(role),nmOf(opp))+'</small>'}
  else if(ov)msg=(ov===role?'🏆 You win the rope!':nmOf(ov)+' wins the rope.')+'<br><small>'+T.m+'<br>Next rope starting…</small>';
  else msg=(mine?'👇 Your pull! Tap a guess':nmOf(R.turn)+' is thinking… 🤔')+'<br><small>'+(T.m||'')+'</small>';
@@ -6721,11 +6721,11 @@ function play(o){
  let c;try{c=make(o)}catch(e){console.error('kxE build',e);try{document.getElementById('kxE').remove()}catch(_){}document.getElementById('app')&&document.getElementById('app').classList.remove('kxEon');return null}
  c.hold=hold;cur=c;const cv=c.el.querySelector('.kCv');if(!c.rm)Pt.init(cv,c.tf);
  requestAnimationFrame(()=>c.el.classList.add('on'));
- c.el.addEventListener('pointerdown',e=>{e.stopPropagation();if(c.dead)return;end(c,1)},true);
+ const t0=Date.now();c.el.addEventListener('pointerdown',e=>{e.stopPropagation();if(c.dead||Date.now()-t0<1200)return;end(c,1)},true);
  const skip=c.el.querySelector('.kSkip');c.at(2200,()=>skip&&skip.classList.add('off'));
  try{if(R.setup)R.setup(c,o.win)}catch(e){console.error('kxE setup',e)}
  (rec.s||[]).forEach(([t,f,fl])=>{if(fl==='e'&&!c.emp)return;c.at(t,f)});
- c.at(c.rm?1400/c.tf:rec.dur+(c.emp?0:-300)+(c.emp?2600:1800),()=>end(c));
+ c.at(c.rm?1400/c.tf:rec.dur+(c.emp?0:-300)+(c.emp?3600:2800)/(c.emp?1:GEN),()=>end(c));
  return hold}
 window.KXE={play,ENDS,end:()=>{if(cur)end(cur,1)},demo(world,win,emp,slow,k){TEST=slow||1;const L=(window.__klad||{})[world]||[];return play({world,win:win!==false,role:emp===false?'general':'emperor',seed:'DEMO',k:k||(world==='elementa'?'alchemist':L[emp===false?L.length-1:0])})},lastCtx:()=>cur};
 })();
@@ -6922,7 +6922,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.8.8';
+window.APP_VER='1.8.9';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
