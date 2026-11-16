@@ -628,3 +628,6 @@ Bump `V` in `sw.js` after every change.
 
 ## 1.9.3 changes
 Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (the other worlds still have 10). Uganda cards are all about the country; the Luganda counting card was removed. **Bonus cards:** the first win over any route general or Supreme General on a world map unlocks one extra card (labelled BONUS). Cards are in `COLS` in `index.html`.
+
+## 1.9.4 changes
+**Rank fix:** after a refresh the profile could show a lower rank (e.g. Researcher, XP capped) until a battle or the map redrew it, because the world-map trial check ran before the world-map module had loaded. The profile now redraws as soon as the map module is ready. **Cards:** Jungle Quest, Astral and Frostlands now have 40 cards each.
