@@ -613,3 +613,12 @@ Bump `V` in `sw.js` after every change.
 - **Boss endings breathe.** The ending animation now holds longer before the score screen: emperors about 3.6 s after the last beat (was 2.6 s), route generals about 2.8 s (was about 1.3 s). Taps in the first 1.2 s no longer skip it, so a last keypad tap cannot cut the fall short; after that, tap to skip still works. Tune the two numbers in `play()` of the boss-endings script.
 - **Brag cards are rewards.** The 📸 BRAG CARD on the end screen now appears only for a boss, a region general or a region medal. Removed for 3-star clears, Hard wins and high scores. Mini games show it only on a mastery level-up (not every new best). Online and tug-of-war wins show it only at a rivalry milestone (your 5th, 10th, 25th, 50th, 100th win over the same opponent; `onBragOK`). Tower, streak and conquest cards are unchanged.
 
+## 1.9.0 changes
+- **Rank-up brag card.** Reaching a new rank now opens the brag card (purple, chevron emblem, rank name) once per rank, about 3 s after the rank-up toast (`rankBrag`, tracked in `PRO.bgr`). It waits while a boss ending, another brag card or a live game is on screen. Hooked at all five rank-up sites (battle, mini game, tower, Conquest Map end, world map).
+- **Boss/medal card timing.** The automatic first-win card now opens 3.6 s after the score screen appears (was 2.6 s), only if you are still on the score screen and no other card is open.
+- **Bug fix:** the automatic card waited on a global ending promise (`window.__kxH`) that could be left over from an earlier boss fight; it now waits on the ending of the fight that just finished.
+
+## 1.9.1 changes
+- **Higher or Lower: bug fix.** The HIGHER / LOWER row ran off the right edge of the screen (LOWER was cut off) because every button has a global `min-width:230px`, so two of them could not fit in the 360 px row. The row is now `.cdr` with `min-width:0` on its buttons, so both fit side by side.
+- **Memory Echo: bigger, better-looking board** (design change). The 3x3 tiles are about 30% larger (up to 372 px wide, capped at 52% of screen height on short phones) in a framed panel, with rounded 3D tiles in the Cinzel face, a glowing gold "lit" state, a press animation, a red flash on a wrong tap, and a WATCH / YOUR TURN pill with progress dots (one per number in the echo) above the grid. Resting tile colour still follows the world theme. Styles are `.ecp` and `.ecg` in the CSS; markup is in `ecGrid()`.
+

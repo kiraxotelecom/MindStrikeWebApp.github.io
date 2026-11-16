@@ -396,6 +396,14 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 .orq{font:700 1.7rem Cinzel,Georgia,serif;letter-spacing:.06em;text-align:center;color:hsl(calc(38.2deg + var(--hs)),calc(55.9% * var(--ss)),calc(88.4% + var(--lt) * -76.8%));padding:8px 4px;line-height:1.5}.orq b{color:hsl(calc(44.1deg + var(--hs)),calc(73.7% * var(--ss)),calc(62.7% + var(--lt) * -25.4%))}.orq i{font-style:normal;color:#7ee08a}
 .cdc{width:92px;height:128px;border:2px solid hsl(calc(36.9deg + var(--hs)),calc(61.0% * var(--ss)),calc(60.8% + var(--lt) * -21.6%));border-radius:12px;display:grid;place-items:center;background:linear-gradient(160deg,hsl(calc(26.7deg + var(--hs)),calc(45.0% * var(--ss)),calc(15.7% + var(--lt) * 68.6%)),hsl(calc(25.7deg + var(--hs)),calc(46.7% * var(--ss)),calc(5.9% + var(--lt) * 88.2%)));font:700 3.2rem Cinzel,Georgia,serif;color:hsl(calc(40.0deg + var(--hs)),calc(81.8% * var(--ss)),calc(72.0% + var(--lt) * -44.0%));box-shadow:0 8px 20px #000a}
 .cdt{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;font-size:.75rem;color:hsl(calc(36.7deg + var(--hs)),calc(37.4% * var(--ss)),calc(74.3% + var(--lt) * -48.6%))}.cdt span{border:1px solid hsl(calc(30.9deg + var(--hs)),calc(42.7% * var(--ss)),calc(32.2% + var(--lt) * 35.6%));border-radius:6px;padding:1px 6px;background:rgb(var(--k) / 0.67)}.cdt span.z{opacity:.3}.cdt sup{color:hsl(calc(44.1deg + var(--hs)),calc(73.7% * var(--ss)),calc(62.7% + var(--lt) * -25.4%));margin-left:1px}
+.cdr{display:flex;gap:8px;width:min(94%,360px)}.cdr button{min-width:0;flex:1 1 0;padding:14px 6px;font-size:.95rem;letter-spacing:.04em;white-space:nowrap}
+/* 1.9.1: MEMORY ECHO board. Bigger tiles in a framed panel, a WATCH / YOUR TURN pill with progress dots, press and wrong-tap feedback. Resting colour still follows the world theme. */
+.ecp{display:flex;align-items:center;justify-content:space-between;gap:10px;width:min(94%,372px,52vh);margin-bottom:8px}.ecp b{font:700 .72rem Cinzel,Georgia,serif;letter-spacing:.14em;padding:5px 11px;border-radius:99px;background:rgb(var(--k) / .6);border:1px solid var(--gold);color:var(--sand);white-space:nowrap}.ecp span{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}.ecp i{width:9px;height:9px;border-radius:50%;background:#ffffff26;border:1px solid #ffffff40}.ecp i.on{background:var(--gold);border-color:#fff;box-shadow:0 0 6px var(--gold)}
+.mgg.ecg{gap:12px;width:min(94%,372px,52vh);padding:12px;border-radius:24px;background:rgb(var(--k) / .45);border:1px solid var(--gold);box-shadow:inset 0 0 30px #000a,0 10px 30px #000a;box-sizing:border-box}
+#app .ecg button{border-radius:18px;border-width:2px;font:700 2.2rem Cinzel,Georgia,serif;box-shadow:0 5px 0 #000b,inset 0 2px 0 #ffffff33,inset 0 -18px 26px #0006;text-shadow:0 2px 0 #000a;transition:transform .09s,box-shadow .09s,filter .12s,background .12s}
+#app .ecg button:active,#app .ecg button.tap{transform:translateY(3px) scale(.97);box-shadow:0 2px 0 #000b,inset 0 2px 0 #ffffff22,inset 0 -18px 26px #0006;filter:brightness(1.3)}
+#app .ecg button.lit{background:radial-gradient(circle at 50% 35%,#fff7c8,#ffd45a 55%,#e8a91c)!important;color:#2a1700!important;border-color:#fff3c4!important;text-shadow:none;transform:scale(1.06);box-shadow:0 0 0 3px #ffd45a66,0 0 26px #ffd45acc,0 0 60px #ffb34788,inset 0 2px 0 #fff!important}
+#app .ecg button.bad{background:radial-gradient(circle at 50% 35%,#ffb0a0,#ff4d3a 60%,#9a1408)!important;color:#fff!important;border-color:#ffd0c8!important;box-shadow:0 0 24px #ff4d3acc,inset 0 2px 0 #fff6!important}
 
 /* ---- v32: Worlds. A world = one block like this (variables only) + one entry in WORLDS in the script. ---- */
 html.wd-cyber{--hs:150deg;--ss:1.15;--gold:#19f2ff;--sand:#d7fbff;--red:#ff2a8a;--ink:#04050d;--wtint:linear-gradient(150deg,#00e5ff,#6b2cff 55%,#ff2a8a);--wblend:color;--wimg:hue-rotate(150deg) saturate(1.15);--wfont:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace}
@@ -2398,7 +2406,7 @@ function campEnd(win){const c=G.cf;if(c.gr)return grEnd(win);let h=`<br><b>🗺�
  if(!win)return{html:h+`<br><small>Defeated — try again. ⭐ win · ⭐ star goal · ⭐ no powers<br>Goal: ${objDesc(c.ob)}</small>`};
  qEv('conq');const cb=objCheck(G,c.ob,true),np=!G.powUsed,st=1+(cb?1:0)+(np?1:0),old=PRO.cp[c.k]||0,first=!old,gain=Math.max(0,st-old);let coins=cx(gain*(15+10*CAMP[c.ri].rw)),note='';
  if(c.boss&&first){const b=cx(100+50*CAMP[c.ri].rw);coins+=b;note+=`<br>🏴 General defeated · +${b} 💰 bonus`}
- const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
+ const rb=rk();if(st>old)PRO.cp[c.k]=st;PRO.gold+=coins;if(rk()>rb)rankBrag(rk());if(rk()>rb)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
  if(c.boss&&first){if(c.fin){unlock('conq');note+='<br>👑 <b>Kiraxo falls — Rome is yours!</b>';try{(G.bq=1,ARIS.bragConq)('wd',{name:'Rome',world:'🏛️',tot:CAMP.length})}catch(e){}}else{const nr=c.ri+1;try{(G.bq=1,ARIS.bragConq)('rg',{name:CAMP[c.ri].n,n:c.ri+1,tot:CAMP.length})}catch(e){}note+=rOpen(nr)?`<br>🔓 <b>${CAMP[nr].n} unlocked!</b>`:`<br>🔒 ${CAMP[nr].n} needs ⭐ ${CAMP[nr].need} in total (you have ${cTotal()})`}}
  return{html:h+`<br><span class="vstars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
 function campBtns(win){const c=G.cf;let nx=null;
@@ -2501,7 +2509,7 @@ function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
 function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;if(k==='tower')twEnd(m);const l1=mlv(m.t);
  const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=xpg(X.score/4+3),r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  try{if(/^tm_/.test(k))ppCheck()}catch(e){}
- if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
+ if(rk()>r0)rankBrag(rk());if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
  const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
  $('#mgRT').innerHTML=`${M.e} ${M.n}`;
  {const lo=60*l1*l1,pc=l1>=10?100:Math.round((m.t-lo)/(60*(l1+1)*(l1+1)-lo)*100);$('#mgRB').innerHTML=`<div class="rsHero"><small>${nb&&X.score>0?'🏆 NEW BEST':'SCORE'}</small><b>${X.score}</b><span>Best ${m.b}</span></div><div class="rsStat">${X.sum&&X.sum!==stat?X.sum+'<br>':''}${stat}</div><div class="rsRew"><span>+${coins} 💰</span><span>+${xp} XP</span></div>${l1>l0?`<div class="rsUp">⭐ MASTERY LEVEL ${l1}!<small>+${25*l1} 💰 bonus included</small></div>`:''}${(()=>{try{if(!/^tm_/.test(k))return'';const w=k.slice(3),t1=themePts(w),t0=Math.max(0,t1-X.score);return(t1>=STAMP_PTS&&t0<STAMP_PTS||(X.score>0&&t1<STAMP_PTS&&regionDone(w)))&&stampNote(w)?'<div class="rsStat"><small>'+stampNote(w).replace(/^<br>/,'')+'</small></div>':''}catch(e){return''}})()}<div class="rsMast"><small>⭐ Mastery L${l1}${l1>=10?' MAX':''} · ${m.p} ${m.p===1?'play':'plays'}</small><div class="qb"><i style="width:${pc}%"></i></div></div>`}
@@ -2619,7 +2627,7 @@ function twFall(){{const c=twc();c.mf=c.mf&&c.mf.f===X.f?{f:X.f,n:c.mf.n+1}:{f:X
  if(q.n>0){mgSet(msg+` 🔥 ${q.n}/${TQ_N} torches left.`);setTimeout(()=>{if(X&&X.k==='tower'&&!X.done)twFloor(true)},1700)}else twRest(msg+' No torches left.')}
 function twNext(){if(X.ev)return X.f%EV_REL===0?twDraft():twFloor();const c=twc(),m=mgm('tower'),f=X.f,r0=rk(),l0=mlv(m.t);c.f=f+1;const nw=f>(c.hw||0);if(nw)c.hw=f;if(nw)try{qEv('tfloor')}catch(e){}twStreak(c);if(nw&&f%5===0)c.pd=(c.pd||0)+1;
  if(nw)m.t+=X.lp||0;if(X.score>m.b)m.b=X.score;let co=!nw||f%5?0:8+Math.min(42,Math.floor(f/10));if(nw&&X.tw&&X.tw.g)co+=30*X.tw.g;if(co){PRO.gold+=cx(co);ft('+'+co+' 💰')}if(nw&&f%5===0)PRO.xp+=xpg(4);
- const l1=mlv(m.t);if(l1>l0)PRO.gold+=cx(25*l1);if(rk()>r0)toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b>`);
+ const l1=mlv(m.t);if(l1>l0)PRO.gold+=cx(25*l1);if(rk()>r0)rankBrag(rk());if(rk()>r0)toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b>`);
  twSave();if(f%5===0)twSync();try{twMile(f,c)}catch(e){}if(nw)try{twDown(f)}catch(e){}if(c.pd>0)twDraft();else twFloor()}
 /* v156: milestone floors show Aris's brag card once each (c.bg remembers which). Floors: BGS in the Aris script. */
 const TW_MS=[25,50,100,200,500,1000];
@@ -2766,23 +2774,23 @@ function orFire(g){X.tr++;
  sfx('buzz');mgSet('Not quite — one more try!')}
 // -- Echo Scroll (v31) --
 function ecInit(){X.seq=[];X.lives=2;X.cl=0;X.run=0;ecPlay(true)}
-function ecGrid(n){$('#mgBoard').innerHTML=`<div class="mgg" style="grid-template-columns:repeat(3,1fr);width:min(78%,270px)">`+[1,2,3,4,5,6,7,8,9].map(i=>`<button data-ec="${i}" class="${n===i?'lit':''}" style="font-size:1.5rem">${i}</button>`).join('')+'</div>'}
+function ecGrid(n){const x=X,len=x&&x.seq?x.seq.length:0,pos=x&&x.ph==='in'?(x.pos||0):0,sh=!x||x.ph!=='in';$('#mgBoard').innerHTML=`<div class="ecp"><b>${sh?'👀 WATCH':'👆 YOUR TURN'}</b><span>${Array.from({length:len},(_,i)=>`<i class="${i<pos?'on':''}"></i>`).join('')}</span></div><div class="mgg ecg">`+[1,2,3,4,5,6,7,8,9].map(i=>`<button data-ec="${i}" class="${n===i?'lit':''}">${i}</button>`).join('')+'</div>'}
 function ecPlay(add){const x=X;if(add)x.seq.push(rnd(1,9));x.ph='show';x.busy=true;x.pos=0;x.run++;const run=x.run,sp=Math.max(280,650-30*x.seq.length),ok=()=>X===x&&!x.done&&x.run===run;
  ecGrid();mgUpd();mgSet(add?`🧠 Echo ${x.seq.length} — watch closely…`:'🧠 Watch again…');
  x.seq.forEach((n,i)=>setTimeout(()=>{if(!ok())return;ecGrid(n);tone(260+n*55,.18,'triangle');setTimeout(()=>{if(ok())ecGrid()},sp*.7)},800+i*sp));
  setTimeout(()=>{if(!ok())return;x.ph='in';x.busy=false;ecGrid();mgSet('Your turn — repeat the sequence!')},800+x.seq.length*sp)}
-function ecTap(n){if(!X||X.k!=='echo'||X.done||X.busy||X.ph!=='in')return;const x=X;tone(260+n*55,.12,'triangle');
- if(n===x.seq[x.pos]){x.pos++;if(x.pos>=x.seq.length){const pts=6*x.seq.length;x.score+=pts;x.cl=x.seq.length;x.busy=true;sfx('ding');ft('+'+pts);mgUpd();
+function ecTap(n){if(!X||X.k!=='echo'||X.done||X.busy||X.ph!=='in')return;const x=X;tone(260+n*55,.12,'triangle');const tb=document.querySelector('#mgBoard [data-ec="'+n+'"]');if(tb){tb.classList.add('tap');setTimeout(()=>tb.classList.remove('tap'),170)}
+ if(n===x.seq[x.pos]){x.pos++;{const dd=document.querySelectorAll('#mgBoard .ecp i')[x.pos-1];if(dd)dd.classList.add('on')}if(x.pos>=x.seq.length){const pts=6*x.seq.length;x.score+=pts;x.cl=x.seq.length;x.busy=true;sfx('ding');ft('+'+pts);mgUpd();
    if(x.seq.length>=20){x.score+=100;mgSet('🧠 Perfect memory! +100');return mgOver('🏆 Echo mastered!')}
    mgSet(`✅ +${pts}`);setTimeout(()=>{if(X===x&&!x.done)ecPlay(true)},900)}return}
- x.lives--;sfx('buzz');shake();
+ x.lives--;sfx('buzz');shake();if(tb){tb.classList.remove('tap');tb.classList.add('bad')}
  if(x.lives<=0)return mgFail(`Wrong! The echo was ${x.seq.join(' ')}.`);
  x.busy=true;mgUpd();mgSet('💔 Wrong — a life lost. Same echo again…');setTimeout(()=>{if(X===x&&!x.done)ecPlay(false)},1200)}
 // -- Fate's Cards (v31) --
 function cdInit(){X.deck=[];for(let v=1;v<=10;v++)for(let c=0;c<3;c++)X.deck.push(v);for(let i=X.deck.length-1;i>0;i--){const j=rnd(0,i);[X.deck[i],X.deck[j]]=[X.deck[j],X.deck[i]]}
  X.cur=X.deck.pop();X.lives=3;X.st=0;X.pot=0;X.hits=0;X.busy=false;X.hist=[{txt:''+X.cur,c:'#e6c15a'}];mgChips();cdUI();mgSet('🃏 Three of each card, 1–10. Equal cards are a push. BANK your pot before a wrong call wipes it.')}
 function cdUI(){const rem=X.deck.length,hi=X.deck.filter(v=>v>X.cur).length,lo=X.deck.filter(v=>v<X.cur).length,pc=n=>rem?Math.round(n/rem*100):0,cnt=Array.from({length:10},(_,i)=>X.deck.filter(v=>v===i+1).length);
- $('#mgBoard').innerHTML=`<div class="cdc">${X.cur}</div><small>${rem} cards left · pot <b>${X.pot}</b></small><div style="display:flex;gap:8px;width:min(94%,360px)"><button data-cd="hi" style="flex:1" ${hi?'':'disabled'}>⬆️ HIGHER ${pc(hi)}%</button><button data-cd="lo" style="flex:1" ${lo?'':'disabled'}>⬇️ LOWER ${pc(lo)}%</button></div><button data-cd="bank" style="width:min(94%,360px)" ${X.pot?'':'disabled'}>🏦 BANK ${X.pot}</button><div class="cdt">${cnt.map((n,i)=>`<span class="${n?'':'z'}">${i+1}<sup>${n}</sup></span>`).join('')}</div>`}
+ $('#mgBoard').innerHTML=`<div class="cdc">${X.cur}</div><small>${rem} cards left · pot <b>${X.pot}</b></small><div class="cdr"><button data-cd="hi" ${hi?'':'disabled'}>⬆️ HIGHER ${pc(hi)}%</button><button data-cd="lo" ${lo?'':'disabled'}>⬇️ LOWER ${pc(lo)}%</button></div><button data-cd="bank" style="width:min(94%,360px)" ${X.pot?'':'disabled'}>🏦 BANK ${X.pot}</button><div class="cdt">${cnt.map((n,i)=>`<span class="${n?'':'z'}">${i+1}<sup>${n}</sup></span>`).join('')}</div>`}
 function cdGo(a){if(!X||X.k!=='cards'||X.done||X.busy)return;
  if(a==='bank'){if(!X.pot)return;X.score+=X.pot;sfx('powerup');ft('+'+X.pot);mgSet(`🏦 Banked ${X.pot}!`);X.pot=0;X.st=0;mgUpd();return cdUI()}
  const nx=X.deck.pop(),ok=a==='hi'?nx>X.cur:nx<X.cur;let end='';
@@ -2979,7 +2987,7 @@ const tmul=m=>S.timer?(MATCH[m].time<=20?1.5:1.3):1,rwx=(d,m)=>CDIF[d]*MXP[m]*tm
 function hsCheck(w){if(G.cf){G.hs={old:0,sc:0,isNew:false};return}const key=`${G.mode}|${G.d}|${G.m}`,sc=G.mode==='PVP'?(w>=0?G.score[w]:0):G.score[0];PRO.hs=PRO.hs||{};const old=PRO.hs[key]||0;G.hs={old,sc,isNew:sc>old&&sc>0};if(G.hs.isNew){PRO.hs[key]=sc;LS.set('ms_pro',PRO)}}
 function xpEnd(win){if(G.mode!=='AI')return 0;const k=rwx(G.d,G.m),r0=rk();
  const xp=xpg((G.score[0]/2+(win?50:10))*k*(G.tome?1.5:1)*(PRO.rel&&PRO.rel.quill?1.1:1)),gd=cx(Math.round((G.score[0]/3+(win?30:8))*k*(G.mag?1.5:1)*(PRO.rel&&PRO.rel.seal?1.1:1))+(G.hs&&G.hs.isNew?25:0));
- const pvm=!!PRO.pv;PRO.xp+=pvm?0:xp;G.gg=pvm?0:gd;G.rwk=k;PRO.gold+=pvm?0:gd;PRO.m++;if(win){PRO.w++;PRO.ww=PRO.ww||{};PRO.ww[WID||'roman']=(PRO.ww[WID||'roman']||0)+1;unlock('first');if(G.boss)unlock('boss')}if(pvm){PRO.pv.done=1;PRO.pvd=PRO.pvd||{};PRO.pvd[WID||'roman']=1;const ch=document.getElementById('pvChip');if(ch)ch.remove();setTimeout(()=>toast('👁 <b>Preview complete</b><br><small>Rewards are off in previews. Buy the world in the Armory to keep playing.</small>'),1200)}ppCheck();if(win&&!pvm&&WID==='elementa')elUnlock();LS.set('ms_pro',PRO);if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return pvm?0:xp}
+ const pvm=!!PRO.pv;PRO.xp+=pvm?0:xp;G.gg=pvm?0:gd;G.rwk=k;PRO.gold+=pvm?0:gd;PRO.m++;if(win){PRO.w++;PRO.ww=PRO.ww||{};PRO.ww[WID||'roman']=(PRO.ww[WID||'roman']||0)+1;unlock('first');if(G.boss)unlock('boss')}if(pvm){PRO.pv.done=1;PRO.pvd=PRO.pvd||{};PRO.pvd[WID||'roman']=1;const ch=document.getElementById('pvChip');if(ch)ch.remove();setTimeout(()=>toast('👁 <b>Preview complete</b><br><small>Rewards are off in previews. Buy the world in the Armory to keep playing.</small>'),1200)}ppCheck();if(win&&!pvm&&WID==='elementa')elUnlock();LS.set('ms_pro',PRO);if(rk()>r0)rankBrag(rk());if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);return pvm?0:xp}
 const rwHtml=xg=>xg?`<br><b>+${xg} XP · 💰 +${G.gg}</b><br><small>×${G.rwk.toFixed(1)} rewards · rank ×${CDIF[G.d]} · mode ×${MXP[G.m]}${S.timer?' · timed ×'+tmul(G.m):''}${G.hs&&G.hs.isNew?' · +25 high-score bonus':''}${G.tome||G.mag?'<br>📜🧲 boosts applied':''}</small>`:'';
 const hsHtml=()=>G.hs&&!G.cf?(G.hs.isNew?`<div class="hs">🏆 NEW HIGH SCORE! ${G.hs.sc}<br><small>${G.D.name} · ${G.M.label}${G.hs.old?' · previous best '+G.hs.old:''}</small></div>`:`<br><small>Best here: ${G.hs.old}</small>`):'';
 function shareIt(){if(navigator.share)navigator.share({text:shareText}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(shareText).then(()=>toast('📋 Copied!'))}
@@ -3487,12 +3495,12 @@ function finish(w){let kxH=null;try{kxH=KXB.end(w)||null}catch(e){}const g0=G,kx
  const wgB=G.wtxt?`<div class="vwg">${G.wtxt.replace(/^<br>/,'')}</div>`:'';
  const cpB=cr?`<div class="vcamp">${cr.html.replace(/^<br>/,'')}</div>`:'';
  $('#ends').innerHTML=`<div class="vx"><div class="vq">${tag}</div><div class="vmode">${G.D.name} · ${G.M.label}</div><div class="vf">${card(0)}<div class="vs">VS</div>${card(1)}</div>${hsB}${cpB}${shB}${rwB}${wgB}</div>`;
- render0();campBtns(win);try{endBrag(win,draw,cr)}catch(e){}{const nb=$('#nextB');$$('#s-end .vbt button').forEach(b=>b.classList.remove('pri'));(G.cf&&G.cf.gr?$('#mapB'):nb.style.display==='none'?$('#again'):nb).classList.add('pri')}kxL(()=>{stack.push('s-end');show('s-end');vCount();if(win&&!RM){setTimeout(()=>burst(['🎉','✨','🪙','⭐'],26),900);setTimeout(()=>burst(['✨','🏆','🎊'],20),1700)}})}
+ render0();campBtns(win);try{endBrag(win,draw,cr,kxH)}catch(e){}{const nb=$('#nextB');$$('#s-end .vbt button').forEach(b=>b.classList.remove('pri'));(G.cf&&G.cf.gr?$('#mapB'):nb.style.display==='none'?$('#again'):nb).classList.add('pri')}kxL(()=>{stack.push('s-end');show('s-end');vCount();if(win&&!RM){setTimeout(()=>burst(['🎉','✨','🪙','⭐'],26),900);setTimeout(()=>burst(['✨','🏆','🎊'],20),1700)}})}
 function vCount(){$$('#ends .cnt').forEach(e=>{const to=+e.dataset.to,pre=e.dataset.pre||'';if(RM||to<2){e.textContent=pre+to;return}const t0=performance.now(),d=Math.min(1400,500+to*1.2);e.textContent=pre+'0';const f=n=>{const q=Math.min(1,Math.max(0,(n-t0-350)/d));e.textContent=pre+Math.round(to*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 
 /* v166 (narrowed in 1.8.9): end-of-battle brag. The 📸 BRAG CARD is a reward, so it shows only for a boss, a region general or a region medal (not 3-star clears, Hard wins or high scores any more); the first win over each boss or general (and each new medal) also opens the card by itself, unless a Conquest card is already coming. Tune what counts in endBrag. */
 let ENDB=null,MGB=null;
-function endBrag(win,draw,cr){ENDB=null;const b=$('#bragB');if(b)b.classList.remove('on');
+function endBrag(win,draw,cr,hold){ENDB=null;const b=$('#bragB');if(b)b.classList.remove('on');
  if(!win||draw||!window.ARIS||!ARIS.bragWin||!G||!(G.mode==='AI'||(G.mode==='PVP'&&G.boss)))return;
  const h=(cr&&cr.html)||'',stars=(((h.match(/vstars">([^<]*)/)||[])[1])||'').split('⭐').length-1,md=h.match(/(BRONZE|SILVER|GOLD) MEDAL<\/b> · ([^<]*)/),cfg=G.cf||{},sc=G.score[0]+'–'+G.score[1],foe=cfg.bn||(G.D&&G.D.name)||'the boss',
   base=(G.M&&G.M.label?G.M.label+' · ':'')+(G.d?G.d+' · ':'')+'🔥 combo '+G.st[0].best+' · '+sc;
@@ -3503,7 +3511,7 @@ function endBrag(win,draw,cr){ENDB=null;const b=$('#bragB');if(b)b.classList.rem
   o={tc:1,name:foe,big:G.score[0],meta:'👹 '+foe+' · '+base,share:(gen?'🏴 I defeated ':'👑 I defeated ')+foe+' in MindStrike! Can you?'};
   if(!gen){o.ban=W[1];o.c=W[2];o.cf=W[0].concat(['✨'])}}
  if(!kind)return;ENDB={kind,o};if(b)b.classList.add('on');
- if(auto&&!G.bq){PRO.bgw=PRO.bgw||{};const bk=kind+'|'+(o.name||'')+(md?'|'+md[1]:'');if(!PRO.bgw[bk]){PRO.bgw[bk]=1;LS.set('ms_pro',PRO);const me=ENDB,fire=()=>setTimeout(()=>{if(ENDB===me)try{ARIS.bragWin(kind,o)}catch(e){}},2600);window.__kxH?window.__kxH.then(fire):fire()}}}
+ if(auto&&!G.bq){PRO.bgw=PRO.bgw||{};const bk=kind+'|'+(o.name||'')+(md?'|'+md[1]:'');if(!PRO.bgw[bk]){PRO.bgw[bk]=1;LS.set('ms_pro',PRO);const me=ENDB,fire=()=>setTimeout(()=>{if(ENDB===me&&document.querySelector('#s-end.on')&&!document.querySelector('#arBrag.on'))try{ARIS.bragWin(kind,o)}catch(e){}},3600);hold?hold.then(fire):fire()}}}
 $('#bragB').onclick=()=>{sfx('click');if(ENDB)try{ARIS.bragWin(ENDB.kind,ENDB.o)}catch(e){}};
 $('#mgBrag').onclick=()=>{sfx('click');if(MGB)try{ARIS.bragWin(MGB.kind,MGB.o)}catch(e){}};
 // ---- v14: gear, daily market, relics, wagers, generals, friend challenges ----
@@ -3932,6 +3940,8 @@ async function hash(s){const b=await crypto.subtle.digest('SHA-256',new TextEnco
 // ---- family record (stored on this phone) ----
 function famGet(){return LS.get('ms_fam',{})}
 function famRecord(a,b,win){if(!a||!b||a===b)return;const f=famGet(),k=[a,b].sort(),key=k.join('|'),e=f[key]||{a:k[0],b:k[1],aw:0,bw:0};if((win?a:b)===e.a)e.aw++;else e.bw++;f[key]=e;LS.set('ms_fam',f)}
+/* 1.9.0: RANK UP brag card. Once per rank (PRO.bgr), a few seconds after the rank-up toast. It waits (up to ~18 s) while a boss ending, another brag card or a live game is on screen, so it never covers them. */
+function rankBrag(r){try{if(!window.ARIS||!ARIS.bragWin||!RANKS[r])return;PRO.bgr=PRO.bgr||{};if(PRO.bgr[r])return;PRO.bgr[r]=1;LS.set('ms_pro',PRO);let n=0;const busy=()=>!!(document.getElementById('kxE')||document.querySelector('#arBrag.on')||document.querySelector('#s-game.on')),go=()=>{if(busy()){if(n++<12)setTimeout(go,1500);return}const nm=RANKS[r][0];try{ARIS.bragWin('rank',{name:nm,big:nm,meta:'🎖️ '+nm+' · '+Math.round(PRO.xp)+' XP · '+PRO.w+' wins',share:'🎖️ I just reached the rank of '+nm+' in MindStrike! Can you?'})}catch(e){}};setTimeout(go,3000)}catch(e){}}
 /* 1.8.9: an online win only earns a brag card at a rivalry milestone: your 5th, 10th, 25th, 50th or 100th win over the same opponent. Call after famRecord. */
 function onBragOK(a,b){try{const e=famGet()[[a,b].sort().join('|')];if(!e)return false;const w=e.a===a?e.aw:e.bw;return [5,10,25,50,100].includes(w)}catch(x){return false}}
 function famLine(a,b){const e=famGet()[[a,b].sort().join('|')];return e?e.a+' '+e.aw+' – '+e.bw+' '+e.b:''}
@@ -4737,7 +4747,7 @@ function wmEnd(win){let arMed=0;const c=G.cf,id=c.wm,n=M.by[id],p=par(n),s=st(),
  const before=vis();s.s[id]=Math.max(old,stars);{const mt=medTier(M.ri),mo=s.md||0;if(mt>mo){s.md=mt;arMed=mt;const mc=cx(MEDC[mt]);coins+=mc;if(MEDG[mt])gems(MEDG[mt],MEDN[mt]+' medal');note+=`<br>${MED[mt]} <b>${MEDN[mt]} MEDAL</b> · ${esc(W.title)}<br>+${mc} 💰${MEDG[mt]?' · +'+MEDG[mt]+' 💎':''}`}}const after=vis(),nw=M.N.filter(x=>after[x.id]&&after[x.id]!==before[x.id]&&after[x.id]!=='c'),sec=nw.some(x=>x.kind==='x'&&!before[x.id]);
  if(gain&&nw.length)note+=`<br>🌫️ The fog lifts: <b>${nw.length}</b> new place${nw.length>1?'s':''} revealed`;if(sec)note+='<br>✨ <b>You spot a hidden path…</b>';
  note+=wmSurprise(n,stars,gain);
- const rb=rk();PRO.gold+=coins;if(typeof xpg==='function'&&xp>0)PRO.xp+=xpg(xp);if(rk()>rb)setTimeout(()=>toast(`🎖️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
+ const rb=rk();PRO.gold+=coins;if(typeof xpg==='function'&&xp>0)PRO.xp+=xpg(xp);if(rk()>rb)rankBrag(rk());if(rk()>rb)setTimeout(()=>toast(`🎖️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward Waiting in Quests</small>`),1800);LS.set('ms_pro',PRO);
  try{arCel(stars,gain,first&&n.kind==='z',arMed)}catch(e){}try{if(first&&n.kind==='z'){const RL=regList(wid);(G.bq=1,ARIS.bragConq)(M.ri>=RL.length-1?'wd':'rg',{name:W.title,n:M.ri+1,tot:RL.length,world:W.e,wn:(WORLDS[wid]&&WORLDS[wid].n)||''})}}catch(e){}
  return{html:h+`<br><span class="vstars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</span>${gain?` · <b>+${coins} 💰</b>`:' · no new stars'}<br><small>⭐ win ✓ · ⭐ ${objDesc(c.ob)} ${cb?'✓':'✗'} · ⭐ no powers ${np?'✓':'✗'}</small>${note}`}}
 /* ---- wiring (outermost wrappers, installed after the Seasonal Marathon) ---- */
@@ -6067,6 +6077,7 @@ const BGW={
  win:{ti:'VICTORY',em:'⚔️',c:'#ffd45a',cf:['⚔️','🏆','✨','🪙','⭐'],m:'cheer',top:'⚔️ VICTORY · MINDSTRIKE',lab:'FINAL SCORE',al:'Battle won',ic:'trophy',ban:'VICTORY',L:["{r} never stood a chance! Screenshot me with the trophy!","What a battle against {r}! The {top} would be proud. Show everyone!"]},
  online:{ti:'ONLINE VICTORY',em:'🌐',c:'#53d0ff',cf:['🌐','⚔️','🏆','✨','🪢'],m:'cheer',top:'🌐 CLASH ONLINE · MINDSTRIKE',lab:'MATCH SCORE',al:'Online match won',ic:'swords',ban:'CLASH WON',L:["You outplayed {r}! A real human! Screenshot this before they ask for a rematch.","{r} got clashed! Send this card and ask if they want a rematch."]},
  mini:{ti:'NEW BEST',em:'🎮',c:'#7be0a0',cf:['🎮','🎯','✨','🪙','⭐'],m:'happy',top:'🎮 MINI GAME · MINDSTRIKE',lab:'NEW BEST',al:'Mini game record',ic:'target',ban:'RECORD',L:["A new best in {r}! My eyes are still spinning. Show your friends!","{r} record broken! Screenshot it before you beat it again."]},
+ rank:{ti:'RANK UP',em:'🎖️',c:'#c58cff',cf:['🎖️','⭐','✨','🪙','🛡️'],m:'cheer',top:'🎖️ RANK UP · MINDSTRIKE',lab:'NEW RANK',al:'Rank up',ic:'rank',ban:'RANK UP',L:["Promoted to {r}! Look at those stripes. Hold still, I'm taking the screenshot.","{r}! The {top} salutes you. Show everyone!"]},
  medal:{ti:'MEDAL',em:'🏅',c:'#cd7f32',mc:'#cd7f32',cf:['🏅','⭐','✨','🪙','🗺️'],m:'wow',top:'🗺️ REGION MEDAL · MINDSTRIKE',lab:'REGION MEDAL',al:'Region medal',ic:'medal',ban:'MEDAL EARNED',L:["A medal for {r}! Look how shiny! Hold it up high!","{r} gave us a medal! I'm polishing it with my sleeve. Show everyone!"]}
 };
 function bgPropW(k){const M=BGM[k]||{},c=M.c||'#ffd45a',ic=M.ic||'trophy',ban=String(M.ban||'VICTORY').toUpperCase().replace(/&/g,'&amp;').replace(/</g,'&lt;'),
@@ -6079,6 +6090,7 @@ function bgPropW(k){const M=BGM[k]||{},c=M.c||'#ffd45a',ic=M.ic||'trophy',ban=St
  else if(ic==='flag')e=`<rect x="196" y="150" width="5" height="98" rx="2" fill="#d9c7a0"/><path d="M201 156L236 170L201 188Z" fill="${c}" stroke="#4a1208" stroke-width="2.4"/>`;
  else if(ic==='swords')e=`<g transform="rotate(-40 200 205)"><rect x="196" y="160" width="8" height="84" rx="2" fill="#dfe6f3" stroke="#6f7c93" stroke-width="2"/><rect x="186" y="224" width="28" height="6" rx="2" fill="${c}"/></g><g transform="rotate(40 200 205)"><rect x="196" y="160" width="8" height="84" rx="2" fill="#dfe6f3" stroke="#6f7c93" stroke-width="2"/><rect x="186" y="224" width="28" height="6" rx="2" fill="${c}"/></g>`;
  else if(ic==='target')e=`<circle cx="200" cy="206" r="32" fill="#ffffff" stroke="#27304a" stroke-width="3"/><circle cx="200" cy="206" r="23" fill="${c}"/><circle cx="200" cy="206" r="14" fill="#ffffff"/><circle cx="200" cy="206" r="6" fill="#ff4d6a"/><path d="M200 206L232 172" stroke="#27304a" stroke-width="3"/><path d="M232 172l-3 9M232 172l-9 3" stroke="#27304a" stroke-width="3"/>`;
+ else if(ic==='rank')e=`<g fill="none" stroke="#4a2a78" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M176 190l24-17 24 17M176 208l24-17 24 17M176 226l24-17 24 17"/></g><g fill="none" stroke="${c}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M176 190l24-17 24 17M176 208l24-17 24 17M176 226l24-17 24 17"/></g>`;
  else if(ic==='medal')e=`<path d="M184 164L200 204L216 164Z" fill="#c1272d" stroke="#5a0f12" stroke-width="2"/><circle cx="200" cy="216" r="26" fill="${c}" stroke="#4a3208" stroke-width="3"/><circle cx="200" cy="216" r="19" fill="none" stroke="#ffffff88" stroke-width="2"/><text x="200" y="226" text-anchor="middle" font-size="26" font-weight="900" fill="#ffffffcc" font-family="Georgia,serif">★</text>`;
  else e=`<path d="M176 176h48v22q0 28-24 34q-24-6-24-34Z" fill="${c}" stroke="#7a5200" stroke-width="3"/><path d="M176 184h-12q0 18 14 22M224 184h12q0 18-14 22" fill="none" stroke="#7a5200" stroke-width="4"/><rect x="192" y="230" width="16" height="8" fill="#7a5200"/><rect x="180" y="238" width="40" height="8" rx="3" fill="${c}" stroke="#7a5200" stroke-width="2"/>`;
  const fr=`<g class="fl2" style="transform-origin:200px 230px">${e}</g><path d="M24 250L120 236L216 250L120 262Z" fill="${c}" stroke="#fff3c4" stroke-width="2"/><text x="120" y="253" text-anchor="middle" font-size="11" font-weight="900" fill="#1a0d06" font-family="Georgia,serif" letter-spacing="2" textLength="${Math.min(150,ban.length*9)}" lengthAdjust="spacingAndGlyphs">${ban}</text>`;
@@ -6922,7 +6934,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.8.9';
+window.APP_VER='1.9.1';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
