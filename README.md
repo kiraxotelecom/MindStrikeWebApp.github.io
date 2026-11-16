@@ -634,3 +634,6 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.5 changes
 **Rank XP x3 again.** Ranks now need 3 times the XP (Imperator 135,000; prestige also x3). Everyone keeps all XP, coins, gems and items; rank follows the new table. Rank rewards for ranks a player no longer holds are claimable again (gems are still paid once per highest rank). Runs once (`PRO.rv` 9). **Cards:** Neon Grid and Golden Sands now have 40 cards, so every world has 40 (Elementa 37 elements).
+
+## 1.9.6 changes
+**All rank rewards reset for everyone** (runs once, `PRO.rv` 10): every claimed rank reward and Imperator prestige claim is cleared, so players claim them again for the ranks they hold. Rank gems are still paid only once per highest rank, so gems are not paid twice.
