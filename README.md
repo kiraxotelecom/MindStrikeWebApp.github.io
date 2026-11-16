@@ -595,3 +595,7 @@ Bump `V` in `sw.js` after every change.
 
 ## 1.8.4 changes
 **Launch lettering and world storms.** 711 is now molten metal (white-hot top, world-coloured body, dark cracked base, grain, dark outline, hot glow with a cool rim light, and a slow heat pulse once it locks). MINDSTRIKE is polished chrome with a horizon line (cool sky above, hot reflection below), brushed scratches and grain, with the same shine sweep. Each world now has its own storm: palette via CSS vars on `#spl` (`--a` hot side, `--b` cool side, `--l` lightning, as r,g,b; set per `html.wd-*`), and its own particle flavour in `WS` inside `cine()` (Cyber digital rain, Samurai petals, Jungle leaves, Astral stars, Atlantis bubbles, Golden Sands sandstorm, Frostlands blizzard, default fire and ice). Title, glows, flames, frost, orbs, rings and lightning all follow the world. Bump `V` in `sw.js` and `APP_VER` after every change.
+
+## 1.8.5 changes
+- Sniper Week (and Daily Strike / Friend Challenge) end screen: the event emoji now sits in the emblem slot above the title instead of inside the gold gradient title, so it no longer renders as a blue blob; the empty emblem gap under Aris is gone.
+- Passport and the "Other Worlds" list in Mini Games: world names are no longer run through the world re-skin, so the Roman world's game (Market Change) shows as "Roman Empire", not "Norseman", and Stone Sums stays with Ice · Frostlands.
