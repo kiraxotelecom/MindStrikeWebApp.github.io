@@ -6222,7 +6222,14 @@ const AW={winter:['❄️','WINTER COAT','Bobble beanie and knit scarf in your o
  icequeen:['🧊','ICE QUEEN','Crystal crown, fur collar and an icy cape. Ice world style.',2200,['s',45]],
  gomesi:['🌺','GOMESI','Square-shouldered gomesi, a bright sash and a head wrap. Buganda world style.',1800,['s',50]],
  pharaoh:['🏺','PHARAOH','Striped nemes headdress and a gold collar. Desert world style.',2400,['s',65]],
- merfolk:['🧜','MERFOLK','Shell tiara, fin ears and a shell necklace. Atlantis world style.',2600,['s',85]]};
+ merfolk:['🧜','MERFOLK','Shell tiara, fin ears and a shell necklace. Atlantis world style.',2600,['s',85]],
+ stargazer:['🌟','STARGAZER','Crescent moon hairpin, star necklace and a starry cape. Astral world style.',2200,['s',60]],
+ alchemist:['⚗️','ALCHEMIST','Goggles on the forehead, a lab collar and a bubbling flask. Elementa world style.',1900,['s',40]],
+ ranger:['🌿','JUNGLE RANGER','Leaf headband with a bright feather, a vine collar and a fang charm. Jungle world style.',1500,['s',20]],
+ independence:['🇺🇬','UGANDA INDEPENDENCE','Flag-stripe headband with a crested crane badge and a flag sash. Only around 9 October.',1200,['g'],[10,1,10,12]],
+ newyear:['🎆','NEW YEAR','Gold-trimmed top hat, a red bow tie and fireworks sparkle. Only around New Year.',1400,['g'],[12,26,1,7]],
+ valentine:['💝','VALENTINE','Heart-spring headband and a heart pendant. Only around 14 February.',1100,['g'],[2,7,2,16]],
+ elf:['🧝','CHRISTMAS ELF','Green elf hat with a jingle bell, a candy collar and falling snow. Only in December.',1000,['g'],[12,1,1,2]]};
 const AV={
  winter:{ot:'<path d="M36 103Q60 118 84 103L86 110Q60 126 34 110Z" fill="#f4f7fb"/><path d="M38 108Q60 121 82 108" style="stroke:var(--ac)" stroke-width="2.4" fill="none"/><path class="fl" d="M32 108l-7 22 9 3 5-22z" fill="#f4f7fb" style="stroke:var(--ac)" stroke-width="2"/>',
   ov:'<path d="M22 56Q18 12 60 10Q102 12 98 56Q60 44 22 56Z" style="fill:var(--ac)"/><path d="M21 56Q60 42 99 56" stroke="#f4f7fb" stroke-width="9" fill="none" stroke-linecap="round"/><circle class="fl" cx="60" cy="9" r="7" fill="#f4f7fb"/><g data-s="idle happy cheer" fill="#fff"><circle class="sw" cx="14" cy="30" r="2.2"/><circle class="sw" style="animation-delay:.6s" cx="106" cy="22" r="1.8"/><circle class="sw" style="animation-delay:1.1s" cx="104" cy="62" r="2"/></g>'},
@@ -6296,25 +6303,67 @@ const AV={
  pharaoh:{ov:'<path d="M26 54Q24 14 60 12Q96 14 94 54L100 92L84 88L84 52Q60 40 36 52L36 88L20 92Z" fill="#2a4aa0"/><path d="M30 30Q60 20 90 30M28 42Q60 32 92 42" stroke="#f2c14e" stroke-width="3" fill="none"/><path d="M60 10Q53 22 60 31Q67 22 60 10Z" style="fill:var(--ac)" stroke="#b8860b" stroke-width="1"/>',
   ot:'<path d="M34 103Q60 125 86 103L90 116Q60 142 30 116Z" fill="#f2c14e" stroke="#b8860b" stroke-width="1.4"/><path d="M40 108Q60 126 80 108" style="stroke:var(--ac)" stroke-width="3" fill="none"/>'},
  merfolk:{ov:'<path d="M40 40Q44 22 52 30Q54 16 60 26Q66 16 68 30Q76 22 80 40Q60 32 40 40Z" fill="#ffb6c8" stroke="#e07a98" stroke-width="1.4"/><path class="fl" d="M22 60L8 48L12 70ZM98 60L112 48L108 70Z" style="fill:var(--ac)" opacity=".85"/>',
-  ot:'<path d="M38 104Q60 118 82 104" stroke="#e9f6ff" stroke-width="3" fill="none"/><path d="M60 116q-9-1-10 8l10 4 10-4q-1-9-10-8z" fill="#ffb6c8" stroke="#e07a98" stroke-width="1.2"/>'}};
+  ot:'<path d="M38 104Q60 118 82 104" stroke="#e9f6ff" stroke-width="3" fill="none"/><path d="M60 116q-9-1-10 8l10 4 10-4q-1-9-10-8z" fill="#ffb6c8" stroke="#e07a98" stroke-width="1.2"/>'},
+ stargazer:{sh:'<path class="fl" d="M32 106Q10 130 20 150L100 150Q110 130 88 106Z" fill="#1a1450"/><g fill="#ffe27a"><circle cx="26" cy="136" r="1.5"/><circle cx="94" cy="132" r="1.7"/><circle cx="40" cy="146" r="1.2"/><circle cx="82" cy="145" r="1.2"/></g>',
+  ov:'<path d="M34 18A14 14 0 1 0 50 40A11 11 0 1 1 34 18Z" style="fill:var(--ac)"/><path d="M84 24l2.4 5 5.4.8-4 3.8 1 5.4-4.8-2.6-4.8 2.6 1-5.4-4-3.8 5.4-.8z" fill="#ffe27a"/>',
+  ot:'<path d="M38 104Q60 118 82 104" stroke="#b9c4ff" stroke-width="2" fill="none"/><path d="M60 114l2.4 5 5.4.8-4 3.8 1 5.4-4.8-2.6-4.8 2.6 1-5.4-4-3.8 5.4-.8z" fill="#ffe27a" stroke="#b8860b" stroke-width="1"/>',
+  fr:'<g class="spk" data-s="idle happy cheer wow" fill="#ffe27a"><path d="M106 34l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M10 56l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5z"/><circle cx="104" cy="76" r="1.8" fill="#fff"/></g>'},
+ alchemist:{ov:'<path d="M24 46Q60 32 96 46" stroke="#3a2a1a" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="44" cy="37" r="9" fill="#bfe6ff" fill-opacity=".35" stroke="#b8860b" stroke-width="3"/><circle cx="76" cy="37" r="9" fill="#bfe6ff" fill-opacity=".35" stroke="#b8860b" stroke-width="3"/><path d="M53 37h14" stroke="#b8860b" stroke-width="3"/><path d="M39 33q3-3 7-3" stroke="#fff" stroke-width="2" opacity=".8" fill="none" stroke-linecap="round"/>',
+  ot:'<path d="M38 104L60 121L82 104L88 113L60 131L32 113Z" fill="#fff" stroke="#dfe6ee" stroke-width="1.4"/><path d="M54 123h12v6l7 11q-13 6-26 0l7-11z" style="fill:var(--ac)" fill-opacity=".6" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/><circle class="gl" cx="58" cy="136" r="1.8" fill="#fff"/><circle cx="64" cy="132" r="1.4" fill="#fff"/>',
+  fr:'<g class="spk" data-s="idle happy cheer wow" fill="#c04bd8"><circle cx="106" cy="40" r="3"/><circle cx="100" cy="30" r="2"/><circle cx="12" cy="62" r="2.4"/></g>'},
+ ranger:{ov:'<path d="M24 52Q60 36 96 52" stroke="#6a4a2a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M32 49q-11-6-6-18q11 4 6 18z" fill="#3fa84a"/><path d="M46 43q-9-9-2-19q11 6 2 19z" fill="#4ea23a"/><path d="M60 40q-6-12 2-20q8 8-2 20z" fill="#3fa84a"/><path d="M74 43q9-9 2-19q-11 6-2 19z" fill="#4ea23a"/><path class="fl" d="M94 46Q110 24 101 4Q89 22 94 46Z" style="fill:var(--ac)"/><path d="M96 40Q101 24 100 10" stroke="#fff" stroke-opacity=".5" stroke-width="1.4" fill="none"/>',
+  ot:'<path d="M36 103Q60 119 84 103L86 111Q60 128 34 111Z" fill="#3f8a2a"/><path d="M42 108q4 5 8 0M54 112q4 5 8 0M66 111q4 5 8 0" stroke="#1f4a14" stroke-width="1.4" fill="none"/><path d="M60 119l-4.5 8 4.5 7 4.5-7z" fill="#efe6d2" stroke="#8a7a5a" stroke-width="1.2"/>',
+  fr:'<g data-s="idle happy cheer"><path class="sw" d="M14 30q6-6 10 0q-4 6-10 0z" fill="#4ea23a"/><path class="sw" style="animation-delay:.8s" d="M102 22q6-6 10 0q-4 6-10 0z" fill="#8be04a"/></g>'},
+ independence:{ov:'<path d="M24 50Q60 36 96 50L96 54Q60 40 24 54Z" fill="#111"/><path d="M24 54Q60 40 96 54L96 58Q60 44 24 58Z" fill="#fcdc04"/><path d="M24 58Q60 44 96 58L96 62Q60 48 24 62Z" fill="#d90000"/><circle cx="60" cy="41" r="6.5" fill="#fff" stroke="#111" stroke-width="1.4"/><path d="M57 43q3-6 6-1" stroke="#555" stroke-width="1.6" fill="none" stroke-linecap="round"/>',
+  ot:'<path d="M34 104L86 128L86 133L34 109Z" fill="#111"/><path d="M34 109L86 133L86 138L34 114Z" fill="#fcdc04"/><path d="M34 114L86 138L86 143L34 119Z" fill="#d90000"/>',
+  fr:'<g data-s="idle happy cheer wow"><rect class="pf" x="12" y="30" width="4" height="7" fill="#fcdc04"/><rect class="pf" x="102" y="26" width="4" height="7" fill="#d90000"/><rect class="pf" x="18" y="62" width="4" height="7" fill="#111"/><rect class="pf" x="100" y="64" width="4" height="7" fill="#fcdc04"/></g>'},
+ newyear:{ov:'<ellipse cx="60" cy="38" rx="30" ry="7" fill="#1a1a28" stroke="#f2c14e" stroke-width="1.6"/><path d="M38 38L40 8Q60 2 80 8L82 38Z" fill="#1a1a28" stroke="#f2c14e" stroke-width="1.6"/><path d="M39 30Q60 36 81 30L81.4 36Q60 42 38.6 36Z" style="fill:var(--ac)"/>',
+  ot:'<path d="M60 112L46 104L46 120ZM60 112L74 104L74 120Z" fill="#c0262d"/><circle cx="60" cy="112" r="3" fill="#f2c14e"/>',
+  fr:'<g class="spk" data-s="idle happy cheer wow" fill="#ffe27a"><path d="M106 30l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M12 50l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5z"/><circle cx="102" cy="72" r="2" fill="#ff7aa8"/><circle cx="16" cy="78" r="1.8" fill="#7fe3ff"/></g>'},
+ valentine:{ov:'<path d="M24 50Q60 36 96 50" stroke="#ff7aa8" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M34 44L30 22M86 44L90 22" stroke="#ff7aa8" stroke-width="2.4"/><path transform="translate(30 17)" d="M0 -2C-4 -9 -14 -4 -8 4L0 12L8 4C14 -4 4 -9 0 -2Z" fill="#e0334f" stroke="#a81a35" stroke-width="1.2"/><path transform="translate(90 17)" d="M0 -2C-4 -9 -14 -4 -8 4L0 12L8 4C14 -4 4 -9 0 -2Z" fill="#e0334f" stroke="#a81a35" stroke-width="1.2"/>',
+  ot:'<path d="M38 104Q60 118 82 104" stroke="#ffd0dc" stroke-width="2.4" fill="none"/><path transform="translate(60 123)" d="M0 -2C-4 -9 -14 -4 -8 4L0 12L8 4C14 -4 4 -9 0 -2Z" fill="#e0334f" stroke="#fff" stroke-width="1.2"/>',
+  fr:'<g data-s="idle happy cheer"><path class="sw" transform="translate(14 34) scale(.5)" d="M0 -2C-4 -9 -14 -4 -8 4L0 12L8 4C14 -4 4 -9 0 -2Z" fill="#ff7aa8"/><path class="sw" style="animation-delay:.8s" transform="translate(106 28) scale(.45)" d="M0 -2C-4 -9 -14 -4 -8 4L0 12L8 4C14 -4 4 -9 0 -2Z" fill="#e0334f"/></g>'},
+ elf:{ov:'<path d="M28 50Q30 20 62 8Q90 0 100 20Q80 14 76 30Q90 36 92 50Q60 40 28 50Z" fill="#2f8f4a" stroke="#1f6a34" stroke-width="1.4"/><path d="M26 52Q60 40 94 52L92 58Q60 46 28 58Z" fill="#d42b2b"/><circle class="fl" cx="100" cy="20" r="5" fill="#f2c14e" stroke="#b8860b" stroke-width="1.2"/>',
+  ot:'<path d="M36 102L42 112L48 104L54 114L60 105L66 114L72 104L78 112L84 102Q60 116 36 102Z" fill="#d42b2b" stroke="#fff" stroke-width="1.4"/><circle cx="60" cy="122" r="3.4" fill="#f2c14e" stroke="#b8860b" stroke-width="1"/>',
+  fr:'<g data-s="idle happy cheer" fill="#fff"><circle class="sw" cx="14" cy="30" r="2.2"/><circle class="sw" style="animation-delay:.6s" cx="106" cy="24" r="1.8"/><circle class="sw" style="animation-delay:1.1s" cx="104" cy="64" r="2"/></g>'}};
 for(const id in AV){const v=AV[id],g=x=>`<g data-v="${id}" style="display:none">${x}</g>`;for(const k of['sh','ot','ov','fr'])if(v[k])S2(k.toUpperCase(),g(v[k]))}
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],SEAS=/[?&]allseasons/.test(location.search);
+/* v1.9.14: SEASONAL outfits have a 6th AW field [startMonth,startDay,endMonth,endDay]. Out of season and not owned = shown as SOON and not buyable. Add ?allseasons to the URL to test them. */
+const awIn=id=>{const w=AW[id][5];if(!w||SEAS)return true;const n=new Date(),v=(n.getMonth()+1)*100+n.getDate(),a=w[0]*100+w[1],b=w[2]*100+w[3];return a<=b?v>=a&&v<=b:(v>=a||v<=b)};
+const awWhen=(id,on)=>{const w=AW[id][5];return on?`Until ${w[3]} ${MON[w[2]-1]}`:`Back ${w[1]} ${MON[w[0]-1]}`};
+/* v1.9.14: TRY BEFORE YOU BUY. A separate preview Aris (a.pv) in its own pop-up, so the equipped outfit is never touched and nothing can be left on by accident. */
+let tryEl=null,tryA=null,tryI=0;
+const tryIds=()=>Object.keys(AW).filter(id=>awHas(id)||awIn(id));
+function tryShow(){const ids=tryIds();if(!ids.length)return;tryI=(tryI+ids.length)%ids.length;const id=ids[tryI],a=AW[id],own=awHas(id);
+ tryEl.querySelector('h3').textContent=a[0]+' '+a[1];
+ tryEl.querySelector('p').innerHTML=a[2]+'<br><b>'+(own?'✅ You own this':'💰 '+a[3])+'</b>'+(a[5]&&!own?'<br>⏳ '+awWhen(id,1):'');
+ tryA.pv=id;dr(tryA);setMood(tryA,'happy');const e=tryA.el;e.classList.remove('arSpin');void e.offsetWidth;e.classList.add('arSpin');setTimeout(()=>e.classList.remove('arSpin'),950)}
+const tryClose=()=>{if(tryEl)tryEl.classList.remove('on')};
+window.awTry=id=>{const d=document;if(!tryEl){const st=d.createElement('style');st.textContent='#awTry{position:fixed;inset:0;z-index:100000;background:#000b;display:none;align-items:center;justify-content:center}#awTry.on{display:flex}#awTry .awTc{width:min(92%,340px);text-align:center}#awTry .awTs{display:flex;justify-content:center;margin:6px 0}#awTry .arWrap.arTry{display:block!important;--arW:150px;cursor:default}#awTry .arB{display:none}#awTry .awTb{display:flex;gap:8px;justify-content:center}#awTry p{margin:4px 0 10px;font-size:.85rem}';d.head.appendChild(st);
+ tryEl=d.createElement('div');tryEl.id='awTry';tryEl.setAttribute('role','dialog');tryEl.setAttribute('aria-label','Try on');
+ tryEl.innerHTML='<div class="card awTc"><small>👁 TRY ON</small><h3></h3><div class="awTs"></div><p></p><div class="awTb"><button data-t="p" aria-label="Previous">◀</button><button data-t="x">CLOSE</button><button data-t="n" aria-label="Next">▶</button></div></div>';d.body.appendChild(tryEl);
+ tryA=mk('arTry',tryEl.querySelector('.awTs'),null,'brag');
+ tryEl.addEventListener('click',e=>{const b=e.target.closest('button');if(e.target===tryEl||(b&&b.dataset.t==='x')){tryClose();return}if(b&&b.dataset.t){tryI+=b.dataset.t==='n'?1:-1;try{sfx('click')}catch(x){}tryShow()}});
+ addEventListener('pagehide',tryClose)}
+ tryI=Math.max(0,tryIds().indexOf(id));tryEl.classList.add('on');tryShow();try{sfx('click')}catch(x){}};
 const awSt=()=>{PRO.aw=PRO.aw||{own:{},eq:''};return PRO.aw};
 const awEq=()=>{try{return PRO.aw&&PRO.aw.eq||''}catch(e){return ''}};
 const awStars=()=>Object.values(PRO.wm||{}).reduce((t,m)=>t+Object.values((m&&m.s)||{}).reduce((x,y)=>x+(+y||0),0),0);
 const awReg=()=>Object.values(PRO.wm||{}).filter(m=>m&&m.d).length;
 const awHas=id=>{const s=awSt(),r=AW[id][4];return !!s.own[id]||(r[0]==='r'&&awReg()>=r[1])||(r[0]==='s'&&awStars()>=r[1])};
 window.awH=(card,bt)=>{const s=awSt();let h=card('🧍','CLASSIC','Just your world outfit, no extras.',`<button data-aw="" ${bt} ${s.eq===''?'disabled':''}>${s.eq===''?'WORN':'WEAR'}</button>`);
- for(const id in AW){const a=AW[id],r=a[4],has=awHas(id),rq=r[0]==='r'?`conquer ${r[1]} regions (${Math.min(awReg(),r[1])}/${r[1]})`:r[0]==='s'?`earn ${r[1]} map stars (${Math.min(awStars(),r[1])}/${r[1]})`:'';
-  h+=card(a[0],a[1],a[2]+(rq&&!has?`<br>🆓 Or ${rq}.`:''),has?`<button data-aw="${id}" ${bt} ${s.eq===id?'disabled':''}>${s.eq===id?'WORN':'WEAR'}</button>`:`<button data-aw="${id}" data-buy="1" ${bt}>💰 ${a[3]}</button>`)}
+ for(const id in AW){const a=AW[id],r=a[4],has=awHas(id);if(a[5]&&!has&&!awIn(id)){h+=card(a[0],a[1],a[2]+'<br>⏳ '+awWhen(id),'<button disabled '+bt+'>SOON</button>');continue}const rq=r[0]==='r'?`conquer ${r[1]} regions (${Math.min(awReg(),r[1])}/${r[1]})`:r[0]==='s'?`earn ${r[1]} map stars (${Math.min(awStars(),r[1])}/${r[1]})`:'';
+  h+=card(a[0],a[1],a[2]+(a[5]&&!has?'<br>⏳ '+awWhen(id,1):'')+(rq&&!has?`<br>🆓 Or ${rq}.`:''),has?`<button data-aw="${id}" ${bt} ${s.eq===id?'disabled':''}>${s.eq===id?'WORN':'WEAR'}</button>`:`<span style="display:flex;flex-direction:column;gap:6px"><button data-try="${id}" ${bt}>👁 TRY</button><button data-aw="${id}" data-buy="1" ${bt}>💰 ${a[3]}</button></span>`)}
  return h+'<small>Wardrobe styles go on top of every world outfit. Earn some free, or buy them with coins.</small>'};
 try{document.getElementById('shopPopB').addEventListener('click',e=>{const b=e.target.closest('[data-aw]');if(!b||b.disabled)return;const id=b.dataset.aw,s=awSt();
- if(id&&b.dataset.buy){const g=AW[id][3];if((PRO.gold||0)<g){tone(150,.2,'square');toast('Not Enough Coins 💰');return}PRO.gold-=g;s.own[id]=1}
+ if(id&&b.dataset.buy){if(AW[id][5]&&!awIn(id))return;const g=AW[id][3];if((PRO.gold||0)<g){tone(150,.2,'square');toast('Not Enough Coins 💰');return}PRO.gold-=g;s.own[id]=1}
  if(id&&!awHas(id))return;s.eq=id;LS.set('ms_pro',PRO);inst.forEach(dr);sfx('powerup');shopUI();try{mood('cheer',2200,"Ooh, I love it!",2800)}catch(x){}})}catch(e){}
+try{document.getElementById('shopPopB').addEventListener('click',e=>{const b=e.target.closest('[data-try]');if(b)awTry(b.dataset.try)})}catch(e){}
 
 const SVG2=['SH','AL','AR','TO','OT','HD','OV','FR'].reduce((t,k)=>t.replace('<!--'+k+'-->',()=>SL[k]),SVGT);
 const curW=()=>{const c=[...document.documentElement.classList].find(x=>/^wd-./.test(x));return c&&OUT[c.slice(3)]?c.slice(3):'roman'};
 let OID=curW();
-const dr=a=>{a.el.dataset.w=OID;a.el.style.setProperty('--ac',ACC[OID]);const q=awEq();a.el.querySelectorAll('[data-o]').forEach(e=>{e.style.display=e.dataset.o===OID?'':'none'});a.el.querySelectorAll('[data-v]').forEach(e=>{e.style.display=e.dataset.v===q?'':'none'})};
+const dr=a=>{a.el.dataset.w=OID;a.el.style.setProperty('--ac',ACC[OID]);const q=a.pv!==undefined?a.pv:awEq();a.el.querySelectorAll('[data-o]').forEach(e=>{e.style.display=e.dataset.o===OID?'':'none'});a.el.querySelectorAll('[data-v]').forEach(e=>{e.style.display=e.dataset.v===q?'':'none'})};
 function dress(){const n=curW();if(n===OID)return;OID=n;inst.forEach(dr);try{localStorage.setItem('ms_arout',OID)}catch(e){}spin()}
 try{new MutationObserver(dress).observe(document.documentElement,{attributes:true,attributeFilter:['class']})}catch(e){}
 
@@ -7467,7 +7516,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.12';
+window.APP_VER='1.9.14';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}

@@ -664,3 +664,10 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 ## 1.9.12 changes
 **Fact cards wait for the boss ending.** The unlocked fact card (and the collection-complete toast) now open only after the boss ending has finished or been skipped, so they no longer cover it (`elUnlock`, 25 s safety limit).
 **Settings: BOSS ENDINGS toggle.** Gameplay section, ON by default. OFF skips the boss win/lose ending animation and goes straight to the result (`S.kxe`, checked in `KXB.end`). Bump `V` in `sw.js` and `APP_VER` after every change.
+
+## 1.9.13 changes
+**Aris Wardrobe: 3 more world styles** (32 in total). Stargazer (Astral, 2200 coins or 60 map stars), Alchemist (Elementa, 1900 coins or 40 stars) and Jungle Ranger (Jungle, 1500 coins or 20 stars). Every world now has a matching style. Rows in `AW` and `AV`. Bump `V` in `sw.js` and `APP_VER` after every change.
+
+## 1.9.14 changes
+**Seasonal outfits by date.** Four limited Aris styles: Uganda Independence (1 to 12 Oct), New Year (26 Dec to 7 Jan), Valentine (7 to 16 Feb) and Christmas Elf (1 Dec to 2 Jan), 1000 to 1400 coins. An `AW` row can carry a 6th field `[startMonth,startDay,endMonth,endDay]`. In season the card shows `Until <date>`; out of season and not owned it shows `Back <date>` with a disabled SOON button; owned seasonal outfits can be worn all year. Open the game with `?allseasons` in the URL to test them any day (`awIn`, `awWhen`).
+**Try before you buy.** Every outfit you do not own has a 👁 TRY button. It opens a pop-up with a separate preview Aris (`awTry`, `a.pv` in `dr`), with arrows to browse the other outfits. Your equipped outfit is never changed, so nothing can be left on by accident. Bump `V` in `sw.js` and `APP_VER` after every change.
