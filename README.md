@@ -599,3 +599,6 @@ Bump `V` in `sw.js` after every change.
 ## 1.8.5 changes
 - Sniper Week (and Daily Strike / Friend Challenge) end screen: the event emoji now sits in the emblem slot above the title instead of inside the gold gradient title, so it no longer renders as a blue blob; the empty emblem gap under Aris is gone.
 - Passport and the "Other Worlds" list in Mini Games: world names are no longer run through the world re-skin, so the Roman world's game (Market Change) shows as "Roman Empire", not "Norseman", and Stone Sums stays with Ice · Frostlands.
+
+## 1.8.6 changes
+- **Rank XP ×3.** Every rank now needs three times the XP (Velite 300 … Imperator 45,000; Imperator prestige steps ×3 too). Players keep all XP, coins, gems and items; their rank follows the new table. Rank rewards (and Imperator prestige rewards) for ranks a player no longer reaches by XP are unclaimed again, so they can claim them when they earn the rank. Rank-up gems are still paid only once per highest rank reached. One-time migration `PRO.rv` 8 (runs again if an old backup is restored), with a one-time notice. Tune the table in `RANKS` and `PXP` in `index.html`.
