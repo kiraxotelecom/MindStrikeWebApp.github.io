@@ -637,3 +637,9 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.6 changes
 **All rank rewards reset for everyone** (runs once, `PRO.rv` 10): every claimed rank reward and Imperator prestige claim is cleared, so players claim them again for the ranks they hold. Rank gems are still paid only once per highest rank, so gems are not paid twice.
+
+## 1.9.7 changes
+**Rank gems reset for everyone** (runs once, `PRO.rv` 11): the "highest rank paid" gem marker goes back to 0, so each player is paid the rank gems again for every rank they hold now, and each higher rank pays its gems when reached. Gems already owned are kept; region, boss and mastery gems are not touched. A one-time popup shows the amount.
+
+## 1.9.8 changes
+**Battle Friends screen removed, Clash Online redesigned.** The Battle Friends tile on the home screen now opens Clash Online directly (the old Battle Friends screen only had a Live Duel button that led there, plus a second join box). Clash Online is now one compact screen: your name with Record and Options buttons beside it, a single **Join a friend** row that takes a room code or a pasted invite link (a pasted link turns into the code, Enter joins), then **Or create a room** as a 2 x 2 grid of the four modes. The join button no longer hides under the back button. Works in every world theme (same classes). The home tile help text no longer mentions sending a challenge link.
