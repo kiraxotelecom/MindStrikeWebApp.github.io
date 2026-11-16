@@ -643,3 +643,11 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.8 changes
 **Battle Friends screen removed, Clash Online redesigned.** The Battle Friends tile on the home screen now opens Clash Online directly (the old Battle Friends screen only had a Live Duel button that led there, plus a second join box). Clash Online is now one compact screen: your name with Record and Options buttons beside it, a single **Join a friend** row that takes a room code or a pasted invite link (a pasted link turns into the code, Enter joins), then **Or create a room** as a 2 x 2 grid of the four modes. The join button no longer hides under the back button. Works in every world theme (same classes). The home tile help text no longer mentions sending a challenge link.
+
+## 1.9.9 changes
+**Economy pass.**
+- **Gems:** the daily limit on buying gems with coins is gone (the price stays 350 coins each).
+- **Gem items cost 2x:** Gem Vault items, gem-priced skins and arenas, and World unlock prices.
+- **Coin items cost 3x:** Armory consumables, coin skins and arenas, Today's Market deals, Forge gear levels, Relics, War Chests, the Roman Legion set, Aris Wardrobe outfits and the Streak Freeze (720). Anything already owned stays owned.
+- **Rewards pay 2x:** every coin payout that goes through the reward scale (matches, quests, rank rewards, Conquest, mini games, events, Aris missions...) now pays double (`COINX` 0.8 to 1.6). Gems and XP payouts are unchanged.
+- **Permanent items are now Upgrades.** The Armory category is called **Upgrades** (was Permanent). Timekeeper's Ring (+2s per level, max Lv 4), Augur's Eye (+1 SCAN per level), Legion Eagle (+1 FOCUS per level) and Bulwark (+1 SHIELD per level), each max Lv 3 for the last three. Level 1 costs the old price x3 and each next level costs more. Players who already owned one keep it as Lv 1. One upgrade is equipped at a time. Levels are stored in `PRO.pml`.
