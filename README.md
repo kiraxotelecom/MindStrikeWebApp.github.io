@@ -625,3 +625,6 @@ Bump `V` in `sw.js` after every change.
 
 ## 1.9.2 changes
 **Fact cards in every world.** Elementa's element cards now exist in all ten worlds (Rome, Uganda, Neon Grid, Japan, Frostlands, Golden Sands, Astral, Atlantis, Jungle Quest). A win unlocks the next card; the collection button is on the profile card. Progress is in `ms_pro.col` (Elementa still uses `ms_pro.el`); past wins in each world are credited once. Finishing a collection pays 3 gems. Cards live in the `COLS` table in `index.html`.
+
+## 1.9.3 changes
+Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (the other worlds still have 10). Uganda cards are all about the country; the Luganda counting card was removed. **Bonus cards:** the first win over any route general or Supreme General on a world map unlocks one extra card (labelled BONUS). Cards are in `COLS` in `index.html`.
