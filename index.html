@@ -422,6 +422,19 @@ button.mgc:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width
 @keyframes ecoRp{0%{transform:scale(.4);opacity:.95}100%{transform:scale(9);opacity:0}}
 @media(prefers-reduced-motion:reduce){#ecoFx i{display:none}#ecoFx .ew{animation:none}#ecoFx .rp,#ecoFx .rp::after{animation-duration:.01s}}
 
+/* 1.9.19: every Memory Echo key lights up in its own colour (matches its ripple). */
+#app .ecg button[data-ec="1"]{--h:350}
+#app .ecg button[data-ec="2"]{--h:24}
+#app .ecg button[data-ec="3"]{--h:46}
+#app .ecg button[data-ec="4"]{--h:128}
+#app .ecg button[data-ec="5"]{--h:172}
+#app .ecg button[data-ec="6"]{--h:202}
+#app .ecg button[data-ec="7"]{--h:232}
+#app .ecg button[data-ec="8"]{--h:272}
+#app .ecg button[data-ec="9"]{--h:314}
+#app .ecg button.lit{background:radial-gradient(circle at 50% 35%,hsl(var(--h) 100% 90%),hsl(var(--h) 95% 62%) 55%,hsl(var(--h) 85% 42%))!important;color:#160a00!important;border-color:hsl(var(--h) 100% 90%)!important;box-shadow:0 0 0 3px hsl(var(--h) 95% 62% / .4),0 0 26px hsl(var(--h) 95% 62%),0 0 60px hsl(var(--h) 95% 55% / .55),inset 0 2px 0 #fff!important}
+#app .ecg button.tap:not(.bad){box-shadow:0 2px 0 #000b,0 0 22px hsl(var(--h) 95% 62% / .85),inset 0 2px 0 #ffffff22,inset 0 -18px 26px #0006;border-color:hsl(var(--h) 100% 80%)}
+
 /* ---- v32: Worlds. A world = one block like this (variables only) + one entry in WORLDS in the script. ---- */
 html.wd-cyber{--hs:150deg;--ss:1.15;--gold:#19f2ff;--sand:#d7fbff;--red:#ff2a8a;--ink:#04050d;--wtint:linear-gradient(150deg,#00e5ff,#6b2cff 55%,#ff2a8a);--wblend:color;--wimg:hue-rotate(150deg) saturate(1.15);--wfont:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace}
 html[class*="wd-"] #app img{filter:var(--wimg)}
@@ -7639,7 +7652,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.18';
+window.APP_VER='1.9.19';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
