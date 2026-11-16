@@ -631,3 +631,6 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.4 changes
 **Rank fix:** after a refresh the profile could show a lower rank (e.g. Researcher, XP capped) until a battle or the map redrew it, because the world-map trial check ran before the world-map module had loaded. The profile now redraws as soon as the map module is ready. **Cards:** Jungle Quest, Astral and Frostlands now have 40 cards each.
+
+## 1.9.5 changes
+**Rank XP x3 again.** Ranks now need 3 times the XP (Imperator 135,000; prestige also x3). Everyone keeps all XP, coins, gems and items; rank follows the new table. Rank rewards for ranks a player no longer holds are claimable again (gems are still paid once per highest rank). Runs once (`PRO.rv` 9). **Cards:** Neon Grid and Golden Sands now have 40 cards, so every world has 40 (Elementa 37 elements).
