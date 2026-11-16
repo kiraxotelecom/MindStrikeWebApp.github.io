@@ -622,3 +622,6 @@ Bump `V` in `sw.js` after every change.
 - **Higher or Lower: bug fix.** The HIGHER / LOWER row ran off the right edge of the screen (LOWER was cut off) because every button has a global `min-width:230px`, so two of them could not fit in the 360 px row. The row is now `.cdr` with `min-width:0` on its buttons, so both fit side by side.
 - **Memory Echo: bigger, better-looking board** (design change). The 3x3 tiles are about 30% larger (up to 372 px wide, capped at 52% of screen height on short phones) in a framed panel, with rounded 3D tiles in the Cinzel face, a glowing gold "lit" state, a press animation, a red flash on a wrong tap, and a WATCH / YOUR TURN pill with progress dots (one per number in the echo) above the grid. Resting tile colour still follows the world theme. Styles are `.ecp` and `.ecg` in the CSS; markup is in `ecGrid()`.
 
+
+## 1.9.2 changes
+**Fact cards in every world.** Elementa's element cards now exist in all ten worlds (Rome, Uganda, Neon Grid, Japan, Frostlands, Golden Sands, Astral, Atlantis, Jungle Quest). A win unlocks the next card; the collection button is on the profile card. Progress is in `ms_pro.col` (Elementa still uses `ms_pro.el`); past wins in each world are credited once. Finishing a collection pays 3 gems. Cards live in the `COLS` table in `index.html`.
