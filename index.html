@@ -1715,7 +1715,7 @@ html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;-
   <div class="vrow"><div class="vh"><span class="vi">🔊</span><span class="vt">Sound effects</span><b class="vp" id="vsv"></b></div><input type="range" id="vs" min="0" max="1" step=".05" aria-label="Sound effects volume"></div>
  </div>
  <div class="bm-head"><h2>Gameplay</h2></div>
- <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tCb"></button><button class="bm-btn" id="tWx"></button><button class="bm-btn" id="tRem"></button><button class="bm-btn" id="tAris"></button></div>
+ <div class="bm-toggles"><button class="bm-btn" id="tMute"></button><button class="bm-btn" id="tTimer"></button><button class="bm-btn" id="tVib"></button><button class="bm-btn" id="tCb"></button><button class="bm-btn" id="tWx"></button><button class="bm-btn" id="tRem"></button><button class="bm-btn" id="tAris"></button><button class="bm-btn" id="tKx"></button></div>
  <small class="bm-note">⏱ Timed rounds earn ×1.3–1.5 coins &amp; XP</small>
  <div class="bm-head"><h2>Help</h2></div>
  <button id="tutBtn" class="bm-btn bm-center">📖 REPLAY THE TUTORIAL</button>
@@ -1978,7 +1978,7 @@ const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classLi
 // timers that respect pause and a quit game
 function later(fn,ms){const g=G;setTimeout(function w(){if(G!==g||!g||g.done&&!g.finishing)return;if(g.paused)return setTimeout(w,200);fn()},ms)}
 // ---- settings ----
-function setUI(){$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON');$('#tCb').textContent='COLOURBLIND SYMBOLS: '+(S.cb?'ON':'OFF');$('#tWx').textContent='WEATHER: '+(S.wx===false?'OFF':'ON');try{$('#tAris').textContent=ARIS.label()}catch(e){}}
+function setUI(){try{$('#tKx').textContent='BOSS ENDINGS: '+(S.kxe===false?'OFF':'ON')}catch(e){}$('#vm').value=S.music;$('#vs').value=S.sfx;$('#vmv').textContent=Math.round(S.music*100)+'%';$('#vsv').textContent=Math.round(S.sfx*100)+'%';$('#vm').style.setProperty('--p',S.music*100+'%');$('#vs').style.setProperty('--p',S.sfx*100+'%');$('#tMute').innerHTML=(S.mute?'SOUND: OFF':'SOUND: ON');$('#tTimer').textContent='ROUND TIMER: '+(S.timer?'ON':'OFF');$('#tVib').textContent='HAPTICS: '+(S.vib===false?'OFF':'ON');$('#tCb').textContent='COLOURBLIND SYMBOLS: '+(S.cb?'ON':'OFF');$('#tWx').textContent='WEATHER: '+(S.wx===false?'OFF':'ON');try{$('#tAris').textContent=ARIS.label()}catch(e){}}
 $('#vm').oninput=e=>{S.music=+e.target.value;applyVol();save();setUI()};$('#vs').oninput=e=>{S.sfx=+e.target.value;applyVol();save();setUI();sfx('ding')};
 $('#tMute').onclick=()=>{S.mute=!S.mute;save();setUI();S.mute?curM&&curM.pause():curM&&curM.play().catch(()=>{})};
 $('#tTimer').onclick=()=>{S.timer=!S.timer;rwPrev();save();setUI();if(G){timerReset();render()}};
@@ -2166,6 +2166,7 @@ let AC,shareText='',tt;const RM=matchMedia('(prefers-reduced-motion:reduce)').ma
 function tone(f,d=.08,ty='sine',v=.15){if(S.mute||!S.sfx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v*S.sfx,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(t+d)}catch(e){}}
 const HL=document.createElement('label');HL.style.cssText='position:fixed;top:0;left:0;opacity:0;pointer-events:none';HL.innerHTML='<input type="checkbox" switch>';document.body.appendChild(HL);
 const vib=p=>{if(S.vib!==false)try{if(navigator.vibrate)navigator.vibrate(p);else HL.click()}catch(e){}};
+$('#tKx').onclick=()=>{S.kxe=S.kxe===false;save();setUI()};
 $('#tVib').onclick=()=>{S.vib=S.vib===false;save();setUI();vib(40)};
 
 function shake(big){if(RM)return;const a=$('#app');a.classList.remove('shk','shk2');void a.offsetWidth;a.classList.add(big?'shk2':'shk')}
@@ -2629,7 +2630,7 @@ function cN(){const w=cW();return w==='elementa'?(PRO.el||0):Math.min((PRO.col||
 function cOv(){const m=cMeta(),o=document.createElement('div');o.className='elOv';if(m[3])o.style.cssText=`--ea:${m[3]};--e1:${m[4]};--e2:${m[5]}`;return o}
 function elCard(i,isNew,bn){const E=cList()[i];if(!E)return;const m=cMeta(),o=cOv();o.innerHTML=`<div class="elC"><small>${isNew?m[0]+(bn?' BONUS ':' NEW ')+m[2]+' UNLOCKED':m[2]+' CARD'}</small><div class="elT"><i>${E[0]}</i><b>${E[1]}</b></div><h2>${E[2]}</h2><p>${E[3]}</p><button class="elX">${isNew?'NICE!':'CLOSE'}</button></div>`;document.body.appendChild(o);o.onclick=e=>{if(e.target===o||e.target.classList.contains('elX'))o.remove()}}
 function elTable(){const n=cN(),L=cList(),m=cMeta(),o=cOv();o.innerHTML=`<div class="elC elTb"><small>${m[0]} ${m[1]}</small><h2>${n} / ${L.length} unlocked</h2><div class="elG">${L.map((E,i)=>`<button class="elK${i<n?' on':''}" data-ek="${i}"><i>${E[0]}</i><b>${i<n?E[1]:'?'}</b></button>`).join('')}</div><p class="elH">${n<L.length?'Win a match in this world to unlock the next card.':'🎉 Complete! You know them all.'}</p><button class="elX">CLOSE</button></div>`;document.body.appendChild(o);o.onclick=e=>{if(e.target===o||e.target.classList.contains('elX')){o.remove();return}const k=e.target.closest('[data-ek]');if(k&&+k.dataset.ek<cN()){o.remove();elCard(+k.dataset.ek,false)}}}
-function elUnlock(bn){const w=cW(),n=cN(),L=cList();if(n>=L.length)return;if(w==='elementa')PRO.el=n+1;else{PRO.col=PRO.col||{};PRO.col[w]=n+1}const done=n+1===L.length;if(done)PRO.gems=(PRO.gems||0)+3;LS.set('ms_pro',PRO);const t=cMeta()[1];setTimeout(()=>elCard(n,true,bn),bn?1500:1700);if(done)setTimeout(()=>toast(`🎉 <b>${t} complete!</b><br><small>+3 💎</small>`),4300)}
+function elUnlock(bn){const w=cW(),n=cN(),L=cList();if(n>=L.length)return;if(w==='elementa')PRO.el=n+1;else{PRO.col=PRO.col||{};PRO.col[w]=n+1}const done=n+1===L.length;if(done)PRO.gems=(PRO.gems||0)+3;LS.set('ms_pro',PRO);const t=cMeta()[1];const aft=f=>{const h=window.__kxH;h&&h.then?Promise.race([h,new Promise(r=>setTimeout(r,25000))]).then(()=>setTimeout(f,600),()=>setTimeout(f,600)):f()};aft(()=>setTimeout(()=>elCard(n,true,bn),bn?300:500));if(done)aft(()=>setTimeout(()=>toast(`🎉 <b>${t} complete!</b><br><small>+3 💎</small>`),3200))}
 function elBtnHtml(){const m=cMeta();return `<button class="elB" data-elt="1">${m[0]} ${m[1]} · ${cN()}/${cList().length}</button>`}
 document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-elt]')){sfx&&sfx('click');elTable()}});
 function TRI(i){const a=trSt(),b=CAMP[a.bi],pt=(ok,d,p)=>({ok,d,p}),cap=(v,n)=>Math.min(n,v),bs=r=>pt(bossDone(r),'Defeat the general of '+CAMP[r].n+' in Conquest',bossDone(r)?'done':'not yet'),
@@ -7037,7 +7038,7 @@ window.KXB={sync,
   else{pulse('smug',950);say(G.bk[1]>G.bk[0]?'ahead':'smug',true)}}catch(e){}},
  chip(){try{if(on()&&el)pulse('tap',300)}catch(e){}},
  mock(){try{const n=Date.now();if(on()&&el&&n-mockT>6000&&Math.random()<.6){mockT=n;pulse('smug',950);say('mock')}}catch(e){}},
- end(w){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI'||w<0||G.kxEnd)return;G.kxEnd=1;try{if(window.KXE){const f0=faceOf(),h=KXE.play({win:w===0,world:wid(),role:role(),seed:seed(),k:f0.k,name:(G.cf&&G.cf.bn)||''});if(h){if(el)el.classList.remove('rage');window.__kxH=h;return h}}}catch(e){}const win=w===0,f=faceOf(),d=document.createElement('div');d.className='kxFall';d.style.setProperty('--sk',f.col);
+ end(w){try{if(typeof G==='undefined'||!G||!G.boss||G.mode!=='AI'||w<0||G.kxEnd||(typeof S!=='undefined'&&S&&S.kxe===false))return;G.kxEnd=1;try{if(window.KXE){const f0=faceOf(),h=KXE.play({win:w===0,world:wid(),role:role(),seed:seed(),k:f0.k,name:(G.cf&&G.cf.bn)||''});if(h){if(el)el.classList.remove('rage');window.__kxH=h;return h}}}catch(e){}const win=w===0,f=faceOf(),d=document.createElement('div');d.className='kxFall';d.style.setProperty('--sk',f.col);
   d.innerHTML='<div class="kxF">'+faceHTML(f)+'</div><div class="kxC">'+CR.join('')+'</div><div class="kxT">'+(win?L('fall'):L('win'))+'</div>';
   BZ.mood(d,win?'dead':'smug');if(win){d.querySelectorAll('.kxC svg').forEach(s=>s.style.display='block')}else{d.querySelectorAll('.kxC').forEach(c=>c.remove())}
   document.body.appendChild(d);if(el){el.classList.remove('rage')}
@@ -7466,7 +7467,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.11';
+window.APP_VER='1.9.12';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
