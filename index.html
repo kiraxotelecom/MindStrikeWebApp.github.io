@@ -1780,6 +1780,14 @@ html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;-
  </div>
 </section>
 
+<style>/* v174: BOSS RUSH */
+.rhB{display:flex;align-items:center;gap:12px;width:min(94%,360px);padding:10px 12px;border:1px solid var(--rc);border-radius:14px;background:linear-gradient(135deg,rgba(0,0,0,.62),rgba(0,0,0,.34));box-shadow:0 0 18px rgba(0,0,0,.5),0 0 12px var(--rc)}
+.rhP{width:78px;flex:none}.rhP svg{width:100%;height:auto;display:block}
+.rhI{flex:1;text-align:left;min-width:0}.rhI small{display:block;opacity:.8;font-size:.68rem;letter-spacing:.08em}.rhI b{display:block;font-size:.95rem;line-height:1.2;color:var(--rc)}
+.rhS{font-size:1.15rem;letter-spacing:.12em;margin-top:4px}
+.rhKit{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}.rhKit span{padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.8rem}
+.rhRoad{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:8px 0;font-size:1.25rem}.rhRoad i{font-style:normal}
+</style>
 <section class="scr" id="s-mg" style="--bg:url(img/game_bg.webp)">
  <div class="bar"><button class="ib bk" aria-label="Back" data-ic="back"></button><span></span></div>
  <h2 id="mgTitle"></h2>
@@ -2844,6 +2852,7 @@ $('#grBox').addEventListener('click',e=>{const b=e.target.closest('[data-gr]');i
 
 // ---- v12: mini games ----
 const BRD=['hunt','echo','cards','tm_astral','tm_cons','tm_atlantis','tm_roman','tm_buganda','tm_cyber','tm_samurai','tm_ice','tm_gold','tm_elementa','tm_jungle','tm_stampede'],MINI=[
+ {k:'rush',n:'★ BOSS RUSH',e:'👑',rk:8,d:'All ten world bosses back to back. No shop, no refills: your gear sets what you carry. One run, ranked worldwide.'},
  {k:'tower',n:'★ ENDLESS TOWER',e:'🗼',rk:3,d:'One climb that never resets. Your floor is saved, so come back any day and carry on. A relic every 5 floors. Ranked by floor.'},
  {k:'light',n:'LIGHTNING ROUND',e:'⚡',rk:1,d:'The timer shrinks after every correct guess. Play until you fail.'},
  {k:'code',n:'CODEBREAKER',e:'🔐',rk:2,d:'Crack a secret 3-digit vault code. 🎯 right digit, right place · 🔸 right digit, wrong place. 5 vaults.'},
@@ -2863,7 +2872,7 @@ const _show=show;show=function(id){if(id!=='s-mg'){try{twThOff()}catch(e){}}if(i
 const WNM={roman:'Roman',buganda:'Buganda',cyber:'Cyber',samurai:'Samurai',ice:'Norse Ice',astral:'Astral',atlantis:'Atlantis',gold:'Golden Sands',jungle:'Jungle Quest',elementa:'Elementa'};
 function mgCard(M){const i=MINI.indexOf(M),open=mgOpen(i),m=PRO.mg[M.k]||{b:0,p:0,t:0},l=mlv(m.t),lo=60*l*l,pc=l>=10?100:Math.round((m.t-lo)/(60*(l+1)*(l+1)-lo)*100);
  const nextUp=!open&&M.rk===rk()+1;
- const meta=open?`<div class="mgchips2">${M.k==='tower'?`<span>🗼 Floor ${m.f||0}</span>`:''}<span>🏆 Best ${m.b}</span><span>▶︎ ${m.p} ${m.p===1?'play':'plays'}</span><span class="mgl">⭐ Mastery L${l}${l>=10?' MAX':''}</span></div><div class="qb"><i style="width:${pc}%"></i></div>`:'';
+ const meta=open?`<div class="mgchips2">${M.k==='tower'?`<span>🗼 Floor ${m.f||0}</span>`:''}${M.k==='rush'?`<span>👑 ${m.bb||0}/${RH_N} bosses</span>`:''}<span>🏆 Best ${m.b}</span><span>▶︎ ${m.p} ${m.p===1?'play':'plays'}</span><span class="mgl">⭐ Mastery L${l}${l>=10?' MAX':''}</span></div><div class="qb"><i style="width:${pc}%"></i></div>`:'';
  const lock=open?'':`<small class="mglock">🔒 Reach rank ${RANKS[M.rk][0]} (${RANKS[M.rk][1]} XP) to unlock${nextUp?' · <b>next up!</b>':''}</small>`;
  return `<button class="mgc ${open?'':'lk'} ${nextUp?'nx':''}" data-mg="${M.k}" ${open?'':'disabled'}><span class="mge">${M.e}</span><div><b>${M.n}</b><small>${open?M.d.replace(/^⭐ WORLD GAME · /,''):''}</small>${lock}${meta}</div></button>`}
 function mgSec(ic,title,cap,pill,body){return `<section class="mgsec"><div class="bm-head"><h2>${ic} ${title}</h2></div><div class="mgcap"><span>${cap}</span><em>${pill}</em></div>${body}</section>`}
@@ -2895,13 +2904,14 @@ function mgUpd(){if(!X)return;const k=X.k,set=(a,b,c,d)=>{$('#mgMt').textContent
  else if(k==='echo')set('LENGTH',X.seq.length,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(2-X.lives));
  else if(k==='cards')set('STREAK',X.st,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));
  else if(k==='tower')set('FLOOR',X.f||'—','TRIES',X.f?(X.maxA-X.att)+' left':'—');
+ else if(k==='rush')set('BOSS',X.bi<0?'—':(X.bi+1)+'/'+RH_N,'TRIES',X.bi<0||!X.maxA?'—':(X.maxA-X.att)+' left');
  else if(k.startsWith('tm_'))set('ROUND',X.r,'LIVES','❤️'.repeat(X.lives)+'🖤'.repeat(3-X.lives));else set('HUNT',`${X.n}/5`,'DIGS',X.digs)}
 function mgHint(g,foc){const[t,c]=mtemp(g,X.secret,X.lo,X.hi),up=g<X.secret;up?X.kLo=Math.max(X.kLo,g+1):X.kHi=Math.min(X.kHi,g-1);X.hist.push({g,t,d:up?'↑':'↓'});tone(250+Math.max(0,c)*700,.1,'triangle');mgChips();mgRangeUI();
  mgSet(foc?`EXACT FOCUS: ${Math.round(c*100)}% close — ${t.toUpperCase()}! ${up?'Higher':'Lower'}`:`${TE[t]} ${up?'Higher':'Lower'} — ${LBL[t]}`)}
 function mgOver(sum){X.done=1;X.sum=sum;setTimeout(mgEnd,1300)}
 function mgFail(msg){sfx('buzz');shake();vib([70,40,70]);mgSet(msg);mgOver(msg)}
-function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=X.score;if(nb)m.b=X.score;if(k==='tower')twEnd(m);const l1=mlv(m.t);
- const coins=cx(Math.round(X.score/5)+2+(l1>l0?25*l1:0)),xp=xpg(X.score/4+3),r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
+function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;const rr0=rk(),k=X.k,M=MINI.find(m=>m.k===k),m=mgm(k),nb=X.score>m.b,l0=mlv(m.t);m.p++;qEv('mini');if(k.startsWith('tm_')){qEv('tm');qMax('tms',X.score)}m.t+=rhPaySc();if(nb)m.b=X.score;if(k==='tower')twEnd(m);if(k==='rush')rhEnd(m,nb);const l1=mlv(m.t);
+ const coins=cx(Math.round(rhPaySc()/5)+2+(l1>l0?25*l1:0)),xp=xpg(rhPaySc()/4+3),r0=rr0;PRO.gold+=coins;PRO.xp+=xp;LS.set('ms_pro',PRO);
  try{if(/^tm_/.test(k))ppCheck()}catch(e){}
  if(rk()>r0)rankBrag(rk());if(rk()>r0)setTimeout(()=>toast(`⬆️ RANK UP<br><b>${RANKS[rk()][0]}</b><br><small>Reward waiting in Quests${miniNew()}</small>`),1500);
  const stat=({light:()=>`Rounds cleared: ${X.r-1}`,sniper:()=>`Targets hit: ${X.hits}`,duel:()=>X.won?'🏆 You cracked it first!':'💀 Your rival cracked you first',gaunt:()=>`Rounds cleared: ${X.cl}/${GT.length}`,hunt:()=>`Treasures found: ${X.found}`,code:()=>`Vaults cracked: ${X.cl}/5`,oracle:()=>`Riddles solved: ${X.cl}`,echo:()=>`Longest echo: ${X.cl}`,cards:()=>`Right calls: ${X.hits}`}[k]||(()=>X.stat))();
@@ -2910,15 +2920,15 @@ function mgEnd(){if(!X||X.abandon||X.fin)return;if(rvOffer())return;X.fin=1;cons
  try{const bb=$('#mgBrag');MGB=null;if(bb){bb.style.display='none';if(k!=='tower'&&X.score>0&&l1>l0){MGB={kind:'mini',o:{name:M.n,em:M.e,title:l1>l0?'MASTERY LEVEL '+l1:M.n.toUpperCase(),big:X.score,lab:nb?'NEW BEST':'SCORE',meta:M.e+' '+M.n+' · best '+m.b+' · mastery L'+l1+' · '+m.p+' plays',share:M.e+' New best of '+X.score+' in '+M.n+' on MindStrike! Can you beat it?'}};bb.style.display=''}}}catch(e){}
  $('#mgRes').classList.add('on');sfx(X.score>0?'fanfare':'buzz');if(nb&&X.score>0)burst(['🏆','⭐','✨','🪙'],30)}
 function startMini(k){const i=MINI.findIndex(m=>m.k===k);if(i<0||!mgOpen(i))return;const M=MINI[i];try{twThOff()}catch(e){}
- X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};
+ X={k,done:0,fin:0,abandon:0,score:0,busy:false,hist:[],lo:1,hi:10,kLo:null,kHi:null};$('#s-mg').style.setProperty('--bg','url(img/game_bg.webp)');
  $('#mgRes').classList.remove('on');$('#mgTitle').textContent=M.e+' '+M.n;$('#mgNum').value='';$('#mgChips').innerHTML='';$('#mgBoard').innerHTML='';$('#mgRange').textContent='';
- $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'||k==='tower'?'grid':'none';$('#mgPw').style.gridTemplateColumns='repeat(3,1fr)';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
- if(k==='gaunt')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
+ $('#mgBar').style.display=k==='light'?'block':'none';$('#mgPw').style.display=k==='gaunt'||k==='tower'||k==='rush'?'grid':'none';$('#mgPw').style.gridTemplateColumns='repeat(3,1fr)';$('#mgIn').style.display=BRD.includes(k)?'none':'flex';$('#mgRange').style.display=BRD.includes(k)?'none':'';
+ if(k==='gaunt'||k==='rush')$('#mgPw').innerHTML=['SCAN','FOCUS','SHIELD'].map(n=>`<button data-mp="${n}">${ic(n)}<span>${n}</span><i></i></button>`).join('');
  if(!$('#s-mg').classList.contains('on'))go('s-mg');
- (({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,tower:twInit,cards:cdInit,hunt:huInit,tm_astral:olInit,tm_cons:ccInit,tm_atlantis:tdInit,gwell:gwInit,sonar:snrInit,tm_jungle:vsInit,tm_stampede:spInit})[k]||tmInit)();mgUpd()}
+ (({light:lgInit,code:cbInit,sniper:snInit,oracle:orInit,duel:duInit,echo:ecInit,gaunt:gtInit,tower:twInit,rush:rhInit,cards:cdInit,hunt:huInit,tm_astral:olInit,tm_cons:ccInit,tm_atlantis:tdInit,gwell:gwInit,sonar:snrInit,tm_jungle:vsInit,tm_stampede:spInit})[k]||tmInit)();mgUpd()}
 function mgFire(){if(!X||X.done||X.busy||BRD.includes(X.k))return;const el=$('#mgNum'),g=parseInt(el.value,10);
  if(isNaN(g)||g<X.lo||g>X.hi){mgSet(`Enter a number from ${X.lo} to ${X.hi}.`);sfx('buzz');return}
- el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({gwell:gwFire,sonar:snrFire,light:lgFire,code:cbFire,sniper:snFire,oracle:orFire,duel:duFire,gaunt:gtFire,tower:twFire})[X.k](g);mgUpd()}
+ el.value='';const st=$('#mgKp .st');st&&st.classList.remove('rdy');sfx('click');({gwell:gwFire,sonar:snrFire,light:lgFire,code:cbFire,sniper:snFire,oracle:orFire,duel:duFire,gaunt:gtFire,tower:twFire,rush:rhFire})[X.k](g);mgUpd()}
 // -- Lightning Round --
 function lgInit(){X.r=0;lgRound(true)}
 function lgRound(first){X.r++;const r=X.r;X.lo=1;X.hi=Math.min(100,30+5*(r-1));X.secret=rndS(X.lo,X.hi);X.tl=X.tLeft=Math.max(4,20*Math.pow(.92,r-1));X.ls=0;X.att=0;X.kLo=X.lo;X.kHi=X.hi;X.hist=[];mgChips();mgRangeUI();
@@ -3113,6 +3123,77 @@ async function twBoard(){let ov=document.getElementById('twOv');
   let h=a.length?a.slice(0,20).map(row).join('<br>'):'No climbers yet. Be the first!';
   if(mi>=20)h+='<br>⋯<br>'+row(a[mi]);else if(mi<0)h+=`<br><small>${(mgm('tower').f||0)>0?(a.length>=100?'You are outside the top 100.':'Your floor is syncing…'):'Reach a floor to join the board.'}</small>`;
   paint(h)}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
+// -- Boss Rush --
+/* v174: BOSS RUSH. One run through the ten world bosses (the top of each world's Kiraxo ladder, Rome's Imperator last), no shop and no refills between fights. SCAN / FOCUS / SHIELD are set by your Armory gear when the run starts and have to last all ten bosses: Galea = SCAN + FOCUS, Scutum = SHIELD charges + an extra try per layer (L3+), Gladius = bonus points per layer. Bought kits and relics are NOT used, so the board compares gear and skill. A boss has several shield layers; each layer is one hidden number (the range narrows layer by layer, like the real boss phase). Out of tries on a layer: a SHIELD charge absorbs it and the layer reforms with a new number; with none left the run ends. Score = points; ranked on Firebase path rush/<uid> = {n, s, b} (needs the rush rules in firebase-rules.json). Tune: RH (roster/order), RH_LY (layers), RH_HI (first-layer range), RH_SP (spare tries over perfect play). */
+const RH=[
+ {w:'ice',k:'frostgiant',n:'FROST GIANT KIRAXO',e:'\u{1F3D4}️',c:'#8fe0ff',t:'The cold remembers you.',f:'The glacier… cracks…'},
+ {w:'buganda',k:'drumlord',n:'DRUM LORD KIRAXO',e:'\u{1F941}',c:'#f2b705',t:'Every drum calls your name.',f:'The drums… go quiet…'},
+ {w:'gold',k:'scorpion',n:'SCORPION KIRAXO',e:'\u{1F982}',c:'#ffd45a',t:'The sands bite back.',f:'The dunes… take me…'},
+ {w:'samurai',k:'tengu',n:'TENGU KIRAXO',e:'⛩️',c:'#ff4a68',t:'Strike true, or not at all.',f:'Honour… is yours…'},
+ {w:'cyber',k:'mainframe',n:'MAINFRAME KIRAXO',e:'\u{1F306}',c:'#00e5ff',t:'Access denied.',f:'System… offline…'},
+ {w:'jungle',k:'stampede',n:'STAMPEDE KIRAXO',e:'\u{1F334}',c:'#8be04a',t:'Feel the ground shake.',f:'The herd… scatters…'},
+ {w:'elementa',k:'alchemist',n:'ALCHEMIST KIRAXO',e:'⚗️',c:'#f78fff',t:'Everything reacts to me.',f:'The reaction… ends…'},
+ {w:'atlantis',k:'leviathan',n:'LEVIATHAN KIRAXO',e:'\u{1F531}',c:'#53d0ff',t:'The deep has no floor.',f:'I sink… at last…'},
+ {w:'astral',k:'starmaw',n:'STAR MAW KIRAXO',e:'\u{1F30C}',c:'#c9a8ff',t:'Stars are only snacks.',f:'The stars… go dark…'},
+ {w:'roman',k:'caesar',n:'IMPERATOR KIRAXO PRIME',e:'\u{1F3DB}️',c:'#ffb347',t:'Kneel before Rome.',f:'Rome… falls…'}];
+/* Boss Rush scores run ~4x higher than other games, so coins, XP and mastery use score/4 (RH_PAY) */
+const RH_PAY=4,rhPaySc=()=>Math.round(X&&X.k==='rush'?X.score/RH_PAY:X.score);
+const RH_N=RH.length,RH_LY=[2,2,2,3,3,3,3,4,4,5],RH_HI=[15,25,40,60,90,130,200,300,500,800],RH_SP=[3,3,3,2,2,2,1,1,1,1];
+const rhRange=(bi,li)=>Math.max(8,Math.round(RH_HI[bi]*Math.pow(.8,li)));
+function rhGear(){const h=gl('h'),s=gl('s'),b=gl('b');return{sc:3+(h?[1,2,3,4,5][h-1]:0),fo:2+(h?[0,0,1,1,2][h-1]:0),sh:2+(s?[1,2,2,3,4][s-1]:0),at:s>=5?2:s>=3?1:0,pt:b?[1,2,3,4,6][b-1]:0}}
+const rhLive=x=>X===x&&!x.done&&!x.abandon&&x.k==='rush';
+function rhBg(B){const u=B.w==='elementa'?'var(--ebg)':B.w==='roman'?'url(img/boss_bg.webp)':`url(img/${B.w}_boss.webp)`;$('#s-mg').style.setProperty('--bg',u)}
+function rhInit(){X.g=rhGear();X.sc=X.g.sc;X.fo=X.g.fo;X.sh=X.g.sh;X.bi=-1;X.li=0;X.lyN=0;X.bd=0;X.focus=0;X.scanned=0;X.intro=1;X.busy=true;X.maxA=0;X.att=0;X.t0=0;X.lp=0;
+ $('#mgIn').style.display='none';$('#mgRange').textContent='';rhPw();rhIntro()}
+function rhIntro(){const m=mgm('rush'),g=X.g;$('#s-mg').style.setProperty('--bg','url(img/boss_bg.webp)');
+ $('#mgBoard').innerHTML=`<div class="card" style="width:min(94%,360px);text-align:center"><b>\u{1F451} BOSS RUSH</b><p style="margin:8px 0"><small>The generals of all ten worlds, back to back. No shop, no breaks, no refills: your gear sets what you carry and it has to last the whole run. Run out of tries on a layer with no 🛡️ left and the run is over.</small></p>
+ <div class="rhKit"><span>🔍 SCAN <b>${g.sc}</b></span><span>🎯 FOCUS <b>${g.fo}</b></span><span>🛡️ SHIELD <b>${g.sh}</b></span></div>
+ <small>${g.at?'🛡️ Scutum: +'+g.at+' try per layer · ':''}${g.pt?'🗡️ Gladius: +'+g.pt+' pts per layer':'Upgrade your gear in the Armory to carry more'}</small>
+ <div class="rhRoad">${RH.map((b,i)=>`<i title="${b.n}" style="${i<(m.bb||0)?'':'opacity:.4'}">${b.e}</i>`).join('')}</div>
+ <div>🏆 Best <b>${m.b||0}</b> · 👑 ${m.bb||0}/${RH_N} bosses${m.cl?' · ✅ cleared ×'+m.cl:''}<br><small id="rhRank">${m.b?'…':'Beat a boss to get ranked'}</small></div>
+ <button data-rh="go" style="width:100%;margin-top:10px">▶ START THE RUSH</button><button data-rh="board" style="width:100%;margin-top:8px">🏆 RANKINGS</button></div>`;mgSet('');
+ if(m.b)evTop('rush').then(a=>{const el=document.getElementById('rhRank');if(el&&X&&X.k==='rush'&&X.intro)el.textContent=evRtxt(a,m.b)}).catch(()=>{const el=document.getElementById('rhRank');if(el)el.textContent=''});rhSync()}
+function rhAct(a){if(!X||X.k!=='rush')return;sfx('click');if(a==='go'&&X.intro)rhBegin();else if(a==='board')rhBoard()}
+function rhBegin(){X.intro=0;X.t0=Date.now();rhBoss(0)}
+function rhCard(){const B=RH[X.bi],pips=Array.from({length:X.lyN},(_,k)=>k<X.li?'💥':'🛡️').join('');
+ $('#mgBoard').innerHTML=`<div class="rhB" style="--rc:${B.c}"><div class="rhP">${BZ.svg(B.k,'emperor',B.k)}</div><div class="rhI"><small>${WNM[B.w]||B.w} · BOSS ${X.bi+1}/${RH_N}</small><b>${B.n}</b><div class="rhS">${pips}</div></div></div>`;
+ try{BZ.mood($('#mgBoard'),X.li>=X.lyN-1&&X.li>0?'rage':X.li>0?'hurt':'idle')}catch(e){}}
+function rhBoss(i){const x=X,B=RH[i];x.bi=i;x.li=0;x.lyN=RH_LY[i];x.busy=true;x.hist=[];x.kLo=null;x.kHi=null;rhBg(B);rhCard();mgChips();$('#mgIn').style.display='none';$('#mgRange').textContent='';rhPw();mgUpd();
+ sfx('powerup');shake(i===RH_N-1);toast(`${B.e} <b>BOSS ${i+1}/${RH_N}</b><br><small>${B.n}</small>`);try{BZ.mood($('#mgBoard'),'smug')}catch(e){}
+ mgSet(`${B.n}: “${B.t}”`);setTimeout(()=>{if(!rhLive(x))return;x.busy=false;$('#mgIn').style.display='flex';rhLayer()},i===RH_N-1?2600:1900)}
+function rhLayer(){const bi=X.bi,hi=rhRange(bi,X.li);X.lo=1;X.hi=hi;X.secret=rndS(1,hi);X.kLo=1;X.kHi=hi;X.maxA=Math.ceil(Math.log2(hi+1))+RH_SP[bi]+X.g.at;X.att=0;X.hist=[];X.scanned=0;X.focus=0;X.busy=false;
+ rhCard();mgChips();mgRangeUI();rhPw();mgUpd();mgSet(`Shield layer ${X.li+1}/${X.lyN}: 1–${hi}, ${X.maxA} tries.`)}
+function rhPw(){const b=n=>$(`#mgPw [data-mp=${n}]`);if(!b('SCAN'))return;b('SCAN').querySelector('i').textContent=X.sc;b('FOCUS').querySelector('i').textContent=X.fo;b('SHIELD').querySelector('i').textContent=X.sh;
+ const off=X.busy||X.intro||X.done;b('SCAN').disabled=off||X.sc<=0||!!X.scanned||X.kHi==null||X.kHi-X.kLo<1;b('FOCUS').disabled=off||X.fo<=0||!!X.focus;b('SHIELD').disabled=true}
+function rhPow(n){if(!X||X.k!=='rush'||X.busy||X.intro||X.done)return;
+ if(n==='SCAN'&&X.sc>0&&!X.scanned&&X.kHi-X.kLo>=1){X.sc--;X.scanned=1;const mid=(X.kLo+X.kHi)>>1,up=X.secret>mid;up?X.kLo=Math.max(X.kLo,mid+1):X.kHi=Math.min(X.kHi,mid);mgRangeUI();mgSet(`🔍 SCAN: the secret lies in the ${up?'UPPER':'LOWER'} half${PAR(X.kLo,X.kHi)}.`)}
+ else if(n==='FOCUS'&&X.fo>0&&!X.focus){X.fo--;X.focus=1;mgSet('🎯 FOCUS active — your next guess shows the exact closeness!')}else return;
+ sfx('powerup');rhPw()}
+function rhFire(g){const x=X;x.att++;const foc=x.focus;x.focus=0;
+ if(g===x.secret){const left=x.maxA-x.att;let pts=10+3*x.bi+2*left+x.g.pt;const crit=x.att===1;if(crit)pts*=2;x.score+=pts;x.lp=pts;x.li++;x.busy=true;sfx('ding');ft('+'+pts+(crit?' ⚡':''));
+  if(x.li>=x.lyN){const bonus=50+25*x.bi;x.score+=bonus;x.bd=x.bi+1;rhFall(bonus);return}
+  burst(['💥','🛡','✨','⚡'],18);shake();vib([50,30,70]);rhPw();mgUpd();mgChips();rhCard();mgSet(`💥 Shield layer broken! +${pts}${crit?' (first-strike ×2)':''}`);
+  setTimeout(()=>{if(rhLive(x))rhLayer()},900);return}
+ if(x.att>=x.maxA){
+  if(x.sh>0){x.sh--;x.busy=true;rhPw();sfx('powerup');try{BZ.mood($('#mgBoard'),'smug')}catch(e){}mgSet(`🛡️ SHIELD holds! It was ${x.secret}. The layer reforms with a new number…`);mgUpd();setTimeout(()=>{if(rhLive(x))rhLayer()},1300);return}
+  return rhLose()}
+ mgHint(g,foc)}
+function rhFall(bonus){const x=X,B=RH[x.bi];x.busy=true;rhPw();rhCard();try{BZ.mood($('#mgBoard'),'dead')}catch(e){}sfx('fanfare');shake(true);vib([80,40,120]);burst([B.e,'👑','✨','💥'],36);ft('👑 +'+bonus);mgUpd();
+ if(x.bi>=RH_N-1){const bn=500+25*x.sh+10*x.sc+10*x.fo;x.score+=bn;x.clr=bn;mgSet(`👑 ${B.n} falls! “${B.f}” — ALL TEN GENERALS DOWN! +${bonus+bn}`);setTimeout(()=>{if(rhLive(x))mgOver('🏆 BOSS RUSH CLEARED! +'+bn+' (kit bonus)')},2200);return}
+ mgSet(`👑 ${B.n} falls! +${bonus} · “${B.f}”`);setTimeout(()=>{if(rhLive(x))rhBoss(x.bi+1)},2400)}
+function rhLose(){const B=RH[X.bi];try{BZ.mood($('#mgBoard'),'smug')}catch(e){}mgFail(`${B.n} stands. The number was ${X.secret}.`)}
+function rhEnd(m,nb){const bd=X.bd,t=Math.max(1,Math.round((Date.now()-(X.t0||Date.now()))/1000)),clr=bd>=RH_N;if(nb)m.bs=bd;m.bb=Math.max(m.bb||0,bd);if(clr){m.cl=(m.cl||0)+1;if(!m.ft||t<m.ft)m.ft=t}
+ X.stat=`👑 <b>Bosses defeated: ${bd}/${RH_N}</b>${nb&&X.score>0?' · NEW BEST!':''}<br>${clr?'🏆 Every general down':'Stopped by '+RH[Math.min(X.bi,RH_N-1)].n} · ${Math.floor(t/60)}m ${t%60}s${clr&&m.ft?' (fastest '+Math.floor(m.ft/60)+'m '+m.ft%60+'s)':''}<br><small id="rhRk"></small>`;LS.set('ms_pro',PRO);
+ rhSync().then(()=>evTop('rush')).then(a=>{const el=document.getElementById('rhRk');if(el)el.textContent=evRtxt(a,m.b)}).catch(()=>{})}
+async function rhSync(force){const m=mgm('rush');if(!m.b||(!force&&m.b<=(m.fs||0)))return;try{const fx=await msFb(),{D:Z,db}=fx.F;await Z.set(Z.ref(db,'rush/'+fx.uid),{n:evSafe(S.n1),s:m.b,b:Math.min(RH_N,m.bs||0)});m.fs=m.b;LS.set('ms_pro',PRO)}catch(e){}}
+async function rhBoard(){let ov=document.getElementById('rhOv');
+ if(!ov){ov=document.createElement('div');ov.id='rhOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='rhX')ov.remove()};document.body.appendChild(ov)}
+ const paint=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>👑 BOSS RUSH RANKINGS</h2><div style="line-height:1.8;margin:8px 0">${h}</div><button id="rhX" style="width:100%">CLOSE</button></div>`};
+ paint('Loading…');
+ try{await rhSync(true);const a=await evTop('rush'),rk=v=>1+a.filter(y=>y.s>v.s).length,row=v=>{const r=rk(v);return `${['🥇','🥈','🥉'][r-1]||r+'.'} ${evName(v.n)} — <b>${v.s}</b> pts · 👑 ${v.b||0}/${RH_N}${v.me?' ← you':''}`},mi=a.findIndex(x=>x.me);
+  let h=a.length?a.slice(0,20).map(row).join('<br>'):'No challengers yet. Be the first!';
+  if(mi>=20)h+='<br>⋯<br>'+row(a[mi]);else if(mi<0)h+=`<br><small>${(mgm('rush').b||0)>0?(a.length>=100?'You are outside the top 100.':'Your score is syncing…'):'Finish a run to join the board.'}</small>`;
+  paint(h)}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
 // -- Treasure Hunt --
 function huInit(){X.base=Math.min(6,4+(mlv(mgm('hunt').t)>>1));X.n=0;X.found=0;huNext()}
 function huNext(){X.n++;const s=X.size=Math.min(8,X.base+((X.n-1)>>1));X.digs=s+1;X.tr=[rnd(0,s-1),rnd(0,s-1)];X.dug={};X.dugT={};X.busy=false;huGrid();mgUpd();mgSet(`💎 Hunt ${X.n}/5 — grid ${s}×${s}. Dig up the treasure! ${X.digs} digs.`)}
@@ -3195,8 +3276,8 @@ function cdGo(a){if(!X||X.k!=='cards'||X.done||X.busy)return;
  if(!end&&!X.deck.length){X.score+=X.pot+20*X.lives;X.pot=0;end='🏆 Deck cleared! +'+20*X.lives+' for lives left'}
  mgUpd();cdUI();if(end){X.busy=true;mgOver(end)}}
 keypad($('#mgKp'),$('#mgNum'),()=>mgFire(),'mgStrike');
-$('#mgBoard').onclick=e=>{const tr=e.target.closest('[data-tr]');if(tr)return twPick(tr.dataset.tr);const tx=e.target.closest('[data-tx]');if(tx)return twSwap(tx.dataset.tx);if(e.target.closest('[data-tc]')){sfx('click');return twOffer()}if(e.target.closest('[data-ts]'))return twKeep();const tw=e.target.closest('[data-tw]');if(tw)return twAct(tw.dataset.tw);const ri=e.target.closest('[data-ri]');if(ri)return twInfo(ri.dataset.ri);const b=e.target.closest('[data-hc]');if(b)return huDig(+b.dataset.hc);const c=e.target.closest('[data-ec]');if(c)return ecTap(+c.dataset.ec);const d=e.target.closest('[data-cd]');if(d&&!d.disabled)cdGo(d.dataset.cd)};
-$('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||!X||X.done||X.busy)return;X.k==='tower'?twPow(b.dataset.mp):gtPow(b.dataset.mp)};
+$('#mgBoard').onclick=e=>{const rh=e.target.closest('[data-rh]');if(rh)return rhAct(rh.dataset.rh);const tr=e.target.closest('[data-tr]');if(tr)return twPick(tr.dataset.tr);const tx=e.target.closest('[data-tx]');if(tx)return twSwap(tx.dataset.tx);if(e.target.closest('[data-tc]')){sfx('click');return twOffer()}if(e.target.closest('[data-ts]'))return twKeep();const tw=e.target.closest('[data-tw]');if(tw)return twAct(tw.dataset.tw);const ri=e.target.closest('[data-ri]');if(ri)return twInfo(ri.dataset.ri);const b=e.target.closest('[data-hc]');if(b)return huDig(+b.dataset.hc);const c=e.target.closest('[data-ec]');if(c)return ecTap(+c.dataset.ec);const d=e.target.closest('[data-cd]');if(d&&!d.disabled)cdGo(d.dataset.cd)};
+$('#mgPw').onclick=e=>{const b=e.target.closest('[data-mp]');if(!b||b.disabled||!X||X.done||X.busy)return;X.k==='tower'?twPow(b.dataset.mp):X.k==='rush'?rhPow(b.dataset.mp):gtPow(b.dataset.mp)};
 addEventListener('keydown',e=>{if(!$('#s-mg').classList.contains('on')||!X||X.done||X.busy||BRD.includes(X.k))return;const i=$('#mgNum');
  if(/^\d$/.test(e.key)){if(i.value.length<3)i.value+=e.key}else if(e.key==='Backspace')i.value=i.value.slice(0,-1);else if(e.key==='Enter')mgFire()});
 $('#miniBtn').onclick=()=>{sfx('click');play('theme');miniUI();go('s-mini')};
@@ -3791,9 +3872,9 @@ function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?
  let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
  const kc=eKS()&&KSC[eKS()],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';const ki=on&&KSI[eKS()];e1.classList.toggle('im',!!ki);if(ki)e1.innerHTML=`<img src="${KSI[eKS()]}" alt=""><u>${mood()}</u>`;else e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
 /* ---- v97: per-world boss victory burst ---- */
-const WINB={roman:[['\U0001F3DB\uFE0F','\u2694\uFE0F','\U0001F985','\U0001FA99'],'VICTORIA!','#ffb347'],buganda:[['\U0001F941','\U0001F41A','\U0001F451','\u2728'],'THE KINGDOM IS VICTORIOUS','#f2b705'],cyber:[['\U0001F4BE','\u26A1','\U0001F513','\u2728'],'SYSTEM BREACHED','#00e5ff'],samurai:[['\U0001F338','\u26E9\uFE0F','\U0001F5E1\uFE0F','\U0001F3EE'],'HONOUR EARNED','#ff4a68'],ice:[['\u2744\uFE0F','\U0001F9CA','\u2694\uFE0F','\u2728'],'VALHALLA AWAITS','#8fe0ff'],gold:[['\U0001FA99','\U0001F451','\U0001F4B0','\u2728'],'GOLDEN TRIUMPH','#ffd45a'],astral:[['\U0001F31F','\u2604\uFE0F','\U0001FA90','\u2728'],'THE STARS ALIGN','#c9a8ff'],atlantis:[['\U0001FAE7','\U0001F531','\U0001F41A','\U0001F30A'],'THE KRAKEN SINKS','#53d0ff'],elementa:[['⚛️','🧪','💎','✨'],'THE REACTION IS COMPLETE','#f78fff'],jungle:[['🌴','🎲','🍃','🐒'],'THE JAGUAR KING FALLS','#8be04a']};
+const WINB={roman:[['\u{1F3DB}\uFE0F','\u2694\uFE0F','\u{1F985}','\u{1FA99}'],'VICTORIA!','#ffb347'],buganda:[['\u{1F941}','\u{1F41A}','\u{1F451}','\u2728'],'THE KINGDOM IS VICTORIOUS','#f2b705'],cyber:[['\u{1F4BE}','\u26A1','\u{1F513}','\u2728'],'SYSTEM BREACHED','#00e5ff'],samurai:[['\u{1F338}','\u26E9\uFE0F','\u{1F5E1}\uFE0F','\u{1F3EE}'],'HONOUR EARNED','#ff4a68'],ice:[['\u2744\uFE0F','\u{1F9CA}','\u2694\uFE0F','\u2728'],'VALHALLA AWAITS','#8fe0ff'],gold:[['\u{1FA99}','\u{1F451}','\u{1F4B0}','\u2728'],'GOLDEN TRIUMPH','#ffd45a'],astral:[['\u{1F31F}','\u2604\uFE0F','\u{1FA90}','\u2728'],'THE STARS ALIGN','#c9a8ff'],atlantis:[['\u{1FAE7}','\u{1F531}','\u{1F41A}','\u{1F30A}'],'THE KRAKEN SINKS','#53d0ff'],elementa:[['⚛️','🧪','💎','✨'],'THE REACTION IS COMPLETE','#f78fff'],jungle:[['🌴','🎲','🍃','🐒'],'THE JAGUAR KING FALLS','#8be04a']};
 const STG={roman:[[392,523,659,784],'triangle'],buganda:[[330,392,494,659],'sine'],cyber:[[440,660,880,1320],'square'],samurai:[[294,370,440,587],'triangle'],ice:[[523,659,784,1047],'sine'],gold:[[523,659,784,1047,1319],'triangle'],astral:[[392,587,784,988,1175],'sine'],atlantis:[[262,330,392,523],'sine'],elementa:[[330,415,523,659,831],'sine'],jungle:[[220,262,330,392,440],'triangle']};
-function bossCelebrate(){const k=wdKey(),[em,tt,col]=WINB[k];setTimeout(()=>{try{burst(em,56);sfx('powerup');shake(true);{const[ns,ty]=STG[k];ns.forEach((f,i)=>setTimeout(()=>tone(f,.3,ty,ty==='square'?.1:.18),300+i*130))}toast(`\U0001F3C6 <b>${tt}</b><br><small>The boss has fallen!</small>`);
+function bossCelebrate(){const k=wdKey(),[em,tt,col]=WINB[k];setTimeout(()=>{try{burst(em,56);sfx('powerup');shake(true);{const[ns,ty]=STG[k];ns.forEach((f,i)=>setTimeout(()=>tone(f,.3,ty,ty==='square'?.1:.18),300+i*130))}toast(`\u{1F3C6} <b>${tt}</b><br><small>The boss has fallen!</small>`);
  if(!RM){const f=document.createElement('div');f.style.cssText=`position:fixed;inset:0;z-index:75;pointer-events:none;background:radial-gradient(circle at 50% 45%,${col}cc,${col}00 65%)`;document.body.appendChild(f);f.animate([{opacity:0},{opacity:1,offset:.25},{opacity:0}],{duration:900,easing:'ease-out'}).onfinish=()=>f.remove();
   const r=document.createElement('div');r.style.cssText=`position:fixed;left:50%;top:45%;width:40px;height:40px;margin:-20px;border-radius:50%;border:4px solid ${col};box-shadow:0 0 24px ${col};z-index:76;pointer-events:none`;document.body.appendChild(r);r.animate([{transform:'scale(.3)',opacity:1},{transform:'scale(16)',opacity:0}],{duration:1100,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=()=>r.remove()}}catch(e){}},350)}
 /* ---- v95: colourblind symbols + weather particles ---- */
@@ -3817,7 +3898,7 @@ const WXC={roman:{n:36,c:'255,150,60',k:'dot',vy:-.5,vx:.15,r:[1,2.6]},buganda:{
  setTimeout(()=>{const ap=()=>document.documentElement.classList.toggle('cb',!!S.cb);ap();
   $('#tCb').onclick=()=>{S.cb=!S.cb;save();setUI();ap();if(G)render()};$('#tWx').onclick=()=>{S.wx=S.wx===false;save();setUI()}},0)})();
 /* ---- v93: projectile feedback + boss tricks ---- */
-const SHOT={roman:['\u27B6','#e6b86a'],buganda:['\u27B6','#f2b705'],cyber:['\u25B0','#00e5ff'],samurai:['\u2734','#f3dfb0'],ice:['\u2744','#cfefff'],gold:['\U0001FA99','#ffd45a'],astral:['\u2726','#d9c2ff'],atlantis:['\U0001FAE7','#9fe3ff'],elementa:['\u269B','#f99fff'],jungle:['🍃','#9af27a']};
+const SHOT={roman:['\u27B6','#e6b86a'],buganda:['\u27B6','#f2b705'],cyber:['\u25B0','#00e5ff'],samurai:['\u2734','#f3dfb0'],ice:['\u2744','#cfefff'],gold:['\u{1FA99}','#ffd45a'],astral:['\u2726','#d9c2ff'],atlantis:['\u{1FAE7}','#9fe3ff'],elementa:['\u269B','#f99fff'],jungle:['🍃','#9af27a']};
 function shotFx(g,tier,exact){if(RM||!G)return;const sp=$('#spec'),sb=$('#strike');if(!sp||!sb)return;const a=sb.getBoundingClientRect(),b=sp.getBoundingClientRect(),s=Math.max(1,G.hi-G.lo),
  x=b.left+b.width*Math.min(1,Math.max(0,(g-G.lo)/s)),y=b.top+b.height/2,sx=a.left+a.width/2,sy=a.top,[ch,col]=SHOT[wdKey()],c=tier?TC[tier]:'#fff',
  e=document.createElement('div');e.textContent=ch;e.style.cssText=`position:fixed;left:0;top:0;z-index:70;pointer-events:none;font-size:26px;line-height:1;color:${col};text-shadow:0 0 8px ${col}`;document.body.appendChild(e);
@@ -3827,7 +3908,7 @@ function shotFx(g,tier,exact){if(RM||!G)return;const sp=$('#spec'),sb=$('#strike
   r.animate([{transform:'scale(.4)',opacity:1},{transform:`scale(${exact?5:3})`,opacity:0}],{duration:450,easing:'ease-out'}).onfinish=()=>r.remove()}}
 const TIERS=['freezing','cold','warm','hot','blazing'];
 function bossGlitch(tier,exact){if(exact||!G||!G.boss||G.mode!=='AI'||G.cur!==0||wdKey()!=='cyber'||G.guesses%3)return tier;const i=TIERS.indexOf(tier);if(i<0)return tier;const n=Math.min(4,Math.max(0,i+(Math.random()<.5?-1:1)));setTimeout(()=>toast('\u26A1 <b>GLITCH</b><br><small>That hint may be corrupted!</small>'),150);G._gl=1;return TIERS[n]}
-var _eb=enterBoss;enterBoss=function(t){_eb(t);const k=wdKey();if(G&&G.mode==='AI'&&(k==='cyber'||k==='atlantis'))setTimeout(()=>toast(k==='cyber'?'\u26A1 <b>FIREWALL GLITCH</b><br><small>Every 3rd boss hint may lie.</small>':'\U0001F991 <b>KRAKEN INK</b><br><small>Only your last 2 hints stay clear.</small>'),900)};
+var _eb=enterBoss;enterBoss=function(t){_eb(t);const k=wdKey();if(G&&G.mode==='AI'&&(k==='cyber'||k==='atlantis'))setTimeout(()=>toast(k==='cyber'?'\u26A1 <b>FIREWALL GLITCH</b><br><small>Every 3rd boss hint may lie.</small>':'\u{1F991} <b>KRAKEN INK</b><br><small>Only your last 2 hints stay clear.</small>'),900)};
 /* ---- v92: hearts. One row per player, themed shape + colours per world ---- */
 const HSH={
  roman:'<path d="M12 21.5C5 16.6 2 13 2 8.9 2 6.2 4 4.2 6.6 4.2c1.9 0 3.6 1 5.4 3 1.8-2 3.5-3 5.4-3C20 4.2 22 6.2 22 8.9c0 4.1-3 7.7-10 12.6z"/><path class="hl" d="M6.2 7.2c.7-.8 1.7-.9 2.4-.4-.9-.1-1.8.4-2.4.4z"/>',
@@ -3859,7 +3940,7 @@ function render(msg){if(!G)return;const b=G.boss;
  $('#hist').innerHTML=G.hist.map(h=>`<span style="border-color:${h.t?TC[h.t]:'#d9c6a3'};color:${h.t?TC[h.t]:'#d9c6a3'}">${h.d}${h.g}${h.t?TE[h.t]:'❔'}</span>`).join('');
  cbHist();
  G.hist.forEach((h,i)=>{if(h.gl){const e=$$('#hist span')[i];if(e)e.textContent+='\u26A1'}});
- if(b&&G.mode==='AI'&&wdKey()==='atlantis')$$('#hist span').forEach((e,i,a)=>{if(i<a.length-2){e.style.color=e.style.borderColor='#5b7894';e.textContent=e.textContent.replace(/[^\d\u2191\u2193\u2713]+$/u,'')+'\U0001F991'}});
+ if(b&&G.mode==='AI'&&wdKey()==='atlantis')$$('#hist span').forEach((e,i,a)=>{if(i<a.length-2){e.style.color=e.style.borderColor='#5b7894';e.textContent=e.textContent.replace(/[^\d\u2191\u2193\u2713]+$/u,'')+'\u{1F991}'}});
  const sp=Math.max(1,G.hi-G.lo),pc=x=>Math.min(100,Math.max(0,(x-G.lo)/sp*100));
  $('#spec').innerHTML=`<div class="win" style="left:${pc(G.kLo)}%;width:${Math.max(2,pc(G.kHi)-pc(G.kLo))}%"></div>`+G.hist.map(h=>`<i class="pin" style="left:${pc(h.g)}%;background:${h.t?TC[h.t]:'#fff'}"></i>`).join('');
  if(msg!==undefined)$('#msg').textContent=msg;
@@ -7518,7 +7599,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.15';
+window.APP_VER='1.9.16';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}

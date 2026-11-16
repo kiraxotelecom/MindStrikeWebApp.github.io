@@ -1,0 +1,15 @@
+{
+  "_comment": "Add this block inside \"rules\" next to the existing \"tower\" block in firebase-rules.json, then Publish. If your tower block uses a different .read rule, copy that one.",
+  "rush": {
+    ".read": "auth != null",
+    ".indexOn": ["s"],
+    "$uid": {
+      ".write": "auth != null && auth.uid === $uid",
+      ".validate": "newData.hasChildren(['n', 's', 'b'])",
+      "n": { ".validate": "newData.isString() && newData.val().length <= 12" },
+      "s": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 20000" },
+      "b": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 10" },
+      "$other": { ".validate": false }
+    }
+  }
+}
