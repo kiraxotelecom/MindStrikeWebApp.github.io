@@ -728,3 +728,6 @@ Service worker and APP_VER are 1.9.26.
 
 ## 1.9.31 changes
 **Aris has blue eyes** (iris gradient aI$, pupil and rim recoloured). **Result screen:** Aris now stands on the same row as the trophy / crown / skull (`#vrow`, built in the Aris init), cheering on a win and sad on a loss, which saves about 100px so more of the result fits without scrolling. Her speech bubble still drops below the row for a few seconds. Service worker and APP_VER are 1.9.31.
+
+## 1.9.32 changes
+Result screen: Aris speech bubble now sits above her again (it no longer covers the VICTORY / DEFEAT title). Service worker and APP_VER are 1.9.32.

@@ -1680,7 +1680,11 @@ html.noaris #arBrag .arWrap{display:block!important}
 #s-end[data-k] #vrow #vemb{width:104px;height:96px;font-size:3.5rem;margin:0 0 0 -4px}
 #s-end[data-k=""] #vrow #vemb{width:84px;height:84px;font-size:2.8rem}
 #s-end[data-k=vic] #vrow #vemb::before{inset:-46px}
-#vrow .arWrap.arEnd .arB{left:50%;top:calc(100% - 4px)}
+#vrow .arWrap.arEnd{margin-top:30px}
+#vrow .arWrap.arEnd .arB{left:50%;top:auto;bottom:calc(100% - 4px);transform:translate(-50%,6px) scale(.9);transform-origin:50% 100%}
+#vrow .arWrap.arEnd .arB.on{transform:translate(-50%,0) scale(1)}
+#vrow .arWrap.arEnd .arB::after{top:100%;bottom:auto;border-top-color:#d9a441;border-bottom-color:transparent}
+#vrow .arWrap.arEnd .arB::before{top:100%;bottom:auto;margin:-3px 0 0 -5px;border-top-color:#fff7e0;border-bottom-color:transparent}
 </style>
 </head><body><div id="spl" aria-hidden="true"><style>
 /* 1.8.1 launch animation. Pure CSS first, so it paints before the game loads and always hides itself (failsafe) even if the script fails. Colour and ember glyph follow the current world (html.wd-*). Timeline: 0s rings converge + digits drop, 0.65-1.05s digits lock, 1.05s shockwave + strike slash + flash, 1.05-1.8s title slams, 1.55s shake, 1.95s metal shine sweeps the title, 2.5s zoom-out exit. */
@@ -8066,7 +8070,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.31';
+window.APP_VER='1.9.32';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
