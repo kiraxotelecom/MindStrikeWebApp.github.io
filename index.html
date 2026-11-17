@@ -246,7 +246,7 @@ img.logo{width:min(92%,400px);margin:4px 0}
 .bm-play svg{display:block;margin-left:2px;filter:drop-shadow(0 1px 0 #0008)}.bm-mode{min-height:104px}.bm-play{width:36px;height:36px;border-radius:50%;border:1px solid hsl(calc(41.2deg + var(--hs)),calc(80.8% * var(--ss)),71.4%);color:hsl(calc(41.4deg + var(--hs)),calc(100.0% * var(--ss)),82.9%);background:linear-gradient(145deg,var(--c1,#a43d28),var(--c2,#4c1712));box-shadow:0 0 0 3px hsl(calc(22.3deg + var(--hs)),calc(44.3% * var(--ss)),15.5%),0 5px 12px #000a;display:grid;place-items:center;font-size:13px}
 .hs{margin-top:8px;color:hsl(calc(44.1deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%));font-weight:bold;letter-spacing:.06em;text-shadow:0 0 14px hsl(calc(38.5deg + var(--hs)),calc(78.2% * var(--ss)),calc(55.1% + var(--lt) * -10.2%))}
 .qb{height:7px;background:rgb(var(--k) / 0.67);border:1px solid var(--gold);border-radius:4px;margin:5px 0 2px;overflow:hidden}.qb i{display:block;height:100%;background:linear-gradient(90deg,hsl(calc(33.1deg + var(--hs)),calc(54.1% * var(--ss)),calc(45.3% + var(--lt) * 9.4%)),hsl(calc(40.5deg + var(--hs)),calc(100.0% * var(--ss)),calc(77.1% + var(--lt) * -54.2%)))}.qh{margin:10px 0 2px;font-size:.9rem;text-align:left;width:100%}
-#chestBox.pop2{transform:scale(1.3) rotate(-6deg)}
+#chestBox.pop2{transform:scale(1.3) rotate(-6deg)}#chestBox svg{display:block;width:112px;height:112px;margin:0 auto;overflow:visible;filter:drop-shadow(0 4px 6px #0008)}#chestBox .kcLid{transition:transform .35s cubic-bezier(.3,1.6,.5,1);transform-origin:6px 21px}#chestBox.open .kcLid{transform:translateY(-4px) rotate(-22deg)}#chestBox .kcRays{opacity:0;transition:opacity .3s}#chestBox.open .kcRays{opacity:1}
 .mreg{width:min(94%,390px);background:rgb(var(--k) / 0.67);border:2px solid var(--gold);border-radius:10px;padding:10px 10px 12px;flex:none}
 .mreg.lk{opacity:.6;border-color:hsl(calc(30.9deg + var(--hs)),calc(42.7% * var(--ss)),calc(32.2% + var(--lt) * 35.6%))}
 .mreg h3{margin:0;color:var(--gold);letter-spacing:.1em;font-size:1rem;display:flex;justify-content:space-between;gap:8px}
@@ -2045,7 +2045,8 @@ html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;-
 <div class="pop" id="kcPop" style="z-index:12"><div class="card kcCard" role="dialog" aria-label="Aris's treasure chest"><h2>📚 ARIS’S TREASURE CHEST</h2>
 <div id="kcMain"><div id="kcBox" class="kcBox" aria-hidden="true"></div><div id="kcFact" hidden></div><p id="kcTxt"></p></div>
 <div id="kcBook" hidden></div>
-<button id="kcGo" style="width:100%"></button><button id="kcBuy" style="width:100%;margin-top:8px" hidden></button><button id="kcBk" style="width:100%;margin-top:8px"></button><button id="kcNo" style="width:100%;margin-top:8px">CLOSE</button></div></div>
+<button id="kcFd" style="width:100%;margin-bottom:8px"></button><button id="kcGo" style="width:100%"></button><button id="kcBuy" style="width:100%;margin-top:8px" hidden></button><button id="kcBk" style="width:100%;margin-top:8px"></button><button id="kcNo" style="width:100%;margin-top:8px">CLOSE</button></div></div>
+<div class="pop" id="fdPop" style="z-index:12"><div class="card kcCard fdCard" role="dialog" aria-label="Fact of the Day"><div class="fdHd"><span id="fdDate"></span><span id="fdStk"></span></div><h2>📅 FACT OF THE DAY</h2><div id="fdBody"></div><button id="fdNo" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="chest" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 DAILY CHEST</h2><div id="chestDays" class="row" style="margin:6px 0"></div><div id="chestBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="chestTxt">Tap the chest to open it!</p><button id="chestBtn" style="width:100%">OPEN</button></div></div>
 <div class="pop" id="chal" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>⚔️ FRIEND CHALLENGE</h2><div id="chalB" style="line-height:1.55;margin:8px 0"></div><button id="chalGo" style="width:100%"></button><div id="chalJ" style="margin-top:10px"><input type="text" id="chalIn" placeholder="PASTE LINK OR CODE" autocomplete="off" autocapitalize="off" style="width:100%"><button id="chalJoin" style="width:100%;margin-top:6px">JOIN CHALLENGE</button></div><button id="chalX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="pass" style="z-index:10"><h2>PASS THE DEVICE</h2><div class="big" id="passname"></div><div id="passsp"></div><button id="ready">I AM READY</button></div>
@@ -4366,7 +4367,7 @@ function qInit(){PRO.q=PRO.q||{};const dk=today(),wk=String(Math.floor((Date.now
  if(!PRO.q.w.some(q=>q.id==='wev')){PRO.q.w.push({id:'wev',n:'Play 6 Colosseum runs',e:'evrun',t:6,c:cx(300),x:140,it:{pack:1},p:0,cl:0});PRO.q.sw=PRO.q.sw&&PRO.q.w.every(q=>q.cl)?PRO.q.sw:0;ch=1}
  const _ex=(a,pool,sd)=>{const ex=pool.filter(z=>!a.some(q=>q.id===z[0])),[id,nme,e,t,c,x,it]=ex[Math.floor(mul(seed(sd))()*ex.length)];a.push({id,n:nme,e,t,c,x,it,p:0,cl:0});ch=1};
  if(PRO.q.d.length<6&&!PRO.q.sd)_ex(PRO.q.d,QD,'qx'+dk);if(PRO.q.w.length<6&&!PRO.q.sw)_ex(PRO.q.w,QW,'qxw'+wk);
- if(tqFix())ch=1;if(ch)LS.set('ms_pro',PRO)}
+ if(tqFix())ch=1;if(!PRO.q.d.some(q=>q.id==='fotd')&&!PRO.q.sd){PRO.q.d.push({id:'fotd',n:'📅 Read today’s Fact of the Day',e:'fotd',t:1,c:cx(55),x:30,it:{time:1},p:0,cl:0});ch=1}if(ch)LS.set('ms_pro',PRO)}
 function qEach(f){qInit();[...PRO.q.d,...PRO.q.w].forEach(q=>{if(!q.cl&&q.p<q.t)f(q)})}
 function qDone(q){if(q.p>=q.t){toast(`📜 <b>QUEST COMPLETE</b><br><small>${q.n} — claim it in Quests</small>`);qBadge()}}
 function qEv(e,n=1){qEach(q=>{if(q.e===e){q.p=Math.min(q.t,q.p+n);qDone(q)}});LS.set('ms_pro',PRO)}
@@ -4426,13 +4427,15 @@ $('#qList').onclick=e=>{const a=e.target.closest('[data-qc]'),b=e.target.closest
  else if(b){const i=+b.dataset.rc;if(PRO.rr[i]||rk()<i)return;PRO.rr[i]=1;toast(`🎖️ <b>${RANKS[i][0]} REWARD</b><br><small>${grant(RR[i])}</small>`)}else if(e.target.closest('[data-pc]')){const n=(PRO.pc||0)+1;if(pr()<n)return;PRO.pc=n;toast(`👑 <b>IMPERATOR ${rom(n)}</b><br><small>${grant({c:cx(1000+250*n),inv:{tome:1,pack:1}})}</small>`)}else return;
  burst(['🪙','✨','🎁'],24);tone(780,.12,'triangle');LS.set('ms_pro',PRO);qUI();profUI()};
 $('#questBtn').onclick=()=>{sfx('click');qUI();go('s-quests')};
+/* v189: the Daily Chest uses the realistic chest from Aris's Treasure Chest (window.kcChestSVG); the old emoji stays as a fallback */
+function chestFace(o){const b=$('#chestBox');if(!b)return;if(window.kcChestSVG){b.innerHTML=window.kcChestSVG();b.classList.toggle('open',!!o)}else b.textContent=o?'✨':'🎁'}
 let chestN=0,chestOpen=0;
 function chestCheck(){if(PRO.lc.last===today())return;const s=PRO.lc.last===ydy()?PRO.lc.s+1:1;chestN=s;chestOpen=0;const day=(s-1)%7;
  $('#chestDays').innerHTML=CHEST.map((r,i)=>`<span style="padding:4px 7px;border:1px solid var(--gold);border-radius:6px;font-size:.75rem;${i<day?'opacity:.5;':''}${i===day?'background:#8e1b16;font-weight:bold':''}">${i<day?'✓':'D'+(i+1)}</span>`).join('');
- $('#chestBox').textContent='🎁';$('#chestTxt').innerHTML=`Day ${day+1} of 7 · 🔥 ${s}-day streak<br><small>Tap the chest to open it!</small>`;$('#chestBtn').textContent='OPEN';$('#chest').classList.add('on')}
+ chestFace(0);$('#chestTxt').innerHTML=`Day ${day+1} of 7 · 🔥 ${s}-day streak<br><small>Tap the chest to open it!</small>`;$('#chestBtn').textContent='OPEN';$('#chest').classList.add('on')}
 function chestAct(){if(chestOpen){$('#chest').classList.remove('on');profUI();return}
  chestOpen=1;const day=(chestN-1)%7,t=grant(CHEST[day]);PRO.lc={last:today(),s:chestN};LS.set('ms_pro',PRO);
- $('#chestBox').textContent='✨';$('#chestBox').classList.add('pop2');setTimeout(()=>$('#chestBox').classList.remove('pop2'),300);$('#chestTxt').innerHTML=`<b>${t}</b>${day===6?'<br><small>7-day streak complete — it starts over tomorrow!</small>':''}`;$('#chestBtn').textContent='COLLECT';burst(['🪙','✨','🎁'],30);sfx('powerup')}
+ chestFace(1);$('#chestBox').classList.add('pop2');setTimeout(()=>$('#chestBox').classList.remove('pop2'),300);$('#chestTxt').innerHTML=`<b>${t}</b>${day===6?'<br><small>7-day streak complete — it starts over tomorrow!</small>':''}`;$('#chestBtn').textContent='COLLECT';burst(['🪙','✨','🎁'],30);sfx('powerup')}
 $('#chestBox').onclick=$('#chestBtn').onclick=chestAct;
 setTimeout(chestCheck,900);
 lbShow();
@@ -6582,7 +6585,7 @@ function tryShow(){const ids=tryIds();if(!ids.length)return;tryI=(tryI+ids.lengt
  tryEl.querySelector('p').innerHTML=a[2]+'<br><b>'+(own?'✅ You own this':'💰 '+a[3])+'</b>'+(a[5]&&!own?'<br>⏳ '+awWhen(id,1):'');
  tryA.pv=id;dr(tryA);setMood(tryA,'happy');const e=tryA.el;e.classList.remove('arSpin');void e.offsetWidth;e.classList.add('arSpin');setTimeout(()=>e.classList.remove('arSpin'),950)}
 const tryClose=()=>{if(tryEl)tryEl.classList.remove('on')};
-window.awTry=id=>{const d=document;if(!tryEl){const st=d.createElement('style');st.textContent='#awTry{position:fixed;inset:0;z-index:100000;background:#000b;display:none;align-items:center;justify-content:center}#awTry.on{display:flex}#awTry .awTc{width:min(92%,340px);text-align:center}#awTry .awTs{display:flex;justify-content:center;margin:6px 0}#awTry .arWrap.arTry{display:block!important;--arW:150px;cursor:default}#awTry .arB{display:none}#awTry .awTb{display:flex;gap:8px;justify-content:center}#awTry p{margin:4px 0 10px;font-size:.85rem}';d.head.appendChild(st);
+window.awTry=id=>{const d=document;if(!tryEl){const st=d.createElement('style');st.textContent='#awTry{position:fixed;inset:0;z-index:100000;background:#000b;display:none;align-items:center;justify-content:center}#awTry.on{display:flex}#awTry .awTc{width:min(92%,340px);text-align:center}#awTry .awTs{display:flex;justify-content:center;margin:6px 0}#awTry .arWrap.arTry{display:block!important;--arW:150px;cursor:default}#awTry .arB{display:none}#awTry .awTb{display:flex;gap:8px;justify-content:center}#awTry p{margin:4px 0 10px;font-size:.85rem}#awTry .awTc{padding-top:22px}#awTry .awTc h3{margin:0 0 2px}#awTry .awTs{padding-top:20px;min-height:190px;align-items:flex-end}#awTry .arWrap.arTry{--arW:min(150px,22vh)}#awTry .awTb button{min-width:0;flex:0 0 58px;padding:10px 0;font-size:1rem}#awTry .awTb button[data-t=x]{flex:1;font-size:.85rem}#awTry .awTb{position:sticky;bottom:-16px;z-index:2;padding:8px 0 2px}';d.head.appendChild(st);
  tryEl=d.createElement('div');tryEl.id='awTry';tryEl.setAttribute('role','dialog');tryEl.setAttribute('aria-label','Try on');
  tryEl.innerHTML='<div class="card awTc"><small>👁 TRY ON</small><h3></h3><div class="awTs"></div><p></p><div class="awTb"><button data-t="p" aria-label="Previous">◀</button><button data-t="x">CLOSE</button><button data-t="n" aria-label="Next">▶</button></div></div>';d.body.appendChild(tryEl);
  tryA=mk('arTry',tryEl.querySelector('.awTs'),null,'brag');
@@ -7120,7 +7123,7 @@ html:not(.noaris) #kcAlt{display:none!important}
 .kcBox svg{width:100%;height:100%;overflow:visible}
 .kcBox .kcLid{transition:transform .35s cubic-bezier(.3,1.6,.5,1);transform-origin:6px 21px}
 .kcBox.sm{width:64px;height:64px;margin-bottom:0}
-.kcBox.open .kcLid{transform:translateY(-6px) rotate(-14deg)}
+.kcBox.open .kcLid{transform:translateY(-4px) rotate(-22deg)}
 .kcBox .kcRays{opacity:0;transition:opacity .3s}
 .kcBox.open .kcRays{opacity:1}
 .kcBox.shake{animation:kcShake .4s}
@@ -7150,6 +7153,33 @@ html:not(.noaris) #kcAlt{display:none!important}
 #kcBook .kcI span{display:block;font-size:.8rem;line-height:1.35;opacity:.92;margin-top:2px}
 #kcBook .kcI em{display:block;font:700 .8rem/1.3 Georgia,serif;font-style:normal;color:var(--gold);margin-top:3px}
 @media (prefers-reduced-motion:reduce){.arWrap .kcChest,.kcChest.nw::after,.kcBox.shake{animation:none!important}.kcBox .kcLid{transition:none}}
+#fdFact{text-align:left;margin:4px 0 6px}
+#fdFact .kcCat{display:inline-block;font:800 .66rem/1 system-ui,sans-serif;letter-spacing:.1em;padding:4px 8px;border-radius:10px;border:1.5px solid currentColor}
+#fdFact .kcNew{float:right;font:800 .66rem/1 system-ui,sans-serif;letter-spacing:.08em;color:#6fd18a;padding-top:5px}
+#fdFact h3{margin:8px 0 4px;font-size:1.05rem;line-height:1.2;color:var(--gold)}
+#fdFact p{margin:0 0 8px;line-height:1.4}
+#fdFact .kcEq{padding:8px 10px;border-radius:8px;border:1.5px dashed var(--gold);background:rgb(255 255 255 / .06);font:700 .92rem/1.35 Georgia,'Times New Roman',serif;text-align:center}
+#fdFact .kcEq small{display:block;font:800 .62rem/1 system-ui,sans-serif;letter-spacing:.1em;opacity:.8;margin-bottom:4px}
+#fdFact .kcRw{margin-top:8px;font:700 .8rem/1.2 system-ui,sans-serif;text-align:center;opacity:.95}
+#fdFact .kcQ{margin:8px 0 2px;padding:8px 10px;border-radius:8px;border:1.5px solid rgb(255 255 255 / .25);background:rgb(255 255 255 / .05)}
+#fdFact .kcQ small{display:block;font:800 .62rem/1.2 system-ui,sans-serif;letter-spacing:.1em;color:var(--gold);margin-bottom:4px}
+#fdFact .kcQt{font-weight:700;line-height:1.3;margin-bottom:4px}
+#fdFact .kcQb{display:block;width:100%;box-sizing:border-box;margin:5px 0 0;padding:8px 10px;min-height:0;font:700 .88rem/1.2 Georgia,serif;letter-spacing:0;text-transform:none;text-align:center}
+#fdFact .kcQb.ok{background:#1f6b3a;border-color:#6fd18a;color:#fff}
+#fdFact .kcQb.no{background:#7a1f1f;border-color:#ff8a8a;color:#fff}
+#fdFact .kcQb:disabled{opacity:1}
+#fdFact .kcQm{min-height:1.1em;margin-top:6px;font:700 .8rem/1.25 system-ui,sans-serif;text-align:center}
+#fdFact{text-align:left;margin:4px 0 6px}
+.fdCard h2{margin:2px 0 8px}
+.fdHd{display:flex;justify-content:space-between;align-items:center;gap:8px;font:800 .66rem/1 system-ui,sans-serif;letter-spacing:.1em;color:var(--gold)}
+.fdHd span{padding:4px 8px;border:1.5px solid currentColor;border-radius:10px}
+#fdFact .kcQa{display:block}
+#kcFd.fdNew{border-color:var(--gold);box-shadow:0 0 0 2px rgb(230 185 74 / .28)}
+#qList .fdOpen{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;margin:8px 0 0;padding:6px 8px;min-height:0;white-space:normal;font:800 .72rem/1.15 system-ui,sans-serif;letter-spacing:.02em}
+.kcBox{filter:drop-shadow(0 4px 6px #0008)}
+.kcBox.open .kcRays{animation:kcGlow 1.6s ease-in-out infinite alternate}
+@keyframes kcGlow{from{opacity:.82}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.kcBox.open .kcRays{animation:none}}
 </style>
 <script>
 /* v188: ARIS'S TREASURE CHEST. A small chest next to Aris (right side of her home row). Each opening shows one maths fact (what a prime is, divisibility tricks, number patterns, big ideas, shapes, game tips) with a "math sentence" and pays a few coins. FREE = 3 openings per day; each extra opening costs 2 gems (COST). Facts never repeat until a player has found them all. The first chest a player ever opens is always "What is a prime number?". State: PRO.kc = {d: day, u: openings used today, x: extra openings bought today, n: total openings, s: ids of facts found (in order)}. FACTS ARE IDENTIFIED BY POSITION IN F: only ever APPEND new facts at the end. Row format: [category, title, text, math sentence]. Tune FREE / COST / the coin range in reveal(). */
@@ -7160,11 +7190,25 @@ CAT={P:['🔢','PRIME NUMBERS','#f0c565'],O:['⚖️','ODD & EVEN','#7fd6ff'],D:
 esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
 st=()=>{const k=PRO.kc||(PRO.kc={d:'',u:0,x:0,n:0,s:[]});if(k.d!==today()){k.d=today();k.u=0;k.x=0}if(!Array.isArray(k.s))k.s=[];if(!Array.isArray(k.q))k.q=[];return k},
 left=()=>{const k=st();return Math.max(0,FREE+k.x-k.u)},
-seenK='ms_kcseen',seen=()=>{try{return localStorage.getItem(seenK)===today()}catch(e){return true}},mark=()=>{try{localStorage.setItem(seenK,today())}catch(e){}},
-chest=(c)=>'<svg viewBox="0 0 44 44" focusable="false" aria-hidden="true"><g class="kcRays" stroke="#ffe27a" stroke-width="1.6" stroke-linecap="round"><path d="M22 14V4M12 15L6 7M32 15l6-8M7 20H1M37 20h6"/></g><rect x="6" y="20" width="32" height="17" rx="3" fill="#8a4b1e" stroke="#3a1d08" stroke-width="1.6"/><path d="M8 27h28M8 32h28" stroke="#6b3714" stroke-width="1"/><g class="kcLid"><path d="M6 21v-2C6 12 13 8 22 8s16 4 16 11v2z" fill="#b46a2a" stroke="#3a1d08" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 15c2-3 6-5 12-5" fill="none" stroke="#e0a265" stroke-width="1.4" stroke-linecap="round"/><rect x="19" y="8" width="6" height="13" fill="#e6b94a" stroke="#3a1d08" stroke-width="1.2"/></g><rect x="6" y="20" width="32" height="3" fill="#e6b94a" stroke="#3a1d08" stroke-width="1.2"/><rect x="19" y="20" width="6" height="17" fill="#e6b94a" stroke="#3a1d08" stroke-width="1.2"/><rect x="20.5" y="24" width="3" height="4.5" rx="1.2" fill="#3a1d08"/><path d="M3 37h38" stroke="#3a1d08" stroke-width="1.6" stroke-linecap="round"/></svg>';
+seenK='ms_kcseen',seen=()=>{try{return localStorage.getItem(seenK)===today()}catch(e){return true}},mark=()=>{try{localStorage.setItem(seenK,today())}catch(e){}};
+/* v189: REALISTIC CHEST. Planked oak body with grain, brass-strapped barrel lid, iron plinth, rivets, brass lock plate with a keyhole and a hanging hasp. Open = lid tilts up and a gold pile, a ruby and light rays show. Every call gets its own gradient ids (u), so many chests can share one page. Keep the class names kcRays and kcLid: the CSS animates them. */
+let cn=0;
+const chest=(c)=>{const u='kcs'+(++cn);return `<svg viewBox="0 0 44 44" focusable="false" aria-hidden="true"><defs><linearGradient id="${u}w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8682d"/><stop offset=".55" stop-color="#7b4219"/><stop offset="1" stop-color="#4f270d"/></linearGradient><linearGradient id="${u}l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d08c49"/><stop offset=".55" stop-color="#9d5b27"/><stop offset="1" stop-color="#6f3c18"/></linearGradient><linearGradient id="${u}b" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8c6618"/><stop offset=".32" stop-color="#f7de80"/><stop offset=".62" stop-color="#d1a33b"/><stop offset="1" stop-color="#76520f"/></linearGradient><linearGradient id="${u}i" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#555a66"/><stop offset=".5" stop-color="#34373f"/><stop offset="1" stop-color="#1c1e24"/></linearGradient><radialGradient id="${u}g" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7c4"/><stop offset=".5" stop-color="#ffd54a" stop-opacity=".65"/><stop offset="1" stop-color="#ffd54a" stop-opacity="0"/></radialGradient><clipPath id="${u}c"><path d="M5 21v-2C5 12.5 12 8 22 8s17 4.5 17 11v2z"/></clipPath></defs>
+<ellipse cx="22" cy="40.4" rx="18" ry="2.3" fill="#000" opacity=".3"/>
+<g class="kcRays"><circle cx="22" cy="16" r="15" fill="url(#${u}g)"/><g stroke="#ffe27a" stroke-width="1.5" stroke-linecap="round"><path d="M22 11V3M14 12L9.5 5M30 12l4.5-7M5.5 16.5L1.5 13.5M38.5 16.5l4-3"/></g><path d="M7.5 21q1.6-3.6 5.4-3.2 2.6-3 6.4-1.7 3.8-3 7.6-.6 3.9-.9 6 2.7 1.9.4 2.6 2.8z" fill="#e8b422" stroke="#8a5d0c" stroke-width=".9" stroke-linejoin="round"/><g fill="#f9d44c" stroke="#8a5d0c" stroke-width=".7"><ellipse cx="12.5" cy="19.4" rx="3.2" ry="1.5"/><ellipse cx="18" cy="17.4" rx="3.2" ry="1.5"/><ellipse cx="26.5" cy="17" rx="3.2" ry="1.5"/><ellipse cx="32" cy="18.8" rx="3.2" ry="1.5"/><ellipse cx="22" cy="19.4" rx="3.4" ry="1.5"/><ellipse cx="28" cy="20" rx="3" ry="1.4"/></g><path d="M22.5 13.2l2.2 1.8-2.2 2.9-2.2-2.9z" fill="#ff5a6a" stroke="#7a1020" stroke-width=".6" stroke-linejoin="round"/><path d="M22.5 13.8l.9 1.2-.9.5-.9-.5z" fill="#ffc2c8"/><path d="M33.5 11.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="#fff"/></g>
+<rect x="5" y="20.5" width="34" height="17" rx="2.2" fill="url(#${u}w)" stroke="#2c1405" stroke-width="1.3"/>
+<path d="M5.6 26.3h32.8M5.6 31.7h32.8" stroke="#2f1606" stroke-width=".9"/><path d="M5.6 27.2h32.8M5.6 32.6h32.8" stroke="#d29552" stroke-opacity=".3" stroke-width=".6"/>
+<path d="M7.5 23.6q4-.9 8.5 0M26 24.2q5 .8 10-.2M8.5 29.2q5 .9 9 .1M26.5 28.6q4-.8 9 .2M8 34.2q5-.7 10 0M27 34.8q4 .6 8-.2M17 24.6q2 .3 4 0" stroke="#2f1606" stroke-opacity=".38" stroke-width=".6" fill="none" stroke-linecap="round"/>
+<g stroke="#3a2406" stroke-width=".8"><rect x="9.4" y="20.6" width="4.2" height="15.2" fill="url(#${u}b)"/><rect x="30.4" y="20.6" width="4.2" height="15.2" fill="url(#${u}b)"/></g>
+<g fill="#5b3c08"><circle cx="11.5" cy="24" r=".8"/><circle cx="11.5" cy="30" r=".8"/><circle cx="11.5" cy="34.2" r=".8"/><circle cx="32.5" cy="24" r=".8"/><circle cx="32.5" cy="30" r=".8"/><circle cx="32.5" cy="34.2" r=".8"/></g><g fill="#fff3b8" opacity=".7"><circle cx="11.2" cy="23.7" r=".28"/><circle cx="11.2" cy="29.7" r=".28"/><circle cx="32.2" cy="23.7" r=".28"/><circle cx="32.2" cy="29.7" r=".28"/></g>
+<rect x="4.2" y="35" width="35.6" height="3.2" rx="1" fill="url(#${u}i)" stroke="#121317" stroke-width=".9"/><path d="M5.5 35.9h33" stroke="#8a90a0" stroke-opacity=".5" stroke-width=".5"/><g fill="#9aa0ae"><circle cx="8" cy="36.7" r=".55"/><circle cx="16" cy="36.7" r=".55"/><circle cx="28" cy="36.7" r=".55"/><circle cx="36" cy="36.7" r=".55"/></g>
+<path d="M3.6 38.2h3.6v2H4.4q-.8 0-.8-.8zM36.8 38.2h3.6v1.2q0 .8-.8.8h-2.8z" fill="#2a1a0c"/>
+<path d="M18.4 22.4h7.2v6.4q0 2.4-3.6 3.6-3.6-1.2-3.6-3.6z" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".9" stroke-linejoin="round"/><circle cx="22" cy="28.7" r="1.3" fill="#2a1604"/><path d="M21.35 29.1h1.3l.55 2.8h-2.4z" fill="#2a1604"/>
+<rect x="4.6" y="20" width="34.8" height="3" rx="1" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".9"/>
+<g class="kcLid"><path d="M5 21v-2C5 12.5 12 8 22 8s17 4.5 17 11v2z" fill="url(#${u}l)" stroke="#2c1405" stroke-width="1.3" stroke-linejoin="round"/><g clip-path="url(#${u}c)"><path d="M4 12.6h36M4 16.4h36" stroke="#2f1606" stroke-width=".8"/><path d="M4 13.4h36M4 17.2h36" stroke="#e3a867" stroke-opacity=".3" stroke-width=".6"/><path d="M8 11q5-.8 10 0M25 14.4q5 .8 10 0M10 18.4q4 .6 8 0" stroke="#2f1606" stroke-opacity=".3" stroke-width=".6" fill="none" stroke-linecap="round"/><g stroke="#3a2406" stroke-width=".8"><rect x="9.4" y="5" width="4.2" height="17" fill="url(#${u}b)"/><rect x="30.4" y="5" width="4.2" height="17" fill="url(#${u}b)"/></g><g fill="#5b3c08"><circle cx="11.5" cy="13.4" r=".75"/><circle cx="11.5" cy="17.6" r=".75"/><circle cx="32.5" cy="13.4" r=".75"/><circle cx="32.5" cy="17.6" r=".75"/></g><path d="M7.6 16Q9.4 11.2 17 9.4" stroke="#ffe3ae" stroke-opacity=".5" stroke-width="1.5" fill="none" stroke-linecap="round"/></g><rect x="4.6" y="18.6" width="34.8" height="2.6" rx="1" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".8"/><path d="M19.4 20.4h5.2v4.4q0 1.2-2.6 2-2.6-.8-2.6-2z" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".8" stroke-linejoin="round"/><circle cx="22" cy="22.6" r=".75" fill="#3a2406"/></g></svg>`};
 let el=null,state='idle',bk='idle',$k=id=>document.getElementById(id);
-function paint(){const n=left(),k=st();
- if(el){el.querySelector('.kcN').textContent=n;el.classList.toggle('z',!n);el.classList.toggle('nw',n>0&&!seen());el.setAttribute('aria-label','Aris’s treasure chest of maths facts, '+n+(n===1?' opening':' openings')+' left today')}
+function paint(){const n=left(),k=st();try{fdBtn()}catch(e){}
+ if(el){el.querySelector('.kcN').textContent=n;el.classList.toggle('z',!n);el.classList.toggle('nw',(n>0||!fdDone())&&!seen());el.setAttribute('aria-label','Aris’s treasure chest of maths facts, '+n+(n===1?' opening':' openings')+' left today')}
  const a=$k('kcAlt');if(a){const h='<i>📚</i><div><b>ARIS’S TREASURE CHEST</b><small>'+(n?n+' free '+(n===1?'fact':'facts')+' to open today':'Back tomorrow, or open one for '+COST+' 💎')+'</small></div>';if(a.dataset.h!==h){a.dataset.h=h;a.innerHTML=h}}}
 function build(){const w=document.querySelector('.arWrap.arHome');if(!w)return false;if(el&&w.contains(el))return true;
  el=document.createElement('button');el.type='button';el.className='kcChest';el.innerHTML=chest()+'<span class="kcN">0</span>';
@@ -7198,6 +7242,42 @@ function reveal(){if(left()<=0)return;const k=st(),i=pick(),f=F[i],c=CAT[f[0]]||
 function book(){state='book';const k=st(),got=k.s.filter(i=>F[i]);$k('kcMain').hidden=true;$k('kcBook').hidden=false;
  $k('kcBook').innerHTML=`<b>You have found ${got.length} of ${F.length} facts · ${k.q.filter(i=>F[i]).length} questions answered right</b><div class="kcBp"><u style="width:${(got.length/F.length*100).toFixed(0)}%"></u></div>`+(got.length?got.slice().reverse().map(i=>{const f=F[i],c=CAT[f[0]]||CAT.B;return`<div class="kcI"><b>${c[0]} ${esc(f[1])}${k.q.includes(i)?' <span style="color:#6fd18a">✓</span>':''}</b><span>${esc(f[2])}</span>${f[3]?`<em>${esc(f[3])}</em>`:''}</div>`}).join(''):'<p>Nothing yet. Open the chest to start your book!</p>');
  $k('kcBk').textContent='⬅ BACK TO THE CHEST'}
+/* v189: FACT OF THE DAY (a daily quest). One fact a day, the same for every player (picked by the calendar day from F, so every fact comes round once before any repeats). Open it from the chest pop-up, or from the Quests screen (a quest "Read today's Fact of the Day" is added to the Daily list in qInit). Answer its Try-it question to finish it: a wrong answer just greys out and you try again. A right answer = FD_C coins + FD_X XP now, the quest is ready to claim in Quests, the fact goes into the Math Book, and the day counts toward a streak (PRO.fd = {d: day done, l: last day done, s: streak, b: best, n: total}). Every 7th streak day pays 1 gem. Players who already claimed today's Daily Sweep get the quest from tomorrow (so the sweep can never be claimed twice). Tune FD_C / FD_X here. */
+const FD_C=20,FD_X=10,gcd=(a,b)=>b?gcd(b,a%b):a,
+fdDay=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*60000)/864e5),
+fdIdx=()=>{const n=F.length,s=[37,31,29,41,43,47,53].find(x=>gcd(x,n)===1)||1;return(fdDay()*s)%n},
+fdSt=()=>PRO.fd||(PRO.fd={d:'',l:'',s:0,b:0,n:0}),
+fdDone=()=>fdSt().d===today(),
+fdStreak=()=>{const f=fdSt();return(f.l===today()||f.l===ydy())?(f.s||0):0};
+function fdBtn(){const b=$k('kcFd');if(!b)return;const d=fdDone(),s=fdStreak(),h=d?'📅 FACT OF THE DAY · ✓ DONE'+(s>1?' · 🔥'+s:''):'📅 FACT OF THE DAY · NEW';if(b.textContent!==h)b.textContent=h;b.classList.toggle('fdNew',!d)}
+function fdHead(){const s=fdStreak();$k('fdDate').textContent='📅 '+new Date().toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}).toUpperCase();$k('fdStk').textContent=s?'🔥 '+s+'-DAY STREAK':'START A STREAK'}
+function fdWin(i,m){const f=fdSt(),k=st();f.s=f.l===ydy()?(f.s||0)+1:1;f.l=f.d=today();f.n=(f.n||0)+1;f.b=Math.max(f.b||0,f.s);
+ if(!k.s.includes(i))k.s.push(i);if(!k.q.includes(i))k.q.push(i);
+ const t=grant({c:cx(FD_C),x:FD_X});let ex='';if(f.s%7===0){gems(1,'Fact of the Day streak');ex=' · 💎 1 for a '+f.s+'-day streak!'}
+ LS.set('ms_pro',PRO);try{qEv('fotd')}catch(e){}
+ m.innerHTML='✅ <b>Correct!</b> '+t+' · '+FD_X+' XP'+ex+'<br><small>Your quest is ready: claim it in 📜 Quests.</small>';
+ try{sfx('ding');burst(['📅','✨','🪙'],24)}catch(e){}
+ fdHead();fdBtn();try{profUI()}catch(e){}try{paint()}catch(e){}}
+function fdQuiz(i,f){const q=f[4],box=$k('fdQ');
+ if(!q){box.innerHTML='<small>📖 READ IT, THEN TAP</small><div class="kcQm"></div><button type="button" class="kcQb" style="margin-top:6px">I READ IT ✓</button>';const m=box.querySelector('.kcQm'),b=box.querySelector('button');b.onclick=()=>{if(fdDone())return;b.disabled=true;fdWin(i,m)};return}
+ box.innerHTML='<small>🧠 ANSWER TO FINISH TODAY’S QUEST</small><div class="kcQt"></div><div class="kcQa"></div><div class="kcQm"></div>';
+ box.querySelector('.kcQt').textContent=q[0];const a=box.querySelector('.kcQa'),m=box.querySelector('.kcQm'),o=[{t:q[1],r:1},{t:q[2]},{t:q[3]}];
+ for(let j=o.length-1;j>0;j--){const z=Math.floor(Math.random()*(j+1));[o[j],o[z]]=[o[z],o[j]]}
+ o.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='kcQb';b.textContent=x.t;
+  b.onclick=()=>{if(fdDone())return;if(x.r){a.querySelectorAll('button').forEach(z=>z.disabled=true);b.classList.add('ok');fdWin(i,m)}
+   else{b.classList.add('no');b.disabled=true;m.textContent='Not quite. Read the fact again and try another answer.';try{sfx('buzz')}catch(e){}}};a.appendChild(b)})}
+function fdPaint(){const i=fdIdx(),f=F[i],c=CAT[f[0]]||CAT.B,done=fdDone();fdHead();
+ $k('fdBody').innerHTML=`<div id="fdFact"><span class="kcCat" style="color:${c[2]}">${c[0]} ${c[1]}</span><h3>${esc(f[1])}</h3><p>${esc(f[2])}</p>${f[3]?`<div class="kcEq"><small>MATH SENTENCE</small>${esc(f[3])}</div>`:''}<div class="kcQ" id="fdQ"></div></div>`;
+ if(done)$k('fdQ').innerHTML='<small>✅ DONE TODAY</small><div class="kcQt">You have learned today’s fact'+(fdStreak()>1?' and your streak is at '+fdStreak()+' days':'')+'. A new one arrives tomorrow.</div>';
+ else fdQuiz(i,f)}
+function fdOpen(){try{sfx('click')}catch(e){}try{mark()}catch(e){}fdPaint();$k('kcPop').classList.remove('on');$k('fdPop').classList.add('on');try{paint()}catch(e){}}
+$k('kcFd').onclick=fdOpen;
+$k('fdNo').onclick=()=>{try{sfx('click')}catch(e){}$k('fdPop').classList.remove('on');paint()};
+function fdQuestBtn(){const L=$k('qList');if(!L||!PRO.q||!PRO.q.d)return;const i=PRO.q.d.findIndex(q=>q.id==='fotd');if(i<0)return;const q=PRO.q.d[i],b=L.querySelector('[data-qc="d'+i+'"]');if(!b||q.cl)return;const box=b.previousElementSibling;if(!box||box.querySelector('.fdOpen'))return;box.style.minWidth='0';
+ const o=document.createElement('button');o.type='button';o.className='fdOpen';o.dataset.fd='1';o.textContent=q.p>=q.t?'📅 READ IT AGAIN':'📅 OPEN TODAY’S FACT';box.appendChild(o)}
+{const L=$k('qList');if(L)L.addEventListener('click',e=>{const b=e.target.closest('[data-fd]');if(b){e.preventDefault();fdOpen()}})}
+{const _qu=qUI;qUI=function(){const r=_qu.apply(this,arguments);try{fdQuestBtn()}catch(e){}return r}}
+try{LGT.push({id:'fd',ic:'📅',k:'c',e:'fotd',a:[3,7,14,30,60,100,200],l:n=>`Learn ${n} Facts of the Day`})}catch(e){}
 $k('kcGo').onclick=()=>{try{sfx('click')}catch(e){}if(left()>0)reveal();else $k('kcPop').classList.remove('on')};
 $k('kcBuy').onclick=()=>{if(left()>0)return;if((PRO.gems||0)<COST){try{tone(150,.2,'square')}catch(e){}return toast('Not Enough Gems 💎')}PRO.gems-=COST;const k=st();k.x++;LS.set('ms_pro',PRO);try{profUI()}catch(e){}reveal()};
 $k('kcBk').onclick=()=>{try{sfx('click')}catch(e){}if(state==='book'){if(bk==='fact'){state='fact';$k('kcMain').hidden=false;$k('kcBook').hidden=true;$k('kcBk').textContent='📖 MY MATH BOOK ('+Math.min(st().s.length,F.length)+'/'+F.length+')'}else idle()}else{bk=state;book()}};
@@ -7207,7 +7287,7 @@ const _pk2=profUI;profUI=function(){const r=_pk2.apply(this,arguments);try{paint
 function go(){build();paint()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(go,0));else go();
 setTimeout(go,900);setInterval(()=>{if(!document.hidden)go()},4000);
-window.__kc={F,left,open:openPop,st};
+window.kcChestSVG=chest;window.__kc={F,left,open:openPop,st,fd:fdOpen,fdIdx};
 })();
 </script>
 <style>/* v160: THE BOSS REACTS. In boss phase against the computer, Kiraxo (or the world's boss) gets a portrait medallion above his score card. It flinches and drops an armour shard when YOU break a shield, grows cracks as the damage adds up, smirks when HE breaks one, turns red and shakes on the last layer, and falls over the result screen when you beat him. Tiny taunts (2-3 words) float to the left of it, never over the timer. The face is his Kiraxo skin image, or his mood emoji when the skin has no picture. */
@@ -7876,7 +7956,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.21';
+window.APP_VER='1.9.24';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
