@@ -713,3 +713,6 @@ Service worker is 1.9.24 (APP_VER too).
 **🪢 Tug of War range follows the mode.** Vs computer: Easy 1–25, Medium 1–50, Hard 1–100 (`RNG()` in the v121 block). Two players on one device stay 1–100. Online is 1–50 (`MODES.tug`, `tugStart`, `tugPlay`). The setup card and the Help text show the range.
 **🧠 Aris's chest: Try it questions no longer repeat the example.** 57 of the 89 exercises now use different numbers from the worked example and lesson text (e.g. divisibility, squares, tricks, binary). Only the question row (item 5 of `F`) changed, so Math Book progress is kept.
 Service worker and APP_VER are 1.9.26.
+
+## 1.9.27 changes
+**🧰 Chest redesign.** `chest()` in the v188 script: richer oak (3 planks, grain from an SVG turbulence filter, top-light and edge shading), bevelled brass straps with highlights and rivets, a bigger shield lock plate with a lit keyhole, a shaded lid with a glossy highlight, a darker hollow with a bigger gold pile and a ruby when open. Class names `kcLid` and `kcRays` are unchanged, so the animations still work. Service worker and APP_VER are 1.9.27.
