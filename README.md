@@ -731,3 +731,6 @@ Service worker and APP_VER are 1.9.26.
 
 ## 1.9.32 changes
 Result screen: Aris speech bubble now sits above her again (it no longer covers the VICTORY / DEFEAT title). Service worker and APP_VER are 1.9.32.
+
+## 1.9.33 changes
+**Result screens 2.0** for Daily Strike, the Colosseum (weekly event) and the Friend Challenge: a bigger Aris who reacts with a speech bubble (grade, streak milestone, new best, race / challenge win or loss; lines are `rsS…rsD`, `rsStreak`, `rsUp`, `evNb`, `raceW/L/T`, `chWin/Lose/Tie/Set` in the Aris `L` table), a counted-up score with a grade tag (S 70%+, A 55%, B 40%, C 28%, D) and a delta tag (daily: vs your previous Daily Strike, kept in `ms_pro.dh`; Colosseum: vs your best that day), a numbered run ledger with tries and points per round, coin / XP / gem tiles, ghosts as five ghost icons and the next streak milestone with a progress bar. **📸 BRAG CARD replaces Share** on every result screen (new brag kinds `daily`, `colo`, `chal` in `BGW`, flame prop for Daily). Service worker and APP_VER are 1.9.33.
