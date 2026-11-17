@@ -716,3 +716,6 @@ Service worker and APP_VER are 1.9.26.
 
 ## 1.9.27 changes
 **🧰 Chest redesign.** `chest()` in the v188 script: richer oak (3 planks, grain from an SVG turbulence filter, top-light and edge shading), bevelled brass straps with highlights and rivets, a bigger shield lock plate with a lit keyhole, a shaded lid with a glossy highlight, a darker hollow with a bigger gold pile and a ruby when open. Class names `kcLid` and `kcRays` are unchanged, so the animations still work. Service worker and APP_VER are 1.9.27.
+
+## 1.9.28 changes
+**🧒 Aris redesign (base character).** Same shape and same slots (SH/AL/AR/TO/OT/HD/OV/FR), so every world outfit and wardrobe item still fits. New: glossy purple-black hair with sheen and curl strokes on the buns, richer shaded skin with a forehead highlight, eyes with a shaded lid, violet iris, pupil, two highlights and lashes with a flick, a soft nose, radial blush, a mouth with teeth and a lip line, shaded ear and arm gradients, and hands with a thumb and a crease. New gradient ids: aA$, aH$, aI$, aE$, aB$. Service worker and APP_VER are 1.9.28.

@@ -6333,29 +6333,35 @@ function spAsk(x){x.ph='ask';const ans=x.ans,set=new Set([ans]);while(set.size<4
 let uid=0;
 const SVGT=`<svg viewBox="0 0 120 150" aria-hidden="true" focusable="false">
 <defs>
-<radialGradient id="aS$" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#c58a60"/><stop offset="1" stop-color="#8c5636"/></radialGradient>
+<radialGradient id="aS$" cx=".4" cy=".28" r=".9"><stop offset="0" stop-color="#dba479"/><stop offset=".55" stop-color="#bb794c"/><stop offset="1" stop-color="#85502f"/></radialGradient>
+<linearGradient id="aA$" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c88b5c"/><stop offset="1" stop-color="#97603a"/></linearGradient>
+<radialGradient id="aH$" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#3b2e66"/><stop offset=".5" stop-color="#21173c"/><stop offset="1" stop-color="#120a22"/></radialGradient>
+<radialGradient id="aI$" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#7a52d0"/><stop offset=".6" stop-color="#3a2379"/><stop offset="1" stop-color="#221048"/></radialGradient>
+<linearGradient id="aE$" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfc6e4"/><stop offset=".3" stop-color="#fff"/><stop offset="1" stop-color="#f4effa"/></linearGradient>
+<radialGradient id="aB$"><stop offset="0" stop-color="#ff6f86" stop-opacity="1"/><stop offset="1" stop-color="#ff6f86" stop-opacity="0"/></radialGradient>
 <linearGradient id="aT$" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46d6c8"/><stop offset="1" stop-color="#1b8a90"/></linearGradient>
 <radialGradient id="aG$"><stop offset="0" stop-color="#fff6bd"/><stop offset="1" stop-color="#fff6bd" stop-opacity="0"/></radialGradient>
 </defs>
 <ellipse cx="60" cy="146" rx="28" ry="4.5" fill="#000" opacity=".3"/>
 <g class="bod">
 <!--SH-->
-<g class="armL"><path d="M40 108 L31 127" stroke="#9c6641" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="30" cy="129" r="6" fill="#b17549"/><!--AL--></g>
-<g class="armR"><path d="M80 108 L89 127" stroke="#9c6641" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="90" cy="129" r="6" fill="#b17549"/><!--AR--></g>
-<!--TO--><!--OT--><circle cx="29" cy="36" r="13" fill="#1d1530"/><circle cx="91" cy="36" r="13" fill="#1d1530"/>
+<g class="armL"><path d="M40 108 L31 127" stroke="#94603c" stroke-width="9.4" stroke-linecap="round" fill="none"/><path d="M40 108 L31 127" stroke="url(#aA$)" stroke-width="8" stroke-linecap="round" fill="none"/><circle cx="30" cy="129" r="6.4" fill="url(#aA$)"/><ellipse cx="25.6" cy="127.6" rx="2" ry="2.8" fill="#b57a4f" transform="rotate(20 25.6 127.6)"/><path d="M27 133q3 2.4 6 .4" stroke="#7a4a2a" stroke-opacity=".45" stroke-width="1" fill="none" stroke-linecap="round"/><!--AL--></g>
+<g class="armR"><path d="M80 108 L89 127" stroke="#94603c" stroke-width="9.4" stroke-linecap="round" fill="none"/><path d="M80 108 L89 127" stroke="url(#aA$)" stroke-width="8" stroke-linecap="round" fill="none"/><circle cx="90" cy="129" r="6.4" fill="url(#aA$)"/><ellipse cx="94.4" cy="127.6" rx="2" ry="2.8" fill="#b57a4f" transform="rotate(-20 94.4 127.6)"/><path d="M87 133q3 2.4 6 .4" stroke="#7a4a2a" stroke-opacity=".45" stroke-width="1" fill="none" stroke-linecap="round"/><!--AR--></g>
+<!--TO--><!--OT--><ellipse cx="60" cy="106" rx="21" ry="3.6" fill="#000" opacity=".13"/><circle cx="29" cy="36" r="13" fill="url(#aH$)"/><circle cx="91" cy="36" r="13" fill="url(#aH$)"/><g fill="none" stroke="#5a4a90" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"><path d="M21 33q4-6 11-4M23 41q6 2 10-3M85 29q7-2 11 4M87 38q4 5 10 3"/></g><path d="M20 30q3-8 11-9" stroke="#8f7fd0" stroke-opacity=".6" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M89 21q8 1 11 9" stroke="#8f7fd0" stroke-opacity=".5" stroke-width="2" fill="none" stroke-linecap="round"/>
 <circle cx="29" cy="36" r="3.6" fill="#f2c14e"/><circle cx="91" cy="36" r="3.6" fill="#f2c14e"/>
-<circle cx="22" cy="70" r="6" fill="#94603c"/><circle cx="98" cy="70" r="6" fill="#94603c"/>
+<circle cx="22" cy="70" r="6" fill="url(#aA$)"/><circle cx="98" cy="70" r="6" fill="url(#aA$)"/><path d="M20.4 68q2-2 4 .4M99.6 68q-2-2-4 .4" stroke="#7a4a2a" stroke-opacity=".55" stroke-width="1.2" fill="none" stroke-linecap="round"/>
 <circle cx="60" cy="68" r="38" fill="url(#aS$)"/>
-<path d="M22 64 C17 26 40 14 60 14 C80 14 103 26 98 64 C92 47 80 41 60 41 C40 41 28 47 22 64Z" fill="#1d1530"/>
-<!--HD--><!--OV--><circle class="chk" cx="36" cy="84" r="6.5" fill="#ff7a8a" opacity=".42"/><circle class="chk" cx="84" cy="84" r="6.5" fill="#ff7a8a" opacity=".42"/>
-<g data-s="idle wave think hot wow sad panic"><g class="eye l"><ellipse cx="46" cy="72" rx="9" ry="11" fill="#fff"/><g class="pup"><circle cx="46" cy="73" r="6.2" fill="#2a1850"/><circle cx="48.6" cy="69.6" r="2.3" fill="#fff"/></g></g><g class="eye r"><ellipse cx="74" cy="72" rx="9" ry="11" fill="#fff"/><g class="pup"><circle cx="74" cy="73" r="6.2" fill="#2a1850"/><circle cx="76.6" cy="69.6" r="2.3" fill="#fff"/></g></g></g>
+<ellipse cx="46" cy="54" rx="15" ry="7" fill="#fff" opacity=".1" transform="rotate(-18 46 54)"/>
+<path d="M22 64 C17 26 40 14 60 14 C80 14 103 26 98 64 C92 47 80 41 60 41 C40 41 28 47 22 64Z" fill="url(#aH$)"/><path d="M30 34Q44 20 62 19" stroke="#9a8ad8" stroke-opacity=".55" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M70 20Q84 22 92 36" stroke="#9a8ad8" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M40 43q10-4 20-2M62 41q12 0 21 4" stroke="#0e0820" stroke-opacity=".5" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<!--HD--><!--OV--><circle class="chk" cx="36" cy="84" r="8" fill="url(#aB$)" opacity=".5"/><circle class="chk" cx="84" cy="84" r="8" fill="url(#aB$)" opacity=".5"/><path d="M57.4 81.4q2.6 2.6 5.2 0" stroke="#7a4426" stroke-opacity=".55" stroke-width="1.7" fill="none" stroke-linecap="round"/><ellipse cx="59.2" cy="79.6" rx="1.6" ry=".9" fill="#fff" opacity=".35"/>
+<g data-s="idle wave think hot wow sad panic"><g class="eye l"><ellipse cx="46" cy="72" rx="9" ry="11" fill="url(#aE$)"/><g class="pup"><circle cx="46" cy="73" r="6.4" fill="url(#aI$)"/><circle cx="46" cy="73" r="3.1" fill="#110826"/><circle cx="48.6" cy="69.6" r="2.4" fill="#fff"/><circle cx="43.6" cy="76.4" r="1.1" fill="#fff" opacity=".8"/></g><path d="M37.2 69Q46 56.4 54.8 69" stroke="#1d1530" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M37.4 68.6l-3-2.4" stroke="#1d1530" stroke-width="1.8" stroke-linecap="round"/></g><g class="eye r"><ellipse cx="74" cy="72" rx="9" ry="11" fill="url(#aE$)"/><g class="pup"><circle cx="74" cy="73" r="6.4" fill="url(#aI$)"/><circle cx="74" cy="73" r="3.1" fill="#110826"/><circle cx="76.6" cy="69.6" r="2.4" fill="#fff"/><circle cx="71.6" cy="76.4" r="1.1" fill="#fff" opacity=".8"/></g><path d="M65.2 69Q74 56.4 82.8 69" stroke="#1d1530" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M82.6 68.6l3-2.4" stroke="#1d1530" stroke-width="1.8" stroke-linecap="round"/></g></g>
 <g data-s="happy cheer" fill="none" stroke="#2a1850" stroke-width="3.4" stroke-linecap="round"><path d="M37 74 Q46 62 55 74"/><path d="M65 74 Q74 62 83 74"/></g>
 <g data-s="cold" fill="none" stroke="#2a1850" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M38 65 L53 72 L38 79"/><path d="M82 65 L67 72 L82 79"/></g>
 <g data-s="sleep" fill="none" stroke="#2a1850" stroke-width="3.2" stroke-linecap="round"><path d="M37 72 Q46 80 55 72"/><path d="M65 72 Q74 80 83 72"/></g>
 <g data-s="sad" stroke="#1d1530" stroke-width="3" stroke-linecap="round"><path d="M35 62 L54 55"/><path d="M85 62 L66 55"/></g>
 <g data-s="wow hot panic" fill="none" stroke="#1d1530" stroke-width="3" stroke-linecap="round"><path d="M37 55 Q46 48 55 55"/><path d="M65 55 Q74 48 83 55"/></g>
 <path data-s="idle" d="M52 88 Q60 95 68 88" stroke="#4a1f1a" stroke-width="3" fill="none" stroke-linecap="round"/>
-<g data-s="happy cheer wave"><path d="M49 84 Q60 103 71 84 Z" fill="#5a1620"/><ellipse cx="60" cy="94" rx="5.5" ry="3" fill="#e0607a"/></g>
+<g data-s="happy cheer wave"><path d="M49 84 Q60 103 71 84 Z" fill="#5a1620"/><path d="M51 84.6Q60 88.6 69 84.6L68.4 86.8Q60 90.4 51.6 86.8Z" fill="#fff"/><ellipse cx="60" cy="94" rx="5.5" ry="3" fill="#e0607a"/><path d="M49 84 Q60 103 71 84" stroke="#3a0d16" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>
 <path data-s="sad" d="M52 95 Q60 86 68 95" stroke="#4a1f1a" stroke-width="3" fill="none" stroke-linecap="round"/>
 <g data-s="hot wow panic"><ellipse cx="60" cy="91" rx="5" ry="6" fill="#5a1620"/></g>
 <ellipse data-s="sleep" cx="60" cy="91" rx="3.4" ry="4" fill="#5a1620"/>
@@ -8052,7 +8058,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.27';
+window.APP_VER='1.9.28';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
