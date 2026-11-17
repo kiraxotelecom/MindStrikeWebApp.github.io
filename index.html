@@ -2042,10 +2042,9 @@ html.wd-cyber #spl{--sa:#19f2ff;--sb:#06222c}html.wd-samurai #spl{--sa:#e8505b;-
 <div class="pop" id="svMailPop" style="z-index:12"><div class="card" data-nx="1" style="text-align:center;width:min(92%,380px)"><h2>📬 MARATHON REWARDS</h2><small>These were delivered to you automatically.</small><div id="svMailB" style="text-align:left;line-height:1.5;margin:10px 0;max-height:55vh;overflow:auto"></div><button id="svMailOk" style="width:100%">✓ GOT IT</button></div></div>
 <div class="pop" id="cqPop" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,340px)"><h2>🦅 OUT OF BATTLES</h2><div id="cqT" style="line-height:1.6;margin:8px 0"></div><button id="cqBuy" style="width:100%"></button><button id="cqGem" style="width:100%;margin-top:8px"></button><button id="cqNo" style="width:100%;margin-top:8px">NOT NOW</button></div></div>
 <div class="pop" id="fcPop" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 ARIS’S FREE GIFT</h2><div id="fcBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="fcTxt">Tap the gift to open it!</p><button id="fcGo" style="width:100%">OPEN</button></div></div>
-<div class="pop" id="kcPop" style="z-index:12"><div class="card kcCard" role="dialog" aria-label="Aris's treasure chest"><h2>📚 ARIS’S TREASURE CHEST</h2>
-<div id="kcMain"><div id="kcBox" class="kcBox" aria-hidden="true"></div><div id="kcFact" hidden></div><p id="kcTxt"></p></div>
-<div id="kcBook" hidden></div>
-<button id="kcFd" style="width:100%;margin-bottom:8px"></button><button id="kcGo" style="width:100%"></button><button id="kcBuy" style="width:100%;margin-top:8px" hidden></button><button id="kcBk" style="width:100%;margin-top:8px"></button><button id="kcNo" style="width:100%;margin-top:8px">CLOSE</button></div></div>
+<div class="pop" id="kcPop" style="z-index:12"><div class="card kcCard st-idle" role="dialog" aria-label="Aris's treasure chest"><button id="kcNo" class="kcX" type="button" aria-label="Close">✕</button><div class="kcHd"><h2>📚 ARIS’S TREASURE CHEST</h2></div>
+<div class="kcBody"><div id="kcMain" class="kcStage"><div id="kcBox" class="kcBox" aria-hidden="true"></div><div id="kcFact" hidden></div><p id="kcTxt"></p></div><div id="kcBook" hidden></div></div>
+<div class="kcFt"><button id="kcGo" class="kcGo" type="button"></button><button id="kcBuy" type="button" hidden></button><div class="kcRow"><button id="kcFd" type="button"></button><button id="kcBk" type="button"></button></div></div></div></div>
 <div class="pop" id="fdPop" style="z-index:12"><div class="card kcCard fdCard" role="dialog" aria-label="Fact of the Day"><div class="fdHd"><span id="fdDate"></span><span id="fdStk"></span></div><h2>📅 FACT OF THE DAY</h2><div id="fdBody"></div><button id="fdNo" style="width:100%;margin-top:8px">CLOSE</button></div></div>
 <div class="pop" id="chest" style="z-index:12"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>🎁 DAILY CHEST</h2><div id="chestDays" class="row" style="margin:6px 0"></div><div id="chestBox" style="font-size:4.2rem;cursor:pointer;transition:transform .2s">🎁</div><p id="chestTxt">Tap the chest to open it!</p><button id="chestBtn" style="width:100%">OPEN</button></div></div>
 <div class="pop" id="chal" style="z-index:13"><div class="card" style="text-align:center;width:min(92%,360px)"><h2>⚔️ FRIEND CHALLENGE</h2><div id="chalB" style="line-height:1.55;margin:8px 0"></div><button id="chalGo" style="width:100%"></button><div id="chalJ" style="margin-top:10px"><input type="text" id="chalIn" placeholder="PASTE LINK OR CODE" autocomplete="off" autocapitalize="off" style="width:100%"><button id="chalJoin" style="width:100%;margin-top:6px">JOIN CHALLENGE</button></div><button id="chalX" style="width:100%;margin-top:8px">CLOSE</button></div></div>
@@ -7180,6 +7179,92 @@ html:not(.noaris) #kcAlt{display:none!important}
 .kcBox.open .kcRays{animation:kcGlow 1.6s ease-in-out infinite alternate}
 @keyframes kcGlow{from{opacity:.82}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.kcBox.open .kcRays{animation:none}}
+
+/* 1.9.25: NEW LOOK for Aris's Treasure Chest. Header + scrolling body + a fixed footer (the main button is always visible), chest on a glowing stage with pips for the free openings, fact as a card with a chalkboard math sentence and A/B/C answers, Math Book with a progress ring and category chips. Colours come from the theme variables (--gold, --ink, --sand, --red, --k), so every world and light mode still works. */
+#kcPop .kcCard{padding:0;margin:0;display:flex;flex-direction:column;overflow:hidden;width:min(94%,400px);max-height:min(92%,740px);text-align:center}
+#kcPop [hidden]{display:none!important}
+#kcPop .kcHd{padding:14px 48px 0;flex:none}
+#kcPop .kcHd h2{margin:0;font-size:.98rem;letter-spacing:.14em;color:var(--gold)}
+#kcPop .kcHd:after{content:"";display:block;height:2px;margin:10px auto 0;width:70%;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#kcPop .kcX{position:absolute;top:8px;right:8px;z-index:3;min-width:0;width:34px;height:34px;padding:0;border-radius:50%;font:800 .95rem/1 system-ui,sans-serif;letter-spacing:0;display:grid;place-items:center}
+#kcPop .kcBody{flex:1;min-height:0;overflow:auto;padding:6px 16px 12px;-webkit-overflow-scrolling:touch}
+#kcPop .kcFt{flex:none;display:grid;gap:8px;padding:10px 14px 14px;border-top:1px solid color-mix(in srgb,var(--gold) 45%,transparent);background:rgb(var(--k)/.3)}
+#kcPop .kcFt button{min-width:0;width:100%;box-sizing:border-box;margin:0}
+#kcPop .kcGo{position:relative;overflow:hidden;padding:14px 12px;font-size:1.02rem;letter-spacing:.14em;color:#2a1604;background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 80%,#fff),var(--gold) 55%,color-mix(in srgb,var(--gold) 65%,#000));border-color:color-mix(in srgb,var(--gold) 60%,#fff);box-shadow:0 3px 0 #000a,0 0 16px color-mix(in srgb,var(--gold) 45%,transparent),inset 0 1px 0 #fff8}
+html.light #kcPop .kcGo{color:#fff6dc}
+#kcPop .kcGo:disabled{filter:grayscale(.7) brightness(.8);opacity:.6;box-shadow:none}
+#kcPop .kcGo:not(:disabled):after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,#fff7,transparent);animation:kcShine 3.4s ease-in-out infinite}
+@keyframes kcShine{0%,60%{left:-60%}100%{left:130%}}
+#kcPop #kcBuy{padding:10px;font-size:.82rem}
+#kcPop .kcRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#kcPop .kcRow button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 6px;line-height:1.15}
+#kcPop .kcRow i{font-style:normal;font-size:1.25rem;line-height:1}
+#kcPop .kcRow b{font-size:.66rem;letter-spacing:.1em}
+#kcPop .kcRow small{font:700 .74rem/1.1 system-ui,sans-serif;letter-spacing:0;opacity:.9}
+#kcPop #kcFd.fdNew{box-shadow:0 0 0 2px color-mix(in srgb,var(--gold) 55%,transparent),0 3px 0 #000a}
+#kcPop .st-book .kcGo,#kcPop .st-book #kcFd,#kcPop .st-book #kcBuy{display:none}
+.st-book .kcRow{grid-template-columns:1fr}
+.st-book .kcRow #kcBk{flex-direction:row;justify-content:center;gap:8px;padding:13px}
+.kcStage{position:relative;padding-top:4px}
+.kcStage:before{content:"";position:absolute;left:50%;top:-10px;width:230px;height:230px;margin-left:-115px;background:radial-gradient(closest-side,color-mix(in srgb,var(--gold) 36%,transparent),transparent);animation:kcPulse 3.6s ease-in-out infinite;pointer-events:none}
+.kcStage>*{position:relative}
+.kcStage.z:before{opacity:.25;animation:none}.kcStage.z .kcBox{filter:grayscale(.7) brightness(.75)}
+@keyframes kcPulse{50%{opacity:.6;transform:scale(1.08)}}
+#kcPop .kcBox{width:132px;height:132px;margin:0 auto 4px;cursor:pointer}
+#kcPop .kcBox.sm{width:76px;height:76px;margin-bottom:6px}
+.st-fact .kcStage:before{width:150px;height:150px;margin-left:-75px;top:-12px}
+#kcTxt{margin:0}
+.kcPips{display:inline-flex;gap:7px;vertical-align:middle;margin-right:9px}
+.kcPips i{width:16px;height:16px;border-radius:50%;border:2px solid var(--gold);box-sizing:border-box}
+.kcPips i.on{background:radial-gradient(circle at 35% 30%,#fff3b0,var(--gold) 70%);box-shadow:0 0 8px color-mix(in srgb,var(--gold) 70%,transparent)}
+.kcPipT{font:800 .74rem/1 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);vertical-align:middle}
+.kcMsg{display:block;margin-top:10px;line-height:1.45;font-size:.98rem}
+:is(#kcFact,#fdFact){animation:kcRise .45s ease both}
+@keyframes kcRise{from{opacity:0;transform:translateY(14px)}}
+:is(#kcFact,#fdFact) .kcTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+:is(#kcFact,#fdFact) .kcCat{background:color-mix(in srgb,currentColor 16%,transparent);border-color:color-mix(in srgb,currentColor 55%,transparent)}
+:is(#kcFact,#fdFact) .kcNew{float:none;padding:5px 9px;border-radius:10px;background:#1f6b3a;border:1px solid #6fd18a;color:#d9ffe5}
+.kcOld{font:800 .62rem/1 system-ui,sans-serif;letter-spacing:.1em;opacity:.6}
+:is(#kcFact,#fdFact) h3{margin:12px 0 6px;font:800 1.35rem/1.15 Georgia,'Times New Roman',serif}
+:is(#kcFact,#fdFact) p{font-size:1rem;line-height:1.5;color:var(--sand)}
+#kcFact .kcRw{display:flex;width:fit-content;gap:7px;align-items:baseline;margin:0 auto 12px;padding:5px 13px;border-radius:20px;background:color-mix(in srgb,var(--gold) 18%,transparent);border:1px solid var(--gold);font:700 .78rem/1.2 system-ui,sans-serif;animation:kcPopIn .5s cubic-bezier(.3,1.6,.5,1) both}
+#kcFact .kcRw b{font-size:.95rem;color:var(--gold)}
+@keyframes kcPopIn{from{opacity:0;transform:scale(.6)}}
+:is(#kcFact,#fdFact) .kcEq{position:relative;margin:18px 0 6px;padding:18px 12px 12px;border:1.5px solid color-mix(in srgb,var(--gold) 70%,transparent);border-radius:10px;background:rgb(var(--k)/.38);box-shadow:inset 0 0 18px #0005;font:700 1.3rem/1.3 Georgia,'Times New Roman',serif;letter-spacing:.02em}
+:is(#kcFact,#fdFact) .kcEq small{position:absolute;top:-8px;left:50%;transform:translateX(-50%);margin:0;padding:2px 10px;border-radius:8px;background:var(--ink);border:1px solid color-mix(in srgb,var(--gold) 70%,transparent);color:var(--gold);opacity:1;white-space:nowrap}
+:is(#kcFact,#fdFact) .kcQ{margin:14px 0 4px;padding:12px;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--gold) 38%,transparent);background:rgb(var(--k)/.3)}
+.kcQh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.kcQh small{margin:0!important}
+.kcQh span{padding:3px 9px;border-radius:12px;background:color-mix(in srgb,var(--gold) 20%,transparent);border:1px solid var(--gold);font:800 .72rem/1.2 system-ui,sans-serif}
+:is(#kcFact,#fdFact) .kcQt{font:700 1.08rem/1.3 Georgia,serif;margin:2px 0 8px}
+:is(#kcFact,#fdFact) .kcQa{counter-reset:o}
+:is(#kcFact,#fdFact) .kcQb{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border-radius:10px;font:700 1rem/1.2 Georgia,serif;min-width:0}
+:is(#kcFact,#fdFact) .kcQb:before{counter-increment:o;content:counter(o,upper-alpha);flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#2a1604;font:800 .8rem/1 system-ui,sans-serif}
+:is(#kcFact,#fdFact) .kcQb.ok:after,:is(#kcFact,#fdFact) .kcQb.no:after{margin-left:auto;font:800 1rem/1 system-ui,sans-serif}
+:is(#kcFact,#fdFact) .kcQb.ok:after{content:"✓"}:is(#kcFact,#fdFact) .kcQb.no:after{content:"✕"}
+:is(#kcFact,#fdFact) .kcQm:not(:empty){margin-top:10px;padding:8px 10px;border-radius:8px;background:rgb(var(--k)/.35)}
+#kcPop #kcBook{max-height:none;overflow:visible;margin:0;text-align:left}
+.kcBh{display:flex;align-items:center;gap:14px;margin:4px 0 12px}
+.kcBh b{display:block;letter-spacing:.12em;font-size:.9rem;color:var(--gold)}.kcBh>div+div span{font-size:.82rem;opacity:.85}
+.kcRing{flex:none;position:relative;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),rgb(255 255 255/.14) 0)}
+.kcRing:before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--ink)}
+.kcRing span{position:relative;font:800 1.25rem/1 Georgia,serif;color:var(--gold)}.kcRing small{font-size:.62rem;opacity:.8}
+.kcChs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}.kcChs::-webkit-scrollbar{display:none}
+#kcPop .kcCh{flex:none;min-width:0;width:auto;padding:6px 11px;border-radius:16px;font:700 .78rem/1.1 system-ui,sans-serif;letter-spacing:0;white-space:nowrap;background:rgb(var(--k)/.35);border:1.5px solid color-mix(in srgb,currentColor 45%,transparent);color:var(--sand);box-shadow:none}
+#kcPop .kcCh b{letter-spacing:0;font-size:.74rem}
+#kcPop .kcCh.on{background:color-mix(in srgb,currentColor 24%,transparent);border-color:currentColor}
+#kcPop .kcCh[data-cf=all]{color:var(--gold)}
+.kcE{margin:0 0 8px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-left:4px solid var(--c);border-radius:10px;background:rgb(var(--k)/.28)}
+.kcE summary{list-style:none;display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font:700 .95rem/1.2 Georgia,serif}
+.kcE summary::-webkit-details-marker{display:none}
+.kcE summary b{flex:1;min-width:0}
+.kcE summary:after{content:"⌄";opacity:.7;transition:transform .2s}.kcE[open] summary:after{transform:rotate(180deg)}
+.kcIc{font-size:1.15rem}.kcOk{color:#6fd18a;font-weight:800}
+.kcE>div{padding:0 12px 12px}.kcE>div span{display:block;line-height:1.45;font-size:.92rem}
+.kcE>div em{display:block;margin-top:8px;padding:8px;border-radius:8px;background:rgb(var(--k)/.35);text-align:center;font:700 1rem/1.3 Georgia,serif;font-style:normal;color:var(--gold)}
+.kcLk{text-align:center;padding:12px;border:1.5px dashed color-mix(in srgb,var(--gold) 50%,transparent);border-radius:10px;opacity:.85;font-size:.88rem}
+#fdPop .fdCard h2{font-size:1rem;letter-spacing:.14em;color:var(--gold)}
+@media (prefers-reduced-motion:reduce){.kcStage:before,.kcGo:after,:is(#kcFact,#fdFact),#kcFact .kcRw{animation:none!important}}
 </style>
 <script>
 /* v188: ARIS'S TREASURE CHEST. A small chest next to Aris (right side of her home row). Each opening shows one maths fact (what a prime is, divisibility tricks, number patterns, big ideas, shapes, game tips) with a "math sentence" and pays a few coins. FREE = 3 openings per day; each extra opening costs 2 gems (COST). Facts never repeat until a player has found them all. The first chest a player ever opens is always "What is a prime number?". State: PRO.kc = {d: day, u: openings used today, x: extra openings bought today, n: total openings, s: ids of facts found (in order)}. FACTS ARE IDENTIFIED BY POSITION IN F: only ever APPEND new facts at the end. Row format: [category, title, text, math sentence]. Tune FREE / COST / the coin range in reveal(). */
@@ -7207,6 +7292,8 @@ const chest=(c)=>{const u='kcs'+(++cn);return `<svg viewBox="0 0 44 44" focusabl
 <rect x="4.6" y="20" width="34.8" height="3" rx="1" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".9"/>
 <g class="kcLid"><path d="M5 21v-2C5 12.5 12 8 22 8s17 4.5 17 11v2z" fill="url(#${u}l)" stroke="#2c1405" stroke-width="1.3" stroke-linejoin="round"/><g clip-path="url(#${u}c)"><path d="M4 12.6h36M4 16.4h36" stroke="#2f1606" stroke-width=".8"/><path d="M4 13.4h36M4 17.2h36" stroke="#e3a867" stroke-opacity=".3" stroke-width=".6"/><path d="M8 11q5-.8 10 0M25 14.4q5 .8 10 0M10 18.4q4 .6 8 0" stroke="#2f1606" stroke-opacity=".3" stroke-width=".6" fill="none" stroke-linecap="round"/><g stroke="#3a2406" stroke-width=".8"><rect x="9.4" y="5" width="4.2" height="17" fill="url(#${u}b)"/><rect x="30.4" y="5" width="4.2" height="17" fill="url(#${u}b)"/></g><g fill="#5b3c08"><circle cx="11.5" cy="13.4" r=".75"/><circle cx="11.5" cy="17.6" r=".75"/><circle cx="32.5" cy="13.4" r=".75"/><circle cx="32.5" cy="17.6" r=".75"/></g><path d="M7.6 16Q9.4 11.2 17 9.4" stroke="#ffe3ae" stroke-opacity=".5" stroke-width="1.5" fill="none" stroke-linecap="round"/></g><rect x="4.6" y="18.6" width="34.8" height="2.6" rx="1" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".8"/><path d="M19.4 20.4h5.2v4.4q0 1.2-2.6 2-2.6-.8-2.6-2z" fill="url(#${u}b)" stroke="#3a2406" stroke-width=".8" stroke-linejoin="round"/><circle cx="22" cy="22.6" r=".75" fill="#3a2406"/></g></svg>`};
 let el=null,state='idle',bk='idle',$k=id=>document.getElementById(id);
+function ui(s){const c=document.querySelector('#kcPop .kcCard');if(c){c.classList.remove('st-idle','st-fact','st-book');c.classList.add('st-'+s)}}
+function bkSet(back){const b=$k('kcBk');if(back){b.innerHTML='<i>⬅</i><b>BACK TO THE CHEST</b>';return}const n=Math.min(st().s.length,F.length);b.innerHTML='<i>📖</i><b>MY MATH BOOK</b><small>'+n+' / '+F.length+' found</small>'}
 function paint(){const n=left(),k=st();try{fdBtn()}catch(e){}
  if(el){el.querySelector('.kcN').textContent=n;el.classList.toggle('z',!n);el.classList.toggle('nw',(n>0||!fdDone())&&!seen());el.setAttribute('aria-label','Aris’s treasure chest of maths facts, '+n+(n===1?' opening':' openings')+' left today')}
  const a=$k('kcAlt');if(a){const h='<i>📚</i><div><b>ARIS’S TREASURE CHEST</b><small>'+(n?n+' free '+(n===1?'fact':'facts')+' to open today':'Back tomorrow, or open one for '+COST+' 💎')+'</small></div>';if(a.dataset.h!==h){a.dataset.h=h;a.innerHTML=h}}}
@@ -7215,9 +7302,9 @@ function build(){const w=document.querySelector('.arWrap.arHome');if(!w)return f
  el.addEventListener('click',e=>{e.stopPropagation();openPop()});w.appendChild(el);paint();return true}
 function boxReset(){const b=$k('kcBox');b.innerHTML=chest();b.classList.remove('open','shake','sm')}
 function buyBtn(){const b=$k('kcBuy'),g=PRO.gems||0;b.hidden=left()>0;b.textContent='OPEN ANOTHER · '+COST+' 💎 (you have '+g+')'}
-function idle(){state='idle';const n=left(),k=st();$k('kcFact').hidden=true;$k('kcBook').hidden=true;$k('kcMain').hidden=false;$k('kcBk').hidden=false;boxReset();
- $k('kcTxt').innerHTML=n?`Aris has <b>${n}</b> maths ${n===1?'fact':'facts'} for you today. Tap the chest to open it!`:`You opened all your free chests today. Come back tomorrow, or open another one for <b>${COST} 💎</b>.`;
- $k('kcGo').textContent=n?'OPEN THE CHEST':'COME BACK TOMORROW';$k('kcGo').disabled=!n;buyBtn();$k('kcBk').textContent='📖 MY MATH BOOK ('+Math.min(k.s.length,F.length)+'/'+F.length+')'}
+function idle(){state='idle';ui('idle');$k('kcMain').classList.toggle('z',!left());const n=left(),k=st();$k('kcFact').hidden=true;$k('kcBook').hidden=true;$k('kcMain').hidden=false;$k('kcBk').hidden=false;boxReset();
+ {const tot=FREE+k.x,pips=Array.from({length:tot},(_,q)=>`<i class="${q<n?'on':''}"></i>`).join('');$k('kcTxt').innerHTML=`<span class="kcPips" aria-hidden="true">${pips}</span><span class="kcPipT">${n} free ${n===1?'opening':'openings'} left today</span>`+(n?`<span class="kcMsg">Aris has a maths fact for you. Tap the chest to open it!</span>`:`<span class="kcMsg">You opened all your free chests today. Come back tomorrow, or open another one for <b>${COST} 💎</b>.</span>`)}
+ $k('kcGo').textContent=n?'OPEN THE CHEST':'COME BACK TOMORROW';$k('kcGo').disabled=!n;buyBtn();bkSet(0)}
 function openPop(){try{sfx('click')}catch(e){}mark();paint();try{ARIS.homeSay(left()?'Facts make a sharp mind. Open my chest!':'Come back tomorrow for more facts!','happy')}catch(e){}idle();$k('kcPop').classList.add('on')}
 function pick(){const k=st();let pool=[];for(let i=0;i<F.length;i++)if(!k.s.includes(i))pool.push(i);
  if(!pool.length)pool=F.map((_,i)=>i);if(!k.n&&pool.includes(0))return 0;
@@ -7234,14 +7321,18 @@ function quiz(i,f){const q=f[4];if(!q)return;const box=$k('kcQ');if(!box)return;
 function reveal(){if(left()<=0)return;const k=st(),i=pick(),f=F[i],c=CAT[f[0]]||CAT.B,isNew=!k.s.includes(i);
  k.u++;k.n++;if(isNew)k.s.push(i);
  const coins=cx(Math.round((10+Math.min(12,rk())*1.5)*(.8+Math.random()*.5)));grant({c:coins});LS.set('ms_pro',PRO);
- state='fact';$k('kcMain').hidden=false;$k('kcBook').hidden=true;const b=$k('kcBox');b.classList.add('shake');setTimeout(()=>{b.classList.remove('shake');b.classList.add('open')},380);
+ state='fact';ui('fact');$k('kcMain').hidden=false;$k('kcBook').hidden=true;const b=$k('kcBox');b.classList.add('shake');setTimeout(()=>{b.classList.remove('shake');b.classList.add('open')},380);
  setTimeout(()=>{try{sfx('powerup');burst(['📚','✨','🔢','🪙'],24)}catch(e){}},380);
- const fe=$k('kcFact');fe.hidden=false;fe.innerHTML=`<span class="kcCat" style="color:${c[2]}">${c[0]} ${c[1]}</span>${isNew?'<span class="kcNew">★ NEW IN YOUR MATH BOOK</span>':''}<h3>${esc(f[1])}</h3><p>${esc(f[2])}</p>${f[3]?`<div class="kcEq"><small>MATH SENTENCE</small>${esc(f[3])}</div>`:''}${f[4]?'<div class="kcQ" id="kcQ"><small>🧠 TRY IT · +'+QB+' 🪙 if you get it right</small><div class="kcQt"></div><div class="kcQa"></div><div class="kcQm"></div></div>':''}<div class="kcRw">+${coins} 🪙 for learning something new</div>`;try{quiz(i,f)}catch(e){}b.classList.add('sm');
- $k('kcTxt').innerHTML='';const n=left();$k('kcGo').disabled=false;$k('kcGo').textContent=n?'OPEN NEXT ('+n+' left today)':'DONE';buyBtn();$k('kcBk').textContent='📖 MY MATH BOOK ('+Math.min(k.s.length,F.length)+'/'+F.length+')';
+ const fe=$k('kcFact');fe.hidden=false;fe.innerHTML=`<div class="kcRw"><b>+${coins} 🪙</b><span>for learning something new</span></div><div class="kcTop"><span class="kcCat" style="color:${c[2]}">${c[0]} ${c[1]}</span>${isNew?'<span class="kcNew">★ NEW</span>':'<span class="kcOld">SEEN BEFORE</span>'}</div><h3>${esc(f[1])}</h3><p>${esc(f[2])}</p>${f[3]?`<div class="kcEq"><small>MATH SENTENCE</small>${esc(f[3])}</div>`:''}${f[4]?'<div class="kcQ" id="kcQ"><div class="kcQh"><small>🧠 TRY IT</small><span>+'+QB+' 🪙</span></div><div class="kcQt"></div><div class="kcQa"></div><div class="kcQm"></div></div>':''}`;try{quiz(i,f)}catch(e){}b.classList.add('sm');
+ $k('kcTxt').innerHTML='';const n=left();$k('kcGo').disabled=false;$k('kcGo').textContent=n?'OPEN NEXT ('+n+' left today)':'DONE';buyBtn();bkSet(0);
  paint();try{profUI()}catch(e){}}
-function book(){state='book';const k=st(),got=k.s.filter(i=>F[i]);$k('kcMain').hidden=true;$k('kcBook').hidden=false;
- $k('kcBook').innerHTML=`<b>You have found ${got.length} of ${F.length} facts · ${k.q.filter(i=>F[i]).length} questions answered right</b><div class="kcBp"><u style="width:${(got.length/F.length*100).toFixed(0)}%"></u></div>`+(got.length?got.slice().reverse().map(i=>{const f=F[i],c=CAT[f[0]]||CAT.B;return`<div class="kcI"><b>${c[0]} ${esc(f[1])}${k.q.includes(i)?' <span style="color:#6fd18a">✓</span>':''}</b><span>${esc(f[2])}</span>${f[3]?`<em>${esc(f[3])}</em>`:''}</div>`}).join(''):'<p>Nothing yet. Open the chest to start your book!</p>');
- $k('kcBk').textContent='⬅ BACK TO THE CHEST'}
+let bf='all';
+function bookHtml(got){const k=st(),tot=F.length,pc=Math.round(got.length/tot*100),keys=Object.keys(CAT),cnt=x=>({f:got.filter(i=>F[i][0]===x).length,t:F.filter(r=>r[0]===x).length});
+ const chips=`<button type="button" class="kcCh${bf==='all'?' on':''}" data-cf="all">ALL <b>${got.length}/${tot}</b></button>`+keys.map(x=>{const n=cnt(x);return`<button type="button" class="kcCh${bf===x?' on':''}" data-cf="${x}" style="color:${CAT[x][2]}">${CAT[x][0]} <b>${n.f}/${n.t}</b></button>`}).join('');
+ const list=got.filter(i=>bf==='all'||F[i][0]===bf).reverse(),lock=(bf==='all'?tot:cnt(bf).t)-list.length;
+ return`<div class="kcBh"><div class="kcRing" style="--p:${pc}"><span>${got.length}<small>/${tot}</small></span></div><div><b>MY MATH BOOK</b><span>${k.q.filter(i=>F[i]).length} questions answered right</span></div></div><div class="kcChs">${chips}</div>`+list.map(i=>{const f=F[i],c=CAT[f[0]]||CAT.B;return`<details class="kcE" style="--c:${c[2]}"><summary><span class="kcIc">${c[0]}</span><b>${esc(f[1])}</b>${k.q.includes(i)?'<span class="kcOk" title="Answered right">✓</span>':''}</summary><div><span>${esc(f[2])}</span>${f[3]?`<em>${esc(f[3])}</em>`:''}</div></details>`}).join('')+(lock>0?`<div class="kcLk">🔒 ${lock} more to discover. Open the chest!</div>`:'')}
+function book(){state='book';ui('book');const k=st(),got=k.s.filter(i=>F[i]);$k('kcMain').hidden=true;$k('kcBook').hidden=false;
+ $k('kcBook').innerHTML=bookHtml(got);bkSet(1)}
 /* v189: FACT OF THE DAY (a daily quest). One fact a day, the same for every player (picked by the calendar day from F, so every fact comes round once before any repeats). Open it from the chest pop-up, or from the Quests screen (a quest "Read today's Fact of the Day" is added to the Daily list in qInit). Answer its Try-it question to finish it: a wrong answer just greys out and you try again. A right answer = FD_C coins + FD_X XP now, the quest is ready to claim in Quests, the fact goes into the Math Book, and the day counts toward a streak (PRO.fd = {d: day done, l: last day done, s: streak, b: best, n: total}). Every 7th streak day pays 1 gem. Players who already claimed today's Daily Sweep get the quest from tomorrow (so the sweep can never be claimed twice). Tune FD_C / FD_X here. */
 const FD_C=20,FD_X=10,gcd=(a,b)=>b?gcd(b,a%b):a,
 fdDay=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*60000)/864e5),
@@ -7249,7 +7340,7 @@ fdIdx=()=>{const n=F.length,s=[37,31,29,41,43,47,53].find(x=>gcd(x,n)===1)||1;re
 fdSt=()=>PRO.fd||(PRO.fd={d:'',l:'',s:0,b:0,n:0}),
 fdDone=()=>fdSt().d===today(),
 fdStreak=()=>{const f=fdSt();return(f.l===today()||f.l===ydy())?(f.s||0):0};
-function fdBtn(){const b=$k('kcFd');if(!b)return;const d=fdDone(),s=fdStreak(),h=d?'📅 FACT OF THE DAY · ✓ DONE'+(s>1?' · 🔥'+s:''):'📅 FACT OF THE DAY · NEW';if(b.textContent!==h)b.textContent=h;b.classList.toggle('fdNew',!d)}
+function fdBtn(){const b=$k('kcFd');if(!b)return;const d=fdDone(),s=fdStreak(),t='<i>📅</i><b>FACT OF THE DAY</b><small>'+(d?'✓ Done'+(s>1?' · 🔥 '+s:''):'New today!')+'</small>';if(b.dataset.h!==t){b.dataset.h=t;b.innerHTML=t}b.classList.toggle('fdNew',!d)}
 function fdHead(){const s=fdStreak();$k('fdDate').textContent='📅 '+new Date().toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}).toUpperCase();$k('fdStk').textContent=s?'🔥 '+s+'-DAY STREAK':'START A STREAK'}
 function fdWin(i,m){const f=fdSt(),k=st();f.s=f.l===ydy()?(f.s||0)+1:1;f.l=f.d=today();f.n=(f.n||0)+1;f.b=Math.max(f.b||0,f.s);
  if(!k.s.includes(i))k.s.push(i);if(!k.q.includes(i))k.q.push(i);
@@ -7279,8 +7370,10 @@ function fdQuestBtn(){const L=$k('qList');if(!L||!PRO.q||!PRO.q.d)return;const i
 {const _qu=qUI;qUI=function(){const r=_qu.apply(this,arguments);try{fdQuestBtn()}catch(e){}return r}}
 try{LGT.push({id:'fd',ic:'📅',k:'c',e:'fotd',a:[3,7,14,30,60,100,200],l:n=>`Learn ${n} Facts of the Day`})}catch(e){}
 $k('kcGo').onclick=()=>{try{sfx('click')}catch(e){}if(left()>0)reveal();else $k('kcPop').classList.remove('on')};
+$k('kcBox').onclick=()=>{if(state==='idle'&&left()>0)$k('kcGo').click()};
+$k('kcBook').addEventListener('click',e=>{const b=e.target.closest('[data-cf]');if(!b)return;try{sfx('click')}catch(x){}bf=b.dataset.cf;book()});
 $k('kcBuy').onclick=()=>{if(left()>0)return;if((PRO.gems||0)<COST){try{tone(150,.2,'square')}catch(e){}return toast('Not Enough Gems 💎')}PRO.gems-=COST;const k=st();k.x++;LS.set('ms_pro',PRO);try{profUI()}catch(e){}reveal()};
-$k('kcBk').onclick=()=>{try{sfx('click')}catch(e){}if(state==='book'){if(bk==='fact'){state='fact';$k('kcMain').hidden=false;$k('kcBook').hidden=true;$k('kcBk').textContent='📖 MY MATH BOOK ('+Math.min(st().s.length,F.length)+'/'+F.length+')'}else idle()}else{bk=state;book()}};
+$k('kcBk').onclick=()=>{try{sfx('click')}catch(e){}if(state==='book'){if(bk==='fact'){state='fact';ui('fact');$k('kcMain').hidden=false;$k('kcBook').hidden=true;bkSet(0)}else idle()}else{bk=state;book()}};
 $k('kcNo').onclick=()=>{try{sfx('click')}catch(e){}$k('kcPop').classList.remove('on');paint()};
 const al=$k('kcAlt');if(al)al.onclick=()=>{openPop()};
 const _pk2=profUI;profUI=function(){const r=_pk2.apply(this,arguments);try{paint()}catch(e){}return r};
