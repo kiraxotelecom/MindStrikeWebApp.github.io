@@ -1731,7 +1731,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 #ends .rsMs .rsMb u{display:block;height:100%;text-decoration:none;background:linear-gradient(90deg,#ff7a1a,#ffd45a);box-shadow:0 0 10px #ff9a3d;animation:rsGrow .9s .5s cubic-bezier(.2,.9,.3,1) both;transform-origin:left}
 #ends .rsNt{font-size:.74rem;opacity:.9;font-weight:700;letter-spacing:.03em}
 #arBrag .bgMeta{white-space:pre-line}
-/* v199 (1.9.34): fit the result screens on one screen, no scrolling */
+/* v199 (1.9.36): fit the result screens on one screen, no scrolling */
 #s-end:has(#ends .rs2){justify-content:flex-start;gap:0;padding-top:max(6px,env(safe-area-inset-top))!important;padding-bottom:max(8px,env(safe-area-inset-bottom))!important;overflow:hidden}
 #s-end[data-k=""]:has(#ends .rs2) #vrow .arWrap.arEnd{--arW:clamp(64px,9.5vh,86px);margin-top:46px}
 #s-end[data-k=""]:has(#ends .rs2) #vrow #vemb{width:56px;height:56px;font-size:2rem}
@@ -2223,7 +2223,7 @@ const resume=()=>{if(G)G.paused=false;$('#pause').classList.remove('on');if(G){r
 $('#pauseBtn').onclick=openPause;$('#resume').onclick=resume;$('#quit').onclick=home;
 
 $('#pSet').onclick=()=>{$('#pause').classList.remove('on');go('s-set')};
-const popup=(img,ms=1300)=>{$('#popimg').src=`img/${img}.webp`;$('#pop').classList.add('on');setTimeout(()=>$('#pop').classList.remove('on'),ms)};
+const popup=(img,ms=1300)=>{const el=$('#popimg'),wk=(document.documentElement.className.match(/wd-(cyber|samurai|ice|buganda|gold|astral|atlantis|jungle)/)||[])[1],base=`img/${img}.webp`;el.onerror=()=>{el.onerror=null;el.src=base};el.src=wk?`img/${img}_${wk}.webp`:base;$('#pop').classList.add('on');setTimeout(()=>$('#pop').classList.remove('on'),ms)};
 // timers that respect pause and a quit game
 function later(fn,ms){const g=G;setTimeout(function w(){if(G!==g||!g||g.done&&!g.finishing)return;if(g.paused)return setTimeout(w,200);fn()},ms)}
 // ---- settings ----
@@ -8233,7 +8233,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.34';
+window.APP_VER='1.9.36';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
