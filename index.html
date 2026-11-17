@@ -1541,6 +1541,87 @@ html.noaris #arBrag .arWrap{display:block!important}
 .lbr.g{opacity:.62;border-style:dashed}.lbr.g .lbn{font-weight:500;font-style:italic}
 .lbd{text-align:center;opacity:.6;letter-spacing:.3em;margin:4px 0}.lbg{margin:10px 0 2px;font-size:.85rem;color:#ffe08a;text-align:center}
 </style>
+<style>/* v177: result screens, leaderboard card, skin reveal */
+#s-end[data-k=""] #vemb{width:96px;height:96px;font-size:3.3rem;margin-bottom:-10px}
+#s-end[data-k=""] #endt{font-size:2.3rem}
+#ends .rs{width:min(94vw,380px);margin:8px auto 0;display:flex;flex-direction:column;gap:9px;text-align:center;line-height:1.25}
+#ends .rsH{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 12px 10px;border-radius:16px;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);background:linear-gradient(180deg,rgb(var(--k) / .78),rgb(var(--k) / .55));box-shadow:0 6px 18px #0009,inset 0 1px 0 #fff2,0 0 22px color-mix(in srgb,var(--gold) 18%,transparent)}
+#ends .rsN{display:flex;align-items:baseline;justify-content:center;gap:6px}
+#ends .rsN b{font-size:3rem;line-height:1;font-weight:800;letter-spacing:.02em;background:linear-gradient(180deg,#fff,var(--gold) 70%,color-mix(in srgb,var(--gold) 50%,#000));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #0008) drop-shadow(0 0 12px color-mix(in srgb,var(--gold) 45%,transparent))}
+#ends .rsN span{font-size:1.05rem;opacity:.7;font-weight:700}
+#ends .rsBar{width:86%;height:7px;border-radius:6px;background:#0007;overflow:hidden;border:1px solid #fff2}
+#ends .rsBar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 60%,#000),var(--gold),#fff);box-shadow:0 0 10px var(--gold);animation:rsGrow .9s .2s cubic-bezier(.2,.9,.3,1) both;transform-origin:left}
+@keyframes rsGrow{from{transform:scaleX(0)}}
+#ends .rsP{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:800;letter-spacing:.08em;background:linear-gradient(90deg,#ff7a1a55,#ffc83a44);border:1px solid #ffb04a;color:#ffe9c2;margin-top:2px}
+#ends .rsP.nb{background:linear-gradient(90deg,#ffd45a55,#fff3b044);border-color:#ffd45a;animation:rsPulse 1.6s ease-in-out infinite}
+@keyframes rsPulse{50%{box-shadow:0 0 14px #ffd45a99}}
+#ends .rsRun{align-self:center;min-width:56%;padding:8px 18px;border-radius:14px;background:rgb(var(--k) / .5);border:1px solid #fff2;box-shadow:inset 0 0 14px #0008;font-size:1.28rem;line-height:1.38;letter-spacing:.03em}
+#ends .rsChips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+#ends .rsc{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:999px;font-size:.78rem;font-weight:700;background:#0008;border:1px solid #fff3;color:#fff;text-align:center;max-width:100%}
+#ends .rsc small{font-size:inherit;opacity:.75;font-weight:600}
+#ends .rsc.c1{border-color:#f2c94c;background:linear-gradient(#f2c94c33,#0008);color:#ffeaa0}
+#ends .rsc.c2{border-color:#4fe0ff;background:linear-gradient(#4fe0ff33,#0008);color:#c8f6ff}
+#ends .rsc.c3{border-color:#b48cff;background:linear-gradient(#b48cff33,#0008);color:#e6d8ff}
+#ends .rsc.c4{border-color:#8fdcff;background:linear-gradient(#8fdcff33,#0008);color:#e0f6ff}
+#ends .rsc.c5{border-color:#7dff9a;background:linear-gradient(#7dff9a2a,#0008);color:#d6ffe0}
+#ends .rsVs{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;border-radius:12px;font-size:.86rem;background:linear-gradient(90deg,#0000,#0009 20%,#0009 80%,#0000);border-top:1px solid #fff2;border-bottom:1px solid #fff2}
+#ends .rsVs em{font-style:normal;font-weight:800;letter-spacing:.06em}
+#ends .rsVs.w em{color:#8dffa8}#ends .rsVs.l em{color:#ff9a8a}#ends .rsVs.t em{color:#ffe08a}
+#ends .rsT{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#ends .rsT>div{padding:9px 6px 8px;border-radius:14px;background:linear-gradient(180deg,rgb(var(--k) / .75),rgb(var(--k) / .5));border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);box-shadow:inset 0 1px 0 #fff2,0 4px 10px #0007}
+#ends .rsT small{display:block;font-size:.62rem;letter-spacing:.16em;opacity:.8;font-weight:800}
+#ends .rsT b{display:block;font-size:1.9rem;line-height:1.15;font-weight:800;color:var(--gold);text-shadow:0 0 12px color-mix(in srgb,var(--gold) 50%,transparent)}
+#ends .rsT em{display:block;font-style:normal;font-size:.72rem;font-weight:700;color:#fff;opacity:.9;min-height:1.1em}
+#ends .rsNote{font-size:.78rem;letter-spacing:.14em;opacity:.8;font-weight:700}
+#ends .rsBtns{display:flex;gap:8px;width:100%}
+#ends .rsBtns button{flex:1 1 0;min-width:0;width:auto!important;padding:9px 6px;font-size:.78rem;line-height:1.25;letter-spacing:.05em}
+#ends .rsBtns button small{display:block;font-size:.66rem;letter-spacing:.04em;opacity:.9}
+#ends .rsPri{width:100%!important;padding:14px 10px!important;font-size:1.02rem;letter-spacing:.14em;background:linear-gradient(var(--gold),color-mix(in srgb,var(--gold) 55%,#000))!important;color:#1a0d08!important;border-color:#fff3c4!important;box-shadow:0 3px 0 #000a,0 0 20px color-mix(in srgb,var(--gold) 50%,transparent)!important}
+/* leaderboard card */
+.lbCard{width:min(94%,372px)!important;max-height:86vh!important;padding:0!important;display:flex!important;flex-direction:column;overflow:hidden!important;text-align:center!important;margin:0!important}
+.lbCard .lbHd{padding:14px 14px 8px;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--gold) 26%,transparent),transparent 70%)}
+.lbCard .lbHd h2{margin:0;font-size:1.35rem;letter-spacing:.16em;line-height:1.15}
+.lbCard .lbHd .lbSub{font-size:.66rem;letter-spacing:.22em;opacity:.7;margin:2px 0 8px;font-weight:700}
+.lbCard .evtabs{margin:0;padding:3px;border-radius:999px;background:#0008;border:1px solid #fff2;gap:2px}
+.lbCard .evtabs button{border-radius:999px!important;padding:8px 2px;font-size:.62rem;box-shadow:none!important;background:transparent!important;border:0!important;color:inherit;opacity:.72}
+.lbCard .evtabs button.on{opacity:1;background:linear-gradient(var(--gold),color-mix(in srgb,var(--gold) 55%,#000))!important;color:#1a0d08!important;font-weight:800;box-shadow:0 0 12px color-mix(in srgb,var(--gold) 50%,transparent)!important}
+.lbCard .lbBody{flex:1;min-height:0;overflow:auto;padding:8px 12px;-webkit-overflow-scrolling:touch}
+.lbCard .lbFt{padding:8px 12px 12px;border-top:1px solid #fff1;background:#0004}
+.lbCard .lbFt small{display:block;font-size:.7rem;opacity:.78;line-height:1.5;margin-bottom:8px}
+.lbCard .lbFt button{width:100%}
+.lbCard .lbg{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 8px;padding:8px 10px;border-radius:12px;font-size:.84rem;color:#fff;background:linear-gradient(90deg,#0000,color-mix(in srgb,var(--gold) 24%,transparent),#0000);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent)}
+.lbCard .lbg b{color:var(--gold);font-size:1.05rem}
+.lb{gap:7px}
+.lbr{position:relative;overflow:hidden;padding:9px 12px 11px 10px;border-radius:14px;background:linear-gradient(180deg,#ffffff10,#ffffff05)}
+.lbr::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:var(--p);background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 70%,transparent),var(--gold));border-radius:0 3px 0 0;opacity:.9}
+.lbr .lbk{flex:0 0 32px;height:32px;display:grid;place-items:center;border-radius:50%;font-size:.92rem;background:#0007;border:1px solid #fff3;font-weight:800}
+.lbr.m1 .lbk,.lbr.m2 .lbk,.lbr.m3 .lbk{font-size:1.1rem;background:radial-gradient(circle at 35% 30%,#fff6,#0000 60%),#0006}
+.lbr.m1{background:linear-gradient(180deg,#f0c05033,#f0c05008)}
+.lbr.me{background:linear-gradient(180deg,#ffe08a40,#ffe08a10)}
+.lbr.me::after{background:linear-gradient(90deg,#ffe08a,#fff)}
+.lbr .lbs{font-size:1.15rem;font-weight:800;color:var(--gold)}
+.lbr.g{opacity:.7}.lbr.g .lbk{font-size:1rem;border-style:dashed}
+/* skin reveal */
+.skS.hero{gap:0;background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--sk) 34%,transparent),#05080fd9 70%);animation:skh 2.7s ease-out forwards;overflow:hidden}
+.skS.hero::before{content:'';position:absolute;left:50%;top:44%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;background:repeating-conic-gradient(color-mix(in srgb,var(--sk) 30%,transparent) 0 5deg,transparent 5deg 15deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 30%);mask:radial-gradient(circle,#000 0,transparent 30%);animation:skr 16s linear infinite}
+@keyframes skr{to{transform:rotate(360deg)}}
+@keyframes skh{0%{opacity:0}10%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.skS.hero .skF{position:relative;width:min(58vw,240px);aspect-ratio:4/5;padding:5px;border-radius:22px;background:linear-gradient(145deg,#fffc,var(--sk) 28%,#0008 55%,var(--sk) 85%);box-shadow:0 0 36px var(--sk),0 0 90px color-mix(in srgb,var(--sk) 55%,transparent);animation:skp .7s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes skp{from{transform:scale(.55) translateY(30px);opacity:0}}
+.skS.hero .skF img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:18px;display:block;border:0;box-shadow:inset 0 0 22px #000a}
+.skS.hero .skF.em{width:min(46vw,190px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:5.4rem;line-height:1;background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--sk) 40%,#0b1220),#05080f 75%);border:4px solid var(--sk);padding:0}
+.skS.hero .skF.em>span{all:unset;filter:drop-shadow(0 0 16px var(--sk))}
+.skS.hero .skN{position:relative;margin-top:-16px;padding:8px 26px 9px;max-width:92%;font-size:clamp(1.05rem,6vw,1.55rem);letter-spacing:.2em;font-weight:800;color:#fff;text-align:center;background:linear-gradient(180deg,#101a2cf2,#05080ff2);border:1px solid var(--sk);border-radius:8px;box-shadow:0 0 22px color-mix(in srgb,var(--sk) 60%,transparent),0 6px 0 #0008;text-shadow:0 0 12px var(--sk),0 2px 0 #000;animation:skn .5s .25s ease-out both}
+@keyframes skn{from{opacity:0;transform:translateY(14px)}}
+.skS.hero .skT{margin-top:10px;font-size:.78rem;letter-spacing:.38em;color:var(--sk);font-weight:800;text-shadow:0 1px 0 #000;animation:skn .5s .4s ease-out both}
+.skS.hero.lite{background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--sk) 30%,transparent),transparent 68%);animation:sks 1.8s ease-out forwards}
+.skS.hero.lite::before{display:none}
+.skS.hero.lite .skF{width:min(40vw,170px)}
+.skS.hero.lite .skF.em{width:min(34vw,140px);font-size:4rem}
+#hud #skE.im{width:3.2rem;height:3.2rem;margin:0 0 -2px -1.6rem}
+.pkav .skP.im{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 20%;display:block;filter:none}
+@media (prefers-reduced-motion:reduce){.skS.hero::before,#ends .rsP.nb,#ends .rsBar i{animation:none!important}}
+</style>
 <style>/* 1.9.8: Clash Online lobby redesign. One compact screen: name + tools, join row, 2x2 mode grid. */
 #s-online #oMenu{gap:8px;padding-bottom:92px}
 #s-online #oMenu .bm-hero{padding:0 0 6px}#s-online #oMenu .bm-hero h1{margin:6px 0 6px}
@@ -1982,7 +2063,7 @@ const PTS={1:15,2:10,3:6},RAGE_ACC=.88,CHIP={blazing:35,hot:15},ARMOR=100,SHRINK
 const LEVELS=['I · RECRUIT','II · LEGIONARY','III · CENTURION','IV · LEGATUS','V · IMPERATOR KIRAXO'];
 const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt:0},Psycho:{mod:.05,risky:0,adapt:1},Prime:{mod:.10,risky:0,adapt:1}};
 const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
-const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🏛️','#ffe08a','GOLDEN LAUREL'],obsidian:['🖤','#9a8cff','OBSIDIAN GUARD'],hoplite:['🏺','#c98b3d','HOPLITE'],pharaoh:['👁️','#2fd0c8','PHARAOH'],titan:['⚡','#8fb6ff','TITAN'],imperator:['👑','#ffd84a','IMPERATOR'],diamond:['💎','#7fe8ff','DIAMOND GUARD'],nova:['🌟','#ffd45a','NOVA GUARD'],nebula:['🌌','#b48cff','NEBULA WARDEN'],comet:['☄️','#7fe8ff','COMET RIDER'],eclipse:['🌑','#ffb347','ECLIPSE KNIGHT'],tide:['🌊','#4fd0ff','TIDECALLER'],kraken:['🐙','#ff6ac1','KRAKEN GUARD'],pearl:['🐚','#ffe9f2','PEARL KNIGHT'],siren:['🧜','#7ff0d0','SIREN WARDEN'],safari:['🧭','#f0c84a','SAFARI EXPLORER'],monkey:['🐒','#c88a4a','MONKEY KING'],jaguar:['🐆','#e8a21a','JAGUAR HUNTER'],drummer:['🥁','#e0803a','DRUM CHIEF']};
+var PSKI={};const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🏛️','#ffe08a','GOLDEN LAUREL'],obsidian:['🖤','#9a8cff','OBSIDIAN GUARD'],hoplite:['🏺','#c98b3d','HOPLITE'],pharaoh:['👁️','#2fd0c8','PHARAOH'],titan:['⚡','#8fb6ff','TITAN'],imperator:['👑','#ffd84a','IMPERATOR'],diamond:['💎','#7fe8ff','DIAMOND GUARD'],nova:['🌟','#ffd45a','NOVA GUARD'],nebula:['🌌','#b48cff','NEBULA WARDEN'],comet:['☄️','#7fe8ff','COMET RIDER'],eclipse:['🌑','#ffb347','ECLIPSE KNIGHT'],tide:['🌊','#4fd0ff','TIDECALLER'],kraken:['🐙','#ff6ac1','KRAKEN GUARD'],pearl:['🐚','#ffe9f2','PEARL KNIGHT'],siren:['🧜','#7ff0d0','SIREN WARDEN'],safari:['🧭','#f0c84a','SAFARI EXPLORER'],monkey:['🐒','#c88a4a','MONKEY KING'],jaguar:['🐆','#e8a21a','JAGUAR HUNTER'],drummer:['🥁','#e0803a','DRUM CHIEF']};
 /* v133: world skins for Neon Grid, Shogun’s Realm, Frostlands, Buganda and Golden Sands (4 player + 2 Kiraxo each). Add more by editing the W data in this block: PSK, KS, KSC, SHOP and SKW. */
 Object.assign(PSK,{"glitch":["👾","#19f2ff","GLITCH RUNNER"],"netrunner":["🕶️","#ff3df0","NETRUNNER"],"android":["🦿","#7dffd2","ANDROID SENTINEL"],"overclock":["🔋","#c8ff3a","OVERCLOCK"],"ronin":["🥷","#c0c8e8","RONIN"],"sakura":["🌸","#f4b6cc","SAKURA BLADE"],"kitsune":["🦊","#ff8a3d","KITSUNE"],"castle":["🏯","#c0281a","CASTLE GUARD"],"frostbite":["🥶","#8fdcff","FROSTBITE"],"wolf":["🐺","#9fb4d0","FROST WOLF"],"snowfall":["❄️","#e6f6ff","SNOWFALL"],"runic":["🪨","#9fe8ff","RUNE KEEPER"],"drummer":["🥁","#e8b04a","ROYAL DRUMMER"],"lionguard":["🦁","#f0cf5a","LION GUARD"],"barkcloth":["🌿","#6bbf5a","BARKCLOTH WARRIOR"],"canoe":["🛶","#4fb0d0","NILE PADDLER"],"camel":["🐪","#e8b04a","CARAVAN RIDER"],"oasis":["🌴","#4fd0a0","OASIS WARDEN"],"mirage":["🏜️","#ffc83a","MIRAGE KNIGHT"],"scorpion":["🦂","#ff9a3c","SCORPION GUARD"]});
 const GEN={Easy:'GEN. NANAIA',Medium:'GEN. SHANITARI',Hard:'GEN. ELIJAHOS'};
@@ -2048,7 +2129,7 @@ function newGame(o){const D=o.D||DIFF[o.d],Mt=o.M||MATCH[o.m];
   pow:[0,1].map(()=>({SCAN:3,FOCUS:3,RISK:3,SHIELD:3,STEAL:3,JAM:3})),intelUses:[{},{}],desp:[{used:0,active:0},{used:0,active:0}],jamFor:[0,0],
   st:[{ok:0,best:0,crit:0},{ok:0,best:0,crit:0}],pg:[],boss:false,done:false,busy:false,paused:false,waiting:false,dmg:[0,0],broken:0,tLeft:0};
  if(G.cf&&G.cf.head)G.score[1]=G.cf.head;G.gen=(!o.cf&&o.mode==='AI'&&o.gen)||'';G.opp=o.names[1];G.wager=0;if(o.w&&o.mode==='AI'&&!o.cf){G.wager=Math.min(o.w,PRO.gold);PRO.gold-=G.wager;wagerOpen(o,D,Mt);LS.set('ms_pro',PRO)}useInv();play(o.mode==='PVP'?'pvp':'theme');$('#pause').classList.remove('on');startTurn(true);
- if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
+ if(PRO.ps&&PSK[PRO.ps])setTimeout(()=>{if(G&&!G.done)skSplash(PSKI[PRO.ps]||PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'ENTERS THE ARENA')},500);
  {const _k=eKS();if(_k&&KSC[_k]&&o.mode==='AI'&&(!o.cf||o.cf.fin))setTimeout(()=>{if(G&&!G.done)skSplash(KSE(_k),KSC[_k],_k==='atlantis'&&!PRO.ks?'THE KRAKEN':'KIRAXO','AWAITS YOU')},2600)}}
 function bg(){$('#app').classList.toggle('bossm',!!G.boss);const wa=(document.documentElement.className.match(/wd-(cyber|samurai|ice|buganda|gold|astral|atlantis|elementa|jungle)/)||[])[1];$('#s-game').style.setProperty('--bg',wa==='elementa'?'var(--ebg)':`url(img/${wa?wa+(G.boss?'_boss':'_menu'):G.boss?'boss_bg':G.mode==='PVP'?'pvp_bg':'game_bg'}.webp)`)}
 function startTurn(first){const D=G.D;G.busy=false;G.rf=newRF();G.att=0;G.guesses=0;G.hist=[];G.jam=G.jamFor[G.cur];G.jamFor[G.cur]=0;if(tkh('sand')&&G.cur===0&&G.round%3===0)G.jam=1;
@@ -2722,7 +2803,7 @@ shopOn(e=>{const pv=e.target.closest('[data-pv]');if(pv){const w=pv.dataset.pv,V
  delete PRO.pv;PRO.wd=id==='roman'?'':id;LS.set('ms_pro',PRO);toast(`${W.e} <b data-nx="1">${W.n}</b><br><small>Switching world…</small>`);setTimeout(()=>location.reload(),700)});
 const KSC={robot:'#7fd0ff',skull:'#c9c9d6',dragon:'#ff7a2a',alien:'#6dff9a',buganda:'#f2c94c',gold:'#ffb83a',astral:'#b48cff',atlantis:'#3df2e0',cyber:'#19f2ff',samurai:'#ff4a3a',ice:'#8fdcff',crystal:'#b48cff',virus:'#7dff3a',mainframe:'#19f2ff',oni:'#e0281a',tengu:'#d94a3a',yeti:'#bfe8ff',frostgiant:'#7fc8ff',elephant:'#9a8a6a',drumlord:'#e8b04a',djinn:'#7a5cff',scorpion:'#ff9a3c',jungle:'#8be04a',stampede:'#d8a040'},THC={azure:'#5db7ff',emerald:'#4fd68a',tyrian:'#c77dff',crimson:'#ff6b5e',sunset:'#ffa24a',onyx:'#cfd6dd',imperial:'#ffd84a'};
 const SKC=k=>{const f=k.slice(0,2),v=k.slice(3);return f==='ps'?(PSK[v]||[])[1]:f==='ks'?KSC[v]:f==='th'?THC[v]:''};
-function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div');e.className='skS';e.style.setProperty('--sk',col||'#ffd27a');const im=/^img\//.test(em);e.innerHTML=`<b>${im?`<img class="skI" src="${em}" alt="">`:em}</b><span>${name||''}</span><small>${sub||''}</small>`;f.appendChild(e);setTimeout(()=>e.remove(),1900);burst(im?['✨','⭐']:[em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
+function skSplash(em,col,name,sub){const f=$('#fx');if(!f)return;const e=document.createElement('div'),lite=/ARENA/i.test(sub||'');e.className='skS hero'+(lite?' lite':'');e.style.setProperty('--sk',col||'#ffd27a');const im=/^img\//.test(em);e.innerHTML=`<div class="skF${im?'':' em'}">${im?`<img src="${em}" alt="" onerror="this.parentNode.classList.add('em');this.replaceWith(Object.assign(document.createElement('span'),{textContent:'🛡️'}))">`:`<span>${em}</span>`}</div><div class="skN">${name||''}</div><div class="skT">${sub||''}</div>`;f.appendChild(e);setTimeout(()=>e.remove(),lite?1900:2700);burst(im?['✨','⭐']:[em,'✨'],16);tone(523,.15,'triangle');setTimeout(()=>tone(784,.25,'triangle'),140)}
 const ACH={first:['🏆','FIRST BLOOD','Win your first match'],sniper:['🎯','SNIPER','First-try critical hit'],streak3:['🔥','ON FIRE','3-win combo'],unstop:['⚡','UNSTOPPABLE','5-win combo'],boss:['👹','BOSS BREAKER','Beat Kiraxo in Boss Phase'],comeback:['😤','COMEBACK KID','Win a Desperation round (2 players)'],daily3:['📅','HABIT FORMED','3-day Daily streak']};
 
 // ---- v12: Conquest Map ----
@@ -3510,7 +3591,7 @@ $('#prof').addEventListener('click',e=>{const t=e.target.closest('.pkt,.pkm');if
 function profUI(){try{gemSync()}catch(e){}const i=rk(),n=RANKS[i],nx=i<12?RANKS[i+1]:['',PXP(pr()+1)],b0=i<12?n[1]:(pr()?PXP(pr()):135000),p=Math.max(0,Math.min(100,(PRO.xp-b0)/(nx[1]-b0)*100)),ac=Object.keys(LS.get('ms_ach',{})).length,ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0;
  const tl=(e,t,sb)=>`<i class="ti">${e}</i><span>${t}</span>${sb?`<small>${sb}</small>`:''}`,md=MINI.filter((_,i)=>mgOpen(i)).length;
  const skE=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][0]:'🛡️',skC=PRO.ps&&PSK[PRO.ps]?PSK[PRO.ps][1]:'#ffd27a',tN=i+1,tp=!(tN<3||tN>12||trOk(tN)),tI=tp?TRI(tN):null,full=PRO.xp>=nx[1],ch=evBadgeTxt().replace(/^ · /,''),f=v=>Number(v).toLocaleString('en-US');
- $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}"><span class="skP">${skE}</span></div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>Streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>Wins</small></span><span><i>💰</i><b>${f(PRO.gold||0)}</b><small>Coins</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>Gems</small></span><span><i>⭐</i><b>${trWs()}</b><small>Map stars</small></span><span><i>🥇</i><b>${wmO().filter(m=>m&&m.md).length}</b><small>Medals</small></span><span><i>🏰</i><b>${(()=>{try{return mgm('tower').f||0}catch(e){return 0}})()}</b><small>Tower floor</small></span><span><i>🪢</i><b>${(PRO.tgs||{}).w||0}</b><small>Tug wins</small></span></div>${ppHtml()}${elBtnHtml()}${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
+ $('#prof').innerHTML=`<div class="pk"><div class="pkav" style="--sk:${skC}">${PRO.ps&&PSKI[PRO.ps]?`<img class="skP im" src="${PSKI[PRO.ps]}" alt="">`:`<span class="skP">${skE}</span>`}</div><div class="pkmain"><div class="pkr">${n[0]}${pr()?`<em>${rom(pr())}</em>`:''}</div><div class="pkx"><span><b>${f(tp&&full?nx[1]:PRO.xp)}</b>${nx?' / '+f(nx[1]):''} XP</span>${tp&&full?'<span class="pkgo">⚔️ MAX · PASS THE TRIAL</span>':''}</div><div id="xp"><i style="width:${p}%"></i></div></div></div>${tp?`<div class="pkt"><div class="h"><span>🎖️ <b>TRIAL · ${RANKS[tN][0]}</b></span><em>${tI.p}</em></div><div class="d">${tI.d}</div></div>`:''}<div class="pks"><span><i>🔥</i><b>${ds||0}</b><small>Streak</small></span><span><i>⚔️</i><b>${PRO.w}</b><small>Wins</small></span><span><i>💰</i><b>${f(PRO.gold||0)}</b><small>Coins</small></span><span><i>💎</i><b>${PRO.gems||0}</b><small>Gems</small></span><span><i>⭐</i><b>${trWs()}</b><small>Map stars</small></span><span><i>🥇</i><b>${wmO().filter(m=>m&&m.md).length}</b><small>Medals</small></span><span><i>🏰</i><b>${(()=>{try{return mgm('tower').f||0}catch(e){return 0}})()}</b><small>Tower floor</small></span><span><i>🪢</i><b>${(PRO.tgs||{}).w||0}</b><small>Tug wins</small></span></div>${ppHtml()}${elBtnHtml()}${ch?`<div class="pkch">${ch}</div>`:''}<div class="pkm"><span class="t">${CM()[1]} <b>${CM()[2]}</b> — ${CM()[3]}</span></div>`;
  try{evTile()}catch(e){$('#dailyBtn').innerHTML=tl('⚔️','ARENA TRIALS',PRO.dl===today()?'✓ Daily Done':'Daily Ready')}$('#shopBtn').innerHTML=tl('🛒','ARMORY','');$('#mapBtn').innerHTML=tl('🗺️','CONQUEST',`🎟️ ${cqLeft()} left · ⭐ ${cTotal()}/${cMax()}`)+(x=>x?`<em class="bd" style="font-style:normal">${x}</em>`:'')(grN());$('#miniBtn').innerHTML=tl('🎮','MINI GAMES',`${md}/${MINI.length} Unlocked`);
  qBadge()}
 const CDIF={Easy:1,Medium:1.6,Hard:2.4},MXP={Quick:1,Standard:1.3,War:1.7,Endless:1.4,Sudden:1.5,Camp:1.5};
@@ -3538,8 +3619,14 @@ function dStrike(){const el=$('#dNum'),g=+el.value,[a,b,mx]=D.dr[D.r],s=D.sec[D.
 function dNext(m){D.lines.push(D.trail.join(''));D.trail=[];D.tries=0;D.r++;runSave();if(D.r>=D.dr.length)return dDone();const[a,b]=D.dr[D.r];D.kLo=a;D.kHi=b;dRender(m+` Next: ${a}–${b}`)}
 function dDone(){if(D.fin)return;D.fin=1;PRO.run=null;if(D.ev)return evDone();if(D.ch)return chalDone();qEv('daily');const y2=dk(new Date(Date.now()-1728e5));let fzn='';if(PRO.dl===ydy())PRO.ds++;else if(PRO.dl===y2&&(PRO.fz||0)>0){PRO.fz--;PRO.ds++;fzn='🧊 Streak freeze saved your streak! '}else PRO.ds=1;PRO.dl=today();const gs=GSTK[PRO.ds]||0;if(gs)gems(gs,'🔥 '+PRO.ds+'-day streak');const big=new Date().getDay()===6,ML={3:50,7:150,14:300,30:700},sb=Math.min(40,PRO.ds*2),ms=ML[PRO.ds]||0,mul=big?2:1,dg=cx(25+sb+ms)*mul;PRO.dres={l:D.lines,s:D.score,n:fzn+(big?'🎊 BIG PRIZE SATURDAY: coins doubled! ':'')+`💰 +${dg} (streak bonus +${sb}${ms?`, 🔥 ${PRO.ds}-day milestone +${ms}`:''})${gs?` · 💎 +${gs}`:''}`};PRO.xp+=xpg(20+D.score/10);PRO.gold+=dg;try{const g=ghostRace('y|'+today(),500,D.score);PRO.dres.n+=` · 👻 ghosts beaten ${g.b}/5${g.c?` (💰 +${g.c})`:''}`;if(D.gh)PRO.dres.n+='<br>'+raceRes()}catch(e){}PRO.dres.r=(D.rs||[]).join(',');lbPut(D.score,PRO.dres.r);if(PRO.ds>=3)unlock('daily3');LS.set('ms_pro',PRO);burst(['🎉','✨','🏆','🪙'],36);dailyEnd();try{const bk='s'+PRO.ds+'|'+today();if([7,14,30].includes(PRO.ds)&&PRO.bgd!==bk&&window.ARIS&&ARIS.bragStreak){PRO.bgd=bk;LS.set('ms_pro',PRO);ARIS.bragStreak(PRO.ds)}}catch(e){}}
 function fzLbl(){return `🧊 STREAK FREEZE<br><small style="font-weight:normal;letter-spacing:.04em">owned ${PRO.fz||0}/3 · 💰 ${FZC}</small>`}
+const rsCls=c=>/^💰/.test(c)?'c1':/^💎/.test(c)?'c2':/^👻/.test(c)?'c3':/^🧊/.test(c)?'c4':/^(✨|🔥|🎊)/.test(c)?'c5':'';
+function rsParse(n){const t=String(n||'').replace(/!\s*(?=💰)/,'! · '),ch=[];let vs='';t.split('<br>').forEach(p=>{p=p.trim();if(!p)return;if(/You (beat|tied with|lost to)/.test(p))vs=p;else p.split(' · ').forEach(c=>{c=c.trim();if(c)ch.push(c)})});return{ch,vs}}
+const rsChips=a=>a.length?`<div class="rsChips">${a.map(c=>`<span class="rsc ${rsCls(c)}">${c}</span>`).join('')}</div>`:'';
+const rsVs=h=>{if(!h)return'';const k=/You beat/.test(h)?'w':/lost to/.test(h)?'l':'t';return`<div class="rsVs ${k}">${h}</div>`};
+const rsHero=(sc,mx,pill,cls)=>`<div class="rsH"><div class="rsN"><b>${sc}</b><span>/ ${mx}</span></div><div class="rsBar"><i style="width:${Math.max(2,Math.min(100,Math.round(sc/mx*100)))}%"></i></div>${pill?`<div class="rsP${cls?' '+cls:''}">${pill}</div>`:''}</div>`;
+const rsRun=l=>`<div class="rsRun">${l.join('<br>')}</div>`;
 function dailyEnd(){const R=PRO.dres;shareText=`MindStrike ☀️ Daily ${today()}\n${R.l.join('\n')}\n${R.s}/500 · 🔥 ${PRO.ds}-day streak\n${location.href.split('#')[0]}`;
- $('#s-end').dataset.k='';$('#vemb').innerHTML='<span>🔥</span>';$('#endt').textContent='DAILY STRIKE';$('#ends').innerHTML=R.l.join('<br>')+`<br><b>${R.s}/500</b> · 🔥 ${PRO.ds}-day streak<br>${R.n||''}<br>New numbers tomorrow!<br><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:10px"><button id="fzB" style="width:230px;max-width:100%;padding:8px 10px;line-height:1.25">${fzLbl()}</button><button id="lbB" style="width:230px;max-width:100%">🏆 TODAY’S BOARD</button></div>`;$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
+ $('#s-end').dataset.k='';$('#vemb').innerHTML='<span>🔥</span>';$('#endt').textContent='DAILY STRIKE';{const pr=rsParse(R.n);$('#ends').innerHTML=`<div class="rs">${rsHero(R.s,500,`🔥 ${PRO.ds}-day streak`)}${rsRun(R.l)}${rsChips(pr.ch)}${rsVs(pr.vs)}<div class="rsNote">NEW NUMBERS TOMORROW</div><div class="rsBtns"><button id="fzB">${fzLbl()}</button><button id="lbB">🏆 TODAY’S BOARD</button></div></div>`};$('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 $('#dailyBtn').onclick=()=>{sfx('click');evHubOpen()};
 /* v45: streak freeze + daily leaderboard (Firebase: daily/<date>/<uid>) */
 async function lbPut(sc,r){try{const X=await msFb(),uid=X.uid,{D:Z,db}=X.F;await Z.set(Z.ref(db,'daily/'+today()+'/'+uid),{n:evSafe(S.n1),s:sc,...(r?{r}:{})})}catch(e){}}
@@ -3615,11 +3702,11 @@ const evRank=a=>{const m=a.find(x=>x.me);return m?1+a.filter(x=>x.s>m.s).length:
  evRtxt=(a,sc)=>{const r=evRank(a);return r?`rank #${r}${a.length<100?' of '+a.length:''}`:sc>0?(a.length>=100?'outside top 100':'syncing…'):'play to get ranked'};
 function evDone(){const ev=D.ev,d=evDay(),E=evS(),sc=D.score,nb=sc>d.b;if(nb){d.b=sc;d.r=(D.rs||[]).join(',')}if(PRO.gm.ed!==today()){PRO.gm.ed=today();gems(1,'Colosseum run')}
  const dg=cx(6+Math.round(sc/20)),xp=xpg(5+sc/20);PRO.gold+=dg;PRO.xp+=xp;const gr=ghostRace('d|'+evToday(),D.mx||500,sc),rr=D.gh?raceRes():'';E.last={l:D.lines,s:sc,k:D.k,dg,xp,nb,mx:D.mx||500,gr,rr};E.dirty=1;LS.set('ms_pro',PRO);
- qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${evToday()}`),el=document.getElementById('evRk');if(el)el.innerHTML=`Today: <b>${evRtxt(b,d.b)}</b> · Week: <b>${evRtxt(a,evTot())}</b>`}catch(e){const el=document.getElementById('evRk');if(el)el.innerHTML='<small>Rank unavailable offline. Your score syncs when you reconnect.</small>'}})}
+ qEv('evrun');qMax('evhi',sc);burst(['🏟️','✨','🏆','🪙'],28);evEnd();evSync().then(async()=>{try{const a=await evTop(`events/${E.w}/total`),b=await evTop(`events/${E.w}/day/${evToday()}`),eD=document.getElementById('evRkD'),eW=document.getElementById('evRkW');if(eD)eD.textContent='🏅 '+evRtxt(b,d.b);if(eW)eW.textContent='🏅 '+evRtxt(a,evTot())}catch(e){['evRkD','evRkW'].forEach(i=>{const el=document.getElementById(i);if(el)el.textContent='rank unavailable offline'})}})}
 function evEnd(){const E=evS(),L=E.last,left=evLeft(),ev=EVC(),b=evDay().b;
  shareText=`MindStrike ${ev.e} ${ev.n}\nRun ${L.k}/${evCap()}\n${L.l.join('\n')}\n${L.s}/${L.mx||500} · today's best ${b} · week ${evTot()}\n${location.href.split('#')[0]}`;
  $('#s-end').dataset.k='';$('#vemb').innerHTML='<span>'+ev.e+'</span>';$('#endt').textContent=ev.n;
- $('#ends').innerHTML=L.l.join('<br>')+`<br><b>${L.s}/${L.mx||500}</b>${L.nb?' · 🌟 new best today':''}<br>Today’s best <b>${b}</b> · Week total <b>${evTot()}</b><br><small>💰 +${L.dg} · +${L.xp} XP</small>${L.rr?`<br><small>${L.rr}</small>`:''}${L.gr?`<br><small>👻 Ghosts beaten: <b>${L.gr.b}/5</b>${L.gr.nw?` · +${L.gr.nw} new · 💰 +${L.gr.c}`:''}</small>`:''}<div id="evRk" style="margin:8px 0;min-height:2.4em"><small>Checking your rank…</small></div><div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:6px">${left?`<button id="evAgain" style="width:230px;max-width:100%">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" style="width:230px;max-width:100%">💎 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled style="width:230px;max-width:100%">⏳ No runs left today</button>'}<button id="evBd" style="width:230px;max-width:100%">🏆 LEADERBOARD</button><button id="evHub" style="width:230px;max-width:100%">🏆 THE COLOSSEUM</button></div>`;
+ {const ch=[`💰 +${L.dg}`,`✨ +${L.xp} XP`];if(L.gr)ch.push(`👻 Ghosts <b>${L.gr.b}/5</b>${L.gr.nw?` <small>· +${L.gr.nw} new · 💰 +${L.gr.c}</small>`:''}`);$('#ends').innerHTML=`<div class="rs">${rsHero(L.s,L.mx||500,L.nb?'🌟 NEW BEST TODAY':'',L.nb?'nb':'')}${rsRun(L.l)}${rsChips(ch)}${rsVs(L.rr||'')}<div class="rsT" id="evRk"><div><small>TODAY’S BEST</small><b>${b}</b><em id="evRkD">checking rank…</em></div><div><small>WEEK TOTAL</small><b>${evTot()}</b><em id="evRkW">checking rank…</em></div></div>${left?`<button id="evAgain" class="rsPri">▶ RUN AGAIN · ${left} left</button>`:evCanBuy()?`<button data-ev="buy" class="rsPri">💎 BONUS RUN · ${EV_SYM} ${evCost()}</button>`:'<button disabled class="rsPri" style="opacity:.55">⏳ No runs left today</button>'}<div class="rsBtns"><button id="evBd">🏆 LEADERBOARD</button><button id="evHub">🏆 THE COLOSSEUM</button></div></div>`}
  $('#again').style.display='none';$('#nextB').style.display=$('#mapB').style.display='none';if(QUIT)return;stack.push('s-end');show('s-end')}
 function evHubOpen(){go('s-events')}
 function evChoose(){const E=evS(),left=evLeft(),dn=PRO.dl===today(),ds=PRO.dl===today()||PRO.dl===ydy()?PRO.ds:0,cl=E.pend.length;
@@ -3716,14 +3803,14 @@ function raceRes(){const g=D.gh,t=gp(g,99),w=D.score>t,c=w?cx(8):0;if(c)PRO.gold
 async function evBoard(tab){tab=tab||'d';let ov=document.getElementById('evOv');
  if(!ov){ov=document.createElement('div');ov.id='evOv';ov.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px';ov.onclick=e=>{if(e.target===ov||e.target.id==='evX')ov.remove();const b=e.target.closest('[data-tab]');if(b)evBoard(b.dataset.tab)};document.body.appendChild(ov)}
  const ev=EVC(),E=evS(),tabs=[['d','TODAY'],['w','WEEK'],['y','DAILY STRIKE']].map(([k,l])=>`<button data-tab="${k}" class="${k===tab?'on':''}">${l}</button>`).join('');
- const paint=h=>{ov.innerHTML=`<div class="card" style="width:min(92%,360px);text-align:center;max-height:80vh;overflow:auto"><h2>🏆 ${tab==='y'?'DAILY STRIKE':ev.n}</h2><div class="evtabs">${tabs}</div><div style="line-height:1.8;margin:8px 0">${h}</div><button id="evX" style="width:100%">CLOSE</button></div>`};
+ const paint=(h,ch,ft)=>{ov.innerHTML=`<div class="card lbCard"><div class="lbHd"><h2>🏆 ${tab==='y'?'DAILY STRIKE':ev.n}</h2><div class="lbSub">ONE CONTEST · ALL PLAYERS</div><div class="evtabs">${tabs}</div></div><div class="lbBody">${ch||''}${h}</div><div class="lbFt">${ft||''}<button id="evX">CLOSE</button></div></div>`};
  paint('Loading…');
  try{if(tab==='y'){if(PRO.dl===today()&&PRO.dres)await lbPut(PRO.dres.s,PRO.dres.r)}else await evSync();
   const a=await evTop(tab==='d'?`events/${E.w}/day/${evToday()}`:tab==='w'?`events/${E.w}/total`:'daily/'+today()),clean=evName,row=(v,i)=>`${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${clean(v.n)} — <b>${v.s}</b>${v.me?' ← you':''}`;
   const dm=ev.r.length*(ev.pr||100)*evMul(),M=ghostMerge(a,tab==='y'?'y|'+today():tab==='w'?'w|'+E.w:'d|'+evToday(),tab==='y'?(PRO.dl===today()&&PRO.dres?PRO.dres.s:0):tab==='d'?evDay().b:evTot(),tab==='y'?500:tab==='d'?dm:dm*(evDw()+1)*.9);
   let h=M.length?boardRows(M.slice(0,20)):'No scores yet.';const mi=M.findIndex(x=>x.me);
   if(mi>=20)h+='<div class="lbd">⋯</div>'+lbRow(a.find(x=>x.me),evRank(a)-1);else if(mi<0)h+=`<br><small>${(tab==='y'?PRO.dl===today():(tab==='d'?evDay().b:evTot())>0)?(a.length>=100?'You are outside the top 100.':'Your score is syncing…'):(tab==='y'?'Finish today’s Daily Strike to join the board.':'Play a run to join the board.')}</small>`;
-  paint(h+ghostNote(M))}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
+  {const gn=ghostNote(M),mm=gn.match(/^<div class="lbg">.*?<\/div>/),cs=mm?mm[0]:'';paint(h,cs,gn.slice(cs.length))}}catch(e){paint('Board unavailable. Check your connection, and make sure the updated Firebase rules are published.')}}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ev],#evAgain,#evBd,#evHub');if(!b)return;const k=b.dataset.ev||b.id;
  if(k==='play'){sfx('click');evPlay()}
  else if(k==='board'||k==='evBd'){sfx('click');evBoard('d')}
@@ -3791,7 +3878,7 @@ function shopOld(S){return SHOP.map(([k,e,n,d,c,t,gp])=>{const cons=t==='c',own=
 shopOn(e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,it=SHOP.find(x=>x[0]===k),cons=it[5]==='c',had=PRO.own[k];
  {const w=SKW[k];if(!had&&w&&!PRO.own['wd:'+w]){tone(150,.2,'square');toast((WORLDS[w]?WORLDS[w].e+' '+WORLDS[w].n:w)+' Owners Only');return}}
  if(cons||!had){if(it[6]){if((PRO.gems||0)<it[6]){tone(150,.2,'square');toast('Not Enough Gems 💎');return}PRO.gems-=it[6]}else{if(PRO.gold<PR(it[4])){tone(150,.2,'square');toast('Not Enough Gold');return}PRO.gold-=PR(it[4])}if(cons)PRO.inv[k]=(PRO.inv[k]||0)+1;else PRO.own[k]=1;tone(660,.1,'triangle');qEv('buy')}
- if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KSE(v),KSC[v],it[2],'EQUIPPED')}}
+ if(!cons){const f=k.slice(0,2),v=k.slice(3);PRO[f]=had&&PRO[f]===v?'':v;if(PRO[f]===v){if(f==='ps'&&PSK[v])skSplash(PSKI[k.slice(3)]||PSK[v][0],PSK[v][1],PSK[v][2],'EQUIPPED');if(f==='ks'&&KS[v])skSplash(KSE(v),KSC[v],it[2],'EQUIPPED')}}
  LS.set('ms_pro',PRO);applyTheme();shopUI();profUI()});
 /* v56: Gem Vault */
 const GMI=[['fz','🧊','STREAK FREEZE','Saves your Daily Strike streak if you miss a day. Hold up to 3.',3],['phx','🕊️','PHOENIX TOKEN','Forgives your first failed round in your next match.',2,{inv:{phx:1}}],['pack','🎒','2× ARMORY PACK','+1 charge of every power, two matches.',3,{inv:{pack:2}}],['bane','☄️','2× BOSS BANE','+40 damage head start in the Boss Phase, two matches.',3,{inv:{bane:2}}],['boost','📚','DOUBLE BOOST','×1.5 XP and ×1.5 coins in your next match.',4,{inv:{tome:1,mag:1}}],['chestS','📚','SCHOLAR’S CHEST','×1.5 XP and ×1.5 coins, two matches.',7,{inv:{tome:2,mag:2}}],['chestW','👑','WARLORD’S CHEST','2 Armory Packs · 2 Boss Banes · Lucky Charm · Hourglass.',9,{inv:{pack:2,bane:2,att:1,time:1}}]];
@@ -3922,7 +4009,7 @@ $('#secX').onclick=()=>$('#secPop').classList.remove('on');$('#restart').onclick
 // ---- render ----
 function skinHud(){const p=PRO.ps&&PSK[PRO.ps],h=$('#h0');h.style.borderColor=p?p[1]:'';h.style.boxShadow=p?`0 0 12px ${p[1]}88`:'';
  const g=$('#s-game');g.classList.toggle('skin',!!p);if(p)g.style.setProperty('--sk',p[1]);
- let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}e.textContent=p?p[0]:'';e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
+ let e=$('#skE');if(!e){e=document.createElement('i');e.id='skE';e.className='skE';h.appendChild(e)}{const pi=p&&PSKI[PRO.ps];e.classList.toggle('im',!!pi);if(pi)e.innerHTML=`<img src="${pi}" alt="">`;else e.textContent=p?p[0]:''}e.style.display=p?'':'none';if(p)e.style.setProperty('--sk',p[1]);
  const kc=eKS()&&KSC[eKS()],h1=$('#h1');let e1=$('#skE1');if(!e1){e1=document.createElement('i');e1.id='skE1';e1.className='skE';h1.appendChild(e1)}const on=!!kc&&G&&G.mode==='AI';const ki=on&&KSI[eKS()];e1.classList.toggle('im',!!ki);if(ki)e1.innerHTML=`<img src="${KSI[eKS()]}" alt=""><u>${mood()}</u>`;else e1.textContent=on?mood():'';e1.style.display=on?'':'none';if(kc)e1.style.setProperty('--sk',kc)}
 /* ---- v97: per-world boss victory burst ---- */
 const WINB={roman:[['\u{1F3DB}\uFE0F','\u2694\uFE0F','\u{1F985}','\u{1FA99}'],'VICTORIA!','#ffb347'],buganda:[['\u{1F941}','\u{1F41A}','\u{1F451}','\u2728'],'THE KINGDOM IS VICTORIOUS','#f2b705'],cyber:[['\u{1F4BE}','\u26A1','\u{1F513}','\u2728'],'SYSTEM BREACHED','#00e5ff'],samurai:[['\u{1F338}','\u26E9\uFE0F','\u{1F5E1}\uFE0F','\u{1F3EE}'],'HONOUR EARNED','#ff4a68'],ice:[['\u2744\uFE0F','\u{1F9CA}','\u2694\uFE0F','\u2728'],'VALHALLA AWAITS','#8fe0ff'],gold:[['\u{1FA99}','\u{1F451}','\u{1F4B0}','\u2728'],'GOLDEN TRIUMPH','#ffd45a'],astral:[['\u{1F31F}','\u2604\uFE0F','\u{1FA90}','\u2728'],'THE STARS ALIGN','#c9a8ff'],atlantis:[['\u{1FAE7}','\u{1F531}','\u{1F41A}','\u{1F30A}'],'THE KRAKEN SINKS','#53d0ff'],elementa:[['⚛️','🧪','💎','✨'],'THE REACTION IS COMPLETE','#f78fff'],jungle:[['🌴','🎲','🍃','🐒'],'THE JAGUAR KING FALLS','#8be04a']};
@@ -3980,7 +4067,7 @@ function hrtRow(n,u,p,risk){const s=HSH[wdKey()];return Array.from({length:n},(_
 function hpRender(){if(!G)return;if(G.hpB!==!!G.boss){G.hpB=!!G.boss;G.hp=[null,null]}G.hp=G.hp||[null,null];G.hp[G.cur]={m:G.maxAtt,u:G.att,r:G.rf&&G.rf.risk?1:0};
  [0,1].forEach(p=>{const e=$('#hp'+p);if(!e)return;const s=G.hp[p]||{m:G.maxAtt,u:0,r:0},on=p===G.cur;e.className='hp p'+p+(on?' on':' off');e.innerHTML=hrtRow(s.m,s.u,p,on&&s.r);e.setAttribute('aria-label',nm(p)+': '+(s.m-s.u)+' attempts left')})}
 function render(msg){if(!G)return;const b=G.boss;
- $('#n0').textContent=(PRO.ps?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();try{KXB.sync()}catch(e){}$('#s1').textContent=G.score[1];
+ $('#n0').textContent=(PRO.ps&&!PSKI[PRO.ps]?PSK[PRO.ps][0]+' ':'')+nm(0)+(G.combo[0]>1?' 🔥'+G.combo[0]:'');$('#n1h').textContent=nm(1)+(G.mode==='AI'?' '+mood():G.combo[1]>1?' 🔥'+G.combo[1]:'');$('#s0').textContent=G.score[0];skinHud();try{KXB.sync()}catch(e){}$('#s1').textContent=G.score[1];
  $('#h0').classList.toggle('act',G.cur===0&&G.mode==='PVP');$('#h1').classList.toggle('act',G.cur===1&&G.mode==='PVP');
  $('#lvl').textContent=b?'BOSS PHASE':`ROUND ${G.round}`;
  $('#tgt').textContent=b?`${G.layers}/${G.total} SHIELDS`:(G.M.t<9999?`TARGET ${G.M.t}`:G.M.label);
@@ -4111,11 +4198,11 @@ shopOn(e=>{const b=e.target.closest('[data-dp],[data-gu],[data-rl],[data-set],[d
  else if(b.dataset.rl){const k=b.dataset.rl,r=RELICS.find(x=>x[0]===k);if(!PRO.rel[k]&&pay(PR(r[4]))){PRO.rel[k]=1;qEv('buy');toast(`${r[1]} <b>${r[2]}</b><br><small>${r[3]}</small>`);ok=1}}
  else if(b.dataset.set){if(!PRO.own.romanset&&pay(PR(SETP))){PRO.own.romanset=1;qEv('buy');toast('🏛️ <b>ROMAN LEGION SET</b><br><small>Equip a skin below</small>');ok=1}}
  else if(b.dataset.bn!=null){const bn=BUNDLES[+b.dataset.bn];if(pay(PR(bn[3]))){grant(bn[4]);qEv('buy');toast(`${bn[0]} <b>${bn[1]}</b><br><small>${bn[2]} — added to your pack</small>`);ok=1}}
- else if(b.dataset.eq){PRO.ps=PRO.ps===b.dataset.eq?'':b.dataset.eq;if(PRO.ps)skSplash(PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'EQUIPPED');ok=1}
+ else if(b.dataset.eq){PRO.ps=PRO.ps===b.dataset.eq?'':b.dataset.eq;if(PRO.ps)skSplash(PSKI[PRO.ps]||PSK[PRO.ps][0],PSK[PRO.ps][1],PSK[PRO.ps][2],'EQUIPPED');ok=1}
  if(ok){tone(660,.1,'triangle');LS.set('ms_pro',PRO);shopUI();profUI()}});
 shopOn(e=>{const b=e.target.closest('[data-pv]');if(!b)return;const k=b.dataset.pv,f=k.slice(0,2),v=k.slice(3),it=SHOP.find(x=>x[0]===k);
  if(f==='th'){const a=$('#app');a.className=a.className.replace(/\bth-\S+/g,'').trim();a.classList.add('th-'+v);toast('🎨 Previewing '+it[2]+'…');setTimeout(applyTheme,2600)}
- else if(f==='ps')skSplash(PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KSE(v),KSC[v],it[2],'PREVIEW')});
+ else if(f==='ps')skSplash(PSKI[v]||PSK[v][0],PSK[v][1],PSK[v][2],'PREVIEW');else if(f==='ks')skSplash(KSE(v),KSC[v],it[2],'PREVIEW')});
 // -- coin wagers
 // v50: rank-unlocked stakes, side-bets, loss insurance, a 5% rake on winnings (the coin sink)
 const WM={Easy:1.5,Medium:2,Hard:2.5},WS=[0,25,50,100,250,500],WR={250:4,500:8},ALLR=11,ALLMIN=600,ALLCAP=10000,RAKE=.05,INS_FEE=.10,INS_BACK=.5;
@@ -5920,7 +6007,7 @@ function kxN(w){let n=0;const wm=PRO.wm||{};for(;;){const q=wm[n?w+'~'+n:w];if(q
 window.__klad=KLAD;window.__curW=curW;const kxAuto=window.kxAuto=function(w){w=w||curW();const L=KLAD[w]||[],n=Math.min(kxN(w),L.length);if(!n)return'';const o=(PRO.kx||{})[w],i=L.indexOf(o);return o&&i>=0&&i<n?o:L[n-1]};
 /* old Kiraxo skins become player skins */
 const ND={};
-SHOP.forEach(it=>{if(it[0].slice(0,3)!=='ks:')return;const k=it[0].slice(3),face=KSI[k]?KS[k][0]:it[1];it[0]='ps:k_'+k;it[2]=it[2].replace(/ KIRAXO$/,'').replace(/^THE /,'');it[3]=it[3].replace(/^Gem-only Kiraxo skin/,'Gem-only player skin').replace(/^Kiraxo skin/,'Player skin').replace(/^Boss skin/,'Player skin').replace(/ boss skin/,' skin');PSK['k_'+k]=[face,KSC[k]||'#ffd45a',it[2]];ND[k]=1});
+SHOP.forEach(it=>{if(it[0].slice(0,3)!=='ks:')return;const k=it[0].slice(3),face=KSI[k]?KS[k][0]:it[1];it[0]='ps:k_'+k;it[2]=it[2].replace(/ KIRAXO$/,'').replace(/^THE /,'');it[3]=it[3].replace(/^Gem-only Kiraxo skin/,'Gem-only player skin').replace(/^Kiraxo skin/,'Player skin').replace(/^Boss skin/,'Player skin').replace(/ boss skin/,' skin');PSK['k_'+k]=[face,KSC[k]||'#ffd45a',it[2]];if(KSI[k])PSKI['k_'+k]=KSI[k];ND[k]=1});
 Object.keys(SKW).forEach(k=>{if(k.slice(0,3)==='ks:'){SKW['ps:k_'+k.slice(3)]=SKW[k];delete SKW[k]}});
 const ix=SHCATS.findIndex(c=>c[0]==='ks');if(ix>=0)SHCATS.splice(ix,1);
 function kxMig(){let ch=0;const o=PRO.own||(PRO.own={});Object.keys(o).forEach(k=>{if(k.slice(0,3)==='ks:'){const v=k.slice(3);if(ND[v])o['ps:k_'+v]=1;delete o[k];ch=1}});
@@ -7652,7 +7739,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.19';
+window.APP_VER='1.9.20';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}

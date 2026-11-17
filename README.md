@@ -688,3 +688,6 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 
 ## 1.9.19 changes
 **Memory Echo keys light up in their own colour** (the same hue as that key's ripple) when the game plays them, and glow in it when pressed. Resting keys are unchanged. Bump `V` in `sw.js` and `APP_VER` after every change.
+
+## 1.9.20 changes
+**Result screens redesigned** (Daily Strike and Sniper Week end screens): big score with a progress bar, streak / new-best pill, the emoji run in its own tablet, reward chips (coins, gems, XP, ghosts), a win/lose strip for rival races, and rank tiles for Today and Week. Streak Freeze and Today's Board now sit side by side as compact buttons; Sniper Week has one gold primary button (Run again / Bonus run) with Leaderboard and the Colosseum below it. **Leaderboard** is now a card with a fixed header and tabs, a scrolling list with round rank medals and score bars, a "points to pass" chase panel and a fixed CLOSE. **Skin reveal**: previews, equip and arena entrance use the same portrait as the shop list (Kabaka, Sultan, Viking, Shogun, Cyber-God, Void Eater, Kraken, Jungle) via `PSKI`; the HUD emblem and profile avatar use the portrait too. Skins without a portrait get a round medallion. Bump `V` in `sw.js` and `APP_VER` after every change.
