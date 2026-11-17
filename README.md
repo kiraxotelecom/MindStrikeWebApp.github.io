@@ -719,3 +719,9 @@ Service worker and APP_VER are 1.9.26.
 
 ## 1.9.28 changes
 **🧒 Aris redesign (base character).** Same shape and same slots (SH/AL/AR/TO/OT/HD/OV/FR), so every world outfit and wardrobe item still fits. New: glossy purple-black hair with sheen and curl strokes on the buns, richer shaded skin with a forehead highlight, eyes with a shaded lid, violet iris, pupil, two highlights and lashes with a flick, a soft nose, radial blush, a mouth with teeth and a lip line, shaded ear and arm gradients, and hands with a thumb and a crease. New gradient ids: aA$, aH$, aI$, aE$, aB$. Service worker and APP_VER are 1.9.28.
+
+## 1.9.29 changes
+**Aris eyes softened.** The heavy lash line and flick are replaced by a thin, translucent lid line, and the top of the eye shading is lighter, so it no longer reads as make-up. The 3D shading elsewhere is unchanged. Service worker and APP_VER are 1.9.29.
+
+## 1.9.30 changes
+**Aris more 3D, no lid line.** The line above the eyes is removed. Eyeballs are now shaded round (white centre, darker edge), irises have a dark rim and a lower glow, and the face has volume: a soft shadow towards the lower right edge, a forehead highlight and a faint cheek highlight. Service worker and APP_VER are 1.9.30.
