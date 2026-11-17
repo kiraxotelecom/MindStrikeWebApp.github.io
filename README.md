@@ -708,3 +708,8 @@ Uganda, Roman, Japan (Shogun) and Atlantis collections now have 40 cards each (t
 **👗 Aris Wardrobe try-on fix.** The global `button{min-width:230px}` rule made the three try-on buttons (◀ CLOSE ▶) 230px wide inside a 340px card, so ◀ was pushed off-screen to the left and ▶ was cut off; you could not step through outfits. They now have their own sizes. Also added headroom above the preview so tall hats are not cropped, a preview size that shrinks on short screens, and a sticky button row.
 
 Service worker is 1.9.24 (APP_VER too).
+
+## 1.9.26 changes
+**🪢 Tug of War range follows the mode.** Vs computer: Easy 1–25, Medium 1–50, Hard 1–100 (`RNG()` in the v121 block). Two players on one device stay 1–100. Online is 1–50 (`MODES.tug`, `tugStart`, `tugPlay`). The setup card and the Help text show the range.
+**🧠 Aris's chest: Try it questions no longer repeat the example.** 57 of the 89 exercises now use different numbers from the worked example and lesson text (e.g. divisibility, squares, tricks, binary). Only the question row (item 5 of `F`) changed, so Math Book progress is kept.
+Service worker and APP_VER are 1.9.26.
