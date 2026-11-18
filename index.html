@@ -1732,7 +1732,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 #ends .rsMs .rsMb u{display:block;height:100%;text-decoration:none;background:linear-gradient(90deg,#ff7a1a,#ffd45a);box-shadow:0 0 10px #ff9a3d;animation:rsGrow .9s .5s cubic-bezier(.2,.9,.3,1) both;transform-origin:left}
 #ends .rsNt{font-size:.74rem;opacity:.9;font-weight:700;letter-spacing:.03em}
 #arBrag .bgMeta{white-space:pre-line}
-/* v199 (1.9.44): fit the result screens on one screen, no scrolling */
+/* v199 (1.9.45): fit the result screens on one screen, no scrolling */
 #s-end:has(#ends .rs2){justify-content:flex-start;gap:0;padding-top:max(6px,env(safe-area-inset-top))!important;padding-bottom:max(8px,env(safe-area-inset-bottom))!important;overflow:hidden}
 #s-end[data-k=""]:has(#ends .rs2) #vrow .arWrap.arEnd{--arW:clamp(64px,9.5vh,86px);margin-top:46px}
 #s-end[data-k=""]:has(#ends .rs2) #vrow #vemb{width:56px;height:56px;font-size:2rem}
@@ -2209,7 +2209,8 @@ const LEVELS=['I · RECRUIT','II · LEGIONARY','III · CENTURION','IV · LEGATUS
 const PERS={Calculator:{mod:.15,risky:0,adapt:0},Gambler:{mod:-.10,risky:1,adapt:0},Psycho:{mod:.05,risky:0,adapt:1},Prime:{mod:.10,risky:0,adapt:1}};
 const AI_WIN=['😈 Too easy, Roman.','😏 The gods favour me today.','🧠 Numbers obey me.','👑 Kneel, legionary.','⚔️ Another victim for the arena.'],AI_LOSE=['😒 Lucky. Next time.','🥶 Hmph. The dice are cold.','😤 You live another round.','🤨 Even a blind gladiator strikes true once.','🔥 Enjoy it while it lasts.'];
 var PSKI={};const PSK={gladiator:['🗡️','#d35b3a','GLADIATOR'],praetorian:['🦅','#e6c15a','PRAETORIAN'],spartan:['🔱','#58a6d6','SPARTAN'],laurel:['🌿','#ffe08a','GOLDEN LAUREL'],obsidian:['💜','#9a8cff','OBSIDIAN GUARD'],hoplite:['🏺','#c98b3d','HOPLITE'],pharaoh:['🐍','#2fd0c8','PHARAOH'],titan:['⚡','#8fb6ff','TITAN'],imperator:['👑','#ffd84a','IMPERATOR'],diamond:['💎','#7fe8ff','DIAMOND GUARD'],nova:['🌟','#ffd45a','NOVA GUARD'],nebula:['🌌','#b48cff','NEBULA WARDEN'],comet:['☄️','#7fe8ff','COMET RIDER'],eclipse:['🌑','#ffb347','ECLIPSE KNIGHT'],tide:['🌊','#4fd0ff','TIDECALLER'],kraken:['🐙','#ff6ac1','KRAKEN GUARD'],pearl:['🐚','#ffe9f2','PEARL KNIGHT'],siren:['🧜','#7ff0d0','SIREN WARDEN'],safari:['🧭','#f0c84a','SAFARI EXPLORER'],monkey:['🐒','#c88a4a','MONKEY KING'],jaguar:['🐆','#e8a21a','JAGUAR HUNTER'],drummer:['🥁','#e0803a','DRUM CHIEF']};
-/* v1.9.44: PREMIUM SKIN ART. Hand-built SVG emblems (no image files) replace the emoji for Camel/Caravan Rider, Tidecaller, Titan, Obsidian Guard, Android Sentinel, Mainframe, Robo-Kiraxo, Frost Giant, Imperator's Crown (Konungr's Crown in Frostlands), Pharaoh (Frost King in Frostlands), Golden Laurel (Golden Rune in Frostlands) and the Frost Warband set card. They plug in through PSKI (a skin key -> image), so the shop, splash, HUD, rank card and board all use them. Add a skin = one SKA_ART function and one row in MAP. */
+if(typeof window.rankBrag!=='function')window.rankBrag=function(){}; /* safe stub until the online block replaces it (v1.9.45) */
+/* v1.9.45: PREMIUM SKIN ART. Hand-built SVG emblems (no image files) replace the emoji for Camel/Caravan Rider, Tidecaller, Titan, Obsidian Guard, Android Sentinel, Mainframe, Robo-Kiraxo, Frost Giant, Imperator's Crown (Konungr's Crown in Frostlands), Pharaoh (Frost King in Frostlands), Golden Laurel (Golden Rune in Frostlands) and the Frost Warband set card. They plug in through PSKI (a skin key -> image), so the shop, splash, HUD, rank card and board all use them. Add a skin = one SKA_ART function and one row in MAP. */
 (function(){
 /* ---- MindStrike premium skin art (SVG, no image files) ---- */
 const SKA_DEF={
@@ -5269,6 +5270,7 @@ function famGet(){return LS.get('ms_fam',{})}
 function famRecord(a,b,win){if(!a||!b||a===b)return;const f=famGet(),k=[a,b].sort(),key=k.join('|'),e=f[key]||{a:k[0],b:k[1],aw:0,bw:0};if((win?a:b)===e.a)e.aw++;else e.bw++;f[key]=e;LS.set('ms_fam',f)}
 /* 1.9.0: RANK UP brag card. Once per rank (PRO.bgr), a few seconds after the rank-up toast. It waits (up to ~18 s) while a boss ending, another brag card or a live game is on screen, so it never covers them. */
 function rankBrag(r){try{if(!window.ARIS||!ARIS.bragWin||!RANKS[r])return;PRO.bgr=PRO.bgr||{};if(PRO.bgr[r])return;PRO.bgr[r]=1;LS.set('ms_pro',PRO);let n=0;const busy=()=>!!(document.getElementById('kxE')||document.querySelector('#arBrag.on')||document.querySelector('#s-game.on')),go=()=>{if(busy()){if(n++<12)setTimeout(go,1500);return}const nm=RANKS[r][0];try{ARIS.bragWin('rank',{name:nm,big:nm,meta:'🎖️ '+nm+' · '+Math.round(PRO.xp)+' XP · '+PRO.w+' wins',share:'🎖️ I just reached the rank of '+nm+' in MindStrike! Can you?'})}catch(e){}};setTimeout(go,3000)}catch(e){}}
+window.rankBrag=rankBrag; /* v1.9.45: rankBrag lives inside the online block, so rank-ups at the end of campaign, mini game and world map matches threw a ReferenceError and froze the game. It is global now. */
 /* 1.8.9: an online win only earns a brag card at a rivalry milestone: your 5th, 10th, 25th, 50th or 100th win over the same opponent. Call after famRecord. */
 function onBragOK(a,b){try{const e=famGet()[[a,b].sort().join('|')];if(!e)return false;const w=e.a===a?e.aw:e.bw;return [5,10,25,50,100].includes(w)}catch(x){return false}}
 function famLine(a,b){const e=famGet()[[a,b].sort().join('|')];return e?e.a+' '+e.aw+' – '+e.bw+' '+e.b:''}
@@ -6751,7 +6753,7 @@ function jglCheck(){try{PRO.own=PRO.own||{};if(PRO.own['wd:elementa'])return fal
   toast('⚛️ <b>ELEMENTA UNLOCKED!</b><br><small>The crystal lab is open. Equip it free in the Armory → Worlds.</small>');burst(['⚛️','🧪','✨','🔬'],26)}catch(e){}},900);
  return true}catch(e){return false}}
 
-/* v1.9.44: STRICT WORLDS. One-time re-check (PRO.wq): every owned world must still pass its own rule or it is removed, with no refund and no matter how it was gained. Rank worlds need their rank plus the stamps they ask for (stamps from the world itself do not count towards it); Elementa needs the map stars; coin-bought worlds stay. A removed world also unequips its skins and, if you were wearing it, switches you back to Roman. Bump PRO.wq to run it again. */
+/* v1.9.45: STRICT WORLDS. One-time re-check (PRO.wq): every owned world must still pass its own rule or it is removed, with no refund and no matter how it was gained. Rank worlds need their rank plus the stamps they ask for (stamps from the world itself do not count towards it); Elementa needs the map stars; coin-bought worlds stay. A removed world also unequips its skins and, if you were wearing it, switches you back to Roman. Bump PRO.wq to run it again. */
 function strictWorlds(){try{if((PRO.wq||0)>=1)return;PRO.own=PRO.own||{};const lost=[],stEx=w=>WALL().filter(x=>x!==w&&stampHas(x)).length;
  Object.keys(WORLDS).forEach(w=>{if(w==='roman'||!PRO.own['wd:'+w])return;const W=WORLDS[w];let ok=true;if(W.lock)ok=jglStars()>=JGL_NEED;else if(W.gem)ok=rk()>=W.rk&&stEx(w)>=(W.st||0);if(!ok){lost.push(W.n);delete PRO.own['wd:'+w];if(PRO.own['ks:'+w]){delete PRO.own['ks:'+w];if(PRO.ks===w)PRO.ks=''}}});
  let sw=0;if(PRO.wd&&!ownW(PRO.wd)){PRO.wd='';sw=1}
@@ -8773,7 +8775,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.44';
+window.APP_VER='1.9.45';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}

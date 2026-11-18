@@ -746,3 +746,6 @@ The four Legion/Warband set skins now have art too: Legionary, Centurion, Senato
 
 ## 1.9.44 changes
 **Strict worlds.** One-time re-check (`PRO.wq`, function `strictWorlds()` next to `jglCheck`): every owned world must pass its own rule or it is removed with no refund. Rank worlds need their rank plus the stamps they ask for (the world's own stamp does not count towards itself), Elementa needs 50 map stars, coin-bought worlds stay. A removed world unequips its skins, switches the player back to Roman if they were wearing it, and shows a notice listing what was removed. Jungle Quest owners who got it through the old 50-star rule now lose it unless they have rank and 5 stamps. **Coin prices doubled** everywhere coins are spent: `PR()` (skins, sets, relics, war chests, Forge, daily market, coin worlds), battle upgrades, Aris outfits, coin-to-gem exchange (700) and freezes (1440). Rewards are unchanged. Bump `PRO.wq` to run the world check again.
+
+## 1.9.45 changes
+**Fix: frozen game on rank-up.** `rankBrag` was defined inside the online block, so a rank-up at the end of a Conquest battle, mini game, Endless Tower floor or world-map battle threw `ReferenceError: Can't find variable: rankBrag` and the player could not continue. It is now exposed as `window.rankBrag` (with a safe stub defined earlier).
