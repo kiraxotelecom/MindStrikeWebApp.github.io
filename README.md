@@ -737,3 +737,12 @@ Result screen: Aris speech bubble now sits above her again (it no longer covers 
 
 ## 1.9.34 changes
 Result screens (Daily Strike, Colosseum, Friend Challenge) now fit one screen with no scrolling: compact spacing, a smaller Aris row, and `rsFit()` which zooms the content down (to 60% at most) if a small phone still overflows. Service worker and APP_VER are 1.9.34.
+
+## 1.9.42 changes
+**Premium skin art.** Hand-built SVG emblems (no image files) replace the emoji for Caravan Rider (camel), Tidecaller, Titan, Obsidian Guard, Android Sentinel (no more robot leg), Mainframe (no more monitor), Robo-Kiraxo, Frost Giant, Imperator's Crown, Pharaoh (no more eye) and Golden Laurel. In Frostlands the same skins become the Konungr's Crown, the Frost King (horned-ice spangenhelm) and the Golden Rune (glowing Fehu stone), and the Frost Warband set card gets its own shield-and-axes icon so it no longer matches the Golden Rune. Art lives in the `SKA` block right after `PSK` in `index.html` and plugs in through `PSKI`, so the shop, splash, HUD, rank card and board all use it. The 🐪 icon everywhere in the game also uses the new camel. Bump `V` in `sw.js` after every change; this build is 1.9.42.
+
+## 1.9.43 changes
+The four Legion/Warband set skins now have art too: Legionary, Centurion, Senator and Vestal Flame in the Roman world; Huskarl, Hirdman, Lawspeaker and Frost Flame in Frostlands. Other worlds keep their emoji for these four. Set equip buttons show the art.
+
+## 1.9.44 changes
+**Strict worlds.** One-time re-check (`PRO.wq`, function `strictWorlds()` next to `jglCheck`): every owned world must pass its own rule or it is removed with no refund. Rank worlds need their rank plus the stamps they ask for (the world's own stamp does not count towards itself), Elementa needs 50 map stars, coin-bought worlds stay. A removed world unequips its skins, switches the player back to Roman if they were wearing it, and shows a notice listing what was removed. Jungle Quest owners who got it through the old 50-star rule now lose it unless they have rank and 5 stamps. **Coin prices doubled** everywhere coins are spent: `PR()` (skins, sets, relics, war chests, Forge, daily market, coin worlds), battle upgrades, Aris outfits, coin-to-gem exchange (700) and freezes (1440). Rewards are unchanged. Bump `PRO.wq` to run the world check again.
