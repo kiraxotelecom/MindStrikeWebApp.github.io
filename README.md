@@ -751,3 +751,10 @@ The four Legion/Warband set skins now have art too: Legionary, Centurion, Senato
 
 ## 1.9.45 changes
 **Fix: frozen game on rank-up.** `rankBrag` was defined inside the online block, so a rank-up at the end of a Conquest battle, mini game, Endless Tower floor or world-map battle threw `ReferenceError: Can't find variable: rankBrag` and the player could not continue. It is now exposed as `window.rankBrag` (with a safe stub defined earlier).
+
+## 1.9.48 changes
+**Kiraxo 3D.** The boss characters (every world's Kiraxo, the generals, Gallery, Boss Rush, boss fight portrait and endings) get a lighting layer: lit gradients, cylinder shading, sphere-lit face, rim light and backlight, glossy eyes, helmet specular, contact shadow and a relief (specular) filter that makes trim look like metal. New animation: breathing, blinking, a slow look-around, cape sway, a helmet shine sweep, per-world ambient particles and sharper head reactions. Code is the separate `<script id="bz3dJs">` right after `bzJs`; it wraps `BZ.svg`. The relief filter is skipped on low-memory phones and with reduced motion; set `localStorage ms_bz3d='0'` to turn it off, or delete the block for the old flat look.
+
+## 1.9.49 changes
+**No scars** on Samurai, Oni, Tengu, Yeti, Frost Giant, Jungle and Stampede (the random scar line and the claw/crack marks are removed; edit `NOSCAR` in `bz3dJs`). **Alien faces** for Astral (lilac skin, glowing cyan eye slits) and Star Maw (grey-green skin, violet glow): big black almond eyes with gloss, tiny nostrils and mouth, tapered chin, with their own idle, smug and rage expressions (hurt and defeated keep the normal ones). Edit `ALIEN` in `bz3dJs` to change colours or add more aliens. Service worker and APP_VER are 1.9.49.
+
