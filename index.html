@@ -1706,8 +1706,11 @@ html.noaris #arBrag .arWrap{display:block!important}
 #ends .rsR>small{font-size:.62rem;letter-spacing:.34em;font-weight:800;opacity:.75;padding:2px 0 1px}
 #ends .rsR .rr{display:flex;align-items:center;gap:9px;padding:5px 12px 5px 8px;margin:0 8px;border-left:4px solid #4cd98a;background:linear-gradient(90deg,#ffffff0d,#0007);animation:vin .45s both}
 #ends .rsR .rr.x{border-left-color:#ff7a6a}
-#ends .rsR .rr i{flex:0 0 26px;height:26px;display:grid;place-items:center;font-style:normal;font-size:.8rem;font-weight:800;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--gold) 75%,transparent);background:#0009;color:var(--gold)}
-#ends .rsR .rr .tr{flex:1;min-width:0;text-align:left;font-size:1rem;letter-spacing:.02em;white-space:nowrap;overflow:hidden}
+#ends .rsR .rr>i{flex:0 0 26px;height:26px;display:grid;place-items:center;font-style:normal;font-size:.8rem;font-weight:800;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--gold) 75%,transparent);background:#0009;color:var(--gold)}
+#ends .rsR .rr .tr{flex:1;min-width:0;text-align:left;font-size:1rem;letter-spacing:.02em;white-space:nowrap;overflow:hidden;display:flex;align-items:center;gap:1px}
+#ends .rsR .rr .tr .ea{flex:0 0 auto;width:1.08em;height:1.08em;display:inline-block;border:0;background:none;border-radius:0}
+#ends .rsR .rr .tr.lg{font-size:.74rem}#ends .rsR .rr .tr.xl{font-size:.64rem}
+#ends .rs2 .rsR .rr .tr.lg{font-size:.7rem}#ends .rs2 .rsR .rr .tr.xl{font-size:.6rem}
 #ends .rsR .rr em{font-style:normal;font-size:.6rem;letter-spacing:.14em;font-weight:800;opacity:.78;white-space:nowrap}
 #ends .rsR .rr b{min-width:40px;text-align:right;font-size:1.1rem;color:var(--gold);font-weight:800}
 #ends .rsTl{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:8px}
@@ -1749,7 +1752,7 @@ html.noaris #arBrag .arWrap{display:block!important}
 #ends .rs2 .rsR{gap:2px;padding:3px 0 4px}
 #ends .rs2 .rsR>small{font-size:.54rem;padding:0}
 #ends .rs2 .rsR .rr{padding:2px 10px 2px 6px;gap:7px}
-#ends .rs2 .rsR .rr i{flex-basis:20px;height:20px;font-size:.66rem}
+#ends .rs2 .rsR .rr>i{flex-basis:20px;height:20px;font-size:.66rem}
 #ends .rs2 .rsR .rr .tr{font-size:.82rem}
 #ends .rs2 .rsR .rr em{font-size:.54rem}
 #ends .rs2 .rsR .rr b{font-size:.95rem;min-width:34px}
@@ -4293,7 +4296,7 @@ const rsLn=l=>{const ok=l.includes('🎯'),n=[...l.replace(/\uFE0F/g,'')].length
 const rsEsc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const rsLine=o=>{try{return ARIS.line(o)}catch(e){return''}};
 const rsVi=h=>{const m=String(h||'').match(/You (beat|tied with|lost to) <b>(.*?)<\/b>/);return m?{w:m[1]==='beat'?1:m[1]==='lost to'?-1:0,n:m[2].replace(/<[^>]*>/g,'')}:{w:null,n:''}};
-const rsRowsH=(l,p)=>`<div class="rsR"><small>YOUR RUN</small>${l.map((t,i)=>{const q=p[i]||{n:0,ok:0,p:null};return`<div class="rr${q.ok?'':' x'}" style="animation-delay:${(.12*i+.1).toFixed(2)}s"><i>${i+1}</i><span class="tr">${t}</span><em>${q.ok?q.n+(q.n===1?' TRY':' TRIES'):'MISSED'}</em><b>${q.p==null?'':q.ok?'+'+q.p:'0'}</b></div>`}).join('')}</div>`;
+const rsRowsH=(l,p)=>`<div class="rsR"><small>YOUR RUN</small>${l.map((t,i)=>{const q=p[i]||{n:0,ok:0,p:null};return`<div class="rr${q.ok?'':' x'}" style="animation-delay:${(.12*i+.1).toFixed(2)}s"><i>${i+1}</i><span class="tr${(n=>n>11?' xl':n>8?' lg':'')([...String(t).replace(/<[^>]*>/g,'').replace(/\uFE0F/g,'')].length)}">${t}</span><em>${q.ok?q.n+(q.n===1?' TRY':' TRIES'):'MISSED'}</em><b>${q.p==null?'':q.ok?'+'+q.p:'0'}</b></div>`}).join('')}</div>`;
 const rsGhH=(v,sub)=>{const m=String(v).match(/(\d+)\/(\d+)/);if(!m)return'';const b=+m[1],n=+m[2];return`<div class="rsGh"><span class="l">GHOSTS<br>BEATEN</span><span class="gs">${Array.from({length:n},(_,i)=>`<i class="${i<b?'':'off'}">👻</i>`).join('')}</span><span class="r"><b>${b}/${n}</b>${sub?`<small>${sub}</small>`:''}</span></div>`};
 function rsMsH(){const ds=PRO.ds||0,ML=[[3,50],[7,150],[14,300],[30,700]],nx=ML.find(m=>m[0]>ds);if(!nx)return'';let p0=0;ML.forEach(m=>{if(m[0]<=ds)p0=m[0]});const left=nx[0]-ds,g=GSTK[nx[0]],pc=Math.max(4,Math.round((ds-p0)/(nx[0]-p0)*100));return`<div class="rsMs"><div class="t"><span>🔥 NEXT MILESTONE · DAY ${nx[0]}</span><b>+${cx(nx[1])} 💰${g?` · +${g} 💎`:''} · ${left} day${left===1?'':'s'} to go</b></div><div class="rsMb"><u style="width:${pc}%"></u></div></div>`}
 const rsScreen=o=>`<div class="rs rs2">${rsHero(o.cap,o.sc,o.mx,o.tags||[])}${o.run||''}${o.tiles&&o.tiles.length?`<div class="rsTl" style="--n:${o.tiles.length}">${o.tiles.map(t=>`<div><i>${t[0]}</i><span><b>${t[1]}</b><small>${t[2]}</small>${t[3]?`<em>${t[3]}</em>`:''}</span></div>`).join('')}</div>`:''}${o.gh||''}${o.ms||''}${o.vs||''}${o.notes&&o.notes.length?`<div class="rsNt">${o.notes.join(' · ')}</div>`:''}${o.mid||''}${o.btn||''}</div>`;
@@ -8337,8 +8340,8 @@ window.BZ={hs,has:k=>k in SP,svg,mood(root,m){const z=root&&(root.matches&&root.
 (function(){
 if(!window.BZ||window.BZ3D===0||window.BZ.d3)return;
 const svg0=window.BZ.svg;let U=0;
-/* the relief (specular) filter is the one costly part: it is skipped on low-end phones, with reduced-motion, or when localStorage ms_bz3d is '0'. The gradients and animation always stay. */
-let RELIEF=1;try{if(localStorage.getItem('ms_bz3d')==='0'||(navigator.deviceMemory&&navigator.deviceMemory<=2)||(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches))RELIEF=0}catch(e){}
+/* v1.9.50: the relief (specular) filter is OFF by default. It laid a glassy, mottled sheen over every Kiraxo and blurred them while they animated. The gradients, rim light and animation stay. Opt back in with localStorage ms_bz3d='relief'. */
+let RELIEF=0;try{if(localStorage.getItem('ms_bz3d')==='relief'&&!(navigator.deviceMemory&&navigator.deviceMemory<=2)&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches))RELIEF=1}catch(e){}
 /* ---- colour helpers ---- */
 const px=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return[n>>16&255,n>>8&255,n&255]};
 const hx=a=>'#'+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('');
@@ -8938,7 +8941,7 @@ E.elementa={ac:'#c04bd8',bg:B.elementa(),
 <script id="splJs">
 /* v175 (simple launch restored in 1.8.8): the three big digits always lock to 711. APP_VER is shown small at the bottom of the launch screen and at the bottom of Settings. Bump it together with V in sw.js after every change. The animation plays on every load, and again when the app returns after 10+ minutes in the background (never during a match). Tap skips. Colours: CSS at the top of #spl. */
 (function(){
-window.APP_VER='1.9.49';
+window.APP_VER='1.9.50';
 const RMq=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let tpl='',tm=[];
 function setVer(){const t=document.getElementById('verTx');if(t)t.textContent='Version '+APP_VER;const v=document.getElementById('splV');if(v)v.textContent=APP_VER.toUpperCase()}
